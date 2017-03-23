@@ -1,0 +1,15 @@
+PODS:
+  - AsyncSwift (2.0.1)
+  - ReachabilitySwift (3)
+
+DEPENDENCIES:
+  - AsyncSwift (~> 2.0)
+  - ReachabilitySwift (~> 3)
+
+SPEC CHECKSUMS:
+  AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+
+PODFILE CHECKSUM: 016dafcb845db5f45b8e1d4bef4c878cab9182b1
+
+COCOAPODS: 1.2.0

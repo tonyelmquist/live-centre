@@ -1,0 +1,6 @@
+framework module Pods_Live_CentreTests {
+  umbrella header "Pods-Live CentreTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
