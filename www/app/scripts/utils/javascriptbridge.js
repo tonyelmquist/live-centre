@@ -94,15 +94,15 @@ class JavascriptBridge {
                 log.trace(`Data passed to Android app: ${data}`);
 
                 // Can be undefined if running in in Chrome in responsive design mode
-                if (window.vivaNative != undefined) {
-                    window.vivaNative.jsBridge(`viva://${data}`);
+                if (window.tfgNative != undefined) {
+                    window.tfgNative.jsBridge(`tfg://${data}`);
                 }
             }
             else if (this._ios) {
                 log.trace(`Data passed to iOS app: ${data}`);
 
                 let iframe = document.createElement("IFRAME");
-                iframe.setAttribute("src", `viva://${data}`);
+                iframe.setAttribute("src", `tfg://${data}`);
                 iframe.className = "msgFrame";
                 document.documentElement.appendChild(iframe);
                 iframe.parentNode.removeChild(iframe);
