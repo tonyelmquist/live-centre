@@ -1,0 +1,10 @@
+# Mac OS X
+*/.DS_Store
+.DS_Store
+.DS_Store?
+
+# Language temp folder
+langtemp/
+
+# Python compiled files
+*.pyc

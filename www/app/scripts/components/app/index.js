@@ -1,0 +1,1 @@
+export JavascriptBridgeComponent from './javascriptbridgecomponent';
