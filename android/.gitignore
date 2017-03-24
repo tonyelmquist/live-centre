@@ -1,0 +1,15 @@
+# Android Studio
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+
+# Signing files with passwords and such never to be committed
+/signing.gradle
+/keystore
+/keystore-vord
+/keystore-lounea
