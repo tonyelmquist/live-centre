@@ -38,6 +38,9 @@ pids
 *.pid
 *.seed
 
+# Build folder
+build
+
 # Dist folder
 dist
 
