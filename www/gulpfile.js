@@ -19,8 +19,8 @@ const BUILD_FOLDER = 'build';
 const DEST_FOLDER = isDev ? BUILD_FOLDER : DIST_FOLDER;
 const FILE_NAME = isDev ? 'main' : 'main.min';
 
-const ANDROID_ASSETS = 'temp';  // Should Later Be Changed
-const IOS_ASSETS = 'temp';      // Should Later Be Changed
+const ANDROID_ASSETS = '../android/app/src/main/assets/';  // Should Later Be Changed
+const IOS_ASSETS = '../ios/Live Centre/html/';      // Should Later Be Changed
 
 
 
@@ -160,7 +160,9 @@ gulp.task('serve', function() {
     browserSync.init({
         server: {
             baseDir: BUILD_FOLDER
-        }
+        },
+        port:3778,
+        open: "external"
     });
     browserSync.watch(BUILD_FOLDER + '/**').on('change', browserSync.reload)
 });
