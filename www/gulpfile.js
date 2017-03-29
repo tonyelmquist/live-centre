@@ -14,8 +14,13 @@ const browserSync = require('browser-sync').create();
 //Environment Setup & Check
 const NODE_ENV = util.env.production ? 'production' : 'development';
 const isDev = (NODE_ENV === 'development') ? true : false;
-const DEST_FOLDER = isDev ? 'build' : 'dist';
+const DIST_FOLDER = 'dist';
+const BUILD_FOLDER = 'build';
+const DEST_FOLDER = isDev ? BUILD_FOLDER : DIST_FOLDER;
 const FILE_NAME = isDev ? 'main' : 'main.min';
+
+const ANDROID_ASSETS = 'temp';  // Should Later Be Changed
+const IOS_ASSETS = 'temp';      // Should Later Be Changed
 
 
 
@@ -121,8 +126,8 @@ gulp.task('html', function() {
             'css': 'css/' + FILE_NAME + '.css',
             'js': 'js/' + FILE_NAME + '.js'
         })))
-        .pipe($.if(isDev, $.newer('build'), $.newer('dist')))
-        .pipe($.if(isDev, gulp.dest('build'), gulp.dest('dist')));
+        .pipe($.if(isDev, $.newer(BUILD_FOLDER), $.newer(DIST_FOLDER)))
+        .pipe($.if(isDev, gulp.dest(BUILD_FOLDER), gulp.dest(DIST_FOLDER)));
 })
 
 //Linting
@@ -141,7 +146,8 @@ gulp.task('eslint', () => {
         .pipe($.eslint.format())
         // To have the process exit with an error code (1) on
         // lint error, return the stream and pipe to failAfterError last.
-        .pipe($.eslint.failAfterError());
+        .pipe($.if(isDev, util.noop(), $.eslint.failAfterError()));
+
 });
 
 
@@ -153,25 +159,47 @@ gulp.task('watch', function() {
 gulp.task('serve', function() {
     browserSync.init({
         server: {
-            baseDir: "build"
+            baseDir: BUILD_FOLDER
         }
     });
-    browserSync.watch('build/**').on('change', browserSync.reload)
+    browserSync.watch(BUILD_FOLDER + '/**').on('change', browserSync.reload)
 });
 
 
 //Cleaning directories
 gulp.task('clean:build', function() {
-    return del('build/**');
+    return del(BUILD_FOLDER + '/**');
 });
 
 gulp.task('clean:deploy', function() {
-    return del('dist/**');
+    return del(DIST_FOLDER + '/**');
 });
+
+gulp.task('clean:ios', function() {
+    return del([IOS_ASSETS], {force: true});
+});
+
+gulp.task('clean:android', function() {
+    return del([ANDROID_ASSETS], {force: true});
+});
+
+//Copy Mobile App Assets
+gulp.task('copy:ios', ['clean:ios'], function () {
+    return gulp.src([DIST_FOLDER + '/**/*.*'], {
+        base: DIST_FOLDER
+    }).pipe(gulp.dest(IOS_ASSETS));
+});
+
+gulp.task('copy:android', ['clean:android'], function () {
+    return gulp.src([DIST_FOLDER + '/**/*.*'], {
+        base: DIST_FOLDER
+    }).pipe(gulp.dest(ANDROID_ASSETS));
+});
+
 
 //Sequence of Tasks
 gulp.task('build', $.sequence('eslint', 'clean:build', ['stylus', 'html', 'webpack'], ['watch', 'serve']));
-gulp.task('deploy', $.sequence('clean:deploy', ['stylus', 'html', 'webpack']));
+gulp.task('deploy', $.sequence('eslint', 'clean:deploy', ['stylus', 'html', 'webpack']));
 
 //Default taks: depends on DEV environment
 gulp.task('default', isDev ? ['build'] : ['deploy']);

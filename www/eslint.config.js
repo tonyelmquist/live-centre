@@ -20,7 +20,7 @@ module.exports = {
         "prefer-spread": 2,
         "prefer-template": 2,
         "require-yield": 2,
-        semi: ["warn", "always"]
+        semi: ["error", "always"]
     },
     "env": {
         "browser": true,
