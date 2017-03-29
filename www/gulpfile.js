@@ -1,6 +1,7 @@
 'use strict'
 const path = require('path');
 const gulp = require('gulp');
+const util = require('gulp-util');
 const lintConfig = require('./eslint.config');
 const gulplog = require('gulplog');
 const webpackStream = require('webpack-stream');
@@ -10,16 +11,18 @@ const del = require('del');
 const $ = require('gulp-load-plugins')();
 const browserSync = require('browser-sync').create();
 
-//Environment Check
-const NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV.trim().toLowerCase() : 'development';
+//Environment Setup & Check
+const NODE_ENV = util.env.production ? 'production' : 'development';
 const isDev = (NODE_ENV === 'development') ? true : false;
 const DEST_FOLDER = isDev ? 'build' : 'dist';
 const FILE_NAME = isDev ? 'main' : 'main.min';
 
-console.log('**********************');
-console.log('NODE_ENV: ', NODE_ENV);
-console.log('**********************');
-// console.log('Development? => ', isDev);
+
+
+console.log('***************************');
+console.log('* NODE_ENV: ', NODE_ENV, '*');
+console.log('***************************');
+
 
 //Processing Scripts
 gulp.task('webpack', function(callback) {
@@ -27,7 +30,7 @@ gulp.task('webpack', function(callback) {
     const config = {
         watch: isDev,
         devtool: isDev ? 'cheap-module-inline-source-map' : null,
-        plugins: process.env.NODE_ENV.trim() === 'production' ? [
+        plugins: !isDev ? [
             new webpack.NoErrorsPlugin(),
             new webpack.DefinePlugin({
                 // Lots of library source code (like React) are based on process.env.NODE_ENV
@@ -68,9 +71,6 @@ gulp.task('webpack', function(callback) {
                     colors: true
                 }));
             }
-            // gulplog[stats.hasErrors() ? 'error' : 'info'](stats.toString({
-            //     colors: true
-            // }));
         }
 
     }
@@ -170,8 +170,11 @@ gulp.task('clean:deploy', function() {
 });
 
 //Sequence of Tasks
-gulp.task('default', $.sequence('eslint', 'clean:build', ['stylus', 'html', 'webpack'], ['watch', 'serve']));
+gulp.task('build', $.sequence('eslint', 'clean:build', ['stylus', 'html', 'webpack'], ['watch', 'serve']));
 gulp.task('deploy', $.sequence('clean:deploy', ['stylus', 'html', 'webpack']));
+
+//Default taks: depends on DEV environment
+gulp.task('default', isDev ? ['build'] : ['deploy']);
 
 
 // Gulp 4 Syntax:
