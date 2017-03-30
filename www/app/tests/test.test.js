@@ -2,6 +2,7 @@ import 'isomorphic-fetch';
 import fetchMock from 'fetch-mock';
 import { assert } from 'chai';
 
+console.log(fetchMock);
 describe('Example test', () => {
     it('should start empty', () => {
         const arr = [];
