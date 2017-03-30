@@ -3,6 +3,7 @@ const path = require('path');
 const gulp = require('gulp');
 const util = require('gulp-util');
 const lintConfig = require('./eslint.config');
+const Server = require('karma').Server;
 const gulplog = require('gulplog');
 const webpackStream = require('webpack-stream');
 const webpack = webpackStream.webpack;
@@ -56,6 +57,7 @@ gulp.task('webpack', function(callback) {
             loaders: [{
                 test: /.jsx?$/,
                 include: path.join(__dirname, "app/scripts"),
+                exclude: path.join(__dirname, "app/tests"),
                 loader: 'babel-loader',
                 query: {
                     presets: ['es2015', 'react', 'stage-0']
@@ -137,7 +139,7 @@ gulp.task('eslint', () => {
     // So, it's best to have gulp ignore the directory as well.
     // Also, Be sure to return the stream from the task;
     // Otherwise, the task may end before the stream has finished.
-    return gulp.src('app/**/*.js')
+    return gulp.src(['app/**/*.js','!app/tests/**'])
         // eslint() attaches the lint output to the "eslint" property
         // of the file object so it can be used by other modules.
         .pipe($.eslint(lintConfig))
@@ -196,6 +198,14 @@ gulp.task('copy:android', ['clean:android'], function () {
     return gulp.src([DIST_FOLDER + '/**/*.*'], {
         base: DIST_FOLDER
     }).pipe(gulp.dest(ANDROID_ASSETS));
+});
+
+//tests
+gulp.task('karma', function (done) {
+  new Server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: false
+  }, done).start();
 });
 
 

@@ -13,7 +13,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "gulp karma",
     "build": "gulp",
     "deploy": "gulp --production",
     "eslint": "gulp eslint"

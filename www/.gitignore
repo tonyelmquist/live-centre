@@ -20,6 +20,8 @@
 ## File-based project format:
 *.iws
 
+#Test temp files
+.chrome/
 ## Plugin-specific files:
 
 # IntelliJ
@@ -58,6 +60,3 @@ build/Release
 
 # Python compiled files
 *.pyc
-
-
-

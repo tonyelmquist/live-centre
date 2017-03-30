@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-    watch: false,
+    watch: true,
     devtool: 'inline-source-map',
     module: {
         loaders: [{

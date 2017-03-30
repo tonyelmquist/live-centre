@@ -66,17 +66,11 @@ module.exports = function(config) {
         // reporter options
         mochaReporter: {
             colors: {
-                success: 'bgGreen',
+                success: 'green',
                 info: 'blue',
-                warning: 'cyan',
+                warning: 'yellow',
                 error: 'bgRed'
             }
-            // symbols: {
-            //     success: '+',
-            //     info: '#',
-            //     warning: '!',
-            //     error: 'x'
-            // }
         },
 
         // web server port
@@ -98,7 +92,15 @@ module.exports = function(config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome'],
+        browsers: ['Firefox'],
+        customLaunchers: {
+            ChromeCustom: {
+                base: 'Chrome',
+                chromeDataDir: path.resolve(__dirname, '.chrome'),
+                flags: ['--disable-web-security']
+            }
+        },
+
 
 
         // Continuous Integration mode
