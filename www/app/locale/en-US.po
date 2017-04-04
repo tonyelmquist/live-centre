@@ -1,0 +1,26 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Shared HTML App / Core server string\n"
+"Language: en-us\n"
+
+msgid "route_home"
+msgstr "Home"
+
+msgid "route_about"
+msgstr "About"
+
+msgid "route_topics"
+msgstr "Topics"
+
+msgid "topics_rendering"
+msgstr "Rendering"
+
+msgid "topics_component"
+msgstr "Component"
+
+msgid "topics_state"
+msgstr "State vs Props"

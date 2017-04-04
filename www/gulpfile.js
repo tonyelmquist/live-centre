@@ -20,8 +20,8 @@ const BUILD_FOLDER = 'build';
 const DEST_FOLDER = isDev ? BUILD_FOLDER : DIST_FOLDER;
 const FILE_NAME = isDev ? 'main' : 'main.min';
 
-const ANDROID_ASSETS = '../android/app/src/main/assets/';  // Should Later Be Changed
-const IOS_ASSETS = '../ios/Live Centre/html/';      // Should Later Be Changed
+const ANDROID_ASSETS = '../android/app/src/main/assets/'; // Should Later Be Changed
+const IOS_ASSETS = '../ios/Live Centre/html/'; // Should Later Be Changed
 
 
 
@@ -51,18 +51,30 @@ gulp.task('webpack', function(callback) {
                 compress: {
                     warnings: true
                 }
+            }),
+            new webpack.ProvidePlugin({
+                i18next: "i18next",
             })
-        ] : [],
+        ] : [
+            new webpack.ProvidePlugin({
+                i18next: "i18next",
+            })
+        ],
         module: {
             loaders: [{
-                test: /.jsx?$/,
-                include: path.join(__dirname, "app/scripts"),
-                exclude: path.join(__dirname, "app/tests"),
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015', 'react', 'stage-0']
+                    test: /.jsx?$/,
+                    include: path.join(__dirname, "app/scripts"),
+                    exclude: path.join(__dirname, "app/tests"),
+                    loader: 'babel-loader',
+                    query: {
+                        presets: ['es2015', 'react', 'stage-0']
+                    }
+                },
+                {
+                    test: /\.po$/,
+                    loaders: ['i18next-po-loader']
                 }
-            }]
+            ]
         }
 
     }
@@ -73,7 +85,7 @@ gulp.task('webpack', function(callback) {
             return;
         }
         if (isDev) {
-            if (stats.hasErrors()){
+            if (stats.hasErrors()) {
                 gulplog['error'](stats.toString({
                     colors: true
                 }));
@@ -139,7 +151,7 @@ gulp.task('eslint', () => {
     // So, it's best to have gulp ignore the directory as well.
     // Also, Be sure to return the stream from the task;
     // Otherwise, the task may end before the stream has finished.
-    return gulp.src(['app/**/*.js','!app/tests/**'])
+    return gulp.src(['app/**/*.js', '!app/tests/**'])
         // eslint() attaches the lint output to the "eslint" property
         // of the file object so it can be used by other modules.
         .pipe($.eslint(lintConfig))
@@ -163,7 +175,7 @@ gulp.task('serve', function() {
         server: {
             baseDir: BUILD_FOLDER
         },
-        port:3778,
+        port: 3778,
         open: "external"
     });
     browserSync.watch(BUILD_FOLDER + '/**').on('change', browserSync.reload)
@@ -180,32 +192,36 @@ gulp.task('clean:deploy', function() {
 });
 
 gulp.task('clean:ios', function() {
-    return del([IOS_ASSETS], {force: true});
+    return del([IOS_ASSETS], {
+        force: true
+    });
 });
 
 gulp.task('clean:android', function() {
-    return del([ANDROID_ASSETS], {force: true});
+    return del([ANDROID_ASSETS], {
+        force: true
+    });
 });
 
 //Copy Mobile App Assets
-gulp.task('copy:ios', ['clean:ios'], function () {
+gulp.task('copy:ios', ['clean:ios'], function() {
     return gulp.src([DIST_FOLDER + '/**/*.*'], {
         base: DIST_FOLDER
     }).pipe(gulp.dest(IOS_ASSETS));
 });
 
-gulp.task('copy:android', ['clean:android'], function () {
+gulp.task('copy:android', ['clean:android'], function() {
     return gulp.src([DIST_FOLDER + '/**/*.*'], {
         base: DIST_FOLDER
     }).pipe(gulp.dest(ANDROID_ASSETS));
 });
 
 //tests
-gulp.task('karma', function (done) {
-  new Server({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: false
-  }, done).start();
+gulp.task('karma', function(done) {
+    new Server({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: false
+    }, done).start();
 });
 
 

@@ -1,0 +1,34 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Viva II web app\n"
+"Language: nb\n"
+
+
+#: mainwindow.cpp:127
+#, kde-format
+#msgid "Time: %1 second"
+#msgid_plural "Time: %1 seconds"
+#msgstr[0] ""
+#msgstr[1] ""
+
+msgid "route_home"
+msgstr "Hjem"
+
+msgid "route_about"
+msgstr "Om"
+
+msgid "route_topics"
+msgstr "Emner"
+
+msgid "topics_rendering"
+msgstr "Gjengivelse"
+
+msgid "topics_component"
+msgstr "Komponent"
+
+msgid "topics_state"
+msgstr "State vs egenskaper"
