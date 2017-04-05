@@ -4,8 +4,12 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import {Button, ButtonGroup} from 'react-bootstrap';
+
 
 import Topics from './Topics';
+import Animation from './Animation';
+import NavbarTop from './Navbar';
 
 const BasicExample = React.createClass({
 
@@ -23,6 +27,7 @@ const BasicExample = React.createClass({
 
         i18next.init({
             lng: lang,
+            fallbackLng: "en",
             resources: {
                 en: {
                     translation: require('../../locale/en-US.po')
@@ -44,15 +49,17 @@ const BasicExample = React.createClass({
     render() {
         return(
             <Router>
-              <div>
-                <div>
-                    <button onClick = {this.handleLangChange} value="en">English</button>
-                    <button onClick = {this.handleLangChange} value="nb">Norsk</button>
-                </div>
+              <div className = "container">
+                <NavbarTop />
+                <ButtonGroup style={{marginTop:'55px'}}>
+                    <Button bsStyle="success" onClick = {this.handleLangChange} value="en">English</Button>
+                    <Button bsStyle="warning" onClick = {this.handleLangChange} value="nb">Norsk</Button>
+                </ButtonGroup>
                 <ul>
                   <li><Link to="/">{i18next.t('route_home')}</Link></li>
                   <li><Link to="/about">{i18next.t('route_about')}</Link></li>
                   <li><Link to="/topics">{i18next.t('route_topics')}</Link></li>
+                  <li><Link to="/anim">Animation</Link></li>
                 </ul>
 
                 <hr/>
@@ -60,6 +67,7 @@ const BasicExample = React.createClass({
                 <Route exact path="/" component={Home}/>
                 <Route path="/about" component={About}/>
                 <Route path="/topics" component={Topics}/>
+                <Route path="/anim" component={Animation}/>
               </div>
             </Router>
         );

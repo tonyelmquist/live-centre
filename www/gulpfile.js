@@ -71,6 +71,17 @@ gulp.task('webpack', function(callback) {
                     }
                 },
                 {
+                    test: /\.css$/,
+                    loaders: [ 'style-loader', 'css-loader' ]
+                },
+                {
+                    test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+                    loader: 'url-loader',
+                    options: {
+                      limit: 10000
+                    }
+                },
+                {
                     test: /\.po$/,
                     loaders: ['i18next-po-loader']
                 }
@@ -143,6 +154,13 @@ gulp.task('html', function() {
         .pipe($.if(isDev, $.newer(BUILD_FOLDER), $.newer(DIST_FOLDER)))
         .pipe($.if(isDev, gulp.dest(BUILD_FOLDER), gulp.dest(DIST_FOLDER)));
 })
+
+gulp.task('assets', function() {
+    return gulp.src('app/img/**/*.*', {base: 'app'})
+        .pipe($.if(isDev, $.newer(BUILD_FOLDER), $.newer(DIST_FOLDER)))
+        .pipe($.if(isDev, gulp.dest(BUILD_FOLDER), gulp.dest(DIST_FOLDER)));
+})
+
 
 //Linting
 
@@ -226,8 +244,8 @@ gulp.task('karma', function(done) {
 
 
 //Sequence of Tasks
-gulp.task('build', $.sequence('eslint', 'clean:build', ['stylus', 'html', 'webpack'], ['watch', 'serve']));
-gulp.task('deploy', $.sequence('eslint', 'clean:deploy', ['stylus', 'html', 'webpack']));
+gulp.task('build', $.sequence('eslint', 'clean:build', ['stylus', 'assets', 'html', 'webpack'], ['watch', 'serve']));
+gulp.task('deploy', $.sequence('eslint', 'clean:deploy', ['stylus', 'assets', 'html', 'webpack']));
 
 //Default taks: depends on DEV environment
 gulp.task('default', isDev ? ['build'] : ['deploy']);
