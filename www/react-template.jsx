@@ -8,6 +8,7 @@ import { StoreUtils } from '../utils';
 import * as actionCreators from '../actions';
 
 class Template extends React.Component {
+    
     static propTypes = {
         actions: React.PropTypes.object,
         title: React.PropTypes.string.isRequired,

@@ -4,31 +4,41 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-"Project-Id-Version: Viva II web app\n"
+"Project-Id-Version: Live Centre Web\n"
 "Language: nb\n"
 
+#. Generic OK text used on the OK button on a dialog
+#: 
+msgid "ok.button.title"
+msgstr "OK"
 
-#: mainwindow.cpp:127
-#, kde-format
-#msgid "Time: %1 second"
-#msgid_plural "Time: %1 seconds"
-#msgstr[0] ""
-#msgstr[1] ""
-
+#. Route Home
+#: 
 msgid "route_home"
 msgstr "Hjem"
 
+#. Route About
+#: 
 msgid "route_about"
-msgstr "Om"
+msgstr "Om Oss"
 
+#. Route Topics
+#: 
 msgid "route_topics"
 msgstr "Emner"
 
+#. Topics Rendering
+#: 
 msgid "topics_rendering"
 msgstr "Gjengivelse"
 
+#. Topics Component
+#: 
 msgid "topics_component"
-msgstr "Komponent"
+msgstr "Component"
 
+#. Topics State vs Props
+#: 
 msgid "topics_state"
-msgstr "State vs egenskaper"
+msgstr "State vs Props"
+

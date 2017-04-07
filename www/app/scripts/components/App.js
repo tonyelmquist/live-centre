@@ -30,10 +30,10 @@ const BasicExample = React.createClass({
             fallbackLng: "en",
             resources: {
                 en: {
-                    translation: require('../../locale/en-US.po')
+                    translation: require('../../locale/en_us.po')
                 },
                 nb: {
-                    translation: require('../../locale/nb-NO.po')
+                    translation: require('../../locale/nb_no.po')
                 }
             }
         });

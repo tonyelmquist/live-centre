@@ -21,7 +21,7 @@ const Topics = React.createClass({
                 </li>
                 <li>
                   <Link to={`${this.props.match.url}/props-v-state`}>
-                    {i18next.t('topics_stateTopu')}
+                    {i18next.t('topics_state')}
 
                   </Link>
                 </li>

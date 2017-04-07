@@ -4,23 +4,40 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-"Project-Id-Version: Shared HTML App / Core server string\n"
+"Project-Id-Version: Live Centre Web\n"
 "Language: en-us\n"
 
+#. Generic OK text used on the OK button on a dialog
+#:
+msgid "ok.button.title"
+msgstr "Ok"
+
+#. Route Home
+#:
 msgid "route_home"
 msgstr "Home"
 
+#. Route About
+#:
 msgid "route_about"
 msgstr "About"
 
+#. Route Topics
+#:
 msgid "route_topics"
 msgstr "Topics"
 
+#. Topics Rendering
+#:
 msgid "topics_rendering"
 msgstr "Rendering"
 
+#. Topics Component
+#:
 msgid "topics_component"
 msgstr "Component"
 
+#. Topics State vs Props
+#:
 msgid "topics_state"
 msgstr "State vs Props"

@@ -1,4 +1,5 @@
-'use strict'
+/* eslint-disable */
+'use strict';
 const path = require('path');
 const gulp = require('gulp');
 const util = require('gulp-util');
@@ -11,6 +12,8 @@ const named = require('vinyl-named');
 const del = require('del');
 const $ = require('gulp-load-plugins')();
 const browserSync = require('browser-sync').create();
+const poUpdate = require('./poedit');
+
 
 //Environment Setup & Check
 const NODE_ENV = util.env.production ? 'production' : 'development';
@@ -161,9 +164,12 @@ gulp.task('assets', function() {
         .pipe($.if(isDev, gulp.dest(BUILD_FOLDER), gulp.dest(DIST_FOLDER)));
 })
 
+//Watch Assets
+gulp.task('watch', function() {
+    gulp.watch('app/stylus/**', ['stylus']);
+});
 
 //Linting
-
 gulp.task('eslint', () => {
     // ESLint ignores files with "node_modules" paths.
     // So, it's best to have gulp ignore the directory as well.
@@ -172,7 +178,7 @@ gulp.task('eslint', () => {
     return gulp.src(['app/**/*.js', '!app/tests/**'])
         // eslint() attaches the lint output to the "eslint" property
         // of the file object so it can be used by other modules.
-        .pipe($.eslint(lintConfig))
+        .pipe($.eslint())
         // eslint.format() outputs the lint results to the console.
         // Alternatively use eslint.formatEach() (see Docs).
         .pipe($.eslint.format())
@@ -181,24 +187,6 @@ gulp.task('eslint', () => {
         .pipe($.if(isDev, util.noop(), $.eslint.failAfterError()));
 
 });
-
-
-gulp.task('watch', function() {
-    gulp.watch('app/stylus/**', ['stylus']);
-});
-
-// Static Server
-gulp.task('serve', function() {
-    browserSync.init({
-        server: {
-            baseDir: BUILD_FOLDER
-        },
-        port: 3778,
-        open: "external"
-    });
-    browserSync.watch(BUILD_FOLDER + '/**').on('change', browserSync.reload)
-});
-
 
 //Cleaning directories
 gulp.task('clean:build', function() {
@@ -233,6 +221,30 @@ gulp.task('copy:android', ['clean:android'], function() {
         base: DIST_FOLDER
     }).pipe(gulp.dest(ANDROID_ASSETS));
 });
+
+//Locale files
+gulp.task('po:upload', function(){
+    //running gulp po:upload --o will overwrite the remote translations
+    //running gulp po:upload --p will sync remote file with the uploaded one
+    return poUpdate('UPLOAD', util.env.o, util.env.p);
+});
+
+gulp.task('po:import', function(){
+    return poUpdate('IMPORT');
+});
+
+// Static Server
+gulp.task('serve', function() {
+    browserSync.init({
+        server: {
+            baseDir: BUILD_FOLDER
+        },
+        port: 3778,
+        open: "external"
+    });
+    browserSync.watch(BUILD_FOLDER + '/**').on('change', browserSync.reload)
+});
+
 
 //tests
 gulp.task('karma', function(done) {

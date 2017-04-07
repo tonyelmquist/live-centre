@@ -26,10 +26,10 @@ describe('Example test', () => {
             // We call resolve(...) when what we were doing async succeeded, and reject(...) when it failed.
             // In this example, we use setTimeout(...) to simulate async code.
             // In reality, you will probably be using something like XHR or an HTML5 API.
-            setTimeout(() => resolve("ok") // Yay! Everything went well!
+            setTimeout(() => resolve("ok")
             , 250);
         }).then((data) => {
-            assert.strictEqual(data,"ok","should be the same")
+            assert.strictEqual(data,"ok","should be the same");
         });
     });
 });
