@@ -253,7 +253,7 @@ gulp.task('test', function(done) {
 
 //Sequence of Tasks
 // gulp.task('build', $.sequence('lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], ['watch', 'serve']));
-gulp.task('build', $.sequence('lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], (WATCH) ? ['watch', 'serve'] : []));
+gulp.task('build', $.sequence('lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], (WATCH) ? ['watch'] : []));
 gulp.task('deploy', ['copy:ios', 'copy:android']);
 
 // console.log($.sequence);

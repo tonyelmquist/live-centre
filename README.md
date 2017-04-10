@@ -23,7 +23,7 @@ Next you need Gulp installed globally.
 ```sh
 $ npm install -g gulp
 ```
-Get the repository, install the required npm modules including dev-dependencies.
+Get the repository, install the required npm modules including those listed in the dev-dependencies.
 
 ```sh
 $ git clone git@bitbucket.org:futureuniverse/live-centre.git
@@ -62,8 +62,7 @@ $ gulp build --production
 
 ### Watching
 
-Gulp build task can be run with --watch argument, which starts a local server at [http://localhost:3778](http://localhost:3778) and opens up a browser.
-Files are served from the '/dist' folder.
+Gulp build task can be run with --watch argument as shown below.
 
 ```sh
 $ npm run build:watch
@@ -72,6 +71,7 @@ or
 ```sh
 $ gulp build --watch
 ```
+In this case, gulp goes through the normal build process and then starts watching for changes in files specified in the configurations. If change happens, gulp will re-run appropriate tasks.
 
 ### Linting
 
@@ -107,6 +107,17 @@ the source files are updated
 ```sh
 $ npm run test:watch
 ```
+
+### Testing on the Browser
+
+To open the built project on the browser, run the following command:
+
+```sh
+$ gulp serve
+```
+This will start a local server at [http://localhost:3778](http://localhost:3778) and opens up a browser.
+Files are served from the '/dist' folder. For convenience, any change in '/dist' folder will automatically reload the browser.
+
 
 ### Deploying to native apps
 
