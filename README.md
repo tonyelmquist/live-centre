@@ -3,7 +3,7 @@
 Live Centre client is a series of apps to access the TFG platform.
 Currently supported is Android, iOS and web app.
 
-Layout
+Project Layout
 - android - Android client app
 - ios - iOS client app
 - www - HTML web app (development and deployment area)
@@ -14,43 +14,64 @@ Layout
 
 ## Web client
 
-Uses IntelliJ or Visual code and NodeJS, with a web app based on React and Redux
-
-### Installation IntelliJ
-
-To make your life easier you should install the following plugins.
-- NodeJS
-- Markdown support
-
-### Installation Visual Code
-
-To make your life easier you should install the following extensions.
-
-- Beautify
-- language-stylus
-- Reactjs code snippets
-
 ### Installation
 
-You first need NodeJS and npm installed.
+You first need Node.js and npm installed.
 
 Next you need Gulp installed globally.
 
 ```sh
 $ npm install -g gulp
 ```
-Get the repository, install the required npm modules and run the web app for the first time.
+Get the repository, install the required npm modules including dev-dependencies.
 
 ```sh
 $ git clone git@bitbucket.org:futureuniverse/live-centre.git
 $ cd live-centre/www
 $ npm install
-$ gulp or npm start
+```
+Note: Make sure that the dev-dependencies are also installed. In order to install the dev-dependencies run the following command:
+```sh
+$ npm install --only=dev
 ```
 
-The web client will be running locally at [http://localhost:8777/](http://localhost:8777/)
+### Building
 
-Note: gulp can be run from inside of IntelliJ for convenience, but this seems to take more resources
+The release can be built with the following command and will be found in the live-centre/www/dist folder
+
+```sh
+$ npm run build
+```
+or
+```sh
+$ gulp build
+```
+
+NOTE: This is the default task for the gulp task runner. Default build mode in this case is the development mode. In development mode, .css and .js files include source-maps and they are not minified.
+
+Running the build process in production mode will remove the source-maps, produce minified .css and .js files, and does some other optimizations for production.
+For production build, run the command below.
+
+```sh
+$ npm run prod
+```
+or
+```sh
+$ gulp build --production
+```
+
+### Watching
+
+Gulp build task can be run with --watch argument, which starts a local server at [http://localhost:3778](http://localhost:3778) and opens up a browser.
+Files are served from the '/dist' folder.
+
+```sh
+$ npm run build:watch
+```
+or
+```sh
+$ gulp build --watch
+```
 
 ### Linting
 
@@ -58,15 +79,15 @@ To improve the quality of the code it is linted (checks for code style and error
 want to check the quality of the code run the following command:
 
 ```sh
+$ npm run lint
+```
+or
+```sh
 $ gulp lint
 ```
-
-Note: This command can be also run from within Intellij by double clicking the "lint" task in the
-Gulp window. This has the advantage you can click to open effected files directly from the output.
-
 ### Testing
 
-Unit tests are run via the karma and the mocha test framework.
+Unit tests are run via the karma and the mocha, sinon test framework.
 
 You need to install karma command line interface globally
 
@@ -85,14 +106,6 @@ the source files are updated
 
 ```sh
 $ npm run test:watch
-```
-
-### Building release
-
-The release can be built with the following command and will be found in the live-centre/www/dist folder
-
-```sh
-$ npm run build
 ```
 
 ### Deploying to native apps

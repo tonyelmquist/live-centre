@@ -13,10 +13,13 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "gulp karma",
+    "test": "gulp test",
+    "test:watch": "gulp test --watch",
     "build": "gulp",
-    "deploy": "gulp --production",
-    "eslint": "gulp eslint"
+    "build:watch": "gulp --watch",
+    "prod": "gulp --production",
+    "deploy": "gulp deploy",
+    "lint": "gulp lint"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",

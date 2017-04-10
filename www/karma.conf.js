@@ -1,6 +1,6 @@
 // Karma configuration
 // Generated on Wed Mar 29 2017 16:39:27 GMT+0200 (W. Europe Daylight Time)
-let path = require('path');
+const path = require('path');
 
 module.exports = function(config) {
     config.set({
@@ -92,12 +92,11 @@ module.exports = function(config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Firefox'],
+        browsers: ['Chrome'],
         customLaunchers: {
             ChromeCustom: {
                 base: 'Chrome',
-                chromeDataDir: path.resolve(__dirname, '.chrome'),
-                flags: ['--disable-web-security']
+                chromeDataDir: path.resolve(__dirname, '.chrome')
             }
         },
 
@@ -105,10 +104,10 @@ module.exports = function(config) {
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false,
+        singleRun: true,
 
         // Concurrency level
         // how many browser should be started simultaneous
         // concurrency: Infinity
-    })
-}
+    });
+};

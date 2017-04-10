@@ -1,5 +1,6 @@
 /* eslint-disable */
 'use strict';
+const fs = require('fs');
 const path = require('path');
 const gulp = require('gulp');
 const util = require('gulp-util');
@@ -18,26 +19,29 @@ const poUpdate = require('./poedit');
 //Environment Setup & Check
 const NODE_ENV = util.env.production ? 'production' : 'development';
 const isDev = (NODE_ENV === 'development') ? true : false;
-const DIST_FOLDER = 'dist';
-const BUILD_FOLDER = 'build';
-const DEST_FOLDER = isDev ? BUILD_FOLDER : DIST_FOLDER;
-const FILE_NAME = isDev ? 'main' : 'main.min';
+
+//No watching in 'Production' MODE
+const WATCH = (isDev) ? util.env.watch : false;
+
+
+const DEST_FOLDER = 'dist'
+const FILE_NAME = isDev ? 'bundle' : 'bundle.min';
 
 const ANDROID_ASSETS = '../android/app/src/main/assets/'; // Should Later Be Changed
 const IOS_ASSETS = '../ios/Live Centre/html/'; // Should Later Be Changed
 
 
 
-console.log('***************************');
-console.log('* NODE_ENV: ', NODE_ENV, '*');
-console.log('***************************');
+console.log('****************************');
+console.log('* Build Mode: ', NODE_ENV, '*');
+console.log('****************************');
 
 
 //Processing Scripts
 gulp.task('webpack', function(callback) {
     let firstBuildReady = false;
     const config = {
-        watch: isDev,
+        watch: WATCH ? WATCH : false,
         devtool: isDev ? 'cheap-module-inline-source-map' : null,
         plugins: !isDev ? [
             new webpack.NoErrorsPlugin(),
@@ -93,6 +97,7 @@ gulp.task('webpack', function(callback) {
 
     }
 
+
     function done(err, stats) {
         firstBuildReady = true;
         if (err) {
@@ -105,7 +110,6 @@ gulp.task('webpack', function(callback) {
                 }));
             }
         }
-
     }
 
     return gulp.src('app/scripts/index.js')
@@ -114,10 +118,9 @@ gulp.task('webpack', function(callback) {
             return FILE_NAME
         }))
         .pipe(webpackStream(config, null, done))
-        //.pipe($.if(!isDev, $.uglify()))
         .pipe(gulp.dest(DEST_FOLDER + '/js'))
         .on('data', function() {
-            if (isDev && firstBuildReady && !callback.called) {
+            if (WATCH && isDev && firstBuildReady && !callback.called) {
                 callback.called = true;
                 callback();
             }
@@ -136,7 +139,7 @@ gulp.task('stylus', function() {
             // only compress if we are in production
             compress: !isDev,
             // include 'normal' css into main.css
-            'include css': true
+            //'include css': true
         }))
         .pipe($.autoprefixer())
         .pipe($.concat(FILE_NAME + '.css'))
@@ -147,21 +150,18 @@ gulp.task('stylus', function() {
 //Copy Assets to Relevant Folders
 gulp.task('html', function() {
     return gulp.src('app/**/*.html')
-        // .gulp.src('app/**/*.html', {
-        //         since: gulp.lastRun('html')
-        //     })
         .pipe($.if(!isDev, $.htmlReplace({
             'css': 'css/' + FILE_NAME + '.css',
             'js': 'js/' + FILE_NAME + '.js'
         })))
-        .pipe($.if(isDev, $.newer(BUILD_FOLDER), $.newer(DIST_FOLDER)))
-        .pipe($.if(isDev, gulp.dest(BUILD_FOLDER), gulp.dest(DIST_FOLDER)));
+        .pipe($.newer(DEST_FOLDER))
+        .pipe(gulp.dest(DEST_FOLDER));
 })
 
 gulp.task('assets', function() {
     return gulp.src('app/img/**/*.*', {base: 'app'})
-        .pipe($.if(isDev, $.newer(BUILD_FOLDER), $.newer(DIST_FOLDER)))
-        .pipe($.if(isDev, gulp.dest(BUILD_FOLDER), gulp.dest(DIST_FOLDER)));
+        .pipe($.newer(DEST_FOLDER))
+        .pipe(gulp.dest(DEST_FOLDER));
 })
 
 //Watch Assets
@@ -170,7 +170,7 @@ gulp.task('watch', function() {
 });
 
 //Linting
-gulp.task('eslint', () => {
+gulp.task('lint', () => {
     // ESLint ignores files with "node_modules" paths.
     // So, it's best to have gulp ignore the directory as well.
     // Also, Be sure to return the stream from the task;
@@ -178,7 +178,7 @@ gulp.task('eslint', () => {
     return gulp.src(['app/**/*.js', '!app/tests/**'])
         // eslint() attaches the lint output to the "eslint" property
         // of the file object so it can be used by other modules.
-        .pipe($.eslint())
+        .pipe($.eslint(lintConfig))
         // eslint.format() outputs the lint results to the console.
         // Alternatively use eslint.formatEach() (see Docs).
         .pipe($.eslint.format())
@@ -189,12 +189,8 @@ gulp.task('eslint', () => {
 });
 
 //Cleaning directories
-gulp.task('clean:build', function() {
-    return del(BUILD_FOLDER + '/**');
-});
-
-gulp.task('clean:deploy', function() {
-    return del(DIST_FOLDER + '/**');
+gulp.task('clean', function() {
+    return del(DEST_FOLDER + '/**');
 });
 
 gulp.task('clean:ios', function() {
@@ -211,14 +207,14 @@ gulp.task('clean:android', function() {
 
 //Copy Mobile App Assets
 gulp.task('copy:ios', ['clean:ios'], function() {
-    return gulp.src([DIST_FOLDER + '/**/*.*'], {
-        base: DIST_FOLDER
+    return gulp.src([DEST_FOLDER + '/**/*.*'], {
+        base: DEST_FOLDER
     }).pipe(gulp.dest(IOS_ASSETS));
 });
 
 gulp.task('copy:android', ['clean:android'], function() {
-    return gulp.src([DIST_FOLDER + '/**/*.*'], {
-        base: DIST_FOLDER
+    return gulp.src([DEST_FOLDER + '/**/*.*'], {
+        base: DEST_FOLDER
     }).pipe(gulp.dest(ANDROID_ASSETS));
 });
 
@@ -237,32 +233,37 @@ gulp.task('po:import', function(){
 gulp.task('serve', function() {
     browserSync.init({
         server: {
-            baseDir: BUILD_FOLDER
+            baseDir: DEST_FOLDER
         },
         port: 3778,
         open: "external"
     });
-    browserSync.watch(BUILD_FOLDER + '/**').on('change', browserSync.reload)
+    browserSync.watch(DEST_FOLDER + '/**').on('change', browserSync.reload);
 });
 
 
 //tests
-gulp.task('karma', function(done) {
+gulp.task('test', function(done) {
     new Server({
         configFile: __dirname + '/karma.conf.js',
-        singleRun: false
+        singleRun: !WATCH
     }, done).start();
 });
 
 
 //Sequence of Tasks
-gulp.task('build', $.sequence('eslint', 'clean:build', ['stylus', 'assets', 'html', 'webpack'], ['watch', 'serve']));
-gulp.task('deploy', $.sequence('eslint', 'clean:deploy', ['stylus', 'assets', 'html', 'webpack']));
+// gulp.task('build', $.sequence('lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], ['watch', 'serve']));
+gulp.task('build', $.sequence('lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], (WATCH) ? ['watch', 'serve'] : []));
+gulp.task('deploy', ['copy:ios', 'copy:android']);
+
+// console.log($.sequence);
+const SERVE_FOLDER = fs.existsSync(path.resolve(__dirname, DEST_FOLDER));
+gulp.task('start', ['serve']);
 
 //Default taks: depends on DEV environment
-gulp.task('default', isDev ? ['build'] : ['deploy']);
+gulp.task('default', ['build']);
 
 
 // Gulp 4 Syntax:
-// gulp.task('default', gulp.series('eslint', 'clean:build', gulp.parallel('stylus', 'html', 'webpack'), gulp.parallel('watch', 'serve')));
+// gulp.task('default', gulp.series('lint', 'clean:build', gulp.parallel('stylus', 'html', 'webpack'), gulp.parallel('watch', 'serve')));
 // gulp.task('deploy', gulp.series('clean:deploy', gulp.parallel('stylus', 'html', 'webpack')));

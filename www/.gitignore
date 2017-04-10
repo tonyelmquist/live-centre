@@ -60,3 +60,7 @@ build/Release
 
 # Python compiled files
 *.pyc
+
+
+#Backup files
+*.bak.*
