@@ -1,8 +1,18 @@
 import React from 'react';
 import {render} from 'react-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import App from './components/app';
 import log from './middleware/logger';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
+import style from './constants/MuiStyle';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
-render( <App /> , document.getElementById('root'));
+//Custom theme
+const muiTheme = getMuiTheme(style);
+
+render(
+    <MuiThemeProvider muiTheme={muiTheme}>
+            <App />
+    </MuiThemeProvider>,
+    document.getElementById('root'));

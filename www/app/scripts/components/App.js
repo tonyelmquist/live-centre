@@ -1,93 +1,99 @@
 import React from 'react';
-import {
-  HashRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
-import {Button, ButtonGroup} from 'react-bootstrap';
+import {Tabs, Tab} from 'material-ui/Tabs';
+import {RaisedButton} from 'material-ui';
+import SwipeableViews from 'react-swipeable-views';
+
+const styles = {
+  headline: {
+    fontSize: 24,
+    paddingTop: 16,
+    marginBottom: 12,
+    fontWeight: 400,
+  },
+  slide: {
+    padding: 10,
+  },
+};
+
+export default class TabsExampleSwipeable extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      slideIndex: 0,
+      lng: "nb"
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentWillMount(){
+      this.handleLangChange(this.state.lng);
+  }
 
 
-import Topics from './Topics';
-import Animation from './Animation';
-import NavbarTop from './Navbar';
+  handleChange (value) {
+    this.setState({
+      slideIndex: value,
+    });
+  }
 
-const BasicExample = React.createClass({
+  handleLangChange(lang){
+      i18next.init({
+          lng: lang,
+          fallbackLng: "en",
+          resources: {
+              en: {
+                  translation: require('../../locale/en_us.po')
+              },
+              nb: {
+                  translation: require('../../locale/nb_no.po')
+              }
+          }
+      });
+      this.setState({lng: lang});
+  }
 
-
-    getInitialState() {
-        return { lng: "nb" };
-    },
-
-    componentWillMount(){
-        this.setLang(this.state.lng);
-    },
-
-
-    setLang(lang) {
-
-        i18next.init({
-            lng: lang,
-            fallbackLng: "en",
-            resources: {
-                en: {
-                    translation: require('../../locale/en_us.po')
-                },
-                nb: {
-                    translation: require('../../locale/nb_no.po')
-                }
-            }
-        });
-        this.setState({lng: lang});
-
-    },
-
-    handleLangChange(e){
-        e.preventDefault();
-        this.setLang(e.target.value);
-    },
-
-    render() {
-        return(
-            <Router>
-              <div className = "container">
-                <NavbarTop />
-                <ButtonGroup style={{marginTop:'55px'}}>
-                    <Button bsStyle="success" onClick = {this.handleLangChange} value="en">English</Button>
-                    <Button bsStyle="warning" onClick = {this.handleLangChange} value="nb">Norsk</Button>
-                </ButtonGroup>
-                <ul>
-                  <li><Link to="/">{i18next.t('route_home')}</Link></li>
-                  <li><Link to="/about">{i18next.t('route_about')}</Link></li>
-                  <li><Link to="/topics">{i18next.t('route_topics')}</Link></li>
-                  <li><Link to="/anim">Animation</Link></li>
-                </ul>
-
-                <hr/>
-
-                <Route exact path="/" component={Home}/>
-                <Route path="/about" component={About}/>
-                <Route path="/topics" component={Topics}/>
-                <Route path="/anim" component={Animation}/>
-              </div>
-            </Router>
-        );
-    }
-});
-
-
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-);
-
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-);
-
-
-
-
-export default BasicExample;
+  render() {
+    return (
+      <div>
+        <Tabs
+          onChange={this.handleChange}
+          value={this.state.slideIndex}>
+          <Tab label={i18next.t('route_home')} value={0} />
+          <Tab label={i18next.t('route_about')} value={1} />
+          <Tab label={i18next.t('route_topics')} value={2} />
+        </Tabs>
+        <SwipeableViews
+          index={this.state.slideIndex}
+          onChangeIndex={this.handleChange}
+        >
+          <div>
+            <h2 style={styles.headline}>{i18next.t('route_home')}</h2>
+            Swipe to see the next slide.
+            <br />
+          </div>
+          <div style={styles.slide}>
+            <h2 style={styles.headline}>{i18next.t('route_about')}</h2>
+          </div>
+          <div style={styles.slide}>
+              <h2 style={styles.headline}>{i18next.t('route_topics')}</h2>
+              <ul>
+                <li>
+                    {i18next.t('topics_rendering')}
+                </li>
+                <li>
+                    {i18next.t('topics_component')}
+                </li>
+                <li>
+                    {i18next.t('topics_state')}
+                </li>
+              </ul>
+          </div>
+        </SwipeableViews>
+        <hr />
+        <RaisedButton label="ENG" primary={true} onClick = {this.handleLangChange.bind(this, "en")}/>
+        <RaisedButton label="NOR" secondary={true} onClick = {this.handleLangChange.bind(this, "nb")}/>
+      </div>
+    );
+  }
+}
