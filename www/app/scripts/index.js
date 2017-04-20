@@ -13,6 +13,6 @@ const muiTheme = getMuiTheme(style);
 
 render(
     <MuiThemeProvider muiTheme={muiTheme}>
-            <App />
+        <App />
     </MuiThemeProvider>,
     document.getElementById('root'));
