@@ -23,6 +23,7 @@
     "serve": "gulp start"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "i18next": "^7.2.3",
     "loglevel": "^1.4.1",
     "material-ui": "^0.17.4",

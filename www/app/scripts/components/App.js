@@ -2,6 +2,7 @@ import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import {RaisedButton} from 'material-ui';
 import SwipeableViews from 'react-swipeable-views';
+import ThumbnailList from '../components/ThumbnailList';
 
 const styles = {
   headline: {
@@ -9,10 +10,19 @@ const styles = {
     paddingTop: 16,
     marginBottom: 12,
     fontWeight: 400,
+    height: '100%'
   },
   slide: {
     padding: 10,
   },
+  buttonbar: {
+      bottom: 0,
+      left: 0,  
+      position: 'fixed',
+  },
+  swipeContainer: {
+      height: '100%'
+  }
 };
 
 export default class TabsExampleSwipeable extends React.Component {
@@ -66,11 +76,11 @@ export default class TabsExampleSwipeable extends React.Component {
         <SwipeableViews
           index={this.state.slideIndex}
           onChangeIndex={this.handleChange}
+          containerStyle={styles.swipeContainer}
         >
-          <div>
+         <div style={styles.slide}>
             <h2 style={styles.headline}>{i18next.t('route_home')}</h2>
-            Swipe to see the next slide.
-            <br />
+            <ThumbnailList />
           </div>
           <div style={styles.slide}>
             <h2 style={styles.headline}>{i18next.t('route_about')}</h2>
@@ -90,9 +100,10 @@ export default class TabsExampleSwipeable extends React.Component {
               </ul>
           </div>
         </SwipeableViews>
-        <hr />
+         <div style={styles.buttonbar}>
         <RaisedButton label="ENG" primary={true} onClick = {this.handleLangChange.bind(this, "en")}/>
         <RaisedButton label="NOR" secondary={true} onClick = {this.handleLangChange.bind(this, "nb")}/>
+        </div>
       </div>
     );
   }
