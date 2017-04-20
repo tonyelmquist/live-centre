@@ -10,6 +10,7 @@ const styles = {
     paddingTop: 16,
     marginBottom: 12,
     fontWeight: 400,
+    height: '100%'
   },
   slide: {
     padding: 10,
@@ -18,6 +19,9 @@ const styles = {
       bottom: 0,
       left: 0,  
       position: 'fixed',
+  },
+  swipeContainer: {
+      height: '100%'
   }
 };
 
@@ -72,11 +76,11 @@ export default class TabsExampleSwipeable extends React.Component {
         <SwipeableViews
           index={this.state.slideIndex}
           onChangeIndex={this.handleChange}
+          containerStyle={styles.swipeContainer}
         >
-          <div>
+         <div style={styles.slide}>
             <h2 style={styles.headline}>{i18next.t('route_home')}</h2>
             <ThumbnailList />
-            <br />
           </div>
           <div style={styles.slide}>
             <h2 style={styles.headline}>{i18next.t('route_about')}</h2>
