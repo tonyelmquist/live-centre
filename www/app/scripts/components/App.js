@@ -3,6 +3,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import {RaisedButton} from 'material-ui';
 import SwipeableViews from 'react-swipeable-views';
 import ThumbnailList from '../components/ThumbnailList';
+import Player from '../components/Player';
 
 const styles = {
   headline: {
@@ -84,6 +85,7 @@ export default class TabsExampleSwipeable extends React.Component {
           </div>
           <div style={styles.slide}>
             <h2 style={styles.headline}>{i18next.t('route_about')}</h2>
+             <Player />
           </div>
           <div style={styles.slide}>
               <h2 style={styles.headline}>{i18next.t('route_topics')}</h2>
