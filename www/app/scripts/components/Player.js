@@ -1,7 +1,5 @@
-import React, { Component } from 'react'
-import ReactPlayer from 'react-player'
-
-// https://download.mediabankweb.com/online/72ad0542c6144c978dbb9154fc606291/58f9ef3a/THEFUTUREG/201703/954844/954844_proxy.mov
+import React, { Component } from 'react';
+import ReactPlayer from 'react-player';
 
 export default class Player extends React.Component {
 
