@@ -29,8 +29,8 @@ export default class thumbnailList extends React.Component {
   }
 
   componentDidMount() {
-    var _this = this;
-    var config = {
+    const _this = this;
+    const config = {
       searchTerm: 'Lost',
       url: 'https://api-eu1.mediabank.me/mediabank/asset/'
     };
@@ -38,7 +38,7 @@ export default class thumbnailList extends React.Component {
     this.serverRequest = 
       axios({
         method: 'get',
-        url: config.url + '{"query_string":"' + config.searchTerm + '"}', //TODO: pass in query string
+        url: `${config.url}{"query_string":"${config.searchTerm}"}`,
         headers: {
           'Mediabank-API-Token': 'EqLlE0nhEr2oLQ8E64c7oNy5bchS3Nu1I0pJVsBhjEDxI2pJVsBLNED4YQ',
         }, 
@@ -47,14 +47,14 @@ export default class thumbnailList extends React.Component {
           password: 'tv$&?QkD=8GBpvKD'
         }
         })
-        .then(function(result) {  
-          var filteredAssets = result.data.assets.filter(function(asset){
+        .then( (result) => {  
+          const filteredAssets = result.data.assets.filter( (asset)=> {
             return asset.metadata.MimeType === 'video';
-          })  
+          });  
           _this.setState({
             assets: filteredAssets
           });
-        })
+        });
   }
 
   componentWillUnmount() {
@@ -83,6 +83,6 @@ export default class thumbnailList extends React.Component {
       )}
     </GridList>
     
-  </div>)
+  </div>);
   }
 }
