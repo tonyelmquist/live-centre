@@ -31,13 +31,14 @@ export default class thumbnailList extends React.Component {
   componentDidMount() {
     var _this = this;
     var config = {
-
+      searchTerm: 'Lost',
+      url: 'https://api-eu1.mediabank.me/mediabank/asset/'
     };
 
     this.serverRequest = 
       axios({
         method: 'get',
-        url: 'https://api-eu1.mediabank.me/mediabank/asset/{"query_string":"Lost"}', //TODO: pass in query string
+        url: config.url + '{"query_string":"' + config.searchTerm + '"}', //TODO: pass in query string
         headers: {
           'Mediabank-API-Token': 'EqLlE0nhEr2oLQ8E64c7oNy5bchS3Nu1I0pJVsBhjEDxI2pJVsBLNED4YQ',
         }, 
@@ -76,8 +77,7 @@ export default class thumbnailList extends React.Component {
           key={thumb.assetid}
           title={thumb.metadata.Title}
           subtitle={<span>by <b>{thumb.metadata.UploadUserFullName}</b></span>}
-          actionIcon={<IconButton onTouchTap={
-        playVideo(thumb.assetid)}><PlayCircleOutline color="white" /></IconButton>}>
+          actionIcon={<IconButton><PlayCircleOutline color="white" /></IconButton>}>
           <img src={thumb.metadata.PosterURL} />
         </GridTile>)
       )}
