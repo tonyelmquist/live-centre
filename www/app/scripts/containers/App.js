@@ -38,7 +38,7 @@ class App extends Component {
                     iconElementRight={this.props.loginState ? <Logged/> : <Login/>}
                 />
                 <MainFrame />
-                <BottomNavMenu/>
+                <BottomNavMenu id = 'bottomNav'/>
             </div>
         );
     }

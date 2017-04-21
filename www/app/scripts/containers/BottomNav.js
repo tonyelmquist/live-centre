@@ -25,7 +25,7 @@ class BottomNavMenu extends Component {
   render() {
     
     return (
-      <Paper zDepth={2} style={{position: 'absolute',bottom: 0, width: '100%'}} >
+      <Paper zDepth={2} style={{position: 'fixed',bottom: 0, width: '100%'}} >
         <BottomNavigation selectedIndex={this.props.selectedIndex}>
           <BottomNavigationItem
             label="Home"
