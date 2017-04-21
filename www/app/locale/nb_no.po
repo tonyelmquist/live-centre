@@ -42,3 +42,7 @@ msgstr "Component"
 msgid "topics_state"
 msgstr "State vs Props"
 
+#. Appbar Sign Out
+#:
+msgid "app_signout"
+msgstr "Logg Av"

@@ -27,6 +27,18 @@ msgstr "About"
 msgid "route_topics"
 msgstr "Topics"
 
+#. Route Settings
+#:
+msgid "route_settings"
+msgstr "Settings"
+
+#. Route Favorites
+#:
+msgid "route_favorites"
+msgstr "Favorites"
+
+favorite
+
 #. Topics Rendering
 #:
 msgid "topics_rendering"
@@ -41,3 +53,8 @@ msgstr "Component"
 #:
 msgid "topics_state"
 msgstr "State vs Props"
+
+#. Appbar Sign Out
+#:
+msgid "app_signout"
+msgstr "Sign Out"

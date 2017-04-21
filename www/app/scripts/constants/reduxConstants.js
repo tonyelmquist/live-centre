@@ -1,0 +1,23 @@
+class ReduxConstants {
+    //Actions UI
+    static get SIDEBAR_SHOW() { return "SIDEBAR_SHOW"; }
+    static get SIDEBAR_HIDE() { return "SIDEBAR_HIDE"; }
+
+    //Login Actions
+    static get LOGIN_SUCCESS() {return "LOGIN_SUCCESS"; }
+    static get LOGIN_FAILED() {return "LOGIN_FAILED"; }
+
+    static get LOGOUT_SUCCESS() {return "LOGOUT_SUCCESS"; }
+
+    //Bottom NavigationMenu
+    static get BOTTOM_NAV_SHOW() { return "BOTTOM_NAV_SHOW"; }
+    static get BOTTOM_NAV_HIDE() { return "BOTTOM_NAV_HIDE"; }
+    static get CHANGE_NAV_INDEX() { return "CHANGE_NAV_INDEX"; }
+
+    //Language
+    static get CHANGE_LANG() { return "CHANGE_LANG"; }
+
+    //Other constants
+}
+
+export default ReduxConstants;
