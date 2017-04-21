@@ -7,6 +7,7 @@ import {changeNavMenuIndex} from '../actions/bottomNavMenu';
 import {changeLang} from '../actions/lang';
 //Custom Components
 import ThumbnailList from '../components/ThumbnailList';
+import Player from '../components/Player';
 
 
 const styles = {
@@ -56,6 +57,7 @@ class MainFrame extends React.Component {
                 </div>
                 <div style={styles.slide}>
                     <h2 style={styles.headline}>{i18next.t('route_favorites')}</h2>
+                     <Player />
                 </div>
                 <div style={styles.slide}>
                     <h2 style={styles.headline}>{i18next.t('route_settings')}</h2>

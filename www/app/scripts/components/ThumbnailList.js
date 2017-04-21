@@ -2,8 +2,9 @@ import React from 'react';
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
 import SwipeableViews from 'react-swipeable-views';
+import axios from 'axios';
 
 const styles = {
   root: {
@@ -21,88 +22,67 @@ const styles = {
   },
 };
 
+export default class thumbnailList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {assets: []};
+  }
 
+  componentDidMount() {
+    var _this = this;
+    var config = {
+      searchTerm: 'Lost',
+      url: 'https://api-eu1.mediabank.me/mediabank/asset/'
+    };
 
-const tilesData = [
-  {
-    img: './img/hqdefault.jpg',
-    title: 'Video 1',
-    key: '1',
-    author: 'Mister Tony',
-  },
-  {
-    img: './img/hqdefault.jpg',
-    title: 'Video 2',
-    key: '2',
-    author: 'Mister Fred',
-  },
-  {
-    img: './img/hqdefault.jpg',
-    title: 'Video 3',
-    key: '3',
-    author: 'Mister Tony',
-  },
-  {
-    img: './img/hqdefault.jpg',
-    title: 'Video 4',
-    key: '4',
-    author: 'Mister Tony',
-  },
-  {
-    img: './img/hqdefault.jpg',
-    title: 'Video 5',
-    key: '5',
-    author: 'Mister Tony',
-  },
-  {
-    img: './img/hqdefault.jpg',
-    title: 'Video 6',
-    key: '6',
-    author: 'Mister Tony',
-  },
-  {
-    img: './img/hqdefault.jpg',
-    title: 'Video 7',
-    key: '7',
-    author: 'Mister Tony',
-  },
-  {
-    img: './img/hqdefault.jpg',
-    title: 'Video 8',
-    key: '8',
-    author: 'Mister Tony',
-  },
-];
+    this.serverRequest = 
+      axios({
+        method: 'get',
+        url: config.url + '{"query_string":"' + config.searchTerm + '"}', //TODO: pass in query string
+        headers: {
+          'Mediabank-API-Token': 'EqLlE0nhEr2oLQ8E64c7oNy5bchS3Nu1I0pJVsBhjEDxI2pJVsBLNED4YQ',
+        }, 
+        auth: {
+          username: 'api',
+          password: 'tv$&?QkD=8GBpvKD'
+        }
+        })
+        .then(function(result) {  
+          var filteredAssets = result.data.assets.filter(function(asset){
+            return asset.metadata.MimeType === 'video';
+          })  
+          _this.setState({
+            assets: filteredAssets
+          });
+        })
+  }
 
-/**
- * A simple example of a scrollable `GridList` containing a [Subheader](/#/components/subheader).
- */
+  componentWillUnmount() {
+    this.serverRequest.abort();
+  }
 
-
-
-const thumbnailList = () => (
-
+  playVideo(videoID){
+    
+  }
+  render() {
+  return(
   <div style={styles.root}>
    
     <GridList
       cellHeight={180}
       style={styles.gridList}
     >
-
-      {tilesData.map((tile) => (
-        <GridTile
-          key={tile.key}
-          title={tile.title}
-          subtitle={<span>by <b>{tile.author}</b></span>}
-          actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-        >
-          <img src={tile.img} />
-        </GridTile>
-      ))}
-
+      {this.state.assets.map((thumb) =>
+          (<GridTile
+          key={thumb.assetid}
+          title={thumb.metadata.Title}
+          subtitle={<span>by <b>{thumb.metadata.UploadUserFullName}</b></span>}
+          actionIcon={<IconButton><PlayCircleOutline color="white" /></IconButton>}>
+          <img src={thumb.metadata.PosterURL} />
+        </GridTile>)
+      )}
     </GridList>
     
-  </div>
-);
-
-export default thumbnailList;
+  </div>)
+  }
+}
