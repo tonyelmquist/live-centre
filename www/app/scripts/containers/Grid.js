@@ -19,7 +19,7 @@ class HomeGrid extends React.Component {
           url: 'https://www.mediabank.me/ajax/get_assetinfo.php?application=library&assetid='
         };
 
-        store.dispatch(videoSelected());
+        this.props.dispatch(videoSelected());
 
         axios({
           method: 'get',
