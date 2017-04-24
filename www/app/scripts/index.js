@@ -13,7 +13,7 @@ injectTapEventPlugin();
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './reducers/index';
-import {fetchRequestSent, fetchRequestSuccess, fetchRequestFailed} from './actions/fetchVideo';
+import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess} from './actions/fetchVideo';
 
 //Redux Store
 const store = createStore(rootReducer);
@@ -26,7 +26,7 @@ const initVideoList = () => {
       url: 'https://api-eu1.mediabank.me/mediabank/asset/'
     };
 
-    store.dispatch(fetchRequestSent());
+    store.dispatch(fetchMetadataSent());
 
     axios({
       method: 'get',
@@ -43,7 +43,7 @@ const initVideoList = () => {
         const filteredAssets = result.data.assets.filter( (asset)=> {
           return asset.metadata.MimeType === 'video';
         });
-        store.dispatch(fetchRequestSuccess(filteredAssets));
+        store.dispatch(fetchMetadataSuccess(filteredAssets));
     });
 };
 initVideoList();

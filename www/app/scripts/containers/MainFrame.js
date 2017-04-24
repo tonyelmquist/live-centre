@@ -8,7 +8,7 @@ import {changeLang} from '../actions/lang';
 //Custom Components
 // import ThumbnailList from '../components/ThumbnailList';
 // import Player from '../components/Player';
-import HomeGrid from '../components/Grid';
+import HomeGrid from './Grid';
 
 
 const styles = {

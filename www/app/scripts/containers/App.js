@@ -29,7 +29,7 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.props.state_all);
+        // console.log(this.props.state_all);
         const appbarStyle = {margin: 5};
         const headerStyle={textAlign: "center"};
         return (

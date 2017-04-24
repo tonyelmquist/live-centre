@@ -17,13 +17,15 @@ class ReduxConstants {
     //Language
     static get CHANGE_LANG() { return "CHANGE_LANG"; }
 
-    //API Fetch Video Items
-    static get FETCH_REQUEST_SENT() { return "FETCH_REQUEST_SENT"; }
-    static get FETCH_REQUEST_FAILED() { return "FETCH_REQUEST_FAILED"; }
-    static get FETCH_REQUEST_SUCCESS() { return "FETCH_REQUEST_SUCCESS"; }
+    //API Fetch Video Metadata Items
+    static get FETCH_METADATA_SENT() { return "FETCH_METADATA_SENT"; }
+    static get FETCH_METADATA_FAILED() { return "FETCH_METADATA_FAILED"; }
+    static get FETCH_METADATA_SUCCESS() { return "FETCH_METADATA_SUCCESS"; }
 
     //Video Playback
-    static get VIDEO_SELECTED() { return "VIDEO_SELECTED"; }
+    static get FETCH_VIDEO_REQ_SENT() { return "FETCH_VIDEO_REQ_SENT"; }
+    static get FETCH_VIDEO_FAILED() { return "FETCH_VIDEO_FAILED"; }
+    static get FETCH_VIDEO_SUCCESS() { return "FETCH_VIDEO_SUCCESS"; }
     static get INVALIDATE_VIDEO() { return "INVALIDATE_VIDEO"; }
 
     //Other constants
