@@ -15,28 +15,7 @@ class HomeGrid extends React.Component {
     }
 
     handleVideoFetch = (assetid) => {
-        const config = {
-          url: 'https://www.mediabank.me/ajax/get_assetinfo.php?application=library&assetid='
-        };
-
-        this.props.dispatch(videoSelected());
-
-        axios({
-          method: 'get',
-          url: `${config.url}${assetid}`,
-          responseType: 'json',
-          headers: {
-            'Mediabank-API-Token': 'EqLlE0nhEr2oLQ8E64c7oNy5bchS3Nu1I0pJVsBhjEDxI2pJVsBLNED4YQ',
-          },
-          auth: {
-            username: 'api',
-            password: 'tv$&?QkD=8GBpvKD'
-          }
-        })
-        .then( (result) => {
-            this.props.dispatch(videoFetchSuccess(result.data.data[0].ProgressiveURL));
-        });
-
+       this.props.dispatch(videoFetchSuccess(`https://www.mediabank.me/download/?assetid=${assetid}&type=proxy`));
     }
 
     createVideoList = () => {
