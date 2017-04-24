@@ -1,6 +1,6 @@
 import Actions from '../constants/reduxConstants';
 
-export default function requestSent(state = {isSelected: false, isFetching: false, url:""}, action) {
+export default function requestSent(state = {isSelected: true, isFetching: false, url:""}, action) {
     switch (action.type) {
         case Actions.FETCH_VIDEO_REQ_SENT:
             return Object.assign({}, state, {
