@@ -7,11 +7,11 @@ import { GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Player from './Player';
 import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
-import {videoSelected} from '../actions/videoPlay';
+import {videoSelected, videoFetchSuccess} from '../actions/videoPlay';
 
 class HomeGrid extends React.Component {
     handlePlay = (url) => {
-        this.props.dispatch(videoSelected(url));
+        this.props.dispatch(videoSelected());
     }
 
     handleVideoFetch = (assetid) => {
@@ -19,7 +19,7 @@ class HomeGrid extends React.Component {
           url: 'https://www.mediabank.me/ajax/get_assetinfo.php?application=library&assetid='
         };
 
-        // store.dispatch(fetchMetadataSent());
+        store.dispatch(videoSelected());
 
         axios({
           method: 'get',
@@ -33,12 +33,10 @@ class HomeGrid extends React.Component {
             password: 'tv$&?QkD=8GBpvKD'
           }
         })
-        .then( (data) => {
-            console.log(data);
-        })
-        .catch((data) => {
-            console.log(data);
+        .then( (result) => {
+            this.props.dispatch(videoFetchSuccess(result.data[0].ProgressiveURL));
         });
+
     }
 
     createVideoList = () => {

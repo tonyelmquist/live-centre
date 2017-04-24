@@ -7,16 +7,16 @@ class Player extends React.Component {
 
     render () {
       return (
-        // <ReactPlayer
-        //   playing={false}
-        //   controls={true}
-        //   width ='100%'
-        //   height = '56%'
-        //
-        //   url={this.props.videoUrl}
-        // />
-        <ReactHLS url={this.props.videoUrl}
+        <ReactPlayer
+          playing={false}
+          controls={true}
+          width ='100%'
+          height = '56%'
+
+          url={this.props.videoUrl}
         />
+        // <ReactHLS url={this.props.videoUrl}
+        // />
       );
     }
 }
