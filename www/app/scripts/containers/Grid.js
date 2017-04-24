@@ -34,7 +34,7 @@ class HomeGrid extends React.Component {
           }
         })
         .then( (result) => {
-            this.props.dispatch(videoFetchSuccess(result.data[0].ProgressiveURL));
+            this.props.dispatch(videoFetchSuccess(result.data.data[0].ProgressiveURL));
         });
 
     }
