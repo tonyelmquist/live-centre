@@ -6,8 +6,9 @@ import { connect } from 'react-redux';
 import {changeNavMenuIndex} from '../actions/bottomNavMenu';
 import {changeLang} from '../actions/lang';
 //Custom Components
-import ThumbnailList from '../components/ThumbnailList';
-import Player from '../components/Player';
+// import ThumbnailList from '../components/ThumbnailList';
+// import Player from '../components/Player';
+import HomeGrid from '../components/Grid';
 
 
 const styles = {
@@ -27,7 +28,9 @@ const styles = {
       position: 'fixed',
   },
   swipeContainer: {
-      height: '100%'
+      height: '100%',
+      marginBottom: '50px'
+
   }
 };
 
@@ -45,6 +48,7 @@ class MainFrame extends React.Component {
     }
 
     render(){
+        // console.log(this.props.videos);
         return (
             <SwipeableViews
                 index={this.props.selectedIndex}
@@ -52,12 +56,15 @@ class MainFrame extends React.Component {
                 containerStyle={styles.swipeContainer}>
                 <div style={styles.slide}>
                     <h2 style={styles.headline}>{i18next.t('route_home')}</h2>
-                    <ThumbnailList />
+                    {/* <ThumbnailList /> */}
+                    <HomeGrid videos = {this.props.videos}/>
 
                 </div>
                 <div style={styles.slide}>
                     <h2 style={styles.headline}>{i18next.t('route_favorites')}</h2>
-                     <Player />
+                    <div className="player">
+                        {/* <Player/> */}
+                    </div>
                 </div>
                 <div style={styles.slide}>
                     <h2 style={styles.headline}>{i18next.t('route_settings')}</h2>
@@ -71,7 +78,7 @@ class MainFrame extends React.Component {
                         <li>
                             {i18next.t('topics_state')};
                         </li>
-                        
+
                     </ul>
                     <RaisedButton label="ENG" primary={true} onTouchTap={() => {this.handleLang('en');}}/>
                     <RaisedButton label="NO" secondary={true} onTouchTap={() => {this.handleLang('nb');}}/>
@@ -84,7 +91,8 @@ class MainFrame extends React.Component {
 const mapStateToProps = (state) => {
     return {
         selectedIndex: state.navMenu.index,
-        lang: state.lang
+        lang: state.lang,
+        videos: state.videos.items
     };
 };
 

@@ -1,13 +1,30 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ReactPlayer from 'react-player';
+import ReactHLS from 'react-hls';
 
-export default class Player extends React.Component {
+class Player extends React.Component {
 
-  render () {
-    return <ReactPlayer 
-      playing={false}
-      controls={true} 
-      url='https://download.mediabankweb.com/online/72ad0542c6144c978dbb9154fc606291/58f9ef3a/THEFUTUREG/201703/954844/954844_proxy.mov' 
-      />
-  }
+    render () {
+      return (
+        // <ReactPlayer
+        //   playing={false}
+        //   controls={true}
+        //   width ='100%'
+        //   height = '56%'
+        //
+        //   url={this.props.videoUrl}
+        // />
+        <ReactHLS url={this.props.videoUrl}
+        />
+      );
+    }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        videoUrl: state.playback.url
+    };
+};
+
+export default connect(mapStateToProps)(Player);

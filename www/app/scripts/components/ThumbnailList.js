@@ -35,22 +35,22 @@ export default class thumbnailList extends React.Component {
       url: 'https://api-eu1.mediabank.me/mediabank/asset/'
     };
 
-    this.serverRequest = 
+    this.serverRequest =
       axios({
         method: 'get',
         url: `${config.url}{"query_string":"${config.searchTerm}"}`,
         headers: {
           'Mediabank-API-Token': 'EqLlE0nhEr2oLQ8E64c7oNy5bchS3Nu1I0pJVsBhjEDxI2pJVsBLNED4YQ',
-        }, 
+        },
         auth: {
           username: 'api',
           password: 'tv$&?QkD=8GBpvKD'
         }
         })
-        .then( (result) => {  
+        .then( (result) => {
           const filteredAssets = result.data.assets.filter( (asset)=> {
             return asset.metadata.MimeType === 'video';
-          });  
+          });
           _this.setState({
             assets: filteredAssets
           });
@@ -62,14 +62,14 @@ export default class thumbnailList extends React.Component {
   }
 
   playVideo(videoID){
-    
+
   }
   render() {
   return(
   <div style={styles.root}>
-   
+
     <GridList
-      cellHeight={180}
+    //   cellHeight={180}
       style={styles.gridList}
     >
       {this.state.assets.map((thumb) =>
@@ -82,7 +82,7 @@ export default class thumbnailList extends React.Component {
         </GridTile>)
       )}
     </GridList>
-    
+
   </div>);
   }
 }

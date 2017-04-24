@@ -79,7 +79,13 @@ gulp.task('webpack', function(callback) {
                 },
                 {
                     test: /\.css$/,
-                    loaders: [ 'style-loader', 'css-loader' ]
+                    loaders: [ 'style-loader', 'css-loader' ],
+                    exclude: /flexboxgrid/
+                },
+                {
+                    test: /\.css$/,
+                    loaders: [ 'style-loader', 'css-loader' ],
+                    include: /flexboxgrid/
                 },
                 {
                     test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,

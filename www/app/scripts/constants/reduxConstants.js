@@ -17,6 +17,15 @@ class ReduxConstants {
     //Language
     static get CHANGE_LANG() { return "CHANGE_LANG"; }
 
+    //API Fetch Video Items
+    static get FETCH_REQUEST_SENT() { return "FETCH_REQUEST_SENT"; }
+    static get FETCH_REQUEST_FAILED() { return "FETCH_REQUEST_FAILED"; }
+    static get FETCH_REQUEST_SUCCESS() { return "FETCH_REQUEST_SUCCESS"; }
+
+    //Video Playback
+    static get VIDEO_SELECTED() { return "VIDEO_SELECTED"; }
+    static get INVALIDATE_VIDEO() { return "INVALIDATE_VIDEO"; }
+
     //Other constants
 }
 
