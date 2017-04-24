@@ -15,8 +15,6 @@ class Player extends React.Component {
 
           url={this.props.videoUrl}
         />
-        // <ReactHLS url={this.props.videoUrl}
-        // />
       );
     }
 }
