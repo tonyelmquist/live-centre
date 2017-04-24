@@ -38,6 +38,7 @@ export default class thumbnailList extends React.Component {
     this.serverRequest =
       axios({
         method: 'get',
+        // url: config.url + '{"query_string":"' + config.searchTerm + '"}', //TODO: pass in query string
         url: `${config.url}{"query_string":"${config.searchTerm}"}`,
         headers: {
           'Mediabank-API-Token': 'EqLlE0nhEr2oLQ8E64c7oNy5bchS3Nu1I0pJVsBhjEDxI2pJVsBLNED4YQ',
