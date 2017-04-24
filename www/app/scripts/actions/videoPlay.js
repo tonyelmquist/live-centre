@@ -4,6 +4,6 @@ export function videoSelected(url) {
     return {type: Actions.VIDEO_SELECTED, url};
 }
 
-export function invalidateVideo() {
-    return {type: Actions.INVALIDATE_VIDEO};
+export function invalidateSelected() {
+    return {type: Actions.INVALIDATE_SELECTED};
 }

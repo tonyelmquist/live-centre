@@ -7,7 +7,14 @@ import { GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Player from './Player';
 import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
-import {videoSelected} from '../actions/videoPlay';
+import {videoSelected, invalidateSelected} from '../actions/videoPlay';
+import VideoPlayer from '../components/VideoPlayer';
+
+//Video Player Options
+const videoJsOptions = {
+  autoplay: true,
+  controls: true,
+};
 
 class HomeGrid extends React.Component {
     handlePlay = (assetid) => {
@@ -30,10 +37,11 @@ class HomeGrid extends React.Component {
         );
     }
   render() {
-    // console.log(this.props.videos[0].HLSProxyURL);
+
+    // console.log(this.props.videoUrl);
     return (
       <Grid fluid>
-        {this.props.selected && <Player />}
+        {this.props.selected && <VideoPlayer {...videoJsOptions} videoUrl={this.props.videoUrl}/>}
         <Row>
           {this.createVideoList()}
         </Row>
@@ -45,8 +53,7 @@ class HomeGrid extends React.Component {
 const mapStateToProps = (state) => {
     return {
         videoUrl: state.playback.url,
-        selected: state.playback.isSelected,
-        fetching: state.playback.isFetching
+        selected: state.playback.isSelected
     };
 };
 

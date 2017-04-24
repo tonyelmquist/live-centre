@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player';
-import ReactHLS from 'react-hls';
+
 
 class Player extends React.Component {
 

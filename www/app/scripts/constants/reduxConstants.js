@@ -24,7 +24,7 @@ class ReduxConstants {
 
     //Video Playback
     static get VIDEO_SELECTED() { return "VIDEO_SELECTED"; }
-    static get INVALIDATE_VIDEO() { return "INVALIDATE_VIDEO"; }
+    static get INVALIDATE_SELECTED() { return "INVALIDATE_SELECTED"; }
 
     //Other constants
 }
