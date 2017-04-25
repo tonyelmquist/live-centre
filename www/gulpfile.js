@@ -5,7 +5,8 @@ const path = require('path');
 const gulp = require('gulp');
 const util = require('gulp-util');
 const lintConfig = require('./eslint.config');
-const Server = require('karma').Server;
+// const Server = require('karma').Server;
+const karma = require('karma').Server;
 const gulplog = require('gulplog');
 const webpackStream = require('webpack-stream');
 const webpack = webpackStream.webpack;
@@ -136,7 +137,7 @@ gulp.task('webpack', function(callback) {
 //Process Stylus Files
 gulp.task('stylus', function() {
 
-    return gulp.src('app/stylus/**')
+    return gulp.src('app/stylus/main.styl')
         .pipe($.plumber({
             errorHandler: $.notify.onError()
         }))
@@ -250,10 +251,14 @@ gulp.task('serve', function() {
 
 //tests
 gulp.task('test', function(done) {
-    new Server({
+    // new Server({
+    //     configFile: __dirname + '/karma.conf.js',
+    //     singleRun: !WATCH
+    // }, done).start();
+    karma.start({
         configFile: __dirname + '/karma.conf.js',
         singleRun: !WATCH
-    }, done).start();
+    }, done);
 });
 
 

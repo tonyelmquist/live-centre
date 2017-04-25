@@ -7,7 +7,7 @@ import { GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Player from './Player';
 import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
-import {videoSelected, invalidateSelected} from '../actions/videoPlay';
+import {videoSelected, invalidateSelected} from '../actions/video';
 import VideoPlayer from '../components/VideoPlayer';
 
 //Video Player Options

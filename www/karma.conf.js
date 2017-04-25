@@ -1,23 +1,25 @@
 // Karma configuration
 // Generated on Wed Mar 29 2017 16:39:27 GMT+0200 (W. Europe Daylight Time)
 const path = require('path');
+const webpackConf = require('./webpack.config.js');
 
 module.exports = function(config) {
     config.set({
-
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '',
 
+        browserNoActivityTimeout: 2000,
 
+        port: 9881,
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['mocha', 'chai', 'sinon'],
-
+        // frameworks: ['mocha', 'chai', 'sinon'],
+        frameworks: ['mocha', 'chai'],
 
         // list of files / patterns to load in the browser
         files: [
             // 'app/scripts/index.js',
-            './app/tests/**/*test.js'
+            './app/tests/**/*.test.js'
         ],
 
 
@@ -30,7 +32,7 @@ module.exports = function(config) {
         preprocessors: {
             // 'app/scripts/**/*.js': ['webpack', 'sourcemap'],
             // './app/tests/**/*test.js': ['babel']
-            './app/tests/**/*test.js': ['webpack', 'sourcemap']
+            './app/tests/**/*.test.js': ['webpack', 'sourcemap']
         },
 
         babelPreprocessor: {
@@ -43,21 +45,39 @@ module.exports = function(config) {
 
             module: {
                 loaders: [{
-                    test: /.jsx?$/,
-                    include: path.join(__dirname, "app/scripts"),
-                    loader: 'babel-loader',
-                    query: {
-                        presets: ['es2015', 'stage-0', 'react']
+                        test: /.jsx?$/,
+                        include: path.join(__dirname, "app/scripts"),
+                        loader: 'babel-loader',
+                        query: {
+                            presets: ['es2015', 'stage-0', 'react']
+                        }
+                    },
+                    {
+                        test: /\.css$/,
+                        loaders: [ 'style-loader', 'css-loader' ],
+                        exclude: /flexboxgrid/
+                    },
+                    {
+                        test: /\.css$/,
+                        loaders: [ 'style-loader', 'css-loader' ],
+                        include: /flexboxgrid/
+                    },
+                    {
+                        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+                        loader: 'url-loader',
+                        options: {
+                          limit: 10000
+                        }
                     }
-                }]
+                ]
             }
         },
 
-        webpackMiddleware: {
+        webpackServer: {
             // webpack-dev-middleware configuration
             noInfo: true,
         },
-
+        // webpack: webpackConf,
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
@@ -92,7 +112,7 @@ module.exports = function(config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome'],
+        browsers: ['Firefox'],
         customLaunchers: {
             ChromeCustom: {
                 base: 'Chrome',
@@ -109,5 +129,10 @@ module.exports = function(config) {
         // Concurrency level
         // how many browser should be started simultaneous
         // concurrency: Infinity
+        client: {
+            mocha: {
+                timeout: '5000'
+            }
+        }
     });
 };

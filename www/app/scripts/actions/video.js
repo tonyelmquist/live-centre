@@ -12,10 +12,10 @@ export function fetchMetadataSuccess(items) {
     return {type: Actions.FETCH_METADATA_SUCCESS, items};
 }
 
-export function videoFetch() {
-    return {type: Actions.FETCH_VIDEO_REQ_SENT};
+export function videoSelected(url) {
+    return {type: Actions.VIDEO_SELECTED, url};
 }
 
-export function videoFetchSuccess(url) {
-    return {type: Actions.FETCH_VIDEO_SUCCESS, url};
+export function invalidateSelected() {
+    return {type: Actions.INVALIDATE_SELECTED};
 }

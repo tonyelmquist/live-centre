@@ -1,23 +1,24 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+//Actions
+// import {showSidebar, hideSidebar} from '../actions/sidebar';
+//Material UI
 import AppBar from 'material-ui/AppBar';
-// import FontIcon from 'material-ui/FontIcon';
 import Face from 'material-ui/svg-icons/action/face';
-import Toggle from 'material-ui/Toggle';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
-import IconButton from 'material-ui/IconButton';
-import {white, deepPurple500} from 'material-ui/styles/colors';
 import Avatar from 'material-ui/Avatar';
+import {white, deepPurple500} from 'material-ui/styles/colors';
+// import Toggle from 'material-ui/Toggle';
+// import NavigationClose from 'material-ui/svg-icons/navigation/close';
+// import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+// import IconButton from 'material-ui/IconButton';
+
 //Custom components
+import MainFrame from './MainFrame';
 import Login from './Login';
 import Logged from './Logged';
-// import Sidebar from './Sidebar';
 import BottomNavMenu from './BottomNav';
-import MainFrame from './MainFrame';
 
-//Actions
-import {showSidebar, hideSidebar} from '../actions/sidebar';
+
 class App extends Component {
 
     handleSidebar = () => {

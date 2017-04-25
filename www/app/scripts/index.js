@@ -7,13 +7,14 @@ import axios from 'axios';
 import log from './middleware/logger';
 import style from './constants/MuiStyle';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+
 injectTapEventPlugin();
 
 //Redux
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import rootReducer from './reducers/index';
-import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess} from './actions/fetchVideo';
+import rootReducer from './reducers/rootReducer';
+import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess} from './actions/video';
 
 //Redux Store
 const store = createStore(rootReducer);
@@ -50,8 +51,8 @@ initVideoList();
 
 //Language
 i18next.init({
-    lng: store.getState().lang,
     lngs: ["en","nb"],
+    lng: store.getState().lang,
     fallbackLng: "en",
     resources: {
         en: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import videojs from 'video.js';
-import css from 'video.js/dist/video-js.css';
+import 'video.js/dist/video-js.css';
 
 class VideoPlayer extends React.Component {
   componentDidMount() {

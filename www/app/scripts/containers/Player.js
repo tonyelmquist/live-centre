@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player';
 
-
-class Player extends React.Component {
+class Player extends Component {
 
     render () {
       return (
