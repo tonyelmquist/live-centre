@@ -8,11 +8,10 @@ import IconButton from 'material-ui/IconButton';
 import Player from './Player';
 import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
 import {videoSelected, invalidateSelected} from '../actions/video';
-import VideoPlayer from '../components/VideoPlayer';
 
 //Video Player Options
 const videoJsOptions = {
-  autoplay: true,
+  playing: false,
   controls: true,
 };
 
@@ -41,7 +40,7 @@ class HomeGrid extends React.Component {
     // console.log(this.props.videoUrl);
     return (
       <Grid fluid>
-        {this.props.selected && <VideoPlayer {...videoJsOptions} videoUrl={this.props.videoUrl}/>}
+        {this.props.selected && <Player {...videoJsOptions} videoUrl={this.props.videoUrl}/>}
         <Row>
           {this.createVideoList()}
         </Row>
