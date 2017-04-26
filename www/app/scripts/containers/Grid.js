@@ -18,7 +18,7 @@ const videoJsOptions = {
 
 class HomeGrid extends React.Component {
     handlePlay = (assetid) => {
-        this.props.dispatch(videoSelected(`https://www.mediabank.me/download/?assetid=${assetid}&type=proxy`));
+        this.props.dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
     }
 
     createVideoList = () => {
