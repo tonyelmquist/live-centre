@@ -10,6 +10,7 @@ const karma = require('karma').Server;
 const gulplog = require('gulplog');
 const webpackStream = require('webpack-stream');
 const webpack = webpackStream.webpack;
+const webpackConfig = require('./webpack.config.js');
 const named = require('vinyl-named');
 const del = require('del');
 const $ = require('gulp-load-plugins')();
@@ -42,6 +43,7 @@ console.log('****************************');
 gulp.task('webpack', function(callback) {
     let firstBuildReady = false;
     const config = {
+        module: webpackConfig.module,
         watch: WATCH ? WATCH : false,
         devtool: isDev ? 'cheap-module-inline-source-map' : null,
         plugins: !isDev ? [
@@ -67,41 +69,7 @@ gulp.task('webpack', function(callback) {
             new webpack.ProvidePlugin({
                 i18next: "i18next",
             })
-        ],
-        module: {
-            loaders: [{
-                    test: /.jsx?$/,
-                    include: path.join(__dirname, "app/scripts"),
-                    exclude: path.join(__dirname, "app/tests"),
-                    loader: 'babel-loader',
-                    query: {
-                        presets: ['es2015', 'react', 'stage-0']
-                    }
-                },
-                {
-                    test: /\.css$/,
-                    loaders: [ 'style-loader', 'css-loader' ],
-                    exclude: /flexboxgrid/
-                },
-                {
-                    test: /\.css$/,
-                    loaders: [ 'style-loader', 'css-loader' ],
-                    include: /flexboxgrid/
-                },
-                {
-                    test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-                    loader: 'url-loader',
-                    options: {
-                      limit: 10000
-                    }
-                },
-                {
-                    test: /\.po$/,
-                    loaders: ['i18next-po-loader']
-                }
-            ]
-        }
-
+        ]
     }
 
 

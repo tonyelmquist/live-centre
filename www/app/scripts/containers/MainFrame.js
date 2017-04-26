@@ -95,5 +95,7 @@ const mapStateToProps = (state) => {
         videos: state.videos.items
     };
 };
-
+// MainFrame.propTypes = {
+//     onTouchTap: React.PropTypes.function
+// };
 export default connect(mapStateToProps)(MainFrame);

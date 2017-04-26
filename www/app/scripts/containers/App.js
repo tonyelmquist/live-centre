@@ -7,10 +7,6 @@ import AppBar from 'material-ui/AppBar';
 import Face from 'material-ui/svg-icons/action/face';
 import Avatar from 'material-ui/Avatar';
 import {white, deepPurple500} from 'material-ui/styles/colors';
-// import Toggle from 'material-ui/Toggle';
-// import NavigationClose from 'material-ui/svg-icons/navigation/close';
-// import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
-// import IconButton from 'material-ui/IconButton';
 
 //Custom components
 import MainFrame from './MainFrame';
@@ -45,7 +41,9 @@ class App extends Component {
         );
     }
 }
-
+// App.propTypes = {
+//     onTouchTap: React.PropTypes.function
+// };
 const mapStateToProps = (state) => {
     return {
         loginState: state.isUserLoggedIn,
