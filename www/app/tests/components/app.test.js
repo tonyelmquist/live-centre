@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import testUtil from 'react-dom/test-utils';
 import {assert, expect} from 'chai';
-import VideoPlayer from '../../scripts/components/VideoPlayer';
+import Player from '../../scripts/containers/Player';
 
-describe("Video Player",() => {
+describe("Player",() => {
     it('should exist', ()=> {
-        expect(VideoPlayer).should.exist;
+        expect(Player).should.exist;
     });
 });

@@ -26,7 +26,8 @@ class ReduxConstants {
     static get VIDEO_SELECTED() { return "VIDEO_SELECTED"; }
     static get INVALIDATE_SELECTED() { return "INVALIDATE_SELECTED"; }
 
-    //Other constants
+    //Data Overlay
+    static get CHANGE_SCORE() { return "CHANGE_SCORE"; }
 }
 
 export default ReduxConstants;

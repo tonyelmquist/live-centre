@@ -31,11 +31,10 @@ class App extends Component {
 
     render() {
         // console.log(this.props.state_all);
-        const appbarStyle = {margin: 5};
-        const headerStyle={textAlign: "center"};
+        const appbarStyle = {position: "fixed", textAlign: "center"};
         return (
             <div>
-                <AppBar title="Live Centre" style={headerStyle}
+                <AppBar title="Live Centre" style={appbarStyle}
                     iconElementLeft={<Avatar icon={<Face color={white}/>} color={white} backgroundColor={deepPurple500} style={appbarStyle} />}
                     iconElementRight={this.props.loginState ? <Logged/> : <Login/>}
                 />

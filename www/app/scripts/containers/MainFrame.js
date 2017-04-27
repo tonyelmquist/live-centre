@@ -14,8 +14,6 @@ import HomeGrid from './Grid';
 const styles = {
   headline: {
     fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
     fontWeight: 400,
     height: '100%'
   },
@@ -29,6 +27,7 @@ const styles = {
   },
   swipeContainer: {
       height: '100%',
+      marginTop: '64px',
       marginBottom: '50px'
 
   }

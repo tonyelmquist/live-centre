@@ -4,7 +4,7 @@ import loginState from './loginReducer';
 import langReducer from './langReducer';
 import videosReducer from './videosReducer';
 import playbackReducer from './playbackReducer';
-
+import dataOverlayReducer from './dataOverlayReducer';
 import {showBottomNav, changeNavIndex} from './navReducer';
 
 const rootReducer = combineReducers({
@@ -13,7 +13,8 @@ const rootReducer = combineReducers({
     isUserLoggedIn: loginState,
     navMenu: combineReducers({visible: showBottomNav, index: changeNavIndex}),
     videos: videosReducer,
-    playback: playbackReducer
+    playback: playbackReducer,
+    dataOverlay: dataOverlayReducer,
 });
 
 export default rootReducer;

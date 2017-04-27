@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './reducers/rootReducer';
 import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess} from './actions/video';
+import {changeScore} from './actions/score';
 
 //Redux Store
 const store = createStore(rootReducer);
@@ -47,7 +48,17 @@ const initVideoList = () => {
         store.dispatch(fetchMetadataSuccess(filteredAssets));
     });
 };
+
+const initChangingScores = () => {
+    var rand = Math.round(Math.random() * (300 - 50)) + 50;
+    setTimeout(function() {
+            store.dispatch(changeScore(Math.floor(Math.random() * 10000) + 1));
+            initChangingScores();  
+    }, rand);
+}   
+
 initVideoList();
+initChangingScores();
 
 //Language
 i18next.init({
