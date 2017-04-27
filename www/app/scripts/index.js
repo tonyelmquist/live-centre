@@ -7,19 +7,15 @@ import axios from 'axios';
 import log from './middleware/logger';
 import style from './constants/MuiStyle';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import initLang from './utils/i18nextInit';
+import store from './utils/store';
 
 injectTapEventPlugin();
 
 //Redux
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from './reducers/rootReducer';
 import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess} from './actions/video';
 import {changeScore} from './actions/score';
-
-//Redux Store
-const store = createStore(rootReducer);
-
 
 //Initialize Video List
 const initVideoList = () => {
@@ -60,22 +56,8 @@ const initChangingScores = () => {
 initVideoList();
 initChangingScores();
 
-//Language
-i18next.init({
-    lngs: ["en","nb"],
-    lng: store.getState().lang,
-    fallbackLng: "en",
-    resources: {
-        en: {
-            translation: require('../locale/en_us.po')
-        },
-        nb: {
-            translation: require('../locale/nb_no.po')
-        }
-    }
-});
-
-
+//Language: i18next Initialize
+initLang(store);
 
 //Custom theme
 const muiTheme = getMuiTheme(style);
