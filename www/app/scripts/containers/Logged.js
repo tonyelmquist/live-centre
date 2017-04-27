@@ -33,6 +33,13 @@ class Logged extends Component {
   }
 }
 
+Logged.propTypes = {
+    dispatch: React.PropTypes.func.isRequired,
+    iconStyle:React.PropTypes.object,
+    lang: React.PropTypes.string.isRequired,
+    loginState:React.PropTypes.bool
+};
+
 const mapStateToProps = (state) => {
     return {
         loginState: state.isUserLoggedIn,

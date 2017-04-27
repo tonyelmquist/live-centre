@@ -19,6 +19,12 @@ class Login extends Component {
   }
 }
 
+Login.propTypes = {
+    dispatch: React.PropTypes.func.isRequired,
+    style:React.PropTypes.object,
+    loginState:React.PropTypes.bool
+};
+
 const mapStateToProps = (state) => {
     return {
         loginState: state.isUserLoggedIn

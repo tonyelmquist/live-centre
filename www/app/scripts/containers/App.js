@@ -41,9 +41,11 @@ class App extends Component {
         );
     }
 }
-// App.propTypes = {
-//     onTouchTap: React.PropTypes.function
-// };
+App.propTypes = {
+    dispatch: React.PropTypes.func.isRequired,
+    loginState: React.PropTypes.bool,
+    sidebarState: React.PropTypes.bool,
+};
 const mapStateToProps = (state) => {
     return {
         loginState: state.isUserLoggedIn,

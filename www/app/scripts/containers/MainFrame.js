@@ -88,6 +88,13 @@ class MainFrame extends React.Component {
     }
 }
 
+MainFrame.propTypes = {
+    dispatch: React.PropTypes.func.isRequired,
+    selectedIndex:React.PropTypes.number.isRequired,
+    lang:React.PropTypes.bool.isRequired,
+    videos: React.PropTypes.array.isRequired
+};
+
 const mapStateToProps = (state) => {
     return {
         selectedIndex: state.navMenu.index,

@@ -18,6 +18,10 @@ class Player extends Component {
     }
 }
 
+Player.propTypes = {
+    videoUrl: React.PropTypes.string.isRequired
+};
+
 const mapStateToProps = (state) => {
     return {
         videoUrl: state.playback.url

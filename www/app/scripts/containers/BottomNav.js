@@ -23,7 +23,7 @@ class BottomNavMenu extends Component {
   select = (index) => this.props.dispatch(changeNavMenuIndex(index));
 
   render() {
-    
+
     return (
       <Paper zDepth={2} style={{position: 'fixed',bottom: 0, width: '100%'}} >
         <BottomNavigation selectedIndex={this.props.selectedIndex}>
@@ -47,6 +47,12 @@ class BottomNavMenu extends Component {
     );
   }
 }
+
+BottomNavMenu.propTypes = {
+    dispatch: React.PropTypes.func.isRequired,
+    visible:React.PropTypes.bool,
+    selectedIndex: React.PropTypes.number.isRequired
+};
 
 const mapStateToProps = (state) => {
     return {

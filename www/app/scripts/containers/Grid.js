@@ -21,7 +21,7 @@ class HomeGrid extends React.Component {
     }
 
     createVideoList = () => {
-        const videoList = this.props.videos || [];
+        // const videoList = this.props.videos || [];
         return this.props.videos.map((thumb) =>
             (<Col xs={12} sm={6} md={3} key={thumb.assetid}>
                 <div className="videoThumb">
@@ -48,6 +48,13 @@ class HomeGrid extends React.Component {
     );
   }
 }
+
+HomeGrid.propTypes = {
+    dispatch: React.PropTypes.func.isRequired,
+    videoUrl: React.PropTypes.string,
+    selected: React.PropTypes.bool.isRequired,
+    videos: React.PropTypes.array
+};
 
 const mapStateToProps = (state) => {
     return {

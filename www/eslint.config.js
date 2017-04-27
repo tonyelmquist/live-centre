@@ -21,7 +21,8 @@ module.exports = {
         "prefer-spread": 2,
         "prefer-template": 2,
         "require-yield": 2,
-        semi: ["error", "always"]
+        semi: ["error", "always"],
+        "react/prop-types": 1
     },
     "env": {
         "browser": true,
