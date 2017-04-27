@@ -91,7 +91,7 @@ class MainFrame extends React.Component {
 MainFrame.propTypes = {
     dispatch: React.PropTypes.func.isRequired,
     selectedIndex:React.PropTypes.number.isRequired,
-    lang:React.PropTypes.bool.isRequired,
+    lang:React.PropTypes.string.isRequired,
     videos: React.PropTypes.array.isRequired
 };
 
