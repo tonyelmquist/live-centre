@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FontIcon from 'material-ui/FontIcon';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
@@ -49,9 +50,9 @@ class BottomNavMenu extends Component {
 }
 
 BottomNavMenu.propTypes = {
-    dispatch: React.PropTypes.func.isRequired,
-    visible:React.PropTypes.bool,
-    selectedIndex: React.PropTypes.number.isRequired
+    dispatch: PropTypes.func.isRequired,
+    visible:PropTypes.bool,
+    selectedIndex: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => {

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
@@ -34,10 +35,10 @@ class Logged extends Component {
 }
 
 Logged.propTypes = {
-    dispatch: React.PropTypes.func.isRequired,
-    iconStyle:React.PropTypes.object,
-    lang: React.PropTypes.string.isRequired,
-    loginState:React.PropTypes.bool
+    dispatch: PropTypes.func.isRequired,
+    iconStyle:PropTypes.object,
+    lang: PropTypes.string.isRequired,
+    loginState:PropTypes.bool
 };
 
 const mapStateToProps = (state) => {

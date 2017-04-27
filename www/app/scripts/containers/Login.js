@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import {loginSuccess} from '../actions/login';
@@ -20,9 +21,9 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-    dispatch: React.PropTypes.func.isRequired,
-    style:React.PropTypes.object,
-    loginState:React.PropTypes.bool
+    dispatch: PropTypes.func.isRequired,
+    style:PropTypes.object,
+    loginState:PropTypes.bool
 };
 
 const mapStateToProps = (state) => {

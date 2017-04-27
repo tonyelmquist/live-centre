@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
@@ -89,10 +90,10 @@ class MainFrame extends React.Component {
 }
 
 MainFrame.propTypes = {
-    dispatch: React.PropTypes.func.isRequired,
-    selectedIndex:React.PropTypes.number.isRequired,
-    lang:React.PropTypes.string.isRequired,
-    videos: React.PropTypes.array.isRequired
+    dispatch: PropTypes.func.isRequired,
+    selectedIndex:PropTypes.number.isRequired,
+    lang:PropTypes.string.isRequired,
+    videos: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => {

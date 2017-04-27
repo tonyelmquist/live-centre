@@ -50,10 +50,10 @@ class HomeGrid extends React.Component {
 }
 
 HomeGrid.propTypes = {
-    dispatch: React.PropTypes.func.isRequired,
-    videoUrl: React.PropTypes.string,
-    selected: React.PropTypes.bool.isRequired,
-    videos: React.PropTypes.array
+    dispatch: PropTypes.func.isRequired,
+    videoUrl: PropTypes.string,
+    selected: PropTypes.bool.isRequired,
+    videos: PropTypes.array
 };
 
 const mapStateToProps = (state) => {

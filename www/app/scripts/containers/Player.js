@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player';
 
@@ -19,7 +20,7 @@ class Player extends Component {
 }
 
 Player.propTypes = {
-    videoUrl: React.PropTypes.string.isRequired
+    videoUrl: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => {
