@@ -226,17 +226,19 @@ gulp.task('test', function(done) {
     karma.start({
         configFile: __dirname + '/karma.conf.js',
         singleRun: !WATCH
-    }, done);
+    }, function(exitCode){
+        console.log(exitCode !== 0 ? 'Error in Gulp OR test failed!':'');
+        done();
+    });
 });
 
 
 //Sequence of Tasks
 // gulp.task('build', $.sequence('lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], ['watch', 'serve']));
-gulp.task('build', $.sequence('lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], (WATCH) ? ['watch'] : []));
+gulp.task('build', $.sequence( !isDev && 'test','lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], (WATCH) ? ['watch'] : []));
 gulp.task('deploy', ['copy:ios', 'copy:android']);
 
-// console.log($.sequence);
-const SERVE_FOLDER = fs.existsSync(path.resolve(__dirname, DEST_FOLDER));
+// const SERVE_FOLDER = fs.existsSync(path.resolve(__dirname, DEST_FOLDER));
 gulp.task('start', ['serve']);
 
 //Default taks: depends on DEV environment

@@ -1,14 +1,16 @@
 //Webpack configuration
 const webpack = require('webpack');
-const webpackConfig = require('./webpack.config.js');
+const webpackConf = require('./webpack.config.js');
 
-webpackConfig.externals = {
+// Fixes Enzyme & React compatibility issues
+webpackConf.externals = {
     'cheerio': 'window',
     'react/addons': 'react',
     'react/lib/ExecutionEnvironment': 'react',
     'react/lib/ReactContext': 'react'
 };
-webpackConfig.plugins = [new webpack.ProvidePlugin({i18next: "i18next"})];
+
+webpackConf.plugins = [new webpack.ProvidePlugin({i18next: "i18next"})];
 
 //Karma cinfiguration
 module.exports = function (config) {
@@ -32,12 +34,25 @@ module.exports = function (config) {
       './app/tests/tests.bundle.js': [ 'webpack', 'sourcemap' ]
     },
     reporters: [ 'mocha' ],
+    // reporter options
+    mochaReporter: {
+        colors: {
+            success: 'cyan',
+            info: 'blue',
+            warning: 'yellow',
+            error: 'magenta'
+        }
+    },
+    // web server port
+    port: 9875,
+
     singleRun: true,
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+
+    // level of logging with possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_DISABLE,
+
     // webpack config object
-    webpack: webpackConfig,
+    webpack: webpackConf,
     webpackMiddleware: {
       noInfo: true,
     }

@@ -15,6 +15,7 @@ import store from '../../scripts/utils/store';
 // import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess} from './actions/video';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+
 //Custom theme
 const muiTheme = getMuiTheme(style);
 
@@ -41,7 +42,7 @@ describe("<App />",() => {
     });
     //Tests
 
-    it('always render App', ()=> {
+    it('renders App', ()=> {
         const app = renderApp().find("App");
         expect(app.length).to.equal(1);
     });
