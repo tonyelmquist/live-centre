@@ -49,12 +49,16 @@ module.exports = function (config) {
     singleRun: true,
 
     // level of logging with possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_DISABLE,
+    logLevel: config.LOG_INFO,
 
     // webpack config object
     webpack: webpackConf,
     webpackMiddleware: {
       noInfo: true,
+    },
+    browserConsoleLogOptions: {
+        terminal: true,
+        level: ""
     }
   });
 };
