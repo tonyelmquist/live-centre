@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FontIcon from 'material-ui/FontIcon';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
@@ -23,7 +24,7 @@ class BottomNavMenu extends Component {
   select = (index) => this.props.dispatch(changeNavMenuIndex(index));
 
   render() {
-    
+
     return (
       <Paper zDepth={2} style={{position: 'fixed',bottom: 0, width: '100%'}} >
         <BottomNavigation selectedIndex={this.props.selectedIndex}>
@@ -47,6 +48,12 @@ class BottomNavMenu extends Component {
     );
   }
 }
+
+BottomNavMenu.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    visible:PropTypes.bool,
+    selectedIndex: PropTypes.number.isRequired
+};
 
 const mapStateToProps = (state) => {
     return {

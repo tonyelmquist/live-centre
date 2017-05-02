@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import ReactPlayer from 'react-player';
 import DataOverlay from './DataOverlay';
 
@@ -12,8 +13,8 @@ const styles = {
 class Player extends Component {
 
   render() {
-    return (<div style={styles.playerStyle}>
-      
+    return (
+    <div style={styles.playerStyle}>      
       <ReactPlayer
       playing={false}
       controls={true}
@@ -25,6 +26,10 @@ class Player extends Component {
       </div>);
   }
 }
+
+Player.propTypes = {
+    videoUrl: PropTypes.string.isRequired
+};
 
 const mapStateToProps = (state) => {
   return {videoUrl: state.playback.url};

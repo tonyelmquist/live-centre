@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 //Actions
 // import {showSidebar, hideSidebar} from '../actions/sidebar';
 //Material UI
@@ -40,9 +41,11 @@ class App extends Component {
         );
     }
 }
-// App.propTypes = {
-//     onTouchTap: React.PropTypes.function
-// };
+App.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    loginState: PropTypes.bool,
+    sidebarState: PropTypes.bool,
+};
 const mapStateToProps = (state) => {
     return {
         loginState: state.isUserLoggedIn,

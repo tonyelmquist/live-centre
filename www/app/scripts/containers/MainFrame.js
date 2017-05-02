@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
@@ -47,7 +48,7 @@ class MainFrame extends React.Component {
     }
 
     render(){
-        // console.log(this.props.videos);
+        // console.log(this.props);
         return (
             <SwipeableViews
                 index={this.props.selectedIndex}
@@ -55,7 +56,7 @@ class MainFrame extends React.Component {
                 containerStyle={styles.swipeContainer}>
                 <div style={styles.slide}>
                     <h2 style={styles.headline}>{i18next.t('route_home')}</h2>
-                    {/* <ThumbnailList /> */}
+
                     <HomeGrid videos = {this.props.videos}/>
 
                 </div>
@@ -79,13 +80,20 @@ class MainFrame extends React.Component {
                         </li>
 
                     </ul>
-                    <RaisedButton label="ENG" primary={true} onTouchTap={() => {this.handleLang('en');}}/>
-                    <RaisedButton label="NO" secondary={true} onTouchTap={() => {this.handleLang('nb');}}/>
+                    <RaisedButton id="btn_eng" label="ENG" primary={true} onTouchTap={() => {this.handleLang('en');}}/>
+                    <RaisedButton id="btn_nor" label="NO" secondary={true} onTouchTap={() => {this.handleLang('nb');}}/>
                 </div>
             </SwipeableViews>
         );
     }
 }
+
+MainFrame.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    selectedIndex:PropTypes.number.isRequired,
+    lang:PropTypes.string.isRequired,
+    videos: PropTypes.array.isRequired
+};
 
 const mapStateToProps = (state) => {
     return {
@@ -94,7 +102,4 @@ const mapStateToProps = (state) => {
         videos: state.videos.items
     };
 };
-// MainFrame.propTypes = {
-//     onTouchTap: React.PropTypes.function
-// };
 export default connect(mapStateToProps)(MainFrame);
