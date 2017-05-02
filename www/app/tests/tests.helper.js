@@ -1,4 +1,3 @@
-'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
 //Redux
@@ -21,17 +20,6 @@ injectTapEventPlugin();
 const muiTheme = getMuiTheme(style);
 //i18next initialization
 initLang(store);
-
-// Call inject tap event plugin once
-// (() => {
-//     let executed = false;
-//     return () => {
-//         if (!executed) {
-//             executed = true;
-//             injectTapEventPlugin();
-//         }
-//     };
-// })();
 
 //Renders a component
 const enzymeMount = (ComponentClass, props = {}, state = {}) => {

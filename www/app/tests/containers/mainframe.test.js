@@ -1,7 +1,3 @@
-'use strict';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactTestUtils from 'react-dom/test-utils';
 import {enzymeMount, expect} from '../tests.helper.js';
 import MainFrame from '../../scripts/containers/MainFrame';
 import sinon from 'sinon';

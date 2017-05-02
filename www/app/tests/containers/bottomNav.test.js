@@ -1,5 +1,3 @@
-'use strict';
-import React from 'react';
 import {enzymeMount, expect} from '../tests.helper.js';
 import BottomNavMenu from '../../scripts/containers/BottomNav';
 import sinon from 'sinon';

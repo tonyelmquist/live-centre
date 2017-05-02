@@ -1,5 +1,3 @@
-'use strict';
-import React from 'react';
 import {enzymeMount, expect} from '../tests.helper.js';
 import Player from '../../scripts/containers/Player';
 import sinon from 'sinon';
