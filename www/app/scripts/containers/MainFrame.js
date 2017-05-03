@@ -58,7 +58,7 @@ class MainFrame extends React.Component {
                 <div style={styles.slide}>
                     <h2 style={styles.headline}>{i18next.t('route_home')}</h2>
 
-                    <HomeGrid videos = {this.props.videos}/>
+                    <HomeGrid/>
 
                 </div>
                 <div style={styles.slide}>
@@ -93,14 +93,14 @@ MainFrame.propTypes = {
     dispatch: PropTypes.func.isRequired,
     selectedIndex:PropTypes.number.isRequired,
     lang:PropTypes.string.isRequired,
-    videos: PropTypes.array.isRequired
+    // videos: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => {
     return {
         selectedIndex: state.navMenu.index,
         lang: state.lang,
-        videos: state.videos.items
+        // videos: state.videos.items
     };
 };
 export default connect(mapStateToProps)(MainFrame);

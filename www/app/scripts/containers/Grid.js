@@ -59,7 +59,8 @@ HomeGrid.propTypes = {
 const mapStateToProps = (state) => {
     return {
         videoUrl: state.playback.url,
-        selected: state.playback.isSelected
+        selected: state.playback.isSelected,
+        videos: state.videos.items
     };
 };
 
