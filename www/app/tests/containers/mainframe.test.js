@@ -1,5 +1,6 @@
-import {enzymeMount, expect} from '../tests.helper.js';
+import {enzymeMount, expect, store} from '../tests.helper.js';
 import MainFrame from '../../scripts/containers/MainFrame';
+import {changeNavMenuIndex} from '../../scripts/actions/bottomNavMenu';
 import sinon from 'sinon';
 
 describe('MainFrame',() => {
@@ -28,6 +29,12 @@ describe('MainFrame',() => {
         expect(wrapper.find('MainFrame').props().lang).to.equal("nb");
         wrapper.find('#btn_eng').prop('onTouchTap')();
         expect(wrapper.find('MainFrame').props().lang).to.equal("en");
+    });
+
+    it('should change views', ()=> {
+        const views = wrapper.find('MainFrame');
+        store.dispatch(changeNavMenuIndex(1));
+        expect(views.props().selectedIndex).to.be.equal(1);
     });
 
 });

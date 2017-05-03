@@ -1,7 +1,6 @@
 class ReduxConstants {
     //Actions UI
-    static get SIDEBAR_SHOW() { return "SIDEBAR_SHOW"; }
-    static get SIDEBAR_HIDE() { return "SIDEBAR_HIDE"; }
+
 
     //Login Actions
     static get LOGIN_SUCCESS() {return "LOGIN_SUCCESS"; }

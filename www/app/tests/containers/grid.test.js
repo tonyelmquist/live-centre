@@ -13,6 +13,7 @@ describe('HomeGrid',() => {
         wrapper = enzymeMount(HomeGrid);
         expect(HomeGrid.prototype.render.calledOnce).to.equal(true);
         expect(wrapper.find('HomeGrid').exists()).to.be.true;
+        expect(wrapper.find('HomeGrid').at(0).props().videoUrl.length).to.be.empty;
     });
 
     it('should render video list', (done) => {
@@ -22,7 +23,8 @@ describe('HomeGrid',() => {
         }).catch((error) => done(error) );
     });
 
-    it('should play a video', (done) => {
+    it('should select a video', (done) => {
+
         promise.then((data) => {
             const firstVideo = wrapper.find('GridTile').at(0);
             firstVideo.find('IconButton').prop('onTouchTap')();//Click on video

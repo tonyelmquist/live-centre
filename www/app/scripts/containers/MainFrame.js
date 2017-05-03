@@ -49,11 +49,11 @@ class MainFrame extends React.Component {
     }
 
     render(){
-        // console.log(this.props);
+        // console.log(this.props.selectedIndex);
         return (
             <SwipeableViews
                 index={this.props.selectedIndex}
-                onChangeIndex={this.select}
+                onChangeIndex={(index) => this.select(index)}
                 containerStyle={styles.swipeContainer}>
                 <div style={styles.slide}>
                     <h2 style={styles.headline}>{i18next.t('route_home')}</h2>
