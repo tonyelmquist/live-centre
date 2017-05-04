@@ -46,12 +46,13 @@ const initVideoList = () => {
 };
 
 const initChangingScores = () => {
-    var rand = Math.round(Math.random() * (300 - 50)) + 50;
-    setTimeout(function() {
-            store.dispatch(changeScore(Math.floor(Math.random() * 10000) + 1));
-            initChangingScores();  
-    }, rand);
+    var socket = new WebSocket('ws://localhost:8080');
+        socket.onmessage = function(event) {
+          store.dispatch(changeScore(event.data));
+        };
 }   
+
+
 
 initVideoList();
 initChangingScores();

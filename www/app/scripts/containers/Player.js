@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player';
 import DataOverlay from './DataOverlay';
+import Chat from './Chat';
 
 const styles = {
   playerStyle: {
@@ -23,6 +24,7 @@ class Player extends Component {
       style={styles.playerStyle}
       url={this.props.videoUrl}/>
       <DataOverlay />
+      <Chat />
       </div>);
   }
 }

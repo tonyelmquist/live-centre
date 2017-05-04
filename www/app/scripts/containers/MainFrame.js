@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
+
 //Actions
 import {changeNavMenuIndex} from '../actions/bottomNavMenu';
 import {changeLang} from '../actions/lang';
