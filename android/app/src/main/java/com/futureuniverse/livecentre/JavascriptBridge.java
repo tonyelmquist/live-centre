@@ -1,4 +1,4 @@
-package futureuniverse.com.livecentre;
+package com.futureuniverse.livecentre;
 
 import android.app.Activity;
 import android.content.Context;

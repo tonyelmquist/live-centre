@@ -1,4 +1,4 @@
-package futureuniverse.com.livecentre;
+package com.futureuniverse.livecentre;
 
 import org.junit.After;
 import org.junit.Before;
