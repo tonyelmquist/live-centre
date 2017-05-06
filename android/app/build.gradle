@@ -48,22 +48,22 @@ android {
         }
     }
     productFlavors {
-        Development {
+        development {
             applicationIdSuffix ".dev"
             versionNameSuffix "-development"
             resValue "string", "app_name", "Live Centre Dev"
         }
-        QA {
+        qa {
             applicationIdSuffix ".qa"
             versionNameSuffix "-QA"
             resValue "string", "app_name", "Live Centre QA"
         }
-        Staging {
+        staging {
             applicationIdSuffix ".stage"
             versionNameSuffix "-staging"
             resValue "string", "app_name", "Live Centre Stage"
         }
-        Production {
+        production {
             resValue "string", "app_name", "Live Centre"
         }
     }
