@@ -8,8 +8,8 @@ const fields = [
     {name:"First Name"},
     {name:"Last Name"},
     {name:"Email"},
-    {name:"Password", hidden: true},
-    {name:"Repeat Password", hidden: true}
+    // {name:"Password", hidden: true},
+    // {name:"Repeat Password", hidden: true}
 ];
 
 const style = {
