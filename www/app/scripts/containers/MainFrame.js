@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -35,7 +35,7 @@ const styles = {
   }
 };
 
-class MainFrame extends React.Component {
+class MainFrame extends Component {
 
     select = (index) => this.props.dispatch(changeNavMenuIndex(index));
 

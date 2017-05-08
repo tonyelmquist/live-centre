@@ -9,7 +9,8 @@ const lintConfig = require('./eslint.config');
 const karma = require('karma').Server;
 const gulplog = require('gulplog');
 const webpackStream = require('webpack-stream');
-const webpack = webpackStream.webpack;
+// const webpack = webpackStream.webpack;
+const webpack = require('webpack'); // Webpack 2
 const webpackConfig = require('./webpack.config.js');
 const named = require('vinyl-named');
 const del = require('del');
@@ -45,13 +46,10 @@ gulp.task('webpack', function(callback) {
     const config = {
         module: webpackConfig.module,
         watch: WATCH ? WATCH : false,
-        devtool: isDev ? 'cheap-module-inline-source-map' : null,
         plugins: !isDev ? [
+
             new webpack.NoErrorsPlugin(),
             new webpack.DefinePlugin({
-                // Lots of library source code (like React) are based on process.env.NODE_ENV
-                // (all development related code is wrapped inside a conditional that can be dropped if equal to "production"
-                // this way you get your own react.min.js build)
                 'process.env': {
                     'NODE_ENV': JSON.stringify(NODE_ENV),
                 }
@@ -71,7 +69,11 @@ gulp.task('webpack', function(callback) {
             })
         ]
     }
-
+    //Add sourcemaps/pathinfo in development mode
+    if (isDev) {
+        config.devtool = 'cheap-module-inline-source-map';
+        config.output = {'pathinfo' : true};
+    }
 
     function done(err, stats) {
         firstBuildReady = true;
@@ -92,7 +94,7 @@ gulp.task('webpack', function(callback) {
         .pipe(named(function(file) {
             return FILE_NAME
         }))
-        .pipe(webpackStream(config, null, done))
+        .pipe(webpackStream(config, webpack, done))
         .pipe(gulp.dest(DEST_FOLDER + '/js'))
         .on('data', function() {
             if (WATCH && isDev && firstBuildReady && !callback.called) {

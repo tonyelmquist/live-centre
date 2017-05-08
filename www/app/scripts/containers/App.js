@@ -26,9 +26,10 @@ class App extends Component {
             <div>
                 <AppBar title="Live Centre" style={headerStyle}
                     iconElementLeft={<Avatar icon={<Face color={white}/>} color={white} backgroundColor={deepPurple500} style={appbarStyle} />}
-                    iconElementRight={this.props.loginState ? <Logged/> : <Login/>}
+                    // iconElementRight={this.props.loginState ? <Logged/> : <Login/>}
+                    iconElementRight={<Logged/>}
                 />
-                <MainFrame />
+                {this.props.loginState ? <MainFrame /> : <Login />}
                 <BottomNavMenu id = 'bottomNav'/>
             </div>
         );

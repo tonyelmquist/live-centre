@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -15,7 +15,7 @@ const videoJsOptions = {
   controls: true,
 };
 
-class HomeGrid extends React.Component {
+class HomeGrid extends Component {
     handlePlay = (assetid) => {
         this.props.dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
     }

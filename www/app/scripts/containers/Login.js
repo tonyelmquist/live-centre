@@ -1,24 +1,55 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FlatButton from 'material-ui/FlatButton';
 import {loginSuccess} from '../actions/login';
 
-// const Login = (props) => (
-//
-// );
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import UserForm from '../components/UserForm';
+/**
+ * A modal dialog can only be closed by selecting one of the actions.
+ */
 
-class Login extends Component {
-  static muiName = 'FlatButton';
+const customContentStyle = {
+    maxWidth: '350px',
+};
+
+class Login extends React.Component {
+
   handleLogin = () => {
       this.props.dispatch(loginSuccess());
   }
+
   render() {
+    const actions = [
+      <FlatButton
+        label="Register"
+        primary={true}
+      />,
+      <FlatButton
+        label="Login"
+        primary={true}
+        onTouchTap={this.handleLogin}
+      />,
+    ];
+
     return (
-        <FlatButton style= {this.props.style} label="Login" onTouchTap={this.handleLogin}/>
+      <div>
+        <Dialog
+          title="Please Login"
+          actions={actions}
+          modal={true}
+          open={!this.props.loginState}
+          contentStyle={customContentStyle}
+        >
+          <UserForm />
+        </Dialog>
+      </div>
     );
   }
 }
+
 
 Login.propTypes = {
     dispatch: PropTypes.func.isRequired,
