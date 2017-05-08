@@ -679,6 +679,7 @@
 			baseConfigurationReference = E5FA75206444C86C5650D18B /* Pods-Live Centre.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Live Centre/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -696,6 +697,7 @@
 			baseConfigurationReference = 28EF592BD5CF149DD9425927 /* Pods-Live Centre.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Live Centre/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
