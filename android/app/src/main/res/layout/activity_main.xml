@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<futureuniverse.com.livecentre.KeyboardAwareLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.futureuniverse.livecentre.KeyboardAwareLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:orientation="vertical"
                                              android:layout_width="fill_parent"
                                              android:layout_height="fill_parent"
-                                             tools:context="futureuniverse.com.livecentre.MainActivity"
+                                             tools:context="com.futureuniverse.livecentre.MainActivity"
                                              android:id="@+id/main"
     >
     <org.xwalk.core.XWalkView
@@ -21,4 +21,4 @@
         android:id="@+id/videoView"
         android:layout_gravity="center_horizontal|top"/>
     -->
-</futureuniverse.com.livecentre.KeyboardAwareLinearLayout>
+</com.futureuniverse.livecentre.KeyboardAwareLinearLayout>

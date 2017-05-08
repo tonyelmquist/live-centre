@@ -1,23 +1,16 @@
-package futureuniverse.com.livecentre;
+package com.futureuniverse.livecentre;
 
-import android.content.Context;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.widget.MediaController;
-import android.widget.VideoView;
+import android.support.v4.app.FragmentActivity;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import org.xwalk.core.JavascriptInterface;
 import org.xwalk.core.XWalkPreferences;
 import org.xwalk.core.XWalkView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.futureuniverse.livecentre.R;
 
 public class MainActivity extends FragmentActivity {
     KeyboardAwareLinearLayout mainView;
@@ -27,6 +20,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         mainView = (KeyboardAwareLinearLayout)findViewById(R.id.main);
