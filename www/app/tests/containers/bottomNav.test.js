@@ -1,5 +1,3 @@
-'use strict';
-import React from 'react';
 import {enzymeMount, expect} from '../tests.helper.js';
 import BottomNavMenu from '../../scripts/containers/BottomNav';
 import sinon from 'sinon';
@@ -21,6 +19,12 @@ describe('BottomNavMenu',() => {
 
     it('renders several navigation items', ()=> {
         expect(wrapper.find('BottomNavigationItem').length).above(0);
+    });
+
+    it('should change navigation index', ()=> {
+        const secondItem = wrapper.find('BottomNavigationItem').at(1);
+        secondItem.prop('onTouchTap')();
+        expect(wrapper.find('BottomNavigation').props('selectedIndex').selectedIndex).to.equal(1);
     });
 
 });

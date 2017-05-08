@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 //Actions
-// import {showSidebar, hideSidebar} from '../actions/sidebar';
+// import {*} from '../actions/**';
 //Material UI
 import AppBar from 'material-ui/AppBar';
 import Face from 'material-ui/svg-icons/action/face';
@@ -17,14 +17,6 @@ import BottomNavMenu from './BottomNav';
 
 
 class App extends Component {
-
-    handleSidebar = () => {
-        if (!this.props.sidebarState) {
-            this.props.dispatch(showSidebar());
-        } else {
-            this.props.dispatch(hideSidebar());
-        }
-    }
 
     render() {
         // console.log(this.props.state_all);

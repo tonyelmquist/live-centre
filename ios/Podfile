@@ -8,6 +8,8 @@ target 'Live Centre' do
   # Pods for Live Centre
   pod 'ReachabilitySwift', '~> 3'
   pod 'AsyncSwift', '~> 2.0'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
   target 'Live CentreTests' do
     inherit! :search_paths

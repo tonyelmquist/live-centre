@@ -3,12 +3,10 @@ module.exports = {
     module: {
         loaders: [
             {
-                exclude: /node_modules/,
-                loader: 'babel-loader',
                 test: /\.jsx?$/,
-                query: {
-                    presets: ['es2015', 'react', 'stage-0']
-                }
+                exclude: /node_modules/,
+                loader: 'babel-loader'
+
             }, {
                 test: /\.css$/,
                 loaders: [

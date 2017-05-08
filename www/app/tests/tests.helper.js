@@ -1,4 +1,3 @@
-'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
 //Redux
@@ -21,18 +20,10 @@ injectTapEventPlugin();
 const muiTheme = getMuiTheme(style);
 //i18next initialization
 initLang(store);
-
-// Call inject tap event plugin once
-// (() => {
-//     let executed = false;
-//     return () => {
-//         if (!executed) {
-//             executed = true;
-//             injectTapEventPlugin();
-//         }
-//     };
-// })();
-
+//Video List
+// initVideoList(store);
+// console.info('INFO+++++++');
+// console.info(store.videos);
 //Renders a component
 const enzymeMount = (ComponentClass, props = {}, state = {}) => {
   //Enzyme react wrapper around App component
@@ -48,4 +39,4 @@ const enzymeMount = (ComponentClass, props = {}, state = {}) => {
   return wrapper;
 };
 
-export {enzymeMount, expect, assert};
+export {enzymeMount, expect, assert, store};
