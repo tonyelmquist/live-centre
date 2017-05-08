@@ -682,6 +682,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 4TM2DK894Y;
 				INFOPLIST_FILE = "Live Centre/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -701,6 +702,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 4TM2DK894Y;
 				INFOPLIST_FILE = "Live Centre/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
