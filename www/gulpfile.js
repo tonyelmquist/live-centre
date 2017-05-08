@@ -6,7 +6,7 @@ const gulp = require('gulp');
 const util = require('gulp-util');
 const lintConfig = require('./eslint.config');
 // const Server = require('karma').Server;
-const karma = require('karma').Server;
+const KarmaServer = require('karma').Server;
 const gulplog = require('gulplog');
 const webpackStream = require('webpack-stream');
 // const webpack = webpackStream.webpack;
@@ -221,23 +221,26 @@ gulp.task('serve', function() {
 
 //tests
 gulp.task('test', function(done) {
-    // new Server({
-    //     configFile: __dirname + '/karma.conf.js',
-    //     singleRun: !WATCH
-    // }, done).start();
-    karma.start({
+//     new KarmaServer({
+//         configFile: __dirname + '/karma.conf.js',
+//         singleRun: !WATCH
+//     }, done).start();
+
+    KarmaServer.start({
         configFile: __dirname + '/karma.conf.js',
         singleRun: !WATCH
     }, function(exitCode){
         console.log(exitCode !== 0 ? 'Error in Gulp OR test failed!':'');
         done();
+        if ( exitCode!==0 && !isDev ) process.exit(exitCode);
     });
+
 });
 
 
 //Sequence of Tasks
 // gulp.task('build', $.sequence('lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], ['watch', 'serve']));
-gulp.task('build', $.sequence( !isDev && 'test','lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], (WATCH) ? ['watch'] : []));
+gulp.task('build', $.sequence( [!isDev && 'test'],'lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], (WATCH) ? ['watch'] : []));
 gulp.task('deploy', ['copy:ios', 'copy:android']);
 
 // const SERVE_FOLDER = fs.existsSync(path.resolve(__dirname, DEST_FOLDER));
