@@ -23,13 +23,16 @@ injectTapEventPlugin();
 
 //Initialize Video List
 initVideoList(store);
-initChangingScores();
+
 const initChangingScores = () => {
     var socket = new WebSocket('ws://localhost:8080');
         socket.onmessage = function(event) {
           store.dispatch(changeScore(event.data));
         };
 }   
+
+//init scores overlay
+initChangingScores();
 
 //Language: i18next Initialize
 initLang(store);

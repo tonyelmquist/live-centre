@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player';
 import DataOverlay from './DataOverlay';
-import Chat from './Chat';
+import Fullscreenable from 'react-fullscreenable';
+
 
 const styles = {
   playerStyle: {
-    position: 'relative'
+    position: 'relative',
+    height: '100%',
+    width: '100%',
+    zIndex: 2147483647
   }
 };
 
@@ -21,20 +25,26 @@ class Player extends Component {
       controls={true}
       width='100%'
       height='100%'
-      style={styles.playerStyle}
       url={this.props.videoUrl}/>
       <DataOverlay />
-      <Chat />
+      <button onClick={this.props.toggleFullscreen}>Fullscreen</button>
       </div>);
   }
 }
 
 Player.propTypes = {
-    videoUrl: PropTypes.string.isRequired
+    videoUrl: PropTypes.string.isRequired,
+    isFullscreen: PropTypes.bool,
+    toggleFullscreen: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
-  return {videoUrl: state.playback.url};
+  return {
+    videoUrl: state.playback.url
+  }
 };
 
-export default connect(mapStateToProps)(Player);
+const FullscreenPlayer = Fullscreenable()(Player);
+
+
+export default connect(mapStateToProps)(FullscreenPlayer);
