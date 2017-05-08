@@ -5,8 +5,10 @@ class ReduxConstants {
     //Login Actions
     static get LOGIN_SUCCESS() {return "LOGIN_SUCCESS"; }
     static get LOGIN_FAILED() {return "LOGIN_FAILED"; }
-
     static get LOGOUT_SUCCESS() {return "LOGOUT_SUCCESS"; }
+    //Registration
+    static get SHOW_REG_DIALOG() {return "SHOW_REG_DIALOG"; }
+    static get HIDE_REG_DIALOG() {return "HIDE_REG_DIALOG"; }
 
     //Bottom NavigationMenu
     static get BOTTOM_NAV_SHOW() { return "BOTTOM_NAV_SHOW"; }

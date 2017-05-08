@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {loginSuccess} from '../actions/login';
+import {loginSuccess, showRegistration, hideRegistration} from '../actions/login';
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import UserForm from '../components/UserForm';
+import LoginForm from '../components/LoginForm';
+import RegistrationForm from '../components/RegistrationForm';
 /**
  * A modal dialog can only be closed by selecting one of the actions.
  */
@@ -15,51 +16,63 @@ const customContentStyle = {
     maxWidth: '350px',
 };
 
-class Login extends React.Component {
+class Login extends Component {
 
-  handleLogin = () => {
-      this.props.dispatch(loginSuccess());
-  }
+handleLogin = () => {
+    this.props.dispatch(loginSuccess());
+}
 
-  render() {
+handleRegister = () => {
+    this.props.dispatch(showRegistration());
+}
+
+handleCancel = () => {
+    this.props.dispatch(hideRegistration());
+}
+
+render() {
+    const {isLogin} = this.props;
     const actions = [
-      <FlatButton
-        label="Register"
+        <FlatButton
+        label={(isLogin) ? "Registration": "Cancel"}
+        secondary={true}
+        onTouchTap={(isLogin) ? this.handleRegister: this.handleCancel}
+        />,
+        <FlatButton
+        label={(isLogin) ? "Login": "Submit"}
         primary={true}
-      />,
-      <FlatButton
-        label="Login"
-        primary={true}
-        onTouchTap={this.handleLogin}
-      />,
+        onTouchTap={(isLogin) ? this.handleLogin: this.handleCancel}
+        />
     ];
 
     return (
-      <div>
+        <div>
         <Dialog
-          title="Please Login"
+          title={(isLogin) ? "Login": "Registration"}
           actions={actions}
           modal={true}
           open={!this.props.loginState}
           contentStyle={customContentStyle}
         >
-          <UserForm />
+            { (isLogin)? <LoginForm /> : <RegistrationForm/>}
         </Dialog>
-      </div>
+        </div>
     );
-  }
+}
 }
 
 
 Login.propTypes = {
     dispatch: PropTypes.func.isRequired,
     style:PropTypes.object,
-    loginState:PropTypes.bool
+    loginState:PropTypes.bool.isRequired,
+    isLogin:PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => {
     return {
-        loginState: state.isUserLoggedIn
+        loginState: state.isUserLoggedIn,
+        isLogin: !state.isRegistrationVisible
     };
 };
 

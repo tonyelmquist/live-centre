@@ -14,8 +14,18 @@ const styles = {
   }
 };
 
-const UserForm = () => (
+const RegistrationForm = () => (
   <div>
+    <TextField
+       hintText="First Name"
+       underlineStyle={styles.underlineStyle}
+    />
+    <br />
+    <TextField
+        hintText="Last Name"
+        underlineStyle={styles.underlineStyle}
+    />
+    <br />
     <TextField
          hintText="Email"
          underlineStyle={styles.underlineStyle}
@@ -27,7 +37,13 @@ const UserForm = () => (
          type="password"
      />
      <br />
+     <TextField
+         hintText="Repeat Password"
+         underlineStyle={styles.underlineStyle}
+         type="password"
+     />
+     <br />
   </div>
 );
 
-export default UserForm;
+export default RegistrationForm;
