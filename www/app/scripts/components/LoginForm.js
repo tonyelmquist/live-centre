@@ -4,30 +4,26 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import {red500, purple200} from 'material-ui/styles/colors';
 
-const styles = {
-  marginLeft: 20,
-  errorStyle: {
-    color: red500,
-  },
-  underlineStyle: {
-    borderColor: purple200,
-  }
+const style = {
+    width: '90%'
 };
 
 const LoginForm = () => (
   <div>
     <TextField
          hintText="Email"
-         underlineStyle={styles.underlineStyle}
+         style={style}
+         fullWidth={true}
      />
      <br />
      <TextField
          hintText="Password"
-         underlineStyle={styles.underlineStyle}
+         style={style}
          type="password"
+         fullWidth={true}
      />
      <br />
-  </div>
+ </div>
 );
 
 export default LoginForm;

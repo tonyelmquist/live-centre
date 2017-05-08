@@ -13,7 +13,7 @@ import RegistrationForm from '../components/RegistrationForm';
  */
 
 const customContentStyle = {
-    maxWidth: '350px',
+    maxWidth: '400px'
 };
 
 class Login extends Component {

@@ -2,47 +2,36 @@ import React from 'react';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-import {red500, purple200} from 'material-ui/styles/colors';
+import {red500, red200} from 'material-ui/styles/colors';
 
-const styles = {
-  marginLeft: 20,
-  errorStyle: {
-    color: red500,
-  },
-  underlineStyle: {
-    borderColor: purple200,
-  }
+const fields = [
+    {name:"First Name"},
+    {name:"Last Name"},
+    {name:"Email"},
+    {name:"Password", hidden: true},
+    {name:"Repeat Password", hidden: true}
+];
+
+const style = {
+    width: '90%'
 };
 
+const renderFields = (fields, style) => {
+    return fields.map((field) =>
+        <div key={field.name}>
+            <TextField
+               hintText= {field.name}
+               style={style}
+               type={field.hidden ? 'password' : 'text'}
+           />
+           <br />
+        </div>
+    );
+
+};
 const RegistrationForm = () => (
   <div>
-    <TextField
-       hintText="First Name"
-       underlineStyle={styles.underlineStyle}
-    />
-    <br />
-    <TextField
-        hintText="Last Name"
-        underlineStyle={styles.underlineStyle}
-    />
-    <br />
-    <TextField
-         hintText="Email"
-         underlineStyle={styles.underlineStyle}
-     />
-     <br />
-     <TextField
-         hintText="Password"
-         underlineStyle={styles.underlineStyle}
-         type="password"
-     />
-     <br />
-     <TextField
-         hintText="Repeat Password"
-         underlineStyle={styles.underlineStyle}
-         type="password"
-     />
-     <br />
+    {renderFields(fields, style)}
   </div>
 );
 
