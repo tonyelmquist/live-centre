@@ -32,8 +32,8 @@ describe('App',() => {
         expect(header.length).to.equal(1);
     });
 
-    it('has a main frame', ()=> {
-        const mainframe = renderApp().find('MainFrame');
+    it('has a login dialog', ()=> {
+        const mainframe = renderApp().find('Login');
         expect(mainframe.length).to.equal(1);
     });
 

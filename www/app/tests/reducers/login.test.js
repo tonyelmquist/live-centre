@@ -1,5 +1,5 @@
 import {assert, expect} from 'chai';
-import loginReducer from '../../scripts/reducers/loginReducer';
+import {loginState as loginReducer} from '../../scripts/reducers/loginReducer';
 import actions from '../../scripts/constants/reduxConstants';
 
 
