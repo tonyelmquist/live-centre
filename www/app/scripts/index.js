@@ -10,29 +10,22 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import initLang from './utils/i18nextInit';
 import store from './utils/store';
 import initVideoList from './utils/initVideos';
-
+import initChangingScores from './utils/initScoreChanger';
 
 //Redux
 import { Provider } from 'react-redux';
 import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess} from './actions/video';
-import {changeScore} from './actions/score';
+
 
 
 //Enable Touch/Tap Events
 injectTapEventPlugin();
 
 //Initialize Video List
-initVideoList(store);
-
-const initChangingScores = () => {
-    var socket = new WebSocket('ws://localhost:8080');
-        socket.onmessage = function(event) {
-          store.dispatch(changeScore(event.data));
-        };
-}   
+initVideoList(store); 
 
 //init scores overlay
-initChangingScores();
+initChangingScores(store);
 
 //Language: i18next Initialize
 initLang(store);

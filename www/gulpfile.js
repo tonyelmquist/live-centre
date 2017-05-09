@@ -240,7 +240,7 @@ gulp.task('test', function(done) {
 
 //Sequence of Tasks
 // gulp.task('build', $.sequence('lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], ['watch', 'serve']));
-gulp.task('build', $.sequence( [!isDev && 'test'],'lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], (WATCH) ? ['watch'] : []));
+gulp.task('build', $.sequence( !isDev && 'test','lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], (WATCH) ? ['watch'] : []));
 gulp.task('deploy', ['copy:ios', 'copy:android']);
 
 // const SERVE_FOLDER = fs.existsSync(path.resolve(__dirname, DEST_FOLDER));

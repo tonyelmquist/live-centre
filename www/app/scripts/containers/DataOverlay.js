@@ -1,36 +1,43 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 const styles = {
   overlayStyle: {
-  width: '100%',
-  position: 'absolute',
-  fontSize: '18px',
-  zIndex: 2147483647,
-  height: '30px',
-  width: '200px',
-  bottom: 32,
-  left: 0,
-  paddingLeft: '10px',
-  color: 'white'
+    position: 'absolute',
+    zIndex: 2147483647,
+    height: '30px',
+    width: '200px',
+    bottom: 0,
+    left: 0
   },
+  dataStyle: {
+    position: 'absolute',
+    fontSize: '18px',
+    zIndex: 2147483647,
+    marginLeft: 5,
+    color: 'white'
+  }
 };
 
 class DataOverlay extends Component {
 
-render () {
-      return (<div>
-          <div className='trapezoid'></div>
-          <div style={styles.overlayStyle}>Score: {this.props.score}</div>
-          </div>
-      );
-    }
+  render() {
+    return (
+      <div style={styles.overlayStyle}>
+        <div className='trapezoid'></div>
+        <div style={styles.dataStyle}>Score: {this.props.score}</div>
+      </div>
+    );
+  }
 }
 
+DataOverlay.propTypes = {
+    score: PropTypes.string
+};
+
 const mapStateToProps = (state) => {
-    return {
-      score: state.dataOverlay
-    };
+  return {score: state.dataOverlay};
 };
 
 export default connect(mapStateToProps)(DataOverlay);

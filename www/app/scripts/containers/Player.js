@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player';
 import DataOverlay from './DataOverlay';
+import DraggableSpot from './DraggableSpot';
 import Fullscreenable from 'react-fullscreenable';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import Fullscreen from 'material-ui/svg-icons/navigation/fullscreen';
 
 
 const styles = {
@@ -11,7 +14,14 @@ const styles = {
     position: 'relative',
     height: '100%',
     width: '100%',
-    zIndex: 2147483647
+    zIndex: 2147483647,
+    top: 0,
+    left: 0
+  },
+  fullscreenButton: {
+    position: 'absolute',
+    bottom: 5, 
+    right: 5
   }
 };
 
@@ -21,14 +31,16 @@ class Player extends Component {
     return (
     <div style={styles.playerStyle}>      
       <ReactPlayer
-      playing={false}
-      controls={true}
+      playing={true}
+      controls={false}
       width='100%'
       height='100%'
       url={this.props.videoUrl}/>
       <DataOverlay />
-      <button onClick={this.props.toggleFullscreen}>Fullscreen</button>
-      </div>);
+      <DraggableSpot />
+          <FloatingActionButton mini={true} secondary={true} style={styles.fullscreenButton} onClick={this.props.toggleFullscreen}><Fullscreen />
+    </FloatingActionButton>
+         </div>);
   }
 }
 
@@ -41,7 +53,7 @@ Player.propTypes = {
 const mapStateToProps = (state) => {
   return {
     videoUrl: state.playback.url
-  }
+  };
 };
 
 const FullscreenPlayer = Fullscreenable()(Player);

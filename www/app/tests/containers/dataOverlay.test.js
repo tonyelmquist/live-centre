@@ -12,8 +12,4 @@ describe('DataOverlay',() => {
         expect(wrapper.find('DataOverlay').exists()).to.be.true;
     });
 
-    it('renders navigation panel', ()=> {
-        expect(wrapper.find('BottomNavigation').exists()).to.be.true;
-    });
-
 });

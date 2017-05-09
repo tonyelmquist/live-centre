@@ -16,4 +16,8 @@ describe('Player',() => {
         expect(wrapper.find('ReactPlayer').exists()).to.be.true;
     });
 
+        it('renders Fullscreen button', ()=> {
+        expect(wrapper.find('FloatingActionButton').exists()).to.be.true;
+    });
+
 });
