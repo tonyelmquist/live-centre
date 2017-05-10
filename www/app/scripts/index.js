@@ -10,17 +10,22 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import initLang from './utils/i18nextInit';
 import store from './utils/store';
 import initVideoList from './utils/initVideos';
-
+import initChangingScores from './utils/initScoreChanger';
 
 //Redux
 import { Provider } from 'react-redux';
+import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess} from './actions/video';
+
 
 
 //Enable Touch/Tap Events
 injectTapEventPlugin();
 
 //Initialize Video List
-initVideoList(store);
+initVideoList(store); 
+
+//init scores overlay
+initChangingScores(store);
 
 //Language: i18next Initialize
 initLang(store);

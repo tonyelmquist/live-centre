@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
+
 //Actions
 import {changeNavMenuIndex} from '../actions/bottomNavMenu';
 import {changeLang} from '../actions/lang';
@@ -15,8 +16,6 @@ import HomeGrid from './Grid';
 const styles = {
   headline: {
     fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
     fontWeight: 400,
     height: '100%'
   },
@@ -30,6 +29,7 @@ const styles = {
   },
   swipeContainer: {
       height: '100%',
+      marginTop: '64px',
       marginBottom: '50px'
 
   }
