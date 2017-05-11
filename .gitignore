@@ -8,3 +8,7 @@ langtemp/
 
 # Python compiled files
 *.pyc
+
+# WWW Artifacts
+android/app/src/main/assets/
+ios/Live Centre/html/
