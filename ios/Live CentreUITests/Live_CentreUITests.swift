@@ -25,8 +25,31 @@ class Live_CentreUITests: XCTestCase {
     }
     
     func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        let element = app.webViews.otherElements["Live Center"].children(matching: .other).element(boundBy: 3)
+        
+        let usernameTextfield = element.children(matching: .other).element(boundBy: 0).children(matching: .textField).element
+        tapElementAndWaitForKeyboardToAppear(element: usernameTextfield)
+        usernameTextfield.typeText("test@futureuniverse.com")
+        
+        let secureTextField = element.children(matching: .other).element(boundBy: 3).children(matching: .secureTextField).element
+        tapElementAndWaitForKeyboardToAppear(element: secureTextField)
+        secureTextField.typeText("password")
+        
+        snapshot("Login")
+        
+    }
+    
+    func tapElementAndWaitForKeyboardToAppear(element: XCUIElement) {
+        let keyboard = XCUIApplication().keyboards.element
+        while (true) {
+            element.tap()
+            if keyboard.exists {
+                break;
+            }
+            RunLoop.current.run(until: NSDate(timeIntervalSinceNow: 0.5) as Date)
+        }
     }
     
 }
