@@ -4,10 +4,8 @@ import Logged from './Logged';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-
-
 //MaterialUI
-import SearchBar from './SearchBar';
+import SearchBar from '../components/SearchBar';
 import Paper from 'material-ui/Paper';
 
 import {changeNavMenuIndex} from '../actions/bottomNavMenu';
@@ -29,8 +27,8 @@ const styles = {
     borderBottom: 'solid 1px #fff',
     width:'100%',
     height: '100px',
-    backgroundColor: '#fff',
-    color: '#000',
+    backgroundColor: '#000',
+    color: '#fff',
   },
   menuItem: {
     margin: '25px 10px 35px 10px',
