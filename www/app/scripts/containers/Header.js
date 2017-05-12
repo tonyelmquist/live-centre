@@ -16,6 +16,7 @@ import TempLogo from 'material-ui/svg-icons/hardware/videogame-asset'; //Videoga
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import FavoriteIcon from 'material-ui/svg-icons/action/favorite';
 
+
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -26,7 +27,7 @@ const styles = {
     padding: '0 40px',
     borderBottom: 'solid 1px #fff',
     width:'100%',
-    height: '100px',
+    overflow: 'auto',
     backgroundColor: '#000',
     color: '#fff',
   },
@@ -44,7 +45,7 @@ const styles = {
   },
   leftSide : {
     float:'left',
-  },
+  }
 
 };
 
