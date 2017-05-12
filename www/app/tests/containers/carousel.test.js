@@ -1,15 +1,15 @@
 import {enzymeMount, expect} from '../tests.helper.js';
-import DataOverlay from '../../scripts/containers/DataOverlay';
+import HeroCarousel from '../../scripts/containers/Carousel';
 import sinon from 'sinon';
 
-describe('DataOverlay',() => {
+describe('HeroCarousel',() => {
     let wrapper;
 
-    it('renders DataOverlay', ()=> {
-        sinon.spy(DataOverlay.prototype, 'render');
-        wrapper = enzymeMount(DataOverlay);
-        expect(DataOverlay.prototype.render.calledOnce).to.equal(true);
-        expect(wrapper.find('DataOverlay').exists()).to.be.true;
+    it('renders HeroCarousel', ()=> {
+        sinon.spy(HeroCarousel.prototype, 'render');
+        wrapper = enzymeMount(HeroCarousel);
+        expect(HeroCarousel.prototype.render.calledOnce).to.equal(true);
+        expect(wrapper.find('HeroCarousel').exists()).to.be.true;
     });
 
 });
