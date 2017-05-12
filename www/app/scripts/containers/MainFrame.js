@@ -11,6 +11,7 @@ import {changeLang} from '../actions/lang';
 // import ThumbnailList from '../components/ThumbnailList';
 // import Player from '../components/Player';
 import HomeGrid from './Grid';
+import HeroCarousel from './Carousel';
 
 
 const styles = {
@@ -20,7 +21,6 @@ const styles = {
     height: '100%'
   },
   slide: {
-    padding: 10,
   },
   buttonbar: {
       bottom: 0,
@@ -56,8 +56,7 @@ class MainFrame extends Component {
                 onChangeIndex={(index) => this.select(index)}
                 containerStyle={styles.swipeContainer}>
                 <div style={styles.slide}>
-                    <h2 style={styles.headline}>{i18next.t('route_home')}</h2>
-
+                    <HeroCarousel />
                     <HomeGrid/>
 
                 </div>

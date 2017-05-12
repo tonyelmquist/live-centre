@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import Face from 'material-ui/svg-icons/action/face';
 import Avatar from 'material-ui/Avatar';
-import {white, deepPurple500} from 'material-ui/styles/colors';
+import {white, deepOrange300} from 'material-ui/styles/colors';
 
 //Custom components
 import MainFrame from './MainFrame';
@@ -23,8 +23,8 @@ class App extends Component {
         const appbarStyle = {position: "fixed", textAlign: "center"};
         return (
             <div>
-                <AppBar title="Live Centre" style={appbarStyle}
-                    iconElementLeft={<Avatar icon={<Face color={white}/>} color={white} backgroundColor={deepPurple500} style={appbarStyle} />}
+                <AppBar title="IMR Media Center" style={appbarStyle}
+                    iconElementLeft={<Avatar icon={<Face />} color={white} backgroundColor={deepOrange300} style={appbarStyle} />}
                     // iconElementRight={this.props.loginState ? <Logged/> : <Login/>}
                     iconElementRight={<Logged/>}
                 />
