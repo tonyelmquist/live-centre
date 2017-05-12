@@ -27,7 +27,7 @@ class Live_CentreUITests: XCTestCase {
     func testExample() {
         
         let app = XCUIApplication()
-        let element = app.webViews.otherElements["Live Center"].children(matching: .other).element(boundBy: 3)
+        let element = app.webViews.otherElements["IMR"].children(matching: .other).element(boundBy: 2)
         
         let usernameTextfield = element.children(matching: .other).element(boundBy: 0).children(matching: .textField).element
         tapElementAndWaitForKeyboardToAppear(element: usernameTextfield)
