@@ -13,23 +13,16 @@ import {white, deepPurple500} from 'material-ui/styles/colors';
 import MainFrame from './MainFrame';
 import Login from './Login';
 import Logged from './Logged';
-import BottomNavMenu from './BottomNav';
+import Header from './Header';
 
 
 class App extends Component {
 
     render() {
-        // console.log(this.props.state_all);
-        const appbarStyle = {position: "fixed", textAlign: "center"};
         return (
             <div>
-                <AppBar title="Live Centre" style={appbarStyle}
-                    iconElementLeft={<Avatar icon={<Face color={white}/>} color={white} backgroundColor={deepPurple500} style={appbarStyle} />}
-                    // iconElementRight={this.props.loginState ? <Logged/> : <Login/>}
-                    iconElementRight={<Logged/>}
-                />
+                <Header/>
                 {this.props.loginState ? <MainFrame /> : <Login />}
-                <BottomNavMenu id = 'bottomNav'/>
             </div>
         );
     }
@@ -44,6 +37,7 @@ const mapStateToProps = (state) => {
         loginState: state.isUserLoggedIn,
         sidebarState: state.isSidebarVisible,
         state_all: state
+
     };
 };
 
