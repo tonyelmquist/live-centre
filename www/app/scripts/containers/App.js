@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import Face from 'material-ui/svg-icons/action/face';
 import Avatar from 'material-ui/Avatar';
-import {white, deepPurple500} from 'material-ui/styles/colors';
 
 //Custom components
 import MainFrame from './MainFrame';

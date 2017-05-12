@@ -45,10 +45,6 @@ class MainFrame extends Component {
             <SwipeableViews
                 index={this.props.selectedIndex}
                 onChangeIndex={(index) => this.select(index)}
-                containerStyle={styles.swipeContainer} >
-                <HomePage/>
-                <SettingsPage/>
-                <FavoritePage/>
 
                 <div id="category" className="slide">
                     <h1>Category 1</h1>

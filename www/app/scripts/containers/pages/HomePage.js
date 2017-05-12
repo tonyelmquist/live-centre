@@ -1,5 +1,6 @@
 import React from 'react';
 import HomeGrid from '../Grid';
+import HeroCarousel from './Carousel';
 
 
 const styles = {
@@ -30,7 +31,7 @@ export default class HomePage extends React.Component {
             <div className="slide">
                 <h1 style={styles.headline}>{i18next.t('route_home')}</h1>
                 <HomeGrid/>
-                
+                <HeroCarousel/>
             </div>
             
         );
