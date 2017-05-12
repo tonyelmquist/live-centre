@@ -23,10 +23,6 @@ const initVideoList = (store) => {
         const filteredAssets = result.data.assets.filter( (asset)=> {
           return asset.metadata.MimeType === 'video';
         });
-
-        console.log(filteredAssets);
-
-
         store.dispatch(fetchMetadataSuccess(filteredAssets));
     });
     return promise;
