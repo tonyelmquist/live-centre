@@ -44,8 +44,8 @@ class HeroCarousel extends Component {
             .videos
             .map((video, i) => (
                 <div style={styles.carousel} key={i}>
-                    <img src={video.metadata.PosterURL}/>
-                    <p className="legend" style={styles.legend}>{video.metadata.Title}</p>
+                    <img src={video.thumbnail}/>
+                    <p className="legend" style={styles.legend}>{video.title}</p>
                 </div>
             ));
     }

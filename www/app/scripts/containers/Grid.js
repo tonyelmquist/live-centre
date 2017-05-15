@@ -16,14 +16,14 @@ class HomeGrid extends Component {
 
     createVideoList = () => {
         // const videoList = this.props.videos || [];
-        return this.props.videos.map((thumb) =>
-            (<Col xs={12} sm={6} md={3} key={thumb.assetid}>
+        return this.props.videos.map((video) =>
+            (<Col xs={12} sm={6} md={3} key={video.assetid}>
                 <div className="videoThumb">
                     <GridTile
-                        title={thumb.metadata.Title}
-                        subtitle={<span>by <b>{thumb.metadata.UploadUserFullName}</b></span>}
-                        actionIcon={<IconButton onTouchTap={() => {this.handlePlay(thumb.assetid);} }><PlayCircleOutline color="white" /></IconButton>}>
-                        <img src={thumb.metadata.PosterURL} />
+                        title={video.title}
+                        subtitle={<span>by <b>{video.author}</b></span>}
+                        actionIcon={<IconButton onTouchTap={() => {this.handlePlay(video.assetid);} }><PlayCircleOutline color="white" /></IconButton>}>
+                        <img src={video.thumbnail} />
                     </GridTile>
                 </div>
           </Col>)
