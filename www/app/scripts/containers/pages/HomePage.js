@@ -29,10 +29,8 @@ export default class HomePage extends React.Component {
     render(){
         return(
             <div className="slide">
-                <h1 style={styles.headline}>{i18next.t('route_home')}</h1>
                 <HeroCarousel/>
-                <HomeGrid/>
-                
+                <HomeGrid/>               
             </div>
             
         );
