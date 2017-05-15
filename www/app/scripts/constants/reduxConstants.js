@@ -31,6 +31,12 @@ class ReduxConstants {
     static get CHANGE_SCORE() { return "CHANGE_SCORE"; }
     static get GET_MESSAGE() { return "GET_MESSAGE"; }
     static get SEND_MESSAGE() { return "SEND_MESSAGE"; }
+
+    //Video Card
+    static get CHANGE_CARD_INDEX() { return "CHANGE_CARD_INDEX"; }
+    static get SHOW_VIDEO_CARD() { return "SHOW_VIDEO_CARD"; }
+    static get HIDE_VIDEO_CARD() { return "HIDE_VIDEO_CARD"; }
+
 }
 
 export default ReduxConstants;
