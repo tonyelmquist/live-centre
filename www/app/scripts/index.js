@@ -22,13 +22,14 @@ import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess} from './ac
 injectTapEventPlugin();
 
 //Initialize Video List
-initVideoList(store); 
+initVideoList(store);
 
 //init scores overlay
 initChangingScores(store);
 
 //Language: i18next Initialize
 initLang(store);
+console.log(store.getState());
 
 //Custom theme
 const muiTheme = getMuiTheme(style);

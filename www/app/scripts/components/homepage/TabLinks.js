@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TabLinks = ({items, active}) => {
+const TabLinks = ({items, active, handleChange}) => {
     // const handleClick = () => {};
+    // console.log(handleChange);
     const _createLinks = () => {
-        items.map((elem, index) => {
+        return items.map((elem, index) =>
             <button className={"tab-link".concat((index === active) ? " active": "")}
-                key={index}>
+                key={index} onClick={()=> handleChange(index)}>
                 {elem}
-            </button>;
-        });
+            </button>
+        );
     };
     return (
         <div className = "tab-control flex-container">
@@ -19,7 +20,9 @@ const TabLinks = ({items, active}) => {
 };
 
 TabLinks.propTypes = {
-    items: React.PropTypes.array.isRequired
+    items: PropTypes.array.isRequired,
+    active: PropTypes.number.isRequired,
+    handleChange: PropTypes.func.isRequired
 };
 
 export default TabLinks;

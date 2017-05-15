@@ -4,32 +4,32 @@ import fp from 'lodash/fp';
 
 const transformVideoData = (data) => {
 
-  var filteredAssets = [];
+  const filteredAssets = [];
 
   data = data.filter((asset) => {
     return asset.metadata.MimeType === 'video';
   });
 
-  for (var index in data) {
+  for (const index in data) {
 
-    var video = {};
+    const video = {};
 
     if (data.hasOwnProperty(index)) {
-      var attr = data[index];
-      video.title = attr.metadata.Title
-      video.thumbnail = attr.metadata.PosterURL
-      video.author = attr.metadata.UploadUserFullName
-      video.company = attr.metadata.UploadCompanyName
-      video.category = attr.metadata.Category
-      video.email = attr.metadata.UploadUserEmail
-      video.assetid = attr.assetid
+      const attr = data[index];
+      video.title = attr.metadata.Title;
+      video.thumbnail = attr.metadata.PosterURL;
+      video.author = attr.metadata.UploadUserFullName;
+      video.company = attr.metadata.UploadCompanyName;
+      video.category = attr.metadata.Category;
+      video.email = attr.metadata.UploadUserEmail;
+      video.assetid = attr.assetid;
       filteredAssets.push(video);
     }
   }
 
   return filteredAssets;
 
-}
+};
 
 const initVideoList = (store) => {
   const config = {
