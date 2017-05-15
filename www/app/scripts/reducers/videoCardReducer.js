@@ -13,7 +13,7 @@ export function showVideoCard(state = false, action) {
 
 export function changeCardIndex(state = 0, action){
     switch (action.type) {
-        case Actions.CHANGE_NAV_INDEX:
+        case Actions.CHANGE_CARD_INDEX:
             return action.index;
         default:
             return state;

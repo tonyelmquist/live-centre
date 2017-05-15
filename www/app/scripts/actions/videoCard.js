@@ -1,6 +1,6 @@
 import Actions from '../constants/reduxConstants';
 
-export function changeTabIndex(index) {
+export function changeCardIndex(index) {
     return {type: Actions.CHANGE_CARD_INDEX, index};
 }
 
