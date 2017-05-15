@@ -6,14 +6,11 @@ const transformVideoData = (data) => {
 
   var filteredAssets = [];
 
-  var filteredData = 
-      data.filter((asset) => {
-        return asset.metadata.MimeType === 'video';
-      });
+  data = data.filter((asset) => {
+    return asset.metadata.MimeType === 'video';
+  });
 
-      console.log(filteredData);
-
-  for (var index in filteredData) {
+  for (var index in data) {
 
     var video = {};
 
@@ -52,10 +49,6 @@ const initVideoList = (store) => {
       password: 'tv$&?QkD=8GBpvKD'
     }
   }).then((result) => {
-
-    console.log(result.data);
-
-    console.log(transformVideoData(result.data.assets));
     store.dispatch(fetchMetadataSuccess(transformVideoData(result.data.assets)));
   });
   return promise;
