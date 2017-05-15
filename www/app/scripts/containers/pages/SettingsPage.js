@@ -1,5 +1,7 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
+import {changeLang} from '../../actions/lang';
+import { connect } from 'react-redux';
 
 const styles = {
   headline: {
@@ -19,9 +21,17 @@ const styles = {
   }
 };
 
-export default class SettingsPage extends React.Component {
+class SettingsPage extends React.Component {
     constructor(){
         super();
+    }
+
+    handleLang = (newLang) => {
+        if (newLang !== this.props.lang ){
+            i18next.changeLanguage(newLang, (err, t)=> {
+                this.props.dispatch(changeLang(newLang));
+            });
+        }
     }
 
     render(){
@@ -46,3 +56,11 @@ export default class SettingsPage extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        lang: state.lang,
+    };
+};
+
+export default connect(mapStateToProps)(SettingsPage);

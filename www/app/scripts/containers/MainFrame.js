@@ -12,7 +12,7 @@ import FavoritePage from './pages/FavoritePage';
 
 //Actions
 import {changeNavMenuIndex} from '../actions/bottomNavMenu';
-import {changeLang} from '../actions/lang';
+
 //Custom Components
 // import ThumbnailList from '../components/ThumbnailList';
 // import Player from '../components/Player';
@@ -29,15 +29,6 @@ const styles = {
 class MainFrame extends Component {
 
     select = (index) => this.props.dispatch(changeNavMenuIndex(index));
-
-
-    handleLang = (newLang) => {
-        if (newLang !== this.props.lang ){
-            i18next.changeLanguage(newLang, (err, t)=> {
-                this.props.dispatch(changeLang(newLang));
-            });
-        }
-    }
 
     render(){
         //Categories should be created dynamically

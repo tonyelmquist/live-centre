@@ -45,6 +45,10 @@ const styles = {
   },
   leftSide : {
     float:'left',
+  },
+  loginButton: {
+    float: 'right',
+    marginTop: '20px'
   }
 
 };
@@ -107,9 +111,9 @@ class Header extends React.Component {
           <div style={styles.rightSide} >
               <SearchBar/>
               
-              <IconButton>
+              <div style={styles.loginButton}>
                 <Logged />
-              </IconButton>
+              </div>
 
           </div>
 

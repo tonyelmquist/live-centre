@@ -24,7 +24,6 @@ const SearchForm = () => {
         dataSource={dataSource3}
         filter={AutoComplete.noFilter}
         className="inline"
-        invert={true}
       />
     )
 }
