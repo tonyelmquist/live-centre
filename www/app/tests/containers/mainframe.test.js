@@ -3,7 +3,7 @@ import MainFrame from '../../scripts/containers/MainFrame';
 import {changeNavMenuIndex} from '../../scripts/actions/bottomNavMenu';
 import sinon from 'sinon';
 
-const numberOfViews = 3;
+const numberOfViews = 4;
 
 describe('MainFrame',() => {
     let wrapper;
@@ -21,18 +21,6 @@ describe('MainFrame',() => {
         expect(swipeContainer.length).to.equal(1);
         const views = wrapper.find('.react-swipeable-view-container').children();
         expect(views.length).to.equal(numberOfViews);
-    });
-
-    it('has language buttons', ()=> {
-        const btn = wrapper.find('RaisedButton');
-        expect(btn.length).to.equal(2);
-    });
-
-    it('should change the language onTouchTap', ()=> {
-        wrapper.find('#btn_nor').prop('onTouchTap')();
-        expect(wrapper.find('MainFrame').props().lang).to.equal("nb");
-        wrapper.find('#btn_eng').prop('onTouchTap')();
-        expect(wrapper.find('MainFrame').props().lang).to.equal("en");
     });
 
     it('should change views', ()=> {

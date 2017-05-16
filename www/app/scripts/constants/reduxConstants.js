@@ -36,6 +36,12 @@ class ReduxConstants {
     static get MENU_TOGGLE() {return "MENU_TOGGLE"; }
     static get MENU_SHOW() {return "MENU_SHOW"; }
     static get MENU_HIDE() {return "MENU_HIDE"; }
+
+    //Video Card
+    static get CHANGE_CARD_INDEX() { return "CHANGE_CARD_INDEX"; }
+    static get SHOW_VIDEO_CARD() { return "SHOW_VIDEO_CARD"; }
+    static get HIDE_VIDEO_CARD() { return "HIDE_VIDEO_CARD"; }
+
 }
 
 export default ReduxConstants;

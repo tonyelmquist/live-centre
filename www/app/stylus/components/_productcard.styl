@@ -1,0 +1,38 @@
+@import '../constants/_variables.styl';
+
+.product-card {
+    background-color: $color_void;
+    position: relative;
+	width: 100%; /* <-- just a default, can be anything. */
+    overflow: hidden;
+}
+.sixteen-by-nine{
+    padding-bottom: 56.25%
+}
+
+.content {
+    position: absolute;
+    top: 0;  bottom: 0;  left: 0;  right: 0;
+    padding: 0 24px;
+}
+
+.tab-controls {
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+
+.tab-link {
+
+    color: $color_paper;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    background-color: $color_irises;
+    border-left: 1px solid $color_paper;
+    &.active {
+        color: $color_irises;
+        background-color: $color_paper;
+    }
+}

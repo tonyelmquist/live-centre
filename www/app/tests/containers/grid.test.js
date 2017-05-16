@@ -16,24 +16,4 @@ describe('HomeGrid',() => {
         expect(wrapper.find('HomeGrid').at(0).props().videoUrl.length).to.be.empty;
     });
 
-    it('should render video list', (done) => {
-        promise.then((data) => {
-            expect(wrapper.find('HomeGrid').props().videos.length).to.equal(wrapper.find('Col').length);
-            done();
-        }).catch((error) => done(error) );
-    });
-
-    it('should select a video', (done) => {
-
-        promise.then((data) => {
-            const firstVideo = wrapper.find('GridTile').at(0);
-            firstVideo.find('IconButton').prop('onTouchTap')();//Click on video
-            expect(wrapper.find('HomeGrid').at(0).props().videoUrl.length).to.be.not.empty;
-            done();
-        }).catch((error) => done(error) );
-    });
-
-
-
-
 });

@@ -28,8 +28,7 @@ describe('App',() => {
     });
 
     it('has a header', ()=> {
-        const header = renderApp().find('AppBar');
-        expect(header.length).to.equal(1);
+        expect(renderApp().find('#header').exists()).to.be.true;
     });
 
     it('has a login dialog', ()=> {
@@ -37,9 +36,5 @@ describe('App',() => {
         expect(mainframe.length).to.equal(1);
     });
 
-    it('has a bottom navigation', ()=> {
-        const navBotom = renderApp().find('BottomNavMenu');
-        expect(navBotom.length).to.equal(1);
-    });
 
 });
