@@ -13,7 +13,7 @@ const TabLinks = ({items, active, handleChange}) => {
         );
     };
     return (
-        <div className = "tab-control flex-container">
+        <div className = "tab-controls">
             {_createLinks()}
         </div>
     );
