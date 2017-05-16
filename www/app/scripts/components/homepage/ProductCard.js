@@ -4,7 +4,7 @@ import TabLinks from './TabLinks';
 import Tabs from '../common/Tabs';
 import { Row, Col } from 'react-flexbox-grid';
 
-const tabs = ["Overview", "Episodes", "More Like This", "Details"];
+const tabs = ["Overview", "Episodes", "Trailers", "Details"];
 
 const ProductCard = (props) => (
     <Row className=''>
@@ -13,11 +13,11 @@ const ProductCard = (props) => (
             <Tabs active={props.active}>
                 <div className='content'>
                     <h1>Overview</h1>
-                    <img src='img/eiffel.jpg' width='90%'/>
+                    <img src='img/eiffel.jpg' width='100%'/>
                 </div>
-                <div className='content'>Episodes</div>
-                <div className='content'>More Like This</div>
-                <div className='content'>Details</div>
+                <div className='content'><h1>Episodes</h1></div>
+                <div className='content'><h1>More Like This</h1></div>
+                <div className='content'><h1>Details</h1></div>
             </Tabs>
         </Col>
         <Col xs={12}>
