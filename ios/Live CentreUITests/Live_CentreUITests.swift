@@ -33,7 +33,7 @@ class Live_CentreUITests: XCTestCase {
         tapElementAndWaitForKeyboardToAppear(element: usernameTextfield)
         usernameTextfield.typeText("test@futureuniverse.com")
         
-        let secureTextField = element.children(matching: .other).element(boundBy: 1).children(matching: .secureTextField).element
+        let secureTextField = element.children(matching: .other).element(boundBy: 3).children(matching: .secureTextField).element
         tapElementAndWaitForKeyboardToAppear(element: secureTextField)
         secureTextField.typeText("password")
         
