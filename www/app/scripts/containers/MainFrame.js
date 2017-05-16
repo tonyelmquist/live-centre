@@ -67,7 +67,7 @@ MainFrame.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        selectedIndex: state.navMenu.index,
+        selectedIndex: state.index,
         lang: state.lang,
         // videos: state.videos.items
     };

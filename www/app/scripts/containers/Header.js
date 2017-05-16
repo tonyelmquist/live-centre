@@ -1,135 +1,177 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
 import Logged from './Logged';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import {changeNavMenuIndex, toggleMenu, showMenu, hideMenu} from '../actions/navigation';
+
+import MediaQuery from 'react-responsive'
 
 //MaterialUI
 import SearchBar from '../components/SearchBar';
 import Paper from 'material-ui/Paper';
+import IconButton from 'material-ui/IconButton';
+import FlatButton from 'material-ui/FlatButton';
+import {Tabs, Tab} from 'material-ui/Tabs';
 
-import {changeNavMenuIndex} from '../actions/bottomNavMenu';
 
-//MaterialUI
+//ICONS
 import HomeIcon from 'material-ui/svg-icons/action/home';
 import TempLogo from 'material-ui/svg-icons/hardware/videogame-asset'; //Videogame icon
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import FavoriteIcon from 'material-ui/svg-icons/action/favorite';
+import MoreIcon from 'material-ui/svg-icons/navigation/more-vert';
 
-
-import IconButton from 'material-ui/IconButton';
-import FlatButton from 'material-ui/FlatButton';
-
-import {Tabs, Tab} from 'material-ui/Tabs';
-
-const styles = {
-  header: {
-    padding: '0 40px',
-    borderBottom: 'solid 1px #fff',
-    width:'100%',
-    overflow: 'auto',
-    backgroundColor: '#000',
-    color: '#fff',
-  },
-  menuItem: {
-    margin: '25px 10px 35px 10px',
-    display:'inline-block',
-    verticalAlign: 'middle',
-  },
-  menu:{
-    display: 'inline-block',
-  },
-  rightSide: {
-    float: 'right',
-    paddingRight: '40px',
-  },
-  leftSide : {
-    float:'left',
-  }
-
-};
-
+//Should maybe be moved to component? 
+function MenuItem(props){
+  return(
+    <FlatButton
+      onTouchTap={props.onClick}
+      target="_blank"
+      label={props.label}
+      primary={true}
+      icon={props.icon}
+      className="menuItem"
+      secondary={true}
+      accessible={true} 
+      accessibilityLabel={'MenuItem'}
+    />
+  )
+}
 
 
 class Header extends React.Component {
     constructor(){
         super();
+
+        //Categories and pages should be passed as a prop. 
+        this.state = {
+          menuItems : [
+            { key: 0,
+              label: "Home",
+              icon:  <HomeIcon/> ,
+            },
+            {
+              key: 1,
+              label: "Settings",
+              icon: <SettingsIcon/>,
+            },
+            {
+              key: 2,
+              label: "Favorites",
+              icon: <FavoriteIcon/>,
+            },
+            {
+              key: 3,
+              label: "Category 1",
+            }
+          ]
+        };
+
+    };
+
+    //Dispatch functions
+    toggleMenu = () => {
+      this.props.dispatch(toggleMenu());
+    }
+    hideMenu = () => {
+      this.props.dispatch(hideMenu());
+    }
+
+    //Menu items for larger screens and mobile (< 600px screenwidth)
+    getMenuItems = () => {
+      let self = this;
+      return this.state.menuItems.map(function(item) {
+          return (
+            <MenuItem
+              label={item.label}
+              icon={item.icon}
+              key={item.key}
+              onClick={() => self.select(item.key)}
+            />)
+      })
+    }
+
+    //Tabs for smaller screens
+    getMenuTabs = () => {
+      let self = this;
+      return this.state.menuItems.map(function(item) {
+          return (
+            <Tab
+              label={item.label}
+              key={item.key}
+              onClick={() => self.select(item.key)}
+              accessible={true} 
+              accessibilityLabel={'Menu_Tab'}
+            />)
+      })
     }
 
     select = (index) => this.props.dispatch(changeNavMenuIndex(index));
 
     render(){
+        //console.log(this.props);
         return(
+          <div id="header">
+   
+          <Paper zDepth={1} className="header">
 
-        <Paper zDepth={1}  id="header" style={styles.header}>
-              <FlatButton
-                onTouchTap={() => this.select(0)}
-                target="_blank"
-                label="Live Centre"
-                primary={true}
-                style={styles.menuItem} 
-                icon={<TempLogo/>}
-              />
-              <FlatButton
-                onTouchTap={() => this.select(0)}
-                target="_blank"
-                label="Home"
-                secondary={true}
-                style={styles.menuItem} 
-                icon={<HomeIcon/>}
-              />
-              <FlatButton
-                onTouchTap={() => this.select(1)}
-                target="_blank"
-                label="Settings"
-                secondary={true}
-                style={styles.menuItem} 
-                icon={<SettingsIcon/>}
-              />
-              <FlatButton
-                onTouchTap={() => this.select(2)}
-                target="_blank"
-                label="Favorites"
-                secondary={true}
-                style={styles.menuItem} 
-                icon={<FavoriteIcon/>}
-              />
+            <MenuItem label="Live Centre" icon={<TempLogo/>} primary={true}/>
+            
+            <MediaQuery minWidth={1200} className="inline"  >
 
-              <FlatButton
-                onTouchTap={() => this.select(3)}
-                target="_blank"
-                label="Category 1"
-                secondary={true}
-                style={styles.menuItem} 
+                { this.getMenuItems() }
+            </MediaQuery>
+
+            <MediaQuery maxWidth={600} className="inline"  >
+
+              <MenuItem label="Categories" icon={<MoreIcon/>} onClick={() => this.toggleMenu()}
+                accessible={true} 
+                accessibilityLabel={'MenuItem_Categories'}
               />
- 
-         
-          <div style={styles.rightSide} >
+                
+   
+            </MediaQuery>
+
+            <MediaQuery minWidth={640} className="floatRight paddingRight">
+
               <SearchBar/>
-              
-              <IconButton>
                 <Logged />
-              </IconButton>
 
-          </div>
+            </MediaQuery>
+            
+            
+          </Paper>
 
-        </Paper>
+          <MediaQuery minWidth={601} maxWidth={1200}>
+            <Tabs className="tabs">
+              {this.getMenuTabs()}
+            </Tabs>
+          </MediaQuery>
 
+          <MediaQuery query = '(max-width:600px)' className={this.props.menuIsOpen ? "fullscreen_menu" : ""} accessible={true} 
+              accessibilityLabel={'fullscreen_menu'} onTouchTap={() => this.hideMenu()} >
+              { this.props.menuIsOpen ? this.getMenuItems() : console.log("MENU NOT VISIBLE") }
+          </MediaQuery>
+
+        </div>
 
             
         );
     }
 }
+
+
 Header.propTypes = {
     dispatch: PropTypes.func.isRequired,
     visible:PropTypes.bool,
-    selectedIndex: PropTypes.number.isRequired
+    selectedIndex: PropTypes.number.isRequired,
+    menuIsOpen: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {
     return {
-        visible: state.navMenu.isVisible,
-        selectedIndex: state.navMenu.index
+        selectedIndex: state.index,
+        menuIsOpen : state.headerMenuState
     };
 };
 

@@ -1,17 +1,6 @@
 import Actions from '../constants/reduxConstants';
 
-export function showBottomNav(state = false, action) {
-    switch (action.type) {
-        case Actions.BOTTOM_NAV_SHOW:
-            return true;
-        case Actions.BOTTOM_NAV_HIDE:
-            return false;
-        default:
-            return state;
-    }
-}
-
-export function changeNavIndex(state = 0, action){
+function changeNavIndex(state = 0, action){
     switch (action.type) {
         case Actions.CHANGE_NAV_INDEX:
             return action.index;
@@ -19,3 +8,19 @@ export function changeNavIndex(state = 0, action){
             return state;
     }
 }
+
+function headerMenuState(state= false, action){
+    switch(action.type) {
+        case Actions.MENU_TOGGLE:
+            return !state;
+        case Actions.MENU_SHOW:
+            return true;
+        case Actions.MENU_HIDE:
+            return false;
+        default:
+            return state;
+    }
+}
+
+export {changeNavIndex, headerMenuState};
+

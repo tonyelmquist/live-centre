@@ -31,6 +31,11 @@ class ReduxConstants {
     static get CHANGE_SCORE() { return "CHANGE_SCORE"; }
     static get GET_MESSAGE() { return "GET_MESSAGE"; }
     static get SEND_MESSAGE() { return "SEND_MESSAGE"; }
+
+    //Header/top-nav
+    static get MENU_TOGGLE() {return "MENU_TOGGLE"; }
+    static get MENU_SHOW() {return "MENU_SHOW"; }
+    static get MENU_HIDE() {return "MENU_HIDE"; }
 }
 
 export default ReduxConstants;

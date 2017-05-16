@@ -9,13 +9,6 @@ const dataSource3 = [
   {textKey: 'Some Text', valueKey: 'someSecondValue'},
 ];
 
-const styles = {
-  autocomplete: {
-    color: 'red',
-  }
-};
-
-
 const SearchForm = () => {
   return(
    
@@ -24,7 +17,6 @@ const SearchForm = () => {
         dataSource={dataSource3}
         filter={AutoComplete.noFilter}
         className="inline"
-        invert={true}
       />
     )
 }

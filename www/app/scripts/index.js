@@ -16,8 +16,6 @@ import initChangingScores from './utils/initScoreChanger';
 import { Provider } from 'react-redux';
 import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess} from './actions/video';
 
-
-
 //Enable Touch/Tap Events
 injectTapEventPlugin();
 
