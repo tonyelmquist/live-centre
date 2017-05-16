@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
 
 //Should also have validation.
@@ -11,14 +11,13 @@ const dataSource3 = [
 
 const SearchForm = () => {
   return(
-   
       <AutoComplete 
         floatingLabelText="Søk"
         dataSource={dataSource3}
         filter={AutoComplete.noFilter}
         className="inline"
       />
-    )
-}
+    );
+};
 
 export default SearchForm;

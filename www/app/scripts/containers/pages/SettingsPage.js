@@ -2,6 +2,7 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import {changeLang} from '../../actions/lang';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const styles = {
   headline: {
@@ -56,6 +57,12 @@ class SettingsPage extends React.Component {
         );
     }
 }
+
+SettingsPage.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    lang: PropTypes.string.isRequired,
+};
+
 
 const mapStateToProps = (state) => {
     return {
