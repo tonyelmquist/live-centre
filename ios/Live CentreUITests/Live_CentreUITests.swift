@@ -37,9 +37,6 @@ class Live_CentreUITests: XCTestCase {
         tapElementAndWaitForKeyboardToAppear(element: secureTextField)
         secureTextField.typeText("password")
         
-        XCUIApplication().webViews.otherElements["IMR"].children(matching: .other).element(boundBy: 2).children(matching: .other).element.children(matching: .textField).element.typeText("R")
-        
-        
         snapshot("Login")
         
     }
