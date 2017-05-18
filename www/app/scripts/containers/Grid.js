@@ -1,45 +1,40 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import { Grid, Row, Col } from 'react-flexbox-grid';
-import { GridTile} from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
+import {Grid, Row} from 'react-flexbox-grid';
 import Player from './Player';
-import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
-import {videoSelected, invalidateSelected} from '../actions/video';
+
+
 import {changeScore} from '../actions/score';
+import CategoryRow from '../components/CategoryRow';
 
 class HomeGrid extends Component {
-    handlePlay = (assetid) => {
-        this.props.dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
-    }
+
 
     createVideoList = () => {
-        // const videoList = this.props.videos || [];
-        return this.props.videos.map((video) =>
-            (<Col xs={12} sm={6} md={3} key={video.assetid}>
-                <div className="videoThumb">
-                    <GridTile
-                        title={video.title}
-                        subtitle={<span>by <b>{video.author}</b></span>}
-                        actionIcon={<IconButton onTouchTap={() => {this.handlePlay(video.assetid);} }><PlayCircleOutline color="white" /></IconButton>}>
-                        <img src={video.thumbnail} />
-                    </GridTile>
-                </div>
-          </Col>)
+
+        const categories = [...new Set(this.props.videos.map(item => item.category))];
+        
+        return categories.map((category) => (
+            <CategoryRow
+                category={category}
+                videos={this
+                .props
+                .videos
+                .filter(function (video) {
+                    return video.category === category;
+                })}></CategoryRow>
+        ))
+    }
+    render() {
+
+        return (
+            <Grid fluid>
+                {this.props.selected && <Player videoUrl={this.props.videoUrl}/>}
+                {this.createVideoList()}
+            </Grid>
         );
     }
-  render() {
-
-    return (
-      <Grid fluid>        
-        {this.props.selected && <Player videoUrl={this.props.videoUrl}/>}
-        <Row>
-          {this.createVideoList()}
-        </Row>
-      </Grid>
-    );
-  }
 }
 
 HomeGrid.propTypes = {
@@ -50,11 +45,7 @@ HomeGrid.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-    return {
-        videoUrl: state.playback.url,
-        selected: state.playback.isSelected,
-        videos: state.videos.items
-    };
+    return {videoUrl: state.playback.url, selected: state.playback.isSelected, videos: state.videos.items};
 };
 
 export default connect(mapStateToProps)(HomeGrid);

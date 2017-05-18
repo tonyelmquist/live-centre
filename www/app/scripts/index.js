@@ -27,7 +27,6 @@ initChangingScores(store);
 
 //Language: i18next Initialize
 initLang(store);
-console.log(store.getState());
 
 //Custom theme
 const muiTheme = getMuiTheme(style);

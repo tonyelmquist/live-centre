@@ -12,7 +12,15 @@ const transformVideoData = (data) => {
 
   for (const index in data) {
 
-    const video = {};
+    const video = {
+      title: '',
+      thumbnail: '',
+      author: '',
+      company: '',
+      category: '',
+      email: '',
+      assetid: ''
+    };
 
     if (data.hasOwnProperty(index)) {
       const attr = data[index];
