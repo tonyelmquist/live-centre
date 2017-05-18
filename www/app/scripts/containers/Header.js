@@ -21,7 +21,7 @@ import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import FavoriteIcon from 'material-ui/svg-icons/action/favorite';
 import MoreIcon from 'material-ui/svg-icons/navigation/more-vert';
 
-//Should maybe be moved to component? 
+//Should maybe be moved to component?
 function MenuItem(props){
   return(
     <FlatButton
@@ -32,7 +32,7 @@ function MenuItem(props){
       icon={props.icon}
       className="menuItem"
       secondary={true}
-      accessible={true} 
+      accessible={true}
       accessibilityLabel={'MenuItem'}
     />
   );
@@ -44,7 +44,7 @@ class Header extends React.Component {
     constructor(){
         super();
 
-        //Categories and pages should be passed as a prop. 
+        //Categories and pages should be passed as a prop.
         this.state = {
           menuItems : [
             { key: 0,
@@ -100,7 +100,7 @@ class Header extends React.Component {
               label={item.label}
               key={item.key}
               onClick={() => this.select(item.key)}
-              accessible={true} 
+              accessible={true}
               accessibilityLabel={'Menu_Tab'}
             />);
       });
@@ -112,11 +112,11 @@ class Header extends React.Component {
         //console.log(this.props);
         return(
           <div id="header">
-   
+
           <Paper zDepth={1} className="header">
 
             <MenuItem label="Live Centre" icon={<TempLogo/>} primary={true}/>
-            
+
             <MediaQuery minWidth={1200} className="inline"  >
 
                 { this.getMenuItems() }
@@ -125,11 +125,11 @@ class Header extends React.Component {
             <MediaQuery maxWidth={600} className="inline"  >
 
               <MenuItem label="Categories" icon={<MoreIcon/>} onClick={() => this.toggleMenu()}
-                accessible={true} 
+                accessible={true}
                 accessibilityLabel={'MenuItem_Categories'}
               />
-                
-   
+
+
             </MediaQuery>
 
             <MediaQuery minWidth={640} className="floatRight paddingRight">
@@ -138,8 +138,8 @@ class Header extends React.Component {
                 <Logged />
 
             </MediaQuery>
-            
-            
+
+
           </Paper>
 
           <MediaQuery minWidth={601} maxWidth={1200}>
@@ -148,14 +148,14 @@ class Header extends React.Component {
             </Tabs>
           </MediaQuery>
 
-          <MediaQuery query = '(max-width:600px)' className={this.props.menuIsOpen ? "fullscreen_menu" : ""} accessible={true} 
+          <MediaQuery query = '(max-width:600px)' className={this.props.menuIsOpen ? "fullscreen_menu" : ""} accessible={true}
               accessibilityLabel={'fullscreen_menu'} onTouchTap={() => this.hideMenu()} >
               { this.props.menuIsOpen ? this.getMenuItems() : console.log("MENU NOT VISIBLE") }
           </MediaQuery>
 
         </div>
 
-            
+
         );
     }
 }
