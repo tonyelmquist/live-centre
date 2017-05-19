@@ -24,12 +24,14 @@ const styles = {
 export default class HomePage extends React.Component {
     constructor(){
         super();
+        console.log(this.props);
     }
 
     render(){
+      console.log(this.props);
         return(
             <div className="slide">
-                <HeroCarousel/>
+                {/*<HeroCarousel/>*/}
                 <HomeGrid/>               
             </div>
             

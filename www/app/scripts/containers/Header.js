@@ -13,60 +13,73 @@ import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
-
-//ICONS
+//ICONS (material ui)
 import HomeIcon from 'material-ui/svg-icons/action/home';
 import TempLogo from 'material-ui/svg-icons/hardware/videogame-asset'; //Videogame icon
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import FavoriteIcon from 'material-ui/svg-icons/action/favorite';
 import MoreIcon from 'material-ui/svg-icons/navigation/more-vert';
 
+//Routing
+import {NavLink, Link} from 'react-router-dom';
+import {withRouter} from 'react-router';
+
 //Should maybe be moved to component?
-function MenuItem(props){
+function MenuItem(props, history){
   return(
-    <FlatButton
-      onTouchTap={props.onClick}
-      target="_blank"
-      label={props.label}
-      primary={true}
-      icon={props.icon}
-      className="menuItem"
-      secondary={true}
-      accessible={true}
-      accessibilityLabel={'MenuItem'}
-    />
+      <FlatButton
+        onTouchTap={props.onClick}
+        target="_blank"
+        label={props.label}
+        primary={true}
+        icon={props.icon}
+        className="menuItem"
+        secondary={true}
+        accessible={true}
+        accessibilityLabel={'MenuItem'}
+      />
   );
 }
-
-
 
 class Header extends React.Component {
     constructor(){
         super();
 
-        //Categories and pages should be passed as a prop.
+        // Wildcard in the categorykey, category/:categoryKey will be passed to the category route/component. 
         this.state = {
           menuItems : [
-            { key: 0,
+            { key: "/",
               label: "Home",
               icon:  <HomeIcon/> ,
             },
             {
-              key: 1,
+              key: "/Category/Kategori1",
+              label: "Kategori1",
+            },
+            {
+              key: "/Category/Kategori2",
+              label: "Kategori2",
+            },
+            {
+              key: "/Category/Kategori3",
+              label: "Kategori3",
+            },
+          ]
+        };
+/*
+            {
+              key: "/Settings",
               label: "Settings",
               icon: <SettingsIcon/>,
             },
             {
-              key: 2,
+              key: "/Favorites",
               label: "Favorites",
               icon: <FavoriteIcon/>,
             },
-            {
-              key: 3,
-              label: "Category 1",
-            }
-          ]
-        };
+
+*/
+
 
     };
 
@@ -77,17 +90,18 @@ class Header extends React.Component {
     hideMenu = () => {
       this.props.dispatch(hideMenu());
     }
+    changeRoute = (path) => this.props.history.push(path);
 
     //Menu items for larger screens and mobile (< 600px screenwidth)
     getMenuItems = () => {
 
-      return this.state.menuItems.map(function(item) {
+      return this.state.menuItems.map( (item)=> {
           return (
             <MenuItem
               label={item.label}
               icon={item.icon}
               key={item.key}
-              onClick={() => this.select(item.key)}
+              onClick={() => this.changeRoute(item.key)}
             />);
       });
     }
@@ -99,61 +113,62 @@ class Header extends React.Component {
             <Tab
               label={item.label}
               key={item.key}
-              onClick={() => this.select(item.key)}
+              onClick={() => this.changeRoute(item.key)}
               accessible={true}
               accessibilityLabel={'Menu_Tab'}
             />);
       });
     }
 
-    select = (index) => this.props.dispatch(changeNavMenuIndex(index));
 
     render(){
-        //console.log(this.props);
         return(
-          <div id="header">
-
-          <Paper zDepth={1} className="header">
-
-            <MenuItem label="Live Centre" icon={<TempLogo/>} primary={true}/>
-
-            <MediaQuery minWidth={1200} className="inline"  >
-
-                { this.getMenuItems() }
-            </MediaQuery>
-
-            <MediaQuery maxWidth={600} className="inline"  >
-
-              <MenuItem label="Categories" icon={<MoreIcon/>} onClick={() => this.toggleMenu()}
-                accessible={true}
-                accessibilityLabel={'MenuItem_Categories'}
-              />
-
-
-            </MediaQuery>
-
-            <MediaQuery minWidth={640} className="floatRight paddingRight">
-
-              <SearchBar/>
-                <Logged />
-
-            </MediaQuery>
-
-
-          </Paper>
-
-          <MediaQuery minWidth={601} maxWidth={1200}>
-            <Tabs className="tabs">
-              {this.getMenuTabs()}
-            </Tabs>
-          </MediaQuery>
-
-          <MediaQuery query = '(max-width:600px)' className={this.props.menuIsOpen ? "fullscreen_menu" : ""} accessible={true}
-              accessibilityLabel={'fullscreen_menu'} onTouchTap={() => this.hideMenu()} >
-              { this.props.menuIsOpen ? this.getMenuItems() : console.log("MENU NOT VISIBLE") }
-          </MediaQuery>
-
-        </div>
+          <div>
+            <div id="header">
+          
+                <Paper zDepth={1} className="header">
+      
+                  <MenuItem label="Live Centre" icon={<TempLogo/>} primary={true}/>
+      
+                  <MediaQuery minWidth={1200} className="inline"  >
+      
+                      { this.getMenuItems() }
+                  </MediaQuery>
+      
+                  <MediaQuery maxWidth={600} className="inline"  >
+      
+                    <MenuItem label="Categories" icon={<MoreIcon/>} onClick={() => this.toggleMenu()}
+                      accessible={true}
+                      accessibilityLabel={'MenuItem_Categories'}
+                    />
+      
+      
+                  </MediaQuery>
+      
+                  <MediaQuery minWidth={640} className="floatRight paddingRight">
+      
+                    <SearchBar/>
+                      <Logged />
+      
+                  </MediaQuery>
+      
+      
+                </Paper>
+      
+                <MediaQuery minWidth={601} maxWidth={1200}>
+                  <Tabs className="tabs">
+                    {this.getMenuTabs()}
+                  </Tabs>
+                </MediaQuery>
+      
+                <MediaQuery query = '(max-width:600px)' className={this.props.menuIsOpen ? "fullscreen_menu" : ""} accessible={true}
+                    accessibilityLabel={'fullscreen_menu'} onTouchTap={() => this.hideMenu()} >
+                    { this.props.menuIsOpen ? this.getMenuItems() : console.log("MENU NOT VISIBLE") }
+                </MediaQuery>
+          
+              </div>
+          </div>
+          
 
 
         );
@@ -163,20 +178,18 @@ class Header extends React.Component {
 Header.propTypes = {
     dispatch: PropTypes.func.isRequired,
     visible:PropTypes.bool,
-    selectedIndex: PropTypes.number.isRequired,
     menuIsOpen: PropTypes.bool,
 };
 MenuItem.propTypes = {
     onClick: PropTypes.func,
     label: PropTypes.string.isRequired,
-    icon: PropTypes.object
+    icon: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
     return {
-        selectedIndex: state.index,
         menuIsOpen : state.headerMenuState
     };
 };
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
