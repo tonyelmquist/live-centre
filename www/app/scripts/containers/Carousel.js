@@ -60,7 +60,6 @@ class HeroCarousel extends Component {
                         axis="horizontal"
                         showThumbs={false}
                         showArrows={true}
-                        dynamicHeight
                         emulateTouch
                         onChange={this.handleChangeEvent}>
                         {this.createCarouselList()}
