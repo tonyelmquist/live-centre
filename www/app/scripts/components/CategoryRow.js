@@ -12,7 +12,7 @@ class CategoryRow extends Component {
                 .videos
                 .map(function (video, i) {
                     if (i < 5) {
-                        return (<Item video={video}/>);
+                        return (<Item key={i} video={video}/>);
                     }
                 });
 
@@ -21,7 +21,7 @@ class CategoryRow extends Component {
         }
 
         return (
-            <Row>
+             <Row key={this.props.category}>
                 <h1 className='rowTitle'>{this.props.category}</h1>
                 {videos}
             </Row>

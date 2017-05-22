@@ -28,7 +28,7 @@ const transformVideoData = (data) => {
       video.thumbnail = attr.metadata.PosterURL;
       video.author = attr.metadata.UploadUserFullName;
       video.company = attr.metadata.UploadCompanyName;
-      video.category = attr.metadata.Category;
+      video.category = attr.metadata.Category || 'Uncategorized';
       video.email = attr.metadata.UploadUserEmail;
       video.assetid = attr.assetid;
       filteredAssets.push(video);
@@ -41,7 +41,7 @@ const transformVideoData = (data) => {
 
 const initVideoList = (store) => {
   const config = {
-    searchTerm: 'Lost',
+    searchTerm: '',
     url: 'https://api-eu1.mediabank.me/mediabank/asset/'
   };
 

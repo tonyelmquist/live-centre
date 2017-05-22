@@ -39,15 +39,20 @@ class HeroCarousel extends Component {
 
     createCarouselList = () => {
 
-        return this
+
+        var carouselList =  this
             .props
             .videos
-            .map((video, i) => (
-                <div style={styles.carousel} key={i}>
+            .map((video, i) => {
+                    if (i < 5) {
+                        return (<div style={styles.carousel} key={i}>
                     <img src={video.thumbnail}/>
                     <p className="legend" style={styles.legend}>{video.title}</p>
-                </div>
-            ));
+                </div>);
+                    }
+                });
+                carouselList = carouselList.filter(function(e){return e}); 
+                return carouselList;
     }
 
     render() {
