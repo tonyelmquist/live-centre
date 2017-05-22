@@ -11,9 +11,7 @@ class CategoryRow extends Component {
                 .props
                 .videos
                 .map(function (video, i) {
-                    if (i < 5) {
                         return (<Item key={i} video={video}/>);
-                    }
                 });
 
         } else {
