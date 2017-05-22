@@ -17,7 +17,6 @@ class Item extends Component {
 	render () {
 
 		return (
-        <Col xs={12} sm={6} md={3} key={this.props.video.assetid}>
                 <div className="videoThumb">
                     <GridTile
                         title={this.props.video.title}
@@ -26,7 +25,6 @@ class Item extends Component {
                         <img src={this.props.video.thumbnail} />
                     </GridTile>
                 </div>
-          </Col>
 		);
 	}
 };

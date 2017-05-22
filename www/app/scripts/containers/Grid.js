@@ -29,10 +29,10 @@ class HomeGrid extends Component {
     render() {
 
         return (
-            <Grid fluid>
+            <div>
                 {this.props.selected && <Player videoUrl={this.props.videoUrl}/>}
                 {this.createVideoList()}
-            </Grid>
+            </div>
         );
     }
 }
