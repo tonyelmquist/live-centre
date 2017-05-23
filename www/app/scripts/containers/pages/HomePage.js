@@ -2,6 +2,9 @@ import React from 'react';
 import HomeGrid from '../Grid';
 import HeroCarousel from '../Carousel';
 
+//Transition
+import {CSSTransitionGroup as Transition} from 'react-transition-group/CSSTransitionGroup';
+
 
 const styles = {
   headline: {

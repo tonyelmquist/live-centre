@@ -40,6 +40,7 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-slick": "^0.14.11",
+    "react-router-transitions": "^2.2.1",
     "react-swipeable-views": "^0.12.2",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",

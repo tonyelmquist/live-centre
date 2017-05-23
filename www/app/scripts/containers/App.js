@@ -23,6 +23,7 @@ import SettingsPage from './pages/SettingsPage';
 import FavoritePage from './pages/FavoritePage';
 import CategoryPage from './pages/CategoryPage';
 
+
 class App extends Component {
 
     render() {
@@ -32,9 +33,10 @@ class App extends Component {
                     <div>
                         <Header/>
 
-                        {this.props.loginState ? <Redirect to="/"/> : <Login />}
-                        <Route exact path="/" component={HomePage}/>
-                        <Route path="/login" component={Login}/>
+
+                        {this.props.loginState ? <Redirect to="/Home"/> : <Login />}
+                        <Route exact path="/Home" component={HomePage}/>
+                        <Route path="/Login" component={Login}/>
                         <Route path="/Settings" component={SettingsPage}/>
                         <Route path="/Favorites" component={FavoritePage}/>
                         <Route path="/Category/:categoryKey" component={CategoryPage}/>

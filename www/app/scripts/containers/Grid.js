@@ -10,7 +10,6 @@ import CategoryRow from '../components/CategoryRow';
 
 class HomeGrid extends Component {
 
-
     createVideoList = () => {
 
         const categories = [...new Set(this.props.videos.map((item) => item.category))].filter(Boolean);
@@ -27,7 +26,6 @@ class HomeGrid extends Component {
         ));
     }
     render() {
-
         return (
             <div>
                 {this.props.selected && <Player videoUrl={this.props.videoUrl}/>}
@@ -45,7 +43,11 @@ HomeGrid.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-    return {videoUrl: state.playback.url, selected: state.playback.isSelected, videos: state.videos.items};
+    return {
+        videoUrl: state.playback.url, 
+        selected: state.playback.isSelected, 
+        videos: state.videos.items
+    };
 };
 
 export default connect(mapStateToProps)(HomeGrid);

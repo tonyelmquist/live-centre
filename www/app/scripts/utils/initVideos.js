@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess} from '../actions/video';
+import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess, fetchCategoriesSuccess} from '../actions/video';
 import fp from 'lodash/fp';
 
 const transformVideoData = (data) => {
@@ -20,7 +20,7 @@ const transformVideoData = (data) => {
       category: '',
       email: '',
       assetid: ''
-    };
+    }; 
 
     if (data.hasOwnProperty(index)) {
       const attr = data[index];
@@ -37,6 +37,21 @@ const transformVideoData = (data) => {
 
   return filteredAssets;
 
+};
+
+//Iterate through the fetched data, get all categories and return them.
+const extractCategories = (data) => {
+  const categories = [];
+
+  for(let i = data.length; i>0; i--){
+    let category = data[i-1].metadata.Category;
+
+    if(!categories.includes(category) && category!=undefined){
+      categories.push(category);
+    }
+  }
+
+  return categories;
 };
 
 const initVideoList = (store) => {
@@ -58,6 +73,7 @@ const initVideoList = (store) => {
     }
   }).then((result) => {
     store.dispatch(fetchMetadataSuccess(transformVideoData(result.data.assets)));
+    store.dispatch(fetchCategoriesSuccess(extractCategories(result.data.assets)));  
   });
   return promise;
 };

@@ -22,6 +22,7 @@ class ReduxConstants {
     static get FETCH_METADATA_SENT() { return "FETCH_METADATA_SENT"; }
     static get FETCH_METADATA_FAILED() { return "FETCH_METADATA_FAILED"; }
     static get FETCH_METADATA_SUCCESS() { return "FETCH_METADATA_SUCCESS"; }
+    static get FETCH_CATEGORIES_SUCCESS() { return "FETCH_CATEGORIES_SUCCESS"; }
 
     //Video Playback
     static get VIDEO_SELECTED() { return "VIDEO_SELECTED"; }

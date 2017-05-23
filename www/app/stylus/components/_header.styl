@@ -3,17 +3,19 @@
 }
 
 .header{
-	padding: 0 40px;
-    borderBottom: solid 1px #fff;
-    width: 100%;
-    overflow: auto;
-    backgroundColor: #212121;
+  border-bottom: solid 1px #fff;
+  width: 100%;
+  overflow: auto;
+  background-color: #212121;
+  text-transform: none !important;
 }
 
 .menuItem{
 	margin: 25px 10px 35px 10px !important;
 	display:inline-block !important;
+  text-transform: lowercase !important;
 }
+
 .fullscreen_menu{
 	background-color: grey;	
 	height: 100vh;
@@ -21,4 +23,87 @@
 .fullscreen_menu .menuItem{
 	display: block;
 	width: 100%;
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.expandableMenu{
+  background-color: rgba(0, 0, 0, .95); 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-Index: 999999;
+  overflow:hidden;
+  color: #fff;
+  list-style-type: none;
+  padding-top: 16px;
+}
+
+//All paragraphs(items) in menu
+.expandableMenu p{
+  font-size: 18px; 
+  color: grey;
+  padding: 20px 0 20px 40px;
+  margin: 0;
+  opacity: 1;
+}
+.closedMenu{
+  display:none;
+}
+
+//Only the links
+p.expandableMenuItem{
+  border-top: solid 0.5px rgba(255, 255, 255, .5);
+  color: #fff;
+}
+.active .expandableMenuItem {
+  background-color: rgba(0, 174, 255, .2); //#00aeff
+}
+
+//Only the dividers
+p.divider{
+  padding-top: 30px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+}
+
+.expandableMenu a{
+  color: #fff;
+  text-decoration:none;
+}
+
+.closeButton{
+  top: 20px;
+  right: 20px
+  position: absolute;
+}
+
+
+.bottomTabs{
+  position:fixed;
+  bottom: 0;
+  z-index: 999;
+  width: 100%;
+}
+.bottomTabs div{
+  background-color: #212121;
+  color: #fff;
 }

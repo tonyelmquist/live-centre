@@ -1,5 +1,7 @@
 import React from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
+import SearchIcon from 'material-ui/svg-icons/action/search';
+import MediaQuery from 'react-responsive';
 
 //Should also have validation.
 //A tutorial: http://redux-form.com/6.0.0-rc.1/examples/material-ui/
@@ -11,12 +13,22 @@ const dataSource3 = [
 
 const SearchForm = () => {
   return(
-      <AutoComplete 
-        floatingLabelText="Søk"
-        dataSource={dataSource3}
-        filter={AutoComplete.noFilter}
-        className="inline"
-      />
+    <div className="inline">
+
+      <MediaQuery minWidth={640}>
+        <AutoComplete 
+          floatingLabelText="Søk"
+          dataSource={dataSource3}
+          filter={AutoComplete.noFilter}
+          className="inline"
+        />
+      </MediaQuery>
+
+      <MediaQuery maxWidth={639}>
+        <SearchIcon/>
+      </MediaQuery>
+
+    </div>
     );
 };
 
