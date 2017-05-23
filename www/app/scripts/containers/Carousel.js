@@ -7,7 +7,7 @@ const styles = {
     carouselContainer: {
         marginTop: 0,
         backgroundColor: 'black',
-        marginBottom: 36,
+        marginBottom: 7,
         position: 'relative'
     },
     carousel: {
