@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-Category.propTypes = {
-    match :PropTypes.object,
-};
-
 export default class Category extends React.Component {
     constructor() {
         super();
@@ -19,3 +15,7 @@ export default class Category extends React.Component {
         );
     }
 }
+
+Category.propTypes = {
+    match :PropTypes.object,
+};

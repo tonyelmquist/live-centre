@@ -62,17 +62,17 @@ class CategoryRow extends Component {
             ]
         };
 
+
+        let videos = '';
+
         if (this.props.category) {
-            let videos = this.props.videos;
+            videos = this.props.videos;
             videos = videos.map((video, i) => {
                 return (
                     <div><Item key={i} video={video}/></div>
                 );
             });
-
-        } else {
-            const videos = '';
-        }
+        } 
 
         return (
             <div>

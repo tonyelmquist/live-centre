@@ -38,7 +38,8 @@ const styles = {
 class HeroCarousel extends Component {
 
     createCarouselList = () => {
-        const carouselList = this
+
+        let carouselList = this
             .props
             .videos
             .map((video, i) => {
@@ -58,9 +59,7 @@ class HeroCarousel extends Component {
     };
 
     render() {
-
-        return (
-
+      return (
             <div style={styles.carouselContainer}>
                 <div>
                     <Carousel
