@@ -29,14 +29,28 @@ if (process.env.NODE_ENV === 'development') {
     middlewares.push(reduxImmutableStateInvariant());
 }
 
-const middleware = applyMiddleware(...middlewares);
 //Redux Store
 const store = compose(
-    middleware,
+    applyMiddleware(...middlewares),
     autoRehydrate()
 )(createStore)(rootReducer);
+// const enhancers = [applyMiddleware(...middlewares), autoRehydrate()];
+// const store = createStore(rootReducer, loadState(), compose(...enhancers));
+
 
 //Persist Store
-persistStore(store, {whitelist : ['isUserLoggedIn','lang'], });
+persistStore(store, {whitelist : ['isUserLoggedIn','lang'], keyPrefix: 'state' });
 
 export default store;
+
+// const loadState = () => {
+//     try {
+//         const serializedState = localStorage.getItem('stateisUserLoggedIn');
+//         if (serializedState === null ){
+//             return undefined;
+//         }
+//         return ({isUserLoggedIn: JSON.parse(serializedState)});
+//     } catch(err){
+//         return undefined;
+//     }
+// };
