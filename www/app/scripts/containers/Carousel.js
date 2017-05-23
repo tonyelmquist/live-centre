@@ -38,22 +38,24 @@ const styles = {
 class HeroCarousel extends Component {
 
     createCarouselList = () => {
-
-
-        var carouselList =  this
+        const carouselList = this
             .props
             .videos
             .map((video, i) => {
-                    if (i < 5) {
-                        return (<div style={styles.carousel} key={i}>
-                    <img src={video.thumbnail}/>
-                    <p className="legend" style={styles.legend}>{video.title}</p>
-                </div>);
-                    }
-                });
-                carouselList = carouselList.filter(function(e){return e}); 
-                return carouselList;
-    }
+                if (i < 5) {
+                    return (
+                        <div style={styles.carousel} key={i}>
+                            <img src={video.thumbnail}/>
+                            <p className="legend" style={styles.legend}>{video.title}</p>
+                        </div>
+                    );
+                }
+            });
+        carouselList = carouselList.filter((e) => {
+            return e;
+        });
+        return carouselList;
+    };
 
     render() {
 
@@ -71,7 +73,7 @@ class HeroCarousel extends Component {
                     </Carousel>
                     <div style={styles.mask}></div>
                 </div>
-                
+
             </div>
         );
     }

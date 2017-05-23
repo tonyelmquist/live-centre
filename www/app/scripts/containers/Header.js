@@ -179,6 +179,7 @@ Header.propTypes = {
     dispatch: PropTypes.func.isRequired,
     visible:PropTypes.bool,
     menuIsOpen: PropTypes.bool,
+    history: PropTypes.object
 };
 MenuItem.propTypes = {
     onClick: PropTypes.func,

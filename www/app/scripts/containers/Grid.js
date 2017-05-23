@@ -13,7 +13,7 @@ class HomeGrid extends Component {
 
     createVideoList = () => {
 
-        const categories = [...new Set(this.props.videos.map(item => item.category))].filter(Boolean);
+        const categories = [...new Set(this.props.videos.map((item) => item.category))].filter(Boolean);
 
         return categories.map((category) => (
             <CategoryRow key={category}
@@ -21,10 +21,10 @@ class HomeGrid extends Component {
                 videos={this
                 .props
                 .videos
-                .filter(function (video) {
+                .filter((video) => {
                     return video.category === category;
                 })}></CategoryRow>
-        ))
+        ));
     }
     render() {
 

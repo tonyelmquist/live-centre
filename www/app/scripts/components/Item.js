@@ -39,4 +39,9 @@ const mapStateToProps = (state) => {
     return {videoUrl: state.playback.url, selected: state.playback.isSelected};
 };
 
+Item.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    video :PropTypes.object,
+};
+
 export default connect(mapStateToProps)(Item);

@@ -9,27 +9,27 @@ import {grey800} from 'material-ui/styles/colors';
 class CategoryRow extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.next = this
             .next
-            .bind(this)
+            .bind(this);
         this.previous = this
             .previous
-            .bind(this)
+            .bind(this);
     }
     next() {
         this
             .slider
-            .slickNext()
+            .slickNext();
     }
     previous() {
         this
             .slider
-            .slickPrev()
+            .slickPrev();
     }
 
     render() {
-        var settings = {
+        const settings = {
             dots: false,
             infinite: false,
             speed: 500,
@@ -63,17 +63,15 @@ class CategoryRow extends Component {
         };
 
         if (this.props.category) {
-            var videos = this
-                .props
-                .videos
-                .map(function (video, i) {
-                    return (
-                        <div><Item key={i} video={video}/></div>
-                    );
-                });
+            let videos = this.props.videos;
+            videos = videos.map((video, i) => {
+                return (
+                    <div><Item key={i} video={video}/></div>
+                );
+            });
 
         } else {
-            var videos = '';
+            const videos = '';
         }
 
         return (
@@ -90,7 +88,7 @@ class CategoryRow extends Component {
                     </div>
                 </div>
                 <div className="slider">
-                    <Slider ref={c => this.slider = c} {...settings}>
+                    <Slider ref={(c) => this.slider = c} {...settings}>
                         {videos}
                     </Slider>
                 </div>
@@ -98,5 +96,10 @@ class CategoryRow extends Component {
         );
     }
 }
+
+CategoryRow.propTypes = {
+    videos: PropTypes.array,
+    category: PropTypes.string,
+};
 
 export default CategoryRow;
