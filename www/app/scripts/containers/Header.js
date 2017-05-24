@@ -91,7 +91,6 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
     return {
         menuIsOpen : state.headerMenuState,
         categories: state.videos.categories

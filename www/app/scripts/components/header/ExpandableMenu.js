@@ -23,8 +23,8 @@ const ExpandableMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen}) =
 		<MediaQuery maxWidth={1001}>
 			<div className={isMenuOpen() ? "expandableMenu" : "hidden"}>
 		
-				<FloatingActionButton onClick={()=>openCloseMenu()} className="closeButton" mini={true} secondary={true}>
-			      <CloseButton secondary={true}/>
+				<FloatingActionButton onClick={()=>openCloseMenu()} className="closeButton" mini={true}>
+			      <CloseButton/>
 			    </FloatingActionButton>
 
 				<p className="divider">Menu</p>

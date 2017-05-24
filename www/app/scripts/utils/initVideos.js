@@ -2,6 +2,8 @@ import axios from 'axios';
 import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess, fetchCategoriesSuccess} from '../actions/video';
 import fp from 'lodash/fp';
 
+const uncategorized = 'Uncategorized';
+
 const transformVideoData = (data) => {
 
   const filteredAssets = [];
@@ -28,7 +30,7 @@ const transformVideoData = (data) => {
       video.thumbnail = attr.metadata.PosterURL;
       video.author = attr.metadata.UploadUserFullName;
       video.company = attr.metadata.UploadCompanyName;
-      video.category = attr.metadata.Category || 'Uncategorized';
+      video.category = attr.metadata.Category || uncategorized;
       video.email = attr.metadata.UploadUserEmail;
       video.assetid = attr.assetid;
       filteredAssets.push(video);
@@ -46,7 +48,12 @@ const extractCategories = (data) => {
   for(let i = data.length; i>0; i--){
     let category = data[i-1].metadata.Category;
 
-    if(!categories.includes(category) && category!=undefined){
+    //If we have any undefined categories, add an "undefined" category.
+    if(category==undefined || category=="" || category==null){
+      category = uncategorized;
+    }
+
+    if(!categories.includes(category)){
       categories.push(category);
     }
   }
