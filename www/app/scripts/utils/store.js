@@ -5,7 +5,8 @@ import {createLogger} from 'redux-logger';
 import promise from 'redux-promise-middleware';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import rootReducer from '../reducers/rootReducer';
-
+//Actions
+import {REHYDRATE} from 'redux-persist/constants';
 //Array of middlewares
 const middlewares = [];
 
@@ -17,16 +18,16 @@ middlewares.push(promise());
 if (process.env.NODE_ENV === 'development') {
 //Logger middleware
     const logger = createLogger({
-        level: 'info',
+        level: 'log',
         collapsed: true,
-        predicate: (getState, action) => {
-            action.type;
-        }
+        //Filter What to LOG by returning true/false in the method below
+        // predicate: (getState, action) => action.type === REHYDRATE
     });
 
     middlewares.push(logger);
 //Redux Immutable middleware
     middlewares.push(reduxImmutableStateInvariant());
+
 }
 
 //Redux Store
@@ -39,7 +40,7 @@ const store = compose(
 
 
 //Persist Store
-persistStore(store, {whitelist : ['isUserLoggedIn','lang'], keyPrefix: 'state' });
+persistStore(store, {whitelist : ['isUserLoggedIn','lang'], keyPrefix: 'state_' });
 
 export default store;
 
