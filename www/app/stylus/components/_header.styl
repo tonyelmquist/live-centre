@@ -3,17 +3,35 @@
 }
 
 .header{
-  border-bottom: solid 1px #fff;
   width: 100%;
   overflow: auto;
   background-color: #212121;
   text-transform: none !important;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+}
+#header-container *{
+  text-transform: none !important;
 }
 
 .menuItem{
-	margin: 25px 10px 35px 10px !important;
+  margin: 10px !important;
 	display:inline-block !important;
   text-transform: lowercase !important;
+}
+//Font size of everything in header.
+#header-container button *, #header-container p{
+  font-size: 16px!important;
+}
+
+@media (min-width: 1000px){
+  .header{
+    position: relative;
+  }
+  .menuItem{
+    margin: 20px 10px 25px 20px !important;
+  }
 }
 
 .fullscreen_menu{
@@ -59,7 +77,6 @@
 
 //All paragraphs(items) in menu
 .expandableMenu p{
-  font-size: 18px; 
   color: grey;
   padding: 20px 0 20px 40px;
   margin: 0;
@@ -95,7 +112,6 @@ p.divider{
   right: 20px
   position: absolute;
 }
-
 
 .bottomTabs{
   position:fixed;
