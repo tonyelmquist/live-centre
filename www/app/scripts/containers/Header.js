@@ -41,7 +41,7 @@ class Header extends Component {
   categoryItems = () => {
     const items = [];
     this.props.categories.forEach((category) =>{
-      items.push({key: category, path: '/Category/ ${category}'});
+      items.push({key: category, path: '/Category/'+category});
     });
     return items;
   }
@@ -91,6 +91,7 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state);
     return {
         menuIsOpen : state.headerMenuState,
         categories: state.videos.categories
