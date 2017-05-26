@@ -42,6 +42,7 @@ class ReduxConstants {
     static get CHANGE_CARD_INDEX() { return "CHANGE_CARD_INDEX"; }
     static get SHOW_VIDEO_CARD() { return "SHOW_VIDEO_CARD"; }
     static get HIDE_VIDEO_CARD() { return "HIDE_VIDEO_CARD"; }
+    static get CHANGE_CARD_CATEGORY() { return "CHANGE_CARD_CATEGORY"; }
 
 }
 
