@@ -38,16 +38,6 @@
                ReferencedContainer = "container:Live Centre.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A46C80EB1E8406A2000E888C"
-               BuildableName = "Live CentreUITests.xctest"
-               BlueprintName = "Live CentreUITests"
-               ReferencedContainer = "container:Live Centre.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
