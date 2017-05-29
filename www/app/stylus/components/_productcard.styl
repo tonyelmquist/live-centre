@@ -1,43 +1,40 @@
 @import '../constants/_variables.styl';
 
 .product-card {
-    background-color: $color_void;
-    color: $color_paper;
     position: relative;
 	width: 100%;
     overflow: hidden;
+    padding-top: 50px;
 }
 .sixteen-by-nine{
-    padding-bottom: 56.25%
+    padding-bottom: 56.25%;
 }
 
 .content {
     position: absolute;
     top: 0;  bottom: 0;  left: 0;  right: 0;
-    padding: 0 24px;
+    padding: 0 5px;
 }
-
+.tab-header {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
 .tab-controls {
     width:100%;
     display: flex;
     justify-content: center;
-    background-color: $color_void;
 }
 
 .tab-link {
-    color: $color_paper;
     border: none;
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
-    background-color: $color_void;
-    border-left: 0.1px dashed $color_charcoal;
+    background-color: Transparent;
     transition: background-color 1s;
     &.active {
         color: $color_void;
-        background-color: $color_paper;
-    }
-    &:last-child {
-        border-right: 0.1px dashed $color_charcoal;
+        border-bottom: 2px solid $color_starry;
     }
 }

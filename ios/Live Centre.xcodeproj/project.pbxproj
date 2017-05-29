@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		43F8C12959739CBBF71ADA53 /* Pods_Live_Centre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E56682713C11805FD08D2C6 /* Pods_Live_Centre.framework */; };
-		89D0DA911EC331AC00EC7BDC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D0DA901EC331AC00EC7BDC /* SnapshotHelper.swift */; };
 		A42CE9D71E84137800CC29A9 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CE9CD1E84137800CC29A9 /* DictionaryExtension.swift */; };
 		A42CE9D81E84137800CC29A9 /* JavascriptBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CE9CE1E84137800CC29A9 /* JavascriptBridge.swift */; };
 		A42CE9D91E84137800CC29A9 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CE9CF1E84137800CC29A9 /* StringExtension.swift */; };
@@ -24,7 +23,6 @@
 		A46C80D81E8406A2000E888C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A46C80D71E8406A2000E888C /* Assets.xcassets */; };
 		A46C80DB1E8406A2000E888C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46C80D91E8406A2000E888C /* LaunchScreen.storyboard */; };
 		A46C80E61E8406A2000E888C /* Live_CentreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46C80E51E8406A2000E888C /* Live_CentreTests.swift */; };
-		A46C80F11E8406A2000E888C /* Live_CentreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46C80F01E8406A2000E888C /* Live_CentreUITests.swift */; };
 		A4E4EFD51E8506E9003DA1B2 /* html in Resources */ = {isa = PBXBuildFile; fileRef = A4E4EFD41E8506E9003DA1B2 /* html */; };
 		B48E33CDDE2510646DBB6AE2 /* Pods_Live_CentreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C2B8F2F3E7C8533B7136EA8 /* Pods_Live_CentreTests.framework */; };
 		CF92D3AD73E5FF4715CE6B30 /* Pods_Live_CentreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC2501C18CC567DCF5A8F4E /* Pods_Live_CentreUITests.framework */; };
@@ -53,7 +51,6 @@
 		1C2B8F2F3E7C8533B7136EA8 /* Pods_Live_CentreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Live_CentreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E56682713C11805FD08D2C6 /* Pods_Live_Centre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Live_Centre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28EF592BD5CF149DD9425927 /* Pods-Live Centre.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live Centre.release.xcconfig"; path = "Pods/Target Support Files/Pods-Live Centre/Pods-Live Centre.release.xcconfig"; sourceTree = "<group>"; };
-		89D0DA901EC331AC00EC7BDC /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		8BC2501C18CC567DCF5A8F4E /* Pods_Live_CentreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Live_CentreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42CE9CD1E84137800CC29A9 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		A42CE9CE1E84137800CC29A9 /* JavascriptBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavascriptBridge.swift; sourceTree = "<group>"; };
@@ -75,8 +72,6 @@
 		A46C80E51E8406A2000E888C /* Live_CentreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Live_CentreTests.swift; sourceTree = "<group>"; };
 		A46C80E71E8406A2000E888C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A46C80EC1E8406A2000E888C /* Live CentreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Live CentreUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A46C80F01E8406A2000E888C /* Live_CentreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Live_CentreUITests.swift; sourceTree = "<group>"; };
-		A46C80F21E8406A2000E888C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4E4EFD41E8506E9003DA1B2 /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html; sourceTree = "<group>"; };
 		E5FA75206444C86C5650D18B /* Pods-Live Centre.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live Centre.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Live Centre/Pods-Live Centre.debug.xcconfig"; sourceTree = "<group>"; };
 		EED39D5C66F20E646823FBB8 /* Pods-Live CentreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreTests/Pods-Live CentreTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -170,7 +165,6 @@
 				A46C80CF1E8406A2000E888C /* Live Centre */,
 				A42CE9DF1E8413FC00CC29A9 /* Live Centre Shared */,
 				A46C80E41E8406A2000E888C /* Live CentreTests */,
-				A46C80EF1E8406A2000E888C /* Live CentreUITests */,
 				A46C80CE1E8406A2000E888C /* Products */,
 				0975C4668730C0174FEECC9E /* Pods */,
 				45528DB68C41F0D670A9B3AB /* Frameworks */,
@@ -210,16 +204,6 @@
 				A46C80E71E8406A2000E888C /* Info.plist */,
 			);
 			path = "Live CentreTests";
-			sourceTree = "<group>";
-		};
-		A46C80EF1E8406A2000E888C /* Live CentreUITests */ = {
-			isa = PBXGroup;
-			children = (
-				A46C80F01E8406A2000E888C /* Live_CentreUITests.swift */,
-				89D0DA901EC331AC00EC7BDC /* SnapshotHelper.swift */,
-				A46C80F21E8406A2000E888C /* Info.plist */,
-			);
-			path = "Live CentreUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -546,8 +530,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A46C80F11E8406A2000E888C /* Live_CentreUITests.swift in Sources */,
-				89D0DA911EC331AC00EC7BDC /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

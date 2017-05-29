@@ -19,6 +19,7 @@ class Item extends Component {
         return (
             <div className="videoThumb">
                 <GridTile
+                    onTouchTap={this.props.handleClick}
                     title={this.props.video.title}
                     subtitle={< span > by < b > {
                     this.props.video.author
@@ -42,6 +43,7 @@ const mapStateToProps = (state) => {
 Item.propTypes = {
     dispatch: PropTypes.func.isRequired,
     video :PropTypes.object,
+    handleClick: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps)(Item);
