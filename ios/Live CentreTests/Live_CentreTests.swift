@@ -29,6 +29,8 @@ class Live_CentreTests: XCTestCase {
     func testCheckIndexPathBundle() {
         
         // Live Centre App WebBundle
+        
+        // Search for the bundle path for index.html
         let indexPath = Bundle.main.path(forResource: "index", ofType: "html", inDirectory: "html")
         XCTAssertNotNil(indexPath)
         
@@ -37,8 +39,30 @@ class Live_CentreTests: XCTestCase {
     func testTFGLog() {
         
         // TFG Log tests
+        
+        // Check if log file exists
         XCTAssertFalse(TFGLog.logFileExists())
+        
+        // Check the log file path
         XCTAssertNotNil(TFGLog.getLogfilePath)
+        
+    }
+    
+    func testSwiftUtils() {
+        
+        // TFG Swift Utils
+        
+        // Check the path of documents folder
+        XCTAssertNotNil(SwiftUtils.getDocumentsFolder())
+        
+        // Check the status of the app
+        XCTAssertEqual(SwiftUtils.getAppStateString(), "foreground")
+        
+        // Check if the app name is correct
+        XCTAssertEqual(SwiftUtils.getProductName(), "Live Centre")
+        
+        // Check the app version
+        XCTAssertNotNil(SwiftUtils.getAppVersion())
         
     }
     
