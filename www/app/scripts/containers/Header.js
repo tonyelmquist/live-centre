@@ -41,7 +41,7 @@ class Header extends Component {
   categoryItems = () => {
     const items = [];
     this.props.categories.forEach((category) =>{
-      items.push({key: category, path: '/Category/'+category});
+      items.push({key: category, path: `/Category/${category}`});
     });
     return items;
   }
@@ -49,11 +49,39 @@ class Header extends Component {
   changeRoute = (path) => this.props.history.push(path);
 
   openCloseMenu = () => {
-   this.props.dispatch(toggleMenu());
+    console.log(this.props.history);
+    if(this.isSubPage()){
+      this.props.history.goBack();
+    } else {
+      this.props.dispatch(toggleMenu());
+    }
   }
 
   isMenuOpen = () => {
     return this.props.menuIsOpen;
+  }
+
+  //Dont know if this is the best way to get the pathname. but it sure is the easiest.. 
+  getLocationName = () => {
+    const pathname = this.props.history.location.pathname;
+    if(this.isSubPage()){
+      return this.isSubPage();
+    }
+    return pathname.replace("/", "");
+
+  }
+
+  // all the subpages, eg. Category/Program master. They have two slashes in the pathname. 
+  isSubPage = () => {
+    
+    const pathname = this.props.history.location.pathname;
+    const pathSegments = pathname.split("/");
+    const noOfSlashes = pathSegments.length - 1;
+
+    if(noOfSlashes > 1){
+      return pathSegments[pathSegments.length-1];
+    } 
+    return false;
   }
 
   render(){
@@ -65,6 +93,9 @@ class Header extends Component {
             pageItems={this.pageItems()}
             categoryItems={this.categoryItems()}
             openCloseMenu={this.openCloseMenu}
+            isMenuOpen={this.isMenuOpen}
+            locationName={this.getLocationName()}
+            isSubPage={this.isSubPage()}
           />
           <TabMenu
             pageItems={this.pageItems()}

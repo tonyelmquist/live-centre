@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+
+import PersonIcon from 'material-ui/svg-icons/social/person';
+
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import {logoutSuccess} from '../actions/login';
@@ -20,7 +22,7 @@ class Logged extends Component {
         <IconMenu
           iconStyle = {this.props.iconStyle}
           iconButtonElement={
-            <IconButton><MoreVertIcon/></IconButton>
+            <IconButton><PersonIcon/></IconButton>
           }
           targetOrigin={{horizontal: 'right', vertical: 'top'}}
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}

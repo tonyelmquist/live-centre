@@ -36,8 +36,8 @@ class App extends Component {
                         <div className="main">
                             {this.props.loginState ? <Redirect to="/Home"/> : <Login />}
                             <Route exact path="/Home" component={HomePage}/>
-                            <Route path="/Login" component={Login}/>
-                            <Route path="/Settings" component={SettingsPage}/>
+                            <Route name="Login" key="Login" path="/Login" component={Login}/>
+                            <Route name="Settings" key="Settings" path="/Settings" component={SettingsPage}/>
                             <Route path="/Favorites" component={FavoritePage}/>
                             <Route path="/Category/:categoryKey" component={CategoryPage}/>
                             <Route path="/Login" component={Login}/>

@@ -5,6 +5,7 @@ import MediaQuery from 'react-responsive';
 import CloseButton from 'material-ui/svg-icons/navigation/close';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
+
 const ExpandableMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen}) => {
 
 	const MenuItems = (items) => {
@@ -22,12 +23,6 @@ const ExpandableMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen}) =
 	return(
 		<MediaQuery maxWidth={1001}>
 			<div className={isMenuOpen() ? "expandableMenu" : "hidden"}>
-		
-				<FloatingActionButton onClick={()=>openCloseMenu()} className="closeButton" mini={true}>
-			      <CloseButton/>
-			    </FloatingActionButton>
-
-				<p className="divider">Menu</p>
 				{MenuItems(pageItems)}
 				
 				<p className="divider">Categories</p>

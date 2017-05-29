@@ -2,21 +2,30 @@ import React from "react";
 import {NavLink, Link} from 'react-router-dom';
 import Paper from 'material-ui/Paper';
 
+import {Motion, spring} from 'react-motion';
+
 import FlatButton from 'material-ui/FlatButton';
-import MoreIcon from 'material-ui/svg-icons/navigation/more-vert';
+
+import IconButton from 'material-ui/IconButton';
+
+import MenuIcon from 'material-ui/svg-icons/navigation/menu';
+import CloseIcon from 'material-ui/svg-icons/navigation/close';
+
 import TempLogo from 'material-ui/svg-icons/hardware/videogame-asset'; //Videogame icon
 
 import SearchBar from './../SearchBar';
 import Logged from '../../containers/Logged';
 import MediaQuery from 'react-responsive';
 
-const HeaderMenu = ({pageItems, categoryItems, openCloseMenu}) => {
+import AnimatedMenuIcon from './../animatedIcons/AnimatedMenuIcon';
+
+const HeaderMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, locationName, isSubPage}) => {
 
 	const HeaderMenuItem = (items) => {
 		if(items.length > 0){
 			return items.map((item) =>
 				<NavLink to={item.path} key={item.key}>
-					<FlatButton  style={{textTransform: "none"}}
+					<FlatButton
 					className="menuItem links"
 					label={item.key}
 					/>
@@ -46,38 +55,41 @@ const HeaderMenu = ({pageItems, categoryItems, openCloseMenu}) => {
 
 	*/
 
+	/*
+
+	<MenuButton 
+	(Either hamburger or back arrow, based on state.)
+	onclick will activate an animation, either 
+
+	">
+
+	*/
+
+	console.log({locationName});
 	return(
 
 		<div className="header" >
-			<FlatButton
-				className="menuItem"
-				label="Live Center"
-				icon={<TempLogo/>}
-				/>
 
-			<MediaQuery maxWidth={1000} className="inline"  >
+			<MediaQuery maxWidth={1000}>
 				<FlatButton
-				className="menuItem moreButton"
-				label="Menu"
-				icon={<MoreIcon/>}
-				onClick={()=>openCloseMenu()} 
-				/>
+					onClick={()=>openCloseMenu()} 
+		            icon={<AnimatedMenuIcon isMenuOpen={isMenuOpen} isSubPage={isSubPage}/>}
+		            label={locationName} 
+		          />
 			</MediaQuery>
 
-			<MediaQuery minWidth={1550} className="inline">
+			<MediaQuery minWidth={1001} className="inline">
 				{HeaderMenuItem(pageItems)}
 			</MediaQuery>
-
-			<MediaQuery minWidth={1000} className="inline">
+			<MediaQuery minWidth={1500} className="inline">
 				{HeaderMenuItem(categoryItems)}
 			</MediaQuery>
 
-
-			<MediaQuery minWidth={1200}  className="floatRight paddingRight">
+			<div className="rightMenu">
 				<SearchBar/>
 				<Logged />
-			</MediaQuery>
-			
+			</div>
+
 		</div>
 	);
 };

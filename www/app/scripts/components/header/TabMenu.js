@@ -30,7 +30,7 @@ const TabMenu = ({pageItems, changeRoute}) => {
 
 
 	return(
-		<MediaQuery maxWidth={1549}>
+		<MediaQuery maxWidth={1000}>
 			<Tabs className="bottomTabs">
 				{listItems}
 			</Tabs>
