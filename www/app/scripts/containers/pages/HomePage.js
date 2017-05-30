@@ -1,6 +1,8 @@
 import React from 'react';
 import HomeGrid from '../Grid';
 import HeroCarousel from '../Carousel';
+import Category from '../../components/common/Category';
+
 
 const styles = {
   headline: {
@@ -27,10 +29,11 @@ export default class HomePage extends React.Component {
     render(){
         return(
             <div className="slide">
+                {/* <Category/> */}
                 <HeroCarousel/>
-                <HomeGrid/>               
+                <HomeGrid/>
             </div>
-            
+
         );
     }
 }
