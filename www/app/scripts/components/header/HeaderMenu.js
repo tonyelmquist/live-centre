@@ -1,5 +1,4 @@
 import React from "react";
-import {NavLink, Link} from 'react-router-dom';
 import Paper from 'material-ui/Paper';
 
 import {Motion, spring} from 'react-motion';
@@ -19,17 +18,17 @@ import MediaQuery from 'react-responsive';
 
 import AnimatedMenuIcon from './../animatedIcons/AnimatedMenuIcon';
 
-const HeaderMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, locationName, isSubPage}) => {
+const HeaderMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, locationName, isSubPage, changeRoute}) => {
 
 	const HeaderMenuItem = (items) => {
 		if(items.length > 0){
 			return items.map((item) =>
-				<NavLink to={item.path} key={item.key}>
 					<FlatButton
+					onClick={()=>changeRoute(item.path)}
 					className="menuItem links"
 					label={item.key}
+					key={`${item.key}-flatButton`}
 					/>
-				</NavLink>
 			);
 		}		
 	};
@@ -65,7 +64,6 @@ const HeaderMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, locati
 
 	*/
 
-	console.log({locationName});
 	return(
 
 		<div className="header" >

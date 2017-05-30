@@ -2,10 +2,6 @@ import React from 'react';
 import HomeGrid from '../Grid';
 import HeroCarousel from '../Carousel';
 
-//Transition
-import {CSSTransitionGroup as Transition} from 'react-transition-group/CSSTransitionGroup';
-
-
 const styles = {
   headline: {
     fontSize: 24,
@@ -28,7 +24,6 @@ export default class HomePage extends React.Component {
     constructor(){
         super();
     }
-
     render(){
         return(
             <div className="slide">

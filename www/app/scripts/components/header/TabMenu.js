@@ -1,5 +1,4 @@
 import React from "react";
-import {NavLink, Link} from 'react-router-dom';
 import Paper from 'material-ui/Paper';
 
 import {Tabs, Tab} from 'material-ui/Tabs';

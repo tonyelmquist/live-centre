@@ -7,17 +7,15 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 import {Motion, spring} from 'react-motion';
 
-
-const ExpandableMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen}) => {
+const ExpandableMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, changeRoute}) => {
 
 	const MenuItems = (items) => {
 		if(items.length > 0){
 			return items.map((item) =>
-				<NavLink to={item.path} onClick={()=>openCloseMenu()} key={item.key} >
-					<p className="expandableMenuItem">
+				
+					<p onClick={()=>{changeRoute(item.path); openCloseMenu();}} className="expandableMenuItem">
 							{item.key}
 					</p>
-				</NavLink>
 			);
 		};	
 	};

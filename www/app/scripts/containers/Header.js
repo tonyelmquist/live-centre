@@ -7,7 +7,6 @@ import {changeNavMenuIndex, toggleMenu, showMenu, hideMenu} from '../actions/nav
 import MediaQuery from 'react-responsive';
 
 //Routing
-import {NavLink, Link} from 'react-router-dom';
 import {withRouter} from 'react-router';
 
 //Menu components
@@ -96,6 +95,7 @@ class Header extends Component {
             isMenuOpen={this.isMenuOpen}
             locationName={this.getLocationName()}
             isSubPage={this.isSubPage()}
+            changeRoute={this.changeRoute}
           />
           <TabMenu
             pageItems={this.pageItems()}
@@ -106,6 +106,7 @@ class Header extends Component {
             pageItems={this.pageItems()}
             openCloseMenu={this.openCloseMenu}
             isMenuOpen={this.isMenuOpen}
+            changeRoute={this.changeRoute}
           />
         </div>
     );  
