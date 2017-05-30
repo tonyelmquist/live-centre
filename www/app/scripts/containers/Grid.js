@@ -22,7 +22,7 @@ class HomeGrid extends Component {
     createVideoList = () => {
 
         const categories = [...new Set(this.props.videos.map((item) => item.category))].filter(Boolean);
-
+        //const categories = ["Uncategorized", "Program Master"];
         return categories.map((category) => (
             <CategoryRow key={category}
                 handleCardIndex = {this._changeCardIndex}

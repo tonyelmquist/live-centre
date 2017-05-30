@@ -27,7 +27,7 @@ const ProductCard = (props) => (
                           <CloseIcon color={red500}/>
                         </IconButton>
                     </div>
-                    <img src='img/eiffel.jpg' width='100%'/>
+
                 </div>
                 <div className='content'><h3>Episodes</h3></div>
                 <div className='content'><h3>More Like This</h3></div>

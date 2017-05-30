@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeGrid from '../Grid';
 import HeroCarousel from '../Carousel';
-
+import Category from '../../components/common/Category';
 //Transition
 import {CSSTransitionGroup as Transition} from 'react-transition-group/CSSTransitionGroup';
 
@@ -32,10 +32,11 @@ export default class HomePage extends React.Component {
     render(){
         return(
             <div className="slide">
+                {/* <Category/> */}
                 <HeroCarousel/>
-                <HomeGrid/>               
+                <HomeGrid/>
             </div>
-            
+
         );
     }
 }
