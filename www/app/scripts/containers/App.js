@@ -32,7 +32,7 @@ class App extends Component {
     render() {
 
         return (
-            <MemoryRouter>
+            <MemoryRouter initialEntries={[ '/Home' ]}>
                 <div>
                     <Header/>
 

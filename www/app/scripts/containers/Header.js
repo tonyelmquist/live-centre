@@ -48,12 +48,12 @@ class Header extends Component {
   changeRoute = (path) => this.props.history.push(path);
 
   openCloseMenu = () => {
-    console.log(this.props.history);
-    if(this.isSubPage()){
+    this.props.dispatch(toggleMenu());
+    /*if(this.isSubPage()){
       this.props.history.goBack();
     } else {
       this.props.dispatch(toggleMenu());
-    }
+    }*/
   }
 
   isMenuOpen = () => {

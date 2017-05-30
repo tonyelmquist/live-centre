@@ -22,7 +22,7 @@ const TabMenu = ({pageItems, changeRoute}) => {
 
 		<Tab 
 			label={item.key}
-			onClick={()=>changeRoute(item.path)}
+			onTouch={()=>changeRoute(item.path)}
 			key={item.key}
 		/>
 		);
