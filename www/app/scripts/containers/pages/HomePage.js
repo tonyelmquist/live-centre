@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeGrid from '../Grid';
 import HeroCarousel from '../Carousel';
-import Category from '../../components/common/Category';
+import Category from '../../containers/CategoryContainer';
 
 
 const styles = {

@@ -8,8 +8,8 @@ import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
 import {videoSelected, invalidateSelected} from '../actions/video';
 
 class Item extends Component {
-
-    handlePlay = (assetid) => {
+    // _handleClick = () => {alert('Clicked');}
+    _handlePlay = (assetid) => {
         this
             .props
             .dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
@@ -19,14 +19,14 @@ class Item extends Component {
         return (
             <div className="videoThumb">
                 <GridTile
-                    onTouchTap={this.props.handleClick}
+                    onTouchTap={this.props._handleClick}
                     title={this.props.video.title}
                     subtitle={< span > by < b > {
                     this.props.video.author
                 } </b></span >}
                     actionIcon={< IconButton onTouchTap = {
                     () => {
-                        this.handlePlay(this.props.video.assetid);
+                        this._handlePlay(this.props.video.assetid);
                     }
                 } > <PlayCircleOutline color="white"/> </IconButton>}>
                     <img src={this.props.video.thumbnail}/>

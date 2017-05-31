@@ -14,7 +14,8 @@ import Header from './Header';
 import HomePage from './pages/HomePage';
 import SettingsPage from './pages/SettingsPage';
 import FavoritePage from './pages/FavoritePage';
-import CategoryPage from './pages/CategoryPage';
+// import CategoryPage from './pages/CategoryPage';
+import CategoryContainer from './CategoryContainer';
 
 import {TransitionMotion, spring, presets} from 'react-motion';
 
@@ -27,7 +28,7 @@ import { MemoryRouter, Route, Link } from 'react-router';
 
 
 class App extends Component {
-    
+
 
     render() {
 
@@ -37,17 +38,18 @@ class App extends Component {
                     <Header/>
 
                     <div className="main">
-                    
+
                         <Route exact path="/Home" component={HomePage}/>
                         <Route path="/Login" component={Login}/>
                         <Route path="/Settings" component={SettingsPage}/>
                         <Route path="/Favorites" component={FavoritePage}/>
-                        <Route path="/Category/:categoryKey" component={CategoryPage}/>
+                        {/* <Route path="/Category/:categoryKey" component={CategoryPage}/> */}
+                        <Route path="/Category/:categoryKey" component={CategoryContainer}/>
                     </div>
 
                 </div>
             </MemoryRouter>
-           
+
         );
     }
 }

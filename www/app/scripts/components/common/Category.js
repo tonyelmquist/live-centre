@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {NavLink, Link} from 'react-router-dom';
 import { Grid, Row, Col } from 'react-flexbox-grid';
@@ -38,13 +37,14 @@ class Category extends Component {
         });
 
     render() {
+        // console.log(this.props);
         return (
             <div>
                 <div className='category'>
                     <NavLink to='/Home'>
                         <div className='item'><IconButton style={styles.medium} iconStyle={styles.mediumIcon}><BackButton color={blueGrey900}/></IconButton></div>
                     </NavLink>
-                    <h2 className='item'>Category Name</h2>
+                    <h2 className='item'>{this.props.category}</h2>
                 </div>
                 <Grid fluid>
                     <Row>
@@ -62,9 +62,4 @@ Category.propTypes = {
     videos : React.PropTypes.array.isRequired
 };
 
-
-const mapStateToProps = (state) => {
-    return {videos: state.videos.items};
-};
-
-export default connect(mapStateToProps)(Category);
+export default Category;
