@@ -66,10 +66,9 @@ HomeGrid.propTypes = {
     dispatch: PropTypes.func.isRequired,
     videoUrl: PropTypes.string,
     selected: PropTypes.bool.isRequired,
-
     videoCard: PropTypes.object,
     categories: PropTypes.array,
-    videos: propTypes.object
+    videos: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
