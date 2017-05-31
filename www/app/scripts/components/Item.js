@@ -14,6 +14,7 @@ class Item extends Component {
             .props
             .dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
     }
+  
     render() {
 
         return (
@@ -43,7 +44,6 @@ const mapStateToProps = (state) => {
 Item.propTypes = {
     dispatch: PropTypes.func.isRequired,
     video :PropTypes.object,
-    handleClick: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps)(Item);

@@ -114,15 +114,16 @@ class HeroCarousel extends Component {
             }
         };
 
-        const carouselList = this.props.videos;
-        const imageList = carouselList.map((video, i) => {
-            if (i < VIDEOS_TO_DISPLAY) {
+        
+        const carouselList = this.props.videos.get("-1");
+        
+        console.log(carouselList);
+
                 return (
                     <div key={i}><img src={video.thumbnail}/>
                     </div>
                 );
-            }
-        });
+
 
         const infoTiles = carouselList.map((video, i) => {
             if (i < VIDEOS_TO_DISPLAY) {
@@ -168,12 +169,12 @@ class HeroCarousel extends Component {
 }
 
 HeroCarousel.propTypes = {
-    videos: PropTypes.array,
+    videos: PropTypes.object,
     dispatch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
-    return {videos: state.videos.items};
+    return {videos: state.videos};
 };
 
 export default connect(mapStateToProps)(HeroCarousel);

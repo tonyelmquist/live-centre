@@ -22,6 +22,8 @@ const styles = {
   }
 };
 
+const starterSlide = 2;
+
 export default class HomePage extends React.Component {
     constructor(){
         super();
@@ -33,7 +35,6 @@ export default class HomePage extends React.Component {
                 <HeroCarousel/>
                 <HomeGrid/>
             </div>
-
         );
     }
 }

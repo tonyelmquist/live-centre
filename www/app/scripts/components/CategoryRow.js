@@ -94,8 +94,8 @@ class CategoryRow extends Component {
         }
 
         return (
-            <div>
-                <div className="rowHeader">
+            <div className='slider'>
+                <div className='rowHeader'>
                     <h3 className='rowTitle'>{this.props.category}</h3>
                     <div className='sliderButtons'>
                         <IconButton onTouchTap={this.previous}>

@@ -23,11 +23,9 @@ if (process.env.NODE_ENV === 'development') {
         //Filter What to LOG by returning true/false in the method below
         // predicate: (getState, action) => action.type === REHYDRATE
     });
-
     middlewares.push(logger);
 //Redux Immutable middleware
     middlewares.push(reduxImmutableStateInvariant());
-
 }
 
 //Redux Store

@@ -6,7 +6,7 @@ const uncategorized = 'Uncategorized';
 
 const transformVideoData = (data) => {
 
-  const filteredAssets = [];
+  let filteredAssets = [];
 
   data = data.filter((asset) => {
     return asset.metadata.MimeType === 'video';
@@ -37,27 +37,32 @@ const transformVideoData = (data) => {
     }
   }
 
+  filteredAssets = groupBy(filteredAssets, video => video.category);
+
   return filteredAssets;
 
 };
 
+const groupBy = (list, keyGetter) => {
+    const map = new Map();
+    list.forEach((item) => {
+        const key = keyGetter(item);
+        const collection = map.get(key);
+        if (!collection) {
+            map.set(key, [item]);
+        } else {
+            collection.push(item);
+        }
+    });
+    return map;
+}
+
 //Iterate through the fetched data, get all categories and return them.
-const extractCategories = (data) => {
+const extractCategories = (videos) => {
   const categories = [];
-
-  for(let i = data.length; i>0; i--){
-    let category = data[i-1].metadata.Category;
-
-    //If we have any undefined categories, add an "undefined" category.
-    if(category==undefined || category=="" || category==null){
-      category = uncategorized;
-    }
-
-    if(!categories.includes(category)){
-      categories.push(category);
-    }
-  }
-
+  videos.forEach((value, key, map) => {
+    categories.push(key);
+  }); 
   return categories;
 };
 
@@ -79,8 +84,11 @@ const initVideoList = (store) => {
       password: 'tv$&?QkD=8GBpvKD'
     }
   }).then((result) => {
-    store.dispatch(fetchMetadataSuccess(transformVideoData(result.data.assets)));
-    store.dispatch(fetchCategoriesSuccess(extractCategories(result.data.assets)));  
+    const videos = transformVideoData(result.data.assets);
+    const categories = extractCategories(videos);
+    console.log(videos, categories);
+    store.dispatch(fetchMetadataSuccess(videos));
+    store.dispatch(fetchCategoriesSuccess(categories));  
   });
   return promise;
 };
