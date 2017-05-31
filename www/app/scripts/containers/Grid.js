@@ -50,7 +50,6 @@ class HomeGrid extends Component {
                     .get(category)}></CategoryRow>
             ));
         }
-
     }
 
     render() {
@@ -69,7 +68,8 @@ HomeGrid.propTypes = {
     selected: PropTypes.bool.isRequired,
 
     videoCard: PropTypes.object,
-    categories: PropTypes.array
+    categories: PropTypes.array,
+    videos: propTypes.object
 };
 
 const mapStateToProps = (state) => {

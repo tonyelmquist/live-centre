@@ -44,9 +44,13 @@ const styles = {
 };
 
 class HeroCarousel extends Component {
-    constructor(props) {
-        super(props);
-    }
+ static defaultProps = {
+     videos: {}
+  };
+
+  constructor(props, defaultProps) {
+    super(props, defaultProps);
+  }
 
     handlePlay(assetid) {
         /*        this
