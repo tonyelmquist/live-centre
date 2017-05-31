@@ -8,7 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
 import {videoSelected, invalidateSelected} from '../actions/video';
 
-const VIDEOS_TO_DISPLAY = 5
+const FEATURED_CATEGORY = "Uncategorized";
 
 const styles = {
     carouselContainer: {
@@ -32,16 +32,15 @@ const styles = {
 
     largeIcon: {
         width: 60,
-        height: 60,
+        height: 60
     },
 
-   large: {
-    width: 120,
-    height: 120,
-    padding: 30,
-    float: 'left'
-  },
-
+    large: {
+        width: 120,
+        height: 120,
+        padding: 30,
+        float: 'left'
+    }
 };
 
 class HeroCarousel extends Component {
@@ -114,35 +113,41 @@ class HeroCarousel extends Component {
             }
         };
 
-        
-        const carouselList = this.props.videos.get("-1");
-        
-        console.log(carouselList);
+        if (typeof(this.props.videos.get) === 'function') {
+            const carouselList = this
+                .props
+                .videos
+                .get(FEATURED_CATEGORY);
 
+            const imageList = carouselList.map((video, i) => {
                 return (
-                    <div key={i}><img src={video.thumbnail}/>
+                    <div style={styles.carousel} key={i}>
+                        <img src={video.thumbnail}/>
+                        {/*<p className="legend" style={styles.legend}>{video.title}</p>*/}
                     </div>
-                );
+                )
+            });
 
+            const infoTiles = carouselList.map((video, i) => {
+                    return (
+                        <div key={i} className='infoTile'>
+                            <h4 className='infoTileCTA'>Watch now</h4>
+                            <IconButton
+                                iconStyle={styles.largeIcon}
+                                style={styles.large}
+                                onTouchTap={this.handlePlay(video.assetid)}><PlayCircleOutline color="white"/></IconButton>
+                            <div className='carouselTitleAndDescription'>
+                                <h4 className='carouselTitle'>{video.title}</h4>
+                                <p className='description'>He says he's found the main computer to power the
+                                    tractor beam that's holding the ship here. He'll try to make the precise
+                                    location appear on the monitor. The tractor beam is coupled to the main reactor
+                                    in seven locations.</p>
+                            </div>
+                        </div>
+                    );
+                
+            });
 
-        const infoTiles = carouselList.map((video, i) => {
-            if (i < VIDEOS_TO_DISPLAY) {
-                return (
-                    <div key={i} className='infoTile'>
-                        <h4 className='infoTileCTA'>Watch now</h4>
-                        <IconButton
-                            iconStyle={styles.largeIcon} style={styles.large} onTouchTap={this.handlePlay(video.assetid)}><PlayCircleOutline color="white"/></IconButton>
-                        <div className='carouselTitleAndDescription'><h4 className='carouselTitle'>{video.title}</h4>
-                        <p className='description'>He says he's found the main computer to power the
-                            tractor beam that's holding the ship here. He'll try to make the precise
-                            location appear on the monitor. The tractor beam is coupled to the main reactor
-                            in seven locations.</p></div>
-                    </div>
-                );
-            }
-        });
-
-        if (carouselList.length) {
             return (
                 <div className='heroCarousel'>
                     <div className="carouselLeft">
@@ -156,7 +161,6 @@ class HeroCarousel extends Component {
                         </Slider>
                     </div>
                 </div>
-
             );
         } else {
             return (
@@ -165,7 +169,6 @@ class HeroCarousel extends Component {
         }
 
     }
-
 }
 
 HeroCarousel.propTypes = {
@@ -174,7 +177,7 @@ HeroCarousel.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-    return {videos: state.videos};
+    return {videos: state.videos.items};
 };
 
 export default connect(mapStateToProps)(HeroCarousel);

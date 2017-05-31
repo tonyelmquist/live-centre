@@ -8,30 +8,48 @@ import {changeCardIndex, showVideoCard, hideVideoCard, changeCardCategory} from 
 import CategoryRow from '../components/CategoryRow';
 
 class HomeGrid extends Component {
+
     _changeCardIndex = (index) => {
-        this.props.dispatch(changeCardIndex(index));
+        this
+            .props
+            .dispatch(changeCardIndex(index));
     }
     _changeCardCategory = (category) => {
-        this.props.dispatch(changeCardCategory(category));
+        this
+            .props
+            .dispatch(changeCardCategory(category));
     }
-    _showVideoCard = () => {this.props.dispatch(showVideoCard());}
-    _hideVideoCard = () => {this.props.dispatch(hideVideoCard());}
+    _showVideoCard = () => {
+        this
+            .props
+            .dispatch(showVideoCard());
+    }
+    _hideVideoCard = () => {
+        this
+            .props
+            .dispatch(hideVideoCard());
+    }
 
-    createVideoList = (videos) => {
+    createVideoList = (categories) => {
 
-        videos.forEach((value, key, map) => {           
-            return (
-            <CategoryRow key={key}
-                handleCardIndex = {this._changeCardIndex}
-                handleCardCategory = {this._changeCardCategory}
-                showVideoCard = {this._showVideoCard}
-                hideVideoCard = {this._hideVideoCard}
-                categoryState = {this.props.videoCard.category}
-                cardIsVisible = {this.props.videoCard.isVisible}
-                category={key}
-                videoCard={this.props.videoCard}
-                videos={value}></CategoryRow>)
-            });
+        if (categories !== undefined) {
+            return categories.map((category) => (
+                <CategoryRow
+                    key={category}
+                    handleCardIndex={this._changeCardIndex}
+                    handleCardCategory={this._changeCardCategory}
+                    showVideoCard={this._showVideoCard}
+                    hideVideoCard={this._hideVideoCard}
+                    categoryState={this.props.videoCard.category}
+                    cardIsVisible={this.props.videoCard.isVisible}
+                    category={category}
+                    videoCard={this.props.videoCard}
+                    videos={this
+                    .props
+                    .videos
+                    .get(category)}></CategoryRow>
+            ));
+        }
 
     }
 
@@ -39,7 +57,7 @@ class HomeGrid extends Component {
         return (
             <div>
                 {this.props.selected && <Player videoUrl={this.props.videoUrl}/>}
-                {this.createVideoList(this.props.videos)}
+                {this.createVideoList(this.props.categories)}
             </div>
         );
     }
@@ -49,18 +67,13 @@ HomeGrid.propTypes = {
     dispatch: PropTypes.func.isRequired,
     videoUrl: PropTypes.string,
     selected: PropTypes.bool.isRequired,
-    videos: PropTypes.object,
-    videoCard: PropTypes.object
+
+    videoCard: PropTypes.object,
+    categories: PropTypes.array
 };
 
 const mapStateToProps = (state) => {
-    return {
-        videoUrl: state.playback.url,
-        selected: state.playback.isSelected,
-        videos: state.videos.items,
-        videoCard: state.videoCard,
-        categories: state.categories
-    };
+    return {videoUrl: state.playback.url, selected: state.playback.isSelected, videoCard: state.videoCard, categories: state.videos.categories, videos: state.videos.items};
 };
 
 export default connect(mapStateToProps)(HomeGrid);

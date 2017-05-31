@@ -86,7 +86,7 @@ const initVideoList = (store) => {
   }).then((result) => {
     const videos = transformVideoData(result.data.assets);
     const categories = extractCategories(videos);
-    console.log(videos, categories);
+
     store.dispatch(fetchMetadataSuccess(videos));
     store.dispatch(fetchCategoriesSuccess(categories));  
   });

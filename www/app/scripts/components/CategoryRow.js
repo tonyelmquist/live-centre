@@ -124,7 +124,6 @@ CategoryRow.propTypes = {
     handleCardCategory: PropTypes.func.isRequired,
     showVideoCard: PropTypes.func.isRequired,
     hideVideoCard: PropTypes.func.isRequired
-
 };
 
 export default CategoryRow;
