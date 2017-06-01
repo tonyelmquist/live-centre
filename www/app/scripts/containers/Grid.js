@@ -33,9 +33,7 @@ class HomeGrid extends Component {
     createVideoList = (videos) => {
 
         const videoList = [];
-
-            videos.forEach((value, key, map) => {
-
+            for(const key in videos){
                 videoList.push((
                     <CategoryRow
                         key={key}
@@ -47,10 +45,9 @@ class HomeGrid extends Component {
                         cardIsVisible={this.props.videoCard.isVisible}
                         category={key}
                         videoCard={this.props.videoCard}
-                        videos={value}></CategoryRow>
+                        videos={videos[key]}></CategoryRow>
                 ));
-            });
-
+            }
         return videoList;
     }
 
@@ -70,7 +67,7 @@ HomeGrid.propTypes = {
     selected: PropTypes.bool.isRequired,
     videoCard: PropTypes.object,
     categories: PropTypes.array,
-    videos: PropTypes.object
+    videos: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {

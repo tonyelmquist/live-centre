@@ -118,11 +118,11 @@ class HeroCarousel extends Component {
             }
         };
 
-        if (typeof(this.props.videos.get) === 'function') {
+        if (this.props.videos[FEATURED_CATEGORY]) {
             const carouselList = this
                 .props
-                .videos
-                .get(FEATURED_CATEGORY);
+                .videos[FEATURED_CATEGORY];
+                // .get(FEATURED_CATEGORY);
 
             const imageList = carouselList.map((video, i) => {
                 return (

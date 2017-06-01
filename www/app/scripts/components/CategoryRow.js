@@ -81,10 +81,10 @@ class CategoryRow extends Component {
 
         if (this.props.category) {
             videos = this.props.videos;
-            videos = videos.map((video, i) => {
+            videos = videos.map((video, index) => {
                 return (
-                    <div>
-                        <Item key={i} video={video}
+                    <div key={video.assetid}>
+                        <Item video={video}
                             handleClick={()=>_handleClick()}
                         />
                     </div>

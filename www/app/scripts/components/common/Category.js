@@ -56,8 +56,8 @@ class Category extends Component {
 };
 
 Category.propTypes = {
-    videos : React.PropTypes.array.isRequired,
-    category : React.PropTypes.string.isRequired,
+    videos : PropTypes.array.isRequired,
+    category : PropTypes.string.isRequired,
     onSelect: PropTypes.func.isRequired
 };
 

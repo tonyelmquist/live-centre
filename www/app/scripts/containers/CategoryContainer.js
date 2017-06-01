@@ -22,8 +22,8 @@ class CategoryContainer extends Component {
 };
 
 CategoryContainer.propTypes = {
-    videos : React.PropTypes.array.isRequired,
-    match: React.PropTypes.object
+    videos : PropTypes.array.isRequired,
+    match: PropTypes.object
 };
 
 

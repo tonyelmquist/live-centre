@@ -22,7 +22,7 @@ const transformVideoData = (data) => {
       category: '',
       email: '',
       assetid: ''
-    }; 
+    };
 
     if (data.hasOwnProperty(index)) {
       const attr = data[index];
@@ -37,32 +37,54 @@ const transformVideoData = (data) => {
     }
   }
 
-  filteredAssets = groupBy(filteredAssets, (video) => video.category);
-
+  // filteredAssets = groupBy(filteredAssets, (video) => video.category);
+  filteredAssets = groupByCategories(filteredAssets, (video) => video.category);
+  // console.log(filteredAssets);
   return filteredAssets;
 
 };
 
-const groupBy = (list, keyGetter) => {
-    const map = new Map();
+const groupByCategories = (list, keyGetter) => {
+    const collection = {};
+    let key;
+    //Categorize videos based on the category key
     list.forEach((item) => {
-        const key = keyGetter(item);
-        const collection = map.get(key);
-        if (!collection) {
-            map.set(key, [item]);
-        } else {
-            collection.push(item);
+        key = keyGetter(item);
+        if (collection.hasOwnProperty(key)) {
+            collection[key].push(item);
+        }else{
+            collection[key] = [item];
         }
     });
-    return map;
+
+    return collection;
 };
+
+// const groupBy = (list, keyGetter) => {
+//     const map = new Map();
+//
+//     list.forEach((item) => {
+//         const key = keyGetter(item);
+//
+//
+//         const collection = map.get(key);
+//
+//         if (!collection) {
+//             map.set(key, [item]);
+//         } else {
+//             collection.push(item);
+//         }
+//     });
+//
+//     return map;
+// };
 
 //Iterate through the fetched data, get all categories and return them.
 const extractCategories = (videos) => {
   const categories = [];
   videos.forEach((value, key, map) => {
     categories.push(key);
-  }); 
+  });
   return categories;
 };
 
@@ -85,10 +107,12 @@ const initVideoList = (store) => {
     }
   }).then((result) => {
     const videos = transformVideoData(result.data.assets);
-    const categories = extractCategories(videos);
+    // console.log(videos);
+    // const categories = extractCategories(videos);
+    const categories = Object.keys(videos);
 
     store.dispatch(fetchMetadataSuccess(videos));
-    store.dispatch(fetchCategoriesSuccess(categories));  
+    store.dispatch(fetchCategoriesSuccess(categories));
   });
   return promise;
 };
