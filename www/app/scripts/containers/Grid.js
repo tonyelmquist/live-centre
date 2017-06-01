@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Grid, Row} from 'react-flexbox-grid';
+import HeroCarousel from './Carousel';
 import Player from './Player';
 import {changeScore} from '../actions/score';
 import {changeCardIndex, showVideoCard, hideVideoCard, changeCardCategory} from '../actions/videoCard';
@@ -54,6 +55,7 @@ class HomeGrid extends Component {
     render() {
         return (
             <div>
+                {!this.props.selected && <HeroCarousel/>}
                 {this.props.selected && <Player videoUrl={this.props.videoUrl}/>}
                 {this.createVideoList(this.props.videos)}
             </div>

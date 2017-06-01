@@ -1,6 +1,5 @@
 import React from 'react';
 import HomeGrid from '../Grid';
-import HeroCarousel from '../Carousel';
 import Category from '../../containers/CategoryContainer';
 
 
@@ -31,7 +30,6 @@ export default class HomePage extends React.Component {
     render(){
         return(
             <div className="slide">
-                <HeroCarousel/>
                 <HomeGrid/>
             </div>
         );
