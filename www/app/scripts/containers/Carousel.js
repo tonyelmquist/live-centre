@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import FontIcon from 'material-ui/FontIcon';
@@ -84,13 +85,20 @@ class HeroCarousel extends Component {
             slidesToScroll: 1,
             initialSlide: 0,
             arrows: false,
+            lazyLoad: true,
+            beforeChange: function (currentSlide, nextSlide) {
+             //   _this.syncLeft(nextSlide);
+            },
+            afterChange: function (currentSlide, nextSlide) {
+            //    _this.syncLeft(nextSlide);
+            },
             responsive: [
                 {
                     breakpoint: 800,
                     settings: {
                         slidesToShow: 1,
                         slidesToScroll: 1,
-                        dots: true,
+                        dots: true
                     }
                 }
             ]
@@ -108,7 +116,7 @@ class HeroCarousel extends Component {
                     breakpoint: 800,
                     settings: {
                         slidesToShow: 1,
-                        slidesToScroll: 1,
+                        slidesToScroll: 1
                     }
                 }
             ],
@@ -118,15 +126,19 @@ class HeroCarousel extends Component {
         };
 
         if (this.props.videos[FEATURED_CATEGORY]) {
-            const carouselList = this
-                .props
-                .videos[FEATURED_CATEGORY];
-                // .get(FEATURED_CATEGORY);
+            const carouselList = this.props.videos[FEATURED_CATEGORY];
+            // .get(FEATURED_CATEGORY);
 
             const imageList = carouselList.map((video, i) => {
                 return (
-                    <div style={styles.carousel} key={i}>
-                        <img src={video.thumbnail}/> {/*<p className="legend" style={styles.legend}>{video.title}</p>*/}
+                    <div style={styles.carousel}>
+                        <ReactPlayer
+                            playing={true}
+                            controls={false}
+                            volume={0}
+                            width='100%'
+                            height='100%'
+                            url={`https://www.mediabank.me/download/manifest.php?assetid=${video.assetid}`}/>
                     </div>
                 );
             });
