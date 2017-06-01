@@ -86,7 +86,6 @@ class CategoryRow extends Component {
                     <div>
                         <Item key={i} video={video}
                             handleClick={()=>_handleClick()}
-
                         />
                     </div>
                 );

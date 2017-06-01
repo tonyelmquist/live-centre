@@ -30,33 +30,35 @@ class HomeGrid extends Component {
             .dispatch(hideVideoCard());
     }
 
-    createVideoList = (categories) => {
+    createVideoList = (videos) => {
 
-        if (categories !== undefined) {
-            return categories.map((category) => (
-                <CategoryRow
-                    key={category}
-                    handleCardIndex={this._changeCardIndex}
-                    handleCardCategory={this._changeCardCategory}
-                    showVideoCard={this._showVideoCard}
-                    hideVideoCard={this._hideVideoCard}
-                    categoryState={this.props.videoCard.category}
-                    cardIsVisible={this.props.videoCard.isVisible}
-                    category={category}
-                    videoCard={this.props.videoCard}
-                    videos={this
-                    .props
-                    .videos
-                    .get(category)}></CategoryRow>
-            ));
-        }
+        let videoList = [];
+
+            videos.forEach((value, key, map) => {
+
+                videoList.push((
+                    <CategoryRow
+                        key={key}
+                        handleCardIndex={this._changeCardIndex}
+                        handleCardCategory={this._changeCardCategory}
+                        showVideoCard={this._showVideoCard}
+                        hideVideoCard={this._hideVideoCard}
+                        categoryState={this.props.videoCard.category}
+                        cardIsVisible={this.props.videoCard.isVisible}
+                        category={key}
+                        videoCard={this.props.videoCard}
+                        videos={value}></CategoryRow>
+                ))
+            });
+
+        return videoList;
     }
 
     render() {
         return (
             <div>
                 {this.props.selected && <Player videoUrl={this.props.videoUrl}/>}
-                {this.createVideoList(this.props.categories)}
+                {this.createVideoList(this.props.videos)}
             </div>
         );
     }

@@ -30,7 +30,7 @@ initLang(store);
 
 //Custom theme
 const muiTheme = getMuiTheme(style);
-console.log(store.getState());
+
 render(
     <MuiThemeProvider muiTheme={muiTheme}>
         <Provider store={store}>

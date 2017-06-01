@@ -44,13 +44,13 @@ const styles = {
 };
 
 class HeroCarousel extends Component {
- static defaultProps = {
-     videos: {}
-  };
+    static defaultProps = {
+        videos: {}
+    };
 
-  constructor(props, defaultProps) {
-    super(props, defaultProps);
-  }
+    constructor(props, defaultProps) {
+        super(props, defaultProps);
+    }
 
     handlePlay(assetid) {
         /*        this
@@ -100,6 +100,7 @@ class HeroCarousel extends Component {
             dots: true,
             infinite: true,
             speed: 500,
+            arrows: false,
             slidesToShow: 1,
             slidesToScroll: 1,
             initialSlide: 0,
@@ -126,30 +127,29 @@ class HeroCarousel extends Component {
             const imageList = carouselList.map((video, i) => {
                 return (
                     <div style={styles.carousel} key={i}>
-                        <img src={video.thumbnail}/>
-                        {/*<p className="legend" style={styles.legend}>{video.title}</p>*/}
+                        <img src={video.thumbnail}/> {/*<p className="legend" style={styles.legend}>{video.title}</p>*/}
                     </div>
                 )
             });
 
             const infoTiles = carouselList.map((video, i) => {
-                    return (
-                        <div key={i} className='infoTile'>
-                            <h4 className='infoTileCTA'>Watch now</h4>
-                            <IconButton
-                                iconStyle={styles.largeIcon}
-                                style={styles.large}
-                                onTouchTap={this.handlePlay(video.assetid)}><PlayCircleOutline color="white"/></IconButton>
-                            <div className='carouselTitleAndDescription'>
-                                <h4 className='carouselTitle'>{video.title}</h4>
-                                <p className='description'>He says he's found the main computer to power the
-                                    tractor beam that's holding the ship here. He'll try to make the precise
-                                    location appear on the monitor. The tractor beam is coupled to the main reactor
-                                    in seven locations.</p>
-                            </div>
+                return (
+                    <div key={i} className='infoTile'>
+                        <h4 className='infoTileCTA'>Watch now</h4>
+                        <IconButton
+                            iconStyle={styles.largeIcon}
+                            style={styles.large}
+                            onTouchTap={this.handlePlay(video.assetid)}><PlayCircleOutline color="white"/></IconButton>
+                        <div className='carouselTitleAndDescription'>
+                            <h4 className='carouselTitle'>{video.title}</h4>
+                            <p className='description'>He says he's found the main computer to power the
+                                tractor beam that's holding the ship here. He'll try to make the precise
+                                location appear on the monitor. The tractor beam is coupled to the main reactor
+                                in seven locations.</p>
                         </div>
-                    );
-                
+                    </div>
+                );
+
             });
 
             return (
