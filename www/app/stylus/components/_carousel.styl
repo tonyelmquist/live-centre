@@ -259,6 +259,7 @@
 
 .carouselRightSlider
   height: 100%
+  overflow: hidden
 
 .carouselRightSlider ul.slick-dots
   bottom: 10px
@@ -276,8 +277,9 @@
   color: white
 
 .carouselRight .carouselTitleAndDescription
-  width: calc(80% - 60px)
+  width: calc(70% - 60px)
   float: left
+  margin: 32px 0 0 0
 
 .carouselRight .slick-next:before, .carouselRight .slick-prev:before
   font-size: 50px
@@ -289,11 +291,22 @@
 .carouselRight .slick-next
   right: 40px
 
-@media (max-width: 480px)
+.carouselTitle
+  text-overflow: ellipsis
+  overflow: hidden
+
+@media (max-width: 1024px)
+  .carouselRight .description
+    display: none
+
+@media (max-width: 800px)
   .carouselRight
     display: none
   .carouselLeft
     flex-basis: 100%
+  .heroCarousel
+    margin-bottom: 20px
+
 
 
 

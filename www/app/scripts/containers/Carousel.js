@@ -86,12 +86,11 @@ class HeroCarousel extends Component {
             arrows: false,
             responsive: [
                 {
-                    breakpoint: 480,
+                    breakpoint: 800,
                     settings: {
                         slidesToShow: 1,
                         slidesToScroll: 1,
                         dots: true,
-                        arrows: true
                     }
                 }
             ]
@@ -106,10 +105,10 @@ class HeroCarousel extends Component {
             initialSlide: 0,
             responsive: [
                 {
-                    breakpoint: 480,
+                    breakpoint: 800,
                     settings: {
                         slidesToShow: 1,
-                        slidesToScroll: 1
+                        slidesToScroll: 1,
                     }
                 }
             ],
