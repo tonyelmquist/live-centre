@@ -12,12 +12,12 @@ const ExpandableMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, ch
 	const MenuItems = (items) => {
 		if(items.length > 0){
 			return items.map((item) =>
-				
-					<p onClick={()=>{changeRoute(item.path); openCloseMenu();}} className="expandableMenuItem">
+
+					<p key={item.key} onClick={()=>{changeRoute(item.path); openCloseMenu();}} className="expandableMenuItem">
 							{item.key}
 					</p>
 			);
-		};	
+		};
 	};
 
 	return(
@@ -33,14 +33,14 @@ const ExpandableMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, ch
 					<p className="divider">Menu</p>
 					<div className="expandableMenuInner">
 					{MenuItems(pageItems)}
-					
+
 					<p className="divider">Categories</p>
 					{MenuItems(categoryItems)}
 					</div>
 					</div>
 				}
-				
-					
+
+
 			</Motion>
 		</MediaQuery>
 	);

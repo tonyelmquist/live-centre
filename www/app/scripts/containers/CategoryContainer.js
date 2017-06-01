@@ -23,7 +23,8 @@ class CategoryContainer extends Component {
 
 CategoryContainer.propTypes = {
     videos : PropTypes.object.isRequired,
-    match: PropTypes.object
+    match: PropTypes.object,
+    dispatch: PropTypes.func.isRequired
 };
 
 

@@ -48,7 +48,9 @@ const ProductCard = (props) => (
 ProductCard.propTypes = {
     active : PropTypes.number.isRequired,
     changeTab: PropTypes.func.isRequired,
-    closeCard: PropTypes.func.isRequired
+    closeCard: PropTypes.func.isRequired,
+    videoUrl: PropTypes.string.isRequired,
+    selected: PropTypes.bool.isRequired
 };
 
 export default ProductCard;

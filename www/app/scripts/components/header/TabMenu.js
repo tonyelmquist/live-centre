@@ -16,7 +16,7 @@ const TabMenu = ({pageItems, changeRoute}) => {
 	*/
 
 	const items = pageItems;
-	const listItems = items.map((item) => <Tab label={item.key} onTouch={() => changeRoute(item.path)} key={item.key}/>);
+	const listItems = items.map((item) => <Tab label={item.key} onTouchTap={() => changeRoute(item.path)} key={item.key}/>);
 
 	return (
 		<MediaQuery maxWidth={1000}>
