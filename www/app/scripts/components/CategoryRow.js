@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {NavLink, Link} from 'react-router-dom';
+
 import Item from '../components/Item';
 import Slider from 'react-slick';
 import IconButton from 'material-ui/IconButton';
@@ -95,7 +97,16 @@ class CategoryRow extends Component {
         return (
             <div className='slider'>
                 <div className='rowHeader'>
-                    <h3 className='rowTitle'>{this.props.category}</h3>
+                    <h3 className='rowTitle'>
+
+                                {this.props.category}
+
+                    </h3>
+                    <Link to={`/Category/${this.props.category}`}>
+                        <IconButton onTouchTap={this.next}>
+                            <FontIcon className="material-icons" color={grey800}>arrow_forward</FontIcon>
+                        </IconButton>
+                    </Link>
                     <div className='sliderButtons'>
                         <IconButton onTouchTap={this.previous}>
                             <FontIcon className="material-icons" color={grey800}>arrow_back</FontIcon>

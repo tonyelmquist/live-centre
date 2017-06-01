@@ -13,7 +13,7 @@ class CategoryContainer extends Component {
     render() {
         return (
             <Category
-                videos={this.props.videos.get(this.props.match.params.categoryKey)}
+                videos={this.props.videos[this.props.match.params.categoryKey]}
                 category={this.props.match.params.categoryKey}
                 onSelect={this._handleSelect}
             />
@@ -22,7 +22,7 @@ class CategoryContainer extends Component {
 };
 
 CategoryContainer.propTypes = {
-    videos : PropTypes.array.isRequired,
+    videos : PropTypes.object.isRequired,
     match: PropTypes.object
 };
 

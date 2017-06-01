@@ -38,9 +38,9 @@ class Category extends Component {
         return (
             <div>
                 <div className='category'>
-                    <NavLink to='/Home'>
+                    <Link to='/Home'>
                         <div className='item'><IconButton style={styles.medium} iconStyle={styles.mediumIcon}><BackButton color={blueGrey900}/></IconButton></div>
-                    </NavLink>
+                    </Link>
                     <h2 className='item'>{this.props.category}</h2>
                 </div>
                 <Grid fluid>
