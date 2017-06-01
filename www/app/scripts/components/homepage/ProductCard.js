@@ -29,7 +29,7 @@ const ProductCard = (props) => (
                         <IconButton style={style} tooltip="Close" onTouchTap={props.closeCard}>
                           <CloseIcon color={red500}/>
                         </IconButton>
-                        {this.props.selected && <Player videoUrl={this.props.videoUrl}/>}
+                        {props.selected && <Player videoUrl={props.videoUrl}/>}
                     </div>
 
                 </div>
