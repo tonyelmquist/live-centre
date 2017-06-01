@@ -55,7 +55,8 @@ class Category extends Component {
 };
 
 Category.propTypes = {
-    videos : React.PropTypes.array.isRequired
+    videos : React.PropTypes.array.isRequired,
+    category : React.PropTypes.string.isRequired
 };
 
 export default Category;

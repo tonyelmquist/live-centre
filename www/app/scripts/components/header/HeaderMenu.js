@@ -1,5 +1,6 @@
 import React from "react";
 import Paper from 'material-ui/Paper';
+import PropTypes from 'prop-types';
 
 import {Motion, spring} from 'react-motion';
 
@@ -90,6 +91,16 @@ const HeaderMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, locati
 
 		</div>
 	);
+};
+
+HeaderMenu.propTypes = {
+    pageItems : PropTypes.array.isRequired,
+    categoryItems : PropTypes.array.isRequired,
+	openCloseMenu: PropTypes.func,
+	isMenuOpen: PropTypes.func,
+	locationName: PropTypes.string,
+	isSubPage: PropTypes.bool,
+	changeRoute: PropTypes.func
 };
 
 export default HeaderMenu;

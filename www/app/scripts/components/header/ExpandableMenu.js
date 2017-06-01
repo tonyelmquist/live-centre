@@ -1,6 +1,6 @@
 import React from "react";
 import {NavLink, Link} from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import CloseButton from 'material-ui/svg-icons/navigation/close';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -26,7 +26,7 @@ const ExpandableMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, ch
 			<Motion defaultStyle={{x:0}} style={{x:isMenuOpen()? spring(100) : spring(0)}}>
 
 				{
-					value=>
+					(value) =>
 					<div className="expandableMenu"
 					style={{height: `${value.x}%`}}
 					>
@@ -44,6 +44,14 @@ const ExpandableMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, ch
 			</Motion>
 		</MediaQuery>
 	);
+};
+
+ExpandableMenu.propTypes = {
+    pageItems : PropTypes.array.isRequired,
+    categoryItems : PropTypes.array.isRequired,
+	openCloseMenu: PropTypes.func,
+	isMenuOpen: PropTypes.func,
+	changeRoute: PropTypes.func
 };
 
 export default ExpandableMenu;

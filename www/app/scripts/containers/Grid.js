@@ -32,7 +32,7 @@ class HomeGrid extends Component {
 
     createVideoList = (videos) => {
 
-        let videoList = [];
+        const videoList = [];
 
             videos.forEach((value, key, map) => {
 
@@ -48,7 +48,7 @@ class HomeGrid extends Component {
                         category={key}
                         videoCard={this.props.videoCard}
                         videos={value}></CategoryRow>
-                ))
+                ));
             });
 
         return videoList;

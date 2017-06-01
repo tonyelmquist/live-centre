@@ -37,7 +37,7 @@ const transformVideoData = (data) => {
     }
   }
 
-  filteredAssets = groupBy(filteredAssets, video => video.category);
+  filteredAssets = groupBy(filteredAssets, (video) => video.category);
 
   return filteredAssets;
 
@@ -55,7 +55,7 @@ const groupBy = (list, keyGetter) => {
         }
     });
     return map;
-}
+};
 
 //Iterate through the fetched data, get all categories and return them.
 const extractCategories = (videos) => {

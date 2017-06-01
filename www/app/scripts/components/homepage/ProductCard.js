@@ -45,7 +45,6 @@ ProductCard.propTypes = {
     active : PropTypes.number.isRequired,
     changeTab: PropTypes.func.isRequired,
     closeCard: PropTypes.func.isRequired
-
 };
 
 export default ProductCard;

@@ -129,7 +129,7 @@ class HeroCarousel extends Component {
                     <div style={styles.carousel} key={i}>
                         <img src={video.thumbnail}/> {/*<p className="legend" style={styles.legend}>{video.title}</p>*/}
                     </div>
-                )
+                );
             });
 
             const infoTiles = carouselList.map((video, i) => {
@@ -169,7 +169,7 @@ class HeroCarousel extends Component {
         } else {
             return (
                 <div></div>
-            )
+            );
         }
 
     }

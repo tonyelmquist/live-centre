@@ -11,10 +11,10 @@ const AnimatedMenuIcon = ({isMenuOpen, isSubPage}) => {
 		</svg>
 	);
 };
-/*
+
 AnimatedMenuIcon.propTypes = {
-    isMenuOpen: PropTypes.function,
-    isSubPage: PropTypes.string,
-};*/
+    isMenuOpen: PropTypes.func,
+    isSubPage: PropTypes.bool,
+};
 
 export default AnimatedMenuIcon;

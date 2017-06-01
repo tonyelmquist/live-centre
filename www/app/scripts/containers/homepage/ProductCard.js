@@ -22,7 +22,9 @@ class ProductCardContainer extends Component {
 
 ProductCardContainer.propTypes = {
     active : PropTypes.number.isRequired,
-    changeTab: PropTypes.func.isRequired
+    changeTab: PropTypes.func.isRequired,
+    index: PropTypes.number,
+    dispatch: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
