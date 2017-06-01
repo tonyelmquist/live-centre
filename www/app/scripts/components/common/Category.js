@@ -24,7 +24,7 @@ class Category extends Component {
     _renderVideos = () =>
         this.props.videos.map((video)=>{
             return (
-                <Col xs={6} md={2}>
+                <Col xs={6} md={2} key={video.assetid}>
                     <VideoItem video={video}/>
                 </Col>
             );
@@ -33,7 +33,7 @@ class Category extends Component {
         });
 
     render() {
-        // console.log(this.props);
+        console.log(this.props.videos);
         return (
             <div>
                 <div className='category'>
