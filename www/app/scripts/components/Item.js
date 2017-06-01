@@ -8,19 +8,18 @@ import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
 import {videoSelected, invalidateSelected} from '../actions/video';
 
 class Item extends Component {
-    // _handleClick = () => {alert('Clicked');}
     _handlePlay = (assetid) => {
         this
             .props
             .dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
     }
-  
+
     render() {
 
         return (
             <div className="videoThumb">
                 <GridTile
-                    onTouchTap={this.props._handleClick}
+                    onTouchTap={this.props.handleClick}
                     title={this.props.video.title}
                     subtitle={< span > by < b > {
                     this.props.video.author
@@ -43,8 +42,8 @@ const mapStateToProps = (state) => {
 
 Item.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    video: PropTypes.object,
-    _handleClick: PropTypes.func 
+    video :PropTypes.object,
+    handleClick: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps)(Item);

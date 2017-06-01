@@ -24,8 +24,9 @@ class Category extends Component {
     _renderVideos = () =>
         this.props.videos.map((video)=>{
             return (
-                <Col xs={6} md={2} key={video.assetid}>
-                    <VideoItem video={video}/>
+                <Col xs={6} md={3} key={video.assetid}>
+                    <VideoItem video={video}
+                        handleClick={()=> this.props.onSelect(video.assetid)}/>
                 </Col>
             );
 
@@ -33,7 +34,7 @@ class Category extends Component {
         });
 
     render() {
-        console.log(this.props.videos);
+        // console.log(this.props.videos);
         return (
             <div>
                 <div className='category'>
@@ -56,7 +57,8 @@ class Category extends Component {
 
 Category.propTypes = {
     videos : React.PropTypes.array.isRequired,
-    category : React.PropTypes.string.isRequired
+    category : React.PropTypes.string.isRequired,
+    onSelect: PropTypes.func.isRequired
 };
 
 export default Category;

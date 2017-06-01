@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TabLinks from './TabLinks';
-import Tabs from '../common/Tabs';
 import { Row, Col } from 'react-flexbox-grid';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
 import {blue500, red500} from 'material-ui/styles/colors';
+
+import TabLinks from './TabLinks';
+import Tabs from '../common/Tabs';
+import Player from '../../containers/Player';
+
 
 const tabs = ["Overview", "Episodes", "Trailers", "Details"];
 const style = {
@@ -26,6 +29,7 @@ const ProductCard = (props) => (
                         <IconButton style={style} tooltip="Close" onTouchTap={props.closeCard}>
                           <CloseIcon color={red500}/>
                         </IconButton>
+                        {this.props.selected && <Player videoUrl={this.props.videoUrl}/>}
                     </div>
 
                 </div>

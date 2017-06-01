@@ -57,7 +57,7 @@ class HomeGrid extends Component {
     render() {
         return (
             <div>
-                {this.props.selected && <Player videoUrl={this.props.videoUrl}/>}
+                {/* {this.props.selected && <Player videoUrl={this.props.videoUrl}/>} */}
                 {this.createVideoList(this.props.videos)}
             </div>
         );
