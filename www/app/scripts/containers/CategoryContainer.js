@@ -7,7 +7,7 @@ class CategoryContainer extends Component {
     render() {
         return (
             <Category
-                videos={this.props.videos}
+                videos={this.props.videos.get(this.props.match.params.categoryKey)}
                 category={this.props.match.params.categoryKey}
             />
         );
