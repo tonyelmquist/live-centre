@@ -87,10 +87,10 @@ class HeroCarousel extends Component {
             arrows: false,
             lazyLoad: true,
             beforeChange: function (currentSlide, nextSlide) {
-             //   _this.syncLeft(nextSlide);
+                //   _this.syncLeft(nextSlide);
             },
             afterChange: function (currentSlide, nextSlide) {
-            //    _this.syncLeft(nextSlide);
+                //    _this.syncLeft(nextSlide);
             },
             responsive: [
                 {
@@ -132,13 +132,18 @@ class HeroCarousel extends Component {
             const imageList = carouselList.map((video, i) => {
                 return (
                     <div style={styles.carousel}>
-                        <ReactPlayer
-                            playing={true}
-                            controls={false}
-                            volume={0}
-                            width='100%'
-                            height='100%'
-                            url={`https://www.mediabank.me/download/manifest.php?assetid=${video.assetid}`}/>
+                        <div className='heroCarouselImage' key={i}>
+                            <img src={video.thumbnail}/> {/*<p className="legend" style={styles.legend}>{video.title}</p>*/}
+                        </div>
+                        <div className='heroCarouselVideo'>
+                            <ReactPlayer
+                                playing={true}
+                                controls={false}
+                                volume={0}
+                                width='100%'
+                                height='100%'
+                                url={`https://www.mediabank.me/download/manifest.php?assetid=${video.assetid}`}/>
+                        </div>
                     </div>
                 );
             });

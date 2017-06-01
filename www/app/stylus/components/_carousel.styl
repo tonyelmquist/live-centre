@@ -295,6 +295,11 @@
   text-overflow: ellipsis
   overflow: hidden
 
+.heroCarouselVideo    
+  display: block
+.heroCarouselImage 
+  display: none
+
 @media (max-width: 1024px)
   .carouselRight .description
     display: none
@@ -302,6 +307,10 @@
 @media (max-width: 800px)
   .carouselRight
     display: none
+  .heroCarouselVideo
+    display: none
+  .heroCarouselImage 
+    display: block
   .carouselLeft
     flex-basis: 100%
   .heroCarousel
