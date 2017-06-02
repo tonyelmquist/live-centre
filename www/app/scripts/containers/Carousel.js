@@ -46,17 +46,18 @@ const styles = {
 
 class HeroCarousel extends Component {
     static defaultProps = {
-        videos: {}
+        videos: {},
+        selected: false
     };
 
     constructor(props, defaultProps) {
         super(props, defaultProps);
     }
 
-    handlePlay(assetid) {
-        /*        this
+    _handlePlay = (assetid) => {
+        this
             .props
-            .dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));*/
+            .dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
     }
 
     syncLeft(currentSlide) {
@@ -155,7 +156,9 @@ class HeroCarousel extends Component {
                         <IconButton
                             iconStyle={styles.largeIcon}
                             style={styles.large}
-                            onTouchTap={this.handlePlay(video.assetid)}><PlayCircleOutline color="white"/></IconButton>
+                            onTouchTap={() => {
+                            this._handlePlay(video.assetid);
+                        }}><PlayCircleOutline color="white"/></IconButton>
                         <div className='carouselTitleAndDescription'>
                             <h4 className='carouselTitle'>{video.title}</h4>
                             <p className='description'>He says he's found the main computer to power the
@@ -193,11 +196,12 @@ class HeroCarousel extends Component {
 
 HeroCarousel.propTypes = {
     videos: PropTypes.object,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    selected: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {
-    return {videos: state.videos.items};
+    return {videos: state.videos.items, selected: state.playback.isSelected};
 };
 
 export default connect(mapStateToProps)(HeroCarousel);

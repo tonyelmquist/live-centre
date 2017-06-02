@@ -8,7 +8,7 @@ const styles = {
     zIndex: 2147483647,
     height: '30px',
     width: '200px',
-    bottom: 0,
+    top: 0,
     left: 0
   },
   dataStyle: {

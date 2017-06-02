@@ -24,7 +24,7 @@ class Item extends Component {
                     subtitle={< span > by < b > {
                     this.props.video.author
                 } </b></span >}
-                    actionIcon={< IconButton onTouchTap = {
+                    actionIcon={<IconButton onTouchTap = {
                     () => {
                         this._handlePlay(this.props.video.assetid);
                     }
