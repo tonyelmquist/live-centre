@@ -14,7 +14,7 @@ const AnimatedSearchIcon = ({searchState}) => {
 				circleRadius: spring(8.5), 
 				fillOpacity: spring(1), 
 				stroke: spring(1)};
-		} else 
+		} else{
 			return {			
 				linePos1: spring(14), 
 				linePos2: spring(20), 
@@ -23,20 +23,21 @@ const AnimatedSearchIcon = ({searchState}) => {
 				circleRadius: spring(7), 
 				fillOpacity: spring(0), 
 				stroke: spring(0)};
+		}
 		
-	}
+	};
 	const fadeToBlack = (fill) => {
 		const rgb = {
 			r: Math.round(fill * 255), 
 			g: Math.round(fill * 255),
 			b: Math.round(fill * 255)
 		};
-		return `rgb(${rgb.r},${rgb.g},${rgb.b})`
-	}
+		return `rgb(${rgb.r},${rgb.g},${rgb.b})`;
+	};
 
 	const svgStyle = {
 		margin: '2px',
-	}
+	};
 	const color = "black";
 	const invertColor = "white";
 	return(

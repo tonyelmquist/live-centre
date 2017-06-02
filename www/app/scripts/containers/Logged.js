@@ -16,15 +16,9 @@ class Logged extends Component {
       this.props.dispatch(logoutSuccess());
   }
 
-
-
   render() {
-    const _iconStyle = {
-      color: "black"
-    }
     return (
         <IconMenu
-          iconStyle = {_iconStyle}
           iconButtonElement={
             <IconButton><PersonIcon/></IconButton>
           }

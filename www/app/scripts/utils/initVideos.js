@@ -110,7 +110,6 @@ const initVideoList = (store) => {
     // console.log(videos);
     // const categories = extractCategories(videos);
     const categories = Object.keys(videos);
-
     store.dispatch(fetchMetadataSuccess(videos));
     store.dispatch(fetchCategoriesSuccess(categories));
   });

@@ -3,7 +3,7 @@ import Logged from './Logged';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {changeNavMenuIndex, toggleMenu, showMenu, hideMenu} from '../actions/navigation';
-import {searchKeyword, toggleSearch} from '../actions/search.js'
+import {searchKeyword, toggleSearch} from '../actions/search.js';
 
 import MediaQuery from 'react-responsive';
 
@@ -32,7 +32,7 @@ import VideoLibrary from 'material-ui/svg-icons/AV/video-library';
 class Header extends Component {
   
   //Generate menu items that correspons with the react router paths.
-  pageItems = () => {
+  getPageItems = () => {
     const items = [
       {key: "Home", path: "/Home", icon: <HomeIcon/>}, 
       {key: "Programs", path:"/Favorites", icon: <VideoIcon/>},
@@ -100,7 +100,7 @@ class Header extends Component {
     return(
         <div id="header-container">
           <HeaderMenu
-            pageItems={this.pageItems()}
+            pageItems={this.getPageItems()}
             categoryItems={this.categoryItems()}
             openCloseMenu={this.openCloseMenu}
             isMenuOpen={this.isMenuOpen}
@@ -112,7 +112,7 @@ class Header extends Component {
             searchState={this.searchState}
           />
           <TabMenu
-            pageItems={this.pageItems()}
+            pageItems={this.getPageItems()}
             changeRoute={this.changeRoute}
             isMenuOpen={this.isMenuOpen}
             isSubPage={this.isSubPage()}
@@ -120,7 +120,7 @@ class Header extends Component {
           />
           <ExpandableMenu
             categoryItems={this.categoryItems()}
-            pageItems={this.pageItems()}
+            pageItems={this.getPageItems()}
             openCloseMenu={this.openCloseMenu}
             isMenuOpen={this.isMenuOpen}
             changeRoute={this.changeRoute}

@@ -35,7 +35,7 @@ const ExpandableMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, ch
 				o: spring(0),
 			};
 		}
-	}
+	};
 
 	return(
 		<MediaQuery maxWidth={1001}>

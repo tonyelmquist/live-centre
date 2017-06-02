@@ -1,7 +1,4 @@
-// SEARCH
-.searchInput
-  display:inline
-  
+// SEARCH  
 .searchInput input
   border-top: none
   border-left: none
@@ -28,6 +25,7 @@
       color: $color_ocean
       
   .searchInput
+    display:block
     position: absolute
     margin:10px 5px 5px 20px
     opacity: 1
@@ -51,3 +49,18 @@
     transform: translate(-10%, 0)
     input
       opacity:0
+      
+
+//Searchcontainer - Window that expands to show suggestions.
+.searchContainer
+  position:fixed
+  width:100%
+  right:0
+  top:48px
+  bottom:0
+  z-index: 999
+  overflow:auto
+  background-color:white
+  transition: all 0.5s $cubic
+.searchContainer.close
+    bottom:100%

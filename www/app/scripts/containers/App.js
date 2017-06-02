@@ -14,8 +14,8 @@ import Header from './Header';
 import HomePage from './pages/HomePage';
 import SettingsPage from './pages/SettingsPage';
 import FavoritePage from './pages/FavoritePage';
-// import CategoryPage from './pages/CategoryPage';
 import CategoryContainer from './CategoryContainer';
+import SearchContainer from './SearchContainer';
 
 import {TransitionMotion, spring, presets} from 'react-motion';
 
@@ -38,7 +38,7 @@ class App extends Component {
                     <Header/>
 
                     <div className="main">
-
+                        <SearchContainer/> 
                         <Route exact path="/Home" component={HomePage}/>
                         <Route path="/Login" component={Login}/>
                         <Route path="/Settings" component={SettingsPage}/>

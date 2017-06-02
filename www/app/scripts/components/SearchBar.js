@@ -1,5 +1,4 @@
 import React from 'react';
-
 import SearchIcon from 'material-ui/svg-icons/action/search';
 import MediaQuery from 'react-responsive';
 import IconButton from 'material-ui/IconButton';
@@ -12,19 +11,11 @@ import SearchInput from './header/SearchInput';
 
 const SearchBar = ({searchState, openCloseSearch}) => {
   return(
-      <div className="inline">
-
-      <MediaQuery minWidth={1001}>
-       
-      </MediaQuery>
-      
       <MediaQuery maxWidth={1000}>
-          
           <IconButton className="iconbutton" onTouchTap={() => openCloseSearch()}>
             <AnimatedSearchIcon searchState={searchState}/>
           </IconButton>  
       </MediaQuery>
-      </div>
 
     );
 };
