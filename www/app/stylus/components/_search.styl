@@ -1,0 +1,53 @@
+// SEARCH
+.searchInput
+  display:inline
+  
+.searchInput input
+  border-top: none
+  border-left: none
+  border-right: none
+  font-size:14px
+  padding: 5px
+  border-bottom: 0;
+
+.searchInput input:active, .searchInput input:focus
+  outline: none
+  //border-bottom: solid 1px rgba(000, 000, 000, 0.5)
+  color: #000
+
+.mobile_searchbar
+  .logo
+    position: absolute!important
+    padding: 5px!important
+    opacity: 0!important
+    transform: translate(-100%, 0)
+    transition: all 0.2s $cubic
+    *
+      font-size:24px!important
+      font-weight: bold
+      color: $color_ocean
+      
+  .searchInput
+    position: absolute
+    margin:10px 5px 5px 20px
+    opacity: 1
+    border-bottom: solid 1px rgba(000, 000, 000, 0.2)
+    width: 60%
+    max-width: 250px
+    opacity: 1
+    transition: all 0.3s $cubic
+    transform: translate(0, 0)
+    input
+      transition: all 0.3s $cubic
+      opacity: 1
+
+.mobile_searchbar.closed
+  .logo
+    opacity: 1!important
+    transform: translate(0, 0)
+  .searchInput
+    width: 0%
+    opacity: 0.3
+    transform: translate(-10%, 0)
+    input
+      opacity:0

@@ -9,8 +9,6 @@ export function showMenu() {
 export function hideMenu() {
     return {type: Actions.MENU_HIDE};
 }
-
 export function changeNavMenuIndex(index) {
     return {type: Actions.CHANGE_NAV_INDEX, index};
 }
-

@@ -11,4 +11,5 @@ langtemp/
 
 # WWW Artifacts
 android/app/src/main/assets/
+android/app/*
 ios/Live Centre/html/

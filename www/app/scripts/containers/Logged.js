@@ -17,10 +17,14 @@ class Logged extends Component {
   }
 
 
+
   render() {
+    const _iconStyle = {
+      color: "black"
+    }
     return (
         <IconMenu
-          iconStyle = {this.props.iconStyle}
+          iconStyle = {_iconStyle}
           iconButtonElement={
             <IconButton><PersonIcon/></IconButton>
           }
