@@ -134,7 +134,22 @@ class HeroCarousel extends Component {
                 return (
                     <div style={styles.carousel}>
                         <div className='heroCarouselImage' key={i}>
-                            <img src={video.thumbnail}/> {/*<p className="legend" style={styles.legend}>{video.title}</p>*/}
+                            <img src={video.thumbnail}/>
+                            <div className="carouselImageButton">
+                                <IconButton
+                                    iconStyle={styles.largeIcon}
+                                    style={styles.large}
+                                    onTouchTap={() => {
+                                    this._handlePlay(video.assetid);
+                                }}><PlayCircleOutline color="white"/></IconButton>
+                            </div>
+                            <div className='carouselImageTitleAndDescription'>
+                                <h4 className='carouselImageTitle'>{video.title}</h4>
+                                <p className='imageDescription'>He says he's found the main computer to power
+                                    the tractor beam that's holding the ship here. He'll try to make the precise
+                                    location appear on the monitor. The tractor beam is coupled to the main reactor
+                                    in seven locations.</p>
+                            </div>
                         </div>
                         <div className='heroCarouselVideo'>
                             <ReactPlayer
