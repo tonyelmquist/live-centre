@@ -6,9 +6,9 @@ describe('App',() => {
     let appWraper; //Enzyme react wrapper around App component
 
     //Function that renders app
-    const renderApp = () => {
+    const renderApp = (props) => {
         if(!appWraper){
-            appWraper = enzymeMount(App);
+            appWraper = enzymeMount(App, props);
         };
         return appWraper;
     };
@@ -28,12 +28,14 @@ describe('App',() => {
     });
 
     it('has a header', ()=> {
-        expect(renderApp().find('#header').exists()).to.be.true;
+        expect(renderApp().find('#header-container').exists()).to.be.true;
     });
 
     it('has a login dialog', ()=> {
-        const mainframe = renderApp().find('Login');
-        expect(mainframe.length).to.equal(1);
+        const props = {
+            loginState: true
+        }
+        expect(renderApp(props).find('Login').exists()).to.be.truthy;
     });
 
 

@@ -1,6 +1,6 @@
 import Actions from '../constants/reduxConstants';
 
-export default function requestSent(state = {isFetching: false, items: new Map(), categories:[]}, action) {
+export default function requestSent(state = {isFetching: false, items: {}, categories:[]}, action) {
 
         switch (action.type) {
 
