@@ -6,6 +6,7 @@ import videosReducer from './videosReducer';
 import playbackReducer from './playbackReducer';
 import dataOverlayReducer from './dataOverlayReducer';
 import {changeNavIndex, headerMenuState} from './navReducer';
+import {search} from './searchReducer';
 import {showVideoCard, changeCardIndex, changeCardCategory} from './videoCardReducer';
 
 const rootReducer = combineReducers({
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     playback: playbackReducer,
     dataOverlay: dataOverlayReducer,
     headerMenuState : headerMenuState,
+    search: search
 });
 
 export default rootReducer;

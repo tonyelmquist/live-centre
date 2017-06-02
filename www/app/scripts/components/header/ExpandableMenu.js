@@ -12,23 +12,44 @@ const ExpandableMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, ch
 	const MenuItems = (items) => {
 		if(items.length > 0){
 			return items.map((item) =>
+			
+					<p key={item.key} onTouchTap={()=>{changeRoute(item.path); openCloseMenu();}} className="expandableMenuItem">
 
-					<p key={item.key} onClick={()=>{changeRoute(item.path); openCloseMenu();}} className="expandableMenuItem">
 							{item.key}
 					</p>
 			);
 		};
 	};
 
+	const _style = (isOpen) => {
+		if(isOpen){
+			return { 
+				x: spring(0), 
+				y: spring(100),
+				o: spring(1),
+			};
+		} else{
+			return{
+				x: spring(100),
+				y: spring(0),
+				o: spring(0),
+			};
+		}
+	}
+
 	return(
 		<MediaQuery maxWidth={1001}>
 
-			<Motion defaultStyle={{x:0}} style={{x:isMenuOpen()? spring(100) : spring(0)}}>
+			<Motion defaultStyle={{x:0, y:100, o:0}} style={_style(isMenuOpen())}>
 
 				{
 					(value) =>
 					<div className="expandableMenu"
-					style={{height: `${value.x}%`}}
+					style={{
+						top: `${value.x}%`,
+						width: `${value.y}%`,
+						opacity: value.o
+						}}
 					>
 					<p className="divider">Menu</p>
 					<div className="expandableMenuInner">

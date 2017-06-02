@@ -4,12 +4,12 @@
 
 .header{
   width: 100%;
-  background-color: #212121;
+  background-color: #fff;
   text-transform: none !important;
   position: fixed;
   top: 0;
-  z-index: 999;
-  color: #fff
+  z-Index: 999999;
+  color: #000;
 }
 
 .rightMenu{
@@ -28,13 +28,15 @@
 }
 
 .menuItem{
-  margin: 10px !important;
+  margin: 6px !important;
 	display:inline-block !important;
   text-transform: lowercase !important;
+  color: #000 !important;
 }
+
+
 //Font size of everything in header.
 #header-container button *, #header-container p{
-  font-size: 16px!important;
 }
 
 @media (min-width: 1000px){
@@ -74,10 +76,11 @@
 }
 
 .expandableMenu{
-  background-color: rgba(33, 33, 33, 1); 
+  background-color: $color_ocean;
   position: fixed;
-  top: 48px;
+  bottom: 72px;
   width: 100%;
+  right: 0;
   z-Index: 999999;
   overflow:auto;
   color: #fff;
@@ -86,10 +89,11 @@
 
 //All paragraphs(items) in menu
 .expandableMenu p{
-  color: grey;
-  padding: 20px 0 20px 40px;
+  color: #efefef;
+  padding: 13px 0 13px 0;
   margin: 0;
   opacity: 1;
+  text-align:center;
 }
 .closedMenu{
   display:none;
@@ -97,7 +101,6 @@
 
 //Only the links
 p.expandableMenuItem{
-  border-top: solid 0.5px rgba(255, 255, 255, .5);
   color: #fff;
 }
 .active .expandableMenuItem {
@@ -107,8 +110,9 @@ p.expandableMenuItem{
 //Only the dividers
 p.divider{
   padding-top: 30px;
-  padding-bottom: 5px;
-  padding-left: 20px;
+  padding-bottom: 10px;
+  font-weight:bold;
+  color: #efefef;
 }
 
 .expandableMenu a{
@@ -127,35 +131,30 @@ p.divider{
   z-index: 999;
   width: 100%;
 }
-.bottomTabs div{
-  background-color: #212121;
-  color: #fff;
-}
 
 // MENU BUTTON ANIMATIONS
 
 
 .animMenuIcon{
-  padding: 12px 0 12px 12px;
+  padding: 0 0 4px 0;
   margin: 2px
   vertical-align: middle;
   stroke-linecap: round;
 }
 
 .animMenuIcon .bottom, .animMenuIcon .middle, .animMenuIcon .top{
-    transition: all 0.3s cubic-bezier(.02, .01, .47, 1);
-    fill: red;
+    transition: all 0.3s $cubic;
+    transform-origin: center;
 }
 
 .animMenuIcon.closed.subPage{
-  transform: scale(0.9, 1);
   .top{
       transform-origin: top right;
-      transform: rotate(-20deg) translate(0, -1.5px);
+      transform: rotate(-45deg) translate(2px, 0) scale(0.5, 1);
   }
   .bottom{
       transform-origin: bottom right;
-      transform: rotate(20deg) translate(0, 1.5px);
+      transform: rotate(45deg) translate(2px, 0) scale(0.5, 1);
   }
   .middle{
     transform: translate(22px, 0);
@@ -176,7 +175,6 @@ p.divider{
     opacity: 0.5
     transform: translate(22px, 0);
   }
-
 
 }
 

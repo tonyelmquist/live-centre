@@ -38,6 +38,10 @@ class ReduxConstants {
     static get MENU_SHOW() {return "MENU_SHOW"; }
     static get MENU_HIDE() {return "MENU_HIDE"; }
 
+    //Search
+    static get TOGGLE_SEARCH() {return "TOGGLE_SEARCH";}
+    static get SEARCH_KEYWORD() {return "SEARCH_KEYWORD";}
+
     //Video Card
     static get CHANGE_CARD_INDEX() { return "CHANGE_CARD_INDEX"; }
     static get SHOW_VIDEO_CARD() { return "SHOW_VIDEO_CARD"; }
