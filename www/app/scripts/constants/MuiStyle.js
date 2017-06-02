@@ -1,6 +1,7 @@
 import {
   teal50, grey100, grey200, grey300, grey400, grey500, grey800, grey600, blueGrey800, deepOrange800, grey900, grey50,
-  white, darkBlack, fullBlack, fullWhite, blue200, blue400, blue100
+  white, darkBlack, fullBlack, fullWhite, blue200, blue400, blue100, lightBlue50
+
 } from 'material-ui/styles/colors';
 import {fade} from 'material-ui/utils/colorManipulator';
 import spacing from 'material-ui/styles/spacing';
@@ -24,7 +25,7 @@ export default {
     textColor: fullBlack,
     secondaryTextColor: (0, fade)(fullBlack, 0.7),
     alternateTextColor: blueGrey800,
-    canvasColor: grey800,
+    canvasColor: lightBlue50,
     borderColor: (0, fade)(fullWhite, 0.3),
     disabledColor: (0, fade)(fullWhite, 0.3),
     pickerHeaderColor: (0, fade)(fullWhite, 0.12),
