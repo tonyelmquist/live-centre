@@ -50,7 +50,17 @@
 		144C01EB3B331F203EB1B650 /* Pods-Live CentreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreUITests/Pods-Live CentreUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1C2B8F2F3E7C8533B7136EA8 /* Pods_Live_CentreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Live_CentreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E56682713C11805FD08D2C6 /* Pods_Live_Centre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Live_Centre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		24CB2D6A184F188A3FBCC2BD /* Pods-Live Centre.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live Centre.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Live Centre/Pods-Live Centre.staging.xcconfig"; sourceTree = "<group>"; };
 		28EF592BD5CF149DD9425927 /* Pods-Live Centre.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live Centre.release.xcconfig"; path = "Pods/Target Support Files/Pods-Live Centre/Pods-Live Centre.release.xcconfig"; sourceTree = "<group>"; };
+		2C3E1258408B0D8CCD845CA3 /* Pods-Live Centre.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live Centre.development.xcconfig"; path = "Pods/Target Support Files/Pods-Live Centre/Pods-Live Centre.development.xcconfig"; sourceTree = "<group>"; };
+		2D1D05B4E1B6E9DFC6066524 /* Pods-Live Centre.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live Centre.production.xcconfig"; path = "Pods/Target Support Files/Pods-Live Centre/Pods-Live Centre.production.xcconfig"; sourceTree = "<group>"; };
+		59B01953AD7596A63445FAD5 /* Pods-Live CentreTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreTests/Pods-Live CentreTests.production.xcconfig"; sourceTree = "<group>"; };
+		59F0085F0B6FB0529AF7FADE /* Pods-Live CentreTests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreTests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreTests/Pods-Live CentreTests.testing.xcconfig"; sourceTree = "<group>"; };
+		63B80DCB2BA91B8AA7D1B87E /* Pods-Live CentreUITests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreUITests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreUITests/Pods-Live CentreUITests.testing.xcconfig"; sourceTree = "<group>"; };
+		7353FE9D1A6B0CECB9FD8637 /* Pods-Live Centre.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live Centre.testing.xcconfig"; path = "Pods/Target Support Files/Pods-Live Centre/Pods-Live Centre.testing.xcconfig"; sourceTree = "<group>"; };
+		78C7F30B3223CFE301B15CC7 /* Pods-Live CentreTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreTests.development.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreTests/Pods-Live CentreTests.development.xcconfig"; sourceTree = "<group>"; };
+		7B47584BAC94C8D89F713B24 /* Pods-Live CentreUITests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreUITests.development.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreUITests/Pods-Live CentreUITests.development.xcconfig"; sourceTree = "<group>"; };
+		86FA1D9B4F5614D98B152EF9 /* Pods-Live CentreUITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreUITests.production.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreUITests/Pods-Live CentreUITests.production.xcconfig"; sourceTree = "<group>"; };
 		8BC2501C18CC567DCF5A8F4E /* Pods_Live_CentreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Live_CentreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42CE9CD1E84137800CC29A9 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		A42CE9CE1E84137800CC29A9 /* JavascriptBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavascriptBridge.swift; sourceTree = "<group>"; };
@@ -73,7 +83,9 @@
 		A46C80E71E8406A2000E888C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A46C80EC1E8406A2000E888C /* Live CentreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Live CentreUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E4EFD41E8506E9003DA1B2 /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html; sourceTree = "<group>"; };
+		A627016174B06884FA5D775D /* Pods-Live CentreUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreUITests/Pods-Live CentreUITests.staging.xcconfig"; sourceTree = "<group>"; };
 		E5FA75206444C86C5650D18B /* Pods-Live Centre.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live Centre.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Live Centre/Pods-Live Centre.debug.xcconfig"; sourceTree = "<group>"; };
+		EBE1969BDA8C39ACC07C18D5 /* Pods-Live CentreTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreTests/Pods-Live CentreTests.staging.xcconfig"; sourceTree = "<group>"; };
 		EED39D5C66F20E646823FBB8 /* Pods-Live CentreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreTests/Pods-Live CentreTests.release.xcconfig"; sourceTree = "<group>"; };
 		F8C3DB7A837913EE36D7BA6D /* Pods-Live CentreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreTests/Pods-Live CentreTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +127,18 @@
 				EED39D5C66F20E646823FBB8 /* Pods-Live CentreTests.release.xcconfig */,
 				0AB14EF0439A5A4FF3C39E35 /* Pods-Live CentreUITests.debug.xcconfig */,
 				144C01EB3B331F203EB1B650 /* Pods-Live CentreUITests.release.xcconfig */,
+				7353FE9D1A6B0CECB9FD8637 /* Pods-Live Centre.testing.xcconfig */,
+				2C3E1258408B0D8CCD845CA3 /* Pods-Live Centre.development.xcconfig */,
+				24CB2D6A184F188A3FBCC2BD /* Pods-Live Centre.staging.xcconfig */,
+				2D1D05B4E1B6E9DFC6066524 /* Pods-Live Centre.production.xcconfig */,
+				59F0085F0B6FB0529AF7FADE /* Pods-Live CentreTests.testing.xcconfig */,
+				78C7F30B3223CFE301B15CC7 /* Pods-Live CentreTests.development.xcconfig */,
+				EBE1969BDA8C39ACC07C18D5 /* Pods-Live CentreTests.staging.xcconfig */,
+				59B01953AD7596A63445FAD5 /* Pods-Live CentreTests.production.xcconfig */,
+				63B80DCB2BA91B8AA7D1B87E /* Pods-Live CentreUITests.testing.xcconfig */,
+				7B47584BAC94C8D89F713B24 /* Pods-Live CentreUITests.development.xcconfig */,
+				A627016174B06884FA5D775D /* Pods-Live CentreUITests.staging.xcconfig */,
+				86FA1D9B4F5614D98B152EF9 /* Pods-Live CentreUITests.production.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -814,7 +838,7 @@
 		};
 		B450C2DC1EE43874007A793E /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5FA75206444C86C5650D18B /* Pods-Live Centre.debug.xcconfig */;
+			baseConfigurationReference = 24CB2D6A184F188A3FBCC2BD /* Pods-Live Centre.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -834,7 +858,7 @@
 		};
 		B450C2DD1EE43874007A793E /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8C3DB7A837913EE36D7BA6D /* Pods-Live CentreTests.debug.xcconfig */;
+			baseConfigurationReference = EBE1969BDA8C39ACC07C18D5 /* Pods-Live CentreTests.staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -849,7 +873,7 @@
 		};
 		B450C2DE1EE43874007A793E /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0AB14EF0439A5A4FF3C39E35 /* Pods-Live CentreUITests.debug.xcconfig */;
+			baseConfigurationReference = A627016174B06884FA5D775D /* Pods-Live CentreUITests.staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "Live CentreUITests/Info.plist";
@@ -914,7 +938,7 @@
 		};
 		B450C2E01EE438AC007A793E /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5FA75206444C86C5650D18B /* Pods-Live Centre.debug.xcconfig */;
+			baseConfigurationReference = 2C3E1258408B0D8CCD845CA3 /* Pods-Live Centre.development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -934,7 +958,7 @@
 		};
 		B450C2E11EE438AC007A793E /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8C3DB7A837913EE36D7BA6D /* Pods-Live CentreTests.debug.xcconfig */;
+			baseConfigurationReference = 78C7F30B3223CFE301B15CC7 /* Pods-Live CentreTests.development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -949,7 +973,7 @@
 		};
 		B450C2E21EE438AC007A793E /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0AB14EF0439A5A4FF3C39E35 /* Pods-Live CentreUITests.debug.xcconfig */;
+			baseConfigurationReference = 7B47584BAC94C8D89F713B24 /* Pods-Live CentreUITests.development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "Live CentreUITests/Info.plist";
@@ -1014,7 +1038,7 @@
 		};
 		B450C2E41EE438B6007A793E /* Testing */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5FA75206444C86C5650D18B /* Pods-Live Centre.debug.xcconfig */;
+			baseConfigurationReference = 7353FE9D1A6B0CECB9FD8637 /* Pods-Live Centre.testing.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1034,7 +1058,7 @@
 		};
 		B450C2E51EE438B6007A793E /* Testing */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8C3DB7A837913EE36D7BA6D /* Pods-Live CentreTests.debug.xcconfig */;
+			baseConfigurationReference = 59F0085F0B6FB0529AF7FADE /* Pods-Live CentreTests.testing.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1049,7 +1073,7 @@
 		};
 		B450C2E61EE438B6007A793E /* Testing */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0AB14EF0439A5A4FF3C39E35 /* Pods-Live CentreUITests.debug.xcconfig */;
+			baseConfigurationReference = 63B80DCB2BA91B8AA7D1B87E /* Pods-Live CentreUITests.testing.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "Live CentreUITests/Info.plist";
@@ -1107,7 +1131,7 @@
 		};
 		B450C2E81EE438C6007A793E /* Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28EF592BD5CF149DD9425927 /* Pods-Live Centre.release.xcconfig */;
+			baseConfigurationReference = 2D1D05B4E1B6E9DFC6066524 /* Pods-Live Centre.production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -1127,7 +1151,7 @@
 		};
 		B450C2E91EE438C6007A793E /* Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EED39D5C66F20E646823FBB8 /* Pods-Live CentreTests.release.xcconfig */;
+			baseConfigurationReference = 59B01953AD7596A63445FAD5 /* Pods-Live CentreTests.production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1142,7 +1166,7 @@
 		};
 		B450C2EA1EE438C6007A793E /* Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 144C01EB3B331F203EB1B650 /* Pods-Live CentreUITests.release.xcconfig */;
+			baseConfigurationReference = 86FA1D9B4F5614D98B152EF9 /* Pods-Live CentreUITests.production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "Live CentreUITests/Info.plist";
