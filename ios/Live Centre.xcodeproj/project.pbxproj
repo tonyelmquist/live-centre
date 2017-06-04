@@ -24,6 +24,8 @@
 		A46C80DB1E8406A2000E888C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46C80D91E8406A2000E888C /* LaunchScreen.storyboard */; };
 		A46C80E61E8406A2000E888C /* Live_CentreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46C80E51E8406A2000E888C /* Live_CentreTests.swift */; };
 		A4E4EFD51E8506E9003DA1B2 /* html in Resources */ = {isa = PBXBuildFile; fileRef = A4E4EFD41E8506E9003DA1B2 /* html */; };
+		B450C2EC1EE457F2007A793E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B450C2EB1EE457F2007A793E /* GameKit.framework */; };
+		B450C2EE1EE457FD007A793E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B450C2ED1EE457FD007A793E /* StoreKit.framework */; };
 		B48E33CDDE2510646DBB6AE2 /* Pods_Live_CentreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C2B8F2F3E7C8533B7136EA8 /* Pods_Live_CentreTests.framework */; };
 		CF92D3AD73E5FF4715CE6B30 /* Pods_Live_CentreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC2501C18CC567DCF5A8F4E /* Pods_Live_CentreUITests.framework */; };
 /* End PBXBuildFile section */
@@ -84,6 +86,9 @@
 		A46C80EC1E8406A2000E888C /* Live CentreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Live CentreUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E4EFD41E8506E9003DA1B2 /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html; sourceTree = "<group>"; };
 		A627016174B06884FA5D775D /* Pods-Live CentreUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreUITests/Pods-Live CentreUITests.staging.xcconfig"; sourceTree = "<group>"; };
+		B450C2EB1EE457F2007A793E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		B450C2ED1EE457FD007A793E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B450C2EF1EE45806007A793E /* Live Centre.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Live Centre.entitlements"; sourceTree = "<group>"; };
 		E5FA75206444C86C5650D18B /* Pods-Live Centre.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live Centre.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Live Centre/Pods-Live Centre.debug.xcconfig"; sourceTree = "<group>"; };
 		EBE1969BDA8C39ACC07C18D5 /* Pods-Live CentreTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreTests/Pods-Live CentreTests.staging.xcconfig"; sourceTree = "<group>"; };
 		EED39D5C66F20E646823FBB8 /* Pods-Live CentreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live CentreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Live CentreTests/Pods-Live CentreTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,7 +100,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B450C2EE1EE457FD007A793E /* StoreKit.framework in Frameworks */,
 				43F8C12959739CBBF71ADA53 /* Pods_Live_Centre.framework in Frameworks */,
+				B450C2EC1EE457F2007A793E /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +153,8 @@
 		45528DB68C41F0D670A9B3AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B450C2ED1EE457FD007A793E /* StoreKit.framework */,
+				B450C2EB1EE457F2007A793E /* GameKit.framework */,
 				1E56682713C11805FD08D2C6 /* Pods_Live_Centre.framework */,
 				1C2B8F2F3E7C8533B7136EA8 /* Pods_Live_CentreTests.framework */,
 				8BC2501C18CC567DCF5A8F4E /* Pods_Live_CentreUITests.framework */,
@@ -208,6 +217,7 @@
 		A46C80CF1E8406A2000E888C /* Live Centre */ = {
 			isa = PBXGroup;
 			children = (
+				B450C2EF1EE45806007A793E /* Live Centre.entitlements */,
 				A4E4EFD41E8506E9003DA1B2 /* html */,
 				A42CE9CC1E84137800CC29A9 /* Utils */,
 				A42CE9D21E84137800CC29A9 /* FLWebView */,
@@ -310,6 +320,17 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 4TM2DK894Y;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					A46C80E01E8406A2000E888C = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -692,6 +713,7 @@
 			baseConfigurationReference = E5FA75206444C86C5650D18B /* Pods-Live Centre.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Live Centre/Live Centre.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
@@ -712,6 +734,7 @@
 			baseConfigurationReference = 28EF592BD5CF149DD9425927 /* Pods-Live Centre.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Live Centre/Live Centre.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
@@ -841,6 +864,7 @@
 			baseConfigurationReference = 24CB2D6A184F188A3FBCC2BD /* Pods-Live Centre.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Live Centre/Live Centre.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
@@ -941,6 +965,7 @@
 			baseConfigurationReference = 2C3E1258408B0D8CCD845CA3 /* Pods-Live Centre.development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Live Centre/Live Centre.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
@@ -1041,6 +1066,7 @@
 			baseConfigurationReference = 7353FE9D1A6B0CECB9FD8637 /* Pods-Live Centre.testing.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Live Centre/Live Centre.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
@@ -1134,6 +1160,7 @@
 			baseConfigurationReference = 2D1D05B4E1B6E9DFC6066524 /* Pods-Live Centre.production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Live Centre/Live Centre.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
