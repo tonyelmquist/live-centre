@@ -92,7 +92,23 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AsyncSwift/Async.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReachabilitySwift/ReachabilitySwift.framework"
 fi
+if [[ "$CONFIGURATION" == "Testing" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AsyncSwift/Async.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ReachabilitySwift/ReachabilitySwift.framework"
+fi
+if [[ "$CONFIGURATION" == "Development" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AsyncSwift/Async.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ReachabilitySwift/ReachabilitySwift.framework"
+fi
+if [[ "$CONFIGURATION" == "Staging" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AsyncSwift/Async.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ReachabilitySwift/ReachabilitySwift.framework"
+fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AsyncSwift/Async.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ReachabilitySwift/ReachabilitySwift.framework"
+fi
+if [[ "$CONFIGURATION" == "Production" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AsyncSwift/Async.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReachabilitySwift/ReachabilitySwift.framework"
 fi
