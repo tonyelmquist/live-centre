@@ -25,7 +25,7 @@
       color: $color_ocean
       
   .searchInput
-    display:block
+    display:blockx
     position: absolute
     margin:10px 5px 5px 20px
     opacity: 1
@@ -57,10 +57,28 @@
   width:100%
   right:0
   top:48px
-  bottom:0
+  bottom:72px
   z-index: 999
   overflow:auto
   background-color:white
   transition: all 0.5s $cubic
+  .containers
+    margin: 14px 0 0 10px
 .searchContainer.close
     bottom:100%
+    
+.filterContainer
+  width:100%
+  background-color: rgb(225, 245, 254)
+  text-align:center
+  overflow-y: scroll
+  .filterContainerInner
+    margin:20px
+  .filters
+    display:inline
+    margin: 0 10px;
+    padding: 10px
+    background-color: #fff
+    border-radius: 10px
+    .active
+      background-color: #bce3ec
