@@ -1,6 +1,12 @@
+@import '../constants/_variables.styl';
 .videoThumb
+    border: 3px solid $color_smoke
+    border-radius: 8px
     height: 200px
     margin:5px
+    transition: all 0.2s ease;
+    &:hover
+        transform:scale(1.05);
 
 .vjs_video_3-dimensions
     width: 100%
