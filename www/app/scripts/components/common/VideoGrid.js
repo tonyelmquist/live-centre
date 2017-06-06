@@ -8,7 +8,7 @@ class VideoGrid extends Component {
     _renderVideos = () =>
         this.props.videos.map((video)=>{
             return (
-                <Col xs={6} md={3} key={video.assetid}>
+                <Col xs={6} sm={4} md={3} key={video.assetid}>
                     <VideoItem video={video}
                         handleClick={()=> this.props.onSelect(video.assetid)}/>
                 </Col>
@@ -23,7 +23,7 @@ class VideoGrid extends Component {
                 <Grid 
                 //fluid
                 >
-                    <Row>
+                    <Row className="_grid">
                         {this.props.videos
                         ? this._renderVideos()
                         : (<div></div>)}
