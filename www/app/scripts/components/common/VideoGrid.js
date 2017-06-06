@@ -18,7 +18,7 @@ class VideoGrid extends Component {
         });
 
     render() {
-        console.log(this.props.videos);
+        //console.log(this.props.videos);
         return (
                 <Grid 
                 //fluid
