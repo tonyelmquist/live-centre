@@ -2,11 +2,20 @@
 .videoThumb
     border: 3px solid $color_smoke
     border-radius: 8px
-    height: 200px
+    //height: 200px
     margin:5px
     transition: all 0.2s ease;
     &:hover
         transform:scale(1.05);
+._grid
+	.videoThumb
+		height:125px
+	@media (min-width: 500px)
+		.videoThumb
+			height:220px
+	@media (min-width: 1024px)
+		.videoThumb
+			height:150px
 
 .vjs_video_3-dimensions
     width: 100%

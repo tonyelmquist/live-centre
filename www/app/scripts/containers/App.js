@@ -39,12 +39,14 @@ class App extends Component {
 
                     <div className="main">
                         <SearchContainer/> 
-                        <Route exact path="/Home" component={HomePage}/>
-                        <Route path="/Login" component={Login}/>
-                        <Route path="/Settings" component={SettingsPage}/>
-                        <Route path="/Favorites" component={FavoritePage}/>
-                        {/* <Route path="/Category/:categoryKey" component={CategoryPage}/> */}
-                        <Route path="/Category/:categoryKey" component={CategoryContainer}/>
+                        <div className="mainContent">
+                            <Route exact path="/Home" component={HomePage}/>
+                            <Route path="/Login" component={Login}/>
+                            <Route path="/Settings" component={SettingsPage}/>
+                            <Route path="/Favorites" component={FavoritePage}/>
+                            {/* <Route path="/Category/:categoryKey" component={CategoryPage}/> */}
+                            <Route path="/Category/:categoryKey" component={CategoryContainer}/>
+                        </div>
                     </div>
 
                 </div>
