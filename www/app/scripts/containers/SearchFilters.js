@@ -8,7 +8,7 @@ const SearchFilters = () => {
             return filters.map((item) =>
                     <div key={item} 
                     onTouchTap={()=>{console.log("Execute something")}} 
-                    className="filters">
+                    className="items">
                         {item}
                     </div>
             );
@@ -18,8 +18,8 @@ const SearchFilters = () => {
     const filters = ["All", "Videos", "Series", "Channels", "Some", "More", "Filters", "For", "Scrolling"];
 
     return(
-        <div className="filterContainer">
-            <div className="filterContainerInner">
+        <div className="horizontalScroll filters">
+            <div className="horizontalScrollInner">
                 {filterItems(filters)}
             </div>
         </div>
