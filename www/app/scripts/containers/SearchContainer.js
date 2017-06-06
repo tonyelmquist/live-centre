@@ -10,7 +10,7 @@ class SearchContainer extends Component {
 
     handleSelect = () => {
         console.log("SELECTING VIDEO");
-    }
+    };
 
     /*const people = [
         {img: 'https://placehold.it/50x50', name:'Lisa', uid:'0'},
@@ -19,9 +19,7 @@ class SearchContainer extends Component {
     ];*/
 
     render() {
-        console.log(this.props.search.isOpen);
-        console.log(this.props);
-        console.log(this.props.videos['-1'])
+        //console.log(this.props);
         return (
             <div className={(this.props.search.isOpen) ? "searchContainer expand" : "searchContainer close"}>
                 <SearchFilters />
