@@ -61,7 +61,7 @@ android {
             versionNameSuffix "-QA"
             resValue "string", "app_name", "Live Centre QA"
         }
-        staging {
+        stage {
             applicationIdSuffix ".stage"
             versionNameSuffix "-staging"
             resValue "string", "app_name", "Live Centre Stage"
