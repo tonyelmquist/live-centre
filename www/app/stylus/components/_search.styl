@@ -67,18 +67,34 @@
 .searchContainer.close
     bottom:100%
     
-.filterContainer
-  width:100%
+//just for the top filters
+.horizontalScroll.filters
   background-color: rgb(225, 245, 254)
+  .items
+    background-color: #fff
+  .horizontalScrollInner
+    margin: 20px
+
+//all horizontal scroll
+.horizontalScroll
+  width:100%
   text-align:center
   overflow-y: scroll
-  .filterContainerInner
-    margin:20px
-  .filters
+  white-space: nowrap;
+  .username
+    margin:2px 0
+    font-size:14px
+  .avatar
+    margin: 0 10px
+    white-space: nowrap;
+  .horizontalScrollInner
+    margin: 0 20px
+    white-space: nowrap;
+  .items
     display:inline
     margin: 0 10px;
     padding: 10px
-    background-color: #fff
+    background-color: rgb(225, 245, 254)
     border-radius: 10px
     .active
       background-color: #bce3ec

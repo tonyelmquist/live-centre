@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import SearchFilters from './SearchFilters';
 import VideoGrid from '../components/common/VideoGrid';
+import PortraitRow from '../components/common/PortraitRows';
 class SearchContainer extends Component {
     handleSearch = (keyword) => {
         console.log("searching");        
@@ -12,13 +13,21 @@ class SearchContainer extends Component {
         console.log("SELECTING VIDEO");
     };
 
-    /*const people = [
-        {img: 'https://placehold.it/50x50', name:'Lisa', uid:'0'},
-        {img: 'https://placehold.it/50x50', name:'Per', uid:'1'},
-        {img: 'https://placehold.it/50x50', name:'Ola', uid:'2'},
-    ];*/
+    
 
     render() {
+        const people = [
+            {img: "https://placehold.it/50x50",  username:"Lisa", uid:0},
+            {img: "https://placehold.it/50x50",  username:"Per", uid:1},
+            {img: "https://placehold.it/50x50",  username:"BoyGamer19", uid:2},
+            {img: "https://placehold.it/50x50",  username:"Lisa", uid:3},
+            {img: "https://placehold.it/50x50",  username:"Mari", uid:4},
+            {img: "https://placehold.it/50x50",  username:"Helene", uid:5},
+            {img: "https://placehold.it/50x50",  username:"Hans", uid:6},
+            {img: "https://placehold.it/50x50",  username:"SuperNintendoLongNameTest", uid:7},
+            {img: "https://placehold.it/50x50",  username:"Hans", uid:8},
+            {img: "https://placehold.it/50x50",  username:"Petter", uid:9},
+        ];
         //console.log(this.props);
         return (
             <div className={(this.props.search.isOpen) ? "searchContainer expand" : "searchContainer close"}>
@@ -30,9 +39,10 @@ class SearchContainer extends Component {
                 </div>
 
                 <div className="container-fluid">
-                    <h3>Suggested people</h3>
-                  
+                    <h3>Suggested people</h3>  
                 </div>
+
+                <PortraitRow people={people}/>
 
                 <div className="container-fluid">
                     <h3>Suggested Videos</h3>
