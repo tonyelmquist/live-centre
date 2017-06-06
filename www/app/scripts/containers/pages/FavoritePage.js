@@ -31,8 +31,7 @@ export default class FavoritePage extends React.Component {
                 <div className="player">
                         {/* <Player/> */}
                 </div>
-            </div>
-            
+            </div>       
         );
     }
 }

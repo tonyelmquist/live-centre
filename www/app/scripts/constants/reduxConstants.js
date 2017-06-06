@@ -22,6 +22,7 @@ class ReduxConstants {
     static get FETCH_METADATA_SENT() { return "FETCH_METADATA_SENT"; }
     static get FETCH_METADATA_FAILED() { return "FETCH_METADATA_FAILED"; }
     static get FETCH_METADATA_SUCCESS() { return "FETCH_METADATA_SUCCESS"; }
+    static get FETCH_CATEGORIES_SUCCESS() { return "FETCH_CATEGORIES_SUCCESS"; }
 
     //Video Playback
     static get VIDEO_SELECTED() { return "VIDEO_SELECTED"; }
@@ -41,6 +42,7 @@ class ReduxConstants {
     static get CHANGE_CARD_INDEX() { return "CHANGE_CARD_INDEX"; }
     static get SHOW_VIDEO_CARD() { return "SHOW_VIDEO_CARD"; }
     static get HIDE_VIDEO_CARD() { return "HIDE_VIDEO_CARD"; }
+    static get CHANGE_CARD_CATEGORY() { return "CHANGE_CARD_CATEGORY"; }
 
 }
 

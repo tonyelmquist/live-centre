@@ -19,3 +19,12 @@ export function changeCardIndex(state = 0, action){
             return state;
     }
 }
+
+export function changeCardCategory(state = '', action){
+    switch (action.type) {
+        case Actions.CHANGE_CARD_CATEGORY:
+            return action.category;
+        default:
+            return state;
+    }
+}

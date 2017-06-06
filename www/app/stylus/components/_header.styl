@@ -3,17 +3,49 @@
 }
 
 .header{
-	padding: 0 40px;
-    borderBottom: solid 1px #fff;
-    width: 100%;
-    overflow: auto;
-    backgroundColor: #212121;
+  width: 100%;
+  background-color: #212121;
+  text-transform: none !important;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  color: #fff
+}
+
+.rightMenu{
+  float:right;
+}
+
+@media (min-width: 1000px){
+  .rightMenu{
+    padding-right:20px;
+  }
+}
+
+
+#header-container *{
+  text-transform: none !important;
 }
 
 .menuItem{
-	margin: 25px 10px 35px 10px !important;
+  margin: 10px !important;
 	display:inline-block !important;
+  text-transform: lowercase !important;
 }
+//Font size of everything in header.
+#header-container button *, #header-container p{
+  font-size: 16px!important;
+}
+
+@media (min-width: 1000px){
+  .header{
+    position: relative;
+  }
+  .menuItem{
+    margin: 20px 10px 25px 20px !important;
+  }
+}
+
 .fullscreen_menu{
 	background-color: grey;	
 	height: 100vh;
@@ -22,3 +54,130 @@
 	display: block;
 	width: 100%;
 }
+
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.expandableMenu{
+  background-color: rgba(33, 33, 33, 1); 
+  position: fixed;
+  top: 48px;
+  width: 100%;
+  z-Index: 999999;
+  overflow:auto;
+  color: #fff;
+  list-style-type: none;
+}
+
+//All paragraphs(items) in menu
+.expandableMenu p{
+  color: grey;
+  padding: 20px 0 20px 40px;
+  margin: 0;
+  opacity: 1;
+}
+.closedMenu{
+  display:none;
+}
+
+//Only the links
+p.expandableMenuItem{
+  border-top: solid 0.5px rgba(255, 255, 255, .5);
+  color: #fff;
+}
+.active .expandableMenuItem {
+  background-color: rgba(0, 174, 255, .2); //#00aeff
+}
+
+//Only the dividers
+p.divider{
+  padding-top: 30px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+}
+
+.expandableMenu a{
+  color: #fff;
+  text-decoration:none;
+}
+
+.closeButton{
+  top: 20px;
+  right: 20px
+  position: absolute;
+}
+.bottomTabs{
+  position:fixed;
+  bottom: 0;
+  z-index: 999;
+  width: 100%;
+}
+.bottomTabs div{
+  background-color: #212121;
+  color: #fff;
+}
+
+// MENU BUTTON ANIMATIONS
+
+
+.animMenuIcon{
+  padding: 12px 0 12px 12px;
+  margin: 2px
+  vertical-align: middle;
+  stroke-linecap: round;
+}
+
+.animMenuIcon .bottom, .animMenuIcon .middle, .animMenuIcon .top{
+    transition: all 0.3s cubic-bezier(.02, .01, .47, 1);
+    fill: red;
+}
+
+.animMenuIcon.closed.subPage{
+  transform: scale(0.9, 1);
+  .top{
+      transform-origin: top right;
+      transform: rotate(-20deg) translate(0, -1.5px);
+  }
+  .bottom{
+      transform-origin: bottom right;
+      transform: rotate(20deg) translate(0, 1.5px);
+  }
+  .middle{
+    transform: translate(22px, 0);
+  }
+}
+
+.animMenuIcon.open{
+  .top{
+      transform-origin: center;
+      transform: rotate(-45deg) translate(-3.5px, 3.5px);
+  }
+  .bottom{
+      transform-origin: center;
+      transform: rotate(45deg) translate(-3px, -3.5px); 
+  }
+
+  .middle{
+    opacity: 0.5
+    transform: translate(22px, 0);
+  }
+
+
+}
+
+

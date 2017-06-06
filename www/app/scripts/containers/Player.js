@@ -32,7 +32,7 @@ class Player extends Component {
       <div style={styles.playerStyle}>
         <ReactPlayer
           playing={true}
-          controls={false}
+          controls={true}
           width='100%'
           height='100%'
           url={this.props.videoUrl}/>

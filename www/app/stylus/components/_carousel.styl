@@ -245,3 +245,90 @@
   min-height: 0;
   min-width: 0;
 }
+
+.heroCarousel
+  display: flex
+
+.carouselLeft
+  flex-basis: 67%
+  background-color: black
+
+.carouselRight
+  flex-basis: 33%
+  background-color: black
+  color: white
+
+.carouselRightSlider
+  height: 100%
+  overflow: hidden
+
+.carouselRightSlider ul.slick-dots
+  bottom: 10px
+
+.slick-slide img 
+  display: block;
+  width: 100%;
+
+.infoTileCTA
+  font-size: 2em
+  margin: 22px
+  font-weight: normal
+
+.carouselRight .slick-dots li.slick-active button:before, .carouselRight .slick-dots li button::before
+  color: white
+
+.carouselRight .carouselTitleAndDescription
+  width: calc(70% - 60px)
+  float: left
+  margin: 32px 0 0 0
+
+.carouselRight .slick-next:before, .carouselRight .slick-prev:before
+  font-size: 50px
+  text-shadow: 2px 2px 4px rgba(150, 150, 150, 1)
+
+.carouselRight .slick-prev 
+  left: -200%
+
+.carouselRight .slick-next
+  right: 40px
+
+.carouselTitle
+  text-overflow: ellipsis
+  overflow: hidden
+
+.carouselImageButton
+  position: absolute
+  top: 0  
+
+.carouselImageTitleAndDescription
+  position: absolute;
+  top: 30px;
+  color: white;
+  left: 120px;
+  width: 60%;
+
+.heroCarouselVideo    
+  display: block
+.heroCarouselImage 
+  display: none
+
+@media (max-width: 1024px)
+  .carouselRight .description
+    display: none
+
+@media (max-width: 800px)
+  .carouselRight
+    display: none
+  .heroCarouselVideo
+    display: none
+  .heroCarouselImage 
+    display: block
+    position: relative
+  .carouselLeft
+    flex-basis: 100%
+  .heroCarousel
+    margin-bottom: 20px
+
+
+
+

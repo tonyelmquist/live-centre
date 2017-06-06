@@ -1,7 +1,14 @@
 import Actions from '../constants/reduxConstants';
+import {REHYDRATE} from 'redux-persist/constants';
 
 function loginState(state = false, action) {
     switch (action.type) {
+        case REHYDRATE:
+            const loginState = action.payload.isUserLoggedIn;
+            if (loginState) {
+                return loginState;
+            };
+            return state;
         case Actions.LOGIN_SUCCESS:
             return true;
         case Actions.LOGOUT_SUCCESS:

@@ -1,6 +1,6 @@
 import React from 'react';
 import HomeGrid from '../Grid';
-import HeroCarousel from '../Carousel';
+import Category from '../../containers/CategoryContainer';
 
 
 const styles = {
@@ -21,18 +21,17 @@ const styles = {
   }
 };
 
+const starterSlide = 2;
+
 export default class HomePage extends React.Component {
     constructor(){
         super();
     }
-
     render(){
         return(
             <div className="slide">
-                <HeroCarousel/>
-                <HomeGrid/>               
+                <HomeGrid/>
             </div>
-            
         );
     }
 }
