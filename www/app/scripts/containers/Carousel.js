@@ -137,7 +137,7 @@ class HeroCarousel extends Component {
 
             const imageList = carouselList.map((video, i) => {
                 
-            const videoUrl = `https://www.mediabank.me/download/manifest.php?assetid=${video.assetid}`       
+            const videoUrl = `https://www.mediabank.me/download/manifest.php?assetid=${video.assetid}`;      
            // const videoUrl = `http://clips.vorwaerts-gmbh.de/VfE_html5.mp4` 
 
             const VideoWorkaround = (videoUrl) => (
