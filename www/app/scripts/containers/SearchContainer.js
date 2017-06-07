@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import SearchFilters from './SearchFilters';
 import VideoGrid from '../components/common/VideoGrid';
-import VideoGridMaterial from '../components/common/VideoGridMaterial';
+import VideoGridMaterial from '../components/common/VideoGrid';
 
 import PortraitRow from '../components/common/PortraitRows';
 class SearchContainer extends Component {
@@ -48,7 +48,11 @@ class SearchContainer extends Component {
 
                 <div className="container-fluid">
                     <h3>Suggested Videos</h3>
-                   
+                    
+                    <VideoGrid
+                        videos={this.props.videos['Uncategorized']}
+                        onSelect={this.handleSelect}
+                    />  
                 </div>
             </div>
         );
@@ -59,15 +63,7 @@ SearchContainer.propTypes = {
     dispatch: PropTypes.func.isRequired
 };
 
- <VideoGridMaterial
-                        videos={this.props.videos['Uncategorized']}
-                    />
-
-              <VideoGrid
-                        videos={this.props.videos['Uncategorized']}
-
-                        onSelect={this.handleSelect}
-                    />       
+     
 */
 
 SearchContainer.propTypes = {
