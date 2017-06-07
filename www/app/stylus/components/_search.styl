@@ -3,7 +3,7 @@
   border-top: none
   border-left: none
   border-right: none
-  font-size:14px
+  font-size:$font_s
   padding: 5px
   border-bottom: 0;
 
@@ -20,7 +20,7 @@
     transform: translate(-100%, 0)
     transition: all 0.2s $cubic
     *
-      font-size:24px!important
+      font-size: $font_xl !important
       font-weight: bold
       color: $color_ocean
       
@@ -56,8 +56,8 @@
   position:fixed
   width:100%
   right:0
-  top:48px
-  bottom:72px
+  top:$top_offset
+  bottom:$bottom_offset
   z-index: 999
   overflow:auto
   background-color:white
@@ -83,7 +83,7 @@
   white-space: nowrap;
   .username
     margin:2px 0
-    font-size:14px
+    font-size:$font_s
   .avatar
     margin: 0 10px
     white-space: nowrap;

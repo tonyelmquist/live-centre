@@ -16,7 +16,7 @@
   float:right;
 }
 
-@media (min-width: 1000px){
+@media (min-width: $big_screen){
   .rightMenu{
     padding-right:20px;
   }
@@ -39,7 +39,7 @@
 #header-container button *, #header-container p{
 }
 
-@media (min-width: 1000px){
+@media (min-width: $big_screen){
   .header{
     position: relative;
   }
@@ -78,7 +78,7 @@
 .expandableMenu{
   background-color: $color_ocean;
   position: fixed;
-  bottom: 72px;
+  bottom: $bottom_offset;
   width: 100%;
   right: 0;
   z-Index: 999999;
@@ -137,7 +137,6 @@ p.divider{
 
 .animMenuIcon{
   padding: 0 0 4px 0;
-  margin: 2px
   vertical-align: middle;
   stroke-linecap: round;
 }
