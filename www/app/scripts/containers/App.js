@@ -38,7 +38,7 @@ class App extends Component {
                     <Header/>
 
                     <div className="main">
-                        <SearchContainer/> 
+                        <SearchContainer/>
                         <div className="mainContent">
                             <Route exact path="/Home" component={HomePage}/>
                             <Route path="/Login" component={Login}/>
@@ -64,7 +64,8 @@ const mapStateToProps = (state) => {
     return {
         loginState: state.isUserLoggedIn,
         sidebarState: state.isSidebarVisible,
-        state_all: state
+        state_all: state,
+        
 
     };
 };

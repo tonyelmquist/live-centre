@@ -48,6 +48,11 @@ class ReduxConstants {
     static get HIDE_VIDEO_CARD() { return "HIDE_VIDEO_CARD"; }
     static get CHANGE_CARD_CATEGORY() { return "CHANGE_CARD_CATEGORY"; }
 
+    //Overlay
+    static get SHOW_OVERLAY() { return "SHOW_OVERLAY"; }
+    static get HIDE_OVERLAY() { return "HIDE_OVERLAY"; }
+
+
 }
 
 export default ReduxConstants;

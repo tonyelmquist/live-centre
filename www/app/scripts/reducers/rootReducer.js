@@ -8,12 +8,14 @@ import dataOverlayReducer from './dataOverlayReducer';
 import {changeNavIndex, headerMenuState} from './navReducer';
 import {search} from './searchReducer';
 import {showVideoCard, changeCardIndex, changeCardCategory} from './videoCardReducer';
+import overlayReducer from './productOverlayReducer';
 
 const rootReducer = combineReducers({
     lang: langReducer,
     isRegistrationVisible: registrationDialog,
     isUserLoggedIn: loginState,
     index: changeNavIndex,
+    overlay: combineReducers({isVisible: overlayReducer}),
     videoCard: combineReducers({isVisible: showVideoCard, index: changeCardIndex, category: changeCardCategory}),
     videos: videosReducer,
     playback: playbackReducer,

@@ -7,6 +7,7 @@ import Player from './Player';
 import {changeScore} from '../actions/score';
 import {changeCardIndex, showVideoCard, hideVideoCard, changeCardCategory} from '../actions/videoCard';
 import CategoryRow from '../components/CategoryRow';
+import Overlay from '../containers/OverlayContainer';
 
 class HomeGrid extends Component {
 
@@ -55,8 +56,9 @@ class HomeGrid extends Component {
     render() {
         return (
             <div>
-                {!this.props.selected && <HeroCarousel/>}
-                {this.props.selected && <Player videoUrl={this.props.videoUrl}/>}
+                {!this.props.overlayVisible && <HeroCarousel/>}
+                {/* {this.props.selected && <Player videoUrl={this.props.videoUrl}/>} */}
+                {this.props.overlayVisible && <Overlay />}
                 {this.createVideoList(this.props.videos)}
             </div>
         );
@@ -72,8 +74,14 @@ HomeGrid.propTypes = {
     videos: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => {
-    return {videoUrl: state.playback.url, selected: state.playback.isSelected, videoCard: state.videoCard, categories: state.videos.categories, videos: state.videos.items};
-};
+const mapStateToProps = (state) => ({
+    videoUrl: state.playback.url,
+    selected: state.playback.isSelected,
+    videoCard: state.videoCard,
+    categories: state.videos.categories,
+    videos: state.videos.items,
+    overlayVisible: state.overlay.isVisible
+});
+
 
 export default connect(mapStateToProps)(HomeGrid);
