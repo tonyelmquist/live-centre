@@ -6,20 +6,38 @@ class MasonryTiles extends Component {
 
     renderTiles = () =>
         this.props.videos.map((video)=>{
-            return (
-                <div className="tile" key={video.assetid}>
-                    <div className="masonry_tile_inner">
-                        <img src={video.thumbnail}/>
-                        <div className="tile-data">
-                            <p>{video.title}</p>
-                            <p className="metadata"> {video.category}, {video.company}</p>
+
+           // console.log("map",video);
+           // console.log("filter", this.props.filter);
+
+            if(!this.props.filter || this.filterVideo(this.props.filter, video)){
+                console.log(true);
+                return(
+                    <div className="tile" key={video.assetid}>
+                        <div className="masonry_tile_inner">
+                            <img src={video.thumbnail}/>
+                            <div className="tile-data">
+                                <p>{video.title}</p>
+                                <p className="metadata"> {video.category}, {video.company}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            );
-
+                );
+            }
 
         });
+
+    //Looks at all metadata in video. 
+    filterVideo(filter, video){
+
+        for(let key in video){
+
+            if(video[key].includes(filter)){
+                return true;
+            } 
+        }
+        return false;
+    }
 
     render() {
         const masonryOptions = {

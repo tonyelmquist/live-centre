@@ -41,6 +41,7 @@ class ReduxConstants {
     //Search
     static get TOGGLE_SEARCH() {return "TOGGLE_SEARCH";}
     static get SEARCH_KEYWORD() {return "SEARCH_KEYWORD";}
+    static get EMPTY_SEARCH() {return "EMPTY_SEARCH";}
 
     //Video Card
     static get CHANGE_CARD_INDEX() { return "CHANGE_CARD_INDEX"; }

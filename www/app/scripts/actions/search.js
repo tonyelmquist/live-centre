@@ -6,3 +6,6 @@ export function toggleSearch(){
 export function searchKeyword(keyword){
 	return {type: Actions.SEARCH_KEYWORD, keyword};
 }
+export function emptySearch(){
+	return {type: Actions.EMPTY_SEARCH};
+}

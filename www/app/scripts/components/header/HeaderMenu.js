@@ -46,7 +46,7 @@ const HeaderMenu = ({pageItems, searchState, categoryItems, handleSearch, openCl
 						className="logo"
 						label="IMR"
 					/>
-					<SearchInput searchState={searchState}/> 
+					<SearchInput handleSearch={handleSearch} searchState={searchState}/> 
 				</div>
 			</MediaQuery>
 

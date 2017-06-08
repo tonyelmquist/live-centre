@@ -3,7 +3,7 @@ import Logged from './Logged';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {changeNavMenuIndex, toggleMenu, showMenu, hideMenu} from '../actions/navigation';
-import {searchKeyword, toggleSearch} from '../actions/search.js';
+import {searchKeyword, toggleSearch, emptySearch} from '../actions/search.js';
 
 import MediaQuery from 'react-responsive';
 
@@ -59,9 +59,19 @@ class Header extends Component {
   openCloseSearch = () => {
     this.props.dispatch(toggleSearch());
   }
-  handleSearch = (keyword) =>{
-    this.props.dispatch(searchKeyword(keyword));
+  handleSearch = (event) => {
+    const keyword = event.target.value;
+    if(keyword.length>0){
+      this.props.dispatch(searchKeyword(event.target.value));
+    }
+     if(keyword.length<=0){
+      this.props.dispatch(emptySearch());
+    }
   }
+
+/*  emptySearch = () => {
+
+  }*/
 
   isMenuOpen = () => {
     return this.props.menuIsOpen;
