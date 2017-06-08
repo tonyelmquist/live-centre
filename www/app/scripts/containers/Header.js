@@ -146,7 +146,8 @@ Header.propTypes = {
     dispatch: PropTypes.func.isRequired,
     menuIsOpen: PropTypes.bool,
     history: PropTypes.object,
-    categories: PropTypes.array
+    categories: PropTypes.array,
+    search: PropTypes.object
 };
 
 const mapStateToProps = (state) => {

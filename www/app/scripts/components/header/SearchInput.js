@@ -21,4 +21,8 @@ class SearchInput extends Component{
 	
 }
 
+SearchInput.propTypes = {
+	searchState: PropTypes.object
+};
+
 export default SearchInput;

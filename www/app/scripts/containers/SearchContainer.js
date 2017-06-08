@@ -65,6 +65,7 @@ class SearchContainer extends Component {
 
 SearchContainer.propTypes = {
     videos : PropTypes.object.isRequired,
+    search: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({

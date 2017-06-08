@@ -72,7 +72,10 @@ HeaderMenu.propTypes = {
 	isMenuOpen: PropTypes.func,
 	locationName: PropTypes.string,
 	isSubPage: PropTypes.bool,
-	changeRoute: PropTypes.func
+	changeRoute: PropTypes.func,
+	searchState: PropTypes.object,
+	handleSearch: PropTypes.func,
+	openCloseSearch: PropTypes.func
 };
 
 export default HeaderMenu;
