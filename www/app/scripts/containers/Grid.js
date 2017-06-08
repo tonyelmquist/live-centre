@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Grid, Row} from 'react-flexbox-grid';
@@ -56,10 +57,12 @@ class HomeGrid extends Component {
     render() {
         return (
             <div>
-                {!this.props.overlayVisible && <HeroCarousel/>}
+                {this.props.overlayVisible ? <Overlay /> : <HeroCarousel/>}
+
                 {/* {this.props.selected && <Player videoUrl={this.props.videoUrl}/>} */}
-                {this.props.overlayVisible && <Overlay />}
-                {this.createVideoList(this.props.videos)}
+                <div className={this.props.overlayVisible ? 'hidden': ''}>
+                    {this.createVideoList(this.props.videos)}
+                </div>
             </div>
         );
     }
