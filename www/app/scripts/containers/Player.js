@@ -8,6 +8,7 @@ import Fullscreenable from 'react-fullscreenable';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Fullscreen from 'material-ui/svg-icons/navigation/fullscreen';
 import FullscreenExit from 'material-ui/svg-icons/navigation/fullscreen-exit';
+// import screenfull from 'screenfull';
 
 const styles = {
   playerStyle: {
@@ -38,12 +39,12 @@ class Player extends Component {
           url={this.props.videoUrl}/>
         <DataOverlay/>
         <DraggableSpot/>
-        <FloatingActionButton
+        {/* <FloatingActionButton
           mini={true}
           secondary={true}
           style={styles.fullscreenButton}
           onClick={this.props.toggleFullscreen}>{ this.props.isFullscreen ? <FullscreenExit /> : <Fullscreen /> }
-        </FloatingActionButton>
+        </FloatingActionButton> */}
       </div>
     );
   }
@@ -57,7 +58,7 @@ Player.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    isFullscreen: state.fullScreen,
+    isFullscreen: state.playback.isFullscreen,
     videoUrl: state.playback.url};
 };
 

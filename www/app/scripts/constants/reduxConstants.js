@@ -27,6 +27,8 @@ class ReduxConstants {
     //Video Playback
     static get VIDEO_SELECTED() { return "VIDEO_SELECTED"; }
     static get INVALIDATE_SELECTED() { return "INVALIDATE_SELECTED"; }
+    static get ENTER_FULL_SCREEN() {return "ENTER_FULL_SCREEN";}
+    static get EXIT_FULL_SCREEN() {return "EXIT_FULL_SCREEN";}
 
     //Data Overlay
     static get CHANGE_SCORE() { return "CHANGE_SCORE"; }

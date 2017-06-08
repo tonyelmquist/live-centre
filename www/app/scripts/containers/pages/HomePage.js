@@ -25,15 +25,9 @@ const styles = {
 const starterSlide = 2;
 
 export default class HomePage extends React.Component {
-
-    constructor(){
-        super();
-    }
-
     render(){
         return(
             <div className="slide">
-                
                 <HomeGrid/>
             </div>
         );
