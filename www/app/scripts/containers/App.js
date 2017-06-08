@@ -62,7 +62,8 @@ const mapStateToProps = (state) => {
     return {
         loginState: state.isUserLoggedIn,
         sidebarState: state.isSidebarVisible,
-        state_all: state
+        state_all: state,
+        
 
     };
 };
