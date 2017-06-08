@@ -22,18 +22,6 @@ const styles = {
     }
 };
 
-const styles = {
-    mediumIcon: {
-        width: 36,
-        height: 36
-    },
-    medium: {
-        width: 64,
-        height: 64,
-        padding: 8
-    }
-};
-
 class Item extends Component {
     _handlePlay = (assetid) => {
         this.props.dispatch(showOverlay());
