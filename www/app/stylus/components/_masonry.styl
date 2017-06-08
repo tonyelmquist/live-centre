@@ -1,0 +1,46 @@
+
+.masonry_tiles 
+  .tile
+    width:100%
+    .masonry_tile_inner
+      margin:10px
+    img
+      width:100%
+      border-radius: 20px
+    .tile-data
+      margin:5px 
+      width:100%
+      overflow:hidden
+    p
+      font-size: $font_m
+      margin: 0;
+      font-weight:bold
+      color: $color_ocean
+    p.metadata
+      font-weight:normal
+      font-size: $font_xs
+      color: #000
+      
+@media (min-width: 400px)
+  .masonry_tiles 
+    .tile
+      width:50%
+@media (min-width: 500px)
+  .masonry_tiles 
+    .tile
+      width:33.3%
+@media (min-width: 1000px)
+  .masonry_tiles 
+    .tile
+      width:25%
+      .masonry_tile_inner
+        margin:10px 20px 20px 20px
+      p
+        margin:5px 0 5px 0
+      p.metadata
+        font-size: $font_m
+          
+@media (min-width: 1500px)
+  .masonry_tiles 
+    .tile
+      width:25%
