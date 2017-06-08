@@ -16,13 +16,14 @@ class SearchInput extends Component{
 				/>
 
 			</div>
-		)
+		);
 	}
 	
 }
 
 SearchInput.propTypes = {
-	searchState: PropTypes.object
+	searchState: PropTypes.object,
+	handleSearch: PropTypes.func
 };
 
 export default SearchInput;

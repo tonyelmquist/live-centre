@@ -38,7 +38,7 @@ class HomeGrid extends Component {
             for(const key in videos){
                 videoList.push((
                     <CategoryRow
-                        key={key}
+                        key={`categoryRow-${key}`}
                         handleCardIndex={this._changeCardIndex}
                         handleCardCategory={this._changeCardCategory}
                         showVideoCard={this._showVideoCard}
@@ -71,7 +71,8 @@ HomeGrid.propTypes = {
     selected: PropTypes.bool.isRequired,
     videoCard: PropTypes.object,
     categories: PropTypes.array,
-    videos: PropTypes.object.isRequired
+    videos: PropTypes.object.isRequired,
+    overlayVisible: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({

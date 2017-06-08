@@ -1,17 +1,22 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-component';
 
+/*  Uses masonry tiles from https://masonry.desandro.com 
+    react version: https://github.com/eiriklv/react-masonry-component#basic-usage
+    
+    This component takes in an array of videos and returns a div with tiles, 
+    they will float and align properly even with different heights. 
+    If it recieves a filter as prop it will filter the array based on the tiles. 
+*/
 class MasonryTiles extends Component {
-    //https://masonry.desandro.com
+    //
 
     renderTiles = () =>
         this.props.videos.map((video)=>{
 
-           // console.log("map",video);
-           // console.log("filter", this.props.filter);
-
-            if(!this.props.filter || this.filterVideo(this.props.filter, video)){
-                console.log(true);
+            //If a filter string is not present show the tile, if not, try to match the filter
+            if(!this.props.filter || this.matchWithFilter(this.props.filter, video)){
                 return(
                     <div className="tile" key={video.assetid}>
                         <div className="masonry_tile_inner">
@@ -27,11 +32,10 @@ class MasonryTiles extends Component {
 
         });
 
-    //Looks at all metadata in video. 
-    filterVideo(filter, video){
+    //Looks at _all_ metadata in video. 
+    matchWithFilter(filter, video){
 
-        for(let key in video){
-
+        for(const key in video){
             if(video[key].includes(filter)){
                 return true;
             } 
@@ -61,9 +65,10 @@ class MasonryTiles extends Component {
         );
     };
 };
-/*
-MasonryTiles.propTypes = {
 
-};*/
+MasonryTiles.propTypes = {
+    videos : PropTypes.array.isRequired,
+    filter : PropTypes.string.isRequired
+};
 
 export default MasonryTiles;

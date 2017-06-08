@@ -41,7 +41,7 @@ const AnimatedSearchIcon = ({searchState}) => {
 	const color = "black";
 	const invertColor = "white";
 	return(
-		<Motion style={_styles(searchState().isOpen)}>
+		<Motion style={_styles(searchState.isOpen)}>
 			{(style) =>
 				<svg className="animatedSearchIcon"  style={svgStyle} height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
 					<circle 

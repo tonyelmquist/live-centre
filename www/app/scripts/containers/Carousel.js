@@ -153,7 +153,7 @@ class HeroCarousel extends Component {
             );
 
                 return (
-                    <div style={styles.carousel}>
+                    <div key={video.assetid} style={styles.carousel}>
                         <div className='heroCarouselImage' key={i}>
                             <img src={video.thumbnail}/>
                             <div className="carouselImageButton">
@@ -185,7 +185,7 @@ class HeroCarousel extends Component {
 
             const infoTiles = carouselList.map((video, i) => {
                 return (
-                    <div key={i} className='infoTile'>
+                    <div key={video.assetid} className='infoTile'>
                         <h4 className='infoTileCTA'>Watch now</h4>
                         <IconButton
                             iconStyle={styles.largeIcon}

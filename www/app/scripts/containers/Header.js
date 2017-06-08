@@ -57,6 +57,7 @@ class Header extends Component {
     this.props.dispatch(toggleMenu());
   }
   openCloseSearch = () => {
+    this.props.dispatch(emptySearch());
     this.props.dispatch(toggleSearch());
   }
   handleSearch = (event) => {
@@ -69,18 +70,18 @@ class Header extends Component {
     }
   }
 
-/*  emptySearch = () => {
-
-  }*/
+  emptySearch = () => {
+    this.props.dispatch(emptySearch());
+  }
 
   isMenuOpen = () => {
     return this.props.menuIsOpen;
   }
 
-  searchState = () => {
+ /* searchState = () => {
     return this.props.search;
   }
-
+*/
   //Dont know if this is the best way to get the pathname. but it sure is the easiest.. 
   getLocationName = () => {
     const pathname = this.props.history.location.pathname;
@@ -104,6 +105,7 @@ class Header extends Component {
     return false;
   }
 
+
   render(){
     this.categoryItems();
 
@@ -119,7 +121,7 @@ class Header extends Component {
             changeRoute={this.changeRoute}
             openCloseSearch={this.openCloseSearch}
             handleSearch={this.handleSearch}
-            searchState={this.searchState}
+            searchState={this.props.search}
           />
           <TabMenu
             pageItems={this.getPageItems()}

@@ -7,34 +7,25 @@ import MasonryTiles from '../components/common/MasonryTiles';
 
 import PortraitRow from '../components/common/PortraitRows';
 class SearchContainer extends Component {
-    /*handleSearch = (keyword) => {
-        console.log("searching");        
-    };
-
-    handleSelect = (value) => {
-        console.log("SELECTING VIDEO");
-    };*/
-
-
     mergeVideoArray(video){
         const merged = [];
-        for(let key in video){
-            merged.push.apply(merged, video[key]);
+        for(const key in video){
+            merged.push(...video[key]);
         }
         return merged;
-    }
+    };
 
     render() {
         const people = [
-            {img: "https://placehold.it/50x50",  username:"Lisa", uid:0},
+            {img: "https://placehold.it/50x50",  username:"Lisa1", uid:0},
             {img: "https://placehold.it/50x50",  username:"Per", uid:1},
             {img: "https://placehold.it/50x50",  username:"BoyGamer19", uid:2},
-            {img: "https://placehold.it/50x50",  username:"Lisa", uid:3},
+            {img: "https://placehold.it/50x50",  username:"Lisa2", uid:3},
             {img: "https://placehold.it/50x50",  username:"Mari", uid:4},
             {img: "https://placehold.it/50x50",  username:"Helene", uid:5},
-            {img: "https://placehold.it/50x50",  username:"Hans", uid:6},
+            {img: "https://placehold.it/50x50",  username:"Hans1", uid:6},
             {img: "https://placehold.it/50x50",  username:"SuperNintendoLongNameTest", uid:7},
-            {img: "https://placehold.it/50x50",  username:"Hans", uid:8},
+            {img: "https://placehold.it/50x50",  username:"Hans2", uid:8},
             {img: "https://placehold.it/50x50",  username:"Petter", uid:9},
         ];
 

@@ -41,7 +41,7 @@ const HeaderMenu = ({pageItems, searchState, categoryItems, handleSearch, openCl
 		<div className="header" >
 
 			<MediaQuery maxWidth={1000}>
-	          	<div className={(searchState().isOpen)? "mobile_searchbar open" : "mobile_searchbar closed"}>
+	          	<div className={(searchState.isOpen)? "mobile_searchbar open" : "mobile_searchbar closed"}>
 		          	<FlatButton
 						className="logo"
 						label="IMR"
