@@ -17,10 +17,22 @@ const styles ={
   }
 };
 
+
+
+
 const Overlay = (props) => {
+    const _renderContent = () => {
+        const max_elements = 50;
+        const zeros_array = new Array(max_elements).fill(0);
+        console.log(zeros_array);
+        return zeros_array.map((elem, index)=> (
+            <h1 key={index}>Content</h1>
+        ));
+    };
+
     return (
         <div className='fs-overlay'>
-            <div className='header'>
+            <div className='overlay-header'>
                 <IconButton
                     iconStyle={styles.mediumIcon}
                     style={styles.medium}>
@@ -28,13 +40,15 @@ const Overlay = (props) => {
                 </IconButton>
                 <IconButton
                     iconStyle={styles.mediumIcon}
-                    style={styles.medium}>
+                    style={styles.medium}
+                    onTouchTap={() => document.getElementsByClassName("fs-overlay")[0].style.display = "none"}>
                     <Close hoverColor={red500}/>
                 </IconButton>
 
-
             </div>
-            {props.children}
+            {/* {_renderContent()} */}
+            {/* {props.children} */}
+
         </div>
     );
 };

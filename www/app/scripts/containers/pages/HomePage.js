@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeGrid from '../Grid';
 import Category from '../../containers/CategoryContainer';
+import Overlay from '../../components/common/Overlay';
 
 
 const styles = {
@@ -24,12 +25,16 @@ const styles = {
 const starterSlide = 2;
 
 export default class HomePage extends React.Component {
+
     constructor(){
         super();
     }
+
     render(){
         return(
             <div className="slide">
+                {/* <span onTouchTap={() => document.getElementsByClassName("fs-overlay")[0].style.display = "block"}>OPEN</span>
+                <Overlay/> */}
                 <HomeGrid/>
             </div>
         );

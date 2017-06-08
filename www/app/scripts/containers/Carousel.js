@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import ReactPlayer from 'react-player';
+import { DefaultPlayer as Video } from 'react-html5video';
+import 'react-html5video/dist/styles.css';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import FontIcon from 'material-ui/FontIcon';
@@ -8,6 +9,7 @@ import {grey800} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
 import {videoSelected, invalidateSelected} from '../actions/video';
+
 
 const FEATURED_CATEGORY = "Uncategorized";
 
@@ -41,6 +43,9 @@ const styles = {
         height: 120,
         padding: 30,
         float: 'left'
+    },
+    debugTitle: {
+        color: 'white'
     }
 };
 
@@ -131,6 +136,22 @@ class HeroCarousel extends Component {
             // .get(FEATURED_CATEGORY);
 
             const imageList = carouselList.map((video, i) => {
+                
+            const videoUrl = `https://www.mediabank.me/download/manifest.php?assetid=${video.assetid}`;      
+           // const videoUrl = `http://clips.vorwaerts-gmbh.de/VfE_html5.mp4` 
+
+            const VideoWorkaround = (videoUrl) => (
+            <div dangerouslySetInnerHTML={{ __html: `
+                <video
+                muted
+                autoplay
+                playsinline
+                src="${videoUrl}"
+                />
+            ` }}
+            />
+            );
+
                 return (
                     <div style={styles.carousel}>
                         <div className='heroCarouselImage' key={i}>
@@ -152,13 +173,11 @@ class HeroCarousel extends Component {
                             </div>
                         </div>
                         <div className='heroCarouselVideo'>
-                            <ReactPlayer
-                                playing={true}
-                                controls={false}
-                                volume={0}
-                                width='100%'
-                                height='100%'
-                                url={`https://www.mediabank.me/download/manifest.php?assetid=${video.assetid}`}/>
+                            <Video autoPlay playsInline muted
+                                    controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
+                                    poster={video.thumbnail}>
+                                    <source src={videoUrl}/>
+                            </Video>
                         </div>
                     </div>
                 );
