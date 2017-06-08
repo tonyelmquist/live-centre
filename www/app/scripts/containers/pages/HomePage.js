@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeGrid from '../Grid';
 import Category from '../../containers/CategoryContainer';
+import Overlay from '../../containers/OverlayContainer';
 
 
 const styles = {
@@ -24,12 +25,15 @@ const styles = {
 const starterSlide = 2;
 
 export default class HomePage extends React.Component {
+
     constructor(){
         super();
     }
+
     render(){
         return(
             <div className="slide">
+                
                 <HomeGrid/>
             </div>
         );

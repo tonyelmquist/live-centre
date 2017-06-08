@@ -28,17 +28,15 @@ import { MemoryRouter, Route, Link } from 'react-router';
 
 
 class App extends Component {
-
-
     render() {
 
         return (
             <MemoryRouter initialEntries={[ '/Home' ]}>
                 <div>
                     <Header/>
-
                     <div className="main">
-                        <SearchContainer/> 
+                        {/*this.props.state_all.search.isOpen ? <SearchContainer/>  : <div></div>*/}
+                        <SearchContainer/>
                         <div className="mainContent">
                             <Route exact path="/Home" component={HomePage}/>
                             <Route path="/Login" component={Login}/>
@@ -64,7 +62,8 @@ const mapStateToProps = (state) => {
     return {
         loginState: state.isUserLoggedIn,
         sidebarState: state.isSidebarVisible,
-        state_all: state
+        state_all: state,
+        
 
     };
 };

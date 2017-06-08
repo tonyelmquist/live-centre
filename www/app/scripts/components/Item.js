@@ -8,6 +8,19 @@ import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
 import Info from 'material-ui/svg-icons/action/info';
 import {amber300, yellow500, blue500, fullWhite } from 'material-ui/styles/colors';
 import {videoSelected, invalidateSelected} from '../actions/video';
+import {showOverlay, hideOverlay} from '../actions/overlay';
+
+const styles = {
+    mediumIcon: {
+        width: 36,
+        height: 36
+    },
+    medium: {
+        width: 64,
+        height: 64,
+        padding: 8
+    }
+};
 
 const styles = {
     mediumIcon: {
@@ -23,9 +36,8 @@ const styles = {
 
 class Item extends Component {
     _handlePlay = (assetid) => {
-        this
-            .props
-            .dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
+        this.props.dispatch(showOverlay());
+        this.props.dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
     }
 
     render() {

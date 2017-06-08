@@ -1,25 +1,24 @@
-import React from "react";
+import React, {Component} from 'react';
+
 import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
-const SearchInput = ({searchState}) => {
 
-	return(
-		<div 
-			className="searchInput inline">
+class SearchInput extends Component{
 
-			<input 
-				name="search"
-				type="text" 
-				placeholder="Jeg vil se..."
-				autoFocus
-			/>
+	render(){
+		return(
+			<div className="searchInput inline">
+				<input 
+					name="search"
+					type="text" 
+					placeholder="Jeg vil se..."
+					onChange={this.props.handleSearch}
+				/>
 
-		</div>
-	);
-};
-
-SearchInput.propTypes = {
-	searchState: PropTypes.object
-};
+			</div>
+		)
+	}
+	
+}
 
 export default SearchInput;

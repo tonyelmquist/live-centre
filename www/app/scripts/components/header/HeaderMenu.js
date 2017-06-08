@@ -46,7 +46,7 @@ const HeaderMenu = ({pageItems, searchState, categoryItems, handleSearch, openCl
 						className="logo"
 						label="IMR"
 					/>
-					<SearchInput searchState={searchState}/> 
+					<SearchInput handleSearch={handleSearch} searchState={searchState}/> 
 				</div>
 			</MediaQuery>
 
@@ -72,10 +72,7 @@ HeaderMenu.propTypes = {
 	isMenuOpen: PropTypes.func,
 	locationName: PropTypes.string,
 	isSubPage: PropTypes.bool,
-	changeRoute: PropTypes.func,
-	searchState: PropTypes.object,
-	handleSearch: PropTypes.func,
-	openCloseSearch: PropTypes.func
+	changeRoute: PropTypes.func
 };
 
 export default HeaderMenu;

@@ -1,4 +1,6 @@
- .trapezoid 
+@import '../constants/_variables.styl'
+
+.trapezoid
 	border-top: 32px solid rgba(255,0,0,.5)
 	border-right: 16px solid transparent
 	height: 0
@@ -6,3 +8,26 @@
 	position: absolute
 	bottom: 0
 	z-index: 2147483647
+
+.fs-overlay {
+    position: absolute /* Sit on top of the page content */
+    display: block /* Hidden by default */
+    width: 100% /* Full width (cover the whole page) */
+    min-height: 100% /* Full height (cover the whole page) */
+    top:0
+    left: 0
+    background-color: white
+    z-index: 100 /* Specify a stack order in case you're using a different order for other elements*/
+    .overlay-header {
+        // margin-top: 48px
+        display:flex
+        justify-content: space-between
+    }
+}
+
+@media (min-width: $big_screen){
+    .fs-overlay .overlay-header {
+        // margin:0 20px
+        // margin-top:81px
+    }
+}

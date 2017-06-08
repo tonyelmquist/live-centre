@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import SearchIcon from 'material-ui/svg-icons/action/search';
 import MediaQuery from 'react-responsive';
 import IconButton from 'material-ui/IconButton';
@@ -19,11 +18,6 @@ const SearchBar = ({searchState, openCloseSearch}) => {
       </MediaQuery>
 
     );
-};
-
-SearchBar.propTypes = {
-    searchState: PropTypes.object,
-    openCloseSearch: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
