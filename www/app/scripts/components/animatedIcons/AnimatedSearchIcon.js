@@ -42,7 +42,7 @@ const AnimatedSearchIcon = ({searchState}) => {
 	const invertColor = "white";
 	return(
 		<Motion style={_styles(searchState().isOpen)}>
-			{style =>
+			{(style) =>
 				<svg className="animatedSearchIcon"  style={svgStyle} height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
 					<circle 
 						className="circle" 
@@ -80,10 +80,9 @@ const AnimatedSearchIcon = ({searchState}) => {
 		</Motion>
 	);
 };
-/*
-AnimatedMenuIcon.propTypes = {
-    isMenuOpen: PropTypes.function,
-    isSubPage: PropTypes.string,
-};*/
+
+AnimatedSearchIcon.propTypes = {
+    searchState: PropTypes.object
+};
 
 export default AnimatedSearchIcon;

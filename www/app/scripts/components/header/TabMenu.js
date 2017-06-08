@@ -34,7 +34,10 @@ const TabMenu = ({pageItems, changeRoute, isMenuOpen, isSubPage, openCloseMenu})
 
 TabMenu.propTypes = {
 	pageItems: PropTypes.array,
-	changeRoute: PropTypes.func.isRequired
+	changeRoute: PropTypes.func.isRequired,
+	openCloseMenu: PropTypes.func,
+	isMenuOpen: PropTypes.func,
+	isSubPage: PropTypes.bool,
 };
 
 export default TabMenu;

@@ -7,7 +7,7 @@ const SearchFilters = () => {
         if(filters.length > 0){
             return filters.map((item) =>
                     <div key={item} 
-                    onTouchTap={()=>{console.log("Execute something")}} 
+                    onTouchTap={()=>{console.log("Execute something");}}
                     className="items">
                         {item}
                     </div>

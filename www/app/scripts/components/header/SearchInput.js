@@ -18,4 +18,8 @@ const SearchInput = ({searchState}) => {
 	);
 };
 
+SearchInput.propTypes = {
+	searchState: PropTypes.object
+};
+
 export default SearchInput;
