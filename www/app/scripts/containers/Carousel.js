@@ -9,6 +9,7 @@ import {grey800} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
 import {videoSelected, invalidateSelected} from '../actions/video';
+import {showOverlay, hideOverlay} from '../actions/overlay';
 
 
 const FEATURED_CATEGORY = "Uncategorized";
@@ -60,9 +61,8 @@ class HeroCarousel extends Component {
     }
 
     _handlePlay = (assetid) => {
-        this
-            .props
-            .dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
+        this.props.dispatch(showOverlay());
+        this.props.dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
     }
 
     syncLeft(currentSlide) {
@@ -143,7 +143,6 @@ class HeroCarousel extends Component {
                 return (
                     <div key={video.assetid} style={styles.carousel}>
                         <div className='heroCarouselImage' key={i}>
-                            <img src={video.thumbnail}/>
                             <div className="carouselImageButton">
                                 <IconButton
                                     iconStyle={styles.largeIcon}
@@ -156,8 +155,7 @@ class HeroCarousel extends Component {
                                 <h4 className='carouselImageTitle'>{video.title}</h4>
                                 <p className='imageDescription'>He says he's found the main computer to power
                                     the tractor beam that's holding the ship here. He'll try to make the precise
-                                    location appear on the monitor. The tractor beam is coupled to the main reactor
-                                    in seven locations.</p>
+                                    location appear on the monitor.</p>
                             </div>
                         </div>
                         <div className='heroCarouselVideo'>
@@ -185,8 +183,7 @@ class HeroCarousel extends Component {
                             <h4 className='carouselTitle'>{video.title}</h4>
                             <p className='description'>He says he's found the main computer to power the
                                 tractor beam that's holding the ship here. He'll try to make the precise
-                                location appear on the monitor. The tractor beam is coupled to the main reactor
-                                in seven locations.</p>
+                                location appear on the monitor.</p>
                         </div>
                     </div>
                 );
