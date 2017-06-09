@@ -1,3 +1,4 @@
+@import '../constants/_variables.styl';
 // SEARCH  
 .searchInput input
   border-top: none
@@ -6,30 +7,32 @@
   font-size:$font_s
   padding: 5px
   border-bottom: 0;
+  background-color:transparent
 
 .searchInput input:active, .searchInput input:focus
   outline: none
   //border-bottom: solid 1px rgba(000, 000, 000, 0.5)
   color: #000
 
-.mobile_searchbar
+//For all search input fields
+.searchInput
+  border-bottom: solid 1px rgba(000, 000, 000, 0.2)
+  input
+    opacity: 1
+//For mobile
+.expandable_searchbar
   .logo
     position: absolute!important
     padding: 5px!important
     opacity: 0!important
     transform: translate(-100%, 0)
     transition: all 0.2s $cubic
-    *
-      font-size: $font_xl !important
-      font-weight: bold
-      color: $color_ocean
-      
+    
   .searchInput
-    display:blockx
+    display:block
     position: absolute
     margin:10px 5px 5px 20px
     opacity: 1
-    border-bottom: solid 1px rgba(000, 000, 000, 0.2)
     width: 60%
     max-width: 250px
     opacity: 1
@@ -37,9 +40,9 @@
     transform: translate(0, 0)
     input
       transition: all 0.3s $cubic
-      opacity: 1
+      
 
-.mobile_searchbar.closed
+.expandable_searchbar.closed
   .logo
     opacity: 1!important
     transform: translate(0, 0)
@@ -67,9 +70,13 @@
 .searchContainer.close
     bottom:100%
 
+@media (min-width: $big_screen)
+  .searchContainer
+    top: $top_offset_desktop
+    bottom: $bottom_offset_desktop
 
 //just for the top filters
-.horizontalScroll.filters
+.filterContainer.horizontalScroll
   background-color: rgb(225, 245, 254)
   .items
     background-color: #fff
@@ -85,6 +92,7 @@
   .username
     margin:2px 0
     font-size:$font_s
+    overflow:hidden
   .avatar
     margin: 0 10px
     white-space: nowrap;
@@ -99,3 +107,46 @@
     border-radius: 10px
     .active
       background-color: #bce3ec
+
+//Remove horizontal scrolling on desktop  >600px
+//Change background color back to transparent.     
+@media (min-width: 600px)
+  .horizontalScroll
+    overflow:auto
+    background-color: transparent
+    .horizontalScrollInner
+      white-space:normal
+      margin: 0
+      padding: 0 2rem
+      text-align:left
+  .filterContainer.horizontalScroll
+    background-color: transparent
+    .items
+      background-color: rgb(225, 245, 254)
+      display:inline-block
+      margin:10px
+    .horizontalScrollInner
+      margin: 0
+      white-space:normal
+ 
+//Overriding material ui raised button  
+.filterButtons
+  margin-right: 12px
+  span
+    text-transform: capitalize !important
+
+.filterButtons.active
+    button
+      background-color: $color_ocean !important
+    span
+      color: #fff !important
+    
+@media (min-width: 600px)   
+  .filterButtons
+    margin: 12px 12px 3px 12px
+    
+.portraitAvatar
+  text-align: center
+  max-width:100px
+
+

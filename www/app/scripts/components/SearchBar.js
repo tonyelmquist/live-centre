@@ -12,11 +12,18 @@ import SearchInput from './header/SearchInput';
 
 const SearchBar = ({searchState, openCloseSearch}) => {
   return(
-      <MediaQuery maxWidth={1000}>
-          <IconButton className="iconbutton" onTouchTap={() => openCloseSearch()}>
-            <AnimatedSearchIcon searchState={searchState}/>
-          </IconButton>  
-      </MediaQuery>
+		<div className="inline ">
+			<MediaQuery minWidth={1000}>
+			{searchState.isOpen
+				? <SearchInput  searchState={searchState}/>
+				: <div/>
+			}
+			</MediaQuery>
+			<IconButton className="iconbutton" onTouchTap={() => openCloseSearch()}>
+				<AnimatedSearchIcon searchState={searchState}/>
+			</IconButton> 
+
+		</div>
 
     );
 };

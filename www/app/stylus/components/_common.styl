@@ -12,3 +12,13 @@
 	display:none
 .visible
 	display:visible
+	
+//Simple way to hide stuff on mobile or tablet; use hideOnTablet, hideOnMobile
+@media (max-width: $medium_screen)
+	.hideOnMobile
+		display:none
+		
+@media (max-width: $big_screen)
+	.hideOnTablet
+		display:none
+

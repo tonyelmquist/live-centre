@@ -14,6 +14,10 @@ import Header from './Header';
 import HomePage from './pages/HomePage';
 import SettingsPage from './pages/SettingsPage';
 import FavoritePage from './pages/FavoritePage';
+import SeriesPage from './pages/SeriesPage';
+import ChannelsPage from './pages/ChannelsPage';
+import TVGuidePage from './pages/TVGuidePage';
+
 import CategoryContainer from './CategoryContainer';
 import SearchContainer from './SearchContainer';
 
@@ -44,6 +48,9 @@ class App extends Component {
                             <Route path="/Favorites" component={FavoritePage}/>
                             {/* <Route path="/Category/:categoryKey" component={CategoryPage}/> */}
                             <Route path="/Category/:categoryKey" component={CategoryContainer}/>
+                            <Route path="/Channels" component={ChannelsPage}/>
+                            <Route path="/Series" component={SeriesPage}/>
+                            <Route path="/TVGuide" component={TVGuidePage}/>
                         </div>
                     </div>
 

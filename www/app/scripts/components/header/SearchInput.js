@@ -13,6 +13,7 @@ class SearchInput extends Component{
 					type="text" 
 					placeholder="Jeg vil se..."
 					onChange={this.props.handleSearch}
+					autoFocus
 				/>
 
 			</div>

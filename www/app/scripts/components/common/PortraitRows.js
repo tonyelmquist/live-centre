@@ -6,8 +6,8 @@ class PortraitRows extends Component {
     _renderRows = () =>
         this.props.people.map((person)=>{
             return (
-                <div className="inline" key={`avatar-${person.username+person.uid}`}>
-                    <Avatar src={person.img} className="avatar"/>
+                <div className="inline portraitAvatar" key={`avatar-${person.username+person.uid}`}>
+                    <Avatar size="80" src={person.img} className="avatar"/>
                     <p className="username">{person.username}</p>
                 </div>
                 /*<div className="items">

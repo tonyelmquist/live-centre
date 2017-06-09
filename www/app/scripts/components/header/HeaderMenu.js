@@ -41,7 +41,7 @@ const HeaderMenu = ({pageItems, searchState, categoryItems, handleSearch, openCl
 		<div className="header" >
 
 			<MediaQuery maxWidth={1000}>
-	          	<div className={(searchState.isOpen)? "mobile_searchbar open" : "mobile_searchbar closed"}>
+	          	<div className={(searchState.isOpen)? "expandable_searchbar open" : "expandable_searchbar closed"}>
 		          	<FlatButton
 						className="logo"
 						label="IMR"
@@ -51,6 +51,10 @@ const HeaderMenu = ({pageItems, searchState, categoryItems, handleSearch, openCl
 			</MediaQuery>
 
 			<MediaQuery minWidth={1001} className="inline">
+				<FlatButton
+					className="logo"
+					label="IMR"
+				/>
 				{HeaderMenuItem(pageItems)}
 			</MediaQuery>
 			<MediaQuery minWidth={1500} className="inline">
