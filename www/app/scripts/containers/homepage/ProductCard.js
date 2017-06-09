@@ -21,8 +21,8 @@ class ProductCardContainer extends Component {
 
 
 ProductCardContainer.propTypes = {
-    active : PropTypes.number.isRequired,
-    changeTab: PropTypes.func.isRequired,
+    active : PropTypes.number,
+    changeTab: PropTypes.func,
     index: PropTypes.number,
     dispatch: PropTypes.func
 };

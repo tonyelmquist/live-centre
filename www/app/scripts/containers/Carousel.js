@@ -160,7 +160,7 @@ class HeroCarousel extends Component {
                         </div>
                         <div className='heroCarouselVideo'>
                             <Video autoPlay playsInline muted
-                                    controls={false}
+                                    controls={[]}
                                     poster={video.thumbnail}>
                                     <source src={videoUrl}/>
                             </Video>
