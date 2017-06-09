@@ -22,7 +22,14 @@ class ViewController: UIViewController, UIWebViewDelegate, WKNavigationDelegate,
         
         // Check if WKWebView is available
         if #available(iOS 9.0, *) {
-            let w = WKWebView(delegateView: self)
+
+            let webConfig = WKWebViewConfiguration()
+            
+                webConfig.mediaPlaybackRequiresUserAction = false
+                webConfig.allowsInlineMediaPlayback = true
+
+            let w = WKWebView(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y,
+                             width: self.view.frame.size.width, height: self.view.frame.size.height + 1), configuration: webConfig)
             w.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y,
                              width: self.view.frame.size.width, height: self.view.frame.size.height + 1)
             self.webView = w
@@ -32,6 +39,8 @@ class ViewController: UIViewController, UIWebViewDelegate, WKNavigationDelegate,
             let w = UIWebView(delegateView: self)
             w.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y,
                              width: self.view.frame.size.width, height: self.view.frame.size.height + 1)
+            w.allowsInlineMediaPlayback = true
+            w.mediaPlaybackRequiresUserAction = false
             self.webView = w
             self.view.addSubview(self.webView as! UIWebView)
         }

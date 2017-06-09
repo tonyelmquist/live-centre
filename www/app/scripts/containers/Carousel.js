@@ -138,19 +138,7 @@ class HeroCarousel extends Component {
             const imageList = carouselList.map((video, i) => {
                 
             const videoUrl = `https://www.mediabank.me/download/manifest.php?assetid=${video.assetid}`;      
-           // const videoUrl = `http://clips.vorwaerts-gmbh.de/VfE_html5.mp4` 
-
-            const VideoWorkaround = (videoUrl) => (
-            <div dangerouslySetInnerHTML={{ __html: `
-                <video
-                muted
-                autoplay
-                playsinline
-                src="${videoUrl}"
-                />
-            ` }}
-            />
-            );
+            // const videoUrl = `http://clips.vorwaerts-gmbh.de/VfE_html5.mp4` (smaller test video with bunny)
 
                 return (
                     <div key={video.assetid} style={styles.carousel}>
@@ -174,7 +162,7 @@ class HeroCarousel extends Component {
                         </div>
                         <div className='heroCarouselVideo'>
                             <Video autoPlay playsInline muted
-                                    controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
+                                    controls={false}
                                     poster={video.thumbnail}>
                                     <source src={videoUrl}/>
                             </Video>
