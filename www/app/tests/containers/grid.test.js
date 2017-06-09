@@ -8,12 +8,14 @@ const promise = initVideoList(store);
 describe('HomeGrid',() => {
     let wrapper;
 
-    it('renders HomeGrid', ()=> {
+    it('calls render', ()=> {
         sinon.spy(HomeGrid.prototype, 'render');
         wrapper = enzymeMount(HomeGrid);
         expect(HomeGrid.prototype.render.calledOnce).to.equal(true);
-        expect(wrapper.find('HomeGrid').exists()).to.be.true;
-        expect(wrapper.find('HomeGrid').at(0).props().videoUrl.length).to.be.empty;
     });
 
+    it('creates HomeGrid', ()=> {
+        wrapper = enzymeMount(HomeGrid);
+        expect(wrapper.find('HomeGrid').exists()).to.be.true;
+    });
 });

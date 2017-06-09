@@ -58,9 +58,9 @@ const mapStateToProps = (state) => {
 };
 
 Item.propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    dispatch: PropTypes.func,
     video :PropTypes.object,
-    handleClick: PropTypes.func.isRequired
+    handleClick: PropTypes.func
 };
 
 export default connect(mapStateToProps)(Item);

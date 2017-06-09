@@ -31,12 +31,12 @@ describe('App',() => {
         expect(renderApp().find('#header-container').exists()).to.be.true;
     });
 
-    it('has a login dialog', ()=> {
-        const props = {
-            loginState: true
-        }
-        expect(renderApp(props).find('Login').exists()).to.be.truthy;
+    it('has a search container', ()=> {
+        expect(renderApp().find('.searchContainer').exists()).to.be.true;
     });
-
+    
+    it('renders the main section', ()=> {
+        expect(renderApp().find('.main').exists()).to.be.true;
+    });
 
 });
