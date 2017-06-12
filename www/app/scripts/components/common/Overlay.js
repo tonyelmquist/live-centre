@@ -36,6 +36,7 @@ const Overlay = (props) => {
 
 Overlay.propTypes = {
     handleClose: PropTypes.func.isRequired,
+    children: PropTypes.array
 };
 
 export default Overlay;

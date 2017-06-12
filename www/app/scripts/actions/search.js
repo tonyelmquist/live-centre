@@ -10,8 +10,8 @@ export function emptySearch(){
 	return {type: Actions.EMPTY_SEARCH};
 }
 export function filterKeywords(arr){
-	return {type: Actions.FILTER_KEYWORDS, arr}
+	return {type: Actions.FILTER_KEYWORDS, arr};
 }
 export function clearFilter(){
-	return {type: Actions.CLEAR_FILTER}
+	return {type: Actions.CLEAR_FILTER};
 }
