@@ -61,7 +61,7 @@ const HeaderMenu = ({pageItems, searchState, categoryItems, handleSearch, openCl
 				{HeaderMenuItem(categoryItems)}
 			</MediaQuery>
 			<div className="rightMenu">
-				<SearchBar searchState={searchState} openCloseSearch={openCloseSearch}/>
+				<SearchBar handleSearch={handleSearch} searchState={searchState} openCloseSearch={openCloseSearch}/>
 				<Logged />
 			</div>
 

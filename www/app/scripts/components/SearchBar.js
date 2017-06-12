@@ -10,12 +10,12 @@ import SearchInput from './header/SearchInput';
 //A tutorial: http://redux-form.com/6.0.0-rc.1/examples/material-ui/
 //Autocomplete material ui: http://www.material-ui.com/#/components/auto-complete
 
-const SearchBar = ({searchState, openCloseSearch}) => {
+const SearchBar = ({searchState, handleSearch, openCloseSearch}) => {
   return(
 		<div className="inline ">
 			<MediaQuery minWidth={1000}>
 			{searchState.isOpen
-				? <SearchInput  searchState={searchState}/>
+				? <SearchInput  handleSearch={handleSearch} searchState={searchState}/>
 				: <div/>
 			}
 			</MediaQuery>

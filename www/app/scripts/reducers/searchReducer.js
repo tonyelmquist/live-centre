@@ -26,7 +26,29 @@ function search(state=initialState, action){
         default:
             return state;
     }
-}
+};
 
-export {search};
+const initialFilterState = {
+    filters : [],
+    isClear : true,
+};
+
+function filter(state=initialFilterState, action){
+    switch(action.type){
+        case Actions.FILTER_KEYWORDS:
+            return Object.assign({}, state,{
+                filters: action.arr,
+                isClear: false,
+            });
+        case Actions.CLEAR_FILTER:
+            return Object.assign({}, state,{
+                filters: [],
+                isClear: true,
+            });
+        default:
+            return state;
+    }
+};
+
+export {search, filter};
 
