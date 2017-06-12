@@ -33,25 +33,16 @@ class SearchContainer extends Component {
             <div className={(this.props.search.isOpen) ? "searchContainer expand" : "searchContainer close"}>
                 <h4 className="container-fluid hideOnMobile">Filter:</h4>
                 <SearchFilters />
-                
+              
                 <h4 className="container-fluid">Suggested people</h4>  
                 <PortraitRow people={people}/>
-
                 <div className="container-fluid">
-
                     {this.props.search.isSearching 
                         ? <h4>Search results for: {this.props.search.keyword}</h4> 
                         : <h4>Suggested Videos</h4>
                     }
-
                     <MasonryTiles filter={this.props.search.isSearching ? this.props.search.keyword : "Uncategorized"} videos={this.mergeVideoArray(this.props.videos)}/> 
-                </div>
-
-                
-
-                
-
-                
+                </div>               
             </div>
         );
     };

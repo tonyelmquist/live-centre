@@ -17,9 +17,9 @@ const SearchFilters = () => {
     const filterItems = (filters) => {
         if(filters){
             return filters.map((item) =>
-
                     <RaisedButton 
                         label={item.key} 
+                        key={item.key}
                         className={item.active? "filterButtons active" : "filterButtons"}
                         primary={true} 
                     />
