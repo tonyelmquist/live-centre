@@ -7,7 +7,7 @@ import {blue500, red500} from 'material-ui/styles/colors';
 
 import TabLinks from './TabLinks';
 import Tabs from '../common/Tabs';
-import Player from '../../containers/Player';
+import Player from '../common/Player';
 
 
 const tabs = ["Overview", "Episodes", "Trailers", "Details"];
@@ -25,7 +25,7 @@ const styles = {
 
 
 const ProductCard = (props) => (
-
+    props.videoUrl &&
     <div >
         <Col xs={12} className='product-card'>
             <div className='card-header'>
@@ -42,9 +42,9 @@ const ProductCard = (props) => (
                 <div className='content'>
                     <div className='tab-header'>
                         <h3>Overview</h3>
-                        {props.videoUrl && <Player videoUrl={props.videoUrl}/>}
-                        {console.log(props.videoUrl)}
                     </div>
+
+                    {/* <Player videoUrl={props.videoUrl}/> */}
 
                 </div>
                 <div className='content'><h3>Episodes</h3></div>
