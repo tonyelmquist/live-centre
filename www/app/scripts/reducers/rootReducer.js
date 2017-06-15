@@ -7,7 +7,7 @@ import playbackReducer from './playbackReducer';
 import dataOverlayReducer from './dataOverlayReducer';
 import {changeNavIndex, headerMenuState} from './navReducer';
 import {search, filter} from './searchReducer';
-import {showVideoCard, changeCardIndex, changeCardCategory} from './videoCardReducer';
+import {showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo} from './videoCardReducer';
 import overlayReducer from './productOverlayReducer';
 
 const rootReducer = combineReducers({
@@ -16,7 +16,12 @@ const rootReducer = combineReducers({
     isUserLoggedIn: loginState,
     index: changeNavIndex,
     overlay: combineReducers({isVisible: overlayReducer}),
-    videoCard: combineReducers({isVisible: showVideoCard, index: changeCardIndex, category: changeCardCategory}),
+    videoCard: combineReducers({
+        isVisible: showVideoCard,
+        index: changeCardIndex,
+        category: changeCardCategory,
+        url: changeVideoInfo
+    }),
     videos: videosReducer,
     playback: playbackReducer,
     dataOverlay: dataOverlayReducer,

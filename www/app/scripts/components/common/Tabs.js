@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Tabs = (props) => {
     const _renderContent = () => {
         return (
-            <div className="tabs__content">
+            <div className="tabs_content">
                 {props.children[props.active]}
             </div>
         );

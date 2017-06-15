@@ -28,3 +28,12 @@ export function changeCardCategory(state = '', action){
             return state;
     }
 }
+
+export function changeVideoInfo(state = '', action){
+    switch (action.type) {
+        case Actions.CHANGE_VIDEO_INFO:
+            return action.url;
+        default:
+            return state;
+    }
+}

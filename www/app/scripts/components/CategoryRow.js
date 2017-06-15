@@ -7,7 +7,8 @@ import Slider from 'react-slick';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import {grey800} from 'material-ui/styles/colors';
-import ProductCard from './homepage/ProductCard';
+import ProductCard from '../containers/homepage/CardContainer';
+
 
 class CategoryRow extends Component {
 
@@ -66,15 +67,13 @@ class CategoryRow extends Component {
 
         const videoCard = (this.props.videoCard.isVisible && this.props.videoCard.category === this.props.category) ?
             <div>
-                <ProductCard
-                    active={this.props.videoCard.index}
-                    changeTab={this.props.handleCardIndex}
-                    closeCard={this.props.hideVideoCard}
-                />
+                <ProductCard />
             </div> : undefined;
         let videos = '';
 
-        const _handleClick = () => {
+        const _handleClick = (video) => {
+            const url = `https://www.mediabank.me/download/manifest.php?assetid=${video.assetid}`;
+            this.props.handleCardUrl(url);
             if (this.props.videoCard.category !== this.props.category) {
                 this.props.handleCardCategory(this.props.category);
             };
@@ -87,7 +86,7 @@ class CategoryRow extends Component {
                 return (
                     <div key={video.assetid} >
                         <Item video={video}
-                            handleClick={()=>_handleClick()}
+                            handleClick={()=>_handleClick(video)}
                         />
                     </div>
                 );
@@ -130,11 +129,9 @@ class CategoryRow extends Component {
 CategoryRow.propTypes = {
     videos: PropTypes.array,
     category: PropTypes.string,
-    handleCardIndex: PropTypes.func.isRequired,
     handleCardCategory: PropTypes.func.isRequired,
     showVideoCard: PropTypes.func.isRequired,
-    hideVideoCard: PropTypes.func.isRequired,
-    videoCard: PropTypes.object
+    videoCard: PropTypes.object,
 };
 
 export default CategoryRow;

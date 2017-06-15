@@ -11,25 +11,39 @@ import Player from '../../containers/Player';
 
 
 const tabs = ["Overview", "Episodes", "Trailers", "Details"];
-const style = {
-  marginTop: 5,
+const styles = {
+  mediumIcon: {
+      width: 28,
+      height: 28
+  },
+  medium: {
+      width: 40,
+      height: 40,
+      padding: 8
+  }
 };
 
 
 const ProductCard = (props) => (
-    // <Row className=''>
-    <div>
-        <Col xs={12} className='product-card'>
 
-            <div className='sixteen-by-nine'></div>
+    <div >
+        <Col xs={12} className='product-card'>
+            <div className='card-header'>
+                <IconButton
+                    iconStyle={styles.mediumIcon}
+                    style={styles.medium}
+                    onTouchTap={props.closeCard}
+                    >
+                    <CloseIcon hoverColor={red500}/>
+                </IconButton>
+            </div>
+            <div className='keep-ratio'></div>
             <Tabs active={props.active}>
                 <div className='content'>
                     <div className='tab-header'>
                         <h3>Overview</h3>
-                        <IconButton style={style} tooltip="Close" onTouchTap={props.closeCard}>
-                          <CloseIcon color={red500}/>
-                        </IconButton>
-                        {props.selected && <Player videoUrl={props.videoUrl}/>}
+                        {props.videoUrl && <Player videoUrl={props.videoUrl}/>}
+                        {console.log(props.videoUrl)}
                     </div>
 
                 </div>
