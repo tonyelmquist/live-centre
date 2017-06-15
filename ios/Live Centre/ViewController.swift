@@ -30,6 +30,7 @@ class ViewController: UIViewController, UIWebViewDelegate, WKNavigationDelegate,
 
             let w = WKWebView(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y,
                              width: self.view.frame.size.width, height: self.view.frame.size.height + 1), configuration: webConfig)
+            w.autoresizingMask = [.flexibleWidth, .flexibleHeight] 
             self.webView = w
             self.view.addSubview(self.webView as! WKWebView)
         } else {
