@@ -29,14 +29,13 @@ const Overlay = (props) => {
                 </IconButton>
             </div>
             {props.children}
-
         </div>
     );
 };
 
 Overlay.propTypes = {
     handleClose: PropTypes.func.isRequired,
-    children: PropTypes.array
+    children: PropTypes.object
 };
 
 export default Overlay;

@@ -130,6 +130,7 @@ CategoryRow.propTypes = {
     videos: PropTypes.array,
     category: PropTypes.string,
     handleCardCategory: PropTypes.func.isRequired,
+    handleCardUrl: PropTypes.func.isRequired,
     showVideoCard: PropTypes.func.isRequired,
     videoCard: PropTypes.object,
 };

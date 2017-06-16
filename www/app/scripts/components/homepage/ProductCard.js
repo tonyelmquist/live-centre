@@ -12,15 +12,8 @@ import Player from '../common/Player';
 
 const tabs = ["Overview", "Episodes", "Trailers", "Details"];
 const styles = {
-  mediumIcon: {
-      width: 28,
-      height: 28
-  },
-  medium: {
-      width: 40,
-      height: 40,
-      padding: 8
-  }
+  mediumIcon: { width: 28, height: 28},
+  medium: {width: 40, height: 40, padding: 8}
 };
 
 
@@ -56,7 +49,7 @@ const ProductCard = (props) => (
             <TabLinks items={tabs} active={props.active} handleChange={props.changeTab}/>
         </Col>
     </div>
-    //</Row>
+
 );
 
 ProductCard.propTypes = {
