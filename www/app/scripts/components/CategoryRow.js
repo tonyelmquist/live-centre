@@ -72,8 +72,7 @@ class CategoryRow extends Component {
         let videos = '';
 
         const _handleClick = (video) => {
-            const url = `https://www.mediabank.me/download/manifest.php?assetid=${video.assetid}`;
-            this.props.handleCardUrl(url);
+            this.props.handleVideoInfo(video);
             if (this.props.videoCard.category !== this.props.category) {
                 this.props.handleCardCategory(this.props.category);
             };
@@ -130,7 +129,7 @@ CategoryRow.propTypes = {
     videos: PropTypes.array,
     category: PropTypes.string,
     handleCardCategory: PropTypes.func.isRequired,
-    handleCardUrl: PropTypes.func.isRequired,
+    handleVideoInfo: PropTypes.func.isRequired,
     showVideoCard: PropTypes.func.isRequired,
     videoCard: PropTypes.object,
 };

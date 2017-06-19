@@ -20,8 +20,8 @@ class HomeGrid extends Component {
         this.props
             .dispatch(showVideoCard());
     }
-    _changeCardUrl = (url) => {
-        this.props.dispatch(changeVideoInfo(url));
+    _changeVideoInfo = (video) => {
+        this.props.dispatch(changeVideoInfo(video));
     }
 
     createVideoList = (videos) => {
@@ -32,12 +32,11 @@ class HomeGrid extends Component {
                     <CategoryRow
                         key={`categoryRow-${key}`}
                         handleCardCategory={this._changeCardCategory}
-                        handleCardUrl = {this._changeCardUrl}
+                        handleVideoInfo = {this._changeVideoInfo}
                         showVideoCard={this._showVideoCard}
                         cardIsVisible={this.props.videoCard.isVisible}
                         category={key}
                         videoCard={this.props.videoCard}
-                        videoUrl={this.props.videoUrl}
                         videos={videos[key]}></CategoryRow>
                 ));
             }
@@ -58,7 +57,6 @@ class HomeGrid extends Component {
 
 HomeGrid.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    videoUrl: PropTypes.string,
     selected: PropTypes.bool.isRequired,
     videoCard: PropTypes.object,
     categories: PropTypes.array,
@@ -67,7 +65,6 @@ HomeGrid.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-    videoUrl: state.playback.url,
     selected: state.playback.isSelected,
     videoCard: state.videoCard,
     categories: state.videos.categories,

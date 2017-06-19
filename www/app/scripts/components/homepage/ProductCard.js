@@ -19,7 +19,7 @@ const styles = {
 
 
 const ProductCard = (props) => (
-    props.videoUrl &&
+    props.video &&
     <div >
         <Col xs={12} className='product-card'>
 
@@ -28,17 +28,14 @@ const ProductCard = (props) => (
                 <IconButton
                     iconStyle={styles.mediumIcon}
                     style={styles.medium}
-                    onTouchTap={props.closeCard}
-                    >
-                    <CloseIcon hoverColor={red500}/>
+                    onTouchTap={props.closeCard}>
+                        <CloseIcon hoverColor={red500}/>
                 </IconButton>
                 <div><h3>{tabs[props.active]}</h3></div>
             </div>
             <div className='keep-ratio'></div>
             <Tabs active={props.active}>
-
-                    {/* <Player videoUrl={props.videoUrl}/> */}
-                    {<Poster handlePlay={()=>{console.log('Playing');}} imageUrl='img/eiffel.jpg'/>}
+                {<Poster handlePlay={()=> {props.handlePlay(props.video.assetid);}} imageUrl={props.video.thumbnail}/>}
 
                 <div className='content'></div>
                 <div className='content'></div>
@@ -53,11 +50,11 @@ const ProductCard = (props) => (
 );
 
 ProductCard.propTypes = {
-    active : PropTypes.number,
-    changeTab: PropTypes.func,
-    closeCard: PropTypes.func,
-    videoUrl: PropTypes.string,
-    selected: PropTypes.bool
+    active : PropTypes.number.isRequired,
+    changeTab: PropTypes.func.isRequired,
+    closeCard: PropTypes.func.isRequired,
+    video: PropTypes.object.isRequired,
+    handlePlay: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

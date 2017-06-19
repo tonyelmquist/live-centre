@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
         isVisible: showVideoCard,
         index: changeCardIndex,
         category: changeCardCategory,
-        url: changeVideoInfo
+        video: changeVideoInfo
     }),
     videos: videosReducer,
     playback: playbackReducer,

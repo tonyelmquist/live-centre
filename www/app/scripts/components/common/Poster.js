@@ -26,6 +26,7 @@ const Poster = (props) => {
             <div className='overlay'>
                 <div className='overlay-content'>
                     <IconButton
+                        onTouchTap = {props.handlePlay}
                       iconStyle={styles.icon}
                       style={styles.button}
                     >

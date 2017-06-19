@@ -2,9 +2,15 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from '../../components/homepage/ProductCard';
 import {changeCardIndex, hideVideoCard} from '../../actions/videoCard';
+import {videoSelected, invalidateSelected} from '../../actions/video';
+import {showOverlay, hideOverlay} from '../../actions/overlay';
 import {connect} from 'react-redux';
 
 class ProductCardContainer extends Component {
+    _handlePlay = (assetid) => {
+        this.props.dispatch(showOverlay());
+        this.props.dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
+    }
     _changeCardIndex = (index) => {
         this.props.dispatch(changeCardIndex(index));
     }
@@ -15,9 +21,10 @@ class ProductCardContainer extends Component {
         return (
             <ProductCard
                 active={this.props.index}
-                videoUrl = {this.props.url}
+                video = {this.props.video}
                 changeTab = {this._changeCardIndex}
                 closeCard = {this._handleClose}
+                handlePlay = {this._handlePlay}
             />
         );
     }
@@ -28,14 +35,14 @@ ProductCardContainer.propTypes = {
     active : PropTypes.number,
     changeTab: PropTypes.func,
     index: PropTypes.number,
-    url: PropTypes.string,
+    video: PropTypes.object.isRequired,
     dispatch: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
     index: state.videoCard.index,
     isVisible:state.videoCard.isVisible,
-    url: state.videoCard.url
+    video: state.videoCard.video
 });
 
 export default connect(mapStateToProps)(ProductCardContainer);

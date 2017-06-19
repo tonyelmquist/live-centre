@@ -29,10 +29,10 @@ export function changeCardCategory(state = '', action){
     }
 }
 
-export function changeVideoInfo(state = '', action){
+export function changeVideoInfo(state = {}, action){
     switch (action.type) {
         case Actions.CHANGE_VIDEO_INFO:
-            return action.url;
+            return Object.assign({}, action.video);
         default:
             return state;
     }
