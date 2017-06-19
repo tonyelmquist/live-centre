@@ -12,6 +12,6 @@ export function changeSubtitleLang(lang) {
     return {type: Actions.CHANGE_SUBTITLE_LANG, lang};
 }
 
-export function toggleReccomendations() {
-    return { type: Actions.CHANGE_AUDIO_LANG };
+export function toggleRecommendations() {
+    return { type: Actions.TOGGLE_RECOMMENDATIONS };
 }

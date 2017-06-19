@@ -59,8 +59,8 @@ class ReduxConstants {
     // Settings
     static get CHANGE_LANG() { return "CHANGE_LANG"; }
     static get CHANGE_SUBTITLE_LANG() { return "CHANGE_SUBTITLE_LANG"; }
-    static get CHANGE_AUDIO_LANG() { return "CHANGE_SUBTITLE_LANG"; }
-    static get TOGGLE_RECCOMENDATIONS() { return "TOGGLE_RECCOMENDATIONS"; }
+    static get CHANGE_AUDIO_LANG() { return "CHANGE_AUDIO_LANG"; }
+    static get TOGGLE_RECOMMENDATIONS() { return "TOGGLE_RECOMMENDATIONS"; }
 
 }
 
