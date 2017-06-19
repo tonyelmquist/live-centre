@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Row, Col } from 'react-flexbox-grid';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
+import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import {blue500, red500} from 'material-ui/styles/colors';
 
 import TabLinks from './TabLinks';
@@ -12,7 +13,7 @@ import Player from '../common/Player';
 
 const tabs = ["Overview", "Episodes", "Trailers", "Details"];
 const styles = {
-  mediumIcon: { width: 28, height: 28},
+  mediumIcon: { width: 32, height: 32},
   medium: {width: 40, height: 40, padding: 8}
 };
 
@@ -21,7 +22,9 @@ const ProductCard = (props) => (
     props.videoUrl &&
     <div >
         <Col xs={12} className='product-card'>
+
             <div className='card-header'>
+
                 <IconButton
                     iconStyle={styles.mediumIcon}
                     style={styles.medium}
@@ -29,20 +32,18 @@ const ProductCard = (props) => (
                     >
                     <CloseIcon hoverColor={red500}/>
                 </IconButton>
+                <div><h3>{tabs[props.active]}</h3></div>
             </div>
             <div className='keep-ratio'></div>
             <Tabs active={props.active}>
                 <div className='content'>
-                    <div className='tab-header'>
-                        <h3>Overview</h3>
-                    </div>
 
                     {/* <Player videoUrl={props.videoUrl}/> */}
-
+                    {console.log(props.selected)}
                 </div>
-                <div className='content'><h3>Episodes</h3></div>
-                <div className='content'><h3>More Like This</h3></div>
-                <div className='content'><h3>Details</h3></div>
+                <div className='content'></div>
+                <div className='content'></div>
+                <div className='content'></div>
             </Tabs>
         </Col>
         <Col xs={12}>
