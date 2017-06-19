@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 const Tabs = (props) => {
     const _renderContent = () => {
         return (
-            <div className="tabs_content">
-                {props.children[props.active]}
+            <div className='content'>
+                <div className="tabs_content">
+                    {props.children[props.active]}
+                </div>
             </div>
         );
     };
@@ -18,7 +20,7 @@ const Tabs = (props) => {
 
 Tabs.propTypes = {
     active : PropTypes.number.isRequired,
-    children: PropTypes.node
+    children: PropTypes.node,
 };
 
 export default Tabs;
