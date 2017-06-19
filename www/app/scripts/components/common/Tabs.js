@@ -5,9 +5,7 @@ const Tabs = (props) => {
     const _renderContent = () => {
         return (
             <div className='content'>
-                <div className="tabs_content">
                     {props.children[props.active]}
-                </div>
             </div>
         );
     };

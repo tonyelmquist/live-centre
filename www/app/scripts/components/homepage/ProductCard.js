@@ -9,7 +9,7 @@ import {blue500, red500} from 'material-ui/styles/colors';
 import TabLinks from './TabLinks';
 import Tabs from '../common/Tabs';
 import Player from '../common/Player';
-
+import Poster from '../common/Poster';
 
 const tabs = ["Overview", "Episodes", "Trailers", "Details"];
 const styles = {
@@ -36,11 +36,10 @@ const ProductCard = (props) => (
             </div>
             <div className='keep-ratio'></div>
             <Tabs active={props.active}>
-                <div className='content'>
 
                     {/* <Player videoUrl={props.videoUrl}/> */}
-                    {console.log(props.selected)}
-                </div>
+                    {<Poster handlePlay={()=>{console.log('Playing');}} imageUrl='img/eiffel.jpg'/>}
+
                 <div className='content'></div>
                 <div className='content'></div>
                 <div className='content'></div>
