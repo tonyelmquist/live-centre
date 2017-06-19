@@ -24,13 +24,12 @@ class ViewController: UIViewController, UIWebViewDelegate, WKNavigationDelegate,
         if #available(iOS 9.0, *) {
 
             let webConfig = WKWebViewConfiguration()
-            
                 webConfig.mediaPlaybackRequiresUserAction = false
                 webConfig.allowsInlineMediaPlayback = true
-
             let w = WKWebView(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y,
                              width: self.view.frame.size.width, height: self.view.frame.size.height + 1), configuration: webConfig)
             self.webView = w
+            w.autoresizingMask = [.flexibleWidth, .flexibleHeight] 
             self.view.addSubview(self.webView as! WKWebView)
         } else {
             // In this case we have to fall back on UIWebView
