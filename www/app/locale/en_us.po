@@ -58,3 +58,40 @@ msgstr "State vs Props"
 #:
 msgid "app_signout"
 msgstr "Sign Out"
+
+
+#. Language: English
+#:
+msgid "language_english"
+msgstr "English"
+
+#. Language: Norwegian
+#:
+msgid "language_norwegian"
+msgstr "Norwegian"
+
+
+#. Setting: Title
+#:
+msgid "setting_title"
+msgstr "Settings"
+
+#. Setting: Language Options
+#:
+msgid "setting_language_options"
+msgstr "Language Options"
+
+#. Setting: Audio
+#:
+msgid "setting_audio"
+msgstr "Audio"
+
+#. Setting: Language
+#:
+msgid "setting_language"
+msgstr "Language"
+
+#. Setting: Subtitle
+#:
+msgid "setting_subtitle"
+msgstr "Subtitle"

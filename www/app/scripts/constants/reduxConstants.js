@@ -6,6 +6,7 @@ class ReduxConstants {
     static get LOGIN_SUCCESS() {return "LOGIN_SUCCESS"; }
     static get LOGIN_FAILED() {return "LOGIN_FAILED"; }
     static get LOGOUT_SUCCESS() {return "LOGOUT_SUCCESS"; }
+
     //Registration
     static get SHOW_REG_DIALOG() {return "SHOW_REG_DIALOG"; }
     static get HIDE_REG_DIALOG() {return "HIDE_REG_DIALOG"; }
@@ -14,9 +15,6 @@ class ReduxConstants {
     static get BOTTOM_NAV_SHOW() { return "BOTTOM_NAV_SHOW"; }
     static get BOTTOM_NAV_HIDE() { return "BOTTOM_NAV_HIDE"; }
     static get CHANGE_NAV_INDEX() { return "CHANGE_NAV_INDEX"; }
-
-    //Language
-    static get CHANGE_LANG() { return "CHANGE_LANG"; }
 
     //API Fetch Video Metadata Items
     static get FETCH_METADATA_SENT() { return "FETCH_METADATA_SENT"; }
@@ -58,6 +56,11 @@ class ReduxConstants {
     static get SHOW_OVERLAY() { return "SHOW_OVERLAY"; }
     static get HIDE_OVERLAY() { return "HIDE_OVERLAY"; }
 
+    // Settings
+    static get CHANGE_LANG() { return "CHANGE_LANG"; }
+    static get CHANGE_SUBTITLE_LANG() { return "CHANGE_SUBTITLE_LANG"; }
+    static get CHANGE_AUDIO_LANG() { return "CHANGE_SUBTITLE_LANG"; }
+    static get TOGGLE_RECCOMENDATIONS() { return "TOGGLE_RECCOMENDATIONS"; }
 
 }
 

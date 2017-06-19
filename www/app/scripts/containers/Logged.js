@@ -8,12 +8,16 @@ import PersonIcon from 'material-ui/svg-icons/social/person';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import {logoutSuccess} from '../actions/login';
-import {changeLang} from '../actions/lang';
 
 class Logged extends Component {
   static muiName = 'IconMenu';
   handleLogout = () => {
       this.props.dispatch(logoutSuccess());
+  }
+
+  handleSettingsTouchTap = () => {
+    console.log('click');
+    this.props.changeRoute('/Settings');
   }
 
   render() {
@@ -25,7 +29,7 @@ class Logged extends Component {
           targetOrigin={{horizontal: 'right', vertical: 'top'}}
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
-          <MenuItem primaryText="Settings" />
+          <MenuItem primaryText="Settings" onTouchTap={this.handleSettingsTouchTap}/>
           <MenuItem primaryText="Refresh" />
           <MenuItem primaryText={i18next.t('route_about')} />
           <MenuItem primaryText={i18next.t('app_signout')} onTouchTap={this.handleLogout}/>
@@ -37,14 +41,13 @@ class Logged extends Component {
 Logged.propTypes = {
     dispatch: PropTypes.func.isRequired,
     iconStyle:PropTypes.object,
-    lang: PropTypes.string.isRequired,
-    loginState:PropTypes.bool
+    loginState:PropTypes.bool,
+    changeRoute:PropTypes.func
 };
 
 const mapStateToProps = (state) => {
     return {
         loginState: state.isUserLoggedIn,
-        lang: state.lang
     };
 };
 

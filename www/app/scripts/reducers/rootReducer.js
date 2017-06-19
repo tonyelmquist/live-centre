@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 // import sidebarState from './sidebarReducer';
 import {loginState, registrationDialog} from './loginReducer';
-import langReducer from './langReducer';
+//import langReducer from './langReducer';
 import videosReducer from './videosReducer';
 import playbackReducer from './playbackReducer';
 import dataOverlayReducer from './dataOverlayReducer';
@@ -9,9 +9,10 @@ import {changeNavIndex, headerMenuState} from './navReducer';
 import {search, filter} from './searchReducer';
 import {showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo} from './videoCardReducer';
 import overlayReducer from './productOverlayReducer';
+import settings from './settingsReducer';
 
 const rootReducer = combineReducers({
-    lang: langReducer,
+    //lang: langReducer,
     isRegistrationVisible: registrationDialog,
     isUserLoggedIn: loginState,
     index: changeNavIndex,
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
     dataOverlay: dataOverlayReducer,
     headerMenuState : headerMenuState,
     search: search,
-    filter: filter
+    filter: filter,
+    settings: settings
 });
 
 export default rootReducer;
