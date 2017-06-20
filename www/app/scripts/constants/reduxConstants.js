@@ -1,7 +1,4 @@
 class ReduxConstants {
-    //Actions UI
-
-
     //Login Actions
     static get LOGIN_SUCCESS() {return "LOGIN_SUCCESS"; }
     static get LOGIN_FAILED() {return "LOGIN_FAILED"; }
@@ -16,11 +13,9 @@ class ReduxConstants {
     static get BOTTOM_NAV_HIDE() { return "BOTTOM_NAV_HIDE"; }
     static get CHANGE_NAV_INDEX() { return "CHANGE_NAV_INDEX"; }
 
-    //API Fetch Video Metadata Items
-    static get FETCH_METADATA_SENT() { return "FETCH_METADATA_SENT"; }
-    static get FETCH_METADATA_FAILED() { return "FETCH_METADATA_FAILED"; }
-    static get FETCH_METADATA_SUCCESS() { return "FETCH_METADATA_SUCCESS"; }
-    static get FETCH_CATEGORIES_SUCCESS() { return "FETCH_CATEGORIES_SUCCESS"; }
+
+    //Language
+    static get CHANGE_LANG() { return "CHANGE_LANG"; }
 
     //Video Playback
     static get VIDEO_SELECTED() { return "VIDEO_SELECTED"; }
@@ -44,6 +39,7 @@ class ReduxConstants {
     static get EMPTY_SEARCH() {return "EMPTY_SEARCH";}
     static get FILTER_KEYWORDS() {return "FILTER_KEYWORDS";}
     static get CLEAR_FILTER() {return "CLEAR_FILTER";}
+    static get REMOVE_FILTER() {return "REMOVE_FILTER";}
 
     //Video Card
     static get CHANGE_CARD_INDEX() { return "CHANGE_CARD_INDEX"; }
@@ -55,6 +51,26 @@ class ReduxConstants {
     //Overlay
     static get SHOW_OVERLAY() { return "SHOW_OVERLAY"; }
     static get HIDE_OVERLAY() { return "HIDE_OVERLAY"; }
+
+    //VIDEOS FETCH
+    static get FETCH_VIDEO_SUCCESS() {return "FETCH_VIDEO_SUCCESS";}
+    static get FETCH_VIDEO_FAILED() {return "FETCH_VIDEO_FAILED";}
+    
+    //SERIES FETCH
+    static get FETCH_SERIES_SUCCESS(){return"FETCH_SERIES_SUCCESS";}
+    static get FETCH_SERIES_FAILED(){return"FETCH_SERIES_FAILED";}
+    
+    //CHANNELS FETCH
+    static get FETCH_CHANNELS_SUCCESS(){return"FETCH_CHANNELS_SUCCESS";}
+    static get FETCH_CHANNELS_FAILED(){return"FETCH_CHANNELS_FAILED";}
+
+    //SEASONS FETCH
+    static get FETCH_SEASONS_SUCCESS(){return"FETCH_SEASONS_SUCCESS";}
+    static get FETCH_SEASONS_FAILED(){return"FETCH_SEASONS_FAILED";}
+
+    //TAGS FETCH
+    static get FETCH_TAGS_SUCCESS(){return"FETCH_TAGS_SUCCESS";}
+    static get FETCH_TAGS_FAILED(){return"FETCH_TAGS_FAILED";}
 
     // Settings
     static get CHANGE_LANG() { return "CHANGE_LANG"; }

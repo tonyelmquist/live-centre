@@ -6,6 +6,9 @@ import VideoGrid from '../components/common/VideoGrid';
 import MasonryTiles from '../components/common/MasonryTiles';
 
 import PortraitRow from '../components/common/PortraitRows';
+import {filterKeywords, removeFilter, clearFilter} from '../actions/search.js';
+
+
 class SearchContainer extends Component {
     mergeVideoArray(video){
         const merged = [];
@@ -14,6 +17,18 @@ class SearchContainer extends Component {
         }
         return merged;
     };
+    /*One or more of the filteritems can have a clear property that when clicked,
+    will reset the filters. */
+    handleFilter = (filteritem) => {
+        if(filteritem.clear){
+            //this.props.dispatch(clearFilter());
+        } else if(filteritem.active){
+            //this.props.dispatch(removeFilter(filteritem.key))
+        } else{
+            filteritem.active = true;
+            this.props.dispatch(filterKeywords(filteritem.key));
+        }
+    }
 
     render() {
         const people = [
@@ -32,30 +47,51 @@ class SearchContainer extends Component {
         return (
             <div className={(this.props.search.isOpen) ? "searchContainer expand" : "searchContainer close"}>
                 <h4 className="container-fluid hideOnMobile">Filter:</h4>
-                <SearchFilters />
-              
+                <SearchFilters handleFilter={this.handleFilter} />
+                
                 <h4 className="container-fluid">Suggested people</h4>  
                 <PortraitRow people={people}/>
+
                 <div className="container-fluid">
+
                     {this.props.search.isSearching 
                         ? <h4>Search results for: {this.props.search.keyword}</h4> 
                         : <h4>Suggested Videos</h4>
                     }
-                    <MasonryTiles filter={this.props.search.isSearching ? this.props.search.keyword : "Uncategorized"} videos={this.mergeVideoArray(this.props.videos)}/> 
-                </div>               
+                    {/*Uncategorized is a temporary "suggested" category that is default. */}
+                    <MasonryTiles 
+                    //filter={this.props.search.isSearching ? this.props.search.keyword : "Uncategorized"} 
+                    filter={    this.props.search.isSearching || !this.props.filter.isClear
+                                ? [this.props.search.keyword, ...this.props.filter.filters]
+                                : ["Uncategorized"]}
+                    videos={this.mergeVideoArray(this.props.videos)}
+                    />
+
+
+                </div>
+
+                
+
+                
+
+                
             </div>
         );
     };
 };
 
 SearchContainer.propTypes = {
-    videos : PropTypes.object.isRequired,
-    search: PropTypes.object.isRequired
+    dispatch: PropTypes.func.isRequired,
+    videos : PropTypes.array.isRequired,
+    search: PropTypes.object.isRequired,
+    filter: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
     search: state.search,
-    videos: state.videos.items
+    filter: state.filter,
+    videos: state.videos.items,
+
 });
 
 export default connect(mapStateToProps)(SearchContainer);

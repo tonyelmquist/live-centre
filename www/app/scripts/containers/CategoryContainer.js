@@ -22,22 +22,56 @@ const styles = {
     }
 };
 class CategoryContainer extends Component {
-    _handleSelect = (assetid) => {
-        this.props.dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
+    _handleSelect = (videoUrl) => {
+        this.props.dispatch(videoSelected(`http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/video-files/${videoUrl}`));
     };
 
+
+
     render() {
+
+        let videos = [];
+
+        const categoryID = this.props.match.params.categoryKey;
+
+        let currentTag = {};
+        
+        //Get tag object
+        if(this.props.tags && categoryID){
+
+            this.props.tags.filter((tag) =>{
+                if(tag.id == categoryID){
+                    currentTag = tag;
+                }
+            });
+
+        }
+    
+        //Get video based on category
+        if (categoryID) {
+            videos = this.props.videos.filter((video) =>{
+
+                for(let i = 0; i<video.tags.length; i++){
+                    if(video.tags[i].id == categoryID){
+                        return video;
+                    }
+                }
+            });
+
+        }
+
         return (
             <div>
                 <div className='category'>
                     <Link to='/Home'>
                         <div className='item'><IconButton style={styles.medium} iconStyle={styles.mediumIcon}><BackButton color={blueGrey900}/></IconButton></div>
                     </Link>
-                    <h2 className='item'>{this.props.match.params.categoryKey}</h2>
+                    <h2 className='item'>{currentTag.name}</h2>
                 </div>
+
                 <VideoGrid
-                    videos={this.props.videos[this.props.match.params.categoryKey]}
-                    category={this.props.match.params.categoryKey}
+                    videos={videos}
+                    category={categoryID}
                     onSelect={this._handleSelect}
                 />
             </div>
@@ -46,14 +80,16 @@ class CategoryContainer extends Component {
 };
 
 CategoryContainer.propTypes = {
-    videos : PropTypes.object.isRequired,
+    videos : PropTypes.array.isRequired,
     match: PropTypes.object,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    tags: PropTypes.array.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
-    videos: state.videos.items
+    videos: state.videos.items,
+    tags: state.tags.items
 });
 
 export default connect(mapStateToProps)(CategoryContainer);

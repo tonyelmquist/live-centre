@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {NavLink, Link} from 'react-router-dom';
 
-import Item from '../components/Item';
+import CategoryItem from '../components/CategoryItem';
 import Slider from 'react-slick';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
@@ -65,26 +65,38 @@ class CategoryRow extends Component {
             ]
         };
 
-        const videoCard = (this.props.videoCard.isVisible && this.props.videoCard.category === this.props.category) ?
+        const videoCard = (this.props.videoCard.isVisible && this.props.videoCard.category === this.props.tag.id) ?
             <div>
                 <ProductCard />
             </div> : undefined;
         let videos = '';
 
         const _handleClick = (video) => {
+            
             this.props.handleVideoInfo(video);
-            if (this.props.videoCard.category !== this.props.category) {
-                this.props.handleCardCategory(this.props.category);
+
+            if (this.props.videoCard.category !== this.props.tag.id) {
+                this.props.handleCardCategory(this.props.tag.id);
             };
             this.props.showVideoCard();
         };
 
-        if (this.props.category) {
-            videos = this.props.videos;
+        if (this.props.tag) {
+
+            videos = this.props.videos.filter((video) =>{
+
+
+                for(let i = 0; i<video.tags.length; i++){
+                    if(video.tags[i].id == this.props.tag.id){
+                        return video.tags[i].id;
+                    }
+                }
+            });
+
             videos = videos.map((video, index) => {
                 return (
-                    <div key={video.assetid} >
-                        <Item video={video}
+                    <div key={`category-item-${video.video_url}`}>
+                        <CategoryItem video={video}
                             handleClick={()=>_handleClick(video)}
                         />
                     </div>
@@ -97,14 +109,16 @@ class CategoryRow extends Component {
                 <div className='rowHeader'>
                     <h3 className='rowTitle'>
 
-                                {this.props.category}
+                                {this.props.tag.name}
 
                     </h3>
-                    <Link to={`/Category/${this.props.category}`}>
+
+                    <Link to={`/Category/${this.props.tag.id}`}>
                         <IconButton onTouchTap={this.next}>
                             <FontIcon className="material-icons" color={grey800}>arrow_forward</FontIcon>
                         </IconButton>
                     </Link>
+
                     <div className='sliderButtons'>
                         <IconButton onTouchTap={this.previous}>
                             <FontIcon className="material-icons" color={grey800}>arrow_back</FontIcon>
@@ -126,8 +140,8 @@ class CategoryRow extends Component {
 }
 
 CategoryRow.propTypes = {
+    tag: PropTypes.object,
     videos: PropTypes.array,
-    category: PropTypes.string,
     handleCardCategory: PropTypes.func.isRequired,
     handleVideoInfo: PropTypes.func.isRequired,
     showVideoCard: PropTypes.func.isRequired,

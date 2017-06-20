@@ -45,9 +45,13 @@ class Header extends Component {
 
   categoryItems = () => {
     const items = [];
-    this.props.categories.forEach((category) =>{
-      items.push({key: category, path: `/Category/${category}`});
-    });
+    if(this.props.categories.items.length>0){
+      for(let i=0; i<this.props.categories.items.length; i++){
+        const name = this.props.categories.items[i].name;
+        const id = this.props.categories.items[i].id;
+        items.push({key: name, path: `/Category/${id}`});
+      }
+    }
     return items;
   }
 
@@ -85,8 +89,10 @@ class Header extends Component {
   //Dont know if this is the best way to get the pathname. but it sure is the easiest.. 
   getLocationName = () => {
     const pathname = this.props.history.location.pathname;
+    
     if(this.isSubPage()){
-      return this.isSubPage();
+      const pathSegments = pathname.split("/");
+      return pathSegments[pathSegments.length-1];
     }
     return pathname.replace("/", "");
 
@@ -100,14 +106,13 @@ class Header extends Component {
     const noOfSlashes = pathSegments.length - 1;
 
     if(noOfSlashes > 1){
-      return pathSegments[pathSegments.length-1];
+      return true;
     } 
     return false;
   }
 
 
   render(){
-    this.categoryItems();
 
     return(
         <div id="header-container">
@@ -148,14 +153,14 @@ Header.propTypes = {
     dispatch: PropTypes.func.isRequired,
     menuIsOpen: PropTypes.bool,
     history: PropTypes.object,
-    categories: PropTypes.array,
+    categories: PropTypes.object,
     search: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
     return {
         menuIsOpen : state.headerMenuState,
-        categories: state.videos.categories,
+        categories: state.tags,
         search: state.search
     };
 };

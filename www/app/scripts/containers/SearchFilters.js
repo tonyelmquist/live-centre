@@ -12,24 +12,26 @@ const style = {
     }
 };*/
 
-const SearchFilters = () => {
+const SearchFilters = (props) => {
 
     const filterItems = (filters) => {
         if(filters){
             return filters.map((item) =>
-                    <RaisedButton 
-                        label={item.key} 
-                        key={item.key}
-                        className={item.active? "filterButtons active" : "filterButtons"}
-                        primary={true} 
-                    />
+
+                <RaisedButton 
+                    key={item.key}
+                    label={item.key} 
+                    className={item.active? "filterButtons active" : "filterButtons"}
+                    onTouchTap={()=>props.handleFilter(item)}
+                    primary={true} 
+                />
             );
         };
     };
 
-    const filters = [
-        {key: "all", active: true},
-        {key: "videos",  },
+    const localFilters = [
+        {key: "all", clear: true,  active: true },
+        {key: "videos",},
         {key: "series",  },
         {key: "channels",  },
         {key: "uncategorized",  },
@@ -43,23 +45,15 @@ const SearchFilters = () => {
     return(
         <div className="horizontalScroll filterContainer">
             <div className="horizontalScrollInner">
-                {filterItems(filters)}
+                {filterItems(localFilters)}
             </div>
         </div>
     );
 };
-/*
+
 SearchFilters.propTypes = {
+    handleFilter: PropTypes.func.isRequired,
+};
 
-};*/
-
-/*
-                    <div key={item} 
-                    onTouchTap={()=>{console.log("Execute something");}}
-                    className="items">
-                        {item}
-                    </div>
-
-*/
 
 export default SearchFilters;

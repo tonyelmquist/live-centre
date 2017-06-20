@@ -16,7 +16,7 @@ class MasonryTiles extends Component {
         this.props.videos.map((video)=>{
 
             //If a filter string is not present show the tile, if not, try to match the filter
-            if(!this.props.filter || this.matchWithFilter(this.props.filter, video)){
+            if(!this.props.filter.length > 0 || this.matchWithFilters(this.props.filter, video)){
                 return(
                     <div className="tile" key={video.assetid}>
                         <div className="masonry_tile_inner">
@@ -33,12 +33,19 @@ class MasonryTiles extends Component {
         });
 
     //Looks at _all_ metadata in video. 
-    matchWithFilter(filter, video){
+    //Compare to all strings in filter array. 
+    matchWithFilters(filter, video){
 
         for(const key in video){
-            if(video[key].includes(filter)){
-                return true;
-            } 
+            for(let i = 0; i<filter.length; i++){
+                
+                const filterString = filter[i].toLowerCase();
+                const videoString = video[key].toLowerCase();
+
+                if(videoString.includes(filterString) && filterString.length>0){
+                    return true;
+                } 
+            }
         }
         return false;
     }
@@ -68,7 +75,7 @@ class MasonryTiles extends Component {
 
 MasonryTiles.propTypes = {
     videos : PropTypes.array.isRequired,
-    filter : PropTypes.string.isRequired
+    filter : PropTypes.array.isRequired
 };
 
 export default MasonryTiles;

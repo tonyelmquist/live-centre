@@ -35,7 +35,7 @@ const ProductCard = (props) => (
             </div>
             <div className='keep-ratio'></div>
             <Tabs active={props.active}>
-                {<Poster handlePlay={()=> {props.handlePlay(props.video.assetid);}} imageUrl={props.video.thumbnail}/>}
+                {<Poster handlePlay={()=> {props.handlePlay(props.video.item.video_url);}} imageUrl={props.video.item.thumbnail}/>}
 
                 <div className='content'></div>
                 <div className='content'></div>
