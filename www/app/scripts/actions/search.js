@@ -9,9 +9,12 @@ export function searchKeyword(keyword){
 export function emptySearch(){
 	return {type: Actions.EMPTY_SEARCH};
 }
-export function filterKeywords(arr){
-	return {type: Actions.FILTER_KEYWORDS, arr}
+export function filterKeywords(string){
+	return {type: Actions.FILTER_KEYWORDS, string}
 }
 export function clearFilter(){
 	return {type: Actions.CLEAR_FILTER}
+}
+export function removeFilter(string){
+	return {type: Actions.REMOVE_FILTER, string}
 }

@@ -131,24 +131,25 @@ class HeroCarousel extends Component {
             }
         };
 
-        if (this.props.videos[FEATURED_CATEGORY]) {
-            const carouselList = this.props.videos[FEATURED_CATEGORY];
+        if (this.props.videos.length > 0) {
+            const carouselList = this.props.videos;
             // .get(FEATURED_CATEGORY);
 
             const imageList = carouselList.map((video, i) => {
                 
-            const videoUrl = `https://www.mediabank.me/download/manifest.php?assetid=${video.assetid}`;      
-            // const videoUrl = `http://clips.vorwaerts-gmbh.de/VfE_html5.mp4` (smaller test video with bunny)
+            const videoUrl = `http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/video-files/${video.video_url}`;      
+
+            //const videoUrl = `http://clips.vorwaerts-gmbh.de/VfE_html5.mp4`// (smaller test video with bunny)
 
                 return (
-                    <div key={video.assetid} style={styles.carousel}>
+                    <div key={`carousel-${videoUrl}`} style={styles.carousel}>
                         <div className='heroCarouselImage' key={i}>
                             <div className="carouselImageButton">
                                 <IconButton
                                     iconStyle={styles.largeIcon}
                                     style={styles.large}
                                     onTouchTap={() => {
-                                    this._handlePlay(video.assetid);
+                                    this._handlePlay(video.id);
                                 }}><PlayCircleOutline color="white"/></IconButton>
                             </div>
                             <div className='carouselImageTitleAndDescription'>
@@ -171,7 +172,7 @@ class HeroCarousel extends Component {
 
             const infoTiles = carouselList.map((video, i) => {
                 return (
-                    <div key={video.assetid} className='infoTile'>
+                    <div key={video.id} className='infoTile'>
                         <h4 className='infoTileCTA'>Watch now</h4>
                         <IconButton
                             iconStyle={styles.largeIcon}
@@ -214,7 +215,7 @@ class HeroCarousel extends Component {
 }
 
 HeroCarousel.propTypes = {
-    videos: PropTypes.object,
+    videos: PropTypes.array,
     dispatch: PropTypes.func.isRequired,
     selected: PropTypes.bool
 };

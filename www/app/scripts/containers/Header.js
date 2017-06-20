@@ -44,10 +44,14 @@ class Header extends Component {
   }
 
   categoryItems = () => {
-    const items = [];
-    this.props.categories.forEach((category) =>{
-      items.push({key: category, path: `/Category/${category}`});
-    });
+    let items = [];
+    if(this.props.categories.items.length>0){
+      for(let i=0; i<this.props.categories.items.length; i++){
+        let name = this.props.categories.items[i].name;
+        let id = this.props.categories.items[i].id;
+        items.push({key: name, path: `/Category/${id}`});
+      }
+    }
     return items;
   }
 
@@ -107,7 +111,6 @@ class Header extends Component {
 
 
   render(){
-    this.categoryItems();
 
     return(
         <div id="header-container">
@@ -148,14 +151,14 @@ Header.propTypes = {
     dispatch: PropTypes.func.isRequired,
     menuIsOpen: PropTypes.bool,
     history: PropTypes.object,
-    categories: PropTypes.array,
+    categories: PropTypes.object,
     search: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
     return {
         menuIsOpen : state.headerMenuState,
-        categories: state.videos.categories,
+        categories: state.tags,
         search: state.search
     };
 };

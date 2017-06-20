@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeGrid from '../Grid';
+import HomeGrid from '../HomeGrid';
 import Category from '../../containers/CategoryContainer';
 import Overlay from '../../containers/OverlayContainer';
 
