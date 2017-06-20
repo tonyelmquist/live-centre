@@ -1,6 +1,6 @@
 import React from 'react';
 import {RaisedButton, SelectField, MenuItem, Toggle} from 'material-ui';
-import {changeLang, changeAudioLang, changeSubtitleLang, toggleRecommendations} from '../../actions/settings';
+import {changeLang, changeAudioLang, changeSubtitleLang, toggleRecommendations, saveUserSettings} from '../../actions/settings';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -33,6 +33,7 @@ class SettingsPage extends React.Component {
     handleAudioChange = (event, index, value) => this.props.dispatch(changeAudioLang(value));
     handleSubtitleChange = (event, index, value) => this.props.dispatch(changeSubtitleLang(value));
     handleRecommendationsChange = () => this.props.dispatch(toggleRecommendations());
+    handleSaveTouch = () => this.props.dispatch(saveUserSettings(this.props.settings.options));
 
     handleLanguageChange = (event, index, newLang) => {
         if (newLang !== this.props.settings.lang ){
@@ -51,7 +52,7 @@ class SettingsPage extends React.Component {
 
             <SelectField
               floatingLabelText={i18next.t('setting_audio')}
-              value={this.props.settings.audioLang}
+              value={this.props.settings.options.audioLanguage}
               onChange={this.handleAudioChange} >
                 <MenuItem value={"en"} primaryText={i18next.t('language_english')} />
                 <MenuItem value={"nb"} primaryText={i18next.t('language_norwegian')} />
@@ -61,7 +62,7 @@ class SettingsPage extends React.Component {
 
             <SelectField
               floatingLabelText={i18next.t('setting_language')}
-              value={this.props.settings.lang}
+              value={this.props.settings.options.language}
               onChange={this.handleLanguageChange} >
                 <MenuItem value={"en"} primaryText={i18next.t('language_english')} />
                 <MenuItem value={"nb"} primaryText={i18next.t('language_norwegian')} />
@@ -71,7 +72,7 @@ class SettingsPage extends React.Component {
 
             <SelectField
               floatingLabelText={i18next.t('setting_subtitle')}
-              value={this.props.settings.subtitleLang}
+              value={this.props.settings.options.subtitleLanguage}
               onChange={this.handleSubtitleChange} >
                 <MenuItem value={"en"} primaryText={i18next.t('language_english')} />
                 <MenuItem value={"nb"} primaryText={i18next.t('language_norwegian')} />
@@ -80,8 +81,10 @@ class SettingsPage extends React.Component {
             <h3>General Settings</h3>
             <Toggle
                 label="Reccomendations" 
-                toggled={this.props.settings.recommendations}
+                toggled={this.props.settings.options.recommendations}
                 onToggle={this.handleRecommendationsChange}/>
+
+            <RaisedButton label="Save" primary={true} onTouchTap={this.handleSaveTouch} />
           </div>
         );
     }

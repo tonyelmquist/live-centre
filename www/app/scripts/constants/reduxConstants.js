@@ -62,6 +62,14 @@ class ReduxConstants {
     static get CHANGE_AUDIO_LANG() { return "CHANGE_AUDIO_LANG"; }
     static get TOGGLE_RECOMMENDATIONS() { return "TOGGLE_RECOMMENDATIONS"; }
 
+    static get FETCH_USER_SETTINGS_SENT() { return "FETCH_USER_SETTINGS_SENT"; }
+    static get FETCH_USER_SETTINGS_SUCCESS() { return "FETCH_USER_SETTINGS_SUCCESS"; }
+    static get FETCH_USER_SETTINGS_FAILED() { return "FETCH_USER_SETTINGS_FAILED"; }
+
+    static get SAVING_USER_SETTINGS() { return "SAVING_USER_SETTINGS"; }
+    static get SAVED_USER_SETTINGS() { return "SAVED_USER_SETTINGS"; }
+    static get SAVING_USER_SETTINGS_FAILED() { return "SAVING_USER_SETTINGS_FAILED"; }
+
 }
 
 export default ReduxConstants;
