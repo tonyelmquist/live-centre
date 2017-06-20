@@ -31,6 +31,7 @@ const SearchBar = ({searchState, handleSearch, openCloseSearch}) => {
 SearchBar.propTypes = {
     searchState: PropTypes.object,
     openCloseSearch: PropTypes.func.isRequired,
+	handleSearch: PropTypes.func.isRequired
 };
 
 export default SearchBar;

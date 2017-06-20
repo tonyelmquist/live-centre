@@ -13,6 +13,7 @@ class ReduxConstants {
     static get BOTTOM_NAV_HIDE() { return "BOTTOM_NAV_HIDE"; }
     static get CHANGE_NAV_INDEX() { return "CHANGE_NAV_INDEX"; }
 
+
     //Language
     static get CHANGE_LANG() { return "CHANGE_LANG"; }
 
@@ -45,6 +46,7 @@ class ReduxConstants {
     static get SHOW_VIDEO_CARD() { return "SHOW_VIDEO_CARD"; }
     static get HIDE_VIDEO_CARD() { return "HIDE_VIDEO_CARD"; }
     static get CHANGE_CARD_CATEGORY() { return "CHANGE_CARD_CATEGORY"; }
+    static get CHANGE_VIDEO_INFO() { return "CHANGE_VIDEO_INFO"; }
 
     //Overlay
     static get SHOW_OVERLAY() { return "SHOW_OVERLAY"; }
@@ -69,6 +71,12 @@ class ReduxConstants {
     //TAGS FETCH
     static get FETCH_TAGS_SUCCESS(){return"FETCH_TAGS_SUCCESS";}
     static get FETCH_TAGS_FAILED(){return"FETCH_TAGS_FAILED";}
+
+    // Settings
+    static get CHANGE_LANG() { return "CHANGE_LANG"; }
+    static get CHANGE_SUBTITLE_LANG() { return "CHANGE_SUBTITLE_LANG"; }
+    static get CHANGE_AUDIO_LANG() { return "CHANGE_AUDIO_LANG"; }
+    static get TOGGLE_RECOMMENDATIONS() { return "TOGGLE_RECOMMENDATIONS"; }
 
 }
 

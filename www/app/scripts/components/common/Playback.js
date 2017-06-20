@@ -12,7 +12,6 @@ const Playback = ({videoUrl}) => {
 };
 
 Playback.propTypes = {
-    // dispatch: PropTypes.func.isRequired,
     videoUrl: PropTypes.string
 };
 

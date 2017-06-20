@@ -15,3 +15,7 @@ export function hideVideoCard() {
 export function changeCardCategory(category) {
     return {type: Actions.CHANGE_CARD_CATEGORY, category};
 }
+
+export function changeVideoInfo (video) {
+    return {type: Actions.CHANGE_VIDEO_INFO, video};
+}

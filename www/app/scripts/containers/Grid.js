@@ -6,31 +6,22 @@ import {Grid, Row} from 'react-flexbox-grid';
 import HeroCarousel from './Carousel';
 import Player from './Player';
 import {changeScore} from '../actions/score';
-import {changeCardIndex, showVideoCard, hideVideoCard, changeCardCategory} from '../actions/videoCard';
+import {changeCardIndex, showVideoCard, changeCardCategory, changeVideoInfo} from '../actions/videoCard';
 import CategoryRow from '../components/CategoryRow';
 import Overlay from '../containers/OverlayContainer';
 
 class HomeGrid extends Component {
 
-    _changeCardIndex = (index) => {
-        this
-            .props
-            .dispatch(changeCardIndex(index));
-    }
     _changeCardCategory = (category) => {
-        this
-            .props
+        this.props
             .dispatch(changeCardCategory(category));
     }
     _showVideoCard = () => {
-        this
-            .props
+        this.props
             .dispatch(showVideoCard());
     }
-    _hideVideoCard = () => {
-        this
-            .props
-            .dispatch(hideVideoCard());
+    _changeVideoInfo = (video) => {
+        this.props.dispatch(changeVideoInfo(video));
     }
 
     createVideoList = (videos) => {
@@ -40,11 +31,9 @@ class HomeGrid extends Component {
                 videoList.push((
                     <CategoryRow
                         key={`categoryRow-${key}`}
-                        handleCardIndex={this._changeCardIndex}
                         handleCardCategory={this._changeCardCategory}
+                        handleVideoInfo = {this._changeVideoInfo}
                         showVideoCard={this._showVideoCard}
-                        hideVideoCard={this._hideVideoCard}
-                        categoryState={this.props.videoCard.category}
                         cardIsVisible={this.props.videoCard.isVisible}
                         category={key}
                         videoCard={this.props.videoCard}
@@ -58,8 +47,6 @@ class HomeGrid extends Component {
         return (
             <div>
                 {this.props.overlayVisible ? <Overlay /> : <HeroCarousel/>}
-
-                {/* {this.props.selected && <Player videoUrl={this.props.videoUrl}/>} */}
                 <div className={this.props.overlayVisible ? 'hidden': ''}>
                     {this.createVideoList(this.props.videos)}
                 </div>
@@ -70,7 +57,6 @@ class HomeGrid extends Component {
 
 HomeGrid.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    videoUrl: PropTypes.string,
     selected: PropTypes.bool.isRequired,
     videoCard: PropTypes.object,
     categories: PropTypes.array,
@@ -79,7 +65,6 @@ HomeGrid.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-    videoUrl: state.playback.url,
     selected: state.playback.isSelected,
     videoCard: state.videoCard,
     categories: state.videos.categories,

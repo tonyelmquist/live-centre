@@ -1,7 +1,7 @@
 @import '../constants/_variables.styl'
 
 .trapezoid
-	border-top: 32px solid rgba(255,0,0,.5)
+	border-top: 32px solid rgba(0,146,171,.5)
 	border-right: 16px solid transparent
 	height: 0
 	width: 200px
@@ -20,17 +20,14 @@
     z-index: 100 /* Specify a stack order in case you're using a different order for other elements*/
     .overlay-header {
         // margin-top: 48px
+		margin-bottom: 8px;
         display:flex
         justify-content: space-between
+
     }
 }
-// .invisible {
-// 	display: hidden
-// }
-
 @media (min-width: $big_screen){
     .fs-overlay .overlay-header {
-        // margin:0 20px
-        // margin-top:81px
+        margin-top:-40px
     }
 }

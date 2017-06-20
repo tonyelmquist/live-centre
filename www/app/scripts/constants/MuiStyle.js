@@ -26,9 +26,9 @@ export default {
     secondaryTextColor: (0, fade)(fullBlack, 0.7),
     alternateTextColor: blueGrey800,
     canvasColor: lightBlue50,
-    borderColor: (0, fade)(fullWhite, 0.3),
-    disabledColor: (0, fade)(fullWhite, 0.3),
-    pickerHeaderColor: (0, fade)(fullWhite, 0.12),
-    clockCircleColor: (0, fade)(fullWhite, 0.12)
+    borderColor: (0, fade)(fullBlack, 0.3),
+    disabledColor: (0, fade)(fullBlack, 0.3),
+    pickerHeaderColor: (0, fade)(fullBlack, 0.5),
+    clockCircleColor: (0, fade)(fullBlack, 0.12)
   }
 };

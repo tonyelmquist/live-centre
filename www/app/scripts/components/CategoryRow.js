@@ -7,7 +7,8 @@ import Slider from 'react-slick';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import {grey800} from 'material-ui/styles/colors';
-import ProductCard from './homepage/ProductCard';
+import ProductCard from '../containers/homepage/CardContainer';
+
 
 class CategoryRow extends Component {
 
@@ -66,15 +67,12 @@ class CategoryRow extends Component {
 
         const videoCard = (this.props.videoCard.isVisible && this.props.videoCard.category === this.props.category) ?
             <div>
-                <ProductCard
-                    active={this.props.videoCard.index}
-                    changeTab={this.props.handleCardIndex}
-                    closeCard={this.props.hideVideoCard}
-                />
+                <ProductCard />
             </div> : undefined;
         let videos = '';
 
-        const _handleClick = () => {
+        const _handleClick = (video) => {
+            this.props.handleVideoInfo(video);
             if (this.props.videoCard.category !== this.props.category) {
                 this.props.handleCardCategory(this.props.category);
             };
@@ -96,7 +94,7 @@ class CategoryRow extends Component {
                 return (
                     <div key={`category-item-${video.video_url}`}>
                         <CategoryItem video={video}
-                            handleClick={()=>_handleClick()}
+                            handleClick={()=>_handleClick(video)}
                         />
                     </div>
                 );
@@ -143,9 +141,9 @@ CategoryRow.propTypes = {
     tag: PropTypes.object,
     handleCardIndex: PropTypes.func.isRequired,
     handleCardCategory: PropTypes.func.isRequired,
+    handleVideoInfo: PropTypes.func.isRequired,
     showVideoCard: PropTypes.func.isRequired,
-    hideVideoCard: PropTypes.func.isRequired,
-    videoCard: PropTypes.object
+    videoCard: PropTypes.object,
 };
 
 export default CategoryRow;

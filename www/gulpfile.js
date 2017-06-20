@@ -1,6 +1,7 @@
 /* eslint-disable */
 'use strict';
 const fs = require('fs');
+const url = require("url")
 const path = require('path');
 const gulp = require('gulp');
 const util = require('gulp-util');
@@ -45,6 +46,9 @@ gulp.task('webpack', function(callback) {
     let firstBuildReady = false;
     const config = {
         module: webpackConfig.module,
+        devServer: {
+            historyApiFallback: true,
+        },
         watch: WATCH ? WATCH : false,
         plugins: !isDev ? [
 
@@ -211,12 +215,22 @@ gulp.task('po:import', function(){
     return poUpdate('IMPORT');
 });
 
+var defaultFile = "index.html"
 // Static Server
 gulp.task('serve', function() {
     browserSync.init({
         server: {
             baseDir: DEST_FOLDER
         },
+        middleware: function(req, res, next) {
+                var fileName = url.parse(req.url);
+                fileName = fileName.href.split(fileName.search).join("");
+                var fileExists = fs.existsSync(DEST_FOLDER + fileName);
+                if (!fileExists && fileName.indexOf("browser-sync-client") < 0) {
+                    req.url = "/" + defaultFile;
+                }
+                return next();
+            },
         port: 3778,
         open: "external"
     });
