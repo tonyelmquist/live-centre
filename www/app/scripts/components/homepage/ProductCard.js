@@ -10,6 +10,7 @@ import TabLinks from './TabLinks';
 import Tabs from '../common/Tabs';
 import Player from '../common/Player';
 import Poster from '../common/Poster';
+import VideoDescription from '../common/VideoDescription';
 
 const tabs = ["Overview", "Episodes", "Trailers", "Details"];
 const styles = {
@@ -31,11 +32,20 @@ const ProductCard = (props) => (
                     onTouchTap={props.closeCard}>
                         <CloseIcon hoverColor={red500}/>
                 </IconButton>
-                <div><h3>{tabs[props.active]}</h3></div>
+                {/* <div><h3>{tabs[props.active]}</h3></div> */}
+                {console.log(props.video)}
             </div>
             <div className='keep-ratio'></div>
             <Tabs active={props.active}>
-                {<Poster handlePlay={()=> {props.handlePlay(props.video.item.video_url);}} imageUrl={props.video.item.thumbnail}/>}
+                <Row>
+                    <Col xs={12} md={6}>
+                        <VideoDescription video={props.video.item} />
+                    </Col>
+                    <Col xs={12} md={6}>
+                      {<Poster handlePlay={()=> {props.handlePlay(props.video.item.video_url);}} imageUrl={props.video.item.thumbnail}/>}
+                    </Col>
+                </Row>
+
 
                 <div className='content'></div>
                 <div className='content'></div>
