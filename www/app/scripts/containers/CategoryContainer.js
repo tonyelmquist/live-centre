@@ -39,9 +39,9 @@ class CategoryContainer extends Component {
         //Get tag object
         if(this.props.tags && categoryID){
 
-            this.props.tags.filter(tag =>{
+            this.props.tags.filter((tag) =>{
                 if(tag.id == categoryID){
-                    currentTag = tag
+                    currentTag = tag;
                 }
             });
 
@@ -49,7 +49,7 @@ class CategoryContainer extends Component {
     
         //Get video based on category
         if (categoryID) {
-            videos = this.props.videos.filter(video =>{
+            videos = this.props.videos.filter((video) =>{
 
                 for(let i = 0; i<video.tags.length; i++){
                     if(video.tags[i].id == categoryID){
@@ -82,7 +82,8 @@ class CategoryContainer extends Component {
 CategoryContainer.propTypes = {
     videos : PropTypes.array.isRequired,
     match: PropTypes.object,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    tags: PropTypes.object.isRequired,
 };
 
 

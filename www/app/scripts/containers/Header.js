@@ -44,11 +44,11 @@ class Header extends Component {
   }
 
   categoryItems = () => {
-    let items = [];
+    const items = [];
     if(this.props.categories.items.length>0){
       for(let i=0; i<this.props.categories.items.length; i++){
-        let name = this.props.categories.items[i].name;
-        let id = this.props.categories.items[i].id;
+        const name = this.props.categories.items[i].name;
+        const id = this.props.categories.items[i].id;
         items.push({key: name, path: `/Category/${id}`});
       }
     }

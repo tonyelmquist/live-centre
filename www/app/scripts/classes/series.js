@@ -11,7 +11,7 @@ class Series{
 	get id() {
 		if(typeof this._id === 'undefined') {
 			console.error("Tried to get ID of Series, was not set");
-			return false
+			return false;
 		}
 		return this._id;
 	}

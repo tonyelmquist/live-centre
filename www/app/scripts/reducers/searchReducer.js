@@ -100,7 +100,7 @@ function filter(state=initialFilterState, action){
             });
         case Actions.REMOVE_FILTER: 
             return Object.assign({}, {
-                filters: state.filters.filter(item => item !== action.string),
+                filters: state.filters.filter((item) => item !== action.string),
                 isClear: state.filters.length>1 ? false : true
             });
         default:

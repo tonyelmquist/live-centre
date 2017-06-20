@@ -6,31 +6,22 @@ import {Grid, Row} from 'react-flexbox-grid';
 import HeroCarousel from './Carousel';
 import Player from './Player';
 import {changeScore} from '../actions/score';
-import {changeCardIndex, showVideoCard, hideVideoCard, changeCardCategory} from '../actions/videoCard';
+import {changeCardIndex, showVideoCard, changeCardCategory, changeVideoInfo} from '../actions/videoCard';
 import CategoryRow from '../components/CategoryRow';
 import Overlay from '../containers/OverlayContainer';
 
 class HomeGrid extends Component {
 
-    _changeCardIndex = (index) => {
-        this
-            .props
-            .dispatch(changeCardIndex(index));
-    }
-    _changeCardCategory = (category) => {
-        this
-            .props
+   _changeCardCategory = (category) => {
+        this.props
             .dispatch(changeCardCategory(category));
     }
     _showVideoCard = () => {
-        this
-            .props
+        this.props
             .dispatch(showVideoCard());
     }
-    _hideVideoCard = () => {
-        this
-            .props
-            .dispatch(hideVideoCard());
+    _changeVideoInfo = (video) => {
+        this.props.dispatch(changeVideoInfo(video));
     }
 
 
@@ -40,21 +31,17 @@ class HomeGrid extends Component {
             return tags.map((tag)=>
                 <CategoryRow
                     key={`categoryrow-${tag.id}`}
-                    videos={videos}
-                    tag={tag}
-                    handleCardIndex={this._changeCardIndex}
                     handleCardCategory={this._changeCardCategory}
+                    handleVideoInfo = {this._changeVideoInfo}
                     showVideoCard={this._showVideoCard}
-                    hideVideoCard={this._hideVideoCard}
-                    categoryState={this.props.videoCard.category}
                     cardIsVisible={this.props.videoCard.isVisible}
                     videoCard={this.props.videoCard}
-                />
+                    videos={videos}
+                    tag={tag}
+                    />
+                
             );
         }
-
-        
-
     }
 
     render() {
@@ -72,6 +59,12 @@ class HomeGrid extends Component {
 
 HomeGrid.propTypes = {
     dispatch: PropTypes.func.isRequired,
+    selected: PropTypes.bool.isRequired,
+    videoCard: PropTypes.object,
+    categories: PropTypes.array,
+    videos: PropTypes.object.isRequired,
+    overlayVisible: PropTypes.bool,
+    tags: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

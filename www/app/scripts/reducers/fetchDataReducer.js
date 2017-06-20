@@ -3,23 +3,23 @@ import Actions from '../constants/reduxConstants';
 const defaultVideosState = {
     items : [],
     failed: false
-}
+};
 const defaultSeriesState = {
     items : [],
     failed: false
-}
+};
 const defaultChannelsState = {
     items : [],
     failed: false
-}
+};
 const defaultSeasonsState = {
     items : [],
     failed: false
-}
+};
 const defaultTagsState = {
     items : [],
     failed: false
-}
+};
 
 
 

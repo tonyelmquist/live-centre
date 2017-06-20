@@ -18,11 +18,12 @@ const styles = {
   },
 };
 
+const imageprefix = "http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/images/";
 
 const Poster = (props) => {
     return (
         <div className='poster'>
-            <img className='image' src={props.imageUrl} alt='Video Thumbnail' />
+            <img className='image' src={`${imageprefix+props.imageUrl}`} alt='Video Thumbnail' />
             <div className='overlay'>
                 <div className='overlay-content'>
                     <IconButton

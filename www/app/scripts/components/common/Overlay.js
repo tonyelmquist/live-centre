@@ -6,7 +6,7 @@ import Close from 'material-ui/svg-icons/navigation/close';
 import {red500, blue500} from 'material-ui/styles/colors';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
-var styles = {};
+let styles = {};
 
 const deviceHeight = window.innerHeight;
 

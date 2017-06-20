@@ -8,11 +8,11 @@ class Tag{
 			_id: 0,
 		});
 
-		let mappedData = {
+		const mappedData = {
 			_type: data.type,
 			_name: data.name,
 			_id: data.id,
-		}
+		};
 
 		Object.assign(this, mappedData);
 		validateObject(this, mappedData);
@@ -21,7 +21,7 @@ class Tag{
 	get id() {
 		if(typeof this._id === 'undefined') {
 			console.error("Tried to get ID of Video, was not set");
-			return false
+			return false;
 		}
 		return this._id;
 	}
@@ -34,7 +34,7 @@ class Tag{
 	get name() {
 		if(typeof this._name === 'undefined') {
 			console.error("Tried to get title of Video, was not set");
-			return false
+			return false;
 		}
 		return this._name;
 	}

@@ -20,4 +20,4 @@ import diff from 'deep-diff';
             }
         }
     }
-export default validateObject
+export default validateObject;

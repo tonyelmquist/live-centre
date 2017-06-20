@@ -39,8 +39,8 @@ class MasonryTiles extends Component {
         for(const key in video){
             for(let i = 0; i<filter.length; i++){
                 
-                let filterString = filter[i].toLowerCase();
-                let videoString = video[key].toLowerCase();
+                const filterString = filter[i].toLowerCase();
+                const videoString = video[key].toLowerCase();
 
                 if(videoString.includes(filterString) && filterString.length>0){
                     return true;

@@ -7,9 +7,9 @@ import {showOverlay, hideOverlay} from '../../actions/overlay';
 import {connect} from 'react-redux';
 
 class ProductCardContainer extends Component {
-    _handlePlay = (assetid) => {
+    _handlePlay = (video_url) => {
         this.props.dispatch(showOverlay());
-        this.props.dispatch(videoSelected(`https://www.mediabank.me/download/manifest.php?assetid=${assetid}`));
+        this.props.dispatch(videoSelected(`http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/video-files/${video_url}`));
     }
     _changeCardIndex = (index) => {
         this.props.dispatch(changeCardIndex(index));

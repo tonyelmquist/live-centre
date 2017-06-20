@@ -2,19 +2,19 @@ class Video{
 	constructor(data){
 		this.data = data;
 		this._id = this.data.id;
-		this._title = this.data.title
+		this._title = this.data.title;
 		this._description = this.data.description;
 		this._video_url = this.data.video_url;
 		this._thumbnail = this.data.thumbnail;
 		this._views = this.data.views;
-		this._eposide_number = this.data.eposide_number
+		this._eposide_number = this.data.eposide_number;
 		this._tags = this.data.tags;
 	}
 
 	get id() {
 		if(typeof this._id === 'undefined') {
 			console.error("Tried to get ID of Video, was not set");
-			return false
+			return false;
 		}
 		return this._id;
 	}
@@ -27,7 +27,7 @@ class Video{
 	get title() {
 		if(typeof this._title === 'undefined') {
 			console.error("Tried to get title of Video, was not set");
-			return false
+			return false;
 		}
 		return this._title;
 	}
@@ -40,7 +40,7 @@ class Video{
 	get thumbnail() {
 		if(typeof this._thumbnail === 'undefined') {
 			console.error("Tried to get title of Video, was not set");
-			return false
+			return false;
 		}
 		return this._thumbnail;
 	}
@@ -53,7 +53,7 @@ class Video{
 	get video_url() {
 		if(typeof this._video_url === 'undefined') {
 			console.error("Tried to get title of Video, was not set");
-			return false
+			return false;
 		}
 		return this._video_url;
 	}
@@ -78,9 +78,9 @@ class Video{
 	get tags(){
 		if(typeof this._tags == 'undefined'){
 			console.error("tried to get tags from video");
-			return false
+			return false;
 		}
-		return this._tags
+		return this._tags;
 	}
 
 	set tags(tags){
@@ -92,7 +92,7 @@ class Video{
 	get description(){
 		if(typeof this._description == 'undefined'){
 			console.error("Tried to get description of video, was not set.");
-			return false
+			return false;
 		}
 		return this._description;
 	}

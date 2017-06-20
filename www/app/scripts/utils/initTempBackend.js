@@ -15,14 +15,18 @@ const getData = (param) => {
 	return axios({
 		method:'get',
 		url:`${config.url+param}`,
+		headers: {
+			 'Authorization': 'Basic mcAPI2o17-H35t-password',
+		}
 	});
 
 }; 
 
 const initTempBackend = (store) => {
 
+
 	getData("videos").then(function(response){
-		let Videos = [];
+		const Videos = [];
 		for(let i = 0; i<response.data.length; i++){
 			Videos.push(new Video(response.data[i]));
 		}
@@ -31,21 +35,23 @@ const initTempBackend = (store) => {
 	});
 
 	getData("series").then(function(response){
-		let AllSeries = [];
+		const AllSeries = [];
 		for(let i = 0; i<response.data.length; i++){
-			AllSeries.push(new Series(response.data[i]))
+			AllSeries.push(new Series(response.data[i]));
 		}
 
 		store.dispatch(fetchSeriesSuccess(AllSeries));
 	});
 
 	getData("tags").then(function(response){
-		let AllTags = [];
+		const AllTags = [];
 		for(let i = 0; i<response.data.length; i++){
-			AllTags.push(new Tag(response.data[i]))
+			AllTags.push(new Tag(response.data[i]));
 		}
 		store.dispatch(fetchTagsSuccess(AllTags));
 	});
+
+
 
 /*
 	getData("seasons").then(function(response){
