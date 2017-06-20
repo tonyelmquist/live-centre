@@ -83,7 +83,7 @@ CategoryContainer.propTypes = {
     videos : PropTypes.array.isRequired,
     match: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
-    tags: PropTypes.object.isRequired,
+    tags: PropTypes.array.isRequired,
 };
 
 

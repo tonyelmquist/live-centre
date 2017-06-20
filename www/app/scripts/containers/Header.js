@@ -89,8 +89,10 @@ class Header extends Component {
   //Dont know if this is the best way to get the pathname. but it sure is the easiest.. 
   getLocationName = () => {
     const pathname = this.props.history.location.pathname;
+    
     if(this.isSubPage()){
-      return this.isSubPage();
+      const pathSegments = pathname.split("/");
+      return pathSegments[pathSegments.length-1];
     }
     return pathname.replace("/", "");
 
@@ -104,7 +106,7 @@ class Header extends Component {
     const noOfSlashes = pathSegments.length - 1;
 
     if(noOfSlashes > 1){
-      return pathSegments[pathSegments.length-1];
+      return true;
     } 
     return false;
   }

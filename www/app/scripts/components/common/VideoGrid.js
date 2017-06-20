@@ -8,9 +8,9 @@ class VideoGrid extends Component {
     _renderVideos = () =>
         this.props.videos.map((video)=>{
             return (
-                <Col xs={6} sm={4} md={3} key={video.assetid}>
+                <Col xs={6} sm={4} md={3} key={video.id}>
                     <VideoItem video={video}
-                        handleClick={()=> this.props.onSelect(video.assetid)}/>
+                        handleClick={()=> this.props.onSelect(video.video_url)}/>
                 </Col>
             );
 
