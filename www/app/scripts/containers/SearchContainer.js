@@ -83,7 +83,8 @@ class SearchContainer extends Component {
 SearchContainer.propTypes = {
     dispatch: PropTypes.func.isRequired,
     videos : PropTypes.array.isRequired,
-    search: PropTypes.object.isRequired
+    search: PropTypes.object.isRequired,
+    filter: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -25,7 +25,7 @@ const getData = (param) => {
 const initTempBackend = (store) => {
 
 
-	getData("videos").then(function(response){
+	getData("videos").then((response) => {
 		const Videos = [];
 		for(let i = 0; i<response.data.length; i++){
 			Videos.push(new Video(response.data[i]));
@@ -34,7 +34,7 @@ const initTempBackend = (store) => {
 
 	});
 
-	getData("series").then(function(response){
+	getData("series").then((response) => {
 		const AllSeries = [];
 		for(let i = 0; i<response.data.length; i++){
 			AllSeries.push(new Series(response.data[i]));
@@ -43,7 +43,7 @@ const initTempBackend = (store) => {
 		store.dispatch(fetchSeriesSuccess(AllSeries));
 	});
 
-	getData("tags").then(function(response){
+	getData("tags").then((response) => {
 		const AllTags = [];
 		for(let i = 0; i<response.data.length; i++){
 			AllTags.push(new Tag(response.data[i]));

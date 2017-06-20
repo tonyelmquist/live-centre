@@ -62,9 +62,9 @@ HomeGrid.propTypes = {
     selected: PropTypes.bool.isRequired,
     videoCard: PropTypes.object,
     categories: PropTypes.array,
-    videos: PropTypes.object.isRequired,
+    videos: PropTypes.array.isRequired,
     overlayVisible: PropTypes.bool,
-    tags: PropTypes.object.isRequired,
+    tags: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
