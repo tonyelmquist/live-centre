@@ -1,20 +1,30 @@
 import {enzymeMount, expect, store} from '../tests.helper.js';
-import Settings from '../../scripts/containers/pages/SettingsPage';
+import SettingsPage from '../../scripts/containers/pages/SettingsPage';
 import sinon from 'sinon';
 
-describe('Settings',() => {
+describe('Settings', () => {
+
+    const props = {
+        settings: {options: {'foo': 'bar'}}
+    };
+
     let wrapper;
 
-    it('renders Settings', ()=> {
-        sinon.spy(Settings.prototype, 'render');
-        wrapper = enzymeMount(Settings);
-        expect(Settings.prototype.render.calledOnce).to.equal(true);
+    it('renders SettingsPage', () => {
+        sinon.spy(SettingsPage.prototype, 'render');
+        wrapper = enzymeMount(SettingsPage, props);
+        expect(SettingsPage.prototype.render.calledOnce)
+            .to
+            .equal(true);
         expect(wrapper.find('SettingsPage').exists()).to.be.true;
     });
 
-    it('has language buttons', ()=> {
-        const btn = wrapper.find('RaisedButton');
-        expect(btn.length).to.equal(2);
+    it('has language buttons', () => {
+        wrapper = enzymeMount(SettingsPage, props);
+        const btn = wrapper.find('<MenuItem>');
+        expect(btn.length)
+            .to
+            .be.greaterThan(0);
     });
 
 });

@@ -5,15 +5,15 @@ describe('TabMenu', () => {
 
   const props = {
     pageItems: [],
-	changeRoute: function(){},
-	openCloseMenu: function(){},
-	isMenuOpen: function(){},
-	isSubPage: true
+    changeRoute: function () {},
+    openCloseMenu: function () {},
+    isMenuOpen: function () {},
+    isSubPage: true
   };
 
   let wrapper;
 
-    it('renders a MediaQuery', () => {
+  it('renders a MediaQuery', () => {
     wrapper = enzymeMount(TabMenu, props);
     expect(wrapper.find('MediaQuery').exists()).to.be.true;
   });

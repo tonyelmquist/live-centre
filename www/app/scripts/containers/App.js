@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 // import {*} from '../actions/**';
 import Avatar from 'material-ui/Avatar';
 //Custom components
-import MainFrame from './MainFrame';
 import Login from './Login';
 import Logged from './Logged';
 import Header from './Header';

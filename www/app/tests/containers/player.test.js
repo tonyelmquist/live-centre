@@ -12,12 +12,8 @@ describe('Player',() => {
         expect(wrapper.find('Player').exists()).to.be.true;
     });
 
-    it('renders ReactPlayer', ()=> {
-        expect(wrapper.find('ReactPlayer').exists()).to.be.true;
-    });
-
-        it('renders Fullscreen button', ()=> {
-        expect(wrapper.find('FloatingActionButton').exists()).to.be.true;
+    it('renders HTML5 player', ()=> {
+        expect(wrapper.find('Video').exists()).to.be.true;
     });
 
 });
