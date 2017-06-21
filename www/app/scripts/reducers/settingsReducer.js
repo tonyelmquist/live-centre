@@ -2,7 +2,14 @@ import Actions from '../constants/reduxConstants';
 import Settings from '../classes/settings';
 import {REHYDRATE} from 'redux-persist/constants';
 
-export default function settings(state = {options: null} , action) {
+const defaultSettings = new Settings({
+    language:'en',
+    subtitleLanguage:'en',
+    audioLanguage:'en',
+    recommendations:false
+});
+
+export default function settings(state = {options: defaultSettings, saving: false} , action) {
 
     // Create a clone of the current Settings class object
     const newSettings = Object.assign( {}, state.options );
@@ -13,6 +20,24 @@ export default function settings(state = {options: null} , action) {
         case Actions.FETCH_USER_SETTINGS_SUCCESS:
             return Object.assign({}, state, {
                 options: action.settings
+            });
+
+        //Saving User Settings
+        case Actions.SAVING_USER_SETTINGS:
+            return Object.assign({}, state, {
+                saving: 'saving'
+            });
+
+        //Saving User Settings SUCCESS
+        case Actions.SAVED_USER_SETTINGS:
+            return Object.assign({}, state, {
+                saving: 'saved'
+            });
+
+        //Saving User Settings FAILED
+        case Actions.SAVING_USER_SETTINGS_FAILED:
+            return Object.assign({}, state, {
+                saving: 'failed'
             });
 
         // Change Language

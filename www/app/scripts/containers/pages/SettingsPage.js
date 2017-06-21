@@ -1,5 +1,5 @@
 import React from 'react';
-import {RaisedButton, SelectField, MenuItem, Toggle} from 'material-ui';
+import {RaisedButton, SelectField, MenuItem, Toggle, Snackbar} from 'material-ui';
 import {changeLang, changeAudioLang, changeSubtitleLang, toggleRecommendations, saveUserSettings} from '../../actions/settings';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,30 +10,34 @@ const styles = {
     fontWeight: 400,
     height: '100%'
   },
-  buttonbar: {
-      bottom: 0,
-      left: 0,
-      position: 'fixed',
-  },
-  swipeContainer: {
-      height: '100%',
-      marginTop: '64px',
-      marginBottom: '50px'
-  },
   container: {
     padding: '20px'
   }
 };
 
+const selectBoxStyle = {
+    width: '100%'
+};
+
 class SettingsPage extends React.Component {
     constructor(){
         super();
+
+        this.state = {
+            snackbarIsOpen: false
+        };
+
     }
 
     handleAudioChange = (event, index, value) => this.props.dispatch(changeAudioLang(value));
     handleSubtitleChange = (event, index, value) => this.props.dispatch(changeSubtitleLang(value));
     handleRecommendationsChange = () => this.props.dispatch(toggleRecommendations());
-    handleSaveTouch = () => this.props.dispatch(saveUserSettings(this.props.settings.options));
+    handleSaveTouch = () => {
+        this.props.dispatch(saveUserSettings(this.props.settings.options));
+        this.state.snackbarIsOpen = true;
+    }
+    handleRequestCloseSnackbar = () => this.state.snackbarIsOpen = false;
+    handleActionTouchTap= () => this.state.snackbarIsOpen = false;
 
     handleLanguageChange = (event, index, newLang) => {
         if (newLang !== this.props.settings.lang ){
@@ -51,6 +55,7 @@ class SettingsPage extends React.Component {
             <h3>{i18next.t('setting_language_options')}</h3>
 
             <SelectField
+              style={selectBoxStyle}
               floatingLabelText={i18next.t('setting_audio')}
               value={this.props.settings.options.audioLanguage}
               onChange={this.handleAudioChange} >
@@ -61,6 +66,7 @@ class SettingsPage extends React.Component {
             <br />
 
             <SelectField
+              style={selectBoxStyle}
               floatingLabelText={i18next.t('setting_language')}
               value={this.props.settings.options.language}
               onChange={this.handleLanguageChange} >
@@ -71,6 +77,7 @@ class SettingsPage extends React.Component {
             <br />
 
             <SelectField
+              style={selectBoxStyle}
               floatingLabelText={i18next.t('setting_subtitle')}
               value={this.props.settings.options.subtitleLanguage}
               onChange={this.handleSubtitleChange} >
@@ -83,8 +90,20 @@ class SettingsPage extends React.Component {
                 label="Reccomendations" 
                 toggled={this.props.settings.options.recommendations}
                 onToggle={this.handleRecommendationsChange}/>
-
+                <br />
             <RaisedButton label="Save" primary={true} onTouchTap={this.handleSaveTouch} />
+
+            <Snackbar
+                open={this.props.settings.saving == 'saving' && this.state.snackbarIsOpen}
+                message="Saving Settings..."  
+                onRequestClose={this.handleRequestCloseSnackbar}/>
+            <Snackbar
+                open={this.props.settings.saving == 'saved' && this.state.snackbarIsOpen}
+                message="Settings saved!"
+                autoHideDuration={4000}      
+                action="undo"
+                onActionTouchTap={this.handleActionTouchTap}
+                onRequestClose={this.handleRequestCloseSnackbar}/>
           </div>
         );
     }

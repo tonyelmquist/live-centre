@@ -1,4 +1,5 @@
 import Actions from '../constants/reduxConstants.js';
+import Snackbar from 'material-ui/Snackbar';
 import axios from 'axios';
 
 export function fetchUserSettingsSent() {

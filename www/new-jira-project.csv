@@ -1,0 +1,8 @@
+IssueId, IssueType, Epic Name, Summary, IssueLink
+IR-1, project, "IR Website", "IR Website", 
+IR-2, epic, "Idea Stage", "Idea Stage", IR-1
+IR-3, epic, "Qualify Stage", "Qualify Stage", IR-1
+IR-4, epic, "Commercial Stage", "Commercial Stage", IR-1
+IR-5, epic, "Production Stage", "Production Stage", IR-1
+IR-6, epic, "Operations Stage", "Operations Stage", IR-1
+IR-7, epic, "Delivery Stage", "Delivery Stage", IR-1
