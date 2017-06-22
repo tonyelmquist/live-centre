@@ -23,7 +23,7 @@ class MasonryTiles extends Component {
                         <div className="masonry_tile_inner">
                             <img src={imagePrefix+video.thumbnail}/>
                             <div className="tile-data">
-                                <p>{video.title}</p>
+                                <h4>{video.title}</h4>
                                 <p className="metadata"> {video.description},</p>
                             </div>
                         </div>

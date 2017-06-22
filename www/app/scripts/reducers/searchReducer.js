@@ -12,6 +12,10 @@ function search(state=initialState, action){
             return Object.assign({}, state,{
                 isOpen: !state.isOpen,
             });
+        case Actions.CLOSE_SEARCH:
+            return Object.assign({}, state,{
+                isOpen: false
+            });
         case Actions.SEARCH_KEYWORD:
             return Object.assign({}, state,{
                 keyword: action.keyword,
@@ -41,7 +45,7 @@ const filters = {
     jurasicage: {active: false, key: 'jurasicage', filterOn: "jurasic age"},
     medieval: {active: false, key: 'medieval', filterOn: "medieval"},
     wildwest: {active: false, key: 'wildwest', filterOn: "wild west"},
-    happytwenties: {active: false, key: 'happytwenties', filterOn: "happy twenties"},
+    roaringtwenties: {active: false, key: 'roaringtwenties', filterOn: "roaring twenties"},
     spaceage: {active: false, key: 'spaceage', filterOn: "space age"},
 };
 
