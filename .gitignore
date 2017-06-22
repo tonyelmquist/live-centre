@@ -13,3 +13,6 @@ langtemp/
 android/app/src/main/assets/
 android/app/*
 ios/Live Centre/html/
+
+# Android Studio files
+android/.idea/
