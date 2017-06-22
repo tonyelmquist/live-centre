@@ -37,6 +37,7 @@ class ReduxConstants {
     static get TOGGLE_SEARCH() {return "TOGGLE_SEARCH";}
     static get SEARCH_KEYWORD() {return "SEARCH_KEYWORD";}
     static get EMPTY_SEARCH() {return "EMPTY_SEARCH";}
+    static get CLOSE_SEARCH() {return "CLOSE_SEARCH";}
 
     //Filter
     static get CLEAR_FILTERS() {return "CLEAR_FILTER";}
