@@ -13,8 +13,9 @@ import Logged from '../../containers/Logged';
 import MediaQuery from 'react-responsive';
 import TextField from 'material-ui/TextField';
 import AnimatedMenuIcon from './../animatedIcons/AnimatedMenuIcon';
+import {NavLink, Link} from 'react-router-dom';
 
-const HeaderMenu = ({pageItems, searchState, categoryItems, handleSearch, openCloseSearch, openCloseMenu, isMenuOpen, locationName, isSubPage, changeRoute}) => {
+const HeaderMenu = ({pageItems, searchState, categoryItems, handleSearch, openCloseSearch, openCloseMenu, isMenuOpen, locationName, isSubPage, changeRoute, closeSearch}) => {
 
 
 	const HeaderMenuItem = (items) => {
@@ -22,7 +23,7 @@ const HeaderMenu = ({pageItems, searchState, categoryItems, handleSearch, openCl
 			return items.map((item) =>
 				
 					<FlatButton
-					onTouchTap={()=>changeRoute(item.path)}
+					onTouchTap={()=>{changeRoute(item.path); closeSearch();}}
 					className="menuItem links"
 					label={i18next.t(item.key)}
 					key={`${item.key}-flatButton`}
@@ -36,10 +37,10 @@ const HeaderMenu = ({pageItems, searchState, categoryItems, handleSearch, openCl
 
 			<MediaQuery maxWidth={1000}>
 	          	<div className={(searchState.isOpen)? "expandable_searchbar open" : "expandable_searchbar closed"}>
-		          	<FlatButton
+		          	<Link to='/Home'><FlatButton
 						className="logo"
 						label="IMR"
-					/>
+					/></Link>
 					<SearchInput handleSearch={handleSearch} searchState={searchState}/> 
 				</div>
 			</MediaQuery>

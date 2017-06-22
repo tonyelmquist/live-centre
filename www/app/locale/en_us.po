@@ -186,8 +186,8 @@ msgstr "Wild West"
 
 #. Tag & category names
 #:
-msgid "happytwenties"
-msgstr "Happy Twenties"
+msgid "roaringtwenties"
+msgstr "Roaring Twenties"
 
 #. Tag & category names
 #:

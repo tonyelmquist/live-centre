@@ -13,7 +13,7 @@ const ExpandableMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, ch
 		if(items.length > 0){
 			return items.map((item) =>
 			
-					<p key={item.key} onTouchTap={()=>{changeRoute(item.path); openCloseMenu();}} className="expandableMenuItem">
+					<p key={item.key} onTouchTap={()=>{changeRoute(item.path); openCloseMenu(); }} className="expandableMenuItem">
 
 							{i18next.t(item.key)}
 					</p>
