@@ -18,7 +18,7 @@ import ChannelsPage from './pages/ChannelsPage';
 import TVGuidePage from './pages/TVGuidePage';
 
 import CategoryContainer from './CategoryContainer';
-import SearchContainer from './SearchContainer';
+import SearchOverlay from './SearchOverlay';
 
 import {TransitionMotion, spring, presets} from 'react-motion';
 
@@ -39,7 +39,7 @@ class App extends Component {
                     <Header/>
                     <div className="main">
                         {/*this.props.state_all.search.isOpen ? <SearchContainer/>  : <div></div>*/}
-                        <SearchContainer/>
+                        <SearchOverlay/>
                         <div className="mainContent">
                             <Route exact path="/Home" component={HomePage}/>
                             <Route path="/Login" component={Login}/>

@@ -28,85 +28,89 @@ function search(state=initialState, action){
     }
 };
 
-
-/*
+//set translations in translation. 
+//keys for object and key value MUST match
 const filters = {
-    all: {active: true, key:"all"},
-    videos: {key:"videos"},
-    series: {key:"series"},
-    channels: {key:"channels"},
-    uncategorized: {key:"uncategorized"},
-    '-1': {key:"-1"},
-    NEP: {key:"NEP"},
-};*/
-/*
-
-const initialFilterState = {
-    filters : filters,
-    isClear : true,
-};*/
-
-/*const filters = [
-        {key: "all", clear: true,  active: true },
-        {key: "videos",},
-        {key: "series",  },
-        {key: "channels",  },
-        {key: "uncategorized",  },
-        {key: "-1",  },
-        {key: "lost in time",  },
-        {key: "the future group",  },
-        {key: "NEP",  },
-        {key: "test",  },
-    ];
-
-
-function filter(state=filters, action){
-    switch(action.type){
-        case Actions.FILTER_KEYWORDS:
-            return state.map(filter => {
-                if(filter.key == action.string){
-                    return {
-                        ...filter,
-                        active: true
-                    }
-                    
-                } else {
-                    return filter;
-                };
-            });
-        default: 
-            return state;
-    }    
-};*/
-
-
-
-const initialFilterState = {
-    filters : ["jhest","videos"],
-    isClear : true,
+    all :  {active :true, key:'all', clear: true, filterOn: "all"},
+    videos: {active: false, key: 'videos', filterOn:"videos"},
+    series: {active: false, key: 'series', filterOn:"series"},
+    lostintime: {active: false, key: 'lostintime', filterOn:"lost in time"},
+    streetfighter: {active: false, key: 'streetfighter', filterOn: "street fighter"},
+    thefuturegroup: {active: false, key: 'thefuturegroup', filterOn: "the future group"},
+    iceage: {active: false, key: 'iceage', filterOn:"ice age"},
+    jurasicage: {active: false, key: 'jurasicage', filterOn: "jurasic age"},
+    medieval: {active: false, key: 'medieval', filterOn: "medieval"},
+    wildwest: {active: false, key: 'wildwest', filterOn: "wild west"},
+    happytwenties: {active: false, key: 'happytwenties', filterOn: "happy twenties"},
+    spaceage: {active: false, key: 'spaceage', filterOn: "space age"},
 };
 
-function filter(state=initialFilterState, action){
+const initialfilterstate = {
+    filters: filters,
+    isClear: true
+};
+
+
+//Copy the initial filterstate  so we can revert back to it later on CLEAR_FILTERS.
+function filter(state = initialfilterstate, action){
     switch(action.type){
-        case Actions.FILTER_KEYWORDS:
-            return Object.assign({}, state,{
-                filters: [...state.filters, action.string],
-                isClear: false,
+        case Actions.TOGGLE_FILTER:
+
+            const updatedFilters = Object.assign({}, state.filters, {
+                ...state.filters,
+                [action.filterkey] : {
+                    ...state.filters[action.filterkey],
+                    active : !state.filters[action.filterkey].active
+                }
             });
-        case Actions.CLEAR_FILTER:
-            return Object.assign({}, state,{
-                filters: [],
+
+            //after updating the state, check if the filters are cleared...
+            let isCleared = true;
+            for(const key in updatedFilters){
+                if(updatedFilters[key].active){
+                    isCleared = false;
+                    break;
+                }
+            }
+            
+            //...Set the clear button accordingly and state
+            return Object.assign({}, updatedFilters,{
+                filters: {
+                    ...updatedFilters,
+                    all:{
+                       ...state.filters['all'],
+                        active: isCleared
+                    }
+                },
+                isClear: isCleared,
+            });
+
+
+
+        case Actions.CLEAR_FILTERS:
+        
+            //New copy of state.filters, map keys to k
+            //Set all items unactive, 
+            //!except for the item with the clear key (filters[key].clear),which is the reset button. 
+            const newFilters =  Object.assign({}, ...Object.keys(state.filters).map((key) => ({
+                    [key]: {
+                        ...state.filters[key],
+                        active: state.filters[key].clear ? true : false
+                    }
+                })
+            ));
+
+            return Object.assign({}, state, {
+                filters:{
+                    ...newFilters
+                },
                 isClear: true,
             });
-        case Actions.REMOVE_FILTER: 
-            return Object.assign({}, {
-                filters: state.filters.filter((item) => item !== action.string),
-                isClear: state.filters.length>1 ? false : true
-            });
+
+
         default:
             return state;
     }
 };
 
 export {search, filter};
-

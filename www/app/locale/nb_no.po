@@ -16,7 +16,6 @@ msgstr "OK"
 #: 
 msgid "route_home"
 msgstr "Hjem"
-
 #. Route About
 #: 
 msgid "route_about"
@@ -27,6 +26,31 @@ msgstr "Om Oss"
 msgid "route_topics"
 msgstr "Emner"
 
+#. Route Settings
+#:
+msgid "route_settings"
+msgstr "Innstillinger"
+
+#. Route Favorites
+#:
+msgid "route_favorites"
+msgstr "Favoritter"
+
+#. Route Series
+#:
+msgid "route_series"
+msgstr "Serier"
+
+#.Route Channels
+#:
+msgid "route_channels"
+msgstr "Kanaler"
+
+#.Route Tv-Guide
+#:
+msgid "route_tvguide"
+msgstr "TV-Guide"
+
 #. Topics Rendering
 #: 
 msgid "topics_rendering"
@@ -35,7 +59,7 @@ msgstr "Gjengivelse"
 #. Topics Component
 #: 
 msgid "topics_component"
-msgstr "Component"
+msgstr "Komponent"
 
 #. Topics State vs Props
 #: 
@@ -62,7 +86,7 @@ msgstr "Norsk"
 #. Setting: Title
 #:
 msgid "setting_title"
-msgstr "Innstilling"
+msgstr "Innstillinger"
 
 #. Setting: Language Options
 #:
@@ -83,3 +107,89 @@ msgstr "Språk"
 #:
 msgid "setting_subtitle"
 msgstr "Undertekst"
+
+#. Search: Placeholder
+#: 
+msgid "search_placeholder"
+msgstr "Jeg vil se.."
+
+#. Searchoverlay: Suggested people
+#:
+msgid "suggested_people"
+msgstr "Venneforslag"
+
+#. Searchoverlay: Suggested videos
+#:
+msgid "suggested_videos"
+msgstr "Videoforslag"
+
+#. Search Results label
+#:
+msgid "search_results"
+msgstr "Søkeresultater for:"
+
+#. Filter label
+#:
+msgid "filter"
+msgstr "Filtrer"
+
+
+#. Tag & category names
+#:
+msgid "all"
+msgstr "Alle"
+
+#. Tag & category names
+#:
+msgid "videos"
+msgstr "Videoer"
+
+#. Tag & category names
+#:
+msgid "series"
+msgstr "Serier"
+
+#. Tag & category names
+#:
+msgid "lostintime"
+msgstr "Lost in Time"
+
+#. Tag & category names
+#:
+msgid "streetfighter"
+msgstr "Street Fighter"
+
+#. Tag & category names
+#:
+msgid "thefuturegroup"
+msgstr "The Future Group"
+
+#. Tag & category names
+#:
+msgid "iceage"
+msgstr "Istiden"
+
+#. Tag & category names
+#:
+msgid "jurasicage"
+msgstr "Juratiden"
+
+#. Tag & category names
+#:
+msgid "medieval"
+msgstr "Middelalderen"
+
+#. Tag & category names
+#:
+msgid "wildwest"
+msgstr "Ville vestent"
+
+#. Tag & category names
+#:
+msgid "happytwenties"
+msgstr "Glade 20åra"
+
+#. Tag & category names
+#:
+msgid "spaceage"
+msgstr "Romalderen"

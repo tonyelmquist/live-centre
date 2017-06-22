@@ -7,6 +7,7 @@ import {NavLink, Link} from 'react-router-dom';
 import IconButton from 'material-ui/IconButton';
 import BackButton from 'material-ui/svg-icons/hardware/keyboard-backspace';
 import {fullWhite, blueGrey900} from 'material-ui/styles/colors';
+import {videoPrefix} from '../constants/mediaPrefix.js';
 // import {changeCardIndex, showVideoCard, hideVideoCard, changeCardCategory} from '../actions/videoCard';
 
 
@@ -23,7 +24,7 @@ const styles = {
 };
 class CategoryContainer extends Component {
     _handleSelect = (videoUrl) => {
-        this.props.dispatch(videoSelected(`http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/video-files/${videoUrl}`));
+        this.props.dispatch(videoSelected(`${videoPrefix+videoUrl}`));
     };
 
 
@@ -38,26 +39,22 @@ class CategoryContainer extends Component {
         
         //Get tag object
         if(this.props.tags && categoryID){
-
             this.props.tags.filter((tag) =>{
                 if(tag.id == categoryID){
                     currentTag = tag;
                 }
             });
-
         }
     
         //Get video based on category
         if (categoryID) {
             videos = this.props.videos.filter((video) =>{
-
                 for(let i = 0; i<video.tags.length; i++){
                     if(video.tags[i].id == categoryID){
                         return video;
                     }
                 }
             });
-
         }
 
         return (

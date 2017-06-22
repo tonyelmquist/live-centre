@@ -15,7 +15,7 @@ const ExpandableMenu = ({pageItems, categoryItems, openCloseMenu, isMenuOpen, ch
 			
 					<p key={item.key} onTouchTap={()=>{changeRoute(item.path); openCloseMenu();}} className="expandableMenuItem">
 
-							{item.key}
+							{i18next.t(item.key)}
 					</p>
 			);
 		};

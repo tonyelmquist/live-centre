@@ -11,7 +11,7 @@ class SearchInput extends Component{
 				<input 
 					name="search"
 					type="text" 
-					placeholder="Jeg vil se..."
+					placeholder={i18next.t("search_placeholder")}
 					onChange={this.props.handleSearch}
 					autoFocus
 				/>

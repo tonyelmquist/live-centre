@@ -29,8 +29,7 @@ class Logged extends Component {
           targetOrigin={{horizontal: 'right', vertical: 'top'}}
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
-          <MenuItem primaryText="Settings" onTouchTap={this.handleSettingsTouchTap}/>
-          <MenuItem primaryText="Refresh" />
+          <MenuItem primaryText={i18next.t('route_settings')} onTouchTap={this.handleSettingsTouchTap}/>
           <MenuItem primaryText={i18next.t('route_about')} />
           <MenuItem primaryText={i18next.t('app_signout')} onTouchTap={this.handleLogout}/>
         </IconMenu>

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import SearchIcon from 'material-ui/svg-icons/action/search';
 import MediaQuery from 'react-responsive';
 import IconButton from 'material-ui/IconButton';
-import AnimatedSearchIcon from './animatedIcons/AnimatedSearchIcon';
-import SearchInput from './header/SearchInput';
+import AnimatedSearchIcon from '../animatedIcons/AnimatedSearchIcon';
+import SearchInput from './SearchInput';
 
 //Should also have validation.
 //A tutorial: http://redux-form.com/6.0.0-rc.1/examples/material-ui/

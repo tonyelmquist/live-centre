@@ -37,7 +37,20 @@ msgstr "Settings"
 msgid "route_favorites"
 msgstr "Favorites"
 
-favorite
+#. Route Series
+#:
+msgid "route_series"
+msgstr "Series"
+
+#.Route Channels
+#:
+msgid "route_channels"
+msgstr "Channels"
+
+#.Route Tv-Guide
+#:
+msgid "route_tvguide"
+msgstr "TV-Guide"
 
 #. Topics Rendering
 #:
@@ -95,3 +108,88 @@ msgstr "Language"
 #:
 msgid "setting_subtitle"
 msgstr "Subtitle"
+
+#. Search: Placeholder
+#: 
+msgid "search_placeholder"
+msgstr "I want to see"
+
+#. Searchoverlay: Suggested people
+#:
+msgid "suggested_people"
+msgstr "Suggested People"
+
+#. Searchoverlay: Suggested videos
+#:
+msgid "suggested_videos"
+msgstr "Suggested videos"
+
+#. Search Results label
+#:
+msgid "search_results"
+msgstr "Search results"
+
+#. Filter label
+#:
+msgid "filter"
+msgstr "Filter"
+
+#. Tag & category names
+#:
+msgid "all"
+msgstr "All"
+
+#. Tag & category names
+#:
+msgid "videos"
+msgstr "Videos"
+
+#. Tag & category names
+#:
+msgid "series"
+msgstr "Series"
+
+#. Tag & category names
+#:
+msgid "lostintime"
+msgstr "Lost In Time"
+
+#. Tag & category names
+#:
+msgid "streetfighter"
+msgstr "Street Fighter"
+
+#. Tag & category names
+#:
+msgid "thefuturegroup"
+msgstr "The Future Group"
+
+#. Tag & category names
+#:
+msgid "iceage"
+msgstr "Ice Age"
+
+#. Tag & category names
+#:
+msgid "jurasicage"
+msgstr "Jurasic Age"
+
+#. Tag & category names
+#:
+msgid "medieval"
+msgstr "Medieval"
+
+#. Tag & category names
+#:
+msgid "wildwest"
+msgstr "Wild West"
+
+#. Tag & category names
+#:
+msgid "happytwenties"
+msgstr "Happy Twenties"
+
+#. Tag & category names
+#:
+msgid "spaceage"
+msgstr "Space Age"

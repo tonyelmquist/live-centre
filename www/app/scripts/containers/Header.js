@@ -4,40 +4,40 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {changeNavMenuIndex, toggleMenu, showMenu, hideMenu} from '../actions/navigation';
 import {searchKeyword, toggleSearch, emptySearch} from '../actions/search.js';
-
 import MediaQuery from 'react-responsive';
-
 //Routing
 import {withRouter} from 'react-router';
-
 //Menu components
-import HeaderMenu from './../components/header/HeaderMenu';
-import TabMenu from './../components/header/TabMenu';
-import ExpandableMenu from './../components/header/ExpandableMenu';
-
+import HeaderMenu from './../components/navigation/HeaderMenu';
+import TabMenu from './../components/navigation/TabMenu';
+import ExpandableMenu from './../components/navigation/ExpandableMenu';
 //Shared icons
 import HomeIcon from 'material-ui/svg-icons/action/home';
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import FavoriteIcon from 'material-ui/svg-icons/action/favorite';
 import TVicon from 'material-ui/svg-icons/hardware/tv';
-
 import ChannelIcon from 'material-ui/svg-icons/action/language';
 import VideoIcon from 'material-ui/svg-icons/AV/videocam';
 import VideoLibrary from 'material-ui/svg-icons/AV/video-library';
 
-/* Three different menu items. 
- * Tabs: Each of the categories, 
- * NormalMenu: contains searchbar, logo and categories
- * ExpandableMenu: Displays categories when toggled */
+/* This component is the starting point for all navigation. 
+ * There are three different navigation components (located in components/navigation)
+ * * Tabs: Which is shown on screens < less than 900px. Has a menu item.
+ * * The tabs menu item opens an expandable menu. 
+ * * HeaderMenu: the top navigation, it contains searchbar and logo. It also displays navigation and categories at >1000 px screen. 
+ * * * The searchbar either expands from left or from right, depending on screen size.
+ * * * Clicking the search field fires an action that activates the search overlay. See searchoverlay container. 
+ */
+
 class Header extends Component {
   
   //Generate menu items that correspons with the react router paths.
   getPageItems = () => {
     const items = [
-      {key: "Home", path: "/Home", icon: <HomeIcon/>}, 
-      {key: "Series", path:"/Series", icon: <VideoIcon/>},
-      {key: "Channels", path: "/Channels", icon: <ChannelIcon/>},
-      {key: "TV-Guide", path:"/TVGuide", icon:<TVicon/>}
+      {key: "route_home", path: "/Home", icon: <HomeIcon/>}, 
+      {key: "route_series", path:"/Series", icon: <VideoIcon/>},
+      {key: "route_channels", path: "/Channels", icon: <ChannelIcon/>},
+      {key: "route_tvguide", path:"/TVGuide", icon:<TVicon/>}
     ];
 
     return items;
