@@ -34,13 +34,14 @@ android {
     buildToolsVersion "25.0.3"
 
     def build_number = System.getenv("BUILD_NUMBER") ?: "1"
+    def version_name = System.getenv("VERSION_NAME") ?: "1.0"
 
     defaultConfig {
         applicationId "com.futureuniverse.livecentre"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode build_number as Integer
-        versionName "1." + build_number
+        versionName version_name
     }
     buildTypes {
         release {
