@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from '../../components/homepage/ProductCard';
+import ProductCardMobile from '../../components/homepage/ProductCardMobile';
 import {changeCardIndex, hideVideoCard} from '../../actions/videoCard';
 import {videoSelected, invalidateSelected} from '../../actions/video';
 import {showOverlay, hideOverlay} from '../../actions/overlay';
@@ -27,6 +28,14 @@ class ProductCardContainer extends Component {
                 handlePlay = {this._handlePlay}
             />
         );
+
+        // return (
+        //     <ProductCardMobile
+        //         video = {this.props.video}
+        //         closeCard = {this._handleClose}
+        //         handlePlay = {this._handlePlay}
+        //     />
+        // );
     }
 }
 
