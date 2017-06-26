@@ -1,5 +1,5 @@
 import {enzymeMount, expect} from '../tests.helper.js';
-import SearchInput from '../../scripts/components/header/SearchInput';
+import SearchInput from '../../scripts/components/navigation/SearchInput';
 
 describe('SearchInput', () => {
 

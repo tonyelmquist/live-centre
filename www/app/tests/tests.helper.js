@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {MemoryRouter as Router} from 'react-router-dom';
 //Redux
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import store from '../scripts/utils/store';
 //Testing Libraries
 import TestUtils from 'react-dom';
-import { shallow, mount, render } from "enzyme";
+import {shallow, mount, render} from "enzyme";
 import {assert, expect} from 'chai';
 //Material UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -20,23 +21,33 @@ injectTapEventPlugin();
 const muiTheme = getMuiTheme(style);
 //i18next initialization
 initLang(store);
-//Video List
-// initVideoList(store);
-// console.info('INFO+++++++');
-// console.info(store.videos);
-//Renders a component
+// Video List initVideoList(store); console.info('INFO+++++++');
+// console.info(store.videos); Renders a component
 const enzymeMount = (ComponentClass, props = {}, state = {}) => {
-  //Enzyme react wrapper around App component
-  const wrapper = mount(
-      <MuiThemeProvider muiTheme={muiTheme}>
-          <Provider store={store}>
-              <ComponentClass {...props}/>
-          </Provider>
-      </MuiThemeProvider>
-  );
+    //Enzyme react wrapper around App component
+    const wrapper = mount(
+        <MuiThemeProvider muiTheme={muiTheme}>
+            <Provider store={store}>
+                <ComponentClass {...props}/>
+            </Provider>
+        </MuiThemeProvider>
+    );
 
-
-  return wrapper;
+    return wrapper;
 };
 
-export {enzymeMount, expect, assert, store};
+const enzymeMountWithRouter = (ComponentClass, props = {}, state = {}) => {
+    //Enzyme react wrapper around App component
+    const wrapper = mount(
+        <MuiThemeProvider muiTheme={muiTheme}>
+            <Provider store={store}>
+                <Router>
+                    <ComponentClass {...props}/>
+                </Router>
+            </Provider>
+        </MuiThemeProvider>
+    );
+    return wrapper;
+};
+
+export {enzymeMount, enzymeMountWithRouter, expect, assert, store};

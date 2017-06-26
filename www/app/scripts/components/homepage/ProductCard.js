@@ -19,8 +19,11 @@ const styles = {
 };
 
 
-const ProductCard = (props) => (
-    props.video &&
+const ProductCard = (props) => {
+    
+    console.log(props);
+    
+    return (props.video &&
     <div >
         <Col xs={12} className='product-card'>
 
@@ -57,7 +60,7 @@ const ProductCard = (props) => (
         </Col>
     </div>
 
-);
+)};
 
 ProductCard.propTypes = {
     active : PropTypes.number.isRequired,

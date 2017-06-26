@@ -84,8 +84,6 @@ class CategoryRow extends Component {
         if (this.props.tag) {
 
             videos = this.props.videos.filter((video) =>{
-
-
                 for(let i = 0; i<video.tags.length; i++){
                     if(video.tags[i].id == this.props.tag.id){
                         return video.tags[i].id;

@@ -9,7 +9,7 @@ const style = {
 };
 
 const LoginForm = () => (
-  <div>
+  <div id="loginForm">
     <TextField
          hintText="Email"
          style={style}

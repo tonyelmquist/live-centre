@@ -15,7 +15,7 @@ import TextField from 'material-ui/TextField';
 import AnimatedMenuIcon from './../animatedIcons/AnimatedMenuIcon';
 import {NavLink, Link} from 'react-router-dom';
 
-const HeaderMenu = ({pageItems, searchState, categoryItems, handleSearch, openCloseSearch, openCloseMenu, isMenuOpen, locationName, isSubPage, changeRoute, closeSearch}) => {
+const HeaderMenu = (props) => {
 
 
 	const HeaderMenuItem = (items) => {
@@ -36,12 +36,12 @@ const HeaderMenu = ({pageItems, searchState, categoryItems, handleSearch, openCl
 		<div className="header" >
 
 			<MediaQuery maxWidth={1000}>
-	          	<div className={(searchState.isOpen)? "expandable_searchbar open" : "expandable_searchbar closed"}>
+	          	<div className={(props.searchState.isOpen)? "expandable_searchbar open" : "expandable_searchbar closed"}>
 		          	<Link to='/Home'><FlatButton
 						className="logo"
 						label="IMR"
 					/></Link>
-					<SearchInput handleSearch={handleSearch} searchState={searchState}/> 
+					<SearchInput handleSearch={props.handleSearch} searchState={props.searchState}/> 
 				</div>
 			</MediaQuery>
 
@@ -50,14 +50,14 @@ const HeaderMenu = ({pageItems, searchState, categoryItems, handleSearch, openCl
 					className="logo"
 					label="IMR"
 				/>
-				{HeaderMenuItem(pageItems)}
+				{HeaderMenuItem(props.pageItems)}
 			</MediaQuery>
 			<MediaQuery minWidth={1500} className="inline">
-				{HeaderMenuItem(categoryItems)}
+				{HeaderMenuItem(props.categoryItems)}
 			</MediaQuery>
 			<div className="rightMenu">
-				<SearchBar handleSearch={handleSearch} searchState={searchState} openCloseSearch={openCloseSearch}/>
-				<Logged changeRoute={changeRoute}/>
+				<SearchBar handleSearch={props.handleSearch} searchState={props.searchState} openCloseSearch={props.openCloseSearch}/>
+				<Logged changeRoute={props.changeRoute}/>
 			</div>
 
 		</div>

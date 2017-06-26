@@ -30,7 +30,7 @@ const renderFields = (fields, style) => {
 
 };
 const RegistrationForm = () => (
-  <div>
+  <div id="registrationForm">
     {renderFields(fields, style)}
   </div>
 );

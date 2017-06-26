@@ -1,7 +1,7 @@
 import {enzymeMount, expect} from '../tests.helper.js';
-import HeaderMenu from '../../scripts/components/header/HeaderMenu';
+import HeaderMenu from '../../scripts/components/navigation/HeaderMenu';
 
-describe('ExpandableMenu', () => {
+describe('HeaderMenu', () => {
 
   const props = {
     pageItems : [],

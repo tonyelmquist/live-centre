@@ -17,7 +17,7 @@ webpackConf.plugins = [new webpack.ProvidePlugin({i18next: "i18next"})];
 //Karma cinfiguration
 module.exports = function (config) {
   config.set({
-    browsers: [ 'Firefox' ],
+    browsers: [ 'Chrome' ],
     // karma only needs to know about the test bundle
     files: [
       './app/tests/tests.bundle.js'
@@ -27,7 +27,7 @@ module.exports = function (config) {
         'karma-webpack',
         'karma-chai',
         'karma-mocha',
-        'karma-firefox-launcher',
+        'karma-chrome-launcher',
         'karma-sourcemap-loader',
         'karma-mocha-reporter',
         'karma-coverage-istanbul-reporter'

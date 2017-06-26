@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
 
 CategoryItem.propTypes = {
     dispatch: PropTypes.func,
-    video :PropTypes.object,
+    video: PropTypes.object,
     handleClick: PropTypes.func
 };
 

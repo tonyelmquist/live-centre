@@ -1,10 +1,10 @@
 import {enzymeMount, expect} from '../tests.helper.js';
-import TabMenu from '../../scripts/components/header/TabMenu';
+import TabMenu from '../../scripts/components/navigation/TabMenu';
 
 describe('TabMenu', () => {
 
   const props = {
-    pageItems: [],
+    pageItems: [{icon: {}, key: 'route_home', path: '/Home'}],
     changeRoute: function () {},
     openCloseMenu: function () {},
     isMenuOpen: function () {},
@@ -13,9 +13,9 @@ describe('TabMenu', () => {
 
   let wrapper;
 
-  it('renders a MediaQuery', () => {
+  it('renders a tab menu', () => {
     wrapper = enzymeMount(TabMenu, props);
-    expect(wrapper.find('MediaQuery').exists()).to.be.true;
+    expect(wrapper.find('.bottomTabs').exists()).to.be.true;
   });
 
 })
