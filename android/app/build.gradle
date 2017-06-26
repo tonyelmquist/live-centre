@@ -33,12 +33,15 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
 
+    def build_number = System.getenv("BUILD_NUMBER") ?: "1"
+    def version_name = System.getenv("VERSION_NAME") ?: "1.0"
+
     defaultConfig {
         applicationId "com.futureuniverse.livecentre"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode build_number as Integer
+        versionName version_name
     }
     buildTypes {
         release {
@@ -51,17 +54,10 @@ android {
     productFlavors {
         development {
             applicationIdSuffix ".dev"
-            versionNameSuffix "-development"
             resValue "string", "app_name", "Live Centre Dev"
-        }
-        qa {
-            applicationIdSuffix ".qa"
-            versionNameSuffix "-QA"
-            resValue "string", "app_name", "Live Centre QA"
         }
         stage {
             applicationIdSuffix ".stage"
-            versionNameSuffix "-staging"
             resValue "string", "app_name", "Live Centre Stage"
         }
         production {

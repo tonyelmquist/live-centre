@@ -3,6 +3,9 @@ import Actions from '../constants/reduxConstants';
 export function toggleSearch(){
 	return {type: Actions.TOGGLE_SEARCH};
 }
+export function closeSearch(){
+	return {type: Actions.CLOSE_SEARCH};
+}
 export function searchKeyword(keyword){
 	return {type: Actions.SEARCH_KEYWORD, keyword};
 }

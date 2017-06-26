@@ -5,7 +5,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import MediaQuery from 'react-responsive';
 import AnimatedMenuIcon from './../animatedIcons/AnimatedMenuIcon';
 
-const TabMenu = ({pageItems, changeRoute, isMenuOpen, isSubPage, openCloseMenu}) => {
+const TabMenu = ({pageItems, closeSearch, changeRoute, isMenuOpen, isSubPage, openCloseMenu, hideMenu}) => {
 
 	/*
 		The tabs will only be displayed if the screensize is
@@ -16,7 +16,7 @@ const TabMenu = ({pageItems, changeRoute, isMenuOpen, isSubPage, openCloseMenu})
 	const listItems = items.map((item) => 
 	<Tab 
 	label={i18next.t(item.key)}
-	onClick={() => changeRoute(item.path)} 
+	onClick={() => {changeRoute(item.path); closeSearch(); hideMenu();}} 
 	key={item.key} 
 	icon={item.icon}/>);
 

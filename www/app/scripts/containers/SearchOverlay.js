@@ -5,7 +5,7 @@ import SearchFilters from './SearchFilters';
 import VideoGrid from '../components/common/VideoGrid';
 import MasonryTiles from '../components/common/MasonryTiles';
 
-import PortraitRow from '../components/common/PortraitRows';
+import CirclesRow from '../components/common/CirclesRow';
 import {toggleFilter, clearFilter} from '../actions/search.js';
 
 
@@ -25,16 +25,16 @@ class SearchContainer extends Component {
 
     render() {
         const people = [
-            {img: "/img/avatars/1.jpg",  username:"Lisa1", uid:0},
-            {img: "/img/avatars/2.jpg",  username:"Per", uid:1},
-            {img: "/img/avatars/3.jpg",  username:"BoyGamer19", uid:2},
-            {img: "/img/avatars/4.jpg",  username:"Lisa2", uid:3},
-            {img: "/img/avatars/5.jpg",  username:"Mari", uid:4},
-            {img: "/img/avatars/6.jpg",  username:"Helene", uid:5},
-            {img: "/img/avatars/1.jpg",  username:"Hans1", uid:6},
-            {img: "/img/avatars/2.jpg",  username:"SuperNintendoLongNameTest", uid:7},
-            {img: "/img/avatars/3.jpg",  username:"Hans2", uid:8},
-            {img: "/img/avatars/4.jpg",  username:"Petter", uid:9},
+            {img: "/img/avatars/1.jpg",  key:"Lisa10", uid:0},
+            {img: "/img/avatars/2.jpg",  key:"Per1", uid:1},
+            {img: "/img/avatars/3.jpg",  key:"BoyGamer192", uid:2},
+            {img: "/img/avatars/4.jpg",  key:"Lisa23", uid:3},
+            {img: "/img/avatars/5.jpg",  key:"Mari4", uid:4},
+            {img: "/img/avatars/6.jpg",  key:"Helene5", uid:5},
+            {img: "/img/avatars/1.jpg",  key:"Hans16", uid:6},
+            {img: "/img/avatars/2.jpg",  key:"SuperNintendoLongNameTest", uid:7},
+            {img: "/img/avatars/3.jpg",  key:"Hans27", uid:8},
+            {img: "/img/avatars/4.jpg",  key:"Petter8", uid:9},
         ];
 
 
@@ -73,7 +73,7 @@ class SearchContainer extends Component {
                 <SearchFilters handleFilter={this.handleFilter} filters={this.props.filter.filters}/>
                 
                 <h4 className="container-fluid">{i18next.t("suggested_people")}</h4>  
-                <PortraitRow people={people}/>
+                <CirclesRow items={people}/>
 
                 <div className="container-fluid">
 

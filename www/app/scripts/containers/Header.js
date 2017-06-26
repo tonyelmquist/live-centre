@@ -3,7 +3,7 @@ import Logged from './Logged';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {changeNavMenuIndex, toggleMenu, showMenu, hideMenu} from '../actions/navigation';
-import {searchKeyword, toggleSearch, emptySearch} from '../actions/search.js';
+import {searchKeyword, toggleSearch, closeSearch, emptySearch} from '../actions/search.js';
 import MediaQuery from 'react-responsive';
 //Routing
 import {withRouter} from 'react-router';
@@ -64,6 +64,15 @@ class Header extends Component {
     this.props.dispatch(emptySearch());
     this.props.dispatch(toggleSearch());
   }
+  hideMenu = () =>{
+    this.props.dispatch(hideMenu());
+  }
+  //Force close when changing menu tab. Also empty the search ?? 
+  closeSearch = () => {
+    this.props.dispatch(emptySearch());
+    this.props.dispatch(closeSearch());
+  }
+
   handleSearch = (event) => {
     const keyword = event.target.value;
     if(keyword.length>0){
@@ -128,6 +137,7 @@ class Header extends Component {
             handleSearch={this.handleSearch}
             searchState={this.props.search}
             settingsState={this.props.settings}
+            closeSearch={this.closeSearch}
           />
           <TabMenu
             pageItems={this.getPageItems()}
@@ -135,6 +145,8 @@ class Header extends Component {
             isMenuOpen={this.isMenuOpen}
             isSubPage={this.isSubPage()}
             openCloseMenu={this.openCloseMenu}
+            closeSearch={this.closeSearch}
+            hideMenu={this.hideMenu}
           />
           <ExpandableMenu
             categoryItems={this.categoryItems()}
@@ -142,6 +154,7 @@ class Header extends Component {
             openCloseMenu={this.openCloseMenu}
             isMenuOpen={this.isMenuOpen}
             changeRoute={this.changeRoute}
+            closeSearch={this.closeSearch}
           />
         </div>
     );  

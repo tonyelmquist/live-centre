@@ -72,7 +72,7 @@ class CategoryRow extends Component {
         let videos = '';
 
         const _handleClick = (video) => {
-            
+
             this.props.handleVideoInfo(video);
 
             if (this.props.videoCard.category !== this.props.tag.id) {
@@ -108,9 +108,7 @@ class CategoryRow extends Component {
             <div className='slider'>
                 <div className='rowHeader'>
                     <h3 className='rowTitle'>
-
-                                {this.props.tag.name}
-
+                        {this.props.tag.name}
                     </h3>
 
                     <Link to={`/Category/${this.props.tag.id}`}>

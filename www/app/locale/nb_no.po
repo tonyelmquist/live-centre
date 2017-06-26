@@ -182,11 +182,11 @@ msgstr "Middelalderen"
 #. Tag & category names
 #:
 msgid "wildwest"
-msgstr "Ville vestent"
+msgstr "Ville vesten"
 
 #. Tag & category names
 #:
-msgid "happytwenties"
+msgid "roaringtwenties"
 msgstr "Glade 20åra"
 
 #. Tag & category names
