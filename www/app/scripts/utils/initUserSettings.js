@@ -12,7 +12,6 @@ const initUserSettings = (store) => {
       Authorization: 'Basic mcAPI2o17-H35t-password'
     }
   }).then((result) => {
-    console.log(result);
     const settings = new Settings(result.data);
     const newLang = settings.language;
     
@@ -20,6 +19,7 @@ const initUserSettings = (store) => {
     i18next.changeLanguage(newLang, (err, t)=> {
           store.dispatch(changeLang(newLang));
       });
+
   });
   return promise;
 };

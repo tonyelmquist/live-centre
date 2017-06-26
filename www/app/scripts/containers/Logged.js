@@ -41,12 +41,14 @@ Logged.propTypes = {
     dispatch: PropTypes.func.isRequired,
     iconStyle:PropTypes.object,
     loginState:PropTypes.bool,
-    changeRoute:PropTypes.func
+    changeRoute:PropTypes.func,
+    settings:PropTypes.object
 };
 
 const mapStateToProps = (state) => {
     return {
         loginState: state.isUserLoggedIn,
+        settings: state.settings
     };
 };
 

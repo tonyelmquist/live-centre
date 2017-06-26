@@ -127,6 +127,7 @@ class Header extends Component {
             openCloseSearch={this.openCloseSearch}
             handleSearch={this.handleSearch}
             searchState={this.props.search}
+            settingsState={this.props.settings}
           />
           <TabMenu
             pageItems={this.getPageItems()}
@@ -154,14 +155,16 @@ Header.propTypes = {
     menuIsOpen: PropTypes.bool,
     history: PropTypes.object,
     categories: PropTypes.object,
-    search: PropTypes.object
+    search: PropTypes.object,
+    settings: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
     return {
         menuIsOpen : state.headerMenuState,
         categories: state.tags,
-        search: state.search
+        search: state.search,
+        settings: state.settings
     };
 };
 

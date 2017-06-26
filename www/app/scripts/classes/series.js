@@ -1,5 +1,8 @@
-class Series{
+import BaseClass from './baseClass';
+
+class Series extends BaseClass {
 	constructor(data){
+		super();
 		this.data = data;
 		this._id = this.data.id;
 		this._title = this.data.title;

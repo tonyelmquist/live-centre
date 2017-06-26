@@ -1,7 +1,10 @@
-export default class Settings { 
+import BaseClass from './baseClass';
+
+export default class Settings extends BaseClass { 
     //Constructor
     constructor(data) {
-        this.data = data;
+        super(); 
+        
         this._language = data.language;
         this._subtitleLanguage = data.subtitleLanguage;
         this._audioLanguage = data.audioLanguage;
@@ -14,6 +17,7 @@ export default class Settings {
     }
 
     set language(lang) {
+        this.validateString(lang);
         this._language = lang;
     }
 
@@ -23,6 +27,7 @@ export default class Settings {
     }
 
     set subtitleLanguage(lang) {
+        this.validateString(lang);
         this._subtitleLanguage = lang;
     }
 
@@ -32,6 +37,7 @@ export default class Settings {
     }
 
     set audioLanguage(lang) {
+        this.validateString(lang);
         this._audioLanguage = lang;
     }
 
@@ -41,6 +47,7 @@ export default class Settings {
     }
 
     set recommendations(bool) {
+        this.validateType(bool, 'boolean');
         this._recommendations = bool;
     }
 
@@ -48,12 +55,5 @@ export default class Settings {
         this._recommendations = !this._recommendations;
     }
 
-    toJson() {
-        return {
-            recommendations: this._recommendations,
-            language: this._language,
-            audioLanguage: this._audioLanguage,
-            subtitleLanguage: this._subtitleLanguage
-        };
-    }
+    
 }

@@ -16,6 +16,12 @@ export default function settings(state = {options: defaultSettings, saving: fals
     Object.setPrototypeOf( newSettings, Settings.prototype );
 
     switch (action.type) {
+        case REHYDRATE:
+            const settings = action.payload.settings;
+            if (settings) {
+                return settings;
+            };
+            return state;
         //Inital Fetch request
         case Actions.FETCH_USER_SETTINGS_SUCCESS:
             return Object.assign({}, state, {

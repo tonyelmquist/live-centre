@@ -32,12 +32,19 @@ class SettingsPage extends React.Component {
     handleAudioChange = (event, index, value) => this.props.dispatch(changeAudioLang(value));
     handleSubtitleChange = (event, index, value) => this.props.dispatch(changeSubtitleLang(value));
     handleRecommendationsChange = () => this.props.dispatch(toggleRecommendations());
+
     handleSaveTouch = () => {
         this.props.dispatch(saveUserSettings(this.props.settings.options));
-        this.state.snackbarIsOpen = true;
+        //this.state.snackbarIsOpen = true;
     }
-    handleRequestCloseSnackbar = () => this.state.snackbarIsOpen = false;
-    handleActionTouchTap= () => this.state.snackbarIsOpen = false;
+
+    handleRequestCloseSnackbar = () => {
+        this.state.snackbarIsOpen = false;
+        console.log(this);
+        console.log('Snackbaar', this.state.snackbarIsOpen);
+    }
+
+    handleActionTouchTap = () => this.state.snackbarIsOpen = false;
 
     handleLanguageChange = (event, index, newLang) => {
         if (newLang !== this.props.settings.lang ){
@@ -94,11 +101,7 @@ class SettingsPage extends React.Component {
             <RaisedButton label="Save" primary={true} onTouchTap={this.handleSaveTouch} />
 
             <Snackbar
-                open={this.props.settings.saving == 'saving' && this.state.snackbarIsOpen}
-                message="Saving Settings..."  
-                onRequestClose={this.handleRequestCloseSnackbar}/>
-            <Snackbar
-                open={this.props.settings.saving == 'saved' && this.state.snackbarIsOpen}
+                open={this.state.snackbarIsOpen}
                 message="Settings saved!"
                 autoHideDuration={4000}      
                 action="undo"
