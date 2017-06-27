@@ -36,6 +36,19 @@ const enzymeMount = (ComponentClass, props = {}, state = {}) => {
     return wrapper;
 };
 
+const enzymeShallow = (ComponentClass, props = {}, state = {}) => {
+    //Enzyme react wrapper around App component
+    const wrapper = shallow(
+        <MuiThemeProvider muiTheme={muiTheme}>
+            <Provider store={store}>
+                <ComponentClass {...props}/>
+            </Provider>
+        </MuiThemeProvider>
+    );
+
+    return wrapper;
+};
+
 const enzymeMountWithRouter = (ComponentClass, props = {}, state = {}) => {
     //Enzyme react wrapper around App component
     const wrapper = mount(
@@ -50,4 +63,4 @@ const enzymeMountWithRouter = (ComponentClass, props = {}, state = {}) => {
     return wrapper;
 };
 
-export {enzymeMount, enzymeMountWithRouter, expect, assert, store};
+export {enzymeMount, enzymeShallow, enzymeMountWithRouter, expect, assert, store};

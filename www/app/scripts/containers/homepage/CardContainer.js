@@ -28,7 +28,6 @@ class ProductCardContainer extends Component {
                 handlePlay = {this._handlePlay}
             />
         );
-
         // return (
         //     <ProductCardMobile
         //         video = {this.props.video}

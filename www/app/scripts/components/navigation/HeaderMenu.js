@@ -20,8 +20,7 @@ const HeaderMenu = (props) => {
 
 	const HeaderMenuItem = (items) => {
 		if(items.length > 0){
-			return items.map((item) =>
-				
+			return items.map((item) =>				
 					<FlatButton
 					onTouchTap={()=>{changeRoute(item.path); closeSearch();}}
 					className="menuItem links"
@@ -34,7 +33,6 @@ const HeaderMenu = (props) => {
 
 	return(
 		<div className="header" >
-
 			<MediaQuery maxWidth={1000}>
 	          	<div className={(props.searchState.isOpen)? "expandable_searchbar open" : "expandable_searchbar closed"}>
 		          	<Link to='/Home'><FlatButton
@@ -59,7 +57,6 @@ const HeaderMenu = (props) => {
 				<SearchBar handleSearch={props.handleSearch} searchState={props.searchState} openCloseSearch={props.openCloseSearch}/>
 				<Logged changeRoute={props.changeRoute}/>
 			</div>
-
 		</div>
 	);
 };

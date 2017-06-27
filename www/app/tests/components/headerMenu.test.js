@@ -1,4 +1,4 @@
-import {enzymeMount, expect} from '../tests.helper.js';
+import {enzymeMount, enzymeMountWithRouter, expect} from '../tests.helper.js';
 import HeaderMenu from '../../scripts/components/navigation/HeaderMenu';
 
 describe('HeaderMenu', () => {
@@ -20,12 +20,12 @@ describe('HeaderMenu', () => {
 
 
   it('renders the HeaderMenu', () => {
-    wrapper = enzymeMount(HeaderMenu, props);
+    wrapper = enzymeMountWithRouter(HeaderMenu, props);
     expect(wrapper.find('.header').exists()).to.be.true;
   });
 
     it('renders a MediaQuery', () => {
-    wrapper = enzymeMount(HeaderMenu, props);
+    wrapper = enzymeMountWithRouter(HeaderMenu, props);
     expect(wrapper.find('MediaQuery').exists()).to.be.true;
   });
 
