@@ -64,7 +64,7 @@ const ProductCard = (props) => {
         <Col xs={12}>
             <TabLinks items={tabs} active={props.active} handleChange={props.changeTab}/>
         </Col>
-    </div>)
+    </div>);
 };
 
 ProductCard.propTypes = {

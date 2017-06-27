@@ -39,7 +39,9 @@ TabMenu.propTypes = {
 	changeRoute: PropTypes.func.isRequired,
 	openCloseMenu: PropTypes.func,
 	isMenuOpen: PropTypes.func,
-	isSubPage: PropTypes.bool
+	isSubPage: PropTypes.bool,
+	closeSearch: PropTypes.func,
+	hideMenu: PropTypes.func
 };
 
 export default TabMenu;
