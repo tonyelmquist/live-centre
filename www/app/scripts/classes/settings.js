@@ -4,11 +4,17 @@ export default class Settings extends BaseClass {
     //Constructor
     constructor(data) {
         super(); 
-        
-        this._language = data.language;
-        this._subtitleLanguage = data.subtitleLanguage;
-        this._audioLanguage = data.audioLanguage;
-        this._recommendations = data.recommendations;
+        this.assignData({
+			_language: "",
+			_subtitleLanguage: "",
+			_audioLanguage: "",
+            _recommendations: 0
+		}, {
+			_language: data.language,
+			_subtitleLanguage: data.subtitleLanguage,
+			_audioLanguage: data.audioLanguage,
+            _recommendations: data.recommendations
+		});
     }
 
     // Get Set: Language

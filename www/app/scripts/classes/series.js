@@ -3,12 +3,19 @@ import BaseClass from './baseClass';
 class Series extends BaseClass {
 	constructor(data){
 		super();
-		this.data = data;
-		this._id = this.data.id;
-		this._title = this.data.title;
-		this._description = this.data.description;
-		this._thumbnail = this.data.thumbnail;
-		this._seasons = this.data.seasons;
+		this.assignData({
+			_id: 0,
+			_title: "",
+			_description: "",
+			_thumbnail: "",
+			_seasons: [],
+		}, {
+			_id: data.id,
+			_title: data.title,
+			_description: data.description,
+			_thumbnail: data.thumbnail,
+			_seasons: data.seasons,
+		});
 	}	
 
 	get id() {

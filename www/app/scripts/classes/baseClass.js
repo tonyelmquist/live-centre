@@ -3,10 +3,10 @@ import diff from 'deep-diff';
 export default class BaseClass {
 
     assignData(base, mapped) {
+		this.validateObject(base, mapped);
         Object.assign(this, base);
 
 		Object.assign(this, mapped);
-		this.validateObject(this, mapped);
     }
 
     /* Validation Functions */
@@ -42,13 +42,18 @@ export default class BaseClass {
                 return;
             }
 
-            // for( let i = 0; i <= initialState.length; i++) {
-            //     console.log(initialState[i]);
-            // }
-
+            for (const key in initialState) {
+                if (initialState.hasOwnProperty(key) && data.hasOwnProperty(key)) {
+                    if(typeof initialState[key] !== typeof data[key]) {
+                        console.warn(`Type mismatch for key ${key} inside the ${this.constructor.name} class (${typeof initialState[key]} != ${typeof data[key]})`);
+                    }
+                }
+            }
+            
             const missingKeys = results.filter((result) => {
                 // Only kept the deleted ones (i.e. listed in the initial state
                 // but not in the data added
+
                 return result.kind == "D";
             });
 

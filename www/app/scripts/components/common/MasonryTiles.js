@@ -15,7 +15,6 @@ class MasonryTiles extends Component {
     renderTiles = () =>
 
         this.props.videos.map((video)=>{
-            console.log("video",video);
             //If a filter string is not present show the tile, if not, try to match the filter
             if(!this.props.filter > 0 || this.videoFilter(this.props.filter, video, this.props.filterByKey)){
                 

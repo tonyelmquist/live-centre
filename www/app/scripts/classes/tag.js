@@ -8,6 +8,7 @@ class Tag extends BaseClass {
 			_type: "",
 			_name: "",
 			_id: 0,
+			_test: ""
 		}, {
 			_type: data.type,
 			_name: data.name,
