@@ -13,21 +13,22 @@ const TabMenu = ({pageItems, closeSearch, changeRoute, isMenuOpen, isSubPage, op
 	*/
 
 	const items = pageItems;
-	const listItems = items.map((item) => 
-	<Tab 
-	label={i18next.t(item.key)}
-	onClick={() => {changeRoute(item.path); closeSearch(); hideMenu();}} 
-	key={item.key} 
-	icon={item.icon}/>);
+	const listItems = items.map((item) =>
+		<Tab
+		label={i18next.t(item.key)}
+		onClick={() => {changeRoute(item.path); closeSearch(); hideMenu();}}
+		key={item.key}
+		icon={item.icon}/>
+	);
 
 	return(
 		<MediaQuery maxWidth={1000}>
 			<Tabs className="bottomTabs">
 		          {listItems}
 		          <Tab
-					onClick={()=>openCloseMenu()} 
+					onClick={()=>openCloseMenu()}
 		            icon={<AnimatedMenuIcon isMenuOpen={isMenuOpen} isSubPage={isSubPage}/>}
-		            label="Menu" 
+		            label="Menu"
 		          />
 			</Tabs>
 		</MediaQuery>
