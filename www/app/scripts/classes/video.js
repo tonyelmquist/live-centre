@@ -25,8 +25,8 @@ class Video extends BaseClass {
 			_tags: data.tags
 		});
 
-		this.hasMany(Tag);
-		this.belongsTo(Season);
+		// this.hasMany(Tag);
+		// this.belongsTo(Season);
 
 	}
 
