@@ -1,21 +1,18 @@
-import validateObject from "../utils/validateObject";
+import BaseClass from "./baseClass";
 
-class Tag{
+class Tag extends BaseClass {
 	constructor(data){
-		Object.assign(this, {
+		super();
+
+		this.assignData({
 			_type: "",
 			_name: "",
 			_id: 0,
-		});
-
-		const mappedData = {
+		}, {
 			_type: data.type,
 			_name: data.name,
 			_id: data.id,
-		};
-
-		Object.assign(this, mappedData);
-		validateObject(this, mappedData);
+		});
 
 	}	
 	get id() {

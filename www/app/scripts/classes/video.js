@@ -1,14 +1,33 @@
-class Video{
+import BaseClass from "./baseClass";
+import Tag from "./tag";
+
+class Video extends BaseClass {
 	constructor(data){
-		this.data = data;
-		this._id = this.data.id;
-		this._title = this.data.title;
-		this._description = this.data.description;
-		this._video_url = this.data.video_url;
-		this._thumbnail = this.data.thumbnail;
-		this._views = this.data.views;
-		this._eposide_number = this.data.eposide_number;
-		this._tags = this.data.tags;
+		super();
+
+		this.assignData({
+			_id: 0,
+			_title: "",
+			_description: "",
+			_video_url: "",
+			_thumbnail: "",
+			_views: 0,
+			_episode_number: "",
+			_tags: []
+		}, {
+			_id: data.id,
+			_title: data.title,
+			_description: data.description,
+			_video_url: data.video_url,
+			_thumbnail: data.thumbnail,
+			_views: data.views,
+			_episode_number: data._episode_number,
+			_tags: data.tags
+		});
+
+		this.hasMany(Tag);
+		this.belongsTo(Season);
+
 	}
 
 	get id() {
