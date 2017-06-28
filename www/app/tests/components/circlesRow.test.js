@@ -1,4 +1,4 @@
-import {enzymeMount, enzymeMountWithRouter, expect} from '../tests.helper.js';
+import { enzymeMount, enzymeMountWithRouter, expect } from '../tests.helper.js';
 import CirclesRow from '../../scripts/components/common/CirclesRow';
 import sinon from 'sinon';
 
@@ -21,5 +21,4 @@ describe('CirclesRow', () => {
         wrapper = enzymeMountWithRouter(CirclesRow, props);
         expect(wrapper.find('.horizontalScroll').exists()).to.be.true;
     });
-
 });

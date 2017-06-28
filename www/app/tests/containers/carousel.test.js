@@ -1,15 +1,14 @@
-import {enzymeMount, expect} from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper.js';
 import HeroCarousel from '../../scripts/containers/Carousel';
 import sinon from 'sinon';
 
-describe('HeroCarousel',() => {
+describe('HeroCarousel', () => {
     let wrapper;
 
-    it('renders HeroCarousel', ()=> {
+    it('renders HeroCarousel', () => {
         sinon.spy(HeroCarousel.prototype, 'render');
         wrapper = enzymeMount(HeroCarousel);
         expect(HeroCarousel.prototype.render.calledOnce).to.equal(true);
         expect(wrapper.find('HeroCarousel').exists()).to.be.true;
     });
-
 });

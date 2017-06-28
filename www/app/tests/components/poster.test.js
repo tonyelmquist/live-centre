@@ -1,12 +1,12 @@
-import {enzymeMount, expect} from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper.js';
 import Poster from '../../scripts/components/common/Poster';
 
 describe('Poster', () => {
     let wrapper;
 
     const props = {
-        handlePlay: function () {},
-        imageUrl: 'www.google.com/image.jpg'
+        handlePlay() {},
+        imageUrl: 'www.google.com/image.jpg',
     };
 
     it('renders Poster', () => {
@@ -18,5 +18,4 @@ describe('Poster', () => {
         wrapper = enzymeMount(Poster, props);
         expect(wrapper.find('img').exists()).to.be.true;
     });
-
 });

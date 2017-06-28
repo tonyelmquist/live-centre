@@ -1,17 +1,15 @@
-import {enzymeMount, expect} from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper.js';
 import HomePage from '../../scripts/containers/pages/HomePage';
 
 describe('HomePage', () => {
+    const props = {
 
-  const props = {
+    };
 
-  };
+    let wrapper;
 
-  let wrapper;
-
-  it('renders the HomePage', () => {
-    wrapper = enzymeMount(HomePage, props);
-    expect(wrapper.find('.slide').exists()).to.be.true;
-  });
-
-})
+    it('renders the HomePage', () => {
+        wrapper = enzymeMount(HomePage, props);
+        expect(wrapper.find('.slide').exists()).to.be.true;
+    });
+});

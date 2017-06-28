@@ -1,17 +1,15 @@
-import {enzymeMount, expect} from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper.js';
 import FavoritePage from '../../scripts/containers/pages/FavoritePage';
 
 describe('FavoritePage', () => {
+    const props = {
 
-  const props = {
+    };
 
-  };
+    let wrapper;
 
-  let wrapper;
-
-  it('renders the FavoritePage', () => {
-    wrapper = enzymeMount(FavoritePage, props);
-    expect(wrapper.find('.slide').exists()).to.be.true;
-  });
-
-})
+    it('renders the FavoritePage', () => {
+        wrapper = enzymeMount(FavoritePage, props);
+        expect(wrapper.find('.slide').exists()).to.be.true;
+    });
+});

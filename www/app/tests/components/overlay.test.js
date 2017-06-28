@@ -1,10 +1,9 @@
-import {enzymeMount, expect} from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper.js';
 import Overlay from '../../scripts/components/common/Overlay';
 
 describe('Overlay', () => {
-
     const props = {
-    handleClose: function(){},
+        handleClose() {},
     };
 
     let wrapper;
@@ -18,5 +17,4 @@ describe('Overlay', () => {
         wrapper = enzymeMount(Overlay, props);
         expect(wrapper.find('IconButton').exists()).to.be.true;
     });
-
-})
+});

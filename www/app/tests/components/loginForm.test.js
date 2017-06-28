@@ -1,4 +1,4 @@
-import {enzymeMount, expect} from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper.js';
 import LoginForm from '../../scripts/components/LoginForm';
 
 
@@ -10,5 +10,4 @@ describe('Login Form', () => {
         wrapper = enzymeMount(LoginForm);
         expect(wrapper.find('#loginForm').exists()).to.be.true;
     });
-
 });

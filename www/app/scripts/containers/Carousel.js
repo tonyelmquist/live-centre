@@ -1,28 +1,28 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { DefaultPlayer as Video } from 'react-html5video';
 import 'react-html5video/dist/styles.css';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import FontIcon from 'material-ui/FontIcon';
-import {grey800} from 'material-ui/styles/colors';
+import { grey800 } from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
-import {videoSelected, invalidateSelected} from '../actions/video';
-import {showOverlay, hideOverlay} from '../actions/overlay';
+import { videoSelected, invalidateSelected } from '../actions/video';
+import { showOverlay, hideOverlay } from '../actions/overlay';
 
 
-const FEATURED_CATEGORY = "Uncategorized";
+const FEATURED_CATEGORY = 'Uncategorized';
 
 const styles = {
     carouselContainer: {
         marginTop: 0,
         backgroundColor: 'black',
         marginBottom: 7,
-        position: 'relative'
+        position: 'relative',
     },
     carousel: {
-        width: '67%'
+        width: '67%',
     },
     rightButton: {},
     legend: {
@@ -31,23 +31,23 @@ const styles = {
         top: '20%',
         left: 'inherit',
         marginLeft: 0,
-        zIndex: 3
+        zIndex: 3,
     },
 
     largeIcon: {
         width: 60,
-        height: 60
+        height: 60,
     },
 
     large: {
         width: 120,
         height: 120,
         padding: 30,
-        float: 'left'
+        float: 'left',
     },
     debugTitle: {
-        color: 'white'
-    }
+        color: 'white',
+    },
 };
 
 class HeroCarousel extends Component {
@@ -80,7 +80,6 @@ class HeroCarousel extends Component {
     }
 
     render() {
-
         const _this = this;
 
         const settingsLeft = {
@@ -92,10 +91,10 @@ class HeroCarousel extends Component {
             initialSlide: 0,
             arrows: false,
             lazyLoad: true,
-            beforeChange: function (currentSlide, nextSlide) {
+            beforeChange(currentSlide, nextSlide) {
                 //   _this.syncLeft(nextSlide);
             },
-            afterChange: function (currentSlide, nextSlide) {
+            afterChange(currentSlide, nextSlide) {
                 //    _this.syncLeft(nextSlide);
             },
             responsive: [
@@ -104,10 +103,10 @@ class HeroCarousel extends Component {
                     settings: {
                         slidesToShow: 1,
                         slidesToScroll: 1,
-                        dots: true
-                    }
-                }
-            ]
+                        dots: true,
+                    },
+                },
+            ],
         };
         const settingsRight = {
             dots: true,
@@ -122,13 +121,13 @@ class HeroCarousel extends Component {
                     breakpoint: 800,
                     settings: {
                         slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
+                        slidesToScroll: 1,
+                    },
+                },
             ],
-            beforeChange: function (currentSlide, nextSlide) {
+            beforeChange(currentSlide, nextSlide) {
                 _this.syncLeft(nextSlide);
-            }
+            },
         };
 
         if (this.props.videos.length > 0) {
@@ -136,92 +135,90 @@ class HeroCarousel extends Component {
             // .get(FEATURED_CATEGORY);
 
             const imageList = carouselList.map((video, i) => {
-                
-            const videoUrl = `http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/video-files/${video.videoUrl}`;      
+                const videoUrl = `http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/video-files/${video.videoUrl}`;
 
-            //const videoUrl = `http://clips.vorwaerts-gmbh.de/VfE_html5.mp4`// (smaller test video with bunny)
+            // const videoUrl = `http://clips.vorwaerts-gmbh.de/VfE_html5.mp4`// (smaller test video with bunny)
 
                 return (
-                    <div key={`carousel-${videoUrl}`} style={styles.carousel}>
-                        <div className='heroCarouselImage' key={i}>
-                            <div className="carouselImageButton">
-                                <IconButton
-                                    iconStyle={styles.largeIcon}
-                                    style={styles.large}
-                                    onTouchTap={() => {
-                                    this._handlePlay(video.id);
-                                }}><PlayCircleOutline color="white"/></IconButton>
-                            </div>
-                            <div className='carouselImageTitleAndDescription'>
-                                <h4 className='carouselImageTitle'>{video.title}</h4>
-                                <p className='imageDescription'>He says he's found the main computer to power
+                  <div key={`carousel-${videoUrl}`} style={styles.carousel}>
+                    <div className="heroCarouselImage" key={i}>
+                      <div className="carouselImageButton">
+                        <IconButton
+                          iconStyle={styles.largeIcon}
+                          style={styles.large}
+                          onTouchTap={() => {
+                              this._handlePlay(video.id);
+                          }}
+                        ><PlayCircleOutline color="white" /></IconButton>
+                      </div>
+                      <div className="carouselImageTitleAndDescription">
+                        <h4 className="carouselImageTitle">{video.title}</h4>
+                        <p className="imageDescription">He says he's found the main computer to power
                                     the tractor beam that's holding the ship here. He'll try to make the precise
                                     location appear on the monitor.</p>
-                            </div>
-                        </div>
-                        <div className='heroCarouselVideo'>
-                            <Video autoPlay playsInline muted
-                                    controls={[]}
-                                    poster={video.thumbnail}>
-                                    <source src={videoUrl}/>
-                            </Video>
-                        </div>
+                      </div>
                     </div>
+                    <div className="heroCarouselVideo">
+                      <Video
+                        autoPlay
+                        playsInline
+                        muted
+                        controls={[]}
+                        poster={video.thumbnail}
+                      >
+                        <source src={videoUrl} />
+                      </Video>
+                    </div>
+                  </div>
                 );
             });
 
-            const infoTiles = carouselList.map((video, i) => {
-                return (
-                    <div key={video.id} className='infoTile'>
-                        <h4 className='infoTileCTA'>Watch now</h4>
-                        <IconButton
-                            iconStyle={styles.largeIcon}
-                            style={styles.large}
-                            onTouchTap={() => {
-                            this._handlePlay(video.assetid);
-                        }}><PlayCircleOutline color="white"/></IconButton>
-                        <div className='carouselTitleAndDescription'>
-                            <h4 className='carouselTitle'>{video.title}</h4>
-                            <p className='description'>He says he's found the main computer to power the
+            const infoTiles = carouselList.map((video, i) => (
+              <div key={video.id} className="infoTile">
+                <h4 className="infoTileCTA">Watch now</h4>
+                <IconButton
+                  iconStyle={styles.largeIcon}
+                  style={styles.large}
+                  onTouchTap={() => {
+                      this._handlePlay(video.assetid);
+                  }}
+                ><PlayCircleOutline color="white" /></IconButton>
+                <div className="carouselTitleAndDescription">
+                  <h4 className="carouselTitle">{video.title}</h4>
+                  <p className="description">He says he's found the main computer to power the
                                 tractor beam that's holding the ship here. He'll try to make the precise
                                 location appear on the monitor.</p>
-                        </div>
-                    </div>
-                );
-
-            });
-
-            return (
-                <div className='heroCarousel'>
-                    <div className="carouselLeft">
-                        <Slider ref='leftSlider' className="carouselLeftSlider" {...settingsLeft}>
-                            {imageList}
-                        </Slider>
-                    </div>
-                    <div className="carouselRight">
-                        <Slider ref='rightSlider' className="carouselRightSlider" {...settingsRight}>
-                            {infoTiles}
-                        </Slider>
-                    </div>
                 </div>
-            );
-        } else {
+              </div>
+                ));
+
             return (
-                <div></div>
+              <div className="heroCarousel">
+                <div className="carouselLeft">
+                  <Slider ref="leftSlider" className="carouselLeftSlider" {...settingsLeft}>
+                    {imageList}
+                  </Slider>
+                </div>
+                <div className="carouselRight">
+                  <Slider ref="rightSlider" className="carouselRightSlider" {...settingsRight}>
+                    {infoTiles}
+                  </Slider>
+                </div>
+              </div>
             );
         }
-
+        return (
+          <div />
+        );
     }
 }
 
 HeroCarousel.propTypes = {
     videos: PropTypes.array,
     dispatch: PropTypes.func.isRequired,
-    selected: PropTypes.bool
+    selected: PropTypes.bool,
 };
 
-const mapStateToProps = (state) => {
-    return {videos: state.videos.items, selected: state.playback.isSelected};
-};
+const mapStateToProps = state => ({ videos: state.videos.items, selected: state.playback.isSelected });
 
 export default connect(mapStateToProps)(HeroCarousel);

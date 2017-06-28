@@ -20,7 +20,7 @@
     "deploy": "gulp deploy",
     "lint": "gulp lint",
     "serve": "gulp start",
-    "fix": "eslint --fix app/scripts/actions"
+    "fix": "eslint --fix app/tests"
   },
   "dependencies": {
     "axios": "^0.16.2",

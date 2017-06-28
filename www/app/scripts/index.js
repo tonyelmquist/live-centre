@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import App from './containers/App';
@@ -14,20 +14,20 @@ import initTempBackend from './utils/initTempBackend';
 import initChangingScores from './utils/initScoreChanger';
 import initUserSettings from './utils/initUserSettings';
 
-//Redux
+// Redux
 import { Provider } from 'react-redux';
-import {fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess} from './actions/video';
+import { fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess } from './actions/video';
 
-//Enable Touch/Tap Events
+// Enable Touch/Tap Events
 injectTapEventPlugin();
 
-//Initialize Video List
-//initVideoList(store);
+// Initialize Video List
+// initVideoList(store);
 
-//init scores overlay
+// init scores overlay
 initChangingScores(store);
 
-//Language: i18next Initialize
+// Language: i18next Initialize
 initLang(store);
 
 
@@ -36,13 +36,13 @@ initUserSettings(store);
 initTempBackend(store);
 
 
-//Custom theme
+// Custom theme
 const muiTheme = getMuiTheme(style);
 
 render(
-    <MuiThemeProvider muiTheme={muiTheme}>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </MuiThemeProvider>,
+  <MuiThemeProvider muiTheme={muiTheme}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </MuiThemeProvider>,
     document.getElementById('root'));

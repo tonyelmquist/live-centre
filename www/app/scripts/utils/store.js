@@ -1,22 +1,22 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import thunk from 'redux-thunk';
-import {createLogger} from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import promise from 'redux-promise-middleware';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import rootReducer from '../reducers/rootReducer';
-//Actions
-import {REHYDRATE} from 'redux-persist/constants';
-//Array of middlewares
+// Actions
+import { REHYDRATE } from 'redux-persist/constants';
+// Array of middlewares
 const middlewares = [];
 
-//Thunk middleware
+// Thunk middleware
 middlewares.push(thunk);
-//Promise middleware
+// Promise middleware
 middlewares.push(promise());
 
 if (process.env.NODE_ENV === 'development') {
-//Logger middleware
+// Logger middleware
     const logger = createLogger({
         level: 'log',
         collapsed: true,
@@ -24,21 +24,21 @@ if (process.env.NODE_ENV === 'development') {
         // predicate: (getState, action) => action.type === REHYDRATE
     });
     middlewares.push(logger);
-//Redux Immutable middleware
+// Redux Immutable middleware
     middlewares.push(reduxImmutableStateInvariant());
 }
 
-//Redux Store
+// Redux Store
 const store = compose(
     applyMiddleware(...middlewares),
-    autoRehydrate()
+    autoRehydrate(),
 )(createStore)(rootReducer);
 // const enhancers = [applyMiddleware(...middlewares), autoRehydrate()];
 // const store = createStore(rootReducer, loadState(), compose(...enhancers));
 
 
-//Persist Store
-persistStore(store, {whitelist : ['isUserLoggedIn','settings'], keyPrefix: 'state_' });
+// Persist Store
+persistStore(store, { whitelist: ['isUserLoggedIn', 'settings'], keyPrefix: 'state_' });
 
 export default store;
 

@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Overlay from '../components/common/Overlay';
 import Playback from '../components/common/Playback';
-import {showOverlay, hideOverlay} from '../actions/overlay';
-import {videoSelected, invalidateSelected, fullScreenMode, exitFullScreenMode} from '../actions/video';
+import { showOverlay, hideOverlay } from '../actions/overlay';
+import { videoSelected, invalidateSelected, fullScreenMode, exitFullScreenMode } from '../actions/video';
 
 class OverlayContainer extends Component {
 
@@ -15,20 +15,20 @@ class OverlayContainer extends Component {
     render() {
         // console.log("Rendering the Overlay");
         return (
-            <Overlay handleClose={this._handleClose}>
-                <Playback videoUrl={this.props.videoUrl}/>
-            </Overlay>
+          <Overlay handleClose={this._handleClose}>
+            <Playback videoUrl={this.props.videoUrl} />
+          </Overlay>
         );
     }
 }
 
 OverlayContainer.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    videoUrl: PropTypes.string.isRequired
+    videoUrl: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-    videoUrl: state.playback.url
+const mapStateToProps = state => ({
+    videoUrl: state.playback.url,
 });
 
 
