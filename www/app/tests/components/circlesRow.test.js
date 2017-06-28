@@ -1,7 +1,6 @@
-import { enzymeMount, enzymeMountWithRouter, expect } from '../tests.helper.js';
-import CirclesRow from '../../scripts/components/common/CirclesRow';
 import sinon from 'sinon';
-
+import { enzymeMount, enzymeMountWithRouter, expect } from '../tests.helper';
+import CirclesRow from '../../scripts/components/common/CirclesRow';
 
 describe('CirclesRow', () => {
     let wrapper;

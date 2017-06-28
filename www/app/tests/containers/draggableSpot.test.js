@@ -1,6 +1,7 @@
-import { enzymeMount, expect } from '../tests.helper.js';
-import DraggableSpot from '../../scripts/containers/DraggableSpot';
 import sinon from 'sinon';
+import { enzymeMount, expect } from '../tests.helper';
+import DraggableSpot from '../../scripts/containers/DraggableSpot';
+
 
 describe('DraggableSpot', () => {
     let wrapper;

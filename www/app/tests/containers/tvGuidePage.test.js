@@ -1,10 +1,8 @@
-import { enzymeMount, expect } from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper';
 import TVGuidePage from '../../scripts/containers/pages/TVGuidePage';
 
 describe('TVGuidePage', () => {
-    const props = {
-
-    };
+    const props = {};
 
     let wrapper;
 

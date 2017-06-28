@@ -1,6 +1,7 @@
-import { enzymeMount, expect } from '../tests.helper.js';
+// import sinon from 'sinon';
+import { enzymeMount, expect } from '../tests.helper';
 import CategoryItem from '../../scripts/components/CategoryItem';
-import sinon from 'sinon';
+
 
 describe('CategoryItem', () => {
     let wrapper;

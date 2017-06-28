@@ -1,6 +1,7 @@
-import { enzymeMount, expect } from '../tests.helper.js';
-import VideoGrid from '../../scripts/components/common/VideoGrid';
 import sinon from 'sinon';
+import { enzymeMount, expect } from '../tests.helper';
+import VideoGrid from '../../scripts/components/common/VideoGrid';
+
 
 describe('VideoGrid', () => {
     const props = {

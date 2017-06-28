@@ -1,4 +1,4 @@
-import { enzymeMount, enzymeMountWithRouter, expect } from '../tests.helper.js';
+import { enzymeMountWithRouter, expect } from '../tests.helper';
 import SearchBar from '../../scripts/components/navigation/SearchBar';
 
 describe('SearchBar', () => {

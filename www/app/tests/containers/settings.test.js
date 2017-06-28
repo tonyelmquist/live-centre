@@ -21,24 +21,19 @@ describe('Settings', () => {
     it('renders SettingsPage', () => {
         sinon.spy(SettingsPage.prototype, 'render');
         wrapper = enzymeMount(SettingsPage, props);
-        expect(SettingsPage.prototype.render.calledOnce)
-            .to
-            .equal(true);
+        expect(SettingsPage.prototype.render.calledOnce).to.equal(true);
         expect(wrapper.find('SettingsPage').exists()).to.be.true;
     });
 
     it('has title in English', () => {
         wrapper = enzymeMount(SettingsPage, props);
         const title = wrapper.find('h1');
-        expect(title.text())
-            .to.equal('Settings');
+        expect(title.text()).to.equal('Settings');
     });
 
     it('has dropdowns', () => {
         wrapper = enzymeMount(SettingsPage, props);
         const selectField = wrapper.find('SelectField');
-        expect(selectField.length)
-            .to
-            .be.greaterThan(0);
+        expect(selectField.length).to.be.greaterThan(0);
     });
 });

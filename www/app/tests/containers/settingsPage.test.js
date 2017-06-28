@@ -1,10 +1,8 @@
-import { enzymeMount, expect } from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper';
 import SettingsPage from '../../scripts/containers/pages/SettingsPage';
 
 describe('SettingsPage', () => {
-    const props = {
-
-    };
+    const props = {};
 
     let wrapper;
 

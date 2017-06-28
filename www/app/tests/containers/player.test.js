@@ -1,6 +1,6 @@
-import { enzymeMount, expect } from '../tests.helper.js';
-import Player from '../../scripts/containers/Player';
 import sinon from 'sinon';
+import { enzymeMount, expect } from '../tests.helper';
+import Player from '../../scripts/containers/Player';
 
 describe('Player', () => {
     let wrapper;

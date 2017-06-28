@@ -1,4 +1,4 @@
-import { enzymeMount, expect } from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper';
 import TabLinks from '../../scripts/components/homepage/TabLinks';
 
 describe('TabLinks', () => {

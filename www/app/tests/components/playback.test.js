@@ -1,4 +1,4 @@
-import { enzymeMount, expect } from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper';
 import Playback from '../../scripts/components/common/Playback';
 
 describe('Playback', () => {

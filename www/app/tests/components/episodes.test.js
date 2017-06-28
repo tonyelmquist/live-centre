@@ -1,4 +1,5 @@
-import { enzymeMount, expect } from '../tests.helper.js';
+// import sinon from 'sinon';
+import { enzymeMount, expect } from '../tests.helper';
 import Episodes from '../../scripts/components/homepage/Episodes';
 
 describe('Episodes', () => {

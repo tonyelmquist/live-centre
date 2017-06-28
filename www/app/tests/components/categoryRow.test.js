@@ -1,7 +1,6 @@
-import { enzymeMount, enzymeMountWithRouter, expect } from '../tests.helper.js';
+// import sinon from 'sinon';
+import { enzymeMountWithRouter, expect } from '../tests.helper';
 import CategoryRow from '../../scripts/components/CategoryRow';
-import sinon from 'sinon';
-
 
 describe('CategoryRow', () => {
     let wrapper;

@@ -1,4 +1,4 @@
-import { enzymeMount, expect } from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper';
 import FavoritePage from '../../scripts/containers/pages/FavoritePage';
 
 describe('FavoritePage', () => {

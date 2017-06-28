@@ -1,6 +1,7 @@
-import { enzymeMount, expect } from '../tests.helper.js';
-import App from '../../scripts/containers/App';
 import sinon from 'sinon';
+import { enzymeMount, expect } from '../tests.helper';
+import App from '../../scripts/containers/App';
+
 
 describe('App', () => {
     let appWraper; // Enzyme react wrapper around App component
@@ -23,7 +24,7 @@ describe('App', () => {
 
     it('calls render method once', () => {
         sinon.spy(App.prototype, 'render');
-        const app = renderApp();
+        // const app = renderApp();
         expect(App.prototype.render.calledOnce).to.equal(true);
     });
 

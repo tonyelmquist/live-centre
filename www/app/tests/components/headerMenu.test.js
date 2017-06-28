@@ -1,4 +1,5 @@
-import { enzymeMount, enzymeMountWithRouter, expect } from '../tests.helper.js';
+// import sinon from 'sinon';
+import { enzymeMountWithRouter, expect } from '../tests.helper';
 import HeaderMenu from '../../scripts/components/navigation/HeaderMenu';
 
 describe('HeaderMenu', () => {

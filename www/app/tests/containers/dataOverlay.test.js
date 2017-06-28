@@ -1,6 +1,7 @@
-import { enzymeMount, expect } from '../tests.helper.js';
-import DataOverlay from '../../scripts/containers/DataOverlay';
 import sinon from 'sinon';
+import { enzymeMount, expect } from '../tests.helper';
+import DataOverlay from '../../scripts/containers/DataOverlay';
+
 
 describe('DataOverlay', () => {
     let wrapper;

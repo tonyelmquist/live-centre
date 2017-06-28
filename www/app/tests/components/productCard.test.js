@@ -1,6 +1,6 @@
-import { enzymeMount, expect } from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper';
 import ProductCard from '../../scripts/components/homepage/ProductCard';
-import sinon from 'sinon';
+
 
 describe('ProductCard', () => {
     let wrapper;

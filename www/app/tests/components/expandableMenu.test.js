@@ -1,6 +1,6 @@
-import { enzymeMount, expect } from '../tests.helper.js';
+// import sinon from 'sinon';
+import { enzymeMount, expect } from '../tests.helper';
 import ExpandableMenu from '../../scripts/components/navigation/ExpandableMenu';
-import sinon from 'sinon';
 
 describe('ExpandableMenu', () => {
     const props = {

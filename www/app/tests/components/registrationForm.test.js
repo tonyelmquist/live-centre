@@ -1,4 +1,4 @@
-import { enzymeMount, expect } from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper';
 import RegistrationForm from '../../scripts/components/RegistrationForm';
 
 

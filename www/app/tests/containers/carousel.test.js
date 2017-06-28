@@ -1,6 +1,7 @@
-import { enzymeMount, expect } from '../tests.helper.js';
-import HeroCarousel from '../../scripts/containers/Carousel';
 import sinon from 'sinon';
+import { enzymeMount, expect } from '../tests.helper';
+import HeroCarousel from '../../scripts/containers/Carousel';
+
 
 describe('HeroCarousel', () => {
     let wrapper;

@@ -1,6 +1,6 @@
-import { enzymeMount, expect, store } from '../tests.helper.js';
+import { enzymeMount, expect } from '../tests.helper';
 import AnimatedMenuIcon from '../../scripts/components/animatedIcons/AnimatedMenuIcon';
-import sinon from 'sinon';
+// import sinon from 'sinon';
 
 describe('AnimatedMenuIcon', () => {
     const props = {
