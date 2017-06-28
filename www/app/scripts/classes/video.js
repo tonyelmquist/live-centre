@@ -4,25 +4,28 @@ class Video extends BaseClass {
     constructor(data) {
         super();
 
-        this.assignData({
-            _id: 0,
-            _title: '',
-            _description: '',
-            _video_url: '',
-            _thumbnail: '',
-            _views: 0,
-            _episode_number: '',
-            _tags: [],
-        }, {
-            _id: data.id,
-            _title: data.title,
-            _description: data.description,
-            _video_url: data.video_url,
-            _thumbnail: data.thumbnail,
-            _views: data.views,
-            _episode_number: data.episode_number,
-            _tags: data.tags,
-        });
+        this.assignData(
+            {
+                _id: 0,
+                _title: '',
+                _description: '',
+                _video_url: '',
+                _thumbnail: '',
+                _views: 0,
+                _episode_number: '',
+                _tags: [],
+            },
+            {
+                _id: data.id,
+                _title: data.title,
+                _description: data.description,
+                _video_url: data.video_url,
+                _thumbnail: data.thumbnail,
+                _views: data.views,
+                _episode_number: data.episode_number,
+                _tags: data.tags,
+            },
+        );
 
         // this.hasMany(Tag);
         // this.belongsTo(Season);
@@ -49,7 +52,7 @@ class Video extends BaseClass {
         return this._title;
     }
     set title(newTitle) {
-        if (newTitle){
+        if (newTitle) {
             this._title = newTitle;
         }
     }
@@ -119,7 +122,5 @@ class Video extends BaseClass {
             this._description = description;
         }
     }
-
 }
 export default Video;
-

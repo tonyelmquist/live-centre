@@ -1,7 +1,6 @@
 import diff from 'deep-diff';
 
 export default class BaseClass {
-
     assignData(base, mapped) {
         BaseClass.validateObject(base, mapped);
         Object.assign(this, base);
@@ -18,21 +17,31 @@ export default class BaseClass {
             }
 
             for (const key in Object.keys(initialState)) {
-                if (Object.prototype.hasOwnProperty.call(initialState, key) && Object.prototype.hasOwnProperty.call(data, key)) {
+                if (
+                    Object.prototype.hasOwnProperty.call(initialState, key) &&
+                    Object.prototype.hasOwnProperty.call(data, key)
+                ) {
                     if (typeof initialState[key] !== typeof data[key]) {
-                        console.warn(`Type mismatch for key ${key} inside the ${this.constructor.name} class (${typeof initialState[key]} != ${typeof data[key]})`);
+                        console.warn(
+                            `Type mismatch for key ${key} inside the ${this.constructor
+                                .name} class (${typeof initialState[key]} != ${typeof data[key]})`,
+                        );
                     }
                 }
             }
 
-            const missingKeys = results.filter(result =>
-                // Only kept the deleted ones (i.e. listed in the initial state
-                // but not in the data added
+            const missingKeys = results.filter(
+                result =>
+                    // Only kept the deleted ones (i.e. listed in the initial state
+                    // but not in the data added
 
-                 result.kind === 'D');
+                    result.kind === 'D',
+            );
 
             for (const missingKey of missingKeys) {
-                console.warn(`${initialState.constructor.name} is missing property: ${missingKey.path}`);
+                console.warn(
+                    `${initialState.constructor.name} is missing property: ${missingKey.path}`,
+                );
             }
         }
     }
@@ -50,11 +59,11 @@ export default class BaseClass {
         return result;
     }
 
-//     hasMany(type) {
+    //     hasMany(type) {
 
-//   }
+    //   }
 
-//     belongsTo(type) {
+    //     belongsTo(type) {
 
-//   }
+    //   }
 }

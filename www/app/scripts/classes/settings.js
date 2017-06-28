@@ -4,17 +4,20 @@ export default class Settings extends BaseClass {
     // Constructor
     constructor(data) {
         super();
-        this.assignData({
-            _language: '',
-            _subtitleLanguage: '',
-            _audioLanguage: '',
-            _recommendations: 0,
-        }, {
-            _language: data.language,
-            _subtitleLanguage: data.subtitleLanguage,
-            _audioLanguage: data.audioLanguage,
-            _recommendations: data.recommendations,
-        });
+        this.assignData(
+            {
+                _language: '',
+                _subtitleLanguage: '',
+                _audioLanguage: '',
+                _recommendations: 0,
+            },
+            {
+                _language: data.language,
+                _subtitleLanguage: data.subtitleLanguage,
+                _audioLanguage: data.audioLanguage,
+                _recommendations: data.recommendations,
+            },
+        );
     }
 
     // Get Set: Language
@@ -56,6 +59,4 @@ export default class Settings extends BaseClass {
     toggleRecommendations() {
         this._recommendations = !this._recommendations;
     }
-
-
 }

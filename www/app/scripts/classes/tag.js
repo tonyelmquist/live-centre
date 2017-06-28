@@ -4,16 +4,19 @@ class Tag extends BaseClass {
     constructor(data) {
         super();
 
-        this.assignData({
-            _type: '',
-            _name: '',
-            _id: 0,
-            _test: '',
-        }, {
-            _type: data.type,
-            _name: data.name,
-            _id: data.id,
-        });
+        this.assignData(
+            {
+                _type: '',
+                _name: '',
+                _id: 0,
+                _test: '',
+            },
+            {
+                _type: data.type,
+                _name: data.name,
+                _id: data.id,
+            },
+        );
     }
 
     get id() {
@@ -49,10 +52,5 @@ class Tag extends BaseClass {
     get videos(){
 
     }*/
-
-
-
-
 }
 export default Tag;
-
