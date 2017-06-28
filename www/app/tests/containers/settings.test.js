@@ -1,21 +1,19 @@
-import React from 'react';
-import {enzymeMount, expect, store, } from '../tests.helper.js';
-import {shallow} from 'enzyme';
+import sinon from 'sinon';
+import { enzymeMount, expect } from '../tests.helper';
+// import { shallow } from 'enzyme';
 import SettingsPage from '../../scripts/containers/pages/SettingsPage';
 import Settings from '../../scripts/classes/settings';
-import sinon from 'sinon';
 
 describe('Settings', () => {
-
     const testSettingsEnglish = new Settings({
-        language:'en',
-        subtitleLanguage:'en',
-        audioLanguage:'en',
-        recommendations:false
+        language: 'en',
+        subtitleLanguage: 'en',
+        audioLanguage: 'en',
+        recommendations: false,
     });
 
     const props = {
-        settings: {options: testSettingsEnglish, saving: false }
+        settings: { options: testSettingsEnglish, saving: false },
     };
 
     let wrapper;
@@ -33,7 +31,7 @@ describe('Settings', () => {
         wrapper = enzymeMount(SettingsPage, props);
         const title = wrapper.find('h1');
         expect(title.text())
-            .to.equal("Settings");
+            .to.equal('Settings');
     });
 
     it('has dropdowns', () => {
@@ -43,5 +41,4 @@ describe('Settings', () => {
             .to
             .be.greaterThan(0);
     });
-
 });

@@ -93,7 +93,7 @@ class CategoryRow extends Component {
 
             videos = videos.map((video, index) => {
                 return (
-                    <div key={`category-item-${video.video_url}`}>
+                    <div key={`category-item-${video.videoUrl}`}>
                         <CategoryItem video={video}
                             handleClick={()=>_handleClick(video)}
                         />
