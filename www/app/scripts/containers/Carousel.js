@@ -53,7 +53,7 @@ const styles = {
 class HeroCarousel extends Component {
     static defaultProps = {
         videos: {},
-        selected: false
+        selected: false,
     };
 
     constructor(props, defaultProps) {
@@ -137,7 +137,7 @@ class HeroCarousel extends Component {
 
             const imageList = carouselList.map((video, i) => {
                 
-            const videoUrl = `http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/video-files/${video.video_url}`;      
+            const videoUrl = `http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/video-files/${video.videoUrl}`;      
 
             //const videoUrl = `http://clips.vorwaerts-gmbh.de/VfE_html5.mp4`// (smaller test video with bunny)
 
