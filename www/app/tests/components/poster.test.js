@@ -7,7 +7,7 @@ describe('Poster', () => {
     const props = {
         handlePlay: function () {},
         imageUrl: 'www.google.com/image.jpg'
-    }
+    };
 
     it('renders Poster', () => {
         wrapper = enzymeMount(Poster, props);
