@@ -1,0 +1,31 @@
+.burst-button {
+
+    .burst-large-circle, .burst-small-circle {
+        transform-origin: center;
+        transition: .2s all;
+    }
+
+    svg text {
+        font-family: FontAwesome;
+        transform: translate(-50%, -50%);
+        stroke: white;
+    }
+
+    .burst-large-circle {
+        transform: scale(1) rotate(0deg);
+        &.open {
+            transform: scale(.6) rotate(45deg);
+        }
+    }
+
+    .burst-small-circle {
+        transform: scale(0) rotate(45deg);
+        &.open {
+            transform: scale(1) rotate(0deg);
+        }
+
+        &.active {
+            transform: scale(1.2) rotate(0deg);
+        }
+    }
+}
