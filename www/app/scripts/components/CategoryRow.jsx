@@ -9,27 +9,17 @@ import { grey800 } from 'material-ui/styles/colors';
 import CategoryItem from '../components/CategoryItem';
 import ProductCard from '../containers/homepage/CardContainer';
 
-
 class CategoryRow extends Component {
-
     constructor(props) {
         super(props);
-        this.next = this
-            .next
-            .bind(this);
-        this.previous = this
-            .previous
-            .bind(this);
+        this.next = this.next.bind(this);
+        this.previous = this.previous.bind(this);
     }
     next() {
-        this
-            .slider
-            .slickNext();
+        this.slider.slickNext();
     }
     previous() {
-        this
-            .slider
-            .slickPrev();
+        this.slider.slickPrev();
     }
 
     render() {
@@ -48,14 +38,16 @@ class CategoryRow extends Component {
                         slidesToScroll: 3,
                         infinite: true,
                     },
-                }, {
+                },
+                {
                     breakpoint: 600,
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 2,
                         initialSlide: 2,
                     },
-                }, {
+                },
+                {
                     breakpoint: 480,
                     settings: {
                         slidesToShow: 1,
@@ -65,11 +57,13 @@ class CategoryRow extends Component {
             ],
         };
 
-        const videoCard = (
-            this.props.videoCard.isVisible && this.props.videoCard.category === this.props.tag.id) ?
-            (<div>
-              <ProductCard />
-            </div>) : undefined;
+        const videoCard =
+      this.props.videoCard.isVisible &&
+      this.props.videoCard.category === this.props.tag.id
+        ? (<div>
+          <ProductCard />
+        </div>)
+        : undefined;
         let videos = '';
 
         const handleClick = (video) => {
@@ -92,46 +86,52 @@ class CategoryRow extends Component {
                 return false;
             });
 
-            videos = videos.map(video => (
-              <div key={`category-item-${video.title}`}>
-                <CategoryItem
-                  video={video}
-                  handleClick={() => handleClick(video)}
-                />
-              </div>
-                ));
+            videos = videos.map(video =>
+        (<div key={`category-item-${video.title}`}>
+          <CategoryItem video={video} handleClick={() => handleClick(video)} />
+        </div>),
+      );
         }
 
-        return (
-          <div className="slider">
-            <div className="rowHeader">
-              <h3 className="rowTitle">
-                {this.props.tag.name}
-              </h3>
+        if (videos.length > 0) {
+            return (
+              <div className="slider">
+                <div className="rowHeader">
+                  <h3 className="rowTitle">
+                    {this.props.tag.name}
+                  </h3>
 
-              <Link to={`/Category/${this.props.tag.id}`}>
-                <IconButton onTouchTap={this.next}>
-                  <FontIcon className="material-icons" color={grey800}>arrow_forward</FontIcon>
-                </IconButton>
-              </Link>
+                  <Link to={`/Category/${this.props.tag.id}`}>
+                    <IconButton onTouchTap={this.next}>
+                      <FontIcon className="material-icons" color={grey800}>
+                  arrow_forward
+                </FontIcon>
+                    </IconButton>
+                  </Link>
 
-              <div className="sliderButtons">
-                <IconButton onTouchTap={this.previous}>
-                  <FontIcon className="material-icons" color={grey800}>arrow_back</FontIcon>
-                </IconButton>
-                <IconButton onTouchTap={this.next}>
-                  <FontIcon className="material-icons" color={grey800}>arrow_forward</FontIcon>
-                </IconButton>
+                  <div className="sliderButtons">
+                    <IconButton onTouchTap={this.previous}>
+                      <FontIcon className="material-icons" color={grey800}>
+                  arrow_back
+                </FontIcon>
+                    </IconButton>
+                    <IconButton onTouchTap={this.next}>
+                      <FontIcon className="material-icons" color={grey800}>
+                  arrow_forward
+                </FontIcon>
+                    </IconButton>
+                  </div>
+                </div>
+                <div className="slider">
+                  <Slider ref={c => (this.slider = c)} {...settings}>
+                    {videos}
+                  </Slider>
+                </div>
+                {videoCard}
               </div>
-            </div>
-            <div className="slider">
-              <Slider ref={c => this.slider = c} {...settings}>
-                {videos}
-              </Slider>
-            </div>
-            {videoCard}
-          </div>
-        );
+            );
+        }
+        return false;
     }
 }
 
