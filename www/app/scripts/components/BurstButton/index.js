@@ -120,7 +120,7 @@ class BurstButton extends React.Component {
 
         const links = this.state.links.map((link, i) => (
             <g key={`${i}`} className={`burst-small-circle ${this.state.isOpen ? 'open' : ''} ${this.state.activeButton === i ? 'active' : ''}`}>
-                <circle cx={link.x + this.centerXY} cy={link.y + this.centerXY} r={link.size / 2} fill={this.state.color} />
+                <circle cx={link.x + this.centerXY} cy={link.y + this.centerXY} r={link.size / 2} fill={this.props.color} />
                 <text fill="white" x={link.x + this.centerXY} y={link.y + this.centerXY}>&#xf040;</text>
             </g>
         ));
@@ -130,7 +130,7 @@ class BurstButton extends React.Component {
                 <svg className="burst-button" height={this.viewportSize} viewBox={`0 0 ${this.viewportSize} ${this.viewportSize}`} width={this.viewportSize} xmlns="http://www.w3.org/2000/svg">
                     {/* Large Central Circle */}
                     <g className={`burst-large-circle ${this.state.isOpen ? 'open' : ''}`} onClick={this.toggleMenu} onTouchStart={this.touchStart} onTouchMove={this.touchMove} onTouchEnd={this.touchEnd}>
-                        <circle cx={this.centerXY} cy={this.centerXY} r={this.state.size / 2} fill="#3498db" />
+                        <circle cx={this.centerXY} cy={this.centerXY} r={this.state.size / 2} fill={this.props.color}  />
                         <line x1={this.centerXY - 10} y1={this.centerXY} x2={this.centerXY + 10} y2={this.centerXY} strokeWidth="2" stroke="white" />
                         <line x1={this.centerXY} y1={this.centerXY - 10} x2={this.centerXY} y2={this.centerXY + 10} strokeWidth="2" stroke="white" />
                     </g>
@@ -152,9 +152,9 @@ BurstButton.defaultProps = {
 
 BurstButton.propTypes = {
     style: PropTypes.shape({}),
-    buttons: PropTypes.array,
     smallCircleSize: PropTypes.number,
     buttonLinks: PropTypes.array,
+    color: PropTypes.string,
 };
 
 export default BurstButton;
