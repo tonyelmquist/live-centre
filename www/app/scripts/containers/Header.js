@@ -31,6 +31,7 @@ import VideoLibrary from 'material-ui/svg-icons/AV/video-library';
 
 class Header extends Component {
 
+
   // Generate menu items that correspons with the react router paths.
     getPageItems = () => {
         const items = [
@@ -43,17 +44,20 @@ class Header extends Component {
         return items;
     }
 
-    categoryItems = () => {
-        const items = [];
-        if (this.props.categories.items.length > 0) {
-            for (let i = 0; i < this.props.categories.items.length; i++) {
-                const name = this.props.categories.items[i].name;
-                const id = this.props.categories.items[i].id;
-                items.push({ key: name, path: `/Category/${id}` });
-            }
-        }
-        return items;
+  categoryItems = () => {
+    const items = [];
+    if(this.props.tags){
+      for(const key in this.props.tags){
+        const name = this.props.tags[key].name;
+        const key = key;
+        items.push({key: name, path: `/Category/${key}`});
+      }
+
     }
+    return items;
+  }
+
+
 
     changeRoute = path => this.props.history.push(path);
 
@@ -117,43 +121,45 @@ class Header extends Component {
     }
 
 
-    render() {
-        return (
-          <div id="header-container">
-            <HeaderMenu
-              pageItems={this.getPageItems()}
-              categoryItems={this.categoryItems()}
-              openCloseMenu={this.openCloseMenu}
-              isMenuOpen={this.isMenuOpen}
-              locationName={this.getLocationName()}
-              isSubPage={this.isSubPage()}
-              changeRoute={this.changeRoute}
-              openCloseSearch={this.openCloseSearch}
-              handleSearch={this.handleSearch}
-              searchState={this.props.search}
-              settingsState={this.props.settings}
-              closeSearch={this.closeSearch}
-            />
-            <TabMenu
-              pageItems={this.getPageItems()}
-              changeRoute={this.changeRoute}
-              isMenuOpen={this.isMenuOpen}
-              isSubPage={this.isSubPage()}
-              openCloseMenu={this.openCloseMenu}
-              closeSearch={this.closeSearch}
-              hideMenu={this.hideMenu}
-            />
-            <ExpandableMenu
-              categoryItems={this.categoryItems()}
-              pageItems={this.getPageItems()}
-              openCloseMenu={this.openCloseMenu}
-              isMenuOpen={this.isMenuOpen}
-              changeRoute={this.changeRoute}
-              closeSearch={this.closeSearch}
-            />
-          </div>
-        );
-    }
+
+  render(){
+
+    return(
+        <div id="header-container">
+          <HeaderMenu
+            pageItems={this.getPageItems()}
+            categoryItems={this.categoryItems()}
+            openCloseMenu={this.openCloseMenu}
+            isMenuOpen={this.isMenuOpen}
+            locationName={this.getLocationName()}
+            isSubPage={this.isSubPage()}
+            changeRoute={this.changeRoute}
+            openCloseSearch={this.openCloseSearch}
+            handleSearch={this.handleSearch}
+            searchState={this.props.search}
+            settingsState={this.props.settings}
+            closeSearch={this.closeSearch}
+          />
+          <TabMenu
+            pageItems={this.getPageItems()}
+            changeRoute={this.changeRoute}
+            isMenuOpen={this.isMenuOpen}
+            isSubPage={this.isSubPage()}
+            openCloseMenu={this.openCloseMenu}
+            closeSearch={this.closeSearch}
+            hideMenu={this.hideMenu}
+          />
+          <ExpandableMenu
+            categoryItems={this.categoryItems()}
+            pageItems={this.getPageItems()}
+            openCloseMenu={this.openCloseMenu}
+            isMenuOpen={this.isMenuOpen}
+            changeRoute={this.changeRoute}
+            closeSearch={this.closeSearch}
+          />
+        </div>
+    );  
+  }
 
 }
 
@@ -162,16 +168,19 @@ Header.propTypes = {
     dispatch: PropTypes.func.isRequired,
     menuIsOpen: PropTypes.bool,
     history: PropTypes.object,
-    categories: PropTypes.object,
+    tags: PropTypes.object,
     search: PropTypes.object,
-    settings: PropTypes.object,
+    settings: PropTypes.object
 };
 
-const mapStateToProps = state => ({
-    menuIsOpen: state.headerMenuState,
-    categories: state.tags,
-    search: state.search,
-    settings: state.settings,
-});
+const mapStateToProps = (state) => {
+    return {
+        menuIsOpen : state.headerMenuState,
+        tags: state.tags.items,
+        search: state.search,
+        settings: state.settings
+    };
+};
+
 
 export default withRouter(connect(mapStateToProps)(Header));

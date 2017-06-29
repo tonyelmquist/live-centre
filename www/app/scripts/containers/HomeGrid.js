@@ -26,32 +26,44 @@ class HomeGrid extends Component {
 
 
     createVideoList = (tags, videos) => {
-        if (videos.length > 0) {
-            return tags.map(tag =>
-                (<CategoryRow
-                  key={`categoryrow-${tag.id}`}
-                  handleCardCategory={this._changeCardCategory}
-                  handleVideoInfo={this._changeVideoInfo}
-                  showVideoCard={this._showVideoCard}
-                  cardIsVisible={this.props.videoCard.isVisible}
-                  videoCard={this.props.videoCard}
-                  videos={videos}
-                  tag={tag}
-                />),
 
+        const videoList = [];
+
+        for(const key in tags){
+
+            //Extract the videos from the categories and make an array of the videos to pass the categoryRow. 
+            const videoInCategory = [];
+            tags[key].videos.map((videoKey)=>{
+                //console.log("video in tag",key,videos[videoKey]);
+                videoInCategory.push(videos[videoKey]);    
+            });
+
+            videoList.push(
+                <CategoryRow
+                    key={`categoryrow-${key}`}
+                    handleCardCategory={this._changeCardCategory}
+                    handleVideoInfo = {this._changeVideoInfo}
+                    showVideoCard={this._showVideoCard}
+                    cardIsVisible={this.props.videoCard.isVisible}
+                    videoCard={this.props.videoCard}
+                    videos={videoInCategory}
+                    tag={tags[key]}
+                />
             );
-        }
+       }
+       return videoList;
     }
 
     render() {
         return (
-          <div>
-            {this.props.overlayVisible ? <Overlay /> : <HeroCarousel />}
 
-            <div className={this.props.overlayVisible ? 'hidden' : ''}>
-              {this.createVideoList(this.props.tags, this.props.videos)}
+            <div>
+                {this.props.overlayVisible ? <Overlay/> : <HeroCarousel/>}
+
+                <div className={this.props.overlayVisible ? 'hidden': ''}>
+                    {this.createVideoList(this.props.tags, this.props.videos)}
+                </div>
             </div>
-          </div>
         );
     }
 }
@@ -60,20 +72,17 @@ HomeGrid.propTypes = {
     dispatch: PropTypes.func.isRequired,
     selected: PropTypes.bool.isRequired,
     videoCard: PropTypes.object,
-    categories: PropTypes.array,
-    videos: PropTypes.array.isRequired,
+    videos: PropTypes.object.isRequired,
     overlayVisible: PropTypes.bool,
-    tags: PropTypes.array.isRequired,
+    tags: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
     videos: state.videos.items,
     tags: state.tags.items,
-
     videoUrl: state.playback.url,
     selected: state.playback.isSelected,
     videoCard: state.videoCard,
-
     overlayVisible: state.overlay.isVisible,
 });
 

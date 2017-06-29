@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SearchFilters from './SearchFilters';
 import VideoGrid from '../components/common/VideoGrid';
-import MasonryTiles from '../components/common/MasonryTiles';
+import MasonryVideos from '../components/common/MasonryVideos';
 
 import CirclesRow from '../components/common/CirclesRow';
 import { toggleFilter, clearFilter } from '../actions/search.js';
@@ -19,6 +19,52 @@ class SearchContainer extends Component {
         } else {
             // console.log(filteritem.key);
             this.props.dispatch(toggleFilter(filteritem.key));
+        }   
+    }
+
+    compare(videoString, filterArray){
+
+        videoString = videoString.toLowerCase();
+        for(let i = 0; i<filterArray.length; i++){
+            const filterString = filterArray[i].toLowerCase();
+            //compare.
+            if(videoString.includes(filterString) && filterString.length>0){
+                //console.log("Filter/search:",filterString, "==", videoString);
+                return 1;
+            } 
+            
+        }
+        return 0;
+    }
+    //Checks tags, description and title
+    tiles_handleFilter = (filterArray, video, filterby) => {
+
+        //console.log(video.description, video.title, video.tags, filterArray);
+        
+        let containsFilter = 0;
+
+        //console.log(video);
+
+        
+        containsFilter += this.compare(video.description, filterArray);
+        if(containsFilter>0){ return true;}
+
+        containsFilter += this.compare(video.title, filterArray);
+        if(containsFilter>0){return true;}
+
+        if(video.series){
+            containsFilter += this.compare(video.series, filterArray);
+            if(containsFilter>0){return true;}
+        }
+        if(video.tags){
+            containsFilter += this.compare(video.tags, filterArray);
+            /*for(let i = 0; i < video.tags.length; i++){
+                containsFilter += this.compare(video.tags[i], filterArray);
+                if(containsFilter>0){
+                    return true;
+                }
+            }*/
+            if(containsFilter>0){return true;}
         }
     }
 
@@ -78,12 +124,15 @@ class SearchContainer extends Component {
                     }
 
               {/* Uncategorized is a temporary "suggested" category that is default. */}
-              <MasonryTiles
+              <MasonryVideos
                 filter={this.props.search.isSearching || !this.props.filter.isClear
                                 ? [this.props.search.keyword, ...parseFilters(this.props.filter.filters)]
-                                : ['Lost In Time']}
-                videos={this.props.videos}
-              />
+                                : ["Lost In Time"]}
+                        videos={this.props.videos}
+                        tags={this.props.tags}
+                        handlefilter={this.tiles_handleFilter}
+                        //series={this.props.series}
+                    />
 
             </div>
 
@@ -94,7 +143,7 @@ class SearchContainer extends Component {
 
 SearchContainer.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    videos: PropTypes.array.isRequired,
+    videos: PropTypes.object.isRequired,
     search: PropTypes.object.isRequired,
     filter: PropTypes.object.isRequired,
 };
@@ -102,9 +151,8 @@ SearchContainer.propTypes = {
 const mapStateToProps = state => ({
     search: state.search,
     filter: state.filter,
-    videos: state.videos.items,
+    videos: state.videos,
     tags: state.tags.items,
-
 });
 
 export default connect(mapStateToProps)(SearchContainer);

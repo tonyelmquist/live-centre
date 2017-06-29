@@ -21,7 +21,7 @@ import { Provider } from 'react-redux';
 injectTapEventPlugin();
 
 // Initialize Video List
-// initVideoList(store);
+initVideoList(store);
 
 // init scores overlay
 initChangingScores(store);
@@ -32,7 +32,7 @@ initLang(store);
 
 initUserSettings(store);
 
-initTempBackend(store);
+//initTempBackend(store);
 
 
 // Custom theme

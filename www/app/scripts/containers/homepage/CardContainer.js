@@ -5,12 +5,13 @@ import ProductCardMobile from '../../components/homepage/ProductCardMobile';
 import { changeCardIndex, hideVideoCard } from '../../actions/videoCard';
 import { videoSelected, invalidateSelected } from '../../actions/video';
 import { showOverlay, hideOverlay } from '../../actions/overlay';
-import { connect } from 'react-redux';
+import { connect} from 'react-redux';
+import { videoPrefix } from '../../constants/mediaPrefix';
 
 class ProductCardContainer extends Component {
     _handlePlay = (video_url) => {
         this.props.dispatch(showOverlay());
-        this.props.dispatch(videoSelected(`http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/video-files/${video_url}`));
+        this.props.dispatch(videoSelected(`${videoPrefix}${video_url}`));
     }
     _changeCardIndex = (index) => {
         this.props.dispatch(changeCardIndex(index));

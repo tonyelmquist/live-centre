@@ -1,4 +1,4 @@
-import { enzymeMount, expect } from '../tests.helper';
+import {enzymeMount, expect} from '../tests.helper.js';
 import RegistrationForm from '../../scripts/components/RegistrationForm';
 
 
@@ -16,4 +16,6 @@ describe('Registration Form', () => {
         wrapper = enzymeMount(RegistrationForm);
         expect(wrapper.find('TextField').exists()).to.be.true;
     });
+
+
 });

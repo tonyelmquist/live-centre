@@ -24,44 +24,27 @@ const styles = {
 };
 class CategoryContainer extends Component {
     _handleSelect = (videoUrl) => {
-        this.props.dispatch(videoSelected(`${videoPrefix + videoUrl}`));
+        this.props.dispatch(videoSelected(`${videoPrefix+videoUrl}`));
     };
 
 
     render() {
-        let videos = [];
-
+        const videos = [];
         const categoryID = this.props.match.params.categoryKey;
+        const tag = this.props.tags[categoryID];
 
-        let currentTag = {};
 
-        // Get tag object
-        if (this.props.tags && categoryID) {
-            this.props.tags.filter((tag) => {
-                if (tag.id == categoryID) {
-                    currentTag = tag;
-                }
-            });
-        }
-
-        // Get video based on category
-        if (categoryID) {
-            videos = this.props.videos.filter((video) => {
-                for (let i = 0; i < video.tags.length; i++) {
-                    if (video.tags[i].id == categoryID) {
-                        return video;
-                    }
-                }
-            });
-        }
+        tag.videos.map((videoKey)=>{
+            videos.push(this.props.videos[videoKey]);
+        });
 
         return (
-          <div>
-            <div className="category">
-              <Link to="/Home">
-                <div className="item"><IconButton style={styles.medium} iconStyle={styles.mediumIcon}><BackButton color={blueGrey900} /></IconButton></div>
-              </Link>
-              <h2 className="item">{currentTag.name}</h2>
+        <div>
+            <div className='category'>
+                <Link to='/Home'>
+                    <div className='item'><IconButton style={styles.medium} iconStyle={styles.mediumIcon}><BackButton color={blueGrey900}/></IconButton></div>
+                </Link>
+                <h2 className='item'>{categoryID}</h2>
             </div>
 
             <VideoGrid
@@ -69,16 +52,16 @@ class CategoryContainer extends Component {
               category={categoryID}
               onSelect={this._handleSelect}
             />
-          </div>
+        </div>
         );
     }
 }
 
 CategoryContainer.propTypes = {
-    videos: PropTypes.array.isRequired,
+    videos : PropTypes.object.isRequired,
     match: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
-    tags: PropTypes.array.isRequired,
+    tags: PropTypes.object.isRequired,
 };
 
 

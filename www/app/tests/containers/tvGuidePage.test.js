@@ -1,13 +1,17 @@
-import { enzymeMount, expect } from '../tests.helper';
+import {enzymeMount, expect} from '../tests.helper.js';
 import TVGuidePage from '../../scripts/containers/pages/TVGuidePage';
 
 describe('TVGuidePage', () => {
-    const props = {};
 
-    let wrapper;
+  const props = {
 
-    it('renders the TVGuidePage', () => {
-        wrapper = enzymeMount(TVGuidePage, props);
-        expect(wrapper.find('.slide').exists()).to.be.true;
-    });
-});
+  };
+
+  let wrapper;
+
+  it('renders the TVGuidePage', () => {
+    wrapper = enzymeMount(TVGuidePage, props);
+    expect(wrapper.find('.slide').exists()).to.be.true;
+  });
+
+})

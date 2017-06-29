@@ -30,8 +30,6 @@ const rootReducer = combineReducers({
     search,
     filter,
     series: seriesReducer,
-    channels: channelsReducer,
-    seasons: seasonsReducer,
     tags: tagsReducer,
     settings,
 });

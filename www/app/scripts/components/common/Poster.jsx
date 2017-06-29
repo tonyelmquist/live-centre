@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import IconButton from 'material-ui/IconButton';
 import PlayCircle from 'material-ui/svg-icons/av/play-circle-outline';
 import { fullWhite, teal300 } from 'material-ui/styles/colors';
@@ -18,10 +17,9 @@ const styles = {
     },
 };
 
-
 const Poster = props => (
   <div className="poster">
-    <img className="image" src={`${imagePrefix + props.imageUrl}`} alt="Video Thumbnail" />
+    <img className="image" src={props.imageUrl} alt="Video Thumbnail" />
     <div className="overlay">
       <div className="overlay-content">
         <IconButton
@@ -31,7 +29,6 @@ const Poster = props => (
         >
           <PlayCircle color={fullWhite} hoverColor={teal300} />
         </IconButton>
-
       </div>
     </div>
   </div>

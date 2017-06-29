@@ -1,23 +1,14 @@
 import BaseClass from './baseClass';
 
-export default class Settings extends BaseClass {
-    // Constructor
+export default class Settings extends BaseClass { 
+    //Constructor
     constructor(data) {
-        super();
-        this.assignData(
-            {
-                _language: '',
-                _subtitleLanguage: '',
-                _audioLanguage: '',
-                _recommendations: 0,
-            },
-            {
-                _language: data.language,
-                _subtitleLanguage: data.subtitleLanguage,
-                _audioLanguage: data.audioLanguage,
-                _recommendations: data.recommendations,
-            },
-        );
+        super(); 
+        
+        this._language = data.language;
+        this._subtitleLanguage = data.subtitleLanguage;
+        this._audioLanguage = data.audioLanguage;
+        this._recommendations = data.recommendations;
     }
 
     // Get Set: Language
@@ -26,6 +17,7 @@ export default class Settings extends BaseClass {
     }
 
     set language(lang) {
+        this.validateString(lang);
         this._language = lang;
     }
 
@@ -35,6 +27,7 @@ export default class Settings extends BaseClass {
     }
 
     set subtitleLanguage(lang) {
+        this.validateString(lang);
         this._subtitleLanguage = lang;
     }
 
@@ -44,6 +37,7 @@ export default class Settings extends BaseClass {
     }
 
     set audioLanguage(lang) {
+        this.validateString(lang);
         this._audioLanguage = lang;
     }
 
@@ -53,10 +47,13 @@ export default class Settings extends BaseClass {
     }
 
     set recommendations(bool) {
+        this.validateType(bool, 'boolean');
         this._recommendations = bool;
     }
 
     toggleRecommendations() {
         this._recommendations = !this._recommendations;
     }
+
+    
 }

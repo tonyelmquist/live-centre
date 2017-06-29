@@ -39,10 +39,10 @@ class Logged extends Component {
 
 Logged.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    iconStyle: PropTypes.object,
-    loginState: PropTypes.bool,
-    changeRoute: PropTypes.func,
-    settings: PropTypes.object,
+    iconStyle:PropTypes.object,
+    loginState:PropTypes.bool,
+    changeRoute:PropTypes.func,
+    settings:PropTypes.object
 };
 
 const mapStateToProps = state => ({
