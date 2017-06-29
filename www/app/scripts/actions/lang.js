@@ -1,5 +1,5 @@
 import Actions from '../constants/reduxConstants';
 
-export function changeLang(lang) {
+export default function changeLang(lang) {
     return { type: Actions.CHANGE_LANG, lang };
 }

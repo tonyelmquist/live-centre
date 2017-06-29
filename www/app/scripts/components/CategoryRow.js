@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink, Link } from 'react-router-dom';
-
-import CategoryItem from '../components/CategoryItem';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import { grey800 } from 'material-ui/styles/colors';
+import CategoryItem from '../components/CategoryItem';
 import ProductCard from '../containers/homepage/CardContainer';
-
-
 
 class CategoryRow extends Component {
 
@@ -67,62 +64,61 @@ class CategoryRow extends Component {
         };
 
         const videoCard = (this.props.videoCard.isVisible && this.props.videoCard.category === this.props.tag.key) ?
-            (<div>
-              <ProductCard />
-            </div>) : undefined;
+            <div>
+                <ProductCard />
+            </div> : undefined;
 
         let videos = '';
 
-        const _handleClick = (video, categoryKey) => {
-
+        const handleClick = (video) => {
             this.props.handleVideoInfo(video);
 
-            if (this.props.videoCard.category !== categoryKey) {
-                this.props.handleCardCategory(categoryKey);
-            };
+            if (this.props.videoCard.category !== this.props.tag.key) {
+                this.props.handleCardCategory(this.props.tag.key);
+            }
             this.props.showVideoCard();
         };
 
         if (this.props.tag && this.props.videos) {
-            videos = this.props.videos.map((video)=>{
-                return (<div key={`category-item-${video.video_url}`}>
-                        <CategoryItem video={video}
-                            handleClick={()=>_handleClick(video, this.props.tag.key)}
-                        />
-                </div>);
-            });
+            
+            videos = this.props.videos.map(video => (<div key={`category-item-${video.video_url}`}>
+              <CategoryItem
+                    video={video}
+                    handleClick={() => handleClick(video)}
+                  />
+            </div>));
         }
 
         return (
-            <div className='slider'>
-                <div className='rowHeader'>
-                    <h3 className='rowTitle'>
-                        {this.props.tag.name}
-                    </h3>
+          <div className="slider">
+            <div className="rowHeader">
+              <h3 className="rowTitle">
+                {this.props.tag.name}
+              </h3>
 
-                    <Link to={`/Category/${this.props.tag.key}`}>
-                        <IconButton onTouchTap={this.next}>
-                            <FontIcon className="material-icons" color={grey800}>arrow_forward</FontIcon>
-                        </IconButton>
-                    </Link>
+              <Link to={`/Category/${this.props.tag.key}`}>
+                <IconButton onTouchTap={this.next}>
+                  <FontIcon className="material-icons" color={grey800}>arrow_forward</FontIcon>
+                </IconButton>
+              </Link>
 
-                    <div className='sliderButtons'>
-                        <IconButton onTouchTap={this.previous}>
-                            <FontIcon className="material-icons" color={grey800}>arrow_back</FontIcon>
-                        </IconButton>
-                        <IconButton onTouchTap={this.next}>
-                            <FontIcon className="material-icons" color={grey800}>arrow_forward</FontIcon>
-                        </IconButton>
-                    </div>
-                </div>
-
-                <div className="slider">
-                    <Slider ref={(c) => this.slider = c} {...settings}>
-                        {videos}
-                    </Slider>
-                </div>
-                {videoCard}
+              <div className="sliderButtons">
+                <IconButton onTouchTap={this.previous}>
+                  <FontIcon className="material-icons" color={grey800}>arrow_back</FontIcon>
+                </IconButton>
+                <IconButton onTouchTap={this.next}>
+                  <FontIcon className="material-icons" color={grey800}>arrow_forward</FontIcon>
+                </IconButton>
+              </div>
             </div>
+
+            <div className="slider">
+              <Slider ref={c => this.slider = c} {...settings}>
+                {videos}
+              </Slider>
+            </div>
+            {videoCard}
+          </div>
         );
     }
 }

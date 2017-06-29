@@ -3,8 +3,8 @@ import BaseClass from './baseClass';
 export default class Settings extends BaseClass { 
     //Constructor
     constructor(data) {
-        super(); 
-        
+        super();
+
         this._language = data.language;
         this._subtitleLanguage = data.subtitleLanguage;
         this._audioLanguage = data.audioLanguage;
@@ -54,6 +54,5 @@ export default class Settings extends BaseClass {
     toggleRecommendations() {
         this._recommendations = !this._recommendations;
     }
-
     
 }

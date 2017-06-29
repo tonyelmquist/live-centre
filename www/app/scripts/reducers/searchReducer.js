@@ -58,8 +58,7 @@ const initialfilterstate = {
 // Copy the initial filterstate  so we can revert back to it later on CLEAR_FILTERS.
 function filter(state = initialfilterstate, action) {
     switch (action.type) {
-    case Actions.TOGGLE_FILTER:
-
+    case Actions.TOGGLE_FILTER: {
         const updatedFilters = Object.assign({}, state.filters, {
             ...state.filters,
             [action.filterkey]: {
@@ -67,8 +66,7 @@ function filter(state = initialfilterstate, action) {
                 active: !state.filters[action.filterkey].active,
             },
         });
-
-            // after updating the state, check if the filters are cleared...
+        // after updating the state, check if the filters are cleared...
         let isCleared = true;
         for (const key in updatedFilters) {
             if (updatedFilters[key].active) {
@@ -76,8 +74,7 @@ function filter(state = initialfilterstate, action) {
                 break;
             }
         }
-
-            // ...Set the clear button accordingly and state
+        // ...Set the clear button accordingly and state
         return Object.assign({}, updatedFilters, {
             filters: {
                 ...updatedFilters,
@@ -88,13 +85,11 @@ function filter(state = initialfilterstate, action) {
             },
             isClear: isCleared,
         });
-
-
-    case Actions.CLEAR_FILTERS:
-
-            // New copy of state.filters, map keys to k
-            // Set all items unactive,
-            //! except for the item with the clear key (filters[key].clear),which is the reset button.
+    }
+    case Actions.CLEAR_FILTERS: {
+        // New copy of state.filters, map keys to k
+        // Set all items unactive,
+        //! except for the item with the clear key (filters[key].clear),which is the reset button.
         const newFilters = Object.assign({}, ...Object.keys(state.filters).map(key => ({
             [key]: {
                 ...state.filters[key],
@@ -102,15 +97,13 @@ function filter(state = initialfilterstate, action) {
             },
         }),
             ));
-
         return Object.assign({}, state, {
             filters: {
                 ...newFilters,
             },
             isClear: true,
         });
-
-
+    }
     default:
         return state;
     }

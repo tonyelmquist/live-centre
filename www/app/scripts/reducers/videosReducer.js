@@ -1,9 +1,12 @@
 import Actions from '../constants/reduxConstants';
 
-export default function requestSent(state = { isFetching: false, items: {}, categories: [] }, action) {
+const defaultRequestState = {
+    isFetching: false,
+    items: {},
+    categories: [],
+};
+export default function requestSent(state = defaultRequestState, action) {
     switch (action.type) {
-
-
     case Actions.FETCH_METADATA_SENT:
         return Object.assign({}, state, {
             isFetching: true,
@@ -22,11 +25,6 @@ export default function requestSent(state = { isFetching: false, items: {}, cate
         return Object.assign({}, state, {
             isFetching: false,
             categories: action.categories,
-        });
-    case Actions.FETCH_CATEGORIES_SUCCESS:
-        return Object.assign({}, state, {
-            isFetching: false,
-            featured: action.featured,
         });
     default:
         return state;

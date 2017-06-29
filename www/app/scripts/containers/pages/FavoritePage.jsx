@@ -20,10 +20,6 @@ const styles = {
 };
 
 export default class FavoritePage extends React.Component {
-    constructor() {
-        super();
-    }
-
     render() {
         return (
           <div className="slide">

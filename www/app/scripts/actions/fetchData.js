@@ -1,11 +1,11 @@
 import Actions from '../constants/reduxConstants';
 
-//Videos
+// Videos
 export function fetchVideoSuccess(video) {
-	return {type: Actions.FETCH_VIDEO_SUCCESS, video};
+    return { type: Actions.FETCH_VIDEO_SUCCESS, video };
 }
-export function fetchVideosSuccess(videogroup, length){
-	return {type: Actions.FETCH_VIDEOS_SUCCESS, videogroup, length};
+export function fetchVideosSuccess(videogroup, length) {
+    return { type: Actions.FETCH_VIDEOS_SUCCESS, videogroup, length };
 }
 export function fetchVideoFailed() {
     return { type: Actions.FETCH_VIDEO_FAILED };
@@ -27,7 +27,7 @@ export function fetchChannelsFailed() {
     return { type: Actions.FETCH_CHANNELS_FAILED };
 }
 
-//Seasons
+// Seasons
 export function fetchSeasonsSuccess(items) {
     return { type: Actions.FETCH_SEASONS_SUCCESS, items };
 }

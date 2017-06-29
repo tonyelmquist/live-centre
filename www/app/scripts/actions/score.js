@@ -1,5 +1,5 @@
 import Actions from '../constants/reduxConstants';
 
-export function changeScore(score) {
+export default function changeScore(score) {
     return { type: Actions.CHANGE_SCORE, score };
 }

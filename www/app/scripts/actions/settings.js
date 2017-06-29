@@ -55,9 +55,9 @@ export function saveUserSettings(settings) {
             },
             data: settings.toJson(),
 
-        }).then((result) => {
+        }).then(() => {
             dispatch(savedUserSettings());
-        }).catch((err) => {
+        }).catch(() => {
             dispatch(savingUserSettingsFailed());
         });
     };
