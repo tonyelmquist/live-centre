@@ -2,21 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Tabs = (props) => {
-    const _renderContent = () => (
+    const renderContent = () => (
       <div className="content">
         {props.children[props.active]}
       </div>
         );
     return (
       <div className="tabs">
-        {_renderContent()}
+        {renderContent()}
       </div>
     );
 };
 
 Tabs.propTypes = {
     active: PropTypes.number.isRequired,
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
 };
 
 export default Tabs;

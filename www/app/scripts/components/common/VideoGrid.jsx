@@ -24,7 +24,7 @@ class VideoGrid extends Component {
 }
 
 VideoGrid.propTypes = {
-    videos: PropTypes.array,
+    videos: PropTypes.array.isRequired,
     onSelect: PropTypes.func.isRequired,
 };
 

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import Close from 'material-ui/svg-icons/navigation/close';
-import { red500, blue500 } from 'material-ui/styles/colors';
+import { blue500 } from 'material-ui/styles/colors';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 let styles = {};
@@ -73,37 +73,35 @@ if (minWidth < 800) {
     };
 }
 
-class Overlay extends Component {
-    render() {
-        return (
-          <div
-            className="fs-overlay portrait"
-            style={styles.overlayStyle}
-            id="overlayDiv"
-            ref="overlayDiv"
-          >
-            <div className="overlay-header" style={styles.overlayHeaderStyle}>
-              <IconButton
-                iconStyle={styles.mediumIcon}
-                style={styles.medium}
-                onTouchTap={this.props.handleClose}
-              >
-                <ArrowBack hoverColor={blue500} />
-              </IconButton>
-            </div>
-            {this.props.children}
-            <FloatingActionButton
-              mini
-              secondary
-              style={styles.fullscreenButton}
-              onTouchTap={this.props.handleClose}
-            >
-              <Close />
-            </FloatingActionButton>
-          </div>
-        );
-    }
-}
+const Overlay = props => (
+  <div
+    className="fs-overlay portrait"
+    style={styles.overlayStyle}
+    id="overlayDiv"
+  >
+    <div className="overlay-header" style={styles.overlayHeaderStyle}>
+      <IconButton
+        iconStyle={styles.mediumIcon}
+        style={styles.medium}
+        onTouchTap={props.handleClose}
+      >
+        <ArrowBack hoverColor={blue500} />
+      </IconButton>
+    </div>
+    {props.children}
+    <FloatingActionButton
+      mini
+      secondary
+      style={styles.fullscreenButton}
+      onTouchTap={props.handleClose}
+    >
+      <Close />
+    </FloatingActionButton>
+  </div>);
+
+Overlay.defaultProps = {
+    children: {},
+};
 
 Overlay.propTypes = {
     handleClose: PropTypes.func.isRequired,

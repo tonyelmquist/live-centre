@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink, Link } from 'react-router-dom';
-
-import CategoryItem from '../components/CategoryItem';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import { grey800 } from 'material-ui/styles/colors';
+
+import CategoryItem from '../components/CategoryItem';
 import ProductCard from '../containers/homepage/CardContainer';
 
 
@@ -65,13 +65,14 @@ class CategoryRow extends Component {
             ],
         };
 
-        const videoCard = (this.props.videoCard.isVisible && this.props.videoCard.category === this.props.tag.id) ?
+        const videoCard = (
+            this.props.videoCard.isVisible && this.props.videoCard.category === this.props.tag.id) ?
             (<div>
               <ProductCard />
             </div>) : undefined;
         let videos = '';
 
-        const _handleClick = (video) => {
+        const handleClick = (video) => {
             this.props.handleVideoInfo(video);
 
             if (this.props.videoCard.category !== this.props.tag.id) {
@@ -82,18 +83,20 @@ class CategoryRow extends Component {
 
         if (this.props.tag) {
             videos = this.props.videos.filter((video) => {
-                for (let i = 0; i < video.tags.length; i++) {
-                    if (video.tags[i].id == this.props.tag.id) {
+                for (let i = 0; i < video.tags.length; i += 1) {
+                    if (video.tags[i].id === this.props.tag.id) {
                         return video.tags[i].id;
                     }
+                    return false;
                 }
+                return false;
             });
 
-            videos = videos.map((video, index) => (
-              <div key={`category-item-${video.videoUrl}`}>
+            videos = videos.map(video => (
+              <div key={`category-item-${video.title}`}>
                 <CategoryItem
                   video={video}
-                  handleClick={() => _handleClick(video)}
+                  handleClick={() => handleClick(video)}
                 />
               </div>
                 ));
@@ -133,12 +136,12 @@ class CategoryRow extends Component {
 }
 
 CategoryRow.propTypes = {
-    tag: PropTypes.object,
-    videos: PropTypes.array,
+    tag: PropTypes.object.isRequired,
+    videos: PropTypes.array.isRequired,
     handleCardCategory: PropTypes.func.isRequired,
     handleVideoInfo: PropTypes.func.isRequired,
     showVideoCard: PropTypes.func.isRequired,
-    videoCard: PropTypes.object,
+    videoCard: PropTypes.object.isRequired,
 };
 
 export default CategoryRow;

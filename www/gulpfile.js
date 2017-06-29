@@ -49,6 +49,9 @@ gulp.task('webpack', function(callback) {
         devServer: {
             historyApiFallback: true,
         },
+        resolve: {
+        extensions: ['.js', '.jsx'],
+        },
         watch: WATCH ? WATCH : false,
         plugins: !isDev ? [
 
@@ -138,7 +141,8 @@ gulp.task('html', function() {
     return gulp.src('app/**/*.html')
         .pipe($.if(!isDev, $.htmlReplace({
             'css': 'css/' + FILE_NAME + '.css',
-            'js': 'js/' + FILE_NAME + '.js'
+            'js': 'js/' + FILE_NAME + '.js',
+            'jsx': 'js/' + FILE_NAME + '.jsx'
         })))
         .pipe($.newer(DEST_FOLDER))
         .pipe(gulp.dest(DEST_FOLDER));

@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Episodes = ({ items }) => (
-  <div />
+const Episodes = props => (
+  <div>{props.items}</div>
 );
+
+Episodes.defaultProps = {
+    items: [],
+};
 
 Episodes.propTypes = {
     items: PropTypes.array,

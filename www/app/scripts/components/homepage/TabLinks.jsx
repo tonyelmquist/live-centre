@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TabLinks = ({ items, active, handleChange }) => {
-    const _createLinks = () => items.map((elem, index) =>
+const TabLinks = (props) => {
+    const active = props.active;
+    const handleChange = props.handleChange;
+    const createLinks = () => props.items.map((elem, index) =>
             (<button
               className={'tab-link'.concat((index === active) ? ' active' : '')}
-              key={index}
               onClick={() => handleChange(index)}
             >
               {elem}
@@ -13,7 +14,7 @@ const TabLinks = ({ items, active, handleChange }) => {
         );
     return (
       <div className="tab-controls">
-        {_createLinks()}
+        {createLinks()}
       </div>
     );
 };

@@ -3,23 +3,15 @@ import PropTypes from 'prop-types';
 import { Row, Col } from 'react-flexbox-grid';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
-import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
-import { blue500, red500, fullWhite } from 'material-ui/styles/colors';
+import { red500, fullWhite } from 'material-ui/styles/colors';
 
 
 import Poster from '../common/Poster';
 import VideoDescription from '../common/VideoDescription';
 
-const deviceHeight = window.innerHeight;
-const deviceWidth = window.innerWidth;
-const minWidth = Math.min(deviceHeight, deviceWidth);
-const maxWidth = Math.max(deviceHeight, deviceWidth);
-
 const styles = {
     cardStyle: {
         position: 'fixed',
-        // height: maxWidth,
-        // width: maxWidth,
         minWidth: '100%',
         minHeight: '100%',
         zIndex: 2147483647,
@@ -44,7 +36,10 @@ const ProductCardMobile = props => (
       </IconButton>
       <Row>
         <Col xs={12} md={6}>
-          {<Poster handlePlay={() => { props.handlePlay(props.video.item.video_url); }} imageUrl={props.video.item.thumbnail} />}
+          {<Poster
+            handlePlay={() => { props.handlePlay(props.video.item.video_url); }} 
+            imageUrl={props.video.item.thumbnail}
+          />}
         </Col>
         <Col xs={12} md={6}>
           <VideoDescription video={props.video.item} />

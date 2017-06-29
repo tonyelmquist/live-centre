@@ -2,14 +2,11 @@ import React from 'react';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-import { red500, red200 } from 'material-ui/styles/colors';
 
 const fields = [
     { name: 'First Name' },
     { name: 'Last Name' },
     { name: 'Email' },
-    // {name:"Password", hidden: true},
-    // {name:"Repeat Password", hidden: true}
 ];
 
 const style = {

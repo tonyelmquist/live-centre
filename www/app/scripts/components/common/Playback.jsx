@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Player from '../../containers/Player';
 
@@ -8,6 +8,10 @@ const Playback = ({ videoUrl }) => (
     <Player videoUrl={videoUrl} />
   </div>
     );
+
+Playback.defaultProps = {
+    videoUrl: '',
+};
 
 Playback.propTypes = {
     videoUrl: PropTypes.string,

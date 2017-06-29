@@ -7,11 +7,11 @@ import { yellow500 } from 'material-ui/styles/colors';
 
 const VideoDescription = ({ video }) => {
     // const info = props.video.data;
-    const max_stars = 5;
-    const _renderStars = () => {
+    const maxStars = 5;
+    const renderStars = () => {
         const stars = new Array(5);
-        for (let i = 0; i < max_stars; i++) {
-            const diff = max_stars - i;
+        for (let i = 0; i < maxStars; i + 1) {
+            const diff = maxStars - i;
             if (diff >= 1) {
                 stars.push(<FullStar key={i} color={yellow500} />);
             } else if (diff >= 0) {
@@ -29,13 +29,12 @@ const VideoDescription = ({ video }) => {
         {/* {
                 props.title.length > 32 ? <h2>{props.title}</h2> : <h3>{props.title}</h3>
             } */}
-        <h1>{video._title}</h1>
+        <h1>{video.title}</h1>
         <h3>Episode Title</h3>
         <span>Duration: {Math.round(45)} min</span>
-        <div>{_renderStars()}</div>
+        <div>{renderStars()}</div>
         <h3>Description</h3>
-        <p>{video._description}</p>
-        {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> */}
+        <p>{video.description}</p>
       </div>
     );
 };

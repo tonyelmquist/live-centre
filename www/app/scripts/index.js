@@ -16,7 +16,6 @@ import initUserSettings from './utils/initUserSettings';
 
 // Redux
 import { Provider } from 'react-redux';
-import { fetchMetadataSent, fetchMetadataFailed, fetchMetadataSuccess } from './actions/video';
 
 // Enable Touch/Tap Events
 injectTapEventPlugin();

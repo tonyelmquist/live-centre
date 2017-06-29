@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const VideoOverview = ({ video }) => (
-  <div />
+  <div>{video}</div>
 );
 
 VideoOverview.propTypes = {

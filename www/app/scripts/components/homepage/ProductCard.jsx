@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import { Row, Col } from 'react-flexbox-grid';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
-import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
-import { blue500, red500 } from 'material-ui/styles/colors';
+import { red500 } from 'material-ui/styles/colors';
 
 import TabLinks from './TabLinks';
 import Tabs from '../common/Tabs';
-import Player from '../common/Player';
 import Poster from '../common/Poster';
 import VideoDescription from '../common/VideoDescription';
 
