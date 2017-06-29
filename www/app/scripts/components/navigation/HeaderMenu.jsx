@@ -9,6 +9,9 @@ import SearchInput from './SearchInput';
 import Logged from '../../containers/Logged';
 
 const HeaderMenu = (props) => {
+
+    console.log(props);
+
     const HeaderMenuItem = (items) => {
         if (items.length > 0) {
             return items.map(item =>
@@ -23,7 +26,7 @@ const HeaderMenu = (props) => {
         />),
       );
         }
-        return false;
+        return <div/>;
     };
 
     return (
