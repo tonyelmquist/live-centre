@@ -26,7 +26,7 @@ const HeaderMenu = (props) => {
         />),
       );
         }
-        return <div/>;
+        return <div />;
     };
 
     return (
