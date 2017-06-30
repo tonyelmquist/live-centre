@@ -15,6 +15,7 @@ import DataOverlay from './DataOverlay';
 import DraggableSpot from './DraggableSpot';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import '../../../node_modules/video-react/dist/video-react.css';
+import IconButton from 'material-ui/IconButton';
 
 const styles = {
     playerStyle: {
@@ -30,6 +31,15 @@ const styles = {
         bottom: 5,
         right: 5,
     },
+    slomoButton: {
+        width: 18,
+        height: 18,
+        padding: 0,
+        fontSize: '48px',
+        color: 'white',
+        transition: 'none',
+        marginLeft: '-24px',
+    },
 };
 
 class Player extends Component {
@@ -41,6 +51,12 @@ class Player extends Component {
                 <PlayToggle />
                 <ReplayControl seconds={30} order={1.1} />
                 <PlaybackRateMenuButton />
+                <IconButton
+                  iconStyle={styles.slomoButton}
+                  iconClassName="material-icons"
+                >
+              slow_motion_video
+            </IconButton>
                 <CurrentTimeDisplay />
                 <VolumeMenuButton vertical />
               </ControlBar>
