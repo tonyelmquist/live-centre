@@ -23,6 +23,8 @@ class ReduxConstants {
     static get CHANGE_SCORE() { return 'CHANGE_SCORE'; }
     static get GET_MESSAGE() { return 'GET_MESSAGE'; }
     static get SEND_MESSAGE() { return 'SEND_MESSAGE'; }
+    static get CLEAR_MESSAGES() { return 'CLEAR_MESSAGES'; }
+    static get TOGGLE_CHAT_MENU() { return 'TOGGLE_CHAT_MENU'; }
 
     // Header/top-nav
     static get MENU_TOGGLE() { return 'MENU_TOGGLE'; }

@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BurstButton from '../components/BurstButton';
+import ChatOverlay from '../components/ChatOverlay';
+import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
 
 const styles = {
     overlayStyle: {
         position: 'absolute',
         zIndex: 2147483647,
-        height: '98%',
+        height: '87%',
         width: '100%',
         top: 2,
         left: 0,
@@ -30,13 +32,23 @@ const styles = {
 };
 
 class DataOverlay extends Component {
+    constructor(props) {
+        super(props);
 
+        this.onMessageSend = this.onMessageSend.bind(this);
+    }
+
+    onMessageSend(message) {
+        this.props.dispatch(sendMessage('User', message));
+    }
 
     render() {
+        const self = this;
         this.burstButtonLinks = [
                 {
                     action() {
-                        console.log('Pressed ID 1');
+                        console.log('Chat Button');
+                        self.props.dispatch(toggleChatMenu());
                     },
                     icon: (<g>
                                 <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
@@ -86,16 +98,21 @@ class DataOverlay extends Component {
             <div className="trapezoid" />
             <div style={styles.dataStyle}>Score: {this.props.score}</div>
             <BurstButton buttonLinks={this.burstButtonLinks} style={styles.burstButtonContainer} color="#0092ab" />
-
+            <ChatOverlay open={this.props.chat.chatOpen} messages={this.props.chat.messages} onMessageSend={this.onMessageSend}/>
           </div>
         );
     }
 }
 
 DataOverlay.propTypes = {
+    dispatch: PropTypes.func.isRequired,
     score: PropTypes.number,
+    chat: PropTypes.object,
 };
 
-const mapStateToProps = state => ({ score: state.dataOverlay });
+const mapStateToProps = state => ({ 
+    score: state.dataOverlay,
+    chat: state.chat,
+ });
 
 export default connect(mapStateToProps)(DataOverlay);

@@ -11,7 +11,13 @@ let score = 10;
 io.on('connection', function(socket){
   console.log('a user connected');
   io.to(socket.id).emit('SCORE_UPDATE', score)
+
+  socket.on('SENT_MESSAGE', function(data) {
+    console.log('emitting NEW MESSAGE', data);
+    socket.broadcast.emit('NEW_MESSAGE', data);
+  });
 });
+
 
 setInterval(function() {
   score += 2;

@@ -10,6 +10,7 @@ import { showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo } f
 import overlayReducer from './productOverlayReducer';
 import { videosReducer, seasonsReducer, seriesReducer, channelsReducer, tagsReducer } from './fetchDataReducer';
 import settings from './settingsReducer';
+import chat from './chatReducer';
 
 const rootReducer = combineReducers({
     // lang: langReducer,
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
     series: seriesReducer,
     tags: tagsReducer,
     settings,
+    chat,
 });
 
 export default rootReducer;
