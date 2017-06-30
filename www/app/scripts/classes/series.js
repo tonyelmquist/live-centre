@@ -38,5 +38,9 @@ class Series extends BaseClass {
         this._seasonsFetched ++;
     }
 
+    get firstSeason(){
+        return this._seasons[0];
+    }
+
 }
 export default Series;

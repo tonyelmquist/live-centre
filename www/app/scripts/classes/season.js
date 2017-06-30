@@ -48,6 +48,14 @@ class Season extends BaseClass {
         }
     }
 
+    get episodes(){
+        return this._episodes
+    }
+
+    get firstEpisode(){
+        return this._episodes[0]
+    }
+
 
 }
 export default Season;

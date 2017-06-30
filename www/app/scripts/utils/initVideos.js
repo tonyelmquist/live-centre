@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { fetchVideosSuccess, fetchSeriesSuccess, fetchTagsSuccess } from '../actions/fetchData';
+import { fetchVideosSuccess, fetchSeriesSuccess, fetchSeasonsSuccess, fetchTagsSuccess } from '../actions/fetchData';
 // Classes:
 import Video from '../classes/video';
 import Tag from '../classes/tag';
@@ -118,11 +118,12 @@ const transformVideoData = (unfiltered, store) => {
     // console.log("All tags:",allTags);
     // console.log("All videos",allVideos);
     // console.log("all series", allSeries);
-    // console.log("all seasons", allSeasons);
+    console.log("all seasons", allSeasons);
     store.dispatch(fetchVideosSuccess(allVideos, i));
     store.dispatch(fetchTagsSuccess(allTags));
     store.dispatch(fetchTagsSuccess(allChannels));
     store.dispatch(fetchSeriesSuccess(allSeries));
+    store.dispatch(fetchSeasonsSuccess(allSeasons));
 
     return true;
 };

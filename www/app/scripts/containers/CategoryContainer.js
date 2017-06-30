@@ -9,7 +9,10 @@ import BackButton from 'material-ui/svg-icons/hardware/keyboard-backspace';
 import { fullWhite, blueGrey900 } from 'material-ui/styles/colors';
 import { videoPrefix } from '../constants/mediaPrefix.js';
 // import {changeCardIndex, showVideoCard, hideVideoCard, changeCardCategory} from '../actions/videoCard';
+import { showOverlay } from '../actions/overlay';
 
+import MasonryVideos from '../components/common/MasonryVideos';
+import MasonryVideoTile from '../components/common/MasonryVideoTile';
 
 const styles = {
     mediumIcon: {
@@ -23,10 +26,23 @@ const styles = {
     },
 };
 class CategoryContainer extends Component {
-    _handleSelect = (videoUrl) => {
-        this.props.dispatch(videoSelected(`${videoPrefix+videoUrl}`));
+    handleTileOpen = (video) => {
+        this.props.dispatch(videoSelected(`${videoPrefix+video.videoUrl}`));
     };
 
+    handleTilePlay = (videoUrl) => {
+        this.props.dispatch(showOverlay());
+        this.props.dispatch(videoSelected(`${videoPrefix}${videoUrl}`));
+    }
+
+    filter = () => {
+        const categoryID = this.props.match.params.categoryKey;
+        const tag = this.props.tags[categoryID];
+
+        tag.videos.map((videoKey)=>{
+            videos.push(this.props.videos[videoKey]);
+        });
+    }
 
     render() {
         const videos = [];
@@ -39,20 +55,24 @@ class CategoryContainer extends Component {
         });
 
         return (
-        <div>
+            <div>
             <div className='category'>
                 <Link to='/Home'>
                     <div className='item'><IconButton style={styles.medium} iconStyle={styles.mediumIcon}><BackButton color={blueGrey900}/></IconButton></div>
                 </Link>
                 <h2 className='item'>{categoryID}</h2>
             </div>
-
-            <VideoGrid
-              videos={videos}
-              category={categoryID}
-              onSelect={this._handleSelect}
-            />
-        </div>
+            <div className="container-fluid">
+            <MasonryVideos>
+                <MasonryVideoTile
+                  //filter={this.filter}
+                  videos={videos}
+                  handleTileOpen={this._handleSelect}
+                  handleTilePlay={this.handleTilePlay}
+                />
+            </MasonryVideos>
+            </div>
+            </div>
         );
     }
 }
@@ -71,3 +91,21 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(CategoryContainer);
+/*
+
+<div>
+            <div className='category'>
+                <Link to='/Home'>
+                    <div className='item'><IconButton style={styles.medium} iconStyle={styles.mediumIcon}><BackButton color={blueGrey900}/></IconButton></div>
+                </Link>
+                <h2 className='item'>{categoryID}</h2>
+            </div>
+
+            <VideoGrid
+              videos={videos}
+              category={categoryID}
+              onSelect={this._handleSelect}
+            />
+        </div>
+
+ */

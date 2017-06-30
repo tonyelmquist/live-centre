@@ -13,7 +13,7 @@ import { videoSelected } from '../actions/video';
 import { showOverlay } from '../actions/overlay';
 import Overlay from './OverlayContainer';
 import { showVideoCard, changeCardCategory, changeVideoInfo } from '../actions/videoCard';
-import { videoPrefix } from '../constants/mediaPrefix';
+import { videoPrefix } from '../constants/mediaPrefix.js';
 
 class SearchContainer extends Component {
     /* One or more of the filteritems can have a clear property that when clicked,
@@ -150,7 +150,7 @@ class SearchContainer extends Component {
                   filter={this.props.search.isSearching || !this.props.filter.isClear
                         ? [this.props.search.keyword, ...parseFilters(this.props.filter.filters)]
                         : ["Lost In Time"]}
-                  videos={this.props.videos}
+                  videos={this.props.videos.items}
                   tags={this.props.tags}
                   handlefilter={this.tiles_handleFilter}
                   handleTileOpen={this.handleTileOpen}

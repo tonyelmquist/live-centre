@@ -21,7 +21,7 @@ class MasonryVideoTile extends Component {
 
     renderTiles = () => {
         const tiles = [];
-        const videos = this.props.videos.items;
+        const videos = this.props.videos;
 
         for (const key in videos) {
             if (!this.props.filter || this.props.handlefilter(this.props.filter, videos[key])) {
@@ -56,7 +56,7 @@ class MasonryVideoTile extends Component {
     render() {
         return (
           <div>
-            { this.props.videos.videosFetched > 1 ? this.renderTiles() : (<div />) }
+            { this.props.videos ? this.renderTiles() : (<div />) }
           </div>
         );
     }

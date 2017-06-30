@@ -8,7 +8,7 @@ import { changeNavIndex, headerMenuState } from './navReducer';
 import { search, filter } from './searchReducer';
 import { showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo } from './videoCardReducer';
 import overlayReducer from './productOverlayReducer';
-import { videosReducer, seasonsReducer, seriesReducer, channelsReducer, tagsReducer } from './fetchDataReducer';
+import { videosReducer, seasonReducer, seriesReducer, channelsReducer, tagsReducer } from './fetchDataReducer';
 import settings from './settingsReducer';
 import chat from './chatReducer';
 
@@ -32,6 +32,7 @@ const rootReducer = combineReducers({
     filter,
     series: seriesReducer,
     tags: tagsReducer,
+    seasons: seasonReducer,
     settings,
     chat,
 });

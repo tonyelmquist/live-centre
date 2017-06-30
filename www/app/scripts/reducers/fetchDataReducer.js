@@ -71,12 +71,12 @@ function seriesReducer(state = defaultSeriesState, action) {
 function seasonReducer(state = defaultSeasonState, action) {
 
     switch (action.type) {
-        case Actions.FETCH_SERIES_SUCCESS:
+        case Actions.FETCH_SEASONS_SUCCESS:
             return Object.assign({}, state, {
                 items: action.items,
                 failed: false
             });
-        case Actions.FETCH_SERIES_FAILED:
+        case Actions.FETCH_SEASONS_FAILED:
             return Object.assign({}, state, {
                 failed: true
             });
