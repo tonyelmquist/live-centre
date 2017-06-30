@@ -6,7 +6,6 @@ import ChatOverlay from '../components/ChatOverlay';
 import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
 
 const styles = {
-<<<<<<< HEAD
     overlayStyle: {
         position: 'absolute',
         zIndex: 2147483647,
@@ -15,8 +14,6 @@ const styles = {
         top: 2,
         left: 0,
     },
-=======
->>>>>>> f8114879d33c8753587a8434099fb271d891ca48
     dataStyle: {
         position: 'absolute',
         fontSize: '18px',
@@ -103,12 +100,8 @@ class DataOverlay extends Component {
             <div className="trapezoid" />
             <div style={styles.dataStyle}>Score: {this.props.score}</div>
             <BurstButton buttonLinks={this.burstButtonLinks} style={styles.burstButtonContainer} color="#0092ab" />
-<<<<<<< HEAD
             <ChatOverlay open={this.props.chat.chatOpen} messages={this.props.chat.messages} onMessageSend={this.onMessageSend}/>
           </div>
-=======
-         </div>
->>>>>>> f8114879d33c8753587a8434099fb271d891ca48
         );
     }
 }
