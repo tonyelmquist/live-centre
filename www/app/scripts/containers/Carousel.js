@@ -12,7 +12,6 @@ import { videoSelected, invalidateSelected } from '../actions/video';
 import { showOverlay, hideOverlay } from '../actions/overlay';
 import { videoPrefix } from '../constants/mediaPrefix';
 
-
 const FEATURED_CATEGORY = 'Uncategorized';
 
 const styles = {
@@ -64,21 +63,14 @@ class HeroCarousel extends Component {
     _handlePlay = (assetid) => {
         this.props.dispatch(showOverlay());
         this.props.dispatch(videoSelected(`${videoPrefix}${assetid}`));
-       
-    }
+    };
 
     syncLeft(currentSlide) {
-        this
-            .refs
-            .leftSlider
-            .slickGoTo(currentSlide);
+        this.refs.leftSlider.slickGoTo(currentSlide);
     }
 
     syncRight(currentSlide) {
-        this
-            .refs
-            .rightSlider
-            .slickGoTo(currentSlide);
+        this.refs.rightSlider.slickGoTo(currentSlide);
     }
 
     render() {
@@ -94,10 +86,10 @@ class HeroCarousel extends Component {
             arrows: false,
             lazyLoad: true,
             beforeChange(currentSlide, nextSlide) {
-                //   _this.syncLeft(nextSlide);
+        //   _this.syncLeft(nextSlide);
             },
             afterChange(currentSlide, nextSlide) {
-                //    _this.syncLeft(nextSlide);
+        //    _this.syncLeft(nextSlide);
             },
             responsive: [
                 {
@@ -132,82 +124,105 @@ class HeroCarousel extends Component {
             },
         };
 
+    // Are videos fetched, and is the category loaded?
+        if (
+      this.props.videos.videosFetched > 0 &&
+      this.props.tags.items['Promotional Videos']
+    ) {
+            const videoKeys = this.props.tags.items['Promotional Videos'].videos;
 
-        //Are videos fetched, and is the category loaded?
-        if (this.props.videos.videosFetched > 0 && this.props.tags.items["Promotional Videos"]) {
-
-            const videoKeys = this.props.tags.items["Promotional Videos"].videos;
-
-            const imageList = videoKeys.map((videoKey)=>{
+            const imageList = videoKeys.map((videoKey) => {
                 const video = this.props.videos.items[videoKey];
-                const videoUrl = `${videoPrefix}${video.video_url}`; 
-                return(
-                    <div key={`carousel-${videoUrl}`} style={styles.carousel}>
-                        <div className='heroCarouselImage' key={videoKey}>
-                            <div className="carouselImageButton">
-                                <IconButton
-                                    iconStyle={styles.largeIcon}
-                                    style={styles.large}
-                                    onTouchTap={() => {
-                                    this._handlePlay(video.id);
-                                }}><PlayCircleOutline color="white"/></IconButton>
-                            </div>
-                            <div className='carouselImageTitleAndDescription'>
-                                <h4 className='carouselImageTitle'>{video.title}</h4>
-                                <p className='imageDescription'>{video.description}</p>
-                            </div>
-                        </div>
-                        <div className='heroCarouselVideo'>
-                            <Video autoPlay playsInline muted
-                                    controls={[]}
-                                    poster={video.thumbnail}>
-                                    <source src={videoUrl}/>
-                            </Video>
-                        </div>
+                const videoUrl = `${videoPrefix}${video.video_url}`;
+                return (
+                  <div key={`carousel-${videoUrl}`} style={styles.carousel}>
+                    <div className="heroCarouselImage" key={videoKey}>
+                      <div className="carouselImageButton">
+                        <IconButton
+                          iconStyle={styles.largeIcon}
+                          style={styles.large}
+                          onTouchTap={() => {
+                              this._handlePlay(video.id);
+                          }}
+                        >
+                          <PlayCircleOutline color="white" />
+                        </IconButton>
+                      </div>
+                      <div className="carouselImageTitleAndDescription">
+                        <h4 className="carouselImageTitle">
+                          {video.title}
+                        </h4>
+                        <p className="imageDescription">
+                          {video.description}
+                        </p>
+                      </div>
                     </div>
+                    <div className="heroCarouselVideo">
+                      <Video
+                        autoPlay
+                        playsInline
+                        muted
+                        controls={[]}
+                        poster={video.thumbnail}
+                      >
+                        <source src={videoUrl} />
+                      </Video>
+                    </div>
+                  </div>
                 );
-
             });
 
-
-            const infoTiles = videoKeys.map((videoKey)=>{
+            const infoTiles = videoKeys.map((videoKey) => {
                 const video = this.props.videos.items[videoKey];
-                return(
-                    <div key={video.id} className='infoTile'>
-                        <h4 className='infoTileCTA'>Watch now</h4>
-                        <IconButton
-                            iconStyle={styles.largeIcon}
-                            style={styles.large}
-                            onTouchTap={() => {
-                            this._handlePlay(video.assetid);
-                        }}><PlayCircleOutline color="white"/></IconButton>
-                        <div className='carouselTitleAndDescription'>
-                            <h4 className='carouselTitle'>{video.title}</h4>
-                            <p className='description'>He says he's found the main computer to power the
-                                tractor beam that's holding the ship here. He'll try to make the precise
-                                location appear on the monitor.</p>
-                        </div>
+                return (
+                  <div key={video.id} className="infoTile">
+                    <h4 className="infoTileCTA">Watch now</h4>
+                    <IconButton
+                      iconStyle={styles.largeIcon}
+                      style={styles.large}
+                      onTouchTap={() => {
+                          this._handlePlay(video.id);
+                      }}
+                    >
+                      <PlayCircleOutline color="white" />
+                    </IconButton>
+                    <div className="carouselTitleAndDescription">
+                      <h4 className="carouselTitle">
+                        {video.title}
+                      </h4>
+                      <p className="description">
+                He says he's found the main computer to power the tractor beam
+                that's holding the ship here. He'll try to make the precise
+                location appear on the monitor.
+              </p>
                     </div>
+                  </div>
                 );
             });
             return (
               <div className="heroCarousel">
                 <div className="carouselLeft">
-                  <Slider ref="leftSlider" className="carouselLeftSlider" {...settingsLeft}>
+                  <Slider
+                    ref="leftSlider"
+                    className="carouselLeftSlider"
+                    {...settingsLeft}
+                  >
                     {imageList}
                   </Slider>
                 </div>
                 <div className="carouselRight">
-                  <Slider ref="rightSlider" className="carouselRightSlider" {...settingsRight}>
+                  <Slider
+                    ref="rightSlider"
+                    className="carouselRightSlider"
+                    {...settingsRight}
+                  >
                     {infoTiles}
                   </Slider>
                 </div>
               </div>
             );
         }
-        return (
-          <div />
-        );
+        return <div />;
     }
 }
 
@@ -217,5 +232,9 @@ HeroCarousel.propTypes = {
     selected: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({ videos: state.videos, selected: state.playback.isSelected, tags: state.tags });
+const mapStateToProps = state => ({
+    videos: state.videos,
+    selected: state.playback.isSelected,
+    tags: state.tags,
+});
 export default connect(mapStateToProps)(HeroCarousel);
