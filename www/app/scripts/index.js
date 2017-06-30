@@ -11,6 +11,7 @@ import store from './utils/store';
 import initVideos from './utils/initVideos';
 import initChangingScores from './utils/initScoreChanger';
 import initUserSettings from './utils/initUserSettings';
+import io from 'socket.io-client';
 
 // Enable Touch/Tap Events
 injectTapEventPlugin();

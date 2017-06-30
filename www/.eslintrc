@@ -29,7 +29,8 @@
         "no-underscore-dangle":["error", { "allowAfterThis": true }],
         "valid-typeof":"off",
         "no-unused-expressions":"off",
-        "react/forbid-prop-types": "off"
+        "react/forbid-prop-types": "off",
+        "no-pluspluss": "off"
     },
     "env": {
         "browser": true,

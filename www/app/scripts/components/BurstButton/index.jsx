@@ -108,6 +108,7 @@ class BurstButton extends React.Component {
     }
 
     touchEnd() {
+        if(typeof this.state.links[this.state.activeButton] !== 'undefined')
         this.state.links[this.state.activeButton].action();
         this.setState({ isOpen: false, activeButton: -1 });
     }
@@ -121,7 +122,9 @@ class BurstButton extends React.Component {
         const links = this.state.links.map((link, i) => (
             <g key={`${i}`} className={`burst-small-circle ${this.state.isOpen ? 'open' : ''} ${this.state.activeButton === i ? 'active' : ''}`}>
                 <circle cx={link.x + this.centerXY} cy={link.y + this.centerXY} r={link.size / 2} fill={this.state.color} />
-                <text fill="white" x={link.x + this.centerXY} y={link.y + this.centerXY}>&#xf040;</text>
+                <svg fill="#FFFFFF" x={link.x + this.centerXY - 12} y={link.y + this.centerXY - 12} height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    {link.icon}             
+                </svg>
             </g>
         ));
 
