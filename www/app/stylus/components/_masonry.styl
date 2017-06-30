@@ -1,20 +1,45 @@
 
+$tilePadding = 10px 10px 10px 0
 .masonry_tiles 
   .tile
     width:100%
     .masonry_tile_inner
-      margin:10px 10px 10px 0
+      position:relative
+      overflow:hidden
+      margin: $tilePadding
     img
       width:100%
-    .tile-data
-      margin:5px 
-      width:100%
+    .tile-overlay
+      position: absolute
+      left: 0
+      right: 0
+      bottom: 4px //Some wierd margin under the images. 
+      max-height: 50px
+      padding:5px
+      align-items: center
+      overflow:hidden
+      display:flex
+      background: rgba(0,0,0, 0.3)
+    .tile-image
+      position:relative  
+    .masonryPlayButton
+      float:right
+      width:30%
+      padding: 0!important
+      order: 1
+    .tile-text
+      flex-grow: 1
+      margin: 5px 0;
+      float:left
+      max-width:70%
+      max-height:50px
       overflow:hidden
     h4
       font-size: $font_m
-      margin: 5px 0;
-      font-weight:bold
-      color: $color_ocean
+      color: #fff
+      overflow:hidden
+      text-overflow: ellipsis
+      margin:5px
     p.metadata
       margin: 2px 0;
       font-weight:normal
@@ -34,7 +59,6 @@
     .tile
       width:25%
       .masonry_tile_inner
-        margin:10px 20px 20px 0
       p
         margin:5px 0 5px 0
       p.metadata

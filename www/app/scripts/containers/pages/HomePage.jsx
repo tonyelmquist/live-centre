@@ -48,7 +48,7 @@ class HomePage extends Component {
         return (
 
           <div>
-            {this.props.overlayVisible ? <Overlay /> : <HeroCarousel />}
+            {this.props.overlayVisible ? <div /> : <HeroCarousel /> }
             <div className={this.props.overlayVisible ? 'hidden' : ''}>
               {this.createVideoList(this.props.tags, this.props.videos)}
             </div>

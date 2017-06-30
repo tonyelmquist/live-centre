@@ -55,7 +55,6 @@ class Player extends Component {
                   iconStyle={styles.slomoButton}
                   iconClassName="material-icons"
                 >
-              slow_motion_video
             </IconButton>
                 <CurrentTimeDisplay />
                 <VolumeMenuButton vertical />

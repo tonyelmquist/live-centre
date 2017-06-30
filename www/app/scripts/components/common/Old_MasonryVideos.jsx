@@ -12,6 +12,28 @@ import Masonry from 'react-masonry-component';
 */
 
 class MasonryVideos extends Component {
+    renderTiles = () => {
+        const tiles = [];
+        const videos = this.props.videos.items;
+
+        for (const key in videos) {
+            if (!this.props.filter > 0 || this.props.handlefilter(this.props.filter, videos[key])) {
+                const video = videos[key];
+                tiles.push(
+                  <div className="tile" key={`masonry-videos-${video.id}`}>
+                    <div className="masonry_tile_inner">
+                      <img src={video.thumbnail} alt={`${video.title}-videoTile`} />
+                      <div className="tile-data">
+                        <h4>{video.title}</h4>
+                        <p className="metadata"> {video.description},</p>
+                      </div>
+                    </div>
+                  </div>);
+            }
+        }
+        return tiles;
+    }
+
     render() {
         const masonryOptions = {
             itemSelector: '.tile',
@@ -24,7 +46,7 @@ class MasonryVideos extends Component {
             className={'masonry_tiles'}
             options={masonryOptions}
           >
-            { this.props.children }
+            { this.props.videos.videosFetched > 1 ? this.renderTiles() : (<div />) }
 
           </Masonry>
         );
@@ -32,7 +54,9 @@ class MasonryVideos extends Component {
 }
 
 MasonryVideos.propTypes = {
-
+    videos: PropTypes.object.isRequired,
+    filter: PropTypes.array,
+    handlefilter: PropTypes.func,
 };
 
 MasonryVideos.defaultProps = {

@@ -4,10 +4,16 @@ import PropTypes from 'prop-types';
 import SearchFilters from './SearchFilters';
 import VideoGrid from '../components/common/VideoGrid';
 import MasonryVideos from '../components/common/MasonryVideos';
-
+import MasonryVideoTile from '../components/common/MasonryVideoTile';
 import CirclesRow from '../components/common/CirclesRow';
 import { toggleFilter, clearFilter } from '../actions/search.js';
 
+import CardContainer from '../containers/homepage/CardContainer';
+import { videoSelected } from '../actions/video';
+import { showOverlay } from '../actions/overlay';
+import Overlay from './OverlayContainer';
+import { showVideoCard, changeCardCategory, changeVideoInfo } from '../actions/videoCard';
+import { videoPrefix } from '../constants/mediaPrefix';
 
 class SearchContainer extends Component {
     /* One or more of the filteritems can have a clear property that when clicked,
@@ -68,6 +74,19 @@ class SearchContainer extends Component {
         }
     }
 
+    
+    handleTileOpen = (video) => {
+        this.props.dispatch(changeVideoInfo(video));
+        //this.props.dispatch(changeCardCategory(category));
+        this.props.dispatch(showVideoCard());
+    }
+
+    handleTilePlay = (videoUrl) => {
+        this.props.dispatch(showOverlay());
+        this.props.dispatch(videoSelected(`${videoPrefix}${videoUrl}`));
+    }
+
+
     render() {
         const people = [
             { img: '/img/avatars/1.jpg', key: 'Lisa10', uid: 0 },
@@ -124,15 +143,20 @@ class SearchContainer extends Component {
                     }
 
               {/* Uncategorized is a temporary "suggested" category that is default. */}
-              <MasonryVideos
-                filter={this.props.search.isSearching || !this.props.filter.isClear
-                                ? [this.props.search.keyword, ...parseFilters(this.props.filter.filters)]
-                                : ["Lost In Time"]}
-                        videos={this.props.videos}
-                        tags={this.props.tags}
-                        handlefilter={this.tiles_handleFilter}
-                        //series={this.props.series}
-                    />
+
+              <CardContainer />
+              <MasonryVideos>
+                <MasonryVideoTile
+                  filter={this.props.search.isSearching || !this.props.filter.isClear
+                        ? [this.props.search.keyword, ...parseFilters(this.props.filter.filters)]
+                        : ["Lost In Time"]}
+                  videos={this.props.videos}
+                  tags={this.props.tags}
+                  handlefilter={this.tiles_handleFilter}
+                  handleTileOpen={this.handleTileOpen}
+                  handleTilePlay={this.handleTilePlay}
+                />
+              </MasonryVideos>
 
             </div>
 

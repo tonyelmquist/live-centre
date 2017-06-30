@@ -16,7 +16,7 @@ import FavoritePage from './pages/FavoritePage';
 import SeriesPage from './pages/SeriesPage';
 import ChannelsPage from './pages/ChannelsPage';
 import TVGuidePage from './pages/TVGuidePage';
-
+import Overlay from './OverlayContainer';
 import CategoryContainer from './CategoryContainer';
 import SearchOverlay from './SearchOverlay';
 
@@ -37,6 +37,8 @@ class App extends Component {
               <Header />
               <div className="main">
                 {/* this.props.state_all.search.isOpen ? <SearchContainer/>  : <div></div>*/}
+              
+                {this.props.state_all.overlay.isVisible ? <Overlay />  : <div/> }
                 <SearchOverlay />
                 <div className="mainContent">
                   <Route exact path="/Home" component={HomePage} />

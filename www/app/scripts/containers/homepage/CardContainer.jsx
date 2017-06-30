@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ProductCard from '../../components/homepage/ProductCard';
-// import ProductCardMobile from '../../components/homepage/ProductCardMobile';
+import ProductCardMobile from '../../components/homepage/ProductCardMobile';
 import { changeCardIndex, hideVideoCard } from '../../actions/videoCard';
 import { videoSelected, invalidateSelected } from '../../actions/video';
 import { showOverlay, hideOverlay } from '../../actions/overlay';
 import { videoPrefix } from '../../constants/mediaPrefix';
 
+import MediaQuery from 'react-responsive';
 
 class ProductCardContainer extends Component {
     _handlePlay = (videoUrl) => {
@@ -21,32 +22,43 @@ class ProductCardContainer extends Component {
         this.props.dispatch(hideVideoCard());
     }
     render() {
+        if(this.props.isVisible){
+            return (
+              <div>
+                <MediaQuery maxWidth={1000}>
+                  <ProductCardMobile
+                    video={this.props.video}
+                    closeCard={this._handleClose}
+                    handlePlay={this._handlePlay}
+                    active={this.props.index}
+                    changeTab={this._changeCardIndex}
+                  />
+                </MediaQuery>
+                <MediaQuery minWidth={1001}>
+                  <ProductCard
+                    video={this.props.video}
+                    closeCard={this._handleClose}
+                    handlePlay={this._handlePlay}
+                    active={this.props.index}
+                    changeTab={this._changeCardIndex}
+                  />
+                </MediaQuery>
+              </div>
+            );
+        }
         return (
-          <ProductCard
-            active={this.props.index}
-            video={this.props.video}
-            changeTab={this._changeCardIndex}
-            closeCard={this._handleClose}
-            handlePlay={this._handlePlay}
-          />
+          <span />
         );
-        // return (
-        //     <ProductCardMobile
-        //         video = {this.props.video}
-        //         closeCard = {this._handleClose}
-        //         handlePlay = {this._handlePlay}
-        //     />
-        // );
     }
 }
 
 
 ProductCardContainer.propTypes = {
-    active: PropTypes.number,
     changeTab: PropTypes.func,
-    index: PropTypes.number,
+    index: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    isVisible: PropTypes.bool.isRequired,
     video: PropTypes.object.isRequired,
-    dispatch: PropTypes.func,
 };
 
 const mapStateToProps = state => ({

@@ -24,6 +24,7 @@ const styles = {
 };
 
 const ProductCard = (props) => {
+    console.log("PRODUCTCARD PROPS", props);
 
     console.log(props.video.item);
 

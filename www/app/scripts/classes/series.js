@@ -23,7 +23,6 @@ class Series extends BaseClass {
        }
     }
 
-
     set seasons(seasonGroup) {
         if (seasonGroup) {
             this._seasons.push(...seasonGroup);

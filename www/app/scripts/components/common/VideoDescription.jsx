@@ -9,7 +9,7 @@ const VideoDescription = ({ video }) => {
     // const info = props.video.data;
     const maxStars = 5;
     const renderStars = () => {
-        const stars = new Array(5);
+        /*const stars = new Array(5);
         for (let i = 0; i < maxStars; i + 1) {
             const diff = maxStars - i;
             if (diff >= 1) {
@@ -20,8 +20,19 @@ const VideoDescription = ({ video }) => {
                 stars.push(<BorderStar key={i} color={yellow500} />);
             }
         }
+        
+        return stars;*/
+        return (
+          <div>
+            <FullStar color={yellow500} />
+            <FullStar color={yellow500} />
+            <FullStar color={yellow500} />
+            <FullStar color={yellow500} />
+            <FullStar color={yellow500} />
+          </div>
+        );
 
-        return stars;
+        
     };
 
     return (
