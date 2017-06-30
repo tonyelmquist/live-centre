@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { DefaultPlayer as Video } from 'react-html5video';
+import {
+  Player as Video,
+  ControlBar,
+  PlayToggle,
+  ReplayControl,
+  CurrentTimeDisplay,
+  PlaybackRateMenuButton,
+  VolumeMenuButton,
+} from 'video-react';
 import 'react-html5video/dist/styles.css';
 import DataOverlay from './DataOverlay';
 import DraggableSpot from './DraggableSpot';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-
+import '../../../node_modules/video-react/dist/video-react.css';
 
 const styles = {
     playerStyle: {
@@ -27,8 +35,15 @@ const styles = {
 class Player extends Component {
     render() {
         return (
-          <div style={styles.playerStyle}>
-            <Video autoPlay playsInline controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}>
+          <div style={styles.playerStyle} className="IMRPlayer">
+            <Video autoPlay playsInline>
+              <ControlBar autoHide={false} disableDefaultControls>
+                <PlayToggle />
+                <ReplayControl seconds={30} order={1.1} />
+                <PlaybackRateMenuButton />
+                <CurrentTimeDisplay />
+                <VolumeMenuButton vertical />
+              </ControlBar>
               <source src={this.props.videoUrl} />
             </Video>
             <DataOverlay />
@@ -42,6 +57,7 @@ Player.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    videoUrl: state.playback.url });
+    videoUrl: state.playback.url,
+});
 
 export default connect(mapStateToProps)(Player);

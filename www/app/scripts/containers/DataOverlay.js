@@ -4,25 +4,19 @@ import { connect } from 'react-redux';
 import BurstButton from '../components/BurstButton';
 
 const styles = {
-    overlayStyle: {
-        position: 'absolute',
-        zIndex: 2147483647,
-        height: '98%',
-        width: '100%',
-        top: 2,
-        left: 0,
-    },
     dataStyle: {
         position: 'absolute',
         fontSize: '18px',
-        zIndex: 2147483647,
         marginLeft: 5,
         color: 'white',
+        top: 3,
+        zIndex: 2147483647,
     },
+
     burstButtonContainer: {
         position: 'absolute',
-        right: '20px',
-        bottom: '20px',
+        right: 5,
+        bottom: 74,
         zIndex: 100000,
         overflow: 'auto',
     },
@@ -30,7 +24,6 @@ const styles = {
 };
 
 class DataOverlay extends Component {
-
 
     render() {
         this.burstButtonLinks = [
@@ -82,12 +75,11 @@ class DataOverlay extends Component {
             ];
 
         return (
-          <div style={styles.overlayStyle}>
+          <div>
             <div className="trapezoid" />
             <div style={styles.dataStyle}>Score: {this.props.score}</div>
             <BurstButton buttonLinks={this.burstButtonLinks} style={styles.burstButtonContainer} color="#0092ab" />
-
-          </div>
+         </div>
         );
     }
 }
