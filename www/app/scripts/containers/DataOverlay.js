@@ -6,6 +6,7 @@ import ChatOverlay from '../components/ChatOverlay';
 import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
 
 const styles = {
+<<<<<<< HEAD
     overlayStyle: {
         position: 'absolute',
         zIndex: 2147483647,
@@ -14,17 +15,21 @@ const styles = {
         top: 2,
         left: 0,
     },
+=======
+>>>>>>> f8114879d33c8753587a8434099fb271d891ca48
     dataStyle: {
         position: 'absolute',
         fontSize: '18px',
-        zIndex: 2147483647,
         marginLeft: 5,
         color: 'white',
+        top: 3,
+        zIndex: 2147483647,
     },
+
     burstButtonContainer: {
         position: 'absolute',
-        right: '20px',
-        bottom: '20px',
+        right: 5,
+        bottom: 74,
         zIndex: 100000,
         overflow: 'auto',
     },
@@ -41,7 +46,7 @@ class DataOverlay extends Component {
     onMessageSend(message) {
         this.props.dispatch(sendMessage('User', message));
     }
-
+    
     render() {
         const self = this;
         this.burstButtonLinks = [
@@ -94,12 +99,16 @@ class DataOverlay extends Component {
             ];
 
         return (
-          <div style={styles.overlayStyle}>
+          <div>
             <div className="trapezoid" />
             <div style={styles.dataStyle}>Score: {this.props.score}</div>
             <BurstButton buttonLinks={this.burstButtonLinks} style={styles.burstButtonContainer} color="#0092ab" />
+<<<<<<< HEAD
             <ChatOverlay open={this.props.chat.chatOpen} messages={this.props.chat.messages} onMessageSend={this.onMessageSend}/>
           </div>
+=======
+         </div>
+>>>>>>> f8114879d33c8753587a8434099fb271d891ca48
         );
     }
 }
