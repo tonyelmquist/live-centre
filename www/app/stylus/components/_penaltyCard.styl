@@ -1,0 +1,84 @@
+@keyframes card-show {
+    0% {
+        transform: rotateY(450deg);
+        width: 42px;
+        top: 100%;
+        color: red;
+        opacity: 1;
+    }
+    10% {
+        top: 65%;
+        width: 42px;
+        color: red;
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+    20% {
+        top: 65%;
+        width: 200px;
+        transform: rotateY(0deg);
+        color: white;
+        opacity: 1;
+    }
+    90% {
+        top: 65%;
+        width: 200px;
+        transform: rotateY(0deg);
+        color: white;
+        opacity: 1;
+    }
+    100% {
+        top: 65%;
+        width: 200px;
+        transform: rotateY(0deg);
+        color: white;
+        opacity: 0;
+    }
+}
+@keyframes text-show {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.penalty-card {
+    width: 42px;
+    height: 60px;
+    border-radius: 5px;
+    background: red;
+    display: flex;
+    color: white;
+    position: absolute;
+    transform-style: preserve-3d;
+    transform: rotateY(450deg);
+    top: 100%;
+    left: 10%;
+
+    span {
+        display: inline-block;
+        margin: auto;
+        font-weight: bold;
+        width: 80%;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    &.open {
+        animation: card-show 10s forwards;
+        span {
+            animation: text-show 10s forwards;
+        }
+    }
+}

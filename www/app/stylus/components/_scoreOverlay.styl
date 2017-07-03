@@ -1,0 +1,64 @@
+.score-overlay-container {
+    transform: translateX(-50%) skew(-30deg);
+    background: red;
+    position: absolute;
+    height: 40px;
+    width: 300px;
+    top: 0;
+    left: 50%;
+    
+
+    .counter-skew {
+        transform: skew(30deg);
+        width: 100%;
+        height: 100%;
+        color: white;
+        font-weight: bold;
+        position: relative;
+
+        div {
+            position: absolute;
+            display: inline-block;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+
+    .team1-score {
+        padding: 0 8px;
+        left: 16px;
+    }
+    .team2-score {
+        padding: 0 8px;
+        right: 16px;
+    }
+
+    .team1-icon {
+        left: 52px;
+    }
+    .team2-icon {
+        right: 52px;
+    }
+
+    .team1-name {
+        left: 85px;
+    }
+
+    .team2-name {
+        right: 85px;
+    }
+
+    .clock {
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%) !important;
+    }
+
+    .team1-icon, .team2-icon {
+        background: white;
+        width: 8px;
+        height: 40px;
+        transform: translateY(-50%) skew(-30deg) !important;
+    }
+}
+

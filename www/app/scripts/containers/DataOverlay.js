@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BurstButton from '../components/BurstButton';
 import ChatOverlay from '../components/ChatOverlay';
+import PenaltyCard from '../components/PenaltyCard';
+import ScoreOverlay from '../components/ScoreOverlay';
 import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
 
 const styles = {
@@ -38,10 +40,13 @@ class DataOverlay extends Component {
         super(props);
 
         this.onMessageSend = this.onMessageSend.bind(this);
+        this.state = {
+            testOpen: false,
+        };
     }
 
     onMessageSend(message) {
-        this.props.dispatch(sendMessage('User', message));
+        this.props.dispatch(sendMessage('User'+Math.round(Math.random()*100), message));
     }
     
     render() {
@@ -86,7 +91,11 @@ class DataOverlay extends Component {
                 },
                 {
                     action() {
-                        console.log('Pressed ID 5');
+                        console.log('test');
+                        self.setState({testOpen: true});
+                        setTimeout(function() {
+                            self.setState({testOpen: false});
+                        }, 10000);
                     },
                     icon: (<g>
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
@@ -101,6 +110,8 @@ class DataOverlay extends Component {
             <div style={styles.dataStyle}>Score: {this.props.score}</div>
             <BurstButton buttonLinks={this.burstButtonLinks} style={styles.burstButtonContainer} color="#0092ab" />
             <ChatOverlay open={this.props.chat.chatOpen} messages={this.props.chat.messages} onMessageSend={this.onMessageSend}/>
+            <PenaltyCard open={this.state.testOpen} text="Red Card to Ronaldo!" />
+            <ScoreOverlay />
           </div>
         );
     }
