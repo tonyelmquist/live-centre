@@ -7,6 +7,9 @@ echo "##########################################"
 echo "> Do you want to update the repo? (y/n)"
 read option
 
+echo "> Alright, let's build the app for which iOS Simulator? (Device UDID)"
+read deviceUDID
+
 update_repo() {
 	
 	echo "> Updating repo..."
@@ -27,10 +30,14 @@ buildDeployWWW() {
 }
 
 if [ $option = "y" ] || [ $option = "Y" ]; then
-    update_repo
+	update_repo
 	buildDeployWWW
 else
-    buildDeployWWW
+	buildDeployWWW
 fi
 
-xcodebuild -workspace "../ios/Live Centre.xcworkspace" -scheme "development"
+# Build app
+xcodebuild \
+	-workspace "../ios/Live Centre.xcworkspace" \
+	-scheme "development" \
+	-destination "platform=iOS Simulator,id=${deviceUDID}"
