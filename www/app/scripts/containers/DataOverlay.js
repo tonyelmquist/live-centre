@@ -5,6 +5,7 @@ import BurstButton from '../components/BurstButton';
 import ChatOverlay from '../components/ChatOverlay';
 import PenaltyCard from '../components/PenaltyCard';
 import ScoreOverlay from '../components/ScoreOverlay';
+import LineupOverlay from '../components/LineupOverlay';
 import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
 
 const styles = {
@@ -28,7 +29,7 @@ const styles = {
     burstButtonContainer: {
         position: 'absolute',
         right: 5,
-        bottom: 74,
+        bottom: 0,
         zIndex: 100000,
         overflow: 'auto',
     },
@@ -39,14 +40,35 @@ class DataOverlay extends Component {
     constructor(props) {
         super(props);
 
-        this.onMessageSend = this.onMessageSend.bind(this);
         this.state = {
             testOpen: false,
+            isBurstButtonHidden: false,
+            isLineupHidden: true,
         };
+
+        this.onMessageSend = this.onMessageSend.bind(this);
+        this.displayTeamOneLineup = this.displayTeamOneLineup.bind(this);
+        this.displayTeamTwoLineup = this.displayTeamTwoLineup.bind(this);
     }
 
     onMessageSend(message) {
         this.props.dispatch(sendMessage('User'+Math.round(Math.random()*100), message));
+    }
+
+    displayTeamOneLineup() {
+        this.setState({
+            isBurstButtonHidden: true,
+            isLineupHidden: false,
+            teamToDisplay: 1
+        })
+    }
+
+    displayTeamTwoLineup() {
+        this.setState({
+            isBurstButtonHidden: true,
+            isLineupHidden: false,
+            teamToDisplay: 2
+        })
     }
     
     render() {
@@ -106,12 +128,13 @@ class DataOverlay extends Component {
 
         return (
           <div>
-            <div className="trapezoid" />
-            <div style={styles.dataStyle}>Score: {this.props.score}</div>
-            <BurstButton buttonLinks={this.burstButtonLinks} style={styles.burstButtonContainer} color="#0092ab" />
+            {/*<div className="trapezoid" />*/}
+            {/*<div style={styles.dataStyle}>Score: {this.props.score}</div>*/}
+            <BurstButton buttonLinks={this.burstButtonLinks} style={styles.burstButtonContainer} color="rgb(8, 3, 28)" hidden={this.state.isBurstButtonHidden}/>
             <ChatOverlay open={this.props.chat.chatOpen} messages={this.props.chat.messages} onMessageSend={this.onMessageSend}/>
             <PenaltyCard open={this.state.testOpen} text="Red Card to Ronaldo!" />
-            <ScoreOverlay />
+            <ScoreOverlay score={this.props.score} onTeamOneClick={this.displayTeamOneLineup} onTeamTwoClick={this.displayTeamTwoLineup}/>
+            <LineupOverlay hidden={this.state.isLineupHidden} teamToDisplay={this.state.teamToDisplay}/>
           </div>
         );
     }
@@ -119,7 +142,7 @@ class DataOverlay extends Component {
 
 DataOverlay.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    score: PropTypes.number,
+    score: PropTypes.object,
     chat: PropTypes.object,
 };
 

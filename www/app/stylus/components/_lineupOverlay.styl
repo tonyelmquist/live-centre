@@ -1,0 +1,110 @@
+.lineup-overlay {
+    transform: translate(-50%, -50%) skew(-10deg);
+    background: rgba(2, 12, 28, .7);
+    position: absolute;
+    height: 70%;
+    width: 80%; 
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+    transition: .5s all;
+
+    &.hidden-up {
+        top: -50%;
+    }
+
+    .counter-skew {
+        transform: skew(10deg);
+        width: 100%;
+        height: 100%;
+        color: white;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .football-field-outline {
+        transform: skew(10deg);
+        position: absolute;
+        top: -10px;
+        left: -20px;
+        width: calc(100% + 40px);
+        height: 100%;
+        background: url(/img/football-field-outline.png);
+        background-size: 100%;
+        opacity: .5;
+
+    }
+
+    .team1-name, .team2-name {
+        position: absolute;
+        top: 12px;
+        font-size: 21px;
+        font-weight: bold;
+        transition: .3s all;
+        &.faded {
+            opacity: .5;
+        }
+    }
+
+    .team1-name {
+        left: 50px;
+    }
+
+    .team2-name {
+        right: 10px;
+    }
+
+    .football-shirt {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 7%;
+        transition: .3s all;
+        
+    }
+
+    .team1-colors, .team2-colors {
+        transform: skew(-10deg);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 8px;
+        height: 100%;
+        overflow: hidden;
+        transition: .3s all;
+        &.faded {
+            opacity: .5;
+        }
+    }
+
+    .team1-colors {
+        background: white;
+    }
+
+    .team2-colors {
+        left: auto;
+        right: 0;
+        &:before, &:after  {
+            content: '';
+            height: 50%;
+            width: 100%;
+            background: #003175;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        &:after {
+            background: #850D37;
+            top: auto;
+            bottom: 0;
+        }
+    }
+
+    .team1-lineup, .team2-lineup {
+        transition: .3s all;
+        &.transparent {
+            opacity: 0;
+        }
+    }
+}

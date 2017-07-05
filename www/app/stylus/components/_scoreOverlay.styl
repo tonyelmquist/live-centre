@@ -1,6 +1,8 @@
 .score-overlay-container {
-    transform: translateX(-50%) skew(-30deg);
-    background: red;
+    transform: translateX(-50%) skew(-10deg);
+    background: rgb(8, 3, 28) url('/img/radial-gradient.png');
+    background-size: 100%;
+    background-position: -24px -96px;
     position: absolute;
     height: 40px;
     width: 300px;
@@ -9,12 +11,13 @@
     
 
     .counter-skew {
-        transform: skew(30deg);
+        transform: skew(10deg);
         width: 100%;
         height: 100%;
         color: white;
         font-weight: bold;
         position: relative;
+        font-size: 18px;
 
         div {
             position: absolute;
@@ -26,39 +29,56 @@
 
 
     .team1-score {
-        padding: 0 8px;
         left: 16px;
     }
     .team2-score {
-        padding: 0 8px;
         right: 16px;
     }
 
     .team1-icon {
-        left: 52px;
+        background: white;
+        left: 42px;
     }
     .team2-icon {
-        right: 52px;
+        right: 42px;
+        overflow: hidden;
+        &:before, &:after  {
+            content: '';
+            height: 50%;
+            width: 100%;
+            background: #003175;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        &:after {
+            background: #850D37;
+            top: auto;
+            bottom: 0;
+        }
     }
 
     .team1-name {
-        left: 85px;
+        left: 62px;
     }
 
     .team2-name {
-        right: 85px;
+        right: 62px;
     }
 
     .clock {
         left: 50%;
         transform: translateX(-50%) translateY(-50%) !important;
+        font-weight: normal;
+        font-size: 18px;
+        font-style: italic;
     }
 
     .team1-icon, .team2-icon {
-        background: white;
         width: 8px;
         height: 40px;
-        transform: translateY(-50%) skew(-30deg) !important;
+        transform: translateY(-50%) skew(-10deg) !important;
     }
 }
 

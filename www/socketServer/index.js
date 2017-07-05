@@ -6,7 +6,10 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-let score = 10;
+let score = {
+  team1Score: 0,
+  team2Score: 2,
+}
 
 io.on('connection', function(socket){
   console.log('a user connected');
@@ -20,10 +23,10 @@ io.on('connection', function(socket){
 
 
 setInterval(function() {
-  score += 2;
+  score.team1Score += 1;
   io.emit('SCORE_UPDATE', score);
   console.log('SCORE_UPDATE EMITTED', score);
-}, 10000)
+}, 20000)
 
 http.listen(3000, function(){
   console.log('listening on *:3000');
