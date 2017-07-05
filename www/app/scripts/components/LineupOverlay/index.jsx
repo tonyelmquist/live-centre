@@ -48,19 +48,21 @@ class LineupOverlay extends Component {
 
                     {/*Line up*/}
                     <div className={`team1-lineup ${this.state.openTeam == 1 ? '' : 'transparent'}`}>
-                        <LineupShirt colorLeft="rgb(250, 250, 250)" colorRight="rgb(240, 240, 240)" colorDarker="black" textColor="black" number="1" position="GK"/>
+                        <LineupShirt colorLeft="rgb(250, 250, 250)" colorRight="rgb(240, 240, 240)" colorDarker="black" textColor="black" number="1" position="GK" onClick={this.props.onIconClick} />
                     </div>
                     <div className={`team2-lineup ${this.state.openTeam == 2 ? '' : 'transparent'}`}>
-                        <LineupShirt colorLeft="#003175" colorRight="#850D37" colorDarker="black" number="12" position="GK2"/>
+                        <LineupShirt colorLeft="#003175" colorRight="#850D37" colorDarker="black" number="12" position="GK2" onClick={this.props.onIconClick}/>
                     </div>
                 </div>
+
+                <div className='close-btn' onClick={this.props.onClose}>X</div>
             </div>
         );
     }
 }
 
 LineupOverlay.propTypes = {
-
+    onClose: PropTypes.func,
 };
 
 export default LineupOverlay;

@@ -47,7 +47,7 @@ class ChatOverlay extends Component {
 ChatOverlay.PropTypes = {
     messages: PropTypes.array,
     open: PropTypes.bool,
-    onMessageSend: PropTypes.func
+    onMessageSend: PropTypes.func,
 };
 
 export default ChatOverlay;

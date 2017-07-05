@@ -1,0 +1,138 @@
+.player-info-overlay {
+    position: absolute;
+    width: 70%;
+    height: 120px;
+    top: 50%;
+    left: -50%;
+    transition: .5s all;
+    transform: translate(-50%, -50%);
+
+    &.isShowing {
+        left: 50%;
+    }
+
+    &.isModalOpen {
+        top: 30%;
+        .player-modal {
+            opacity: 1;
+        }
+    }
+
+    .player-icon {
+        background: rgba(2, 12, 28, .7);
+        transform: skew(-10deg);
+        border-right: 8px solid white;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 25%;
+        height: 100%;
+
+        img {
+            transform: skew(10deg) translateX(-50%);
+            position: absolute;
+            left: 50%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    
+    .player-info {
+        background: rgba(2, 12, 28, .7);
+        transform: skew(-10deg);
+        border-right: 8px solid white;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 71%;
+        height: 100%;
+        color: white;
+        padding: 20px 25px;
+        box-sizing: border-box;
+
+        .player-info-name, .player-info-team, .player-info-position {
+            display: inline-block;
+            width: 100%;
+            font-weight: bold;
+            padding-bottom: 10px;
+            font-size: 21px;
+        }
+
+        .player-info-team, .player-info-position  {
+            font-weight: normal;
+            font-size: 18px;
+            padding-bottom: 2px;
+        }
+
+        .player-info-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 46px;
+            font-weight: bold;
+        }
+    }
+
+    .close-btn, .right-btn {
+        background: rgba(2, 12, 28, .7);
+        transform: skew(-10deg);
+        position: absolute;
+        left: 17px;
+        top: -40px;
+        width: 30px;
+        height: 30px;
+        color: white;
+    }
+
+    .right-btn {
+        left: auto;
+        top: auto;
+        bottom: 0;
+        right: -30px;
+    }
+
+    .player-modal {
+        background: rgba(2,12,28,0.7);
+        position: absolute;
+        top: 100%;
+        left: -25px;
+        transform: skew(-10deg);
+        width: 100%;
+        margin-top: 10px;
+        height: 150px;
+        opacity: 0;
+        transition: .5s all;
+        color: white;
+        padding: 20px 25px;
+        box-sizing: border-box;
+    }
+}
+
+
+.player-info-tabs {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 130px;
+    height: 30px;
+    display: flex;
+
+    .player-info-tab {
+        display: inline-block;
+        flex-grow: 1;
+        text-align: center;
+        height: 100%;
+        padding: 6px 0;
+        box-sizing: border-box;
+
+        &:nth-child(3) {
+            background: rgba(255, 255, 255, .1);
+        }
+        &:nth-child(2) {
+            background: rgba(255, 255, 255, .2);
+        }
+        &:nth-child(1) {
+            background: rgba(255, 255, 255, .3);
+        }
+    }
+}

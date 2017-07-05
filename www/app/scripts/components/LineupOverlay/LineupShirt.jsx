@@ -26,7 +26,7 @@ class LineupShirt extends Component {
     render() {
         return (
             <svg version="1.1" className="football-shirt" xmlns="http://www.w3.org/2000/svg"x="0px" y="0px"
-                viewBox="0 0 19 18" style={{left: this.state.xPosition, top: this.state.yPosition}}>
+                viewBox="0 0 19 18" style={{left: this.state.xPosition, top: this.state.yPosition}} onClick={this.props.onClick}>
                 <g>
                     <polygon fill={this.props.colorLeft} points="0,0.6 0,5.8 2.8,5.8 2.8,17.5 9.6,17.5 9.6,5.8 9.6,5.7 9.6,3.1 12.1,0.6 	"/>
                     <polygon fill={this.props.colorRight} points="19.2,0.6 19.2,5.8 16.4,5.8 16.4,17.5 9.6,17.5 9.6,5.8 9.6,5.7 9.6,3.3 11.9,0.6 	"/>
@@ -43,6 +43,7 @@ class LineupShirt extends Component {
 
 LineupShirt.defaultProps = {
     textColor: 'white',
+    onClick: function() {},
 }
 
 LineupShirt.propTypes = {
@@ -52,6 +53,7 @@ LineupShirt.propTypes = {
     textColor: PropTypes.string,
     number: PropTypes.string.isRequired,
     position: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
 };
 
 export default LineupShirt;

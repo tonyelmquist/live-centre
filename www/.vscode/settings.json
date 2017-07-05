@@ -8,5 +8,5 @@
         "**/.DS_Store": true,
         "**/node_modules": true
     },
-    "eslint.enable": false
+    "eslint.enable": true
 }

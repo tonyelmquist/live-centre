@@ -6,6 +6,7 @@ import ChatOverlay from '../components/ChatOverlay';
 import PenaltyCard from '../components/PenaltyCard';
 import ScoreOverlay from '../components/ScoreOverlay';
 import LineupOverlay from '../components/LineupOverlay';
+import PlayerInfoOverlay from '../components/PlayerInfoOverlay';
 import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
 
 const styles = {
@@ -47,28 +48,53 @@ class DataOverlay extends Component {
         };
 
         this.onMessageSend = this.onMessageSend.bind(this);
-        this.displayTeamOneLineup = this.displayTeamOneLineup.bind(this);
-        this.displayTeamTwoLineup = this.displayTeamTwoLineup.bind(this);
+        this.displayLineup = this.displayLineup.bind(this);
+        this.moveToPlayerInfo = this.moveToPlayerInfo.bind(this);
+        this.onPlayerInfoClose = this.onPlayerInfoClose.bind(this);
+        this.onPlayerInfoBack = this.onPlayerInfoBack.bind(this);
+        this.onLineupClose = this.onLineupClose.bind(this);
     }
 
     onMessageSend(message) {
         this.props.dispatch(sendMessage('User'+Math.round(Math.random()*100), message));
     }
 
-    displayTeamOneLineup() {
+
+
+    onPlayerInfoClose() {
         this.setState({
-            isBurstButtonHidden: true,
-            isLineupHidden: false,
-            teamToDisplay: 1
+            isPlayerInfoShowing: false,
+            isBurstButtonHidden: false,
         })
     }
 
-    displayTeamTwoLineup() {
+    onPlayerInfoBack() {
+        this.setState({
+            isPlayerInfoShowing: false,
+            isLineupHidden: false,
+        })
+    }
+
+    onLineupClose() {
+        this.setState({
+            isLineupHidden: true,
+            isBurstButtonHidden: false,
+        })
+    }
+
+    moveToPlayerInfo(player) {
+        this.setState({
+            isLineupHidden: true,
+            isPlayerInfoShowing: true,
+        });
+    }
+
+    displayLineup(teamToDisplay) {
         this.setState({
             isBurstButtonHidden: true,
             isLineupHidden: false,
-            teamToDisplay: 2
-        })
+            teamToDisplay,
+        });
     }
     
     render() {
@@ -133,8 +159,9 @@ class DataOverlay extends Component {
             <BurstButton buttonLinks={this.burstButtonLinks} style={styles.burstButtonContainer} color="rgb(8, 3, 28)" hidden={this.state.isBurstButtonHidden}/>
             <ChatOverlay open={this.props.chat.chatOpen} messages={this.props.chat.messages} onMessageSend={this.onMessageSend}/>
             <PenaltyCard open={this.state.testOpen} text="Red Card to Ronaldo!" />
-            <ScoreOverlay score={this.props.score} onTeamOneClick={this.displayTeamOneLineup} onTeamTwoClick={this.displayTeamTwoLineup}/>
-            <LineupOverlay hidden={this.state.isLineupHidden} teamToDisplay={this.state.teamToDisplay}/>
+            <ScoreOverlay score={this.props.score} onTeamOneClick={() => this.displayLineup(1)} onTeamTwoClick={() => this.displayLineup(2)} />
+            <LineupOverlay hidden={this.state.isLineupHidden} onClose={this.onLineupClose} teamToDisplay={this.state.teamToDisplay} onIconClick={this.moveToPlayerInfo}/>
+            <PlayerInfoOverlay isShowing={this.state.isPlayerInfoShowing} onClose={this.onPlayerInfoClose} onRightButton={this.onPlayerInfoBack}/>
           </div>
         );
     }
