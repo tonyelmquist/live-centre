@@ -39,9 +39,9 @@ class PlayerInfoOverlay extends Component {
 
               <span className="player-info-number">7</span>
               <div className="player-info-tabs">
-                <div className="player-info-tab tab-player-info" onClick={this.openModal} role="button" tabIndex="0">U</div>
-                <div className="player-info-tab tab-statistics" onClick={this.closeModal} role="button" tabIndex="0">C</div>
-                <div className="player-info-tab tab-shopping">S</div>
+                <div className="player-info-tab tab-player-info" onClick={this.openModal} role="button" tabIndex="0"><i className="fa fa-user" /></div>
+                <div className="player-info-tab tab-statistics" onClick={this.closeModal} role="button" tabIndex="0"><i className="fa fa-bar-chart" /></div>
+                <div className="player-info-tab tab-shopping"><i className="fa fa-shopping-cart" /></div>
               </div>
             </div>
 
@@ -49,8 +49,8 @@ class PlayerInfoOverlay extends Component {
                     Info
                 </div>
 
-            <div className="close-btn" onClick={this.props.onClose} role="button" tabIndex="0">X</div>
-            <div className="right-btn" onClick={this.props.onRightButton} role="button" tabIndex="0">R</div>
+            <div className="close-btn" onClick={this.props.onClose} role="button" tabIndex="0"><i className="fa fa-close" /></div>
+            <div className="right-btn" onClick={this.props.onRightButton} role="button" tabIndex="0"><i className="fa fa-chevron-right" /></div>
           </div>
         );
     }

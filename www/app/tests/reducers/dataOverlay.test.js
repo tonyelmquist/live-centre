@@ -1,4 +1,4 @@
-import { assert, expect } from 'chai';
+import { assert } from 'chai';
 import dataOverlayReducer from '../../scripts/reducers/dataOverlayReducer';
 import actions from '../../scripts/constants/reduxConstants';
 

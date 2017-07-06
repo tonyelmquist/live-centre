@@ -1,5 +1,5 @@
 .lineup-overlay {
-    transform: translate(-50%, -50%) skew(-10deg);
+    transform: translate(-50%, -50%) skew(-10deg) scale(0);
     background: rgba(2, 12, 28, .7);
     position: absolute;
     height: 70%;
@@ -7,9 +7,11 @@
     top: 50%;
     left: 50%;
     transition: .5s all;
+    opacity: 0;
 
-    &.hidden-up {
-        top: -50%;
+    &.isShowing {
+        transform: translate(-50%, -50%) skew(-10deg) scale(1);
+        opacity: 1;
     }
 
     .counter-skew {
@@ -116,5 +118,12 @@
         width: 30px;
         height: 30px;
         color: white;
+
+        i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     }
 }

@@ -21,7 +21,10 @@ export default function dataOverlayReducer(state = { chatOpen: false, messages: 
             chatOpen: !state.chatOpen,
         };
     case Actions.CLEAR_MESSAGES:
-        return {};
+        return {
+            ...state,
+            messages: [],
+        };
     default:
         return state;
     }

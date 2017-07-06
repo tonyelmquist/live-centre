@@ -44,7 +44,7 @@ class DataOverlay extends Component {
         this.state = {
             testOpen: false,
             isBurstButtonHidden: false,
-            isLineupHidden: true,
+            isLineupShowing: false,
         };
 
         this.onMessageSend = this.onMessageSend.bind(this);
@@ -70,20 +70,20 @@ class DataOverlay extends Component {
     onPlayerInfoBack() {
         this.setState({
             isPlayerInfoShowing: false,
-            isLineupHidden: false,
+            isLineupShowing: true,
         });
     }
 
     onLineupClose() {
         this.setState({
-            isLineupHidden: true,
+            isLineupShowing: false,
             isBurstButtonHidden: false,
         });
     }
 
     moveToPlayerInfo() {
         this.setState({
-            isLineupHidden: true,
+            isLineupShowing: false,
             isPlayerInfoShowing: true,
         });
     }
@@ -91,7 +91,7 @@ class DataOverlay extends Component {
     displayLineup(teamToDisplay) {
         this.setState({
             isBurstButtonHidden: true,
-            isLineupHidden: false,
+            isLineupShowing: true,
             teamToDisplay,
         });
     }
@@ -164,7 +164,7 @@ class DataOverlay extends Component {
             <ChatOverlay open={this.props.chat.chatOpen} messages={this.props.chat.messages} onMessageSend={this.onMessageSend} />
             <PenaltyCard open={this.state.testOpen} text="Red Card to Ronaldo!" />
             <ScoreOverlay score={this.props.score} onTeamOneClick={() => this.displayLineup(1)} onTeamTwoClick={() => this.displayLineup(2)} />
-            <LineupOverlay hidden={this.state.isLineupHidden} onClose={this.onLineupClose} teamToDisplay={this.state.teamToDisplay} onIconClick={this.moveToPlayerInfo} />
+            <LineupOverlay isShowing={this.state.isLineupShowing} onClose={this.onLineupClose} teamToDisplay={this.state.teamToDisplay} onIconClick={this.moveToPlayerInfo} />
             <PlayerInfoOverlay isShowing={this.state.isPlayerInfoShowing} onClose={this.onPlayerInfoClose} onRightButton={this.onPlayerInfoBack} />
           </div>
         );

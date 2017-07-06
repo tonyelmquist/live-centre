@@ -35,7 +35,7 @@ class LineupOverlay extends Component {
 
     render() {
         return (
-          <div className={`lineup-overlay ${this.props.hidden ? 'hidden-up' : ''}`}>
+          <div className={`lineup-overlay ${this.props.isShowing ? 'isShowing' : ''}`}>
             <div className="football-field-outline" />
             <div className="counter-skew">
               {/* Team Colours*/}
@@ -55,7 +55,7 @@ class LineupOverlay extends Component {
               </div>
             </div>
 
-            <div className="close-btn" onClick={this.props.onClose} role="button" tabIndex="0">X</div>
+            <div className="close-btn" onClick={this.props.onClose} role="button" tabIndex="0"><i className="fa fa-close" /></div>
           </div>
         );
     }
@@ -63,14 +63,14 @@ class LineupOverlay extends Component {
 
 LineupOverlay.defaultProps = {
     teamToDisplay: 1,
-    hidden: true,
+    isShowing: false,
 };
 
 LineupOverlay.propTypes = {
     onClose: PropTypes.func.isRequired,
     onIconClick: PropTypes.func.isRequired,
     teamToDisplay: PropTypes.number,
-    hidden: PropTypes.bool,
+    isShowing: PropTypes.bool,
 };
 
 export default LineupOverlay;
