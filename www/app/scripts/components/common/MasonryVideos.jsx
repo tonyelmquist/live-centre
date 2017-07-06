@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-component';
 
 /*
-    This component takes in an array of videos and returns a div with tiles, 
-    they will float and align properly even with different heights. 
-    If it recieves a filter as prop it will filter the array based on the tiles. 
+    This component takes in an array of videos and returns a div with tiles,
+    they will float and align properly even with different heights.
+    If it recieves a filter as prop it will filter the array based on the tiles.
 
-    Uses masonry tiles from https://masonry.desandro.com 
+    Uses masonry tiles from https://masonry.desandro.com
     react version: https://github.com/eiriklv/react-masonry-component#basic-usage
 */
 

@@ -22,12 +22,6 @@ describe('App', () => {
         expect(renderApp().find('App').exists()).to.be.true;
     });
 
-    it('calls render method once', () => {
-        sinon.spy(App.prototype, 'render');
-        // const app = renderApp();
-        expect(App.prototype.render.calledOnce).to.equal(true);
-    });
-
     it('has a header', () => {
         expect(renderApp().find('#header-container').exists()).to.be.true;
     });

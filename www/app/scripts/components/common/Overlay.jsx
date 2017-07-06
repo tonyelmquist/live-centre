@@ -99,13 +99,9 @@ const Overlay = props => (
     </FloatingActionButton>
   </div>);
 
-Overlay.defaultProps = {
-    children: {},
-};
-
 Overlay.propTypes = {
     handleClose: PropTypes.func.isRequired,
-    children: PropTypes.objectOf(PropTypes.any),
+    children: PropTypes.node.isRequired,
 };
 
 export default Overlay;

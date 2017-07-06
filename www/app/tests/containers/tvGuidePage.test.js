@@ -11,7 +11,7 @@ describe('TVGuidePage', () => {
 
   it('renders the TVGuidePage', () => {
     wrapper = enzymeMount(TVGuidePage, props);
-    expect(wrapper.find('.slide').exists()).to.be.true;
+    expect(wrapper.find('div').exists()).to.be.true;
   });
 
 })

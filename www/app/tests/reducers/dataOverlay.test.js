@@ -7,14 +7,14 @@ describe('Data Overlay Reducer', () => {
     const action = {};
 
     it('should return the initial state', () => {
-        assert.equal(dataOverlayReducer(undefined, action), '', 'should be equal');
+        assert.deepEqual(dataOverlayReducer(undefined, action), { team1Score: 0, team2Score: 0 }, 'should be equal');
         action.type = 'DEFAULT';
-        assert.equal(dataOverlayReducer('45', action), '45', 'should be equal');
+        assert.deepEqual(dataOverlayReducer({ team1Score: 1, team2Score: 0 }, action), { team1Score: 1, team2Score: 0 }, 'should be equal');
     });
 
     it('should return a new state', () => {
         action.type = actions.CHANGE_SCORE;
-        action.score = '32';
-        assert.equal(dataOverlayReducer('32', action), '32', 'should be equal');
+        action.score = { team1Score: 1, team2Score: 0 };
+        assert.deepEqual(dataOverlayReducer({ team1Score: 0, team2Score: 0 }, action), { team1Score: 1, team2Score: 0 }, 'should be equal');
     });
 });

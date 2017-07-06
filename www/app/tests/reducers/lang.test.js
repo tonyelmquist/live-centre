@@ -1,18 +1,20 @@
-import { assert, expect } from 'chai';
+import { assert } from 'chai';
 import langReducer from '../../scripts/reducers/langReducer';
 import actions from '../../scripts/constants/reduxConstants';
 
 
 describe('Language Reducer', () => {
-    const action = {};
+    const action = {
+        lang: 'en',
+    };
 
     it('should return a string', () => {
-        assert.typeOf(langReducer(undefined, action), 'string', 'return value is a string');
-        assert.lengthOf(langReducer(undefined, action), 2, 'return value has a length of 2');
+        assert.typeOf(langReducer('en', action), 'string', 'return value is a string');
+        assert.lengthOf(langReducer('en', action), 2, 'return value has a length of 2');
     });
 
     it('should return the initial state', () => {
-        assert.equal(langReducer(undefined, action), 'en', 'should be equal');
+        assert.equal(langReducer('en', action), 'en', 'should be equal');
 
         action.type = 'DEFAULT';
         assert.equal(langReducer('ru', action), 'ru', 'should be equal');
