@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import IconButton from 'material-ui/IconButton';
-
+import i18next from 'i18next';
 import PersonIcon from 'material-ui/svg-icons/social/person';
 
 import IconMenu from 'material-ui/IconMenu';
@@ -39,10 +39,10 @@ class Logged extends Component {
 
 Logged.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    iconStyle:PropTypes.object,
-    loginState:PropTypes.bool,
-    changeRoute:PropTypes.func,
-    settings:PropTypes.object
+    // iconStyle: PropTypes.object.isRequired,
+    // loginState: PropTypes.bool.isRequired,
+    changeRoute: PropTypes.func.isRequired,
+    // settings: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -1,6 +1,6 @@
 import {
-  teal50, grey100, grey200, grey300, grey400, grey500, grey800, grey600, blueGrey800, deepOrange800, grey900, grey50,
-  white, darkBlack, fullBlack, fullWhite, blue200, blue400, blue100, lightBlue50,
+  grey200, grey600, blueGrey800,
+  white, fullBlack, blue200, blue400, blue100, lightBlue50,
 
 } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/utils/colorManipulator';

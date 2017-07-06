@@ -16,7 +16,7 @@ describe('MasonryVideos', () => {
                     "views": 12,
                     "preview_url": "#",
                     "thumbnail": "lost-in-time.jpg",
-                    "video_url": "731646302.mp4",
+                    "videoUrl": "731646302.mp4",
                     "season_id": 1,
                     "episode_number": 1,
                     "tags": [
@@ -42,7 +42,7 @@ describe('MasonryVideos', () => {
                 "_id": 1,
                 "_title": "Lost In Time: Lost forever",
                 "_description": "Lost in Time description here, episode with id 1.",
-                "_video_url": "731646302.mp4",
+                "_videoUrl": "731646302.mp4",
                 "_thumbnail": "lost-in-time.jpg",
                 "_views": 12,
                 "_tags": [
@@ -73,7 +73,7 @@ describe('MasonryVideos', () => {
                     "views": 12,
                     "preview_url": "#",
                     "thumbnail": "lost-in-time.jpg",
-                    "video_url": "731665178.mp4",
+                    "videoUrl": "731665178.mp4",
                     "season_id": 1,
                     "episode_number": 2,
                     "tags": [
@@ -99,7 +99,7 @@ describe('MasonryVideos', () => {
                 "_id": 2,
                 "_title": "Lost In Time: Timetravel",
                 "_description": "Lost in Time description here, episode with id 2.",
-                "_video_url": "731665178.mp4",
+                "_videoUrl": "731665178.mp4",
                 "_thumbnail": "lost-in-time.jpg",
                 "_views": 12,
                 "_tags": [
@@ -130,7 +130,7 @@ describe('MasonryVideos', () => {
                     "views": 12,
                     "preview_url": "#",
                     "thumbnail": "lost-in-time.jpg",
-                    "video_url": "739140174.mp4",
+                    "videoUrl": "739140174.mp4",
                     "season_id": 1,
                     "episode_number": 3,
                     "tags": []
@@ -138,7 +138,7 @@ describe('MasonryVideos', () => {
                 "_id": 3,
                 "_title": "Lost In Time: Third episode",
                 "_description": "Lost in Time description here, episode with id 3",
-                "_video_url": "739140174.mp4",
+                "_videoUrl": "739140174.mp4",
                 "_thumbnail": "lost-in-time.jpg",
                 "_views": 12,
                 "_tags": []
@@ -151,7 +151,7 @@ describe('MasonryVideos', () => {
                     "views": 12,
                     "preview_url": "#",
                     "thumbnail": "lost-in-time.jpg",
-                    "video_url": "739140172453.mp4",
+                    "videoUrl": "739140172453.mp4",
                     "season_id": 1,
                     "episode_number": 4,
                     "tags": []
@@ -159,7 +159,7 @@ describe('MasonryVideos', () => {
                 "_id": 4,
                 "_title": "Lost In Time: Fourth episode",
                 "_description": "Lorem ipsum lost in time amet. id: 4.",
-                "_video_url": "739140172453.mp4",
+                "_videoUrl": "739140172453.mp4",
                 "_thumbnail": "lost-in-time.jpg",
                 "_views": 12,
                 "_tags": []
@@ -172,7 +172,7 @@ describe('MasonryVideos', () => {
                     "views": 12,
                     "preview_url": "#",
                     "thumbnail": "lost-in-time.jpg",
-                    "video_url": "204173947.mp4",
+                    "videoUrl": "204173947.mp4",
                     "season_id": 1,
                     "episode_number": 5,
                     "tags": [
@@ -198,7 +198,7 @@ describe('MasonryVideos', () => {
                 "_id": 5,
                 "_title": "Lost In Time: Episode five",
                 "_description": "Lost in Time description here. id;5",
-                "_video_url": "204173947.mp4",
+                "_videoUrl": "204173947.mp4",
                 "_thumbnail": "lost-in-time.jpg",
                 "_views": 12,
                 "_tags": [

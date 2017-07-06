@@ -136,12 +136,12 @@ class CategoryRow extends Component {
 }
 
 CategoryRow.propTypes = {
-    tag: PropTypes.object.isRequired,
-    videos: PropTypes.array.isRequired,
+    tag: PropTypes.objectOf(PropTypes.any).isRequired,
+    videos: PropTypes.arrayOf(PropTypes.any).isRequired,
     handleCardCategory: PropTypes.func.isRequired,
     handleVideoInfo: PropTypes.func.isRequired,
     showVideoCard: PropTypes.func.isRequired,
-    videoCard: PropTypes.object.isRequired,
+    videoCard: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default CategoryRow;

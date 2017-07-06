@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-//import { Col } from 'react-flexbox-grid';
+// import { Col } from 'react-flexbox-grid';
 import { GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
 import Info from 'material-ui/svg-icons/action/info';
 import { amber300, fullWhite } from 'material-ui/styles/colors';
-//import { yellow500, blue500, } from 'material-ui/styles/colors';
-import { videoSelected, invalidateSelected } from '../actions/video';
-import { showOverlay, hideOverlay } from '../actions/overlay';
+// import { yellow500, blue500, } from 'material-ui/styles/colors';
+import { videoSelected } from '../actions/video';
+import { showOverlay } from '../actions/overlay';
 
-import { videoPrefix } from '../constants/mediaPrefix';
+import videoPrefix from '../constants/mediaPrefix';
 
 const styles = {
     mediumIcon: {
@@ -34,23 +34,24 @@ class CategoryItem extends Component {
 
     render() {
         return (
-            <div className="videoThumb">
-                <GridTile
-                    //onTouchTap={this.props.handleClick}
-                    title={this.props.video.title}
-                    //subtitle={< span > by < b > {this.props.video.author} </b></span >}
-                    subtitle={this.props.video.description}
-                    actionIcon={<div>
-                        <IconButton iconStyle={styles.mediumIcon}  style={styles.medium} onTouchTap = {() => {this.props.handleClick();}} >
-                            <Info hoverColor={amber300} color={fullWhite}/>
-                        </IconButton>
-                        <IconButton iconStyle={styles.mediumIcon}  style={styles.medium} onTouchTap = {() => {this._handlePlay(this.props.video.video_url);}} >
-                            <PlayCircleOutline hoverColor={amber300} color={fullWhite}/>
-                        </IconButton>
-                    </div>}>
-                    <img src={this.props.video.thumbnail}/>
-                </GridTile>
-            </div>
+          <div className="videoThumb">
+            <GridTile
+                    // onTouchTap={this.props.handleClick}
+              title={this.props.video.title}
+                    // subtitle={< span > by < b > {this.props.video.author} </b></span >}
+              subtitle={this.props.video.description}
+              actionIcon={<div>
+                <IconButton iconStyle={styles.mediumIcon} style={styles.medium} onTouchTap={() => { this.props.handleClick(); }} >
+                  <Info hoverColor={amber300} color={fullWhite} />
+                </IconButton>
+                <IconButton iconStyle={styles.mediumIcon} style={styles.medium} onTouchTap={() => { this._handlePlay(this.props.video.videoUrl); }} >
+                  <PlayCircleOutline hoverColor={amber300} color={fullWhite} />
+                </IconButton>
+              </div>}
+            >
+              <img src={this.props.video.thumbnail} alt={this.props.video.description} />
+            </GridTile>
+          </div>
         );
     }
 }
@@ -58,9 +59,9 @@ class CategoryItem extends Component {
 const mapStateToProps = state => ({ videoUrl: state.playback.url, selected: state.playback.isSelected });
 
 CategoryItem.propTypes = {
-    dispatch: PropTypes.func,
-    video: PropTypes.object,
-    handleClick: PropTypes.func,
+    dispatch: PropTypes.func.isRequired,
+    video: PropTypes.objectOf(PropTypes.any).isRequired,
+    handleClick: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(CategoryItem);

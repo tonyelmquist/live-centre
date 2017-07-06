@@ -14,9 +14,9 @@ const styles = {
         height: 64,
         padding: 8,
     },
-}; 
+};
 
-  
+
 class MasonryVideoTile extends Component {
 
     renderTiles = () => {
@@ -29,22 +29,23 @@ class MasonryVideoTile extends Component {
                 tiles.push(
                   <div className="tile" key={`masonry-videos-${video.id}`}>
                     <div className="masonry_tile_inner" >
-                        <img  
-                          onTouchTap={() => { this.props.handleTileOpen(video); }}
-                          src={video.thumbnail} 
-                          alt={`${video.title}-videoTile`} />
-                        <div className="tile-overlay">
-                            <div className="tile-text">
-                                <h4>{video.title}</h4>
-                            </div>
-                            <IconButton
-                            className="masonryPlayButton"
-                            iconStyle={styles.mediumIcon}
+                      <img
+                        onTouchTap={() => { this.props.handleTileOpen(video); }}
+                        src={video.thumbnail}
+                        alt={`${video.title}-videoTile`}
+                      />
+                      <div className="tile-overlay">
+                        <div className="tile-text">
+                          <h4>{video.title}</h4>
+                        </div>
+                        <IconButton
+                          className="masonryPlayButton"
+                          iconStyle={styles.mediumIcon}
                             // style={styles.medium}
-                            onTouchTap={() => { this.props.handleTilePlay(video.video_url); }}
-                            >
-                            <PlayCircleOutline hoverColor={amber300} color={fullWhite} />
-                            </IconButton>
+                          onTouchTap={() => { this.props.handleTilePlay(video.videoUrl); }}
+                        >
+                          <PlayCircleOutline hoverColor={amber300} color={fullWhite} />
+                        </IconButton>
                       </div>
                     </div>
                   </div>);
@@ -63,7 +64,7 @@ class MasonryVideoTile extends Component {
 }
 
 MasonryVideoTile.propTypes = {
-    videos: PropTypes.object.isRequired,
+    videos: PropTypes.any.isRequired,
     filter: PropTypes.array,
     handlefilter: PropTypes.func,
     handleTileOpen: PropTypes.func,
@@ -76,7 +77,7 @@ MasonryVideoTile.defaultProps = {
     handlefilter: true,
     handleTilePlay: null,
     handleTileOpen: null,
-    
+
 };
 
 export default MasonryVideoTile;

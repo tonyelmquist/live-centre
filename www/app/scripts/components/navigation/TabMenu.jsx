@@ -46,7 +46,7 @@ const TabMenu = ({
 };
 
 TabMenu.propTypes = {
-    pageItems: PropTypes.array.isRequired,
+    pageItems: PropTypes.arrayOf(PropTypes.any).isRequired,
     changeRoute: PropTypes.func.isRequired,
     openCloseMenu: PropTypes.func.isRequired,
     isMenuOpen: PropTypes.func.isRequired,

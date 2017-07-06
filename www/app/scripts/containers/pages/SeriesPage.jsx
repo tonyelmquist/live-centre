@@ -1,18 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { videoPrefix } from '../../constants/mediaPrefix.js';
+import videoPrefix from '../../constants/mediaPrefix';
 import MasonryVideos from '../../components/common/MasonryVideos';
 import MasonryVideoTile from '../../components/common/MasonryVideoTile';
 import { videoSelected } from '../../actions/video';
 import { showOverlay } from '../../actions/overlay';
 import { showVideoCard, changeVideoInfo } from '../../actions/videoCard';
 import CardContainer from '../homepage/CardContainer';
+
 class SeriesPage extends React.Component {
 
     handleTileOpen = (video) => {
         this.props.dispatch(changeVideoInfo(video));
-        //this.props.dispatch(changeCardCategory(category));
+        // this.props.dispatch(changeCardCategory(category));
         this.props.dispatch(showVideoCard());
     }
 
@@ -22,41 +23,41 @@ class SeriesPage extends React.Component {
     }
 
 
-
-    //Use the first episode in each series to make a thumbnail
+    // Use the first episode in each series to make a thumbnail
     episodeList = () => {
-      let episodes = [];
-      //this.props.series
-      const series = this.props.series;
-      const seasons = this.props.seasons;
-      const videos = this.props.videos;
-      for(const key in series){
-        const seasonKey = series[key].firstSeason; //first season of series.
-        const videoKey = seasons[seasonKey].firstEpisode;
-        const video = videos[videoKey];
+        const episodes = [];
+      // this.props.series
+        const series = this.props.series;
+        const seasons = this.props.seasons;
+        const videos = this.props.videos;
+        for (const key in series) {
+            if (Object.prototype.hasOwnProperty.call(series, key)) {
+                const seasonKey = series[key].firstSeason; // first season of series.
+                const videoKey = seasons[seasonKey].firstEpisode;
+                const video = videos[videoKey];
 
-        episodes.push(video);
-
-      }
-      return episodes;
+                episodes.push(video);
+            }
+        }
+        return episodes;
     };
     render() {
-      //console.log(this.props);
+      // console.log(this.props);
         return (
           <div className="slide">
             <div className="container-fluid">
-            <h1>Series</h1>
-            <p>First epsiode for all the series. Opening them will show the videocard; which also contains the rest of the episodes.</p>
+              <h1>Series</h1>
+              <p>First epsiode for all the series. Opening them will show the videocard; which also contains the rest of the episodes.</p>
 
-            <CardContainer />
-            <MasonryVideos>
+              <CardContainer />
+              <MasonryVideos>
                 <MasonryVideoTile
-                  //filter={this.filter}
+                  // filter={this.filter}
                   videos={this.episodeList()}
                   handleTileOpen={this.handleTileOpen}
                   handleTilePlay={this.handleTilePlay}
                 />
-            </MasonryVideos>
+              </MasonryVideos>
             </div>
           </div>
         );
@@ -64,9 +65,10 @@ class SeriesPage extends React.Component {
 }
 
 SeriesPage.propTypes = {
-    videos : PropTypes.object.isRequired,
+    videos: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     series: PropTypes.object.isRequired,
+    seasons: PropTypes.object.isRequired,
 };
 
 

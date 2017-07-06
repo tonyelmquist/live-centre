@@ -1,3 +1,4 @@
+/* global i18next*/
 import React from 'react';
 
 
@@ -19,15 +20,13 @@ const styles = {
     },
 };
 
-export default class FavoritePage extends React.Component {
-    render() {
-        return (
-          <div className="slide">
-            <h1 style={styles.headline}>{i18next.t('route_favorites')}</h1>
-            <div className="player">
-              {/* <Player/> */}
-            </div>
-          </div>
-        );
-    }
+export default function FavoritePage() {
+    return (
+      <div className="slide">
+        <h1 style={styles.headline}>{i18next.t('route_favorites')}</h1>
+        <div className="player">
+          {/* <Player/> */}
+        </div>
+      </div>
+    );
 }

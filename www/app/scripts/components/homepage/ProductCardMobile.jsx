@@ -37,7 +37,7 @@ const ProductCardMobile = props => (
       <Row>
         <Col xs={12} md={6}>
           {<Poster
-            handlePlay={() => { props.handlePlay(props.video.item.video_url); }} 
+            handlePlay={() => { props.handlePlay(props.video.item.videoUrl); }} 
             imageUrl={props.video.item.thumbnail}
           />}
         </Col>
@@ -50,7 +50,7 @@ const ProductCardMobile = props => (
 
 ProductCardMobile.propTypes = {
     closeCard: PropTypes.func.isRequired,
-    video: PropTypes.object.isRequired,
+    video: PropTypes.objectOf(PropTypes.any).isRequired,
     handlePlay: PropTypes.func.isRequired,
 };
 

@@ -6,33 +6,11 @@ export default class BaseClass {
         Object.assign(this, base);
 
         Object.assign(this, mapped);
-        this.validateObject(this, mapped);
+        BaseClass.validateObject(this, mapped);
     }
 
     /* Validation Functions */
-    validateType(value, type, force) {
-        if (typeof value !== type) {
-            if (force === true) {
-                console.error(`Error in Setting Class: Wanted ${type}, got ${typeof value} (${value})`);
-                throw `Error in Setting Class: Wanted ${type}, got ${typeof value} (${value})`;
-            } else {
-                console.warn(`Issue in Setting Class: Wanted ${type}, got ${typeof value} (${value})`);
-            }
-        }
-    }
-
-    validateString(value, force) {
-        if (typeof value !== 'string') {
-            if (force === true) {
-                console.error(`Error in Setting Class: Wanted string, got ${typeof value} (${value})`);
-                throw `Error in Setting Class: Wanted string, got ${typeof value} (${value})`;
-            } else {
-                console.warn(`Issue in Setting Class: Wanted string, got ${typeof value} (${value})`);
-            }
-        }
-    }
-
-    validateObject(initialState, data) {
+    static validateObject(initialState, data) {
         // Accept data objects of null, as the initial state is what is required
         if (data != null) {
             const results = diff(initialState, data);
@@ -45,7 +23,7 @@ export default class BaseClass {
             //     console.log(initialState[i]);
             // }
 
-            const missingKeys = results.filter((result) =>
+            const missingKeys = results.filter(result =>
                 // Only kept the deleted ones (i.e. listed in the initial state
                 // but not in the data added
                  result.kind === 'D');
@@ -61,7 +39,7 @@ export default class BaseClass {
         const result = {};
 
         for (const key in this) {
-            if (this.hasOwnProperty(key)) {
+            if (Object.prototype.hasOwnProperty.call(this, key)) {
                 result[key.substring(1)] = this[key];
             }
         }
@@ -69,11 +47,11 @@ export default class BaseClass {
         return result;
     }
 
-    hasMany(type) {
+    // hasMany(type) {
 
-    }
+    // }
 
-    belongsTo(type) {
+    // belongsTo(type) {
 
-    }
+    // }
 }

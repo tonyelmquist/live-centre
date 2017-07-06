@@ -13,7 +13,7 @@ class Video extends BaseClass {
             _tags: [],
             _title: '',
             _thumbnail: '',
-            _video_url: '',
+            _videoUrl: '',
         }, {
             _id: data.id,
             _author: data.author,
@@ -25,7 +25,7 @@ class Video extends BaseClass {
             _tags: data.tags,
             _title: data.title,
             _thumbnail: data.thumbnail,
-            _video_url: data.video_url,
+            _videoUrl: data.video_url,
         });
 
 // this.hasMany(Tag);
@@ -71,16 +71,16 @@ class Video extends BaseClass {
         }
     }
 
-    get video_url() {
-        if (typeof this._video_url === 'undefined') {
-            // console.error('Tried to get video_URL of Video, was not set');
+    get videoUrl() {
+        if (typeof this._videoUrl === 'undefined') {
+            // console.error('Tried to get videoUrl of Video, was not set');
             return false;
         }
-        return this._video_url;
+        return this._videoUrl;
     }
-    set video_url(videoUrl) {
+    set videoUrl(videoUrl) {
         if (videoUrl) {
-            this._video_url = videoUrl;
+            this._videoUrl = videoUrl;
         }
     }
 

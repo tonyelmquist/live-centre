@@ -12,17 +12,17 @@ import { toggleMenu, hideMenu } from '../actions/navigation';
 import HeaderMenu from './../components/navigation/HeaderMenu';
 import TabMenu from './../components/navigation/TabMenu';
 import ExpandableMenu from './../components/navigation/ExpandableMenu';
-import { searchKeyword, toggleSearch, closeSearch, emptySearch } from '../actions/search.js';
+import { searchKeyword, toggleSearch, closeSearch, emptySearch } from '../actions/search';
 // import VideoLibrary from 'material-ui/svg-icons/AV/video-library';
 
 /* This component is the starting point for all navigation.
  * There are three different navigation components (located in components/navigation)
  * * Tabs: Which is shown on screens < less than 900px. Has a menu item.
  * * The tabs menu item opens an expandable menu.
- * * HeaderMenu: the top navigation, it contains searchbar and logo. 
+ * * HeaderMenu: the top navigation, it contains searchbar and logo.
  * * It also displays navigation and categories at >1000 px screen.
  * * * The searchbar either expands from left or from right, depending on screen size.
- * * * Clicking the search field fires an action that activates the search overlay. 
+ * * * Clicking the search field fires an action that activates the search overlay.
  */
 
 class Header extends Component {
@@ -91,8 +91,10 @@ class Header extends Component {
         const items = [];
         if (this.props.tags) {
             for (const key in this.props.tags) {
-                const name = this.props.tags[key].name;
-                items.push({ key: name, path: `/Category/${name}` });
+                if (Object.prototype.hasOwnProperty.call(this.props.tags, key)) {
+                    const name = this.props.tags[key].name;
+                    items.push({ key: name, path: `/Category/${name}` });
+                }
             }
         }
         return items;
@@ -153,21 +155,19 @@ class Header extends Component {
 
 Header.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    menuIsOpen: PropTypes.bool,
-    history: PropTypes.object,
-    tags: PropTypes.object,
-    search: PropTypes.object,
-    settings: PropTypes.object
+    menuIsOpen: PropTypes.bool.isRequired,
+    history: PropTypes.object.isRequired,
+    tags: PropTypes.object.isRequired,
+    search: PropTypes.object.isRequired,
+    settings: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => {
-    return {
-        menuIsOpen : state.headerMenuState,
-        tags: state.tags.items,
-        search: state.search,
-        settings: state.settings
-    };
-};
+const mapStateToProps = state => ({
+    menuIsOpen: state.headerMenuState,
+    tags: state.tags.items,
+    search: state.search,
+    settings: state.settings,
+});
 
 
 export default withRouter(connect(mapStateToProps)(Header));

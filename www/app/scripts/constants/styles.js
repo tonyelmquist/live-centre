@@ -1,4 +1,4 @@
-export const styles = {
+export default {
     headline: {
         fontSize: 24,
         fontWeight: 400,

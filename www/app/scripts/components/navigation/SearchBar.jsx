@@ -22,7 +22,7 @@ const SearchBar = ({ searchState, handleSearch, openCloseSearch }) =>
   </div>);
 
 SearchBar.propTypes = {
-    searchState: PropTypes.object.isRequired,
+    searchState: PropTypes.objectOf(PropTypes.any).isRequired,
     openCloseSearch: PropTypes.func.isRequired,
     handleSearch: PropTypes.func.isRequired,
 };

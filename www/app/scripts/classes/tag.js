@@ -22,7 +22,7 @@ class Tag extends BaseClass {
 
     set video(videoId) {
         this._videos.push(videoId);
-        this._videosLoaded ++;
+        this._videosLoaded += 1;
     }
 
     set videos(videoGroup) {

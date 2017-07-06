@@ -8,7 +8,7 @@ describe('CategoryRow', () => {
 
     const props = {
         tag: {id: "1", name: "nothing"},
-        videos: [{id: 1, title: "Lost In Time: Lost forever", description: "Lost in Time description here, episode with id 1.", video_url: "731646302.mp4", tags: [{id: "1", name: "nothing"}]}],
+        videos: [{id: 1, title: "Lost In Time: Lost forever", description: "Lost in Time description here, episode with id 1.", videoUrl: "731646302.mp4", tags: [{id: "1", name: "nothing"}]}],
         handleCardCategory: function () {},
         handleVideoInfo: function () {},
         showVideoCard: function () {},

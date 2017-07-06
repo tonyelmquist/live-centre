@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import VideoGrid from '../components/common/VideoGrid';
-import { videoSelected } from '../actions/video';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+// import VideoGrid from '../components/common/VideoGrid';
 import IconButton from 'material-ui/IconButton';
 import BackButton from 'material-ui/svg-icons/hardware/keyboard-backspace';
-import { fullWhite, blueGrey900 } from 'material-ui/styles/colors';
-import { videoPrefix } from '../constants/mediaPrefix.js';
+import { blueGrey900 } from 'material-ui/styles/colors';
+import { videoSelected } from '../actions/video';
+import videoPrefix from '../constants/mediaPrefix';
 // import {changeCardIndex, showVideoCard, hideVideoCard, changeCardCategory} from '../actions/videoCard';
 import { showOverlay } from '../actions/overlay';
 
@@ -27,7 +27,7 @@ const styles = {
 };
 class CategoryContainer extends Component {
     handleTileOpen = (video) => {
-        this.props.dispatch(videoSelected(`${videoPrefix+video.videoUrl}`));
+        this.props.dispatch(videoSelected(`${videoPrefix + video.videoUrl}`));
     };
 
     handleTilePlay = (videoUrl) => {
@@ -35,14 +35,14 @@ class CategoryContainer extends Component {
         this.props.dispatch(videoSelected(`${videoPrefix}${videoUrl}`));
     }
 
-    filter = () => {
-        const categoryID = this.props.match.params.categoryKey;
-        const tag = this.props.tags[categoryID];
+    // filter = () => {
+    //     const categoryID = this.props.match.params.categoryKey;
+    //     const tag = this.props.tags[categoryID];
 
-        tag.videos.map((videoKey)=>{
-            videos.push(this.props.videos[videoKey]);
-        });
-    }
+    //     tag.videos.map((videoKey) => {
+    //         videos.push(this.props.videos[videoKey]);
+    //     });
+    // }
 
     render() {
         const videos = [];
@@ -50,36 +50,36 @@ class CategoryContainer extends Component {
         const tag = this.props.tags[categoryID];
 
 
-        tag.videos.map((videoKey)=>{
+        tag.videos.map((videoKey) => {
             videos.push(this.props.videos[videoKey]);
         });
 
         return (
-            <div>
-            <div className='category'>
-                <Link to='/Home'>
-                    <div className='item'><IconButton style={styles.medium} iconStyle={styles.mediumIcon}><BackButton color={blueGrey900}/></IconButton></div>
-                </Link>
-                <h2 className='item'>{categoryID}</h2>
+          <div>
+            <div className="category">
+              <Link to="/Home">
+                <div className="item"><IconButton style={styles.medium} iconStyle={styles.mediumIcon}><BackButton color={blueGrey900} /></IconButton></div>
+              </Link>
+              <h2 className="item">{categoryID}</h2>
             </div>
             <div className="container-fluid">
-            <MasonryVideos>
+              <MasonryVideos>
                 <MasonryVideoTile
-                  //filter={this.filter}
+                  // filter={this.filter}
                   videos={videos}
                   handleTileOpen={this._handleSelect}
                   handleTilePlay={this.handleTilePlay}
                 />
-            </MasonryVideos>
+              </MasonryVideos>
             </div>
-            </div>
+          </div>
         );
     }
 }
 
 CategoryContainer.propTypes = {
-    videos : PropTypes.object.isRequired,
-    match: PropTypes.object,
+    videos: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     tags: PropTypes.object.isRequired,
 };

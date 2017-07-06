@@ -1,15 +1,15 @@
 import React from 'react';
-import Divider from 'material-ui/Divider';
-import Paper from 'material-ui/Paper';
+// import Divider from 'material-ui/Divider';
+// import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 
-const fields = [
+const fieldsDefault = [
     { name: 'First Name' },
     { name: 'Last Name' },
     { name: 'Email' },
 ];
 
-const style = {
+const styleDefault = {
     width: '90%',
 };
 
@@ -25,7 +25,7 @@ const renderFields = (fields, style) => fields.map(field =>
     );
 const RegistrationForm = () => (
   <div id="registrationForm">
-    {renderFields(fields, style)}
+    {renderFields(fieldsDefault, styleDefault)}
   </div>
 );
 

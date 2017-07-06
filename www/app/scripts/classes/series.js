@@ -20,7 +20,7 @@ class Series extends BaseClass {
     set key(newKey) {
         if (newKey) {
             this._key = newKey;
-       }
+        }
     }
 
     set seasons(seasonGroup) {
@@ -35,10 +35,10 @@ class Series extends BaseClass {
 
     set season(seasonKey) {
         this._seasons.push(seasonKey);
-        this._seasonsFetched ++;
+        this._seasonsFetched += 1;
     }
 
-    get firstSeason(){
+    get firstSeason() {
         return this._seasons[0];
     }
 

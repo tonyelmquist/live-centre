@@ -6,7 +6,7 @@ const VideoOverview = ({ video }) => (
 );
 
 VideoOverview.propTypes = {
-    video: PropTypes.object.isRequired,
+    video: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default VideoOverview;

@@ -105,7 +105,7 @@ Overlay.defaultProps = {
 
 Overlay.propTypes = {
     handleClose: PropTypes.func.isRequired,
-    children: PropTypes.object,
+    children: PropTypes.objectOf(PropTypes.any),
 };
 
 export default Overlay;

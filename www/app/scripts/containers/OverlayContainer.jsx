@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Overlay from '../components/common/Overlay';
 import Playback from '../components/common/Playback';
-import { showOverlay, hideOverlay } from '../actions/overlay';
-import { videoSelected, invalidateSelected, fullScreenMode, exitFullScreenMode } from '../actions/video';
+import { hideOverlay } from '../actions/overlay';
+// import { videoSelected, invalidateSelected, fullScreenMode, exitFullScreenMode } from '../actions/video';
 
 class OverlayContainer extends Component {
 
@@ -13,7 +13,8 @@ class OverlayContainer extends Component {
     }
 
     render() {
-        // console.log("Rendering the Overlay");
+        console.log('Rendering the Overlay');
+        console.log(this.props.videoUrl);
         return (
           <Overlay handleClose={this._handleClose}>
             <Playback videoUrl={this.props.videoUrl} />

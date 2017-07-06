@@ -9,9 +9,9 @@ import style from './constants/MuiStyle';
 import initLang from './utils/i18nextInit';
 import store from './utils/store';
 import initVideos from './utils/initVideos';
+// import io from 'socket.io-client';
 import initChangingScores from './utils/initScoreChanger';
 import initUserSettings from './utils/initUserSettings';
-import io from 'socket.io-client';
 
 // Enable Touch/Tap Events
 injectTapEventPlugin();

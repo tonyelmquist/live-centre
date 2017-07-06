@@ -2,7 +2,7 @@ import Actions from '../constants/reduxConstants';
 
 const defaultRequestState = {
     isFetching: false,
-    items: {},
+    items: [],
     categories: [],
 };
 export default function requestSent(state = defaultRequestState, action) {

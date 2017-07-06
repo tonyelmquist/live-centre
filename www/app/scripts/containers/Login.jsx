@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loginSuccess, showRegistration, hideRegistration } from '../actions/login';
-
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import { loginSuccess, showRegistration, hideRegistration } from '../actions/login';
+
+// import RaisedButton from 'material-ui/RaisedButton';
 import LoginForm from '../components/LoginForm';
 import RegistrationForm from '../components/RegistrationForm';
 /**
@@ -33,16 +33,16 @@ class Login extends Component {
     render() {
         const { isLogin } = this.props;
         const actions = [
-          <FlatButton
-              label={(isLogin) ? 'Registration' : 'Cancel'}
-              secondary
-              onTouchTap={(isLogin) ? this.handleRegister : this.handleCancel}
+            <FlatButton
+            label={(isLogin) ? 'Registration' : 'Cancel'}
+            secondary
+            onTouchTap={(isLogin) ? this.handleRegister : this.handleCancel}
             />,
             <FlatButton
-            label={(isLogin) ? 'Login' : 'Submit'}
-            primary
-            onTouchTap={(isLogin) ? this.handleLogin : this.handleCancel}
-          />,
+                label={(isLogin) ? 'Login' : 'Submit'}
+                primary
+                onTouchTap={(isLogin) ? this.handleLogin : this.handleCancel}
+            />,
         ];
 
         return (

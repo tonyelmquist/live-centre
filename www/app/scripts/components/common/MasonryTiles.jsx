@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-component';
-import { imagePrefix } from '../../constants/mediaPrefix.js';
+import { imagePrefix } from '../../constants/mediaPrefix';
 
 /*
     This component takes in an array of videos and returns a div with tiles,
@@ -12,27 +12,9 @@ import { imagePrefix } from '../../constants/mediaPrefix.js';
     react version: https://github.com/eiriklv/react-masonry-component#basic-usage
 */
 class MasonryTiles extends Component {
-    renderTiles = () =>
 
-        this.props.videos.map((video) => {
-            // If a filter string is not present show the tile, if not, try to match the filter
-            if (!this.props.filter > 0 || this.videoFilter(this.props.filter, video, this.props.filterByKey)) {
-                return (
-                  <div className="tile" key={`masonry-videos-${video.id}`}>
-                      <div className="masonry_tile_inner">
-                          <img src={imagePrefix + video.thumbnail} />
-                          <div className="tile-data">
-                              <h4>{video.title}</h4>
-                              <p className="metadata"> {video.description},</p>
-                            </div>
-                        </div>
-                    </div>
-                );
-            }
-        });
-
-    compare(videoString, filterArray) {
-        videoString = videoString.toLowerCase();
+    static compare(videoStringParam, filterArray) {
+        const videoString = videoStringParam.toLowerCase();
         for (let i = 0; i < filterArray.length; i++) {
             const filterString = filterArray[i].toLowerCase();
             // compare.
@@ -46,46 +28,65 @@ class MasonryTiles extends Component {
     // Looks at ALL metadata in video
     // Compare to all strings in filter array.
     // Only problem is some items, eg. tags are saved in array
-    matchWithFilters(filterArray, video, filterByKey) {
-        let contains = false;
-//        console.log("Filterarray",filterArray);
-        if (filterByKey) {
-            contains = this.compare(filterByKey.toLowerCase(), filterArray);
-        } else {
-            for (const key in video) {
-                if (typeof video[key] === 'string') {
-                    const videoString = video[key].toLowerCase();
-                    contains = this.compare(videoString, filterArray);
-                    if (contains) {
-                        // console.log("search found video:",video);
-                        break;
-                    }
-                }
-            }
-        }
-        return contains;
-    }
+//     static matchWithFilters(filterArray, video, filterByKey) {
+//         let contains = false;
+// //        console.log("Filterarray",filterArray);
+//         if (filterByKey) {
+//             contains = MasonryTiles.compare(filterByKey.toLowerCase(), filterArray);
+//         } else {
+//             for (const key in video) {
+//                 if (typeof video[key] === 'string') {
+//                     const videoString = video[key].toLowerCase();
+//                     contains = MasonryTiles.compare(videoString, filterArray);
+//                     if (contains) {
+//                         // console.log("search found video:",video);
+//                         break;
+//                     }
+//                 }
+//             }
+//         }
+//         return contains;
+//     }
 
     // Checks tags, description and title
-    videoFilter(filterArray, video, filterby) {
+    static videoFilter(filterArray, video) {
         let containsFilter = 0;
 
-        containsFilter += this.compare(video.description, filterArray);
+        containsFilter += MasonryTiles.compare(video.description, filterArray);
         if (containsFilter > 0) { return true; }
 
-        containsFilter += this.compare(video.title, filterArray);
+        containsFilter += MasonryTiles.compare(video.title, filterArray);
         if (containsFilter > 0) { return true; }
 
         // Compare with tag name and tag genre.
         for (let i = 0; i < video.tags.length; i++) {
-            containsFilter += this.compare(video.tags[i].name, filterArray);
-            containsFilter += this.compare(video.tags[i].type, filterArray);
+            containsFilter += MasonryTiles.compare(video.tags[i].name, filterArray);
+            containsFilter += MasonryTiles.compare(video.tags[i].type, filterArray);
             if (containsFilter > 0) {
                 return true;
             }
         }
         return false;
     }
+
+    renderTiles = () =>
+        this.props.videos.map((video) => {
+            // If a filter string is not present show the tile, if not, try to match the filter
+            if (!this.props.filter > 0 || MasonryTiles.videoFilter(this.props.filter, video, this.props.filterByKey)) {
+                return (
+                  <div className="tile" key={`masonry-videos-${video.id}`}>
+                    <div className="masonry_tile_inner">
+                      <img src={imagePrefix + video.thumbnail} alt={video.description} />
+                      <div className="tile-data">
+                        <h4>{video.title}</h4>
+                        <p className="metadata"> {video.description},</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+            }
+            return false;
+        });
     render() {
         const masonryOptions = {
             itemSelector: '.tile',
@@ -108,9 +109,14 @@ class MasonryTiles extends Component {
     }
 }
 
+MasonryTiles.defaultProps = {
+    filter: '',
+    filterByKey: '',
+};
+
 MasonryTiles.propTypes = {
-    videos: PropTypes.object.isRequired,
-    filter: PropTypes.array,
+    videos: PropTypes.objectOf(PropTypes.any).isRequired,
+    filter: PropTypes.arrayOf(PropTypes.any),
     filterByKey: PropTypes.string,
 };
 

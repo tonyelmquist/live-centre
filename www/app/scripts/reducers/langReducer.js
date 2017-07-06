@@ -1,10 +1,10 @@
-import Actions from '../constants/reduxConstants';
 import { REHYDRATE } from 'redux-persist/constants';
+import Actions from '../constants/reduxConstants';
 
 export default function langReducer(state = 'en', action) {
+    const persistedLang = action.payload.lang;
     switch (action.type) {
     case REHYDRATE:
-        const persistedLang = action.payload.lang;
         if (persistedLang) {
             return persistedLang;
         }

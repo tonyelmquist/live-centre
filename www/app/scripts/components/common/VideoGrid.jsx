@@ -7,7 +7,7 @@ class VideoGrid extends Component {
     _renderVideos = () =>
         this.props.videos.map(video =>
           (<Col xs={6} sm={4} md={3} key={video.id}>
-            <VideoItem video={video} handleClick={() => this.props.onSelect(video.video_url)} />
+            <VideoItem video={video} handleClick={() => this.props.onSelect(video.videoUrl)} />
           </Col>),
         );
 
@@ -24,7 +24,7 @@ class VideoGrid extends Component {
 }
 
 VideoGrid.propTypes = {
-    videos: PropTypes.array.isRequired,
+    videos: PropTypes.arrayOf(PropTypes.object).isRequired,
     onSelect: PropTypes.func.isRequired,
 };
 

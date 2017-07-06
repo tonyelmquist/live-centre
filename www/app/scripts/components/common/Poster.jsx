@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
 import PlayCircle from 'material-ui/svg-icons/av/play-circle-outline';
 import { fullWhite, teal300 } from 'material-ui/styles/colors';
-import { imagePrefix } from '../../constants/mediaPrefix';
 
 const styles = {
     icon: {

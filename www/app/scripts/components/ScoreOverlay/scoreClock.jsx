@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 class ScoreClock extends Component {
     constructor(props) {
@@ -7,17 +7,17 @@ class ScoreClock extends Component {
 
         this.state = {
             clock: '00:00',
-        }
+        };
 
         this.startClock = this.startClock.bind(this);
         this.incrementClock = this.incrementClock.bind(this);
 
         this.startClock();
-    };
+    }
 
     startClock() {
-        setInterval(this.incrementClock, 1000)
-    };
+        setInterval(this.incrementClock, 1000);
+    }
 
     incrementClock() {
         let currentMinutes = parseInt(this.state.clock.split(':')[0]);
@@ -25,39 +25,39 @@ class ScoreClock extends Component {
 
         currentSeconds += 1;
 
-        if(currentSeconds == 60) {
+        if (currentSeconds === 60) {
             currentSeconds = 0;
             currentMinutes += 1;
         }
 
-        let currentSecondsString = ''; 
+        let currentSecondsString = '';
 
-        if(currentSeconds < 10) {
-            currentSecondsString = '0' + currentSeconds;
+        if (currentSeconds < 10) {
+            currentSecondsString = `0${currentSeconds}`;
         } else {
-            currentSecondsString = '' + currentSeconds;
+            currentSecondsString = `${currentSeconds}`;
         }
 
-        let currentMinutesString = ''; 
+        let currentMinutesString = '';
 
-        if(currentMinutes < 10) {
-            currentMinutesString = '0' + currentMinutes;
+        if (currentMinutes < 10) {
+            currentMinutesString = `0${currentMinutes}`;
         } else {
-            currentMinutesString = '' + currentMinutes;
+            currentMinutesString = `${currentMinutes}`;
         }
 
-        this.setState({clock: currentMinutesString + ':' + currentSecondsString});
+        this.setState({ clock: `${currentMinutesString}:${currentSecondsString}` });
     }
 
     render() {
         return (
-            <div className='clock'>{this.state.clock}</div>
+          <div className="clock">{this.state.clock}</div>
         );
     }
 }
 
-ScoreClock.propTypes = {
+// ScoreClock.propTypes = {
 
-};
+// };
 
 export default ScoreClock;

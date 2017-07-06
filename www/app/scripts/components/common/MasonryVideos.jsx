@@ -11,28 +11,26 @@ import Masonry from 'react-masonry-component';
     react version: https://github.com/eiriklv/react-masonry-component#basic-usage
 */
 
-class MasonryVideos extends Component {
-    render() {
-        const masonryOptions = {
-            itemSelector: '.tile',
-            percentPosition: true,
-            columnWidth: '.tile',
-        };
+function MasonryVideos(props) {
+    const masonryOptions = {
+        itemSelector: '.tile',
+        percentPosition: true,
+        columnWidth: '.tile',
+    };
 
-        return (
-          <Masonry // More options; https://github.com/eiriklv/react-masonry-component#basic-usage
-            className={'masonry_tiles'}
-            options={masonryOptions}
-          >
-            { this.props.children }
+    return (
+      <Masonry // More options; https://github.com/eiriklv/react-masonry-component#basic-usage
+        className={'masonry_tiles'}
+        options={masonryOptions}
+      >
+        { props.children }
 
-          </Masonry>
-        );
-    }
+      </Masonry>
+    );
 }
 
 MasonryVideos.propTypes = {
-
+    children: PropTypes.node.isRequired,
 };
 
 MasonryVideos.defaultProps = {

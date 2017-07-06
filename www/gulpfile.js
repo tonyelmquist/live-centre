@@ -101,7 +101,7 @@ gulp.task('webpack', function(callback) {
         }
     }
 
-    return gulp.src('app/scripts/index.js')
+    return gulp.src('app/scripts/index.jsx')
         .pipe($.plumber())
         .pipe(named(function(file) {
             return FILE_NAME

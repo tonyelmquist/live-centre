@@ -4,15 +4,15 @@ import { DefaultPlayer as Video } from 'react-html5video';
 import 'react-html5video/dist/styles.css';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import FontIcon from 'material-ui/FontIcon';
-import { grey800 } from 'material-ui/styles/colors';
+// import FontIcon from 'material-ui/FontIcon';
+// import { grey800 } from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
-import { videoSelected, invalidateSelected } from '../actions/video';
-import { showOverlay, hideOverlay } from '../actions/overlay';
-import { videoPrefix } from '../constants/mediaPrefix';
+import { videoSelected } from '../actions/video';
+import { showOverlay } from '../actions/overlay';
+import videoPrefix from '../constants/mediaPrefix';
 
-const FEATURED_CATEGORY = 'Uncategorized';
+// const FEATURED_CATEGORY = 'Uncategorized';
 
 const styles = {
     carouselContainer: {
@@ -56,11 +56,12 @@ class HeroCarousel extends Component {
         selected: false,
     };
 
-    constructor(props, defaultProps) {
-        super(props, defaultProps);
-    }
+    // constructor(props, defaultProps) {
+    //     super(props, defaultProps);
+    // }
 
     _handlePlay = (assetid) => {
+        console.log('Trying to playy', `${videoPrefix}${assetid}`);
         this.props.dispatch(showOverlay());
         this.props.dispatch(videoSelected(`${videoPrefix}${assetid}`));
     };
@@ -74,7 +75,7 @@ class HeroCarousel extends Component {
     }
 
     render() {
-        const _this = this;
+        const self = this;
 
         const settingsLeft = {
             dots: false,
@@ -85,12 +86,12 @@ class HeroCarousel extends Component {
             initialSlide: 0,
             arrows: false,
             lazyLoad: true,
-            beforeChange(currentSlide, nextSlide) {
-        //   _this.syncLeft(nextSlide);
-            },
-            afterChange(currentSlide, nextSlide) {
-        //    _this.syncLeft(nextSlide);
-            },
+        //     beforeChange(currentSlide, nextSlide) {
+        // //   self.syncLeft(nextSlide);
+        //     },
+        //     afterChange(currentSlide, nextSlide) {
+        // //    self.syncLeft(nextSlide);
+        //     },
             responsive: [
                 {
                     breakpoint: 800,
@@ -120,7 +121,7 @@ class HeroCarousel extends Component {
                 },
             ],
             beforeChange(currentSlide, nextSlide) {
-                _this.syncLeft(nextSlide);
+                self.syncLeft(nextSlide);
             },
         };
 
@@ -133,9 +134,9 @@ class HeroCarousel extends Component {
 
             const imageList = videoKeys.map((videoKey) => {
                 const video = this.props.videos.items[videoKey];
-                const videoUrl = `${videoPrefix}${video.video_url}`;
+                const videoUrl = `${videoPrefix}${video.id}`;
                 return (
-                  <div key={`carousel-${videoUrl}`} style={styles.carousel}>
+                  <div key={`carousel-${videoKey}`} style={styles.carousel}>
                     <div className="heroCarouselImage" key={videoKey}>
                       <div className="carouselImageButton">
                         <IconButton
@@ -191,8 +192,8 @@ class HeroCarousel extends Component {
                         {video.title}
                       </h4>
                       <p className="description">
-                He says he's found the main computer to power the tractor beam
-                that's holding the ship here. He'll try to make the precise
+                He says hes found the main computer to power the tractor beam
+                thats holding the ship here. Hell try to make the precise
                 location appear on the monitor.
               </p>
                     </div>
@@ -229,7 +230,8 @@ class HeroCarousel extends Component {
 HeroCarousel.propTypes = {
     videos: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
-    selected: PropTypes.bool,
+    // selected: PropTypes.bool,
+    tags: PropTypes.any.isRequired,
 };
 
 const mapStateToProps = state => ({

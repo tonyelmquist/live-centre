@@ -29,8 +29,12 @@
         "no-underscore-dangle":["error", { "allowAfterThis": true }],
         "valid-typeof":"off",
         "no-unused-expressions":"off",
+        "no-plusplus": ["error", {"allowForLoopAfterthoughts": true}],
+        "max-len": "off",
+        "radix": ["error", "as-needed"],
         "react/forbid-prop-types": "off",
-        "no-pluspluss": "off"
+        "react/jsx-indent-props": "off",
+        "react/jsx-indent": "off"
     },
     "env": {
         "browser": true,

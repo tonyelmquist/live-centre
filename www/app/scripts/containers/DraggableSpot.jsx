@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import Draggable from 'react-draggable';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Fingerprint from 'material-ui/svg-icons/action/fingerprint';

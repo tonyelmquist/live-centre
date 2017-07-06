@@ -20,7 +20,7 @@ const TabLinks = (props) => {
 };
 
 TabLinks.propTypes = {
-    items: PropTypes.array.isRequired,
+    items: PropTypes.arrayOf(PropTypes.any).isRequired,
     active: PropTypes.number.isRequired,
     handleChange: PropTypes.func.isRequired,
 };

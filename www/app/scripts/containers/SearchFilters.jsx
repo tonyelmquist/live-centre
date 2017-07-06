@@ -1,4 +1,5 @@
 import React from 'react';
+import i18next from 'i18next';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 

@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import i18next from 'i18next';
 import PropTypes from 'prop-types';
 import SearchFilters from './SearchFilters';
-import VideoGrid from '../components/common/VideoGrid';
+// import VideoGrid from '../components/common/VideoGrid';
 import MasonryVideos from '../components/common/MasonryVideos';
 import MasonryVideoTile from '../components/common/MasonryVideoTile';
 import CirclesRow from '../components/common/CirclesRow';
-import { toggleFilter, clearFilter } from '../actions/search.js';
+import { toggleFilter, clearFilter } from '../actions/search';
 
 import CardContainer from '../containers/homepage/CardContainer';
 import { videoSelected } from '../actions/video';
 import { showOverlay } from '../actions/overlay';
-import Overlay from './OverlayContainer';
-import { showVideoCard, changeCardCategory, changeVideoInfo } from '../actions/videoCard';
-import { videoPrefix } from '../constants/mediaPrefix.js';
+// import Overlay from './OverlayContainer';
+import { showVideoCard, changeVideoInfo } from '../actions/videoCard';
+import videoPrefix from '../constants/mediaPrefix';
 
 class SearchContainer extends Component {
     /* One or more of the filteritems can have a clear property that when clicked,
@@ -25,59 +26,57 @@ class SearchContainer extends Component {
         } else {
             // console.log(filteritem.key);
             this.props.dispatch(toggleFilter(filteritem.key));
-        }   
+        }
     }
 
-    compare(videoString, filterArray){
-
+    compare(videoString, filterArray) {
         videoString = videoString.toLowerCase();
-        for(let i = 0; i<filterArray.length; i++){
+        for (let i = 0; i < filterArray.length; i++) {
             const filterString = filterArray[i].toLowerCase();
-            //compare.
-            if(videoString.includes(filterString) && filterString.length>0){
-                //console.log("Filter/search:",filterString, "==", videoString);
+            // compare.
+            if (videoString.includes(filterString) && filterString.length > 0) {
+                // console.log("Filter/search:",filterString, "==", videoString);
                 return 1;
-            } 
-            
+            }
+
         }
         return 0;
     }
-    //Checks tags, description and title
+    // Checks tags, description and title
     tiles_handleFilter = (filterArray, video, filterby) => {
+        // console.log(video.description, video.title, video.tags, filterArray);
 
-        //console.log(video.description, video.title, video.tags, filterArray);
-        
         let containsFilter = 0;
 
-        //console.log(video);
+        // console.log(video);
 
-        
+
         containsFilter += this.compare(video.description, filterArray);
-        if(containsFilter>0){ return true;}
+        if (containsFilter > 0) { return true; }
 
         containsFilter += this.compare(video.title, filterArray);
-        if(containsFilter>0){return true;}
+        if (containsFilter > 0) { return true; }
 
-        if(video.series){
+        if (video.series) {
             containsFilter += this.compare(video.series, filterArray);
-            if(containsFilter>0){return true;}
+            if (containsFilter > 0) { return true; }
         }
-        if(video.tags){
+        if (video.tags) {
             containsFilter += this.compare(video.tags, filterArray);
-            /*for(let i = 0; i < video.tags.length; i++){
+            /* for(let i = 0; i < video.tags.length; i++){
                 containsFilter += this.compare(video.tags[i], filterArray);
                 if(containsFilter>0){
                     return true;
                 }
             }*/
-            if(containsFilter>0){return true;}
+            if (containsFilter > 0) { return true; }
         }
     }
 
-    
+
     handleTileOpen = (video) => {
         this.props.dispatch(changeVideoInfo(video));
-        //this.props.dispatch(changeCardCategory(category));
+        // this.props.dispatch(changeCardCategory(category));
         this.props.dispatch(showVideoCard());
     }
 
@@ -149,7 +148,7 @@ class SearchContainer extends Component {
                 <MasonryVideoTile
                   filter={this.props.search.isSearching || !this.props.filter.isClear
                         ? [this.props.search.keyword, ...parseFilters(this.props.filter.filters)]
-                        : ["Lost In Time"]}
+                        : ['Lost In Time']}
                   videos={this.props.videos.items}
                   tags={this.props.tags}
                   handlefilter={this.tiles_handleFilter}

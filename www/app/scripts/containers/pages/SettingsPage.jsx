@@ -1,9 +1,10 @@
 import React from 'react';
+import i18next from 'i18next';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { RaisedButton, SelectField, MenuItem, Toggle, Snackbar, TextField } from 'material-ui';
 import { changeLang, changeAudioLang, changeSubtitleLang, toggleRecommendations, saveUserSettings } from '../../actions/settings';
 import FormList from '../../components/form/FormList';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
 const styles = {
     headline: {
@@ -58,11 +59,13 @@ class SettingsPage extends React.Component {
         // console.log('Snackbaar', this.state.snackbarIsOpen);
     }
 
-    handleActionTouchTap = () => this.state.snackbarIsOpen = false;
+    handleActionTouchTap = () => {
+        this.state.snackbarIsOpen = false;
+    }
 
     handleLanguageChange = (event, index, newLang) => {
         if (newLang !== this.props.settings.lang) {
-            i18next.changeLanguage(newLang, (err, t) => {
+            i18next.changeLanguage(newLang, () => {
                 this.props.dispatch(changeLang(newLang));
             });
         }
@@ -166,7 +169,7 @@ SettingsPage.propTypes = {
 };
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     settings: state.settings,
 });
 

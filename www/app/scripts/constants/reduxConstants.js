@@ -55,7 +55,7 @@ class ReduxConstants {
     // VIDEOS FETCH
     static get FETCH_VIDEO_SUCCESS() { return 'FETCH_VIDEO_SUCCESS'; }
     static get FETCH_VIDEO_FAILED() { return 'FETCH_VIDEO_FAILED'; }
-    static get FETCH_VIDEOS_SUCCESS() { return "FETCH_VIDEOS_SUCCESS"; }
+    static get FETCH_VIDEOS_SUCCESS() { return 'FETCH_VIDEOS_SUCCESS'; }
 
     // SERIES FETCH
     static get FETCH_SERIES_SUCCESS() { return 'FETCH_SERIES_SUCCESS'; }

@@ -4,7 +4,7 @@ import Series from '../classes/series';
 import Video from '../classes/video';
 import Tag from '../classes/tag';
 // import {videosFetched, seriesFetched, seasonsFetched, channelsFetched, tagsFetched} from '../actions/video';
-import { fetchVideoSuccess, fetchVideoFailed, fetchSeriesSuccess, fetchTagsSuccess } from '../actions/fetchData';
+import { fetchVideoSuccess, fetchSeriesSuccess, fetchTagsSuccess } from '../actions/fetchData';
 
 
 const config = {
@@ -15,7 +15,7 @@ const getData = param => axios({
     method: 'get',
     url: `${config.url + param}`,
     headers: {
-			 Authorization: 'Basic mcAPI2o17-H35t-password',
+        Authorization: 'Basic mcAPI2o17-H35t-password',
     },
 });
 
@@ -47,23 +47,23 @@ const initTempBackend = (store) => {
 
 
 /*
-	getData("seasons").then(function(response){
-		console.log("seasons", response.data);
-		//Save to store
-		//seasonsFetched(response.data);
-	});
+getData("seasons").then(function(response){
+    console.log("seasons", response.data);
+    //Save to store
+    //seasonsFetched(response.data);
+});
 
-	getData("channels").then(function(response){
-		console.log("channels", response.data);
-		//Save to store
-		//channelsFetched(response.data);
-	});
+getData("channels").then(function(response){
+    console.log("channels", response.data);
+    //Save to store
+    //channelsFetched(response.data);
+});
 
-	getData("tags").then(function(response){
-		console.log("tags", response.data);
-		//tagsFetched(response.data);
-		//Save to store
-	});*/
+getData("tags").then(function(response){
+    console.log("tags", response.data);
+    //tagsFetched(response.data);
+    //Save to store
+});*/
 };
 
 

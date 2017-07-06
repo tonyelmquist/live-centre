@@ -1,3 +1,7 @@
+import i18next from 'i18next';
+import enUSTranslation from '../../locale/en_us.po';
+import nbNOTranslation from '../../locale/nb_no.po';
+
 export default (store) => {
     i18next.init({
         lngs: ['en', 'nb'],
@@ -5,10 +9,10 @@ export default (store) => {
         fallbackLng: 'nb',
         resources: {
             en: {
-                translation: require('../../locale/en_us.po'),
+                translation: enUSTranslation,
             },
             nb: {
-                translation: require('../../locale/nb_no.po'),
+                translation: nbNOTranslation,
             },
         },
     });

@@ -9,7 +9,6 @@ import SearchInput from './SearchInput';
 import Logged from '../../containers/Logged';
 
 const HeaderMenu = (props) => {
-
     const HeaderMenuItem = (items) => {
         if (items.length > 0) {
             return items.map(item =>
@@ -67,10 +66,10 @@ const HeaderMenu = (props) => {
 };
 
 HeaderMenu.propTypes = {
-    pageItems: PropTypes.array.isRequired,
-    categoryItems: PropTypes.array.isRequired,
+    pageItems: PropTypes.arrayOf(PropTypes.any).isRequired,
+    categoryItems: PropTypes.arrayOf(PropTypes.any).isRequired,
     changeRoute: PropTypes.func.isRequired,
-    searchState: PropTypes.object.isRequired,
+    searchState: PropTypes.objectOf(PropTypes.any).isRequired,
     handleSearch: PropTypes.func.isRequired,
     openCloseSearch: PropTypes.func.isRequired,
 };

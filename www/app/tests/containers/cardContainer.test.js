@@ -16,7 +16,7 @@ describe('ProductCardContainer', () => {
                     views: 12,
                     preview_url: "#",
                     thumbnail: "lost-in-time.jpg",
-                    video_url: "731646302.mp4",
+                    videoUrl: "731646302.mp4",
                     season_id: 1,
                     episode_number: 1,
                     tags: [

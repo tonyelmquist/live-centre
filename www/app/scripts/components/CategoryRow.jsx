@@ -64,9 +64,9 @@ class CategoryRow extends Component {
         };
 
         const videoCard = (this.props.videoCard.isVisible && this.props.videoCard.category === this.props.tag.key) ?
-            <div>
-                <ProductCard />
-            </div> : undefined;
+          (<div>
+            <ProductCard />
+          </div>) : undefined;
 
         let videos = '';
 
@@ -80,12 +80,11 @@ class CategoryRow extends Component {
         };
 
         if (this.props.tag && this.props.videos) {
-            
-            videos = this.props.videos.map(video => (<div key={`category-item-${video.video_url}`}>
+            videos = this.props.videos.map(video => (<div key={`category-item-${video.id}`}>
               <CategoryItem
-                    video={video}
-                    handleClick={() => handleClick(video)}
-                  />
+                video={video}
+                handleClick={() => handleClick(video)}
+              />
             </div>));
         }
 
@@ -124,12 +123,12 @@ class CategoryRow extends Component {
 }
 
 CategoryRow.propTypes = {
-    tag: PropTypes.object,
-    videos: PropTypes.array,
+    tag: PropTypes.objectOf(PropTypes.any).isRequired,
+    videos: PropTypes.arrayOf(PropTypes.any).isRequired,
     handleCardCategory: PropTypes.func.isRequired,
     handleVideoInfo: PropTypes.func.isRequired,
     showVideoCard: PropTypes.func.isRequired,
-    videoCard: PropTypes.object,
+    videoCard: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default CategoryRow;

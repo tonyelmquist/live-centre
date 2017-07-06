@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import MediaQuery from 'react-responsive';
 import ProductCard from '../../components/homepage/ProductCard';
 import ProductCardMobile from '../../components/homepage/ProductCardMobile';
 import { changeCardIndex, hideVideoCard } from '../../actions/videoCard';
-import { videoSelected, invalidateSelected } from '../../actions/video';
-import { showOverlay, hideOverlay } from '../../actions/overlay';
-import { videoPrefix } from '../../constants/mediaPrefix';
+import { videoSelected } from '../../actions/video';
+import { showOverlay } from '../../actions/overlay';
+import videoPrefix from '../../constants/mediaPrefix';
 
-import MediaQuery from 'react-responsive';
 
 class ProductCardContainer extends Component {
     _handlePlay = (videoUrl) => {
@@ -22,7 +22,7 @@ class ProductCardContainer extends Component {
         this.props.dispatch(hideVideoCard());
     }
     render() {
-        if(this.props.isVisible){
+        if (this.props.isVisible) {
             return (
               <div>
                 <MediaQuery maxWidth={1000}>
@@ -54,11 +54,10 @@ class ProductCardContainer extends Component {
 
 
 ProductCardContainer.propTypes = {
-    changeTab: PropTypes.func,
-    index: PropTypes.object.isRequired,
+    index: PropTypes.number.isRequired,
     dispatch: PropTypes.func.isRequired,
     isVisible: PropTypes.bool.isRequired,
-    video: PropTypes.object.isRequired,
+    video: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 const mapStateToProps = state => ({

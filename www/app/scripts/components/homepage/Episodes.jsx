@@ -10,7 +10,7 @@ Episodes.defaultProps = {
 };
 
 Episodes.propTypes = {
-    items: PropTypes.array,
+    items: PropTypes.arrayOf(PropTypes.any),
 };
 
 export default Episodes;

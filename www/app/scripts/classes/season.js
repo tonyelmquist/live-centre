@@ -13,7 +13,7 @@ class Season extends BaseClass {
     get key() {
         if (typeof this._id === 'undefined') {
         // console.error('Tried to get ID of Series, was not set');
-	    return false;
+            return false;
         }
         return this._key;
     }
@@ -38,7 +38,7 @@ class Season extends BaseClass {
     // Push the episode to the end of the episodesarray
     set episode(videoID) {
         if (videoID) {
-            this._episodesFetched ++;
+            this._episodesFetched += 1;
             this._episodes.push(videoID);
         }
     }
@@ -48,12 +48,12 @@ class Season extends BaseClass {
         }
     }
 
-    get episodes(){
-        return this._episodes
+    get episodes() {
+        return this._episodes;
     }
 
-    get firstEpisode(){
-        return this._episodes[0]
+    get firstEpisode() {
+        return this._episodes[0];
     }
 
 

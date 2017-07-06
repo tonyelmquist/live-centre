@@ -1,7 +1,7 @@
+/* global i18next*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-import i18next from 'i18next';
 
 import { Motion, spring } from 'react-motion';
 
@@ -74,8 +74,8 @@ const ExpandableMenu = ({
 };
 
 ExpandableMenu.propTypes = {
-    pageItems: PropTypes.array.isRequired,
-    categoryItems: PropTypes.array.isRequired,
+    pageItems: PropTypes.arrayOf(PropTypes.any).isRequired,
+    categoryItems: PropTypes.arrayOf(PropTypes.any).isRequired,
     openCloseMenu: PropTypes.func.isRequired,
     isMenuOpen: PropTypes.func.isRequired,
     changeRoute: PropTypes.func.isRequired,

@@ -25,7 +25,7 @@ class CirclesRow extends Component {
 }
 
 CirclesRow.propTypes = {
-    items: PropTypes.array.isRequired,
+    items: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default CirclesRow;

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { MemoryRouter, Route } from 'react-router';
 // Actions
 // import {*} from '../actions/**';
-import Avatar from 'material-ui/Avatar';
+// import Avatar from 'material-ui/Avatar';
 // Custom components
 import Login from './Login';
-import Logged from './Logged';
+// import Logged from './Logged';
 import Header from './Header';
 
 // Pages
@@ -20,16 +21,20 @@ import Overlay from './OverlayContainer';
 import CategoryContainer from './CategoryContainer';
 import SearchOverlay from './SearchOverlay';
 
-import { TransitionMotion, spring, presets } from 'react-motion';
+// import { TransitionMotion, spring, presets } from 'react-motion';
 
 // import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
-import { MemoryRouter, Route, Link } from 'react-router';
 
 // import createHistory from 'history/createMemoryHistory';
 // const history = createHistory();
 
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+    }
     render() {
         return (
           <MemoryRouter initialEntries={['/Home']}>
@@ -37,8 +42,8 @@ class App extends Component {
               <Header />
               <div className="main">
                 {/* this.props.state_all.search.isOpen ? <SearchContainer/>  : <div></div>*/}
-              
-                {this.props.state_all.overlay.isVisible ? <Overlay />  : <div/> }
+
+                 {this.props.state_all.overlay.isVisible ? <Overlay /> : <div /> }
                 <SearchOverlay />
                 <div className="mainContent">
                   <Route exact path="/Home" component={HomePage} />
@@ -61,8 +66,9 @@ class App extends Component {
 }
 App.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    loginState: PropTypes.bool,
-    sidebarState: PropTypes.bool,
+    // loginState: PropTypes.bool,
+    // sidebarState: PropTypes.bool,
+    state_all: PropTypes.any.isRequired,
 };
 const mapStateToProps = state => ({
     loginState: state.isUserLoggedIn,

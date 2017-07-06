@@ -6,7 +6,7 @@ import promise from 'redux-promise-middleware';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import rootReducer from '../reducers/rootReducer';
 // Actions
-import { REHYDRATE } from 'redux-persist/constants';
+// import { REHYDRATE } from 'redux-persist/constants';
 // Array of middlewares
 const middlewares = [];
 
