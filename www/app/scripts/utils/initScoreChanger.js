@@ -14,6 +14,11 @@ const initChangingScores = (store) => {
         console.log('NEW_MESSAGE from socket received', data);
         store.dispatch(getMessage(data.id, data.user, data.message));
     });
+
+    socket.on('NEW_PENALTY_CARD', (data) => {
+        console.log('NEW_PENALTY_CARD from socket received', data);
+        // store.dispatch(getMessage(data.id, data.user, data.message));
+    });
 };
 
 export default initChangingScores;

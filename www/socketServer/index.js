@@ -24,6 +24,12 @@ io.on('connection', (socket) => {
         console.log('emitting NEW MESSAGE', message);
         socket.broadcast.emit('NEW_MESSAGE', message);
     });
+
+    socket.on('PENALTY_CARD_EMIT', (data) => {
+        const message = data;
+        console.log('emitting PENALTY CARD', message);
+        socket.broadcast.emit('NEW_PENALTY_CARD', message);
+    });
 });
 
 

@@ -5,23 +5,44 @@
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
+
+      .penalty-card {
+        width: 20px;
+        height: 30px;
+      }
+
+      .red-card {
+        background: red;
+      }
+
+      .yellow-card {
+        background: yellow;
+      }
     </style>
   </head>
   <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
+    <h2>Penalty Card</h2>
+    <input type='text' class='penalty-card-text' />
+    <button class='penalty-card red-card'></button>
+    <button class='penalty-card yellow-card'></button>
 
     <script src="/socket.io/socket.io.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous"></script>
     <script>
-        var socket = io();
+        var socket = io('localhost:3000');
+
+        $('.penalty-card').on('click', function() {
+            var type = $(this).hasClass('red-card') ? 'red' : 'yellow';
+            var message = $('.penalty-card-text').val();
+            console.log('PENALTY_CARD_EMIT', type, message);
+            socket.emit('PENALTY_CARD_EMIT', {
+              type: type,
+              message: message,
+          });
+        })
     </script>
   </body>
 </html>
