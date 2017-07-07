@@ -22,8 +22,7 @@ update_repo() {
 buildDeployWWW() {
 
 	echo "> Building WWW..."
-	npm install
-	npm install --only=dev
+		npm install
 	npm run build
 	npm run deploy
 
