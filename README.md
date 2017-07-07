@@ -30,10 +30,6 @@ $ git clone git@bitbucket.org:futureuniverse/live-centre.git
 $ cd live-centre/www
 $ npm install
 ```
-Note: Make sure that the dev-dependencies are also installed. In order to install the dev-dependencies run the following command:
-```sh
-$ npm install --only=dev
-```
 
 ### Building
 
@@ -173,6 +169,3 @@ Finally to update the modules themselves you need to use the npm update command
 ```sh
 $ npm update
 ```
-
-
-
