@@ -10,7 +10,6 @@ pipelines:
         script:
           - cd www
           - npm install
-          - npm install --only=dev
           - npm test
           - npm run build
           - npm run deploy
