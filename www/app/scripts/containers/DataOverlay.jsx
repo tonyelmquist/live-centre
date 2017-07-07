@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
 import BurstButton from '../components/BurstButton';
+import FidgetSpinner from '../components/FidgetSpinner';
 import ChatOverlay from '../components/ChatOverlay';
 import PenaltyCard from '../components/PenaltyCard';
 import ScoreOverlay from '../components/ScoreOverlay';
@@ -187,7 +188,8 @@ class DataOverlay extends Component {
           <div>
             {/* <div className="trapezoid" />*/}
             {/* <div style={styles.dataStyle}>Score: {this.props.score}</div>*/}
-            <BurstButton buttonLinks={this.burstButtonLinks} style={styles.burstButtonContainer} color="rgb(8, 3, 28)" hidden={this.state.isBurstButtonHidden} />
+            {/* <BurstButton buttonLinks={this.burstButtonLinks} style={styles.burstButtonContainer} color="rgb(8, 3, 28)" hidden={this.state.isBurstButtonHidden} />*/}
+            <FidgetSpinner />
             <ChatOverlay open={this.props.chat.chatOpen} messages={this.props.chat.messages} onMessageSend={this.onMessageSend} />
             <PenaltyCard open={this.state.penaltyCard.isShowing} text={this.state.penaltyCard.text} color={this.state.penaltyCard.color} />
             <ScoreOverlay score={this.props.score} onTeamOneClick={() => this.displayLineup(1)} onTeamTwoClick={() => this.displayLineup(2)} />

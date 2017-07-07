@@ -1,0 +1,30 @@
+.fidget-spinner-container {
+    position: absolute;
+    bottom: -160px;
+    right: -160px;
+
+    .fidget-spinner-center {
+        transform: scale(1);
+        transform-origin: center;
+        transition: .5s all;
+
+        &.isOpen {
+            transform: scale(.6);
+        }
+    }
+
+
+    .fidget-spinner-links {
+        transform-origin: center;
+    }
+
+    .fidget-spinner-link {
+        transform: scale(0);
+        transform-origin: center;
+        transition: .5s all;
+
+        &.isOpen {
+            transform: scale(1);
+        }
+    }
+}
