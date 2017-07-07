@@ -13,8 +13,6 @@ class OverlayContainer extends Component {
     }
 
     render() {
-        console.log('Rendering the Overlay');
-        console.log(this.props.videoUrl);
         return (
           <Overlay handleClose={this._handleClose}>
             <Playback videoUrl={this.props.videoUrl} />
@@ -31,6 +29,5 @@ OverlayContainer.propTypes = {
 const mapStateToProps = state => ({
     videoUrl: state.playback.url,
 });
-
 
 export default connect(mapStateToProps)(OverlayContainer);

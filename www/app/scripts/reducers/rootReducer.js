@@ -11,6 +11,9 @@ import overlayReducer from './productOverlayReducer';
 import { videosReducer, seasonReducer, seriesReducer, tagsReducer } from './fetchDataReducer';
 import settings from './settingsReducer';
 import chat from './chatReducer';
+import replay from './replayReducer';
+import highlights from './highlightsReducer';
+
 
 const rootReducer = combineReducers({
     // lang: langReducer,
@@ -35,6 +38,8 @@ const rootReducer = combineReducers({
     seasons: seasonReducer,
     settings,
     chat,
+    replay,
+    highlights,
 });
 
 export default rootReducer;

@@ -27,9 +27,9 @@ const styles = {
 
 class CategoryItem extends Component {
 
-    _handlePlay = (videoUrl) => {
+    _handlePlay = (assetID) => {
         this.props.dispatch(showOverlay());
-        this.props.dispatch(videoSelected(`${videoPrefix}${videoUrl}`));
+        this.props.dispatch(videoSelected(`${videoPrefix}${assetID}`));
     }
 
     render() {
@@ -44,7 +44,7 @@ class CategoryItem extends Component {
                 <IconButton iconStyle={styles.mediumIcon} style={styles.medium} onTouchTap={() => { this.props.handleClick(); }} >
                   <Info hoverColor={amber300} color={fullWhite} />
                 </IconButton>
-                <IconButton iconStyle={styles.mediumIcon} style={styles.medium} onTouchTap={() => { this._handlePlay(this.props.video.videoUrl); }} >
+                <IconButton iconStyle={styles.mediumIcon} style={styles.medium} onTouchTap={() => { this._handlePlay(this.props.video.id); }} >
                   <PlayCircleOutline hoverColor={amber300} color={fullWhite} />
                 </IconButton>
               </div>}

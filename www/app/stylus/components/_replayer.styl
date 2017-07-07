@@ -1,0 +1,37 @@
+@keyframes card-show {
+    0% {
+        opacity: 0;
+        right: 10px
+    }
+    3% {
+        opacity: 1;
+        right: 20px
+    }
+    97% {
+        opacity: 1;
+        right: 20px
+    }
+    100% {
+        opacity: 0;
+        right: 10px
+    }
+}
+
+.replayer {
+    width: 320px;
+    height: 180px;
+    border-radius: 5px;
+    background: transparent;
+    display: flex;
+    position: absolute;
+    bottom: 100px;
+    right: 20px;
+
+    &.open {
+        animation: card-show 12s forwards;
+    }
+}
+
+.video-react-control-bar .material-icons
+    color: white !important
+    font-size: 48px !important

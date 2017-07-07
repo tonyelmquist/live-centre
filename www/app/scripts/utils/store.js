@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
     const logger = createLogger({
         level: 'log',
         collapsed: true,
-        //Filter What to LOG by returning true/false in the method below
+        // Filter What to LOG by returning true/false in the method below
         // predicate: (getState, action) => action.type === REHYDRATE
     });
     middlewares.push(logger);
