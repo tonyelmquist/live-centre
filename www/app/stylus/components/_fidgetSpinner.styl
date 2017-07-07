@@ -1,7 +1,11 @@
 .fidget-spinner-container {
     position: absolute;
-    bottom: -160px;
-    right: -160px;
+    bottom: -120px;
+    right: -120px;
+
+    &.isOpen  {
+
+    }
 
     .fidget-spinner-center {
         transform: scale(1);
@@ -16,6 +20,10 @@
 
     .fidget-spinner-links {
         transform-origin: center;
+
+        &.isSliding {
+            transition: 1s all;
+        }
     }
 
     .fidget-spinner-link {

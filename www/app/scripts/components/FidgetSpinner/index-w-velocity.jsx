@@ -22,6 +22,7 @@ class FidgetSpinner extends Component {
             links: [],
             linkDistanceFromCenter: 140,
             linkSize: 80,
+            isSliding: false,
         };
 
         this.viewportSize = 360;
@@ -46,9 +47,14 @@ class FidgetSpinner extends Component {
         this.previousTouchPosition = {};
         this.nextTouchPosition = {};
 
+        this.terminalVelocity = 30;
+        this.deceleration = -2;
+        this.initialVelocity = 0;
+
         this.onCentralClick = this.onCentralClick.bind(this);
         this.touchStart = this.touchStart.bind(this);
         this.touchMove = this.touchMove.bind(this);
+        this.touchEnd = this.touchEnd.bind(this);
     }
 
     onCentralClick() {
@@ -58,6 +64,10 @@ class FidgetSpinner extends Component {
     }
 
     touchStart(e) {
+        this.setState({
+            slidingDuration: 0,
+        });
+        
         this.previousTouchPosition = {
             x: e.changedTouches.clientX,
             y: e.changedTouches.clientY,
@@ -73,21 +83,42 @@ class FidgetSpinner extends Component {
         const differenceMovement = {
             x: this.previousTouchPosition.x - this.nextTouchPosition.x,
             y: this.previousTouchPosition.y - this.nextTouchPosition.y,
-        }
+        };
 
         const currentRotation = this.state.rotation;
-        
-        console.log(differenceMovement);
-        console.log(this.state.rotationSpeed * differenceMovement.y, currentRotation);
         if (!isNaN(differenceMovement.x) && !isNaN(differenceMovement.y)) {
             this.setState({
                 rotation: this.state.rotation + (this.state.rotationSpeed * (differenceMovement.y)),
             });
         }
 
-        console.log(this.state.rotation);
+        // console.log('x velocity', differenceMovement.x);
+        // console.log('y velocity', differenceMovement.y);
+        // console.log('Initial Velocity!', Math.sqrt(differenceMovement.x ** 2 + differenceMovement.y ** 2, 2));
+        this.initialVelocity = Math.sqrt(differenceMovement.x ** 2 + differenceMovement.y ** 2, 2);
 
         this.previousTouchPosition = this.nextTouchPosition;
+    }
+
+    touchEnd(e) {
+        this.initialVelocity = Math.min(this.initialVelocity, this.terminalVelocity);
+        let time = -this.initialVelocity / this.deceleration;
+        console.log('Time', time);
+
+        let distance = (this.initialVelocity * time) + ((1 / 2)*this.deceleration*(time ** 2))
+        console.log('Distance', distance);
+
+        this.setState({
+            isSliding: true,
+            slidingDuration: time,
+            rotation: this.state.rotation + distance,
+        });
+
+        setTimeout(function() {
+            this.setState({
+                slidingDuration: 0,
+            });
+        }, time);
     }
 
     render() {
@@ -103,6 +134,11 @@ class FidgetSpinner extends Component {
             />
         ));
 
+        const slidingStyle = {
+            transform: `rotate(${this.state.rotation}deg)`,
+            transition: `${this.state.slidingDuration}s all`
+        }
+
         return (
             <div className={`fidget-spinner-container ${this.state.isOpen ? 'isOpen' : ''}`}>
                 <svg
@@ -113,11 +149,11 @@ class FidgetSpinner extends Component {
                     overflow="visible"
                 >
 
-                     <g className={`fidget-spinner-center ${this.state.isOpen ? 'isOpen' : ''}`} onClick={this.onCentralClick}>
+                     <g className={`fidget-spinner-center ${this.state.isOpen ? 'isOpen' : ''} ${this.state.isSliding ? 'isSliding' : ''}`} onClick={this.onCentralClick}>
                         <circle cx={this.centralXY} cy={this.centralXY} r={this.centralStartRadius} fill="red" />
                      </g>
 
-                     <g style={{transform: `rotate(${this.state.rotation}deg)`}} className={`fidget-spinner-links ${this.state.isOpen ? 'isOpen' : ''}`} onTouchStart={this.touchStart} onTouchMove={this.touchMove}>
+                     <g style={{ transform: `rotate(${this.state.rotation}deg)`, transition: `${this.state.slidingDuration}s all` }} className={`fidget-spinner-links ${this.state.isOpen ? 'isOpen' : ''}`} onTouchStart={this.touchStart} onTouchMove={this.touchMove} onTouchEnd={this.touchEnd} >
                         {spinnerLinks}
                      </g>
 

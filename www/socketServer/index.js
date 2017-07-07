@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
 
 const score = {
     team1Score: 0,
-    team2Score: 2,
+    team2Score: 0,
 };
 
 let messageID = 0;
@@ -34,10 +34,14 @@ io.on('connection', (socket) => {
 
 
 setInterval(() => {
-    score.team1Score += 1;
+    if (Math.random() < 0.5) {
+        score.team1Score += 1;
+    } else {
+        score.team2Score += 1;
+    }
     io.emit('SCORE_UPDATE', score);
     console.log('SCORE_UPDATE EMITTED', score);
-}, 20000);
+}, 30000);
 
 http.listen(3000, () => {
     console.log('listening on *:3000');
