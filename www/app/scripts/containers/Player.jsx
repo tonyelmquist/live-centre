@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
@@ -34,22 +34,30 @@ const styles = {
     },
 };
 
-function Player(props) {
-    return (
+class Player extends React.Component {
+    showReplay = (videoUrl) => {
+        const { player } = this.videoPlayer.getState();
+        const currentTime = player.currentTime;
+        this.props.dispatch(showReplay(videoUrl, currentTime - 10));
+        window.setTimeout(() => this.props.dispatch(hideReplay()), 12000);
+    };
+
+    showHighlights = (videoUrl, highlights) => {
+        this.props.dispatch(showHighlights(videoUrl, highlights));
+    };
+
+    render() {
+        return (
           <div style={styles.playerStyle} className="IMRPlayer">
-            <Video playsInline autoPlay>
-              <ControlBar autoHide>
+            <Video playsInline autoPlay ref={ref => (this.videoPlayer = ref)}>
+              <ControlBar autoHide={false}>
                 <PlayToggle />
                 <CurrentTimeDisplay />
                 <VolumeMenuButton vertical />
                 <IconButton
                   style={styles.iconButtons}
                   iconClassName="material-icons replay"
-                  onTouchTap={() => {
-                      props.dispatch(showReplay(props.videoUrl, 0));
-                      window.setTimeout(() => props.dispatch(hideReplay()), 12000);
-                  }
-                      }
+                  onTouchTap={() => this.showReplay(this.props.videoUrl, 0)}
                 >
               replay
             </IconButton>
@@ -63,7 +71,7 @@ function Player(props) {
                   style={styles.iconButtons}
                   iconClassName="material-icons highlights"
                   onTouchTap={() =>
-                props.dispatch(showHighlights(props.videoUrl, [
+                this.showHighlights(this.props.videoUrl, [
                   { timestamp: 0, description: 'A HIGHLIGHT', thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png' },
                     {
                         timestamp: 10,
@@ -71,18 +79,19 @@ function Player(props) {
                         title: 'ANOTHER HIGHLIGHT',
                         thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png',
                     },
-                ]))}
+                ])}
                 >
               movie_filter
             </IconButton>
               </ControlBar>
-              <source src={props.videoUrl} />
+              <source src={this.props.videoUrl} />
             </Video>
             <DataOverlay />
           </div>
-
-    );
+        );
+    }
 }
+
 
 Player.propTypes = {
     videoUrl: PropTypes.string.isRequired,

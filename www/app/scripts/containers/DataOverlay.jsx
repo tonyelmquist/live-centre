@@ -11,6 +11,7 @@ import Replayer from '../components/Replayer';
 import HighlightsRow from '../components/HighlightsRow';
 import PlayerInfoOverlay from '../components/PlayerInfoOverlay';
 import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
+import { hideHighlights } from '../actions/highlights';
 
 class DataOverlay extends Component {
     constructor(props) {
@@ -54,6 +55,7 @@ class DataOverlay extends Component {
         this.onPlayerInfoClose = this.onPlayerInfoClose.bind(this);
         this.onPlayerInfoBack = this.onPlayerInfoBack.bind(this);
         this.onLineupClose = this.onLineupClose.bind(this);
+        this.handleHighlightsClose = this.handleHighlightsClose.bind(this);
     }
 
     onMessageSend(message) {
@@ -98,13 +100,16 @@ class DataOverlay extends Component {
         });
     }
 
+    handleHighlightsClose() {
+        this.props.dispatch(hideHighlights());
+    }
+
     render() {
         const self = this;
         this.burstButtonLinks = [
             {
                 id: 1,
                 action() {
-                    console.log('Chat Button');
                     self.props.dispatch(toggleChatMenu());
                 },
                 icon: (
@@ -117,7 +122,6 @@ class DataOverlay extends Component {
             {
                 id: 2,
                 action() {
-                    console.log('Pressed ID 2');
                 },
                 icon: (
           <g>
@@ -128,9 +132,6 @@ class DataOverlay extends Component {
             },
             {
                 id: 3,
-                action() {
-                    console.log('Pressed ID 3');
-                },
                 icon: (
           <g>
             <path d="M0 0h24v24H0z" fill="none" />
@@ -140,9 +141,6 @@ class DataOverlay extends Component {
             },
             {
                 id: 4,
-                action() {
-                    console.log('Pressed ID 4');
-                },
                 icon: (
           <g>
             <path d="M0 0h24v24H0z" fill="none" />
@@ -153,7 +151,6 @@ class DataOverlay extends Component {
             {
                 id: 5,
                 action() {
-                    console.log('test');
                     self.setState({ isPenaltyCardShowing: true });
                     setTimeout(() => {
                         self.setState({ isPenaltyCardShowing: false });
@@ -211,6 +208,7 @@ class DataOverlay extends Component {
             open={this.props.highlights.highlightsOpen}
             highlights={this.props.highlights.highlights}
             videoUrl={this.props.highlights.videoUrl}
+            handleClose={this.handleHighlightsClose}
           />}
       </div>
         );

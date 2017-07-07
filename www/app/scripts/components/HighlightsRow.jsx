@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
+import Close from 'material-ui/svg-icons/navigation/close';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import HighlightItem from './HighlightItem';
 
 class HighlightsRow extends Component {
@@ -54,26 +56,33 @@ class HighlightsRow extends Component {
       </div>),
     );
 
-        console.log(videos);
-
         return (
-          <div className="highlightsSlider slider">
-            <div className="rowHeader">
-              <h3 className="rowTitle">Highlights</h3>
-            </div>
-            <div className="slider">
-              <Slider ref={c => (this.slider = c)} {...settings}>
-                {videos}
-              </Slider>
-            </div>
-          </div>
+      <div className="highlightsSlider slider">
+        <div className="rowHeader">
+          <h3 className="rowTitle">Highlights</h3>
+        </div>
+        <div className="slider">
+          <Slider ref={c => (this.slider = c)} {...settings}>
+            {videos}
+          </Slider>
+        </div>
+        <FloatingActionButton
+          mini
+          secondary
+          onTouchTap={this.props.handleClose}
+          className="highlightsCloseButton"
+        >
+          <Close />
+        </FloatingActionButton>
+      </div>
         );
     }
 }
 
 HighlightsRow.propTypes = {
-    highlights: PropTypes.array,
-    videoUrl: PropTypes.string,
+    highlights: PropTypes.array.isRequired,
+    videoUrl: PropTypes.string.isRequired,
+    handleClose: PropTypes.func.isRequired,
 };
 
 export default HighlightsRow;
