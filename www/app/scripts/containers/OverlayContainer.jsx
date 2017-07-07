@@ -32,5 +32,4 @@ const mapStateToProps = state => ({
     videoUrl: state.playback.url,
 });
 
-
 export default connect(mapStateToProps)(OverlayContainer);

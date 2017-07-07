@@ -19,6 +19,14 @@ class ReduxConstants {
     static get ENTER_FULL_SCREEN() { return 'ENTER_FULL_SCREEN'; }
     static get EXIT_FULL_SCREEN() { return 'EXIT_FULL_SCREEN'; }
 
+    // Replay
+    static get SHOW_REPLAY() { return 'SHOW_REPLAY'; }
+    static get HIDE_REPLAY() { return 'HIDE_REPLAY'; }
+
+    // Highlights
+    static get SHOW_HIGHLIGHTS() { return 'SHOW_HIGHLIGHTS'; }
+    static get HIDE_HIGHLIGHTS() { return 'HIDE_HIGHLIGHTS'; }
+
     // Data Overlay
     static get CHANGE_SCORE() { return 'CHANGE_SCORE'; }
     static get GET_MESSAGE() { return 'GET_MESSAGE'; }

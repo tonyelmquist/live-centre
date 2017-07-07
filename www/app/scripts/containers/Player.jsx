@@ -5,16 +5,13 @@ import {
   Player as Video,
   ControlBar,
   PlayToggle,
-  ReplayControl,
   CurrentTimeDisplay,
-  PlaybackRateMenuButton,
   VolumeMenuButton,
 } from 'video-react';
-// import FloatingActionButton from 'material-ui/FloatingActionButton';
 import IconButton from 'material-ui/IconButton';
-import 'react-html5video/dist/styles.css';
 import DataOverlay from './DataOverlay';
-// import DraggableSpot from './DraggableSpot';
+import { showReplay, hideReplay } from '../actions/replay';
+import { showHighlights } from '../actions/highlights';
 import '../../../node_modules/video-react/dist/video-react.css';
 
 const styles = {
@@ -31,41 +28,65 @@ const styles = {
         bottom: 5,
         right: 5,
     },
-    slomoButton: {
-        width: 18,
-        height: 18,
-        padding: 0,
-        fontSize: '48px',
-        color: 'white',
-        transition: 'none',
-        marginLeft: '-24px',
+    iconButtons: {
+        marginLeft: '12px',
+        marginRight: '12px',
     },
 };
 
 function Player(props) {
     return (
-        <div style={styles.playerStyle} className="IMRPlayer">
-        <Video autoPlay playsInline>
-            <ControlBar autoHide={false} disableDefaultControls>
-            <PlayToggle />
-            <ReplayControl seconds={30} order={1.1} />
-            <PlaybackRateMenuButton />
-            <IconButton
-                iconStyle={styles.slomoButton}
-                iconClassName="material-icons"
-            />
-            <CurrentTimeDisplay />
-            <VolumeMenuButton vertical />
-            </ControlBar>
-            <source src={props.videoUrl} />
-        </Video>
-        <DataOverlay />
-        </div>
+          <div style={styles.playerStyle} className="IMRPlayer">
+            <Video playsInline autoPlay>
+              <ControlBar autoHide>
+                <PlayToggle />
+                <CurrentTimeDisplay />
+                <VolumeMenuButton vertical />
+                <IconButton
+                  style={styles.iconButtons}
+                  iconClassName="material-icons replay"
+                  onTouchTap={() => {
+                      props.dispatch(showReplay(props.videoUrl, 0));
+                      window.setTimeout(() => props.dispatch(hideReplay()), 12000);
+                  }
+                      }
+                >
+              replay
+            </IconButton>
+                <IconButton
+                  style={styles.iconButtons}
+                  iconClassName="material-icons slomo"
+                >
+              slow_motion_video
+            </IconButton>
+                <IconButton
+                  style={styles.iconButtons}
+                  iconClassName="material-icons highlights"
+                  onTouchTap={() =>
+                props.dispatch(showHighlights(props.videoUrl, [
+                  { timestamp: 0, description: 'A HIGHLIGHT', thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png' },
+                    {
+                        timestamp: 10,
+                        description: 'ANOTHER HIGHLIGHT',
+                        title: 'ANOTHER HIGHLIGHT',
+                        thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png',
+                    },
+                ]))}
+                >
+              movie_filter
+            </IconButton>
+              </ControlBar>
+              <source src={props.videoUrl} />
+            </Video>
+            <DataOverlay />
+          </div>
+
     );
 }
 
 Player.propTypes = {
     videoUrl: PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
