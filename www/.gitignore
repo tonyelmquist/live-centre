@@ -13,6 +13,8 @@
 .idea/dynamic.xml
 .idea/uiDesigner.xml
 
+.vscode/settings.json
+
 # Gradle:
 .idea/gradle.xml
 .idea/libraries
