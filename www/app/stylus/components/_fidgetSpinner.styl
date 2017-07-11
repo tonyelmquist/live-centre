@@ -1,10 +1,17 @@
 .fidget-spinner-container {
     position: absolute;
-    bottom: -120px;
-    right: -120px;
+    bottom: -130px;
+    right: -130px;
+    transition: .5s all;
+    opacity: .3;
+    transform: scale(0) rotate(180deg);
 
-    &.isOpen  {
+    &.isShowing  {
+        transform: scale(1) rotate(0deg);
+    }
 
+    &.isOpen {
+        opacity: .9;
     }
 
     .fidget-spinner-center {
@@ -14,6 +21,13 @@
 
         &.isOpen {
             transform: scale(.6);
+        }
+    }
+
+    .fidger-spinner-touch-zone {
+        transform: scale(0);
+        &.isOpen {
+            transform: scale(1);
         }
     }
 

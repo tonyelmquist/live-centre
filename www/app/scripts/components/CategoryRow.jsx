@@ -56,7 +56,7 @@ class CategoryRow extends Component {
                 }, {
                     breakpoint: 480,
                     settings: {
-                        slidesToShow: 1,
+                        slidesToShow: 2,
                         slidesToScroll: 1,
                     },
                 },
@@ -96,19 +96,19 @@ class CategoryRow extends Component {
               </h3>
 
               <Link to={`/Category/${this.props.tag.key}`}>
-                <IconButton onTouchTap={this.next}>
+                {/*<IconButton onTouchTap={this.next}>
                   <FontIcon className="material-icons" color={grey800}>arrow_forward</FontIcon>
-                </IconButton>
+                </IconButton>*/}
               </Link>
 
-              <div className="sliderButtons">
+              {/* <div className="sliderButtons">
                 <IconButton onTouchTap={this.previous}>
                   <FontIcon className="material-icons" color={grey800}>arrow_back</FontIcon>
                 </IconButton>
                 <IconButton onTouchTap={this.next}>
                   <FontIcon className="material-icons" color={grey800}>arrow_forward</FontIcon>
                 </IconButton>
-              </div>
+              </div>*/}
             </div>
 
             <div className="slider">

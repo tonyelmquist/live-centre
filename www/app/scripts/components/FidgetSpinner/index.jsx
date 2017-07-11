@@ -18,7 +18,7 @@ class FidgetSpinner extends Component {
                 { id: 8 },
             ],
             rotation: 0,
-            rotationSpeed: 1,
+            rotationSpeed: .5,
             links: [],
             linkDistanceFromCenter: 140,
             linkSize: 80,
@@ -58,6 +58,7 @@ class FidgetSpinner extends Component {
     }
 
     touchStart(e) {
+        e.preventDefault();
         this.previousTouchPosition = {
             x: e.changedTouches.clientX,
             y: e.changedTouches.clientY,
@@ -65,6 +66,7 @@ class FidgetSpinner extends Component {
     }
 
     touchMove(e) {
+        e.preventDefault();
         this.nextTouchPosition = {
             x: e.changedTouches[0].clientX,
             y: e.changedTouches[0].clientY,
@@ -73,15 +75,15 @@ class FidgetSpinner extends Component {
         const differenceMovement = {
             x: this.previousTouchPosition.x - this.nextTouchPosition.x,
             y: this.previousTouchPosition.y - this.nextTouchPosition.y,
-        }
+        };
 
         const currentRotation = this.state.rotation;
-        
+
         console.log(differenceMovement);
         console.log(this.state.rotationSpeed * differenceMovement.y, currentRotation);
         if (!isNaN(differenceMovement.x) && !isNaN(differenceMovement.y)) {
             this.setState({
-                rotation: this.state.rotation + (this.state.rotationSpeed * (differenceMovement.y)),
+                rotation: this.state.rotation + (this.state.rotationSpeed * (differenceMovement.y + -differenceMovement.x)),
             });
         }
 
@@ -104,7 +106,7 @@ class FidgetSpinner extends Component {
         ));
 
         return (
-            <div className={`fidget-spinner-container ${this.state.isOpen ? 'isOpen' : ''}`}>
+            <div className={`fidget-spinner-container ${this.state.isOpen ? 'isOpen' : ''} ${this.props.isShowing ? 'isShowing' : ''}`}>
                 <svg
                     height={this.viewportSize}
                     viewBox={`0 0 ${this.viewportSize} ${this.viewportSize}`}
@@ -113,14 +115,14 @@ class FidgetSpinner extends Component {
                     overflow="visible"
                 >
 
-                     <g className={`fidget-spinner-center ${this.state.isOpen ? 'isOpen' : ''}`} onClick={this.onCentralClick}>
-                        <circle cx={this.centralXY} cy={this.centralXY} r={this.centralStartRadius} fill="red" />
-                     </g>
-
-                     <g style={{transform: `rotate(${this.state.rotation}deg)`}} className={`fidget-spinner-links ${this.state.isOpen ? 'isOpen' : ''}`} onTouchStart={this.touchStart} onTouchMove={this.touchMove}>
+                     <g style={{ transform: `rotate(${this.state.rotation}deg)` }} className={`fidget-spinner-links ${this.state.isOpen ? 'isOpen' : ''}`} onTouchStart={this.touchStart} onTouchMove={this.touchMove}>
+                        <rect className={`fidger-spinner-touch-zone ${this.state.isOpen ? 'isOpen' : ''}`} x="0" y="0" width={this.viewportSize} height={this.viewportSize} fill="transparent" />
                         {spinnerLinks}
                      </g>
 
+                     <g className={`fidget-spinner-center ${this.state.isOpen ? 'isOpen' : ''}`} onClick={this.onCentralClick}>
+                        <circle cx={this.centralXY} cy={this.centralXY} r={this.centralStartRadius} fill="red" />
+                     </g>
                 </svg>
           </div>
         );
@@ -128,11 +130,11 @@ class FidgetSpinner extends Component {
 }
 
 FidgetSpinner.defaultProps = {
-    isOpen: false,
+    isShowing: true,
 };
 
 FidgetSpinner.propTypes = {
-    isOpen: PropTypes.bool,
+    isShowing: PropTypes.bool,
 };
 
 export default FidgetSpinner;

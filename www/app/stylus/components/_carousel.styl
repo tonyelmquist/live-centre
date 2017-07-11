@@ -298,15 +298,33 @@
 
 .carouselImageButton
   position: absolute
-  top: 0  
+  bottom: 10px 
 
 .carouselImageTitleAndDescription
   position: absolute
-  top: 30px
+  bottom: 15px
   color: white
-  left: 120px
-  width: 60%
+  left: 66px
+  width: 75%
   z-index: 2
+
+.carouselImageTitle, .imageDescription
+  margin: 0
+
+.imageDescription 
+  font-size: 12px
+
+.carousel-underlay 
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  background: red;
+  z-index:1;
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
 .heroCarouselVideo    
   display: block
@@ -322,7 +340,6 @@
     display: none
   .heroCarouselImage 
     display: block
-    position: relative
   .carouselLeft
     flex-basis: 100%
   .heroCarousel

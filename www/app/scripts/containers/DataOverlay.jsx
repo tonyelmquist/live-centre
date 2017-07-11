@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
 import FidgetSpinner from '../components/FidgetSpinner';
+import BurstButton from '../components/BurstButton';
 import ChatOverlay from '../components/ChatOverlay';
 import PenaltyCard from '../components/PenaltyCard';
 import ScoreOverlay from '../components/ScoreOverlay';
@@ -23,7 +24,10 @@ class DataOverlay extends Component {
                 text: '',
                 color: '',
             },
-            isBurstButtonHidden: false,
+            fidgetSpinner: {
+                isShowing: false,
+            },
+            isBurstButtonShowing: false,
             isLineupShowing: false,
             isPlayerInfoShowing: false,
             socket: io('localhost:3000'), // Connect to specific video channel in the future?
@@ -67,7 +71,7 @@ class DataOverlay extends Component {
     onPlayerInfoClose() {
         this.setState({
             isPlayerInfoShowing: false,
-            isBurstButtonHidden: false,
+            isBurstButtonShowing: true,
         });
     }
 
@@ -81,7 +85,7 @@ class DataOverlay extends Component {
     onLineupClose() {
         this.setState({
             isLineupShowing: false,
-            isBurstButtonHidden: false,
+            isBurstButtonShowing: true,
         });
     }
 
@@ -94,7 +98,7 @@ class DataOverlay extends Component {
 
     displayLineup(teamToDisplay) {
         this.setState({
-            isBurstButtonHidden: true,
+            isBurstButtonShowing: false,
             isLineupShowing: true,
             teamToDisplay,
         });
@@ -169,7 +173,7 @@ class DataOverlay extends Component {
       <div>
         {/* <div className="trapezoid" />*/}
         {/* <div style={styles.dataStyle}>Score: {this.props.score}</div>*/}
-        {/* <BurstButton buttonLinks={this.burstButtonLinks} style={styles.burstButtonContainer} color="rgb(8, 3, 28)" hidden={this.state.isBurstButtonHidden} />*/}
+         <BurstButton buttonLinks={this.burstButtonLinks} color="rgb(8, 3, 28)" hidden={this.state.isBurstButtonShowing} />
         <FidgetSpinner />
         <ChatOverlay
           open={this.props.chat.chatOpen}

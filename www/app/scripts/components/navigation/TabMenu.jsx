@@ -14,6 +14,7 @@ const TabMenu = ({
   isSubPage,
   openCloseMenu,
   hideMenu,
+  isNaviconIncluded,
 }) => {
     const items = pageItems;
     const listItems = items.map(item =>
@@ -33,16 +34,22 @@ const TabMenu = ({
       <MediaQuery maxWidth={1000}>
         <Tabs className="bottomTabs">
           {listItems}
+          {isNaviconIncluded ?
           <Tab
             onClick={() => openCloseMenu()}
             icon={
               <AnimatedMenuIcon isMenuOpen={isMenuOpen} isSubPage={isSubPage} />
           }
             label="Menu"
-          />
+          /> : ''
+          }
         </Tabs>
       </MediaQuery>
     );
+};
+
+TabMenu.defaultProps = {
+    isNaviconIncluded: false,
 };
 
 TabMenu.propTypes = {
@@ -53,6 +60,7 @@ TabMenu.propTypes = {
     isSubPage: PropTypes.bool.isRequired,
     closeSearch: PropTypes.func.isRequired,
     hideMenu: PropTypes.func.isRequired,
+    isNaviconIncluded: PropTypes.bool.isRequired
 };
 
 export default TabMenu;

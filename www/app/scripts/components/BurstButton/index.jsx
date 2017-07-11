@@ -115,10 +115,10 @@ class BurstButton extends React.Component {
     }
 
     touchEnd() {
+        this.setState({ isOpen: false, activeButton: -1 });
         if (typeof this.state.links[this.state.activeButton] !== 'undefined') {
             this.state.links[this.state.activeButton].action();
         }
-        this.setState({ isOpen: false, activeButton: -1 });
     }
 
     click() {
@@ -137,7 +137,7 @@ class BurstButton extends React.Component {
 
         return (
           <div className="burst-button-container" style={this.props.style}>
-            <svg className={`burst-button ${this.props.hidden ? 'hide' : ''}`} height={this.viewportSize} viewBox={`0 0 ${this.viewportSize} ${this.viewportSize}`} width={this.viewportSize} xmlns="http://www.w3.org/2000/svg">
+            <svg className={`burst-button ${this.props.isShowing ? '' : 'hide'}`} height={this.viewportSize} viewBox={`0 0 ${this.viewportSize} ${this.viewportSize}`} width={this.viewportSize} xmlns="http://www.w3.org/2000/svg">
               {/* Large Central Circle */}
               <g className={`burst-large-circle ${this.state.isOpen ? 'open' : ''}`} onClick={this.toggleMenu} onTouchStart={this.touchStart} onTouchMove={this.touchMove} onTouchEnd={this.touchEnd}>
                 <circle cx={this.centerXY} cy={this.centerXY} r={this.state.size / 2} fill={this.props.color} />
@@ -159,7 +159,7 @@ BurstButton.defaultProps = {
     smallCircleDistance: 52,
     buttonLinks: [],
     color: 'rgb(8, 3, 28)',
-    hidden: false,
+    isShowing: true,
 };
 
 BurstButton.propTypes = {
@@ -172,7 +172,7 @@ BurstButton.propTypes = {
         icon: PropTypes.any,
     })),
     color: PropTypes.string,
-    hidden: PropTypes.bool,
+    isShowing: PropTypes.bool,
 };
 
 export default BurstButton;

@@ -46,27 +46,33 @@ class Player extends React.Component {
         this.props.dispatch(showHighlights(videoUrl, highlights));
     };
 
+    showControlBar = () => {
+
+    };
+
+
     render() {
+        console.log(this.videoPlayer);
         return (
           <div style={styles.playerStyle} className="IMRPlayer">
             <Video playsInline autoPlay ref={ref => (this.videoPlayer = ref)}>
-              <ControlBar autoHide={false}>
+              <ControlBar autoHide={false} >
+                <VolumeMenuButton horizontal />
                 <PlayToggle />
-                <CurrentTimeDisplay />
-                <VolumeMenuButton vertical />
+                {/* <CurrentTimeDisplay /> */}
                 <IconButton
                   style={styles.iconButtons}
                   iconClassName="material-icons replay"
                   onTouchTap={() => this.showReplay(this.props.videoUrl, 0)}
                 >
-              replay
-            </IconButton>
+                replay
+                </IconButton>
                 <IconButton
                   style={styles.iconButtons}
                   iconClassName="material-icons slomo"
                 >
-              slow_motion_video
-            </IconButton>
+                slow_motion_video
+                </IconButton>
                 <IconButton
                   style={styles.iconButtons}
                   iconClassName="material-icons highlights"
@@ -82,7 +88,7 @@ class Player extends React.Component {
                 ])}
                 >
               movie_filter
-            </IconButton>
+              </IconButton>
               </ControlBar>
               <source src={this.props.videoUrl} />
             </Video>

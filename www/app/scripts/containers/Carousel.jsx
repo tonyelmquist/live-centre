@@ -7,7 +7,7 @@ import Slider from 'react-slick';
 // import FontIcon from 'material-ui/FontIcon';
 // import { grey800 } from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
-import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
+import PlayCircleFilled from 'material-ui/svg-icons/av/play-circle-filled';
 import { videoSelected } from '../actions/video';
 import { showOverlay } from '../actions/overlay';
 import videoPrefix from '../constants/mediaPrefix';
@@ -23,6 +23,7 @@ const styles = {
     },
     carousel: {
         width: '67%',
+        position: 'relative',
     },
     rightButton: {},
     legend: {
@@ -35,15 +36,8 @@ const styles = {
     },
 
     largeIcon: {
-        width: 60,
-        height: 60,
-    },
-
-    large: {
-        width: 120,
-        height: 120,
-        padding: 30,
-        float: 'left',
+        width: 40,
+        height: 40,
     },
     debugTitle: {
         color: 'white',
@@ -61,7 +55,6 @@ class HeroCarousel extends Component {
     // }
 
     _handlePlay = (assetid) => {
-        console.log('Trying to playy', `${videoPrefix}${assetid}`);
         this.props.dispatch(showOverlay());
         this.props.dispatch(videoSelected(`${videoPrefix}${assetid}`));
     };
@@ -138,15 +131,15 @@ class HeroCarousel extends Component {
                 return (
                   <div key={`carousel-${videoKey}`} style={styles.carousel}>
                     <div className="heroCarouselImage" key={videoKey}>
+                      <div className="carousel-underlay" />
                       <div className="carouselImageButton">
                         <IconButton
                           iconStyle={styles.largeIcon}
-                          style={styles.large}
                           onTouchTap={() => {
                               this._handlePlay(video.id);
                           }}
                         >
-                          <PlayCircleOutline color="white" />
+                          <PlayCircleFilled color="white" />
                         </IconButton>
                       </div>
                       <div className="carouselImageTitleAndDescription">
@@ -185,7 +178,7 @@ class HeroCarousel extends Component {
                           this._handlePlay(video.id);
                       }}
                     >
-                      <PlayCircleOutline color="white" />
+                      <PlayCircleFilled color="white" />
                     </IconButton>
                     <div className="carouselTitleAndDescription">
                       <h4 className="carouselTitle">
