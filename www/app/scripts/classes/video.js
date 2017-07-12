@@ -50,7 +50,8 @@ class Video extends BaseClass {
             // console.error('Tried to get title of Video, was not set');
             return false;
         }
-        return this._title;
+
+        return this._title.replace(new RegExp('_', 'g'), ' ');
     }
     set title(newTitle) {
         if (newTitle) {
@@ -103,7 +104,7 @@ class Video extends BaseClass {
             console.error('Tried to get description of video, was not set.');
             return false;
         }
-        return this._description;
+        return this._description.replace(new RegExp('_', 'g'), ' ');
     }
 
     set description(description) {

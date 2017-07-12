@@ -40,6 +40,7 @@ class CategoryItem extends Component {
               title={''}
                     // subtitle={< span > by < b > {this.props.video.author} </b></span >}
               subtitle={''}
+              onTouchTap={() => { this.props.handleClick(); }}
               actionIcon={<div>
                 {/* <IconButton iconStyle={styles.mediumIcon} style={styles.medium} onTouchTap={() => { this.props.handleClick(); }} >
                   <Info hoverColor={amber300} color={fullWhite} />

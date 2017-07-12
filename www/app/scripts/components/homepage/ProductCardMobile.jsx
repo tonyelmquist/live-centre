@@ -14,7 +14,7 @@ const styles = {
         position: 'fixed',
         minWidth: '100%',
         minHeight: '100%',
-        zIndex: 2147483647,
+        zIndex: 500,
         top: 0,
         left: 0,
         backgroundColor: fullWhite,

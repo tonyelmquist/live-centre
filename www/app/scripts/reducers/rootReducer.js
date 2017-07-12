@@ -13,6 +13,7 @@ import settings from './settingsReducer';
 import chat from './chatReducer';
 import replay from './replayReducer';
 import highlights from './highlightsReducer';
+import overlayX from './overlayXReducer';
 
 
 const rootReducer = combineReducers({
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
     chat,
     replay,
     highlights,
+    overlayX
 });
 
 export default rootReducer;

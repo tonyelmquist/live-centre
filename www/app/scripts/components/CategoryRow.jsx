@@ -64,9 +64,7 @@ class CategoryRow extends Component {
         };
 
         const videoCard = (this.props.videoCard.isVisible && this.props.videoCard.category === this.props.tag.key) ?
-          (<div>
-            <ProductCard />
-          </div>) : undefined;
+          (<ProductCard />) : undefined;
 
         let videos = '';
 
@@ -91,15 +89,15 @@ class CategoryRow extends Component {
         return (
           <div className="slider">
             <div className="rowHeader">
-              <h3 className="rowTitle">
+              <Link className="rowTitle" to={`/Category/${this.props.tag.key}`}>
                 {this.props.tag.name}
-              </h3>
+              </Link>
 
-              <Link to={`/Category/${this.props.tag.key}`}>
+              {/*<Link to={`/Category/${this.props.tag.key}`}>*/}
                 {/*<IconButton onTouchTap={this.next}>
                   <FontIcon className="material-icons" color={grey800}>arrow_forward</FontIcon>
                 </IconButton>*/}
-              </Link>
+              {/*</Link>*/}
 
               {/* <div className="sliderButtons">
                 <IconButton onTouchTap={this.previous}>

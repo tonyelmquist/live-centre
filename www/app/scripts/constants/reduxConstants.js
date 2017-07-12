@@ -95,6 +95,13 @@ class ReduxConstants {
     static get SAVED_USER_SETTINGS() { return 'SAVED_USER_SETTINGS'; }
     static get SAVING_USER_SETTINGS_FAILED() { return 'SAVING_USER_SETTINGS_FAILED'; }
 
+    // Oveylay X
+    static get OVERLAY_X_OPEN() { return 'OVERLAY_X_OPEN'; }
+    static get OVERLAY_X_CLOSE() { return 'OVERLAY_X_CLOSE'; }
+    static get OVERLAY_X_MAXIMIZE() { return 'OVERLAY_X_MAXIMIZE'; }
+    static get OVERLAY_X_MINIMIZE() { return 'OVERLAY_X_MINIMIZE'; }
+    static get OVERLAY_X_SET_INFO() { return 'OVERLAY_X_SET_INFO'; }
+
 }
 
 export default ReduxConstants;

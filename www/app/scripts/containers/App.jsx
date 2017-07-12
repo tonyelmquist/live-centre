@@ -18,6 +18,7 @@ import SeriesPage from './pages/SeriesPage';
 import ChannelsPage from './pages/ChannelsPage';
 import TVGuidePage from './pages/TVGuidePage';
 import Overlay from './OverlayContainer';
+import OverlayX from './OverlayX';
 import CategoryContainer from './CategoryContainer';
 import SearchOverlay from './SearchOverlay';
 
@@ -56,6 +57,8 @@ class App extends Component {
                   <Route path="/Series" component={SeriesPage} />
                   <Route path="/TVGuide" component={TVGuidePage} />
                 </div>
+
+                <OverlayX />
               </div>
 
             </div>

@@ -7,13 +7,16 @@ import ProductCardMobile from '../../components/homepage/ProductCardMobile';
 import { changeCardIndex, hideVideoCard } from '../../actions/videoCard';
 import { videoSelected } from '../../actions/video';
 import { showOverlay } from '../../actions/overlay';
+import { openOverlayX, maximizeOverlayX } from '../../actions/overlayX';
 import videoPrefix from '../../constants/mediaPrefix';
 
 
 class ProductCardContainer extends Component {
     _handlePlay = (videoUrl) => {
-        this.props.dispatch(showOverlay());
-        this.props.dispatch(videoSelected(`${videoPrefix}${videoUrl}`));
+        this.props.dispatch(openOverlayX());
+        this.props.dispatch(maximizeOverlayX());
+        //this.props.dispatch(showOverlay());
+        //this.props.dispatch(videoSelected(`${videoPrefix}${videoUrl}`));
     }
     _changeCardIndex = (index) => {
         this.props.dispatch(changeCardIndex(index));
@@ -24,7 +27,7 @@ class ProductCardContainer extends Component {
     render() {
         if (this.props.isVisible) {
             return (
-              <div>
+              <div className='video-info-overlay'>
                 <MediaQuery maxWidth={1000}>
                   <ProductCardMobile
                     video={this.props.video}
