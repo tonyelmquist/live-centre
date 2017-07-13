@@ -1,8 +1,8 @@
 PODS:
   - AsyncSwift (2.0.1)
-  - Crashlytics (3.8.4):
+  - Crashlytics (3.8.5):
     - Fabric (~> 1.6.3)
-  - Fabric (1.6.11)
+  - Fabric (1.6.12)
   - ReachabilitySwift (3)
 
 DEPENDENCIES:
@@ -13,8 +13,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
-  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
+  Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
 
 PODFILE CHECKSUM: 4479e8891216a176048f7112be86f36bf6d422d1
