@@ -6,7 +6,7 @@ import i18next from 'i18next';
 import AnimatedMenuIcon from './../animatedIcons/AnimatedMenuIcon';
 
 
-const TabMenu = ({
+function TabMenu({
   pageItems,
   closeSearch,
   changeRoute,
@@ -15,25 +15,38 @@ const TabMenu = ({
   openCloseMenu,
   hideMenu,
   isNaviconIncluded,
-}) => {
+  onCenterClick,
+}) {
     const items = pageItems;
     const listItems = items.map(item =>
-    (<Tab
-      label={i18next.t(item.key)}
-      onClick={() => {
-          changeRoute(item.path);
-          closeSearch();
-          hideMenu();
-      }}
-      key={item.key}
-      icon={item.icon}
-    />),
-  );
+      (<Tab
+        label={i18next.t(item.key)}
+        onClick={() => {
+            changeRoute(item.path);
+            closeSearch();
+            hideMenu();
+        }}
+        key={item.key}
+        icon={item.icon}
+      />),
+    );
+
+    function insertCenterTab(listItems) {
+      listItems.splice(listItems.length/2, 0, (<Tab
+        onClick={() => {
+            console.log(onCenterClick)
+            onCenterClick()
+        }}
+        key='center-menu'
+        icon='x'
+      />));
+      return listItems;
+    }
 
     return (
       <MediaQuery maxWidth={1000}>
         <Tabs className="bottomTabs">
-          {listItems}
+          {insertCenterTab(listItems)}
           {isNaviconIncluded ?
           <Tab
             onClick={() => openCloseMenu()}
@@ -60,7 +73,8 @@ TabMenu.propTypes = {
     isSubPage: PropTypes.bool.isRequired,
     closeSearch: PropTypes.func.isRequired,
     hideMenu: PropTypes.func.isRequired,
-    isNaviconIncluded: PropTypes.bool.isRequired
+    isNaviconIncluded: PropTypes.bool.isRequired,
+    onCenterClick: PropTypes.func.isRequired,
 };
 
 export default TabMenu;

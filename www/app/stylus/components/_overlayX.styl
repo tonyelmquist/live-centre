@@ -4,51 +4,25 @@
 
     .ox-video-container {
         width: 100%;
-        height: 200px;
-        background: red;
+        height: 30%;
+        background: black;
         position: fixed;
         left: 0;  
-        transition: .6s all; 
-        z-index: 1001;
-        overflow: hidden;
+        top: 0;
+        touch-action: none;
+        z-index: 1100;
     }
 
     .ox-content {
         position: fixed;
         width: 100%;
-        height: 100%;
+        height: 70%;
         padding: 20px 20px 0 20px;
-        margin-top: 200px
         background: white;
+        will-change: transform;
+        top: 100%;
         left: 0;
-        transition: .6s all;
+        box-sizing: border-box;
+        z-index: 1050;
     }
-
-    &.open {
-        .ox-video-container, .ox-content {
-            top: 0;
-            opacity: 1;
-        }
-    }
-
-    &.closed {
-        .ox-video-container, .ox-content {
-            top: 100% !important;
-            opacity: 0;
-        }
-    }
-
-    &.minimized {
-        .ox-video-container {
-            width: 180px;
-            height: 100px;
-            top: calc(100% - 120px)
-            left: calc(100% - 200px)
-        }
-        .ox-content {
-            top: 100%;
-            opacity: 0;
-        }
-    }
-
 }

@@ -26,7 +26,7 @@ export default function overlayX(state = defaultState, action) {
         });
     case Actions.OVERLAY_X_SET_INFO:
         return Object.assign({}, state, {
-            info: action.info
+            info: action.videoInfo
         })
     default:
         return state;

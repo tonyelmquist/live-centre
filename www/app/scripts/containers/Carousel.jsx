@@ -11,6 +11,7 @@ import PlayCircleFilled from 'material-ui/svg-icons/av/play-circle-filled';
 import { videoSelected } from '../actions/video';
 import { showOverlay } from '../actions/overlay';
 import videoPrefix from '../constants/mediaPrefix';
+import { openOverlayX, maximizeOverlayX, setVideoInfo } from '../actions/overlayX';
 
 // const FEATURED_CATEGORY = 'Uncategorized';
 
@@ -55,8 +56,13 @@ class HeroCarousel extends Component {
     // }
 
     _handlePlay = (assetid) => {
-        this.props.dispatch(showOverlay());
+
+        console.log(`${videoPrefix}${assetid}`);
+        // this.props.dispatch(setVideoInfo({url: `{videoPrefix}${assetid}`}));
         this.props.dispatch(videoSelected(`${videoPrefix}${assetid}`));
+        // this.props.dispatch(openOverlayX());
+        // this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(showOverlay());
     };
 
     syncLeft(currentSlide) {

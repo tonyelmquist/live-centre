@@ -1,5 +1,9 @@
 import Actions from '../constants/reduxConstants';
 
+export function setVideoInfo(videoInfo) {
+    return { type: Actions.OVERLAY_X_SET_INFO, videoInfo };
+}
+
 export function minimizeOverlayX() {
     return { type: Actions.OVERLAY_X_MINIMIZE };
 }

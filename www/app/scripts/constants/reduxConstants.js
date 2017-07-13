@@ -39,6 +39,11 @@ class ReduxConstants {
     static get MENU_SHOW() { return 'MENU_SHOW'; }
     static get MENU_HIDE() { return 'MENU_HIDE'; }
 
+    // Drawer
+    static get DRAWER_MENU_TOGGLE() { return 'DRAWER_MENU_TOGGLE'; }
+    static get DRAWER_MENU_SHOW() { return 'DRAWER_MENU_SHOW'; }
+    static get DRAWER_MENU_HIDE() { return 'DRAWER_MENU_HIDE'; }
+
     // Search
     static get TOGGLE_SEARCH() { return 'TOGGLE_SEARCH'; }
     static get SEARCH_KEYWORD() { return 'SEARCH_KEYWORD'; }

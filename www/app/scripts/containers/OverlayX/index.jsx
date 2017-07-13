@@ -23,8 +23,8 @@ class OverlayX extends Component {
     render() {
         return (
             <div className={`overlay-x-container ${this.props.overlayX.maximized ? 'maximized' : 'minimized'} ${this.props.overlayX.open ? 'open' : 'closed'}`}>
-                <VideoX onMaximize={this.onMaximize} onMinimize={this.onMinimize}/>
-                <ContentX />
+                <VideoX onMaximize={this.onMaximize} onMinimize={this.onMinimize} isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized} videoUrl={this.props.videoUrl} />
+                <ContentX isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized} />
             </div>
         );
     }
@@ -36,6 +36,7 @@ OverlayX.propTypes = {
 
 const mapStateToProps = state => ({
     overlayX: state.overlayX,
+    videoUrl: state.playback.url
 });
 
 export default connect(mapStateToProps)(OverlayX);

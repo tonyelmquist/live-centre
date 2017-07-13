@@ -1,0 +1,16 @@
+.drawer-menu {
+    position: fixed;
+    left: 0;
+    top: 100%;
+    width: 50%; // Prop
+    height: 100%;
+    background: red; // Prop
+    transform: translate3d(0, 0, 0);
+    transition: transform 600ms ease-out;
+    will-change: transform;
+    z-index: 1000;
+
+    &.isOpen {
+        transform: translate3d(0, -100%, 0 );
+    }
+}

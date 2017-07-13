@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+
 // Shared icons
 import HomeIcon from 'material-ui/svg-icons/action/home';
 import TVicon from 'material-ui/svg-icons/hardware/tv';
 import ChannelIcon from 'material-ui/svg-icons/action/language';
 import VideoIcon from 'material-ui/svg-icons/AV/videocam';
-import { toggleMenu, hideMenu } from '../actions/navigation';
+import { toggleMenu, hideMenu, toggleDrawerMenu } from '../actions/navigation';
+
 // Menu components
 import HeaderMenu from './../components/navigation/HeaderMenu';
+import DrawerMenu from './../components/navigation/DrawerMenu';
 import TabMenu from './../components/navigation/TabMenu';
 import ExpandableMenu from './../components/navigation/ExpandableMenu';
 import { searchKeyword, toggleSearch, closeSearch, emptySearch } from '../actions/search';
@@ -83,6 +86,8 @@ class Header extends Component {
     }
 
     isMenuOpen = () => this.props.menuIsOpen
+    isDrawerMenuOpen = () => this.props.isDrawerMenuOpen
+    onTabMenuCenterClick = () => this.props.dispatch(toggleDrawerMenu())
 
     changeRoute = path => this.props.history.push(path);
 
@@ -137,6 +142,7 @@ class Header extends Component {
               openCloseMenu={this.openCloseMenu}
               closeSearch={this.closeSearch}
               hideMenu={this.hideMenu}
+              onCenterClick={this.onTabMenuCenterClick}
             />
             <ExpandableMenu
               categoryItems={this.categoryItems()}
@@ -145,6 +151,9 @@ class Header extends Component {
               isMenuOpen={this.isMenuOpen}
               changeRoute={this.changeRoute}
               closeSearch={this.closeSearch}
+            />
+            <DrawerMenu
+              isOpen={this.isDrawerMenuOpen()}
             />
           </div>
         );
@@ -160,6 +169,7 @@ Header.propTypes = {
     tags: PropTypes.object.isRequired,
     search: PropTypes.object.isRequired,
     settings: PropTypes.object.isRequired,
+    isDrawerMenuOpen: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -167,6 +177,7 @@ const mapStateToProps = state => ({
     tags: state.tags.items,
     search: state.search,
     settings: state.settings,
+    isDrawerMenuOpen: state.drawerMenuState,
 });
 
 

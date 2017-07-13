@@ -41,12 +41,12 @@ class App extends Component {
           <MemoryRouter initialEntries={['/Home']}>
             <div>
               <Header />
-              <div className="main">
+              <div className="main" id="main">
                 {/* this.props.state_all.search.isOpen ? <SearchContainer/>  : <div></div>*/}
 
                  {this.props.state_all.overlay.isVisible ? <Overlay /> : <div /> }
                 <SearchOverlay />
-                <div className="mainContent">
+                <div className="mainContent" id="mainContent">
                   <Route exact path="/Home" component={HomePage} />
                   <Route path="/Login" component={Login} />
                   <Route path="/Settings" component={SettingsPage} />

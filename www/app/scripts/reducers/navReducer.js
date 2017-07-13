@@ -22,5 +22,18 @@ function headerMenuState(state = false, action) {
     }
 }
 
-export { changeNavIndex, headerMenuState };
+function drawerMenuState(state = false, action) {
+    switch (action.type) {
+    case Actions.DRAWER_MENU_TOGGLE:
+        return !state;
+    case Actions.DRAWER_MENU_SHOW:
+        return true;
+    case Actions.DRAWER_MENU_HIDE:
+        return false;
+    default:
+        return state;
+    }
+}
+
+export { changeNavIndex, headerMenuState, drawerMenuState };
 
