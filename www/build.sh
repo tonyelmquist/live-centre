@@ -11,18 +11,19 @@ echo "> Alright, let's build the app for which iOS Simulator? (Device UDID)"
 read deviceUDID
 
 update_repo() {
-	
+
 	echo "> Updating repo..."
+	git reset --hard HEAD
 	git fetch --prune
 	git checkout master
 	git pull
-	
+
 }
 
 buildDeployWWW() {
 
 	echo "> Building WWW..."
-		npm install
+	npm install
 	npm run build
 	npm run deploy
 
