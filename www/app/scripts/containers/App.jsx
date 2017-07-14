@@ -49,13 +49,16 @@ class App extends Component {
     }
 
     dispatchOrientation = () => {
-      if (window.matchMedia("(orientation: portrait)").matches) {
-        this.props.dispatch(setPortrait())
-      }
+        const self = this;
+        setTimeout(function() {
+            if (screen.width < screen.height) {
+                self.props.dispatch(setPortrait())
+            }
 
-      if (window.matchMedia("(orientation: landscape)").matches) {
-        this.props.dispatch(setLandscape())
-      }
+            if (screen.width > screen.height) {
+                self.props.dispatch(setLandscape())
+            }
+        }, 500);
     }
     render() {
         return (
