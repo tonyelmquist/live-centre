@@ -1,6 +1,6 @@
 // import Snackbar from 'material-ui/Snackbar';
 import axios from 'axios';
-import Actions from '../constants/reduxConstants';
+import Actions, { Orientation } from '../constants/reduxConstants';
 
 
 export function fetchUserSettingsSent() {
@@ -61,4 +61,12 @@ export function saveUserSettings(settings) {
             dispatch(savingUserSettingsFailed());
         });
     };
+}
+
+export function setPortrait() {
+    return { type: Actions.SET_ORIENTATION, orientation: Orientation.PORTRAIT };
+}
+
+export function setLandscape() {
+    return { type: Actions.SET_ORIENTATION, orientation: Orientation.LANDSCAPE };
 }

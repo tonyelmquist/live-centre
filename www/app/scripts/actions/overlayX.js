@@ -20,3 +20,12 @@ export function closeOverlayX() {
     return { type: Actions.OVERLAY_X_CLOSE };
 }
 
+export function setCurrentTimeInOverlayX(newTime) {
+    return { type: Actions.SET_CURRENT_TIME, time: newTime };
+}
+
+export function resetCurrentTimeInOverlayX() {
+    return { type: Actions.SET_CURRENT_TIME, time: 0 };
+}
+
+

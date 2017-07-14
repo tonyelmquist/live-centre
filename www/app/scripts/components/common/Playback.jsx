@@ -4,7 +4,6 @@ import Player from '../../containers/Player';
 
 
 function Playback(props) {
-    console.log('Reached playback with', props.videoUrl);
     return (
             <Player videoUrl={props.videoUrl} />);
 }

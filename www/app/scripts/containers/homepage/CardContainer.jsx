@@ -7,6 +7,7 @@ import ProductCardMobile from '../../components/homepage/ProductCardMobile';
 import { changeCardIndex, hideVideoCard } from '../../actions/videoCard';
 import { videoSelected } from '../../actions/video';
 import { showOverlay } from '../../actions/overlay';
+import { resetCurrentTimeInOverlayX } from '../../actions/overlayX';
 import { openOverlayX, maximizeOverlayX, setVideoInfo } from '../../actions/overlayX';
 import videoPrefix from '../../constants/mediaPrefix';
 
@@ -18,6 +19,7 @@ class ProductCardContainer extends Component {
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(`${videoPrefix}${assetId}`));
+        this.props.dispatch(resetCurrentTimeInOverlayX());
     }
     _changeCardIndex = (index) => {
         this.props.dispatch(changeCardIndex(index));

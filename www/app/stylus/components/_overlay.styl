@@ -12,18 +12,21 @@
 
 .fs-overlay {
     position: absolute /* Sit on top of the page content */
-    display: block /* Hidden by default */
     width: 100% /* Full width (cover the whole page) */
     min-height: 100% /* Full height (cover the whole page) */
     top:0
     left: 0
     background-color: white
     z-index: 100 /* Specify a stack order in case you're using a different order for other elements*/
+    display: none;
+
+    &.isOpen {
+        display: block;
+    }
     .overlay-header {
         // margin-top: 48px
 		margin-bottom: 8px;
         display:flex
         justify-content: space-between
-
     }
 }

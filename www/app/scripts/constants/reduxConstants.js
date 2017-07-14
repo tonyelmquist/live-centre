@@ -18,6 +18,7 @@ class ReduxConstants {
     static get INVALIDATE_SELECTED() { return 'INVALIDATE_SELECTED'; }
     static get ENTER_FULL_SCREEN() { return 'ENTER_FULL_SCREEN'; }
     static get EXIT_FULL_SCREEN() { return 'EXIT_FULL_SCREEN'; }
+    static get SET_CURRENT_TIME() { return 'SET_CURRENT_TIME'; }
 
     // Replay
     static get SHOW_REPLAY() { return 'SHOW_REPLAY'; }
@@ -91,6 +92,7 @@ class ReduxConstants {
     static get CHANGE_SUBTITLE_LANG() { return 'CHANGE_SUBTITLE_LANG'; }
     static get CHANGE_AUDIO_LANG() { return 'CHANGE_AUDIO_LANG'; }
     static get TOGGLE_RECOMMENDATIONS() { return 'TOGGLE_RECOMMENDATIONS'; }
+    static get SET_ORIENTATION() { return 'SET_ORIENTATION'; }
 
     static get FETCH_USER_SETTINGS_SENT() { return 'FETCH_USER_SETTINGS_SENT'; }
     static get FETCH_USER_SETTINGS_SUCCESS() { return 'FETCH_USER_SETTINGS_SUCCESS'; }
@@ -107,6 +109,11 @@ class ReduxConstants {
     static get OVERLAY_X_MINIMIZE() { return 'OVERLAY_X_MINIMIZE'; }
     static get OVERLAY_X_SET_INFO() { return 'OVERLAY_X_SET_INFO'; }
 
+}
+
+export class Orientation {
+    static get PORTRAIT() { return 'PORTRAIT'; }
+    static get LANDSCAPE() { return 'LANDSCAPE'; }
 }
 
 export default ReduxConstants;

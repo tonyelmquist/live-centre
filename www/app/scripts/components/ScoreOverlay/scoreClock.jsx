@@ -7,19 +7,17 @@ class ScoreClock extends Component {
 
         this.state = {
             clock: '00:00',
+            interval: null,
         };
-
-        this.startClock = this.startClock.bind(this);
-        this.incrementClock = this.incrementClock.bind(this);
-
-        this.startClock();
     }
 
-    startClock() {
-        setInterval(this.incrementClock, 1000);
-    }
+    componentDidMount = () => this.startClock();
+    componentWillUnmount = () => this.endClock();
 
-    incrementClock() {
+    startClock = () => this.setState({interval: setInterval(this.incrementClock, 1000)});
+    endClock = () => clearInterval(this.state.interval);
+
+    incrementClock = () => {
         let currentMinutes = parseInt(this.state.clock.split(':')[0]);
         let currentSeconds = parseInt(this.state.clock.split(':')[1]);
 

@@ -11,6 +11,7 @@ import {
 import IconButton from 'material-ui/IconButton';
 import DataOverlay from './DataOverlay';
 import { showReplay, hideReplay } from '../actions/replay';
+import { setCurrentTimeInOverlayX } from '../actions/overlayX';
 import { showHighlights } from '../actions/highlights';
 import '../../../node_modules/video-react/dist/video-react.css';
 
@@ -36,7 +37,7 @@ const styles = {
 
 class Player extends React.Component {
     showReplay = (videoUrl) => {
-        const { player } = this.videoPlayer.getState();
+        const { player } = this.largeVideoPlayer.getState();
         const currentTime = player.currentTime;
         this.props.dispatch(showReplay(videoUrl, currentTime - 10));
         window.setTimeout(() => this.props.dispatch(hideReplay()), 12000);
@@ -50,12 +51,29 @@ class Player extends React.Component {
 
     };
 
+    componentWillUnmount = () => {
+        const { player } = this.largeVideoPlayer.getState()
+        if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
+            console.log('On Unmount', player.currentTime);
+            this.props.dispatch(setCurrentTimeInOverlayX(player.currentTime));
+        }
+    }
 
     render() {
-        console.log(this.videoPlayer);
+        if(typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
+            if (this.videoLoaded !== this.props.videoUrl) {
+                const currTime = this.props.videoPosition;
+                this.largeVideoPlayer.load();
+                console.log(this.largeVideoPlayer);
+                this.largeVideoPlayer.video.video.addEventListener('loadedmetadata', function() {
+                    this.currentTime = currTime;
+                }, false)
+                this.videoLoaded = this.props.videoUrl;
+            }
+        }
         return (
           <div style={styles.playerStyle} className="IMRPlayer">
-            <Video playsInline autoPlay ref={ref => (this.videoPlayer = ref)}>
+            <Video playsInline autoPlay ref={ref => (this.largeVideoPlayer = ref)}>
               <ControlBar autoHide={false} >
                 <VolumeMenuButton horizontal />
                 <PlayToggle />
@@ -90,7 +108,7 @@ class Player extends React.Component {
               movie_filter
               </IconButton>
               </ControlBar>
-              <source src={this.props.videoUrl} />
+              <source src={this.props.videoUrl + '#t=' + this.props.videoPosition} />
             </Video>
             <DataOverlay />
           </div>
@@ -98,14 +116,19 @@ class Player extends React.Component {
     }
 }
 
+Player.defaultProps = {
+    videoPosition: 0,
+}
 
 Player.propTypes = {
     videoUrl: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired,
+    videoPosition: PropTypes.number,
 };
 
 const mapStateToProps = state => ({
     videoUrl: state.playback.url,
+    videoPosition: state.playback.currentTime,
 });
 
 export default connect(mapStateToProps)(Player);

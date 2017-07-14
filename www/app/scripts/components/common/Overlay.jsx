@@ -75,7 +75,7 @@ if (minWidth < 800) {
 
 const Overlay = props => (
   <div
-    className="fs-overlay portrait"
+    className={`fs-overlay portrait ${props.isOpen ? 'isOpen' : ''}`}
     style={styles.overlayStyle}
     id="overlayDiv"
   >
@@ -89,18 +89,18 @@ const Overlay = props => (
       </IconButton>
     </div>
     {props.children}
-    <FloatingActionButton
+    {/*<FloatingActionButton
       mini
       secondary
       style={styles.fullscreenButton}
       onTouchTap={props.handleClose}
     >
       <Close />
-    </FloatingActionButton>
+    </FloatingActionButton>*/}
   </div>);
 
 Overlay.propTypes = {
-    handleClose: PropTypes.func.isRequired,
+    isOpen: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
 };
 

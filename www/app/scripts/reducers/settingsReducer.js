@@ -9,7 +9,7 @@ const defaultSettings = new Settings({
     recommendations: false,
 });
 
-export default function settings(state = { options: defaultSettings, saving: false }, action) {
+export default function settings(state = { options: defaultSettings, saving: false, screenOrientation: '' }, action) {
     // Create a clone of the current Settings class object
     const newSettings = Object.assign({}, state.options);
     Object.setPrototypeOf(newSettings, Settings.prototype);
@@ -18,12 +18,14 @@ export default function settings(state = { options: defaultSettings, saving: fal
     if (typeof action.payload !== 'undefined') {
         settingsPayload = action.payload.isUserLoggedIn;
     }
+
     switch (action.type) {
-    case REHYDRATE:
-        if (settings) {
-            return settingsPayload;
-        }
-        return state;
+    // case REHYDRATE:
+    //     if (settings) {
+    //         return settingsPayload;
+    //     }
+    //     return state;
+
         // Inital Fetch request
     case Actions.FETCH_USER_SETTINGS_SUCCESS:
         return Object.assign({}, state, {
@@ -81,6 +83,10 @@ export default function settings(state = { options: defaultSettings, saving: fal
         });
 
         // Default
+    case Actions.SET_ORIENTATION:
+        return Object.assign({}, state, {
+            screenOrientation: action.orientation
+        })
     default:
         return state;
     }

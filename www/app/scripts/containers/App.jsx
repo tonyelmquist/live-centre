@@ -21,6 +21,7 @@ import Overlay from './OverlayContainer';
 import OverlayX from './OverlayX';
 import CategoryContainer from './CategoryContainer';
 import SearchOverlay from './SearchOverlay';
+import { setLandscape, setPortrait } from '../actions/settings';
 
 // import { TransitionMotion, spring, presets } from 'react-motion';
 
@@ -35,6 +36,26 @@ class App extends Component {
         super(props);
 
         this.state = {};
+        this.dispatchOrientation();
+        if ('onorientationchange' in window) {
+            window.addEventListener("orientationchange", () => {
+                this.dispatchOrientation();
+            }, false);
+        } else {
+          window.addEventListener("resize", () => {
+                this.dispatchOrientation();
+            }, false);
+        }
+    }
+
+    dispatchOrientation = () => {
+      if (window.matchMedia("(orientation: portrait)").matches) {
+        this.props.dispatch(setPortrait())
+      }
+
+      if (window.matchMedia("(orientation: landscape)").matches) {
+        this.props.dispatch(setLandscape())
+      }
     }
     render() {
         return (
@@ -44,7 +65,7 @@ class App extends Component {
               <div className="main" id="main">
                 {/* this.props.state_all.search.isOpen ? <SearchContainer/>  : <div></div>*/}
 
-                 {this.props.state_all.overlay.isVisible ? <Overlay /> : <div /> }
+                 {/*{this.props.state_all.overlay.isVisible ? <Overlay /> : <div /> }*/}
                 <SearchOverlay />
                 <div className="mainContent" id="mainContent">
                   <Route exact path="/Home" component={HomePage} />
