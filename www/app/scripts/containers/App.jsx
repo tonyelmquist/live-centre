@@ -58,7 +58,7 @@ class App extends Component {
             if (screen.width > screen.height) {
                 self.props.dispatch(setLandscape())
             }
-        }, 500);
+        }, 100);
     }
     render() {
         return (

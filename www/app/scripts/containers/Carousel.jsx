@@ -58,11 +58,9 @@ class HeroCarousel extends Component {
     _handlePlay = (assetid) => {
 
         console.log(`${videoPrefix}${assetid}`);
-        // this.props.dispatch(setVideoInfo({url: `{videoPrefix}${assetid}`}));
         this.props.dispatch(videoSelected(`${videoPrefix}${assetid}`));
-        // this.props.dispatch(openOverlayX());
-        // this.props.dispatch(maximizeOverlayX());
-        this.props.dispatch(showOverlay());
+        this.props.dispatch(openOverlayX());
+        this.props.dispatch(maximizeOverlayX());
     };
 
     syncLeft(currentSlide) {
