@@ -42,6 +42,11 @@ msgstr "Favorites"
 msgid "route_series"
 msgstr "Series"
 
+#. Route Programs
+#:
+msgid "route_programs"
+msgstr "Programs"
+
 #.Route Channels
 #:
 msgid "route_channels"
@@ -51,6 +56,11 @@ msgstr "Channels"
 #:
 msgid "route_tvguide"
 msgstr "TV-Guide"
+
+#.Route Profile
+#:
+msgid "profile_page"
+msgstr "My profile"
 
 #. Topics Rendering
 #:

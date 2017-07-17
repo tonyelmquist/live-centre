@@ -14,9 +14,10 @@ import Header from './Header';
 import HomePage from './pages/HomePage';
 import SettingsPage from './pages/SettingsPage';
 import FavoritePage from './pages/FavoritePage';
-import SeriesPage from './pages/SeriesPage';
+import ProgramsPage from './pages/ProgramsPage';
 import ChannelsPage from './pages/ChannelsPage';
 import TVGuidePage from './pages/TVGuidePage';
+import ProfilePage from './pages/ProfilePage';
 import Overlay from './OverlayContainer';
 import OverlayX from './OverlayX';
 import CategoryContainer from './CategoryContainer';
@@ -78,8 +79,9 @@ class App extends Component {
                   {/* <Route path="/Category/:categoryKey" component={CategoryPage}/> */}
                   <Route path="/Category/:categoryKey" component={CategoryContainer} />
                   <Route path="/Channels" component={ChannelsPage} />
-                  <Route path="/Series" component={SeriesPage} />
+                  <Route path="/Programs" component={ProgramsPage} />
                   <Route path="/TVGuide" component={TVGuidePage} />
+                  <Route path="/Profile" component={ProfilePage} />
                 </div>
 
                 <OverlayX />

@@ -51,6 +51,11 @@ msgstr "Kanaler"
 msgid "route_tvguide"
 msgstr "TV-Guide"
 
+#.Route Profile
+#:
+msgid "profile_page"
+msgstr "Min profil"
+
 #. Topics Rendering
 #: 
 msgid "topics_rendering"
