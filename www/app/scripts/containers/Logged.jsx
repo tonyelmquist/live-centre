@@ -20,6 +20,10 @@ class Logged extends Component {
         this.props.changeRoute('/Settings');
     }
 
+    handleOpenProfile = () => {
+        this.props.changeRoute('/Profile');
+    }
+
     render() {
         return (
           <IconMenu
@@ -28,9 +32,11 @@ class Logged extends Component {
           }
             targetOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-          >
-            <MenuItem primaryText={i18next.t('route_settings')} onTouchTap={this.handleSettingsTouchTap} />
+          > 
+
+            <MenuItem primaryText={i18next.t('profile_page')} onTouchTap={this.handleOpenProfile} />
             <MenuItem primaryText={i18next.t('route_about')} />
+            <MenuItem primaryText={i18next.t('route_settings')} onTouchTap={this.handleSettingsTouchTap} />
             <MenuItem primaryText={i18next.t('app_signout')} onTouchTap={this.handleLogout} />
           </IconMenu>
         );

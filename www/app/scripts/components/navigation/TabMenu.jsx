@@ -32,14 +32,13 @@ function TabMenu({
     );
 
     function insertCenterTab(listItems) {
-      listItems.splice(listItems.length/2, 0, (<Tab
-        onClick={() => {
-            console.log(onCenterClick)
-            onCenterClick()
-        }}
-        key='center-menu'
-        icon='x'
-      />));
+      listItems.splice(listItems.length/2, 0, ( <Tab
+            onClick={() => openCloseMenu()}
+            icon={
+              <AnimatedMenuIcon isMenuOpen={isMenuOpen} isSubPage={isSubPage} />
+          }
+            label="Menu"
+          />));
       return listItems;
     }
 
@@ -47,15 +46,7 @@ function TabMenu({
       <MediaQuery maxWidth={1000}>
         <Tabs className="bottomTabs">
           {insertCenterTab(listItems)}
-          {isNaviconIncluded ?
-          <Tab
-            onClick={() => openCloseMenu()}
-            icon={
-              <AnimatedMenuIcon isMenuOpen={isMenuOpen} isSubPage={isSubPage} />
-          }
-            label="Menu"
-          /> : ''
-          }
+
         </Tabs>
       </MediaQuery>
     );

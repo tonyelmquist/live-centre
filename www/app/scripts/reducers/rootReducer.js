@@ -14,6 +14,7 @@ import chat from './chatReducer';
 import replay from './replayReducer';
 import highlights from './highlightsReducer';
 import overlayX from './overlayXReducer';
+import programsPageTab from './programsPageReducer';
 
 
 const rootReducer = combineReducers({
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
         category: changeCardCategory,
         video: changeVideoInfo,
     }),
+    programsPage: programsPageTab,
     videos: videosReducer,
     playback: playbackReducer,
     dataOverlay: dataOverlayReducer,

@@ -40,8 +40,8 @@ const ExpandableMenu = ({
         }
         return {
             x: spring(100),
-            y: spring(0),
-            o: spring(0),
+            y: spring(100),
+            o: spring(0.5),
         };
     };
 

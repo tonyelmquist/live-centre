@@ -109,6 +109,9 @@ class ReduxConstants {
     static get OVERLAY_X_MINIMIZE() { return 'OVERLAY_X_MINIMIZE'; }
     static get OVERLAY_X_SET_INFO() { return 'OVERLAY_X_SET_INFO'; }
 
+    //ProgramPage
+    static get CHANGE_PROGRAMS_TAB_INDEX() {return 'CHANGE_PROGRAMS_TAB_INDEX'}
+
 }
 
 export class Orientation {

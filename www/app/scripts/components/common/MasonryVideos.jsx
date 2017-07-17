@@ -31,11 +31,13 @@ function MasonryVideos(props) {
 
 MasonryVideos.propTypes = {
     children: PropTypes.node.isRequired,
+    size: PropTypes.string,
 };
 
 MasonryVideos.defaultProps = {
     filter: [],
     handlefilter: false,
+    size: "medium",
 };
 
 export default MasonryVideos;

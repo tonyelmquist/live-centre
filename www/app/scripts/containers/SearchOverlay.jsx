@@ -123,6 +123,7 @@ class SearchContainer extends Component {
                     parsed.push(filters[key].filterOn);
                 }
             }
+            console.log(parsed);
             return parsed;
         };
 

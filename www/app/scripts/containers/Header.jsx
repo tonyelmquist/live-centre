@@ -33,7 +33,7 @@ class Header extends Component {
     getPageItems = () => {
         const items = [
       { key: 'route_home', path: '/Home', icon: <HomeIcon /> },
-      { key: 'route_series', path: '/Series', icon: <VideoIcon /> },
+      { key: 'route_programs', path: '/Programs', icon: <VideoIcon /> },
       { key: 'route_channels', path: '/Channels', icon: <ChannelIcon /> },
       { key: 'route_tvguide', path: '/TVGuide', icon: <TVicon /> },
         ];

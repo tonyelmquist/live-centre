@@ -77,12 +77,20 @@
 
 //just for the top filters
 .filterContainer.horizontalScroll
-  background-color: rgb(225, 245, 254)
-  .items
-    background-color: #fff
   .horizontalScrollInner
     margin: 20px
-
+/*
+.filterContainer.horizontalScroll.dark
+  background-color: transparent
+  .filterButtons
+    border: solid 2px rgba(300, 300, 300, 0.6)
+    background-color: transparent !important
+    button
+      background-color: transparent !important
+      div, span
+        color: #fff !important
+  
+*/
 //all horizontal scroll
 .horizontalScroll
   width:100%
@@ -104,7 +112,6 @@
     display:inline
     margin: 0 10px;
     padding: 10px
-    background-color: rgb(225, 245, 254)
     border-radius: 10px
     .active
       background-color: #bce3ec
@@ -123,7 +130,6 @@
   .filterContainer.horizontalScroll
     background-color: transparent
     .items
-      background-color: rgb(225, 245, 254)
       display:inline-block
       margin:10px
     .horizontalScrollInner
