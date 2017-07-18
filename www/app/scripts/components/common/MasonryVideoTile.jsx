@@ -42,7 +42,7 @@ class MasonryVideoTile extends Component {
                           className="masonryPlayButton"
                           iconStyle={styles.mediumIcon}
                             // style={styles.medium}
-                          onTouchTap={() => { this.props.handleTilePlay(video.videoUrl); }}
+                          onTouchTap={() => { this.props.handleTilePlay(video.id); }}
                         >
                           <PlayCircleOutline hoverColor={amber300} color={fullWhite} />
                         </IconButton>

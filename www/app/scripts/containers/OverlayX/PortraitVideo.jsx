@@ -6,6 +6,8 @@ import { setCurrentTimeInOverlayX, maximizeOverlayX, closeOverlayX, minimizeOver
 
 import { Motion, spring, presets } from 'react-motion';
 
+import Player from '../Player';
+
 class PortraitVideo extends Component {
 
     limit = 50;
@@ -59,29 +61,29 @@ class PortraitVideo extends Component {
     }
 
     render() {
-        if(typeof this.videoPlayer !== 'undefined' && this.videoPlayer !== null) {
-            if (this.videoLoaded !== this.props.videoUrl) {
-                this.videoPlayer.load();
-                const currTime =  this.props.videoPosition;
-                this.videoPlayer.addEventListener('loadedmetadata', function() {
-                    this.currentTime = currTime;
-                }, false)
-                this.videoLoaded = this.props.videoUrl;
-            }
-        }
+        // if(typeof this.videoPlayer !== 'undefined' && this.videoPlayer !== null) {
+        //     if (this.videoLoaded !== this.props.videoUrl) {
+        //         this.videoPlayer.load();
+        //         const currTime =  this.props.videoPosition;
+        //         this.videoPlayer.addEventListener('loadedmetadata', function() {
+        //             this.currentTime = currTime;
+        //         }, false)
+        //         this.videoLoaded = this.props.videoUrl;
+        //     } 
+        // }
 
-        if (!this.props.overlayX.open && typeof this.videoPlayer !== 'undefined' && this.videoPlayer !== null) {
-            this.videoPlayer.pause();
-        }
+        // if (!this.props.overlayX.open && typeof this.videoPlayer !== 'undefined' && this.videoPlayer !== null) {
+        //     this.videoPlayer.pause();
+        // }
 
         return (
             <Motion style={{y: spring(this.props.overlayX.open ? (this.props.overlayX.maximized ? 0 : 360) : 550, {stiffness: 60, damping: 15}), scale: spring(this.props.overlayX.maximized ? 1 : .6, {stiffness: 60, damping: 15})}}>
                 {({y, scale}) => 
-                <video ref={ref => (this.videoPlayer = ref)} autoPlay controls='false' playsInline className={`ox-video-container`} onClick={this.onClick} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd} style={{
+                <Player ref={ref => (this.videoPlayer = ref)} autoPlay controls='false' playsInline className={`ox-video-container`} onClick={this.onClick} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd} style={{
                     transform: `scale(${scale}) translate3d(0, ${y}%, 0)`,
                 }}>
                     <source src={this.props.videoUrl + '#t=' + this.props.videoPosition} />
-                </video>
+                </Player>
                 }
             </Motion>
         );

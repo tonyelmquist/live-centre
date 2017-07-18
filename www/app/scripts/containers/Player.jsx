@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Motion, spring } from 'react-motion';
 import {
   Player as Video,
   ControlBar,
@@ -8,10 +9,11 @@ import {
   CurrentTimeDisplay,
   VolumeMenuButton,
 } from 'video-react';
+import { setCurrentTimeInOverlayX, maximizeOverlayX, closeOverlayX, minimizeOverlayX } from '../actions/overlayX';
+import { Orientation } from '../constants/reduxConstants';
 import IconButton from 'material-ui/IconButton';
 import DataOverlay from './DataOverlay';
 import { showReplay, hideReplay } from '../actions/replay';
-import { setCurrentTimeInOverlayX } from '../actions/overlayX';
 import { showHighlights } from '../actions/highlights';
 import '../../../node_modules/video-react/dist/video-react.css';
 
@@ -51,11 +53,54 @@ class Player extends React.Component {
 
     };
 
-    componentWillUnmount = () => {
-        const { player } = this.largeVideoPlayer.getState()
-        if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
-            console.log('On Unmount', player.currentTime);
-            this.props.dispatch(setCurrentTimeInOverlayX(player.currentTime));
+    // componentWillUnmount = () => {
+    //     const { player } = this.largeVideoPlayer.getState()
+    //     if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
+    //         console.log('On Unmount', player.currentTime);
+    //         this.props.dispatch(setCurrentTimeInOverlayX(player.currentTime));
+    //     }
+    // }
+
+    limit = 50;
+
+    onTouchStart = (e) => {
+        this.startTouchPosition = {
+            x: e.changedTouches[0].clientX,
+            y: e.changedTouches[0].clientY,
+        };
+
+        console.log('Touch Start');
+
+        e.preventDefault();
+    }
+
+    onTouchEnd = (e) => {
+        this.endTouchPosition = {
+            x: e.changedTouches[0].clientX,
+            y: e.changedTouches[0].clientY,
+        };
+        
+        if (this.startTouchPosition.y - this.endTouchPosition.y < -this.limit) {
+            this.onMinimize();
+        }
+        if (this.startTouchPosition.y - this.endTouchPosition.y > this.limit) {
+            this.onMaximize();
+        }
+    }
+
+    onMaximize = () => {
+        if (this.props.orientation === Orientation.PORTRAIT) {
+            this.props.dispatch(maximizeOverlayX());
+        }
+    }
+
+    onMinimize = () => {
+        if (this.props.orientation === Orientation.PORTRAIT) {
+            if (!this.props.overlayX.maximized) {
+                this.props.dispatch(closeOverlayX());
+            } else {
+                this.props.dispatch(minimizeOverlayX());
+            }
         }
     }
 
@@ -67,14 +112,16 @@ class Player extends React.Component {
                 console.log(this.largeVideoPlayer);
                 this.largeVideoPlayer.video.video.addEventListener('loadedmetadata', function() {
                     this.currentTime = currTime;
+                    this.play();
+                    console.log('LOADED META DATA');
                 }, false)
                 this.videoLoaded = this.props.videoUrl;
             }
         }
         return (
-          <div style={styles.playerStyle} className="IMRPlayer">
+          <div style={styles.playerStyle} className={`IMRPlayer`} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
             <Video playsInline autoPlay ref={ref => (this.largeVideoPlayer = ref)}>
-              <ControlBar autoHide={false} >
+              <ControlBar autoHide={true} >
                 <VolumeMenuButton horizontal />
                 <PlayToggle />
                 {/* <CurrentTimeDisplay /> */}
@@ -110,7 +157,7 @@ class Player extends React.Component {
               </ControlBar>
               <source src={this.props.videoUrl + '#t=' + this.props.videoPosition} />
             </Video>
-            <DataOverlay />
+            { this.props.orientation == Orientation.LANDSCAPE ? <DataOverlay /> : '' }
           </div>
         );
     }
@@ -129,6 +176,8 @@ Player.propTypes = {
 const mapStateToProps = state => ({
     videoUrl: state.playback.url,
     videoPosition: state.playback.currentTime,
+    overlayX: state.overlayX,
+    orientation: state.settings.screenOrientation,
 });
 
 export default connect(mapStateToProps)(Player);

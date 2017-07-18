@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Motion, spring } from 'react-motion';
+import Chat from '../../components/Chat';
 
 class ContentX extends Component {
     
@@ -12,7 +13,7 @@ class ContentX extends Component {
                 }}>
                 {({y, o}) => 
                     <div className={`ox-content`} style={{transform: `translate3d(0, ${y}%, 0)`, opacity: o}}>
-                        Video Info
+                        <Chat messages={this.props.chat} onMessageSend={this.props.onMessageSend}/>
                     </div>
                 }
             </Motion>
@@ -21,7 +22,8 @@ class ContentX extends Component {
 }
 
 ContentX.propTypes = {
-
+    chat: PropTypes.array.isRequired,
+    onMessageSend: PropTypes.func.isRequired,
 };
 
 export default ContentX;

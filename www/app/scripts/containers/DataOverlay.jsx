@@ -170,10 +170,8 @@ class DataOverlay extends Component {
         ];
 
         return (
-      <div>
-        {/* <div className="trapezoid" />*/}
-        {/* <div style={styles.dataStyle}>Score: {this.props.score}</div>*/}
-         <BurstButton buttonLinks={this.burstButtonLinks} color="rgb(8, 3, 28)" hidden={this.state.isBurstButtonShowing} />
+      <div className='data-overlay'>
+        <BurstButton buttonLinks={this.burstButtonLinks} color="rgb(8, 3, 28)" hidden={this.state.isBurstButtonShowing} />
         <FidgetSpinner />
         <ChatOverlay
           open={this.props.chat.chatOpen}

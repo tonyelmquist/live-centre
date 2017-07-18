@@ -58,7 +58,7 @@ class FidgetSpinner extends Component {
     }
 
     touchStart(e) {
-        e.preventDefault();
+        // e.preventDefault();
         this.previousTouchPosition = {
             x: e.changedTouches.clientX,
             y: e.changedTouches.clientY,
@@ -66,7 +66,7 @@ class FidgetSpinner extends Component {
     }
 
     touchMove(e) {
-        e.preventDefault();
+        // e.preventDefault();
         this.nextTouchPosition = {
             x: e.changedTouches[0].clientX,
             y: e.changedTouches[0].clientY,
@@ -79,15 +79,15 @@ class FidgetSpinner extends Component {
 
         const currentRotation = this.state.rotation;
 
-        console.log(differenceMovement);
-        console.log(this.state.rotationSpeed * differenceMovement.y, currentRotation);
+        // console.log(differenceMovement);
+        // console.log(this.state.rotationSpeed * differenceMovement.y, currentRotation);
         if (!isNaN(differenceMovement.x) && !isNaN(differenceMovement.y)) {
             this.setState({
-                rotation: this.state.rotation + (this.state.rotationSpeed * (differenceMovement.y + -differenceMovement.x)),
+                rotation: this.state.rotation + (this.state.rotationSpeed * (differenceMovement.y)),
             });
         }
 
-        console.log(this.state.rotation);
+        // console.log(this.state.rotation);
 
         this.previousTouchPosition = this.nextTouchPosition;
     }

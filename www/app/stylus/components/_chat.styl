@@ -1,0 +1,87 @@
+.chat {
+    height: 100%;
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 50px;
+        top: 0;
+        left: 0;
+        background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */    
+    }
+
+    input {
+        position: absolute;
+        width: 50%;
+        font-size: 21px;
+        padding: 5px 10px;
+        bottom: 90px;
+        border: 1px solid black;
+    }
+
+    button {
+        right: 20px;
+        width: 30%;
+        position: absolute;
+        bottom: 90px;
+        font-size: 21px;
+        padding: 5px 10px;
+        background: #333;
+        color: white;
+        border: none;
+        border: 1px solid #333;
+    }
+
+    .chat-messages {
+        list-style: none;
+        padding: 40px 40px 20px 0;
+        display: inline-block;
+        height: 70%;
+        width: 100%;
+        overflow: scroll;
+        margin-top: 0;
+
+        li {
+            margin-bottom: 30px;
+            width: 100%;
+            overflow: hidden;
+
+            &:after {
+                content: '';
+                display: table;
+                clear: both;
+            }
+        }
+
+        .chat-avatar {
+            color: white;
+            background: green;
+            border-radius: 100%;
+            width: 32px;
+            height: 32px;
+            display: inline-block;
+            text-align: center;
+            padding-top: 8px;
+            box-sizing: border-box;
+            margin-right: 20px;
+            float: left;
+        }
+
+        .chat-user {
+            font-size: 12px;
+            margin-top: 0px;
+            float: left;
+        }
+        .chat-message {
+            margin-top: -15px;
+            display: inline-block;
+            float: left;
+            clear: left;
+            margin-left: 52px;
+        }
+    }
+}

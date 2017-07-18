@@ -1,13 +1,14 @@
 .fidget-spinner-container {
     position: absolute;
-    bottom: -130px;
-    right: -130px;
+    bottom: 170px;
+    right: -150px;
     transition: .5s all;
     opacity: .3;
-    transform: scale(0) rotate(180deg);
+    transform: scale(0) rotate(180deg) transform3d(0, 0, 0);
+    display: none;
 
     &.isShowing  {
-        transform: scale(1) rotate(0deg);
+        transform: scale(1) rotate(0deg) transform3d(0, 0, 0);
     }
 
     &.isOpen {
@@ -15,19 +16,19 @@
     }
 
     .fidget-spinner-center {
-        transform: scale(1);
+        transform: scale3d(1, 1, 1);
         transform-origin: center;
         transition: .5s all;
 
         &.isOpen {
-            transform: scale(.6);
+            transform: scale3d(.6, .6, .6);
         }
     }
 
     .fidger-spinner-touch-zone {
-        transform: scale(0);
+        transform: scale3d(0, 0, 0);
         &.isOpen {
-            transform: scale(1);
+            transform: scale3d(1, 1, 1);
         }
     }
 
@@ -41,12 +42,12 @@
     }
 
     .fidget-spinner-link {
-        transform: scale(0);
+        transform: scale3d(0, 0, 0);
         transform-origin: center;
         transition: .5s all;
 
         &.isOpen {
-            transform: scale(1);
+            transform: scale3d(1, 1, 1);
         }
     }
 }

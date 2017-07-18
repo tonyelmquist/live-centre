@@ -1,19 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Player from '../../containers/Player';
+// import React from 'react';
+// import PropTypes from 'prop-types';
+// import Player from '../../containers/Player';
 
 
-function Playback(props) {
-    return (
-            <Player videoUrl={props.videoUrl} />);
-}
+// function Playback(props) {
+//     return (
+//             );
+// }
 
-Playback.defaultProps = {
-    videoUrl: '',
-};
+// Playback.defaultProps = {
+//     videoUrl: '',
+// };
 
-Playback.propTypes = {
-    videoUrl: PropTypes.string,
-};
+// Playback.propTypes = {
+//     videoUrl: PropTypes.string,
+// };
 
-export default Playback;
+// export default Playback;

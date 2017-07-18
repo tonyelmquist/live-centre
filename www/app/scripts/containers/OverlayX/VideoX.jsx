@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 
 
 import Overlay from '../../components/common/Overlay';
-import Playback from '../../components/common/Playback';
+import Player from '../../containers/Player';
 
 import PortraitVideo from './PortraitVideo';
 import { Orientation } from '../../constants/reduxConstants';
+import DataOverlay from '../DataOverlay';
+
 
 class VideoX extends Component {
 
@@ -28,12 +30,9 @@ class VideoX extends Component {
         console.info('Now playing in OverlayX, ', this.props.videoUrl, this.props.currentTime);
         
 
-        return (this.props.screenOrientation === Orientation.PORTRAIT) ?
-            (
-                <PortraitVideo />
-            ) : (
-                <Overlay isOpen={this.props.isOpen}>
-                    <Playback videoUrl={this.props.videoUrl} />
+        return (
+                <Overlay isOpen={this.props.isOpen} orientation={this.props.screenOrientation} isMaximized={this.props.isMaximized}>
+                    <Player videoUrl={this.props.videoUrl} orientation={this.props.screenOrientation} />
                 </Overlay>
             );
     }
@@ -44,8 +43,6 @@ VideoX.propTypes = {
     isMaximized: PropTypes.bool.isRequired,
     videoUrl: PropTypes.string,
     screenOrientation: PropTypes.string.isRequired,
-    updateTime: PropTypes.func.isRequired,
-    resetTime: PropTypes.func.isRequired,
     currentTime: PropTypes.number.isRequired,
 };
 

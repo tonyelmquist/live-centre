@@ -6,13 +6,80 @@
     .fs-overlay
         transform: rotate(0)
 
+.fs-overlay, .fs-overlay *
+    outline: none !important
 
 .replay
     margin-left: -12px
+.IMRPlayer
+    will-change: transform
+    touch-action: none
+    outline: none !important;
 
 .IMRPlayer .video-react .video-react-big-play-button
     display: none
 
 .IMRPlayer .video-react .video-react-mouse-display, .IMRPlayer .video-react .video-react-play-progress:after
     font-family: "Roboto", sans-serif !important
+
+// Progress Bar
+.video-react-progress-control {
+    position: absolute !important;
+    top: -31px !important;
+    width: 100% !important;
+}
+
+.video-react .video-react-control-bar {
+    background: transparent !important;
+}
+
+.replay, .slomo, .highlights, .video-react-icon-fullscreen {
+    display: none !important;
+}
+
+.video-react-duration {
+    position: absolute !important;
+    right: -6px;
+    bottom: 40px;
+    font-size: 18px !important;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, .6);
+}
+
+.video-react-current-time {
+    position: absolute !important;
+    left: -6px;
+    bottom: 40px;
+    font-size: 18px !important;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, .6);
+}
+
+.video-react-play-control {
+    position: absolute !important;
+    left: -8px;
+    top: 6px;
+    z-index: 2001;
+}
+
+.video-react-time-divider {
+    display: none;
+}
+
+.video-react-volume-menu-button-horizontal {
+    position: absolute !important;
+    left: 60px;
+    top: 6px;
+}
+
+.video-react-control-bar {
+    opacity: 1;
+    transition: opacity 400ms;
+}
+
+.minimized .video-react-control-bar, .second-layer-open {
+    opacity: 0 !important;
+}
+
+// .video-react-control-bar {
+//     bottom: -73px !important;
+// }
 

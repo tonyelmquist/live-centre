@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 import Actions from '../constants/reduxConstants';
 
 export function getMessage(id, user, message) {
-    return { type: Actions.GET_MESSAGE, user, message };
+    return { type: Actions.GET_MESSAGE, id, user, message };
 }
 
 export function sendMessage(user, message) {
@@ -12,7 +12,7 @@ export function sendMessage(user, message) {
         user,
         message,
     });
-    // return { type: Actions.SEND_MESSAGE, user, message };
+    return { type: Actions.SEND_MESSAGE, user, message };
 }
 
 export function toggleChatMenu() {

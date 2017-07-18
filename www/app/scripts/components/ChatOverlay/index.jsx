@@ -8,6 +8,7 @@ class ChatOverlay extends Component {
         }
         return messages.map(value => (
           <li key={`message-${value.id}`}>
+            <span className="chat-avatar">D</span>
             <span className="chat-user">{value.user}</span>
             <span className="chat-message">{value.message}</span>
           </li>
@@ -33,12 +34,10 @@ class ChatOverlay extends Component {
 
     render() {
         return (
-          <div className={`chat-overlay ${this.props.open ? 'open' : ''}`}>
+          <div className={`chat-overlay ${this.props.open ? 'open' : 'open'}`}>
             <ul className="chat-messages">
               {ChatOverlay.filterMessages(this.props.messages)}
             </ul>
-            <input type="text" value={this.state.message} onChange={message => this.setState({ message: message.target.value })} />
-            <button type="submit" onClick={this.onSubmitClick}> Send </button>
           </div>
         );
     }
