@@ -1,5 +1,5 @@
 @import '../constants/_variables.styl';
-// SEARCH  
+// -------  SEARCH  
 .searchInput input
   border-top: none
   border-left: none
@@ -19,6 +19,7 @@
   border-bottom: solid 1px rgba(000, 000, 000, 0.2)
   input
     opacity: 1
+
 //For mobile
 .expandable_searchbar
   .logo
@@ -69,91 +70,8 @@
     margin: 14px 0 0 10px
 .searchContainer.close
     bottom:100%
-
 @media (min-width: $big_screen)
   .searchContainer
     top: $top_offset_desktop
     bottom: $bottom_offset_desktop
-
-//just for the top filters
-.filterContainer.horizontalScroll
-  .horizontalScrollInner
-    margin: 20px
-/*
-.filterContainer.horizontalScroll.dark
-  background-color: transparent
-  .filterButtons
-    border: solid 2px rgba(300, 300, 300, 0.6)
-    background-color: transparent !important
-    button
-      background-color: transparent !important
-      div, span
-        color: #fff !important
-  
-*/
-//all horizontal scroll
-.horizontalScroll
-  width:100%
-  text-align:center
-  overflow-y: scroll
-  white-space: nowrap;
-  .label
-    margin:2px 0
-    font-size:$font_s
-    text-overflow: ellipsis;
-    overflow:hidden
-  .avatar
-    margin: 0 10px
-    white-space: nowrap;
-  .horizontalScrollInner
-    margin: 0 20px
-    white-space: nowrap;
-  .items
-    display:inline
-    margin: 0 10px;
-    padding: 10px
-    border-radius: 10px
-    .active
-      background-color: #bce3ec
-
-//Remove horizontal scrolling on desktop  >600px
-//Change background color back to transparent.     
-@media (min-width: 600px)
-  .horizontalScroll
-    overflow:auto
-    background-color: transparent
-    .horizontalScrollInner
-      white-space:normal
-      margin: 0
-      padding: 0 2rem
-      text-align:left
-  .filterContainer.horizontalScroll
-    background-color: transparent
-    .items
-      display:inline-block
-      margin:10px
-    .horizontalScrollInner
-      margin: 0
-      white-space:normal
- 
-//Overriding material ui raised button  
-.filterButtons
-  margin-right: 12px
-  span
-    text-transform: capitalize !important
-
-.filterButtons.active
-    button
-      background-color: $color_ocean !important
-    span
-      color: #fff !important
-    
-@media (min-width: 600px)   
-  .filterButtons
-    margin: 12px 12px 3px 12px
-    
-.circleAvatar
-  text-align: center
-  max-width:100px
-
 

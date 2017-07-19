@@ -5,7 +5,7 @@ import { loginState, registrationDialog } from './loginReducer';
 import playbackReducer from './playbackReducer';
 import dataOverlayReducer from './dataOverlayReducer';
 import { changeNavIndex, headerMenuState, drawerMenuState } from './navReducer';
-import { search, filter } from './searchReducer';
+import { search, searchFilterTab } from './searchReducer';
 import { showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo } from './videoCardReducer';
 import overlayReducer from './productOverlayReducer';
 import { videosReducer, seasonReducer, seriesReducer, tagsReducer } from './fetchDataReducer';
@@ -36,7 +36,7 @@ const rootReducer = combineReducers({
     headerMenuState,
     drawerMenuState,
     search,
-    filter,
+    searchFilterTab,
     series: seriesReducer,
     tags: tagsReducer,
     seasons: seasonReducer,

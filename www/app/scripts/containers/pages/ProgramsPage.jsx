@@ -8,8 +8,11 @@ import { videoSelected } from '../../actions/video';
 import { showOverlay } from '../../actions/overlay';
 import { showVideoCard, changeVideoInfo } from '../../actions/videoCard';
 import CardContainer from '../homepage/CardContainer';
-import SearchFilters from '../SearchFilters';
 import { changeProgramTabIndex  } from '../../actions/ProgramsPage';
+
+import FilterTabs from '../../components/common/FilterTabs';
+
+import MasonryImageTile from '../../components/common/MasonryImageTile';
 
 class ProgramsPage extends React.Component {
 
@@ -20,12 +23,14 @@ class ProgramsPage extends React.Component {
     }
 
     handleTilePlay = (videoUrl) => {
+        console.log("HANDLE TILE PLAY");
         this.props.dispatch(showOverlay());
         this.props.dispatch(videoSelected(`${videoPrefix}${videoUrl}`));
     }
 
-    handlefilter = (filter) => {
-        this.props.dispatch(changeProgramTabIndex(filter.index));
+    changeTab = (index) => {
+        console.log("changeTab",index);
+        this.props.dispatch(changeProgramTabIndex(index));
     }
 
     tiles_handleFilter = (filterArray, video, filterby) => {
@@ -65,6 +70,69 @@ class ProgramsPage extends React.Component {
         return tabs
     }
 
+    //Gets the first episode of all the series.
+    getAllSeriesPilots(){
+        const pilots = [];
+
+        for(const key in this.props.seasons){
+            if(this.props.seasons[key]._seasonNumber == 1){
+                const videoKey = this.props.seasons[key].firstEpisode;
+                pilots.push(this.props.videos[videoKey]);
+            }
+        }
+        return pilots
+    }
+    //Must iterate through all videos to find which movie has no series.
+    getAllMovies(){
+        const movies = [];
+        const videos = this.props.videos;
+        for(const key in videos){
+            if(videos[key].series == undefined){
+                movies.push(videos[key]);
+            }
+        }
+        return movies;
+    }
+
+    getVideoFromTag(tag){
+        console.log(tag);
+        const programs = [];
+        const videoKeys = this.props.tags[tag].videos;
+        for(const key in this.props.tags[tag].videos){
+            const videoKey = this.props.tags[tag].videos[key];
+            programs.push(this.props.videos[videoKey]);
+        }
+        return programs;
+    }
+
+    getTiles(tabKeys){
+        let programs = [];
+        const tiles = [];
+        const currentTab = tabKeys[this.props.activetab];
+        console.log(currentTab);
+        switch(currentTab){
+            case "series":
+                programs = this.getAllSeriesPilots();
+                break;
+            case "movies":
+                programs = this.getAllMovies();
+                break;
+            default:
+                programs = this.getVideoFromTag(currentTab);
+        }
+
+        for(const key in programs){
+            tiles.push(
+                <MasonryImageTile
+                key={`channel-tile-${key}`}
+                poster={programs[key].thumbnail}
+                handleClick={() => this.handleTileOpen(programs[key])}
+                />
+            );
+        }
+        return tiles;
+    }
+
 
     render() {
 
@@ -79,23 +147,24 @@ class ProgramsPage extends React.Component {
         
         return (
             <div className="programsPage">
-                <SearchFilters 
+                {/* <SearchFilters 
                     color="dark" 
                     style={{color:'red'}}
                     handleFilter={this.handlefilter} 
-                    filters={this.tabs(tabKeys)} />
+                    filters={this.tabs(tabKeys)} /> */}
 
-                
-                    
+                    <FilterTabs
+                        tabItems={tabKeys}
+                        activeTab={this.props.activetab}
+                        changeTab={this.changeTab}
+                        colortheme="dark"
+                    />
+
                     <CardContainer />
+
                     <MasonryContainer>
-                        <MasonryVideoTile
-                        filter={tabKeys[this.props.activetab]} //what we are filtering on. 
-                        videos={this.props.videos}
-                        handleTileOpen={this.handleTileOpen}
-                        handleTilePlay={this.handleTilePlay}
-                        handlefilter={this.tiles_handleFilter}
-                        />
+                        {this.getTiles(tabKeys)}
+
                     </MasonryContainer>
                 
             </div>
@@ -117,6 +186,7 @@ const mapStateToProps = state => ({
     series: state.series.items,
     activetab: state.programsPage,
     seasons: state.seasons.items,
+    series: state.series.items,
     tags: state.tags.items
 });
 

@@ -52,8 +52,7 @@ class ReduxConstants {
     static get CLOSE_SEARCH() { return 'CLOSE_SEARCH'; }
 
     // Filter
-    static get CLEAR_FILTERS() { return 'CLEAR_FILTER'; }
-    static get TOGGLE_FILTER() { return 'TOGGLE_FILTER'; }
+    static get CHANGE_SEARCH_FILTER_INDEX() { return 'CHANGE_SEARCH_FILTER_INDEX'; }
 
     // Video Card
     static get CHANGE_CARD_INDEX() { return 'CHANGE_CARD_INDEX'; }

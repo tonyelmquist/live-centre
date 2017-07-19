@@ -13,10 +13,6 @@ export function emptySearch() {
     return { type: Actions.EMPTY_SEARCH };
 }
 
-export function clearFilter() {
-    return { type: Actions.CLEAR_FILTERS };
-}
-
-export function toggleFilter(filterkey) {
-    return { type: Actions.TOGGLE_FILTER, filterkey };
+export function changeSearchFilterIndex(index) {
+    return { type: Actions.CHANGE_SEARCH_FILTER_INDEX, index};
 }

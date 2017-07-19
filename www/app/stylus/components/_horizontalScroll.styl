@@ -1,0 +1,65 @@
+//Common
+.horizontalScroll
+  width:100%
+  text-align:center
+  overflow-y: scroll
+  white-space: nowrap;
+  .horizontalScrollInner
+    margin: 0 20px
+    white-space: nowrap;
+
+@media (min-width: 600px)
+  .horizontalScroll
+    overflow:auto
+    background-color: transparent
+    .horizontalScrollInner
+      white-space:normal
+      margin: 0
+      padding: 0 2rem
+      text-align:left
+
+
+//Filter tabs only
+.filterTabs.horizontalScroll
+  .horizontalScrollInner
+    margin: 20px 0 17px 0 //bottom-margin be more than .items bottom-padding
+    .items
+      border-bottom:solid 1px $color_lightGrey
+      display:inline
+      padding: 15px 20px
+      color: $color_grey
+    .items.active
+      color: $color_ocean;
+      border-bottom: solid 2px $color_ocean;
+.filterTabs.horizontalScroll.dark
+  .horizontalScrollInner
+    .items
+      border-bottom: solid 1px $color_grey
+      color: $color_lightGrey
+    .items.active
+      color: #fff
+      border-bottom: solid 2px #00fcff
+
+@media (min-width: 600px)
+  .filterTabs.horizontalScroll
+    background-color: transparent
+    .items
+      display:inline-block
+      margin:10px
+    .horizontalScrollInner
+      margin: 0
+      white-space:normal
+
+//For circle avatars
+.horizontalScroll
+  .label
+    margin:2px 0
+    font-size:$font_s
+    text-overflow: ellipsis;
+    overflow:hidden
+  .avatar
+    margin: 0 10px
+    white-space: nowrap;
+  .circleAvatar
+    text-align: center
+    max-width:100px

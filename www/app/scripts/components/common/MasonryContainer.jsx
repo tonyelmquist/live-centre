@@ -16,7 +16,7 @@ function MasonryContainer(props) {
         itemSelector: '.tile',
         percentPosition: true,
         columnWidth: '.tile',
-        stagger: 20,
+        //stagger: 20,
     };
 
     return (
