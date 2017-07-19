@@ -30,9 +30,9 @@ class CategoryContainer extends Component {
         this.props.dispatch(videoSelected(`${videoPrefix + video.videoUrl}`));
     };
 
-    handleTilePlay = (videoUrl) => {
+    handleTilePlay = (video) => {
         this.props.dispatch(showOverlay());
-        this.props.dispatch(videoSelected(`${videoPrefix}${videoUrl}`));
+        this.props.dispatch(videoSelected(video));
     }
 
     // filter = () => {

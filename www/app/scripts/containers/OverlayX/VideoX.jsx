@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-
 import Overlay from '../../components/common/Overlay';
 import Player from '../../containers/Player';
 
@@ -27,12 +26,9 @@ class VideoX extends Component {
     }
 
     render() {
-        console.info('Now playing in OverlayX, ', this.props.videoUrl, this.props.currentTime);
-        
-
         return (
                 <Overlay isOpen={this.props.isOpen} orientation={this.props.screenOrientation} isMaximized={this.props.isMaximized}>
-                    <Player videoUrl={this.props.videoUrl} orientation={this.props.screenOrientation} />
+                    <Player orientation={this.props.screenOrientation} />
                 </Overlay>
             );
     }

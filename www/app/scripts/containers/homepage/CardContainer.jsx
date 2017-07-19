@@ -13,12 +13,11 @@ import videoPrefix from '../../constants/mediaPrefix';
 
 
 class ProductCardContainer extends Component {
-    _handlePlay = (assetId) => {
-        console.log(`${videoPrefix}${assetId}`);
-        this.props.dispatch(setVideoInfo({url: `{videoPrefix}${assetId}`}));
+    _handlePlay = (video) => {
+        //this.props.dispatch(setVideoInfo({url: `{videoPrefix}${assetId}`}));
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
-        this.props.dispatch(videoSelected(`${videoPrefix}${assetId}`));
+        this.props.dispatch(videoSelected(video));
         this.props.dispatch(resetCurrentTimeInOverlayX());
     }
     _changeCardIndex = (index) => {

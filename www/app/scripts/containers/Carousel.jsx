@@ -55,10 +55,8 @@ class HeroCarousel extends Component {
     //     super(props, defaultProps);
     // }
 
-    _handlePlay = (assetid) => {
-
-        console.log(`${videoPrefix}${assetid}`);
-        this.props.dispatch(videoSelected(`${videoPrefix}${assetid}`));
+    _handlePlay = (video) => {
+        this.props.dispatch(videoSelected(video));
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
     };
@@ -131,7 +129,7 @@ class HeroCarousel extends Component {
 
             const imageList = videoKeys.map((videoKey) => {
                 const video = this.props.videos.items[videoKey];
-                const videoUrl = `${videoPrefix}${video.id}`;
+                const videoUrl = video.videoUrl;
                 return (
                   <div key={`carousel-${videoKey}`} style={styles.carousel}>
                     <div className="heroCarouselImage" key={videoKey}>
@@ -140,7 +138,7 @@ class HeroCarousel extends Component {
                         <IconButton
                           iconStyle={styles.largeIcon}
                           onTouchTap={() => {
-                              this._handlePlay(video.id);
+                              this._handlePlay(video);
                           }}
                         >
                           <PlayCircleFilled color="white" />
