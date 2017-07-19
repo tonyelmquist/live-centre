@@ -48,7 +48,7 @@ const ExpandableMenu = ({
     return (
       <MediaQuery maxWidth={1001}>
         <Motion
-          defaultStyle={{ x: 0, y: 100, o: 0 }}
+          defaultStyle={{ x: 100, y: 100, o: 0 }}
           style={style(isMenuOpen())}
         >
           {value =>

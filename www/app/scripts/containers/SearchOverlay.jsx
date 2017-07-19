@@ -4,7 +4,7 @@ import i18next from 'i18next';
 import PropTypes from 'prop-types';
 import SearchFilters from './SearchFilters';
 // import VideoGrid from '../components/common/VideoGrid';
-import MasonryVideos from '../components/common/MasonryVideos';
+import MasonryContainer from '../components/common/MasonryContainer';
 import MasonryVideoTile from '../components/common/MasonryVideoTile';
 import CirclesRow from '../components/common/CirclesRow';
 import { toggleFilter, clearFilter } from '../actions/search';
@@ -145,7 +145,7 @@ class SearchContainer extends Component {
               {/* Uncategorized is a temporary "suggested" category that is default. */}
 
               <CardContainer />
-              <MasonryVideos>
+              <MasonryContainer>
                 <MasonryVideoTile
                   filter={this.props.search.isSearching || !this.props.filter.isClear
                         ? [this.props.search.keyword, ...parseFilters(this.props.filter.filters)]
@@ -156,7 +156,7 @@ class SearchContainer extends Component {
                   handleTileOpen={this.handleTileOpen}
                   handleTilePlay={this.handleTilePlay}
                 />
-              </MasonryVideos>
+              </MasonryContainer>
 
             </div>
 

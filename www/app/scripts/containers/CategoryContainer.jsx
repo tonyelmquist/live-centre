@@ -11,7 +11,7 @@ import videoPrefix from '../constants/mediaPrefix';
 // import {changeCardIndex, showVideoCard, hideVideoCard, changeCardCategory} from '../actions/videoCard';
 import { showOverlay } from '../actions/overlay';
 
-import MasonryVideos from '../components/common/MasonryVideos';
+import MasonryContainer from '../components/common/MasonryContainer';
 import MasonryVideoTile from '../components/common/MasonryVideoTile';
 
 const styles = {
@@ -63,14 +63,14 @@ class CategoryContainer extends Component {
               <h2 className="item">{categoryID}</h2>
             </div>
             <div className="container-fluid">
-              <MasonryVideos>
+              <MasonryContainer>
                 <MasonryVideoTile
                   // filter={this.filter}
                   videos={videos}
                   handleTileOpen={this._handleSelect}
                   handleTilePlay={this.handleTilePlay}
                 />
-              </MasonryVideos>
+              </MasonryContainer>
             </div>
           </div>
         );

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import videoPrefix from '../../constants/mediaPrefix';
-import MasonryVideos from '../../components/common/MasonryVideos';
+import MasonryContainer from '../../components/common/MasonryContainer';
 import MasonryVideoTile from '../../components/common/MasonryVideoTile';
 import { videoSelected } from '../../actions/video';
 import { showOverlay } from '../../actions/overlay';
@@ -88,7 +88,7 @@ class ProgramsPage extends React.Component {
                 
                     
                     <CardContainer />
-                    <MasonryVideos>
+                    <MasonryContainer>
                         <MasonryVideoTile
                         filter={tabKeys[this.props.activetab]} //what we are filtering on. 
                         videos={this.props.videos}
@@ -96,7 +96,7 @@ class ProgramsPage extends React.Component {
                         handleTilePlay={this.handleTilePlay}
                         handlefilter={this.tiles_handleFilter}
                         />
-                    </MasonryVideos>
+                    </MasonryContainer>
                 
             </div>
         );

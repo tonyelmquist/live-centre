@@ -11,15 +11,16 @@ import Masonry from 'react-masonry-component';
     react version: https://github.com/eiriklv/react-masonry-component#basic-usage
 */
 
-function MasonryVideos(props) {
+function MasonryContainer(props) {
     const masonryOptions = {
         itemSelector: '.tile',
         percentPosition: true,
         columnWidth: '.tile',
+        stagger: 20,
     };
 
     return (
-      <Masonry // More options; https://github.com/eiriklv/react-masonry-component#basic-usage
+      <Masonry // More options; https://masonry.desandro.com/options.html
         className={'masonry_tiles'}
         options={masonryOptions}
       >
@@ -29,15 +30,15 @@ function MasonryVideos(props) {
     );
 }
 
-MasonryVideos.propTypes = {
+MasonryContainer.propTypes = {
     children: PropTypes.node.isRequired,
     size: PropTypes.string,
 };
 
-MasonryVideos.defaultProps = {
+MasonryContainer.defaultProps = {
     filter: [],
     handlefilter: false,
     size: "medium",
 };
 
-export default MasonryVideos;
+export default MasonryContainer;

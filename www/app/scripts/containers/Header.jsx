@@ -12,7 +12,6 @@ import { toggleMenu, hideMenu, toggleDrawerMenu } from '../actions/navigation';
 
 // Menu components
 import HeaderMenu from './../components/navigation/HeaderMenu';
-import DrawerMenu from './../components/navigation/DrawerMenu';
 import TabMenu from './../components/navigation/TabMenu';
 import ExpandableMenu from './../components/navigation/ExpandableMenu';
 import { searchKeyword, toggleSearch, closeSearch, emptySearch } from '../actions/search';
@@ -151,9 +150,6 @@ class Header extends Component {
               isMenuOpen={this.isMenuOpen}
               changeRoute={this.changeRoute}
               closeSearch={this.closeSearch}
-            />
-            <DrawerMenu
-              isOpen={this.isDrawerMenuOpen()}
             />
           </div>
         );
