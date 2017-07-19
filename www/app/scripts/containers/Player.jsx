@@ -106,7 +106,8 @@ class Player extends React.Component {
 
     render() {
         if(typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
-            if (this.videoLoaded !== this.props.videoUrl) {
+            if (this.videoLoaded !== this.props.video.videoUrl) {
+                console.log('?', this.videoLoaded, this.props.video.videoUrl);
                 const currTime = this.props.videoPosition;
                 this.largeVideoPlayer.load();
                 console.log(this.largeVideoPlayer);
@@ -115,9 +116,10 @@ class Player extends React.Component {
                     this.play();
                     console.log('LOADED META DATA');
                 }, false)
-                this.videoLoaded = this.props.videoUrl;
+                this.videoLoaded = this.props.video.videoUrl;
             }
         }
+        console.log('Player.jsx re-rendered', this.props.video);
         return (
           <div style={styles.playerStyle} className={`IMRPlayer`} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
             <Video playsInline autoPlay ref={ref => (this.largeVideoPlayer = ref)}>
@@ -125,7 +127,10 @@ class Player extends React.Component {
                 <VolumeMenuButton horizontal />
                 <PlayToggle />
                 {/* <CurrentTimeDisplay /> */}
-                <IconButton
+              </ControlBar>
+              <source src={this.props.video.videoUrl + '#t=' + this.props.videoPosition} />
+            </Video>
+                {/*<IconButton
                   style={styles.iconButtons}
                   iconClassName="material-icons replay"
                   onTouchTap={() => this.showReplay(this.props.videoUrl, 0)}
@@ -153,10 +158,7 @@ class Player extends React.Component {
                 ])}
                 >
               movie_filter
-              </IconButton>
-              </ControlBar>
-              <source src={this.props.videoUrl + '#t=' + this.props.videoPosition} />
-            </Video>
+              </IconButton>*/}
             { this.props.orientation == Orientation.LANDSCAPE ? <DataOverlay /> : '' }
           </div>
         );
@@ -174,7 +176,7 @@ Player.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    videoUrl: state.playback.url,
+    video: state.playback.video,
     videoPosition: state.playback.currentTime,
     overlayX: state.overlayX,
     orientation: state.settings.screenOrientation,

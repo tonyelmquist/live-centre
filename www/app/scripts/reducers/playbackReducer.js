@@ -1,16 +1,16 @@
 import Actions from '../constants/reduxConstants';
 
-export default function handleSelection(state = { isSelected: false, url: '', isFullscreen: false, currentTime: 0 }, action) {
+export default function handleSelection(state = { isSelected: false, video: {}, isFullscreen: false, currentTime: 0 }, action) {
     switch (action.type) {
     case Actions.VIDEO_SELECTED:
         return Object.assign({}, state, {
             isSelected: true,
-            url: action.url,
+            video: action.video,
         });
     case Actions.INVALIDATE_SELECTED:
         return Object.assign({}, state, {
             isSelected: false,
-            url: '',
+            video: '',
         });
     case Actions.ENTER_FULL_SCREEN:
         return Object.assign({}, state, {

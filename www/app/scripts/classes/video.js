@@ -1,4 +1,5 @@
 import BaseClass from './baseClass';
+import videoPrefix from '../constants/mediaPrefix';
 
 class Video extends BaseClass {
     constructor(data) {
@@ -73,16 +74,14 @@ class Video extends BaseClass {
     }
 
     get videoUrl() {
-        if (typeof this._videoUrl === 'undefined') {
+        if (typeof this._id === 'undefined') {
             // console.error('Tried to get videoUrl of Video, was not set');
             return false;
         }
-        return this._videoUrl;
+        return videoPrefix + this._id;
     }
     set videoUrl(videoUrl) {
-        if (videoUrl) {
-            this._videoUrl = videoUrl;
-        }
+        return false; // Cant set videoUrl
     }
 
     get tags() {

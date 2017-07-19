@@ -37,7 +37,7 @@ const ProductCardMobile = props => (
       <Row>
         <Col xs={12} md={6}>
           {<Poster
-            handlePlay={() => {props.handlePlay(props.video.item.id); }} 
+            handlePlay={() => {props.handlePlay(props.video.item); }} 
             imageUrl={props.video.item.thumbnail}
           />}
         </Col>

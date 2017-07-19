@@ -11,7 +11,6 @@ export default function requestSent(state = defaultRequestState, action) {
         return Object.assign({}, state, {
             isFetching: true,
         });
-            // return state.isFetching = true;// DON'T!! for immutability test
     case Actions.FETCH_METADATA_SUCCESS:
         return Object.assign({}, state, {
             isFetching: false,

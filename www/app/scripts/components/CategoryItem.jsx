@@ -27,11 +27,6 @@ const styles = {
 
 class CategoryItem extends Component {
 
-    _handlePlay = (assetID) => {
-        this.props.dispatch(showOverlay());
-        this.props.dispatch(videoSelected(`${videoPrefix}${assetID}`));
-    }
-
     render() {
         return (
           <div className="videoThumb">
@@ -57,12 +52,10 @@ class CategoryItem extends Component {
     }
 }
 
-const mapStateToProps = state => ({ videoUrl: state.playback.url, selected: state.playback.isSelected });
-
 CategoryItem.propTypes = {
     dispatch: PropTypes.func.isRequired,
     video: PropTypes.objectOf(PropTypes.any).isRequired,
     handleClick: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(CategoryItem);
+export default CategoryItem;
