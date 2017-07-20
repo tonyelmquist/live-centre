@@ -62,6 +62,11 @@ msgstr "TV-Guide"
 msgid "profile_page"
 msgstr "My profile"
 
+#.Route Sports
+#:
+msgid "route_sports"
+msgstr "Sports"
+
 #. Topics Rendering
 #:
 msgid "topics_rendering"
@@ -203,3 +208,9 @@ msgstr "Roaring Twenties"
 #:
 msgid "spaceage"
 msgstr "Space Age"
+
+#. Sport
+#:
+msgid "soccer"
+msgstr "Soccer"
+

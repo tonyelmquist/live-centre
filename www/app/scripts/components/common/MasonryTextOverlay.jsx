@@ -1,4 +1,7 @@
 import React from 'react';
+import IconButton from 'material-ui/IconButton';
+import PlayCircleOutline from 'material-ui/svg-icons/av/play-circle-outline';
+import { amber300, fullWhite } from 'material-ui/styles/colors';
 
 const styles = {
     mediumIcon: {
@@ -8,23 +11,24 @@ const styles = {
 };
 
 
-const MasonryTileOverlay = (props) => {
-	return (
+const MasonryTextOverlay = ({title, handleTilePlay, video}) => {
+    return (
         <div className="tile-overlay">
             <div className="tile-text">
-                <h4>{props.text}</h4>
+                <h4>{video.title}</h4>
             </div>
             <IconButton
                 className="masonryPlayButton"
                 iconStyle={styles.mediumIcon}
-                onTouchTap={() => { props.handleTilePlay }}
+                // style={styles.medium}
+                onTouchTap={() => { handleTilePlay(video); }}
             >
                 <PlayCircleOutline hoverColor={amber300} color={fullWhite} />
             </IconButton>
-            
         </div>
-	);
+    );
 }
 
-export default MasonryTileOverlay;
+
+export default MasonryTextOverlay;
 

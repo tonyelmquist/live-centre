@@ -19,6 +19,9 @@ import ChannelsPage from './pages/ChannelsPage';
 import SingleChannelPage from './pages/SingleChannelPage';
 import TVGuidePage from './pages/TVGuidePage';
 import ProfilePage from './pages/ProfilePage';
+import SportsMainPage from './pages/SportsMainPage';
+import SingleSportPage from './pages/SingleSportPage';
+import SportsTeamPage from './pages/SportsTeamPage';
 import Overlay from './OverlayContainer';
 import OverlayX from './OverlayX';
 import CategoryContainer from './CategoryContainer';
@@ -82,7 +85,9 @@ class App extends Component {
                   <Route path="/Channels" component={ChannelsPage} />
                   <Route path="/Channel/:channelKey" component={SingleChannelPage}/>
                   <Route path="/Programs" component={ProgramsPage} />
-                  <Route path="/TVGuide" component={TVGuidePage} />
+                  <Route path="/Sports" component={SportsMainPage} />
+                  <Route path="/Sport/:sportKey" component={SingleSportPage} />
+                  <Route path="/Team/:teamkey" component={SportsTeamPage} />
                   <Route path="/Profile" component={ProfilePage} />
                 </div>
 

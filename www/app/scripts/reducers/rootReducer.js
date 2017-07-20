@@ -15,6 +15,7 @@ import replay from './replayReducer';
 import highlights from './highlightsReducer';
 import overlayX from './overlayXReducer';
 import programsPageTab from './programsPageReducer';
+import {sports, teams, players, activeTeamPage, activePlayer, activePlayerTab} from './sportReducer';
 
 
 const rootReducer = combineReducers({
@@ -38,6 +39,8 @@ const rootReducer = combineReducers({
     search,
     searchFilterTab,
     series: seriesReducer,
+    sportsPage: combineReducers({activeTeamPage, activePlayer, activePlayerTab}),
+    sportsInfo : combineReducers({sports, teams, players}),
     tags: tagsReducer,
     seasons: seasonReducer,
     settings,

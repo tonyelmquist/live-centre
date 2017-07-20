@@ -5,8 +5,10 @@ import PropTypes from 'prop-types';
 
 import MasonryContainer from '../components/common/MasonryContainer';
 import MasonryImageTile from '../components/common/MasonryImageTile';
+import MasonryTextOverlay from '../components/common/MasonryTextOverlay'
 import FilterTabs from '../components/common/FilterTabs';
 import CirclesRow from '../components/common/CirclesRow';
+import CircleRowItem from '../components/common/CircleRowItem';
 
 import CardContainer from '../containers/homepage/CardContainer';
 
@@ -32,7 +34,10 @@ class SearchContainer extends Component {
 
     satisfyFilter = (filter, video) => {
         //this.props.search.isSearching || !this.props.filter.isClear
-        if(filter == "series"){
+        if(filter == "All"){
+            return true
+        }
+        if(filter == "Series"){
             if(video.series != undefined) return true
         } else if (filter == "movies"){
             if(video.series == undefined) return true
@@ -42,8 +47,18 @@ class SearchContainer extends Component {
         }
     }
 
+    satisfySearch(searchQuery, video){
+       // console.log("searchquery:",searchQuery);
+        if(searchQuery.length > 0){
+            //console.log("satisfy?",video.title,this._compareMetadata(searchQuery, video));
+            return this._compareMetadata(searchQuery, video);
+        } 
+        return true
+    }
+
 
     _compareMetadata = (filter, video) => {
+       // console.log("compare: ",filter);
         filter = filter.toLowerCase();
         if(video.tags.toLowerCase() == filter)return true
         if(video.title.toLowerCase().includes(filter)) return true
@@ -58,23 +73,53 @@ class SearchContainer extends Component {
     getTiles = (tabs) => {
         const tiles = [];
         const videos = this.props.videos;;
-        const filterOn = tabs[this.props.activeFilter];
+        const filterIndex = this.props.activeFilter;
+        let filterOn = tabs[filterIndex];
+        const searchQuery = this.props.search.keyword;
+        const isSearching = this.props.search.isSearching;
+
+        if(filterIndex == 0 && !isSearching){
+            filterOn = "Promotional Videos";
+        }
+
+        console.log("!isSearching",!isSearching);
+         console.log("filterIndex ==  0",filterIndex ==  0);
         
 
         for (const key in videos) {
             const video = videos[key];
 
-            if (this.satisfyFilter(filterOn, video)) {
+            if ( this.satisfyFilter(filterOn, video) && ( !isSearching || this.satisfySearch(searchQuery, video))) {
                 tiles.push(
                     <MasonryImageTile
                         key={`search-tile-${video.id}`}
                         poster={video.thumbnail}
+                        overlay={<MasonryTextOverlay video={video} handleTilePlay={this.handleTilePlay} title={video.title}/>}
                         handleClick={() => this.handleTileOpen(video)}
                     />
                 );
             }
         }
         return tiles
+    }
+
+    portraitOverlay = (person) => {
+        return (
+            <div className="circle-overlay">
+                <p className="label">{person.key}</p>
+            </div>
+        );
+    }
+
+    getPortraitItems = (people) => {
+        return people.map(person => (
+            <CircleRowItem 
+                item={person} 
+                overlay={
+                    (this.portraitOverlay(person))
+                }
+            />
+        ));
     }
 
 
@@ -93,7 +138,7 @@ class SearchContainer extends Component {
         ];
 
         const tabs = [
-            "series", "movies"
+            "All", "Series", "Movies"
         ];
         //Append all tags to tabkeys.
         for(const key in this.props.tags){
@@ -102,18 +147,22 @@ class SearchContainer extends Component {
 
         return (
           <div className={(this.props.search.isOpen) ? 'searchContainer expand' : 'searchContainer close'}>
-            <h4 className="container-fluid hideOnMobile">{i18next.t('filter')}</h4>
+            <h4 className="container-fluid hideOnTablet">{i18next.t('filter')}</h4>
             
             <FilterTabs tabItems={tabs} activeTab={this.props.activeFilter} changeTab={this.changeTab}/>
             
             <h4 className="container-fluid">{i18next.t('suggested_people')}</h4>
             
-            <CirclesRow items={people} />
-
+            {/* <CirclesRow>
+                {this.getPortraitItems(people)}
+            </CirclesRow> */}
+            <CirclesRow>
+                {this.getPortraitItems(people)}
+            </CirclesRow>
 
             <div className="container-fluid">
 
-              {this.props.search.isSearching
+              {this.props.search.isSearching || this.props.activeFilter == 0 
                     ? <h4>{i18next.t('search_results')} {this.props.search.keyword}</h4>
                     : <h4>{i18next.t('suggested_videos')}</h4>
                 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import i18next from 'i18next';
 import CirclesRow from '../../components/common/CirclesRow';
+import CircleRowItem from '../../components/common/CircleRowItem';
 import MasonryContainer from '../../components/common/MasonryContainer';
 import MasonryImageTile from '../../components/common/MasonryImageTile';
 import PropTypes from 'prop-types';
@@ -9,37 +10,28 @@ import { connect } from 'react-redux';
 
 //Dummy filters and channels
 const filters = [
-  { key: 'barn' },
+  { key: 'barn', avatarStyle: 'background-color: red'},
   { key: 'drama' },
   { key: 'pets' },
   { key: 'humor' },
+  { key: 'fantasy'},
+  { key: 'documentaries'},
 ];
 
-const channels = [
-  {
+const channels = {
+  1: {
       id: 1,
-      title: 'Lost in Time',
+      title: 'The Future Group',
       logo: '/img/demoChannels/lost-in-time-logo.png',
       thumbnail: '/img/demoChannels/lost-in-time.jpg',
-      description:
-          `Lost in Time er et interaktivt gameshow som foregår i en virtuell verden.
-          Hver lørdag kl 20.00 kan du spille med og vinne inntil én million kroner.
-          For å delta må du ha Lost in Time-appen.
-          Hele uken kan du også delta i daglige turneringer
-          og konkurrere om ekte premier.`,
   },
-  {
+  2: {
       id: 2,
       title: 'Street Fighter',
       logo: '/img/demoChannels/street-fighter-logo.png',
       thumbnail: '/img/demoChannels/street-fighter.jpg',
-      description: `Street Fighter (ストリートファイター? Sutorīto Faitā),
-      commonly abbreviated as SF or スト (Suto), is a fighting video
-      game franchise by Capcom. The second game in the series
-      is credited with establishing many of the conventions of
-      the one-on-one fighting genre.`,
   },
-];
+};
 
 class ChannelsPage extends React.Component {
 
@@ -49,7 +41,10 @@ class ChannelsPage extends React.Component {
     console.log("filter");
   }
 
-  handleOnClick = item => changeRoute(`/SingleChannel${item.id}`);
+  handleOnClick = (item) => {
+    console.log("Channel:",item);
+    this.changeRoute(`/Channel/${item.title}`);
+  }
 
   getTiles = () => {
     const tiles = [];
@@ -61,11 +56,29 @@ class ChannelsPage extends React.Component {
           overlay={
               <img className="logo" src={channels[key].logo}/>
             }
-          onClick={this.handleOnClick}
+          handleClick={() => this.handleOnClick(channels[key])}
         />
       );
     }
     return tiles;
+  }
+
+  filterOverlay = (filter) => {
+    return (
+      <div className="circleFilterOverlay"> 
+        {filter.key}
+      </div>
+    )
+  }
+
+  getCircleFilters = (filters) => {
+    return filters.map(filter => (
+      <CircleRowItem
+        item={filter}
+        overlay={(this.filterOverlay(filter))
+        }
+      />
+    ));
   }
 
   render (){
@@ -73,16 +86,21 @@ class ChannelsPage extends React.Component {
 
     return(
         <div className="channel-page">
-        <div className="container-fluid slide">        
-          <h1>Channel page</h1>
+        <div className="container-fluid">        
           <h4>{i18next.t('filter')}</h4>
         </div>
 
-        <CirclesRow items={filters}/>
+        <div className="inline-circle-label">
+          <CirclesRow>
+            {this.getCircleFilters(filters)}
+          </CirclesRow>
+        </div>
+        <div className="container-fluid">
 
-        <MasonryContainer>
-          {this.getTiles()}
-        </MasonryContainer>
+          <MasonryContainer>
+            {this.getTiles()}
+          </MasonryContainer>
+          </div>
       </div>
 
     );

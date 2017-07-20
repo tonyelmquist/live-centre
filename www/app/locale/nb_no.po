@@ -56,6 +56,17 @@ msgstr "TV-Guide"
 msgid "profile_page"
 msgstr "Min profil"
 
+#.Route Sports
+#:
+msgid "route_sports"
+msgstr "Sport"
+
+#. Route Programs
+#:
+msgid "route_programs"
+msgstr "Programmer"
+
+
 #. Topics Rendering
 #: 
 msgid "topics_rendering"
@@ -86,7 +97,6 @@ msgstr "Engelsk"
 #:
 msgid "language_norwegian"
 msgstr "Norsk"
-
 
 #. Setting: Title
 #:
@@ -137,7 +147,6 @@ msgstr "Søkeresultater for:"
 #:
 msgid "filter"
 msgstr "Filtrer"
-
 
 #. Tag & category names
 #:
@@ -198,3 +207,9 @@ msgstr "Glade 20åra"
 #:
 msgid "spaceage"
 msgstr "Romalderen"
+
+
+#. Sport
+#:
+msgid "soccer"
+msgstr "Fotball"

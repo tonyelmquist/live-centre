@@ -34,7 +34,7 @@ class Header extends Component {
       { key: 'route_home', path: '/Home', icon: <HomeIcon /> },
       { key: 'route_programs', path: '/Programs', icon: <VideoIcon /> },
       { key: 'route_channels', path: '/Channels', icon: <ChannelIcon /> },
-      { key: 'route_tvguide', path: '/TVGuide', icon: <TVicon /> },
+      { key: 'route_sports', path: '/Sports', icon: <TVicon /> },
         ];
 
         return items;

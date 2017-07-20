@@ -1,23 +1,18 @@
 
-$tilePadding = 10px 10px 10px 0
 
 .programsPage
-  margin: 0 5px
   .masonry_tiles 
     .tile
       width:50%
-      .masonry_tile_inner
-        margin: 0
-      .tile-overlay
-        display:none
 
 .masonry_tiles 
+  margin-right:-10px
   .tile
     width:100%
     .masonry_tile_inner
       position:relative
       overflow:hidden
-      margin: $tilePadding
+      margin: 10px 20px 10px 0
     img
       width:100%
     .tile-overlay
@@ -25,7 +20,6 @@ $tilePadding = 10px 10px 10px 0
       left: 0
       right: 0
       bottom: 4px //Some wierd margin under the images. 
-      max-height: 50px
       padding:5px
       align-items: center
       overflow:hidden
@@ -43,7 +37,6 @@ $tilePadding = 10px 10px 10px 0
       margin: 5px 0;
       float:left
       max-width:70%
-      max-height:50px
       overflow:hidden
     h4
       font-size: $font_m
@@ -70,8 +63,6 @@ $tilePadding = 10px 10px 10px 0
     .tile
       width:25%
       .masonry_tile_inner
-      p
-        margin:5px 0 5px 0
       p.metadata
         font-size: $font_m
           

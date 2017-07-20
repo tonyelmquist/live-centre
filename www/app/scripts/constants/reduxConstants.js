@@ -111,6 +111,11 @@ class ReduxConstants {
     //ProgramPage
     static get CHANGE_PROGRAMS_TAB_INDEX() {return 'CHANGE_PROGRAMS_TAB_INDEX'}
 
+    //Sportspage
+    static get CHANGE_ACTIVE_TEAM_INDEX() {return 'CHANGE_ACTIVE_TEAM_INDEX'}
+    static get CHANGE_PLAYER_INDEX() {return 'CHANGE_PLAYER_INDEX'}
+    static get CHANGE_PLAYER_INDEX_TAB() {return 'CHANGE_PLAYER_INDEX_TAB'}
+
 }
 
 export class Orientation {

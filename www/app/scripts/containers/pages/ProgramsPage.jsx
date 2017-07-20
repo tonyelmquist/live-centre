@@ -37,12 +37,12 @@ class ProgramsPage extends React.Component {
         //console.log(filterArray, video, filterby);
        /* if(filterArray === 'series') return this.episodeList(video);
         else return null*/
-        if(filterArray == "series"){
+        if(filterArray == "Series"){
             //Should also be a variable for Episode number so we could get the episode number. For now use season. 
             if(video.series != undefined && video.season == 1){
                 return true
             }
-        } else if(filterArray == "movies"){
+        } else if(filterArray == "Movies"){
             if(video.series == undefined ){
                 return true
             }
@@ -111,10 +111,10 @@ class ProgramsPage extends React.Component {
         const currentTab = tabKeys[this.props.activetab];
         console.log(currentTab);
         switch(currentTab){
-            case "series":
+            case "Series":
                 programs = this.getAllSeriesPilots();
                 break;
-            case "movies":
+            case "Movies":
                 programs = this.getAllMovies();
                 break;
             default:
@@ -137,7 +137,7 @@ class ProgramsPage extends React.Component {
     render() {
 
         const tabKeys = [
-            "series", "movies"
+            "Series", "Movies"
         ];
         //Append all tags to tabkeys.
         for(const key in this.props.tags){
@@ -146,26 +146,19 @@ class ProgramsPage extends React.Component {
 
         
         return (
-            <div className="programsPage">
-                {/* <SearchFilters 
-                    color="dark" 
-                    style={{color:'red'}}
-                    handleFilter={this.handlefilter} 
-                    filters={this.tabs(tabKeys)} /> */}
-
-                    <FilterTabs
-                        tabItems={tabKeys}
-                        activeTab={this.props.activetab}
-                        changeTab={this.changeTab}
-                        colortheme="dark"
-                    />
-
+            <div className="programsPage ">
+                <FilterTabs
+                    tabItems={tabKeys}
+                    activeTab={this.props.activetab}
+                    changeTab={this.changeTab}
+                    colortheme="dark"
+                />
+                <div className="container-fluid">       
                     <CardContainer />
-
                     <MasonryContainer>
                         {this.getTiles(tabKeys)}
-
                     </MasonryContainer>
+                </div>
                 
             </div>
         );
