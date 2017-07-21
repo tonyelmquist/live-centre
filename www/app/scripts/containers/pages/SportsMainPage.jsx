@@ -1,8 +1,9 @@
 import React from 'react';
 import i18next from 'i18next';
-import CirclesRow from '../../components/common/CirclesRow';
-import MasonryContainer from '../../components/common/MasonryContainer';
-import MasonryImageTile from '../../components/common/MasonryImageTile';
+import CirclesRow from '../../components/horizontal-scroll/CirclesRow';
+import CircleRowItem from '../../components/horizontal-scroll/CircleRowItem';
+import MasonryContainer from '../../components/masonry/MasonryContainer';
+import MasonryImageTile from '../../components/masonry/MasonryImageTile';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -24,41 +25,36 @@ class SportsMainPage extends React.Component {
   getTiles = () => {
     const tiles = [];
     const sports = this.props.sportsInfo.sports;
-
-    console.log(sports);
-    console.log(this.props);
-
+    
     for(const key in sports){
-      tiles.push(
-        <MasonryImageTile
-          key={`sports-sport-${key}`}
-          poster={sports[key].thumbnail}
-          overlay={
-              <p>{sports[key].title}</p>
-            }
-          handleClick={() => this.handleOnClick(sports[key])}
-        />
-      );
+      for(let i=0; i<100; i++){ //Cheat to simulate many sports.. 
+        tiles.push(
+          <MasonryImageTile
+            key={`sports-sport-${key+i}`}
+            poster={sports[key].thumbnail}
+            overlay={
+                <div 
+                  className="centerOverlay"
+                  onTouchTap={() => this.handleOnClick(sports[key])}
+                >
+                  <h4>{sports[key].title}</h4>
+                </div>
+              }
+          />
+        );
+      }
     }
     return tiles;
   }
 
   render (){
 
-
     return(
-        <div className="channel-page">
-        <div className="container-fluid">        
-          <h2>{i18next.t('route_sports')}</h2>
-        </div>
-
-        <div className="container-fluid">
-
+        <div className="container-fluid sportsMainPage">
           <MasonryContainer>
             {this.getTiles()}
           </MasonryContainer> 
-          </div>
-      </div>
+        </div>
 
     );
   };

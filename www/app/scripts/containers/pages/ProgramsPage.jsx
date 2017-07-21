@@ -2,17 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import videoPrefix from '../../constants/mediaPrefix';
-import MasonryContainer from '../../components/common/MasonryContainer';
-import MasonryVideoTile from '../../components/common/MasonryVideoTile';
+import MasonryContainer from '../../components/masonry/MasonryContainer';
+import MasonryVideoTile from '../../components/masonry/MasonryVideoTile';
+import MasonryImageTile from '../../components/masonry/MasonryImageTile';
 import { videoSelected } from '../../actions/video';
 import { showOverlay } from '../../actions/overlay';
 import { showVideoCard, changeVideoInfo } from '../../actions/videoCard';
 import CardContainer from '../homepage/CardContainer';
 import { changeProgramTabIndex  } from '../../actions/ProgramsPage';
+import FilterTabs from '../../components/horizontal-scroll/FilterTabs';
 
-import FilterTabs from '../../components/common/FilterTabs';
-
-import MasonryImageTile from '../../components/common/MasonryImageTile';
 
 class ProgramsPage extends React.Component {
 

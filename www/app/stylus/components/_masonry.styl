@@ -1,7 +1,9 @@
-
-
 .programsPage
   .masonry_tiles 
+    .tile
+      width:50%
+.sportsMainPage
+  .masonry_tiles
     .tile
       width:50%
 
@@ -13,6 +15,18 @@
       position:relative
       overflow:hidden
       margin: 10px 20px 10px 0
+    .centerOverlay
+      position: absolute;
+      top: 0
+      left: 0
+      width:100%
+      height:100%
+      display: flex;
+      justify-content: center; /* align horizontal */
+      align-items: center; /* align vertical */
+      h1, h2, h4, h5, h6, p, .text
+        background-color: rgba(0, 0, 0, 0.5);
+        padding:10px
     img
       width:100%
     .tile-overlay

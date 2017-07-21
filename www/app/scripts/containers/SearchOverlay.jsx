@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import i18next from 'i18next';
 import PropTypes from 'prop-types';
 
-import MasonryContainer from '../components/common/MasonryContainer';
-import MasonryImageTile from '../components/common/MasonryImageTile';
-import MasonryTextOverlay from '../components/common/MasonryTextOverlay'
-import FilterTabs from '../components/common/FilterTabs';
-import CirclesRow from '../components/common/CirclesRow';
-import CircleRowItem from '../components/common/CircleRowItem';
+import MasonryContainer from '../components/masonry/MasonryContainer';
+import MasonryImageTile from '../components/masonry/MasonryImageTile';
+import MasonryTextOverlay from '../components/masonry/MasonryTextOverlay'
+
+import FilterTabs from '../components/horizontal-scroll/FilterTabs';
+import CirclesRow from '../components/horizontal-scroll/CirclesRow';
+import CircleRowItem from '../components/horizontal-scroll/CircleRowItem';
 
 import CardContainer from '../containers/homepage/CardContainer';
 
@@ -114,7 +115,8 @@ class SearchContainer extends Component {
     getPortraitItems = (people) => {
         return people.map(person => (
             <CircleRowItem 
-                item={person} 
+                img={person.img}
+                key={person.key}
                 overlay={
                     (this.portraitOverlay(person))
                 }

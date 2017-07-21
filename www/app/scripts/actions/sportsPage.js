@@ -1,7 +1,7 @@
 import Actions from '../constants/reduxConstants';
 
-export function changeActiveTeamIndex(index) {
-    return { type: Actions.CHANGE_ACTIVE_TEAM_INDEX, index };
+export function changeTeamTabIndex(index) {
+    return { type: Actions.CHANGE_TEAM_TAB_INDEX, index };
 }
 
 export function changePlayerIndex(index) {

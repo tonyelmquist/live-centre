@@ -31,18 +31,10 @@ class CategoryItem extends Component {
         return (
           <div className="videoThumb">
             <GridTile
-                    // onTouchTap={this.props.handleClick}
               title={''}
-                    // subtitle={< span > by < b > {this.props.video.author} </b></span >}
               subtitle={''}
               onTouchTap={() => { this.props.handleClick(); }}
               actionIcon={<div>
-                {/* <IconButton iconStyle={styles.mediumIcon} style={styles.medium} onTouchTap={() => { this.props.handleClick(); }} >
-                  <Info hoverColor={amber300} color={fullWhite} />
-                </IconButton>
-                <IconButton iconStyle={styles.mediumIcon} style={styles.medium} onTouchTap={() => { this._handlePlay(this.props.video.id); }} >
-                  <PlayCircleOutline hoverColor={amber300} color={fullWhite} />
-                </IconButton> */}
               </div>}
             >
               <img src={this.props.video.thumbnail} alt={this.props.video.description} />

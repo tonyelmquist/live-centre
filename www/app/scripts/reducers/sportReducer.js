@@ -14,7 +14,7 @@ const sportsDefaultState = {
   1: {
       id: 1,
       title: 'Soccer',
-      thumbnail: '/img/soccer-background.png',
+      thumbnail: '/img/soccer.png',
   },
 };
 
@@ -23,6 +23,7 @@ const teamsDefaultState = {
         key: "teamA",
         title: "Team A",
         logo: '/img/soccer-teams/Real-Madrid-Logo.png',
+        img: '/img/soccer-teams/Real-Madrid-Team.jpg',
         players: [7, 8, 9],
     }
 };
@@ -33,21 +34,25 @@ const playersDefaultState = {
         team: "teamA",
         number: 7,
         description : "very famous",
-        portrait: '/img/soccer-players/ronaldo-full.png',
+        portrait: '/img/soccer-players/ronaldo.png',
+        fullPortrait: '/img/soccer-players/ronaldo-fullbody.png',
+        
     },
     8 : {
         name: "Another dude",
         team: "teamA",
         number: 7,
         description : "not so famous",
-        portrait: '/img/soccer-players/ronaldo-full.png',
+        portrait: '/img/soccer-players/ronaldo.png',
+        fullPortrait: '/img/soccer-players/ronaldo-fullbody.png',
     },
     9 : {
         name: "a third dude",
         team: "teamA",
         number: 7,
         description : "who knows",
-        portrait: '/img/soccer-players/ronaldo-full.png',
+        portrait: '/img/soccer-players/ronaldo.png',
+        fullPortrait: '/img/soccer-players/ronaldo-fullbody.png',
     }
 };
 
@@ -69,9 +74,9 @@ function players( state = playersDefaultState, action,) {
         return state;
     }
 }
-function activeTeamPage(state = 0, action,) {
+function activeTeamTab(state = 0, action,) {
     switch (action.type) {
-    case Actions.CHANGE_ACTIVE_TEAM_INDEX:{
+    case Actions.CHANGE_TEAM_TAB_INDEX:{
         return action.index;
     }
     default:
@@ -99,5 +104,5 @@ function activePlayerTab(state = 0, action,) {
 
 
 
-export { sports, teams, players, activeTeamPage, activePlayer, activePlayerTab };
+export { sports, teams, players, activeTeamTab, activePlayer, activePlayerTab };
 

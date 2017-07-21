@@ -17,7 +17,6 @@ import FavoritePage from './pages/FavoritePage';
 import ProgramsPage from './pages/ProgramsPage';
 import ChannelsPage from './pages/ChannelsPage';
 import SingleChannelPage from './pages/SingleChannelPage';
-import TVGuidePage from './pages/TVGuidePage';
 import ProfilePage from './pages/ProfilePage';
 import SportsMainPage from './pages/SportsMainPage';
 import SingleSportPage from './pages/SingleSportPage';
@@ -80,14 +79,13 @@ class App extends Component {
                   <Route path="/Login" component={Login} />
                   <Route path="/Settings" component={SettingsPage} />
                   <Route path="/Favorites" component={FavoritePage} />
-                  {/* <Route path="/Category/:categoryKey" component={CategoryPage}/> */}
                   <Route path="/Category/:categoryKey" component={CategoryContainer} />
                   <Route path="/Channels" component={ChannelsPage} />
                   <Route path="/Channel/:channelKey" component={SingleChannelPage}/>
                   <Route path="/Programs" component={ProgramsPage} />
                   <Route path="/Sports" component={SportsMainPage} />
                   <Route path="/Sport/:sportKey" component={SingleSportPage} />
-                  <Route path="/Team/:teamkey" component={SportsTeamPage} />
+                  <Route path="/Team/:teamKey" component={SportsTeamPage} />
                   <Route path="/Profile" component={ProfilePage} />
                 </div>
 

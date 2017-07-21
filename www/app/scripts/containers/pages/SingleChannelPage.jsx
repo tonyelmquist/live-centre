@@ -1,10 +1,10 @@
 import React, {component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import MasonryContainer from '../../components/common/MasonryContainer';
-import MasonryImageTile from '../../components/common/MasonryImageTile';
-import MasonryTextOverlay from '../../components/common/MasonryTextOverlay';
-import CirclesRow from '../../components/common/CirclesRow';
+import MasonryContainer from '../../components/masonry/MasonryContainer';
+import MasonryImageTile from '../../components/masonry/MasonryImageTile';
+import MasonryTextOverlay from '../../components/masonry/MasonryTextOverlay';
+import CirclesRow from '../../components/horizontal-scroll/CirclesRow';
 
 //Dummy channels:
 const channels = {

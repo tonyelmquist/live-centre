@@ -1,9 +1,9 @@
 import React from 'react';
 import i18next from 'i18next';
-import CirclesRow from '../../components/common/CirclesRow';
-import CircleRowItem from '../../components/common/CircleRowItem';
-import MasonryContainer from '../../components/common/MasonryContainer';
-import MasonryImageTile from '../../components/common/MasonryImageTile';
+import CirclesRow from '../../components/horizontal-scroll/CirclesRow';
+import CircleRowItem from '../../components/horizontal-scroll/CircleRowItem';
+import MasonryContainer from '../../components/masonry/MasonryContainer';
+import MasonryImageTile from '../../components/masonry/MasonryImageTile';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 

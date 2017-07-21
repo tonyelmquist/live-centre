@@ -11,8 +11,8 @@ import videoPrefix from '../constants/mediaPrefix';
 // import {changeCardIndex, showVideoCard, hideVideoCard, changeCardCategory} from '../actions/videoCard';
 import { showOverlay } from '../actions/overlay';
 
-import MasonryContainer from '../components/common/MasonryContainer';
-import MasonryVideoTile from '../components/common/MasonryVideoTile';
+import MasonryContainer from '../components/masonry/MasonryContainer';
+import MasonryVideoTile from '../components/masonry/MasonryVideoTile';
 
 const styles = {
     mediumIcon: {
