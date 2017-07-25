@@ -4,11 +4,11 @@ import Actions from '../constants/reduxConstants';
 
 /**
  * ACTION to happen when a user gets a NEW_MESSAGE from Web Sockets.
- * 
+ *
  * @memberof Actions
  * @param {int} id of message
  * @param {string} username of message
- * @param {string} content of message 
+ * @param {string} content of message
  * @returns Dispatchable Action
  */
 export function getMessage(id, user, message) {
@@ -17,11 +17,11 @@ export function getMessage(id, user, message) {
 
 /**
  * ACTION to happen when a user sends a new message through Web Sockets
- * 
+ *
  * @export
  * @memberof Actions
- * @param {string} user 
- * @param {string} message 
+ * @param {string} user
+ * @param {string} message
  * @returns Dispatchable Action
  */
 export function sendMessage(user, message) {
@@ -36,7 +36,7 @@ export function sendMessage(user, message) {
 
 /**
  * ACTION to control UI opening and closing of Chat Menu
- * 
+ *
  * @export
  * @memberof Actions
  * @returns Dispatchable Action

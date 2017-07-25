@@ -2,10 +2,10 @@ import Actions from '../constants/reduxConstants';
 
 /**
  * Action to control UI of showing highlights within full screen video playing mode
- * 
+ *
  * @memberof Actions
  * @export
- * @param {any} videoUrl - Video URL 
+ * @param {any} videoUrl - Video URL
  * @param {any} highlights - Highlights to show
  * @returns Dispatchable Action
  */
@@ -17,7 +17,7 @@ export function showHighlights(videoUrl, highlights) {
 
 /**
  * Action to control UI to hide the highlights within full screen video playing mode
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action

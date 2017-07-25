@@ -2,11 +2,11 @@ import Actions from '../constants/reduxConstants';
 
 /**
  * Action to show replays on fullscreen video mode
- * 
+ *
  * @export
  * @memberof Actions
- * @param {any} videoUrl 
- * @param {any} timestamp 
+ * @param {any} videoUrl
+ * @param {any} timestamp
  * @returns Dispatchable Action
  */
 export function showReplay(videoUrl, timestamp) {
@@ -17,7 +17,7 @@ export function showReplay(videoUrl, timestamp) {
 
 /**
  * Action to hide replays on fullscreen video mode
- * 
+ *
  * @export
  * @memberof Actions
  * @returns Dispatchable Action

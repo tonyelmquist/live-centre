@@ -2,10 +2,10 @@ import Actions from '../constants/reduxConstants';
 
 /**
  * Action to change the video card for the video card
- * 
+ *
  * @memberof Actions
  * @export
- * @param {any} index 
+ * @param {any} index
  * @returns Dispatchable Action
  */
 export function changeCardIndex(index) {
@@ -14,10 +14,10 @@ export function changeCardIndex(index) {
 
 /**
  * Action to show the video card
- * 
+ *
  * @memberof Actions
  * @export
- * @param {any} index 
+ * @param {any} index
  * @returns Dispatchable Action
  */
 export function showVideoCard() {
@@ -26,10 +26,10 @@ export function showVideoCard() {
 
 /**
  * Action to hide the video card
- * 
+ *
  * @memberof Actions
  * @export
- * @param {any} index 
+ * @param {any} index
  * @returns Dispatchable Action
  */
 export function hideVideoCard() {
@@ -38,10 +38,10 @@ export function hideVideoCard() {
 
 /**
  * Action to change the card category
- * 
+ *
  * @memberof Actions
  * @export
- * @param {any} index 
+ * @param {any} index
  * @returns Dispatchable Action
  */
 export function changeCardCategory(category) {
@@ -50,10 +50,10 @@ export function changeCardCategory(category) {
 
 /**
  * Action to change the video info
- * 
+ *
  * @memberof Actions
  * @export
- * @param {any} index 
+ * @param {any} index
  * @returns Dispatchable Action
  */
 export function changeVideoInfo(video) {

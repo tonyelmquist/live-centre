@@ -3,7 +3,7 @@ import Actions, { Orientation } from '../constants/reduxConstants';
 
 /**
  * Action to indicate that a request has been sent to get the user details
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -14,7 +14,7 @@ export function fetchUserSettingsSent() {
 
 /**
  * Action to indicate success of fetch of user settings, inputs to store
- * 
+ *
  * @memberof Actions
  * @param {any} Settings User Settings
  * @export
@@ -26,7 +26,7 @@ export function fetchUserSettingsSuccess(settings) {
 
 /**
  * Action to indicate that a request for user settings has failed
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -37,7 +37,7 @@ export function fetchUserSettingsFailed() {
 
 /**
  * Action to indicate that a request has been sent to save the user settings
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -48,7 +48,7 @@ export function savingUserSettings() {
 
 /**
  * Action to indicate that user settings have been successfully saved
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -59,7 +59,7 @@ export function savedUserSettings() {
 
 /**
  * Action to indicate that user settings has failed
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -70,7 +70,7 @@ export function savingUserSettingsFailed() {
 
 /**
  * Action to change the base language
- * 
+ *
  * @memberof Actions
  * @param {string} lang i18 Enum
  * @export
@@ -82,7 +82,7 @@ export function changeLang(lang) {
 
 /**
  * Action to change the audio language
- * 
+ *
  * @memberof Actions
  * @param {string} lang i18 Enum
  * @export
@@ -94,7 +94,7 @@ export function changeAudioLang(lang) {
 
 /**
  * Action to change the subtitle language
- * 
+ *
  * @memberof Actions
  * @param {string} lang i18 Enum
  * @export
@@ -106,7 +106,7 @@ export function changeSubtitleLang(lang) {
 
 /**
  * Action to toggle the user recommendations
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -117,7 +117,7 @@ export function toggleRecommendations() {
 
 /**
  * Action to save the user settings, sends an AJAX call to the relevant server
- * 
+ *
  * @memberof Actions
  * @param {Settings} settings New Settings to be saved
  * @export
@@ -145,7 +145,7 @@ export function saveUserSettings(settings) {
 
 /**
  * Action to set to portrait mode
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -156,7 +156,7 @@ export function setPortrait() {
 
 /**
  * Action to set to landscape mode
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action

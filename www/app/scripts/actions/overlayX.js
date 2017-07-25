@@ -2,11 +2,11 @@ import Actions from '../constants/reduxConstants';
 
 /**
  * Set Video info for overlay
- * 
+ *
  * @memberof Actions
  * @deprecated Using other set video info action
  * @export
- * @param {any} videoInfo 
+ * @param {any} videoInfo
  * @returns Dispatchable Action
  */
 export function setVideoInfo(videoInfo) {
@@ -15,7 +15,7 @@ export function setVideoInfo(videoInfo) {
 
 /**
  * Action UI to minimize OverlayX
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -26,7 +26,7 @@ export function minimizeOverlayX() {
 
 /**
  * Action UI to maximize OverlayX
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -37,7 +37,7 @@ export function maximizeOverlayX() {
 
 /**
  * Action UI to open OverlayX
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -48,7 +48,7 @@ export function openOverlayX() {
 
 /**
  * Action UI to close OverlayX
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -59,7 +59,7 @@ export function closeOverlayX() {
 
 /**
  * Action to set current time in overlayX
- * 
+ *
  * @deprecated Possibly unneeded, this was used to try and sync two seperate video players in the past, now they are one
  * @memberof Actions
  * @export
@@ -71,7 +71,7 @@ export function setCurrentTimeInOverlayX(newTime) {
 
 /**
  * Action to reset current time in overlayX
- * 
+ *
  * @memberof Actions
  * @deprecated Probably unneeded
  * @export
@@ -80,5 +80,4 @@ export function setCurrentTimeInOverlayX(newTime) {
 export function resetCurrentTimeInOverlayX() {
     return { type: Actions.SET_CURRENT_TIME, time: 0 };
 }
-
 

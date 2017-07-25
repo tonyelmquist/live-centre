@@ -2,7 +2,7 @@ import Actions from '../constants/reduxConstants';
 
 /**
  * Action to show overlay
- * 
+ *
  * @memberof Actions
  * @deprecated Replaced with Overlay X
  * @export
@@ -14,7 +14,7 @@ export function showOverlay() {
 
 /**
  * Action to hide overlay
- * 
+ *
  * @memberof Actions
  * @deprecated Replaced with Overlay X
  * @export

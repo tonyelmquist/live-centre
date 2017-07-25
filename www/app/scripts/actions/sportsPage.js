@@ -2,10 +2,10 @@ import Actions from '../constants/reduxConstants';
 
 /**
  * Actiont to Change team tab on the sports page
- * 
+ *
  * @memberof Actions
  * @export
- * @param {any} index 
+ * @param {any} index
  * @returns Dispatchable Action
  */
 export function changeTeamTabIndex(index) {
@@ -14,10 +14,10 @@ export function changeTeamTabIndex(index) {
 
 /**
  * Action to Change player index on the sports page
- * 
+ *
  * @memberof Actions
  * @export
- * @param {any} index 
+ * @param {any} index
  * @returns Dispatchable Action
  */
 export function changePlayerIndex(index) {
@@ -26,10 +26,10 @@ export function changePlayerIndex(index) {
 
 /**
  * Actiont o change player index tab on the sports page
- * 
+ *
  * @memberof Actions
  * @export
- * @param {any} index 
+ * @param {any} index
  * @returns Dispatchable Action
  */
 export function changePlayerIndexTab(index) {

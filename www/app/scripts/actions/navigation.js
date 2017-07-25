@@ -4,7 +4,7 @@ import Actions from '../constants/reduxConstants';
 
 /**
  * Action to toggle the hamburger menu
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -15,7 +15,7 @@ export function toggleMenu() {
 
 /**
  * Action to show the hamburger menu
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -26,7 +26,7 @@ export function showMenu() {
 
 /**
  * Action to hide the hamburger menu
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -39,7 +39,7 @@ export function hideMenu() {
 
 /**
  * Action to toggle the drawer menu - not currently in use
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -50,7 +50,7 @@ export function toggleDrawerMenu() {
 
 /**
  * Action to open drawer menu - not currently in use (drawer menu is a left-slide-out menu)
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -61,7 +61,7 @@ export function openDrawerMenu() {
 
 /**
  * Action to close drawer menu - Not currently in use but could be used in future
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -72,7 +72,7 @@ export function closeDrawerMenu() {
 
 /**
  * Action to toggle the menu
- * 
+ *
  * @memberof Actions
  * @deprecated Not currently used in version, also replicated
  * @param {any} index Index to chang nav menu

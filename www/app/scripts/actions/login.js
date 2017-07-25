@@ -2,7 +2,7 @@ import Actions from '../constants/reduxConstants';
 
 /**
  * Action to indicate Login Success
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -13,7 +13,7 @@ export function loginSuccess() {
 
 /**
  * Action to indicate Login Failure
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -24,7 +24,7 @@ export function loginFailed() {
 
 /**
  * Action to indicate Logout Success
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -35,7 +35,7 @@ export function logoutSuccess() {
 
 /**
  * Action UI to show registration form
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
@@ -46,7 +46,7 @@ export function showRegistration() {
 
 /**
  * Action UI to hide registration form
- * 
+ *
  * @memberof Actions
  * @export
  * @returns Dispatchable Action
