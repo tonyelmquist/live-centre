@@ -15,9 +15,6 @@ class OverlayX extends Component {
     }
 
     render() {
-        console.log(this.props.video);
-        
-
         return (
             <div className={`overlay-x-container ${this.props.overlayX.maximized ? 'maximized' : 'minimized'} ${this.props.overlayX.open ? 'open' : 'closed'}`}>
                 <VideoX currentTime={this.props.playback.currentTime} updateTime={this.updateTime} resetTime={this.resetTime} screenOrientation={this.props.settings.screenOrientation} onMaximize={this.onMaximize} onMinimize={this.onMinimize} isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized} videoUrl={this.props.video.videoUrl} />

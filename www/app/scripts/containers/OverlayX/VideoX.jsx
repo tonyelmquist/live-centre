@@ -4,19 +4,8 @@ import PropTypes from 'prop-types';
 import Overlay from '../../components/common/Overlay';
 import Player from '../../containers/Player';
 
-import PortraitVideo from './PortraitVideo';
-import { Orientation } from '../../constants/reduxConstants';
-import DataOverlay from '../DataOverlay';
-
 
 class VideoX extends Component {
-
-    startTouchPosition = {};
-    endTouchPosition = {};
-
-    videoLoaded = '';
-    videoPosition = 0;
-    hasTimeUpdated = false;
 
     componentWillUpdate = (nextProps) => {
         if (typeof this.videoPlayer !== 'undefined' && this.videoPlayer !== null && !this.hasTimeUpdated) {

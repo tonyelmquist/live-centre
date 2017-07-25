@@ -6,9 +6,7 @@ import ProductCard from '../../components/homepage/ProductCard';
 import ProductCardMobile from '../../components/homepage/ProductCardMobile';
 import { changeCardIndex, hideVideoCard } from '../../actions/videoCard';
 import { videoSelected } from '../../actions/video';
-import { showOverlay } from '../../actions/overlay';
 import { openOverlayX, maximizeOverlayX, resetCurrentTimeInOverlayX } from '../../actions/overlayX';
-import videoPrefix from '../../constants/mediaPrefix';
 
 
 class ProductCardContainer extends Component {

@@ -42,6 +42,27 @@ const styles = {
  * @extends {React.Component}
  */
 class Player extends React.Component {
+    state = {
+        isPreOverlayShowing: true,
+    }
+    onPrePlayTouch = (e) => {
+        e.stopPropagation();
+        console.log('onPrePlayTouch');
+        this.setState({isPreOverlayShowing: false});
+        if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
+            this.largeVideoPlayer.video.video.play();
+            //  const currTime = this.props.videoPosition;
+
+            // this.largeVideoPlayer.video.video.addEventListener('loadedmetadata', function () {
+            //     this.currentTime = currTime;
+            //     this.play();
+            // }, false);
+        }
+    }
+    onCloseTouch = (e) => {
+        e.stopPropagation();
+        this.props.dispatch(closeOverlayX());
+    }
     onTouchStart = (e) => {
         this.startTouchPosition = {
             x: e.changedTouches[0].clientX,
@@ -92,10 +113,63 @@ class Player extends React.Component {
         this.props.dispatch(showHighlights(videoUrl, highlights));
     };
 
-    limit = 50;
+    printPrePlayOverlay = () => {
+        if (typeof this.largeVideoPlayer !== 'undefined') {
+            if (this.largeVideoPlayer.video.video.paused && this.largeVideoPlayer.video.video.currentTime === 0 && this.state.isPreOverlayShowing && this.props.overlayX.maximized) {
+                return (<div className="pre-play-overlay" onClick={this.onPrePlayTouch}>
+                            <div className="gradient-overlay" />
+                            <div className="play-button" >
+                                <i className="fa fa-play-circle" />
+                            </div>
+                            <div className="close-button" onClick={this.onCloseTouch}>
+                                <i className="fa fa-close" />
+                            </div>
+                        </div>);
+            }
+        }
 
+        return (<div />);
+    }
+
+    limit = 50;
+    
+    shouldComponentUpdate = (x, y, a) => {
+        console.log(x, y);
+        return true;
+    }
+
+    componentWillUpdate = (nextProps) => {
+        if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
+             if (this.videoLoaded !== nextProps.video.videoUrl) {
+                 console.info('Component Will Update Loaded');
+                 this.setState({isPreOverlayShowing: true});
+                 this.largeVideoPlayer.video.video.load();
+                //  const currTime = this.props.videoPosition;
+
+                // this.largeVideoPlayer.video.video.addEventListener('loadedmetadata', function () {
+                //     this.currentTime = currTime;
+                //     this.play();
+                // }, false);
+
+                this.videoLoaded = this.props.video.videoUrl;
+             }
+        }
+    }
 
     render() {
+        // if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
+        //     if (this.videoLoaded !== this.props.video.videoUrl) {
+        //         console.log('LOAD');
+        //         //this.largeVideoPlayer.load();
+        //         //const currTime = this.props.videoPosition;
+        //         // this.largeVideoPlayer.pause();
+        //         // this.largeVideoPlayer.video.video.addEventListener('loadedmetadata', function () {
+        //         //     this.currentTime = currTime;
+        //         //     //this.play();
+        //         // }, false);
+        //         //this.videoLoaded = this.props.video.videoUrl;
+        //     }
+        // }
         const minimizeIconStyles = {
             position: 'fixed',
             top: '20px',
@@ -107,29 +181,18 @@ class Player extends React.Component {
             opacity: `${this.props.overlayX.maximized ? '1' : '0'}`,
         };
 
-        if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
-            if (this.videoLoaded !== this.props.video.videoUrl) {
-                const currTime = this.props.videoPosition;
-                this.largeVideoPlayer.load();
-                // this.largeVideoPlayer.pause();
-                this.largeVideoPlayer.video.video.addEventListener('loadedmetadata', function () {
-                    this.currentTime = currTime;
-                    //this.play();
-                }, false);
-                this.videoLoaded = this.props.video.videoUrl;
-            }
-        }
+        
         return (
           <div style={styles.playerStyle} className={'IMRPlayer'} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
             <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)}>
               <ControlBar autoHide >
-                <VolumeMenuButton horizontal />
                 <PlayToggle />
                 {/* <CurrentTimeDisplay /> */}
                 <KeyboardArrowDown style={minimizeIconStyles} onTouchTap={this.onMinimize} />
               </ControlBar>
               <source src={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`} />
             </Video>
+            {this.printPrePlayOverlay()}
                 {/* <IconButton
                   style={styles.iconButtons}
                   iconClassName="material-icons replay"
@@ -170,7 +233,6 @@ Player.defaultProps = {
 };
 
 Player.propTypes = {
-    videoUrl: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired,
     videoPosition: PropTypes.number,
     orientation: PropTypes.string.isRequired,
