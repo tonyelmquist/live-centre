@@ -22,12 +22,13 @@
 
 //For mobile
 .expandable_searchbar
-  .logo
+  .menuItem
     position: absolute!important
     padding: 5px!important
     opacity: 0!important
     transform: translate(-100%, 0)
     transition: all 0.2s $cubic
+    z-index: 200
     
   .searchInput
     display:block
@@ -44,7 +45,7 @@
       
 
 .expandable_searchbar.closed
-  .logo
+  .menuItem
     opacity: 1!important
     transform: translate(0, 0)
   .searchInput

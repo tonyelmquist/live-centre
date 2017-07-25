@@ -40,6 +40,12 @@ class Header extends Component {
         return items;
     }
 
+    goBack = () => {
+        console.log("go back");
+        console.log(this.props.history);
+        return this.props.history.goBack();
+    }
+
     // Dont know if this is the best way to get the pathname. but it sure is the easiest..
     getLocationName = () => {
         const pathname = this.props.history.location.pathname;
@@ -132,6 +138,7 @@ class Header extends Component {
               searchState={this.props.search}
               settingsState={this.props.settings}
               closeSearch={this.closeSearch}
+              goBack={this.goBack}
             />
             <TabMenu
               pageItems={this.getPageItems()}

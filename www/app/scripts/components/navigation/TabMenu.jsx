@@ -26,7 +26,7 @@ function TabMenu({
             closeSearch();
             hideMenu();
         }}
-        key={item.key}
+        key={`tabmenuitem-${item.key}`}
         icon={item.icon}
       />),
     );
