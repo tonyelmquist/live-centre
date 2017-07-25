@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import HeroCarousel from '../Carousel';
 import { showVideoCard, changeCardCategory, changeVideoInfo } from '../../actions/videoCard';
+import { videoSelected } from '../../actions/video';
+import { openOverlayX, maximizeOverlayX, resetCurrentTimeInOverlayX } from '../../actions/overlayX';
 import CategoryRow from '../../components/CategoryRow';
 
 class HomePage extends Component {
@@ -11,9 +13,11 @@ class HomePage extends Component {
         this.props
             .dispatch(changeCardCategory(category));
     }
-    _showVideoCard = () => {
-        this.props
-            .dispatch(showVideoCard());
+    _onTileClick = (video) => {
+        this.props.dispatch(openOverlayX());
+        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(videoSelected(video));
+        this.props.dispatch(resetCurrentTimeInOverlayX());
     }
     _changeVideoInfo = (video) => {
         this.props.dispatch(changeVideoInfo(video));
@@ -32,7 +36,7 @@ class HomePage extends Component {
                     key={`categoryrow-${key}`}
                     handleCardCategory={this._changeCardCategory}
                     handleVideoInfo={this._changeVideoInfo}
-                    showVideoCard={this._showVideoCard}
+                    onTileClick={this._onTileClick}
                     cardIsVisible={this.props.videoCard.isVisible}
                     videoCard={this.props.videoCard}
                     videos={videoInCategory}

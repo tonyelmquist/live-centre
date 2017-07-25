@@ -7,6 +7,7 @@ import {
   PlayToggle,
   VolumeMenuButton,
 } from 'video-react';
+import KeyboardArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import { maximizeOverlayX, closeOverlayX, minimizeOverlayX } from '../actions/overlayX';
 import { Orientation } from '../constants/reduxConstants';
 import DataOverlay from './DataOverlay';
@@ -19,7 +20,7 @@ const styles = {
         position: 'relative',
         height: '100%',
         width: '100%',
-        zIndex: 2147483647,
+        zIndex: 1500,
         top: 0,
         left: 0,
     },
@@ -95,6 +96,17 @@ class Player extends React.Component {
 
 
     render() {
+        const minimizeIconStyles = {
+            position: 'fixed',
+            top: '20px',
+            left: '20px',
+            color: 'white',
+            zIndex: '2000',
+            width: '42px',
+            height: '42px',
+            opacity: `${this.props.overlayX.maximized ? '1' : '0'}`,
+        };
+
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
             if (this.videoLoaded !== this.props.video.videoUrl) {
                 const currTime = this.props.videoPosition;
@@ -113,6 +125,7 @@ class Player extends React.Component {
                 <VolumeMenuButton horizontal />
                 <PlayToggle />
                 {/* <CurrentTimeDisplay /> */}
+                <KeyboardArrowDown style={minimizeIconStyles} onTouchTap={this.onMinimize} />
               </ControlBar>
               <source src={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`} />
             </Video>

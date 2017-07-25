@@ -10,6 +10,7 @@ import { videoSelected } from '../actions/video';
 import videoPrefix from '../constants/mediaPrefix';
 // import {changeCardIndex, showVideoCard, hideVideoCard, changeCardCategory} from '../actions/videoCard';
 import { showOverlay } from '../actions/overlay';
+import { openOverlayX, maximizeOverlayX, resetCurrentTimeInOverlayX } from '../actions/overlayX';
 
 import MasonryContainer from '../components/masonry/MasonryContainer';
 import MasonryVideoTile from '../components/masonry/MasonryVideoTile';
@@ -31,8 +32,10 @@ class CategoryContainer extends Component {
     };
 
     handleTilePlay = (video) => {
-        this.props.dispatch(showOverlay());
+        this.props.dispatch(openOverlayX());
+        this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
+        this.props.dispatch(resetCurrentTimeInOverlayX());
     }
 
     // filter = () => {

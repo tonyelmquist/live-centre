@@ -24,7 +24,7 @@ if (minWidth < 800) {
             height: 'auto',
             width: deviceWidth,
             minWidth: '100%',
-            zIndex: 2147483647,
+            zIndex: 1500,
             top: 0,
             left: 0,
             backgroundColor: 'black'
@@ -35,7 +35,7 @@ if (minWidth < 800) {
         },
         fullscreenButton: {
             position: 'absolute',
-            zIndex: 2147483647,
+            zIndex: 1500,
             top: 5,
             right: 5
         },
@@ -54,7 +54,7 @@ if (minWidth < 800) {
             position: 'relative',
             height: '100%',
             width: '100%',
-            zIndex: 2147483647,
+            zIndex: 1500,
             top: 0,
             left: 0
         },
@@ -83,7 +83,7 @@ class Overlay extends React.Component {
                     ? (this.props.isMaximized
                         ? 0
                         : 190)
-                    : 300, {
+                    : 320, {
                     stiffness: 60,
                     damping: 15
                 }),

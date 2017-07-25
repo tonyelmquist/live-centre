@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import VideoX from './VideoX';
 import ContentX from './ContentX';
 import { sendMessage } from '../../actions/chatMessages';
+import KeyboardArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 
 import { maximizeOverlayX, minimizeOverlayX, closeOverlayX } from '../../actions/overlayX';
 
@@ -15,10 +16,13 @@ class OverlayX extends Component {
 
     render() {
         console.log(this.props.video);
+        
+
         return (
             <div className={`overlay-x-container ${this.props.overlayX.maximized ? 'maximized' : 'minimized'} ${this.props.overlayX.open ? 'open' : 'closed'}`}>
                 <VideoX currentTime={this.props.playback.currentTime} updateTime={this.updateTime} resetTime={this.resetTime} screenOrientation={this.props.settings.screenOrientation} onMaximize={this.onMaximize} onMinimize={this.onMinimize} isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized} videoUrl={this.props.video.videoUrl} />
                 <ContentX isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized} onMessageSend={this.onMessageSend} chat={this.props.chat.messages}/>
+
             </div>
         );
     }

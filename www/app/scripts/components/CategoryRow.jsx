@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
-import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
-import { grey800 } from 'material-ui/styles/colors';
 import CategoryItem from '../components/CategoryItem';
 import ProductCard from '../containers/homepage/CardContainer';
 
@@ -74,7 +71,7 @@ class CategoryRow extends Component {
             if (this.props.videoCard.category !== this.props.tag.key) {
                 this.props.handleCardCategory(this.props.tag.key);
             }
-            this.props.showVideoCard();
+            this.props.onTileClick(video);
         };
 
         if (this.props.tag && this.props.videos) {
@@ -125,7 +122,7 @@ CategoryRow.propTypes = {
     videos: PropTypes.arrayOf(PropTypes.any).isRequired,
     handleCardCategory: PropTypes.func.isRequired,
     handleVideoInfo: PropTypes.func.isRequired,
-    showVideoCard: PropTypes.func.isRequired,
+    onTileClick: PropTypes.func.isRequired,
     videoCard: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 

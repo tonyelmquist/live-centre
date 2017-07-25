@@ -27,8 +27,8 @@ class VideoX extends Component {
 
     render() {
         return (
-                <Overlay isOpen={this.props.isOpen} orientation={this.props.screenOrientation} isMaximized={this.props.isMaximized}>
-                    <Player orientation={this.props.screenOrientation} />
+                <Overlay isOpen={this.props.isOpen} isMaximized={this.props.isMaximized}>
+                    <Player />
                 </Overlay>
             );
     }

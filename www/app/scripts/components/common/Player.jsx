@@ -8,7 +8,7 @@ const styles = {
         position: 'relative',
         height: '100%',
         width: '100%',
-        zIndex: 2147483647,
+        zIndex: 1500,
         top: 0,
         left: 0,
     },
