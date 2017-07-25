@@ -27,8 +27,6 @@ const HeaderMenu = (props) => {
         return <div />;
     };
 
-    console.log(props);
-
     const printLocation = () => {
         if (props.locationName === 'Home') {
             return (<Link to="/Home">
@@ -65,9 +63,9 @@ const HeaderMenu = (props) => {
           <FlatButton className="logo" label="IMR" />
           {HeaderMenuItem(props.pageItems)}
         </MediaQuery>
-        <MediaQuery minWidth={1500} className="inline">
+        {/* <MediaQuery minWidth={1500} className="inline">
           {HeaderMenuItem(props.categoryItems)}
-        </MediaQuery>
+        </MediaQuery> */}
         <div className="rightMenu">
           <SearchBar
             handleSearch={props.handleSearch}

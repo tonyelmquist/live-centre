@@ -53,7 +53,6 @@ class Chat extends Component {
         } else {
             this.setState({ isScrolling: false });
         }
-        console.log('isscrolling', true);
     }
 
 

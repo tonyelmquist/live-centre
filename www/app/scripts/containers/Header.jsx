@@ -41,8 +41,6 @@ class Header extends Component {
     }
 
     goBack = () => {
-        console.log("go back");
-        console.log(this.props.history);
         return this.props.history.goBack();
     }
 

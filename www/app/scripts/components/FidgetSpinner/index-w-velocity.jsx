@@ -103,10 +103,10 @@ class FidgetSpinner extends Component {
     touchEnd(e) {
         this.initialVelocity = Math.min(this.initialVelocity, this.terminalVelocity);
         let time = -this.initialVelocity / this.deceleration;
-        console.log('Time', time);
+        //console.log('Time', time);
 
         let distance = (this.initialVelocity * time) + ((1 / 2)*this.deceleration*(time ** 2))
-        console.log('Distance', distance);
+        //console.log('Distance', distance);
 
         this.setState({
             isSliding: true,

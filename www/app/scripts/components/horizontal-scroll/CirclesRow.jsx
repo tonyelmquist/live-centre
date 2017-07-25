@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
-function CirclesRow (props){
+function CirclesRow (props) {
     return (
       <div className="horizontalScroll">
         <div className="horizontalScrollInner">
@@ -10,9 +9,5 @@ function CirclesRow (props){
       </div>
     );
 }
-
-CirclesRow.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
 
 export default CirclesRow;

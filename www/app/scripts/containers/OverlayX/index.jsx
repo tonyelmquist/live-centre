@@ -15,13 +15,28 @@ class OverlayX extends Component {
     }
 
     render() {
-        console.log(this.props.video);
-        
-
         return (
             <div className={`overlay-x-container ${this.props.overlayX.maximized ? 'maximized' : 'minimized'} ${this.props.overlayX.open ? 'open' : 'closed'}`}>
-                <VideoX currentTime={this.props.playback.currentTime} updateTime={this.updateTime} resetTime={this.resetTime} screenOrientation={this.props.settings.screenOrientation} onMaximize={this.onMaximize} onMinimize={this.onMinimize} isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized} videoUrl={this.props.video.videoUrl} />
-                <ContentX isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized} onMessageSend={this.onMessageSend} chat={this.props.chat.messages}/>
+                <VideoX
+                    currentTime={this.props.playback.currentTime}
+                    updateTime={this.updateTime} 
+                    resetTime={this.resetTime}
+                    screenOrientation={this.props.settings.screenOrientation}
+                    onMaximize={this.onMaximize} 
+                    onMinimize={this.onMinimize}
+                    isOpen={this.props.overlayX.open} 
+                    isMaximized={this.props.overlayX.maximized}
+                    videoUrl={this.props.video.videoUrl} />
+                <ContentX
+                    isOpen={this.props.overlayX.open}
+                    isMaximized={this.props.overlayX.maximized}
+                    onMessageSend={this.onMessageSend}
+                    chat={this.props.chat.messages}
+                    series={this.props.series}
+                    seasons={this.props.seasons}
+                    allVideos={this.props.allVideos}
+                    tags={this.props.tags}
+                />
 
             </div>
         );
@@ -38,6 +53,10 @@ const mapStateToProps = state => ({
     overlayX: state.overlayX,
     playback: state.playback,
     chat: state.chat,
+    seasons: state.seasons,
+    series: state.series,
+    allVideos: state.videos,
+    tags: state.tags,
 });
 
 export default connect(mapStateToProps)(OverlayX);

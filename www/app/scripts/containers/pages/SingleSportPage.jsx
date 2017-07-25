@@ -35,12 +35,10 @@ class SingelSportsPage extends React.Component {
   }
 
   handleTeamOpen = (teamKey) => {
-      console.log("open", teamKey);
       this.changeRoute(`/team/${teamKey}`);
   }
 
   getTeams = () => {
-      console.log(this.props.sportsInfo.teams);
       const teams = this.props.sportsInfo.teams;
       const rowItems = [];
       for(const key in teams){
@@ -56,7 +54,6 @@ class SingelSportsPage extends React.Component {
   }
 
   render(){
-    console.log(this.props.match.params);
     const channelKey = this.props.match.params.channelKey;
     
     return (

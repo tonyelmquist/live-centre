@@ -24,9 +24,6 @@ const styles = {
 };
 
 const ProductCard = (props) => {
-    console.log('PRODUCTCARD PROPS', props);
-
-    console.log(props.video.item);
 
     return (props.video && <div>
       <Col xs={12} className="product-card">
@@ -47,7 +44,6 @@ const ProductCard = (props) => {
               <VideoDescription video={props.video.item} />
             </Col>
             <Col xs={12} md={6}>
-              {console.log('videoUrl', props.video.item.videoUrl)}
               {<Poster
                 handlePlay={
                             () => {

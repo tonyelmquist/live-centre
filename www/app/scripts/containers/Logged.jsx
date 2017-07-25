@@ -16,7 +16,6 @@ class Logged extends Component {
     }
 
     handleSettingsTouchTap = () => {
-        console.log('click');
         this.props.changeRoute('/Settings');
     }
 

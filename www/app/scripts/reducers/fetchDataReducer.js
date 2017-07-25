@@ -1,7 +1,7 @@
 import Actions from '../constants/reduxConstants';
 
 const defaultVideosState = {
-    items: [],
+    items: {},
     failed: false,
     videosFetched: 0,
 };

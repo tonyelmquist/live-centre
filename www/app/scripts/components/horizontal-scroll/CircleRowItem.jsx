@@ -1,9 +1,9 @@
 import React from 'react';
 import Avatar from 'material-ui/Avatar';
 
-const CircleRowItem = ({key, img, overlay, handleClick}) => {
+const CircleRowItem = ({img, overlay, handleClick}) => {
     return (
-        <div className="inline circleAvatar" onTouchTap={handleClick} key={`circlerow-item-${key}`}>
+        <div className="inline circleAvatar" onTouchTap={handleClick}>
             <Avatar size={80} src={img} className="avatar" />
             {overlay}
         </div>

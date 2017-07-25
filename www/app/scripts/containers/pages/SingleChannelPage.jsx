@@ -41,10 +41,6 @@ class SingleChannelPage extends React.Component {
         const tiles = [];
         const channelVideos = this.props.tags[channelKey].videos;
         const videos = this.props.videos.items;
-        console.log('ALL VIDEOS', videos);
-
-        console.log(channelVideos);
-
         for (const key in channelVideos) {
             const videoKey = channelVideos[key];
             const video = videos[videoKey];
@@ -63,7 +59,6 @@ class SingleChannelPage extends React.Component {
 
     getFilters = () => {
         const rowItems = [];
-        console.log('filters', filters);
         for (const key in filters) {
             rowItems.push(
           <CircleRowItem
@@ -95,7 +90,6 @@ class SingleChannelPage extends React.Component {
     )
 
     render() {
-        console.log(this.props.match.params);
         const channelKey = this.props.match.params.channelKey;
 
         return (

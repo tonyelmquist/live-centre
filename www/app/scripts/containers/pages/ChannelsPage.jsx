@@ -8,85 +8,81 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 
-//Dummy filters and channels
+// Dummy filters and channels
 const filters = [
-  { key: 'barn', avatarStyle: 'background-color: red'},
+  { key: 'barn', avatarStyle: 'background-color: red' },
   { key: 'drama' },
   { key: 'pets' },
   { key: 'humor' },
-  { key: 'fantasy'},
-  { key: 'documentaries'},
+  { key: 'fantasy' },
+  { key: 'documentaries' },
 ];
 
 const channels = {
-  1: {
-      id: 1,
-      title: 'The Future Group',
-      logo: '/img/demoChannels/lost-in-time-logo.png',
-      thumbnail: '/img/demoChannels/lost-in-time.jpg',
-  },
-  2: {
-      id: 2,
-      title: 'Street Fighter',
-      logo: '/img/demoChannels/street-fighter-logo.png',
-      thumbnail: '/img/demoChannels/street-fighter.jpg',
-  },
+    1: {
+        id: 1,
+        title: 'The Future Group',
+        logo: '/img/demoChannels/lost-in-time-logo.png',
+        thumbnail: '/img/demoChannels/lost-in-time.jpg',
+    },
+    2: {
+        id: 2,
+        title: 'Street Fighter',
+        logo: '/img/demoChannels/street-fighter-logo.png',
+        thumbnail: '/img/demoChannels/street-fighter.jpg',
+    },
 };
 
 class ChannelsPage extends React.Component {
 
-  changeRoute = path => this.props.history.push(path);
+    changeRoute = path => this.props.history.push(path);
 
-  filterTile = () => {
-    console.log("filter");
-  }
+    filterTile = () => {
+        console.log('filter');
+    }
 
-  handleOnClick = (item) => {
-    console.log("Channel:",item);
-    this.changeRoute(`/Channel/${item.title}`);
-  }
+    handleOnClick = (item) => {
+        //console.log('Channel:', item);
+        this.changeRoute(`/Channel/${item.title}`);
+    }
 
-  getTiles = () => {
-    const tiles = [];
-    for(const key in channels){
-      tiles.push(
+    getTiles = () => {
+        const tiles = [];
+        
+        for (const key in channels) {
+          tiles.push(
         <MasonryImageTile
           key={`channel-tile-${key}`}
           poster={channels[key].thumbnail}
           overlay={
-              <img className="logo" src={channels[key].logo}/>
+              <img className="logo" src={channels[key].logo} />
             }
           handleClick={() => this.handleOnClick(channels[key])}
-        />
+        />,
       );
+      }
+    
+        return tiles;
     }
-    return tiles;
-  }
 
-  filterOverlay = (filter) => {
-    return (
-      <div className="circleFilterOverlay"> 
+    filterOverlay = filter => (
+      <div className="circleFilterOverlay">
         {filter.key}
       </div>
     )
-  }
 
-  getCircleFilters = (filters) => {
-    return filters.map(filter => (
+    getCircleFilters = filters => filters.map(filter => (
       <CircleRowItem
         item={filter}
-        overlay={(this.filterOverlay(filter))
-        }
+        overlay={(this.filterOverlay(filter))}
+        key={filter.key}
       />
-    ));
-  }
+    ))
 
-  render (){
-
-
-    return(
+    render() {
+        return (
         <div className="channel-page">
-        <div className="container-fluid">        
+        <div className="container-fluid">
           <h4>{i18next.t('filter')}</h4>
         </div>
 
@@ -103,8 +99,8 @@ class ChannelsPage extends React.Component {
           </div>
       </div>
 
-    );
-  };
+      );
+    }
 }
 
 ChannelsPage.propTypes = {

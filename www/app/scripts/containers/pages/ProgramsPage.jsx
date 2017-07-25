@@ -22,13 +22,11 @@ class ProgramsPage extends React.Component {
     }
 
     handleTilePlay = (videoUrl) => {
-        console.log("HANDLE TILE PLAY");
         this.props.dispatch(showOverlay());
         this.props.dispatch(videoSelected(`${videoPrefix}${videoUrl}`));
     }
 
     changeTab = (index) => {
-        console.log("changeTab",index);
         this.props.dispatch(changeProgramTabIndex(index));
     }
 
@@ -94,10 +92,9 @@ class ProgramsPage extends React.Component {
     }
 
     getVideoFromTag(tag){
-        console.log(tag);
         const programs = [];
         const videoKeys = this.props.tags[tag].videos;
-        for(const key in this.props.tags[tag].videos){
+        for (const key in this.props.tags[tag].videos) {
             const videoKey = this.props.tags[tag].videos[key];
             programs.push(this.props.videos[videoKey]);
         }
@@ -108,7 +105,6 @@ class ProgramsPage extends React.Component {
         let programs = [];
         const tiles = [];
         const currentTab = tabKeys[this.props.activetab];
-        console.log(currentTab);
         switch(currentTab){
             case "Series":
                 programs = this.getAllSeriesPilots();

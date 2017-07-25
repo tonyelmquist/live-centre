@@ -10,13 +10,12 @@ const styles = {
 
 //TABS MUST BE ARRAY.
 const FilterTabs = ({tabItems, activeTab, changeTab, colortheme}) => {
-
-
     const tabs = tabItems.map((tab, key) => {
         return (
             <div 
               className={`items` + (tabItems[activeTab] == tab ? ' active' : '')}
               onTouchTap={() => changeTab(key)}
+              key={`filterTab-${tab}`}
             >
                 {tab}
             </div>
