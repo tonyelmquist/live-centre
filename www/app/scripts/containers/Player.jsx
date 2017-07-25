@@ -37,7 +37,18 @@ const styles = {
     },
 };
 
+/**
+ * Overlay Video Player.
+ * 
+ * @class Player
+ * @extends {React.Component}
+ */
 class Player extends React.Component {
+    /**
+     * Player
+     * 
+     * @memberof Player
+     */
     showReplay = (videoUrl) => {
         const { player } = this.largeVideoPlayer.getState();
         const currentTime = player.currentTime;
@@ -49,18 +60,6 @@ class Player extends React.Component {
         this.props.dispatch(showHighlights(videoUrl, highlights));
     };
 
-    showControlBar = () => {
-
-    };
-
-    // componentWillUnmount = () => {
-    //     const { player } = this.largeVideoPlayer.getState()
-    //     if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
-    //         console.log('On Unmount', player.currentTime);
-    //         this.props.dispatch(setCurrentTimeInOverlayX(player.currentTime));
-    //     }
-    // }
-
     limit = 50;
 
     onTouchStart = (e) => {
@@ -68,8 +67,6 @@ class Player extends React.Component {
             x: e.changedTouches[0].clientX,
             y: e.changedTouches[0].clientY,
         };
-
-        console.log('Touch Start');
 
         e.preventDefault();
     }
@@ -98,6 +95,7 @@ class Player extends React.Component {
         if (this.props.orientation === Orientation.PORTRAIT) {
             if (!this.props.overlayX.maximized) {
                 this.props.dispatch(closeOverlayX());
+                this.largeVideoPlayer.pause();
             } else {
                 this.props.dispatch(minimizeOverlayX());
             }
@@ -107,19 +105,15 @@ class Player extends React.Component {
     render() {
         if(typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
             if (this.videoLoaded !== this.props.video.videoUrl) {
-                console.log('?', this.videoLoaded, this.props.video.videoUrl);
                 const currTime = this.props.videoPosition;
                 this.largeVideoPlayer.load();
-                console.log(this.largeVideoPlayer);
                 this.largeVideoPlayer.video.video.addEventListener('loadedmetadata', function() {
                     this.currentTime = currTime;
                     this.play();
-                    console.log('LOADED META DATA');
                 }, false)
                 this.videoLoaded = this.props.video.videoUrl;
             }
         }
-        console.log('Player.jsx re-rendered', this.props.video);
         return (
           <div style={styles.playerStyle} className={`IMRPlayer`} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
             <Video playsInline autoPlay ref={ref => (this.largeVideoPlayer = ref)}>
