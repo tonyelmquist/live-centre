@@ -83,10 +83,6 @@ class SearchContainer extends Component {
             filterOn = "Promotional Videos";
         }
 
-        console.log("!isSearching",!isSearching);
-         console.log("filterIndex ==  0",filterIndex ==  0);
-        
-
         for (const key in videos) {
             const video = videos[key];
 
@@ -183,9 +179,9 @@ class SearchContainer extends Component {
 
 SearchContainer.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    videos: PropTypes.array.isRequired,
+    videos: PropTypes.object.isRequired,
     search: PropTypes.object.isRequired,
-    activeFilter: PropTypes.object.isRequired,
+    activeFilter: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({

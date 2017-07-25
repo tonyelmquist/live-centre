@@ -45,7 +45,6 @@ class CategoryItem extends Component {
 }
 
 CategoryItem.propTypes = {
-    dispatch: PropTypes.func.isRequired,
     video: PropTypes.objectOf(PropTypes.any).isRequired,
     handleClick: PropTypes.func.isRequired,
 };

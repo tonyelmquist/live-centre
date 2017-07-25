@@ -6,7 +6,6 @@ import FullStar from 'material-ui/svg-icons/toggle/star';
 import { yellow500 } from 'material-ui/styles/colors';
 
 const VideoDescription = ({ video }) => {
-    console.log(video);
     // const info = props.video.data;
     // const maxStars = 5;
     const renderStars = () => {

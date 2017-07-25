@@ -26,7 +26,7 @@ export function getMessage(id, user, message) {
  */
 export function sendMessage(user, message) {
     const socket = io('localhost:3000');
-    console.log('Socket emitted');
+    //console.log('Socket emitted');
     socket.emit('SENT_MESSAGE', {
         user,
         message,

@@ -32,13 +32,13 @@
 #header-container *{
   text-transform: none !important;
 }
-
+/*
 .menuItem{
   margin: 6px !important;
 	display:inline-block !important;
   text-transform: lowercase !important;
   color: #000 !important;
-}
+}*/
 
 
 //Font size of everything in header.
@@ -47,8 +47,14 @@
 
 @media (min-width: $big_screen){
   .menuItem{
-    margin: 20px 10px 25px 20px !important;
+    //margin: 20px 10px 25px 20px !important;
+    margin: 5px !important;
   }
+}
+
+.menuItem .menuItemLabel{
+  padding:12px 0;
+  display:inline-block;
 }
 
 .fullscreen_menu{

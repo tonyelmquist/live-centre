@@ -104,7 +104,6 @@ const transformVideoData = (unfiltered, store) => {
                 allSeries[video.season] = seasonKey;
                 allSeasons[seasonKey] = season;
             } else {
-                console.log("create season and series");
                 const season = createSeason(video.series, seasonKey, video.season, video.id);
                 const series = createSeries(video.series, seasonKey);
                 allSeasons[seasonKey] = season;
@@ -118,7 +117,7 @@ const transformVideoData = (unfiltered, store) => {
     // console.log("All tags:",allTags);
     // console.log("All videos",allVideos);
     // console.log("all series", allSeries);
-    console.log('all seasons', allSeasons);
+    // console.log('all seasons', allSeasons);
     store.dispatch(fetchVideosSuccess(allVideos, i));
     store.dispatch(fetchTagsSuccess(allTags));
     store.dispatch(fetchTagsSuccess(allChannels));

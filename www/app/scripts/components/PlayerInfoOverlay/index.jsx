@@ -14,7 +14,6 @@ class PlayerInfoOverlay extends Component {
     }
 
     openModal() {
-        console.log('open');
         this.setState({
             isModalOpen: true,
         });

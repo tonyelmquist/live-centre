@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const Recommendations = (props) => {
 
-    console.log('Recommendations', props);
 
     return (
       <div>Recommendations:</div>

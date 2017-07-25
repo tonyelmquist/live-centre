@@ -10,7 +10,6 @@ const SeasonsFooter = (props) => {
     const currentSeasonTab = 0;
     const allVideos = props.videos.items;
 
-    console.log("seasons props", props);
 
     const getSeasonsTabs = () => {
         return seasonsList.map((value, key) =>

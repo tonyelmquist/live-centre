@@ -23,7 +23,6 @@ class ProductCardContainer extends Component {
         this.props.dispatch(hideVideoCard());
     }
     render() {
-        console.log("cardcontainer",this.props.series);
         if (this.props.isVisible) {
             return (
               <div className='video-info-overlay'>

@@ -1,7 +1,7 @@
 import React from 'react';
 const MasonryImageTile = (props) => {
 	return (
-        <div className="tile" key={props.key}>
+        <div className="tile">
             <div className="masonry_tile_inner" >
                 <img
                 className="thumbnail"

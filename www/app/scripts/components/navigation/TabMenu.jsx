@@ -26,7 +26,7 @@ function TabMenu({
             closeSearch();
             hideMenu();
         }}
-        key={item.key}
+        key={`tabMenuItem-${item.key}`}
         icon={item.icon}
       />),
     );
@@ -38,6 +38,7 @@ function TabMenu({
               <AnimatedMenuIcon isMenuOpen={isMenuOpen} isSubPage={isSubPage} />
           }
             label="Menu"
+            key={'tabMenuItemMore'}
           />));
       return listItems;
     }

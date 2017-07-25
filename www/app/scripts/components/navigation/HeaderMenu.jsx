@@ -4,6 +4,7 @@ import MediaQuery from 'react-responsive';
 import { Link } from 'react-router-dom';
 import i18next from 'i18next';
 import FlatButton from 'material-ui/FlatButton';
+import BackIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import SearchBar from './SearchBar';
 import SearchInput from './SearchInput';
 import Logged from '../../containers/Logged';
@@ -26,6 +27,18 @@ const HeaderMenu = (props) => {
         return <div />;
     };
 
+    const printLocation = () => {
+        if (props.locationName === 'Home') {
+            return (<Link to="/Home">
+                      <FlatButton className="menuItem logo" label="IMR" />
+                    </Link>);
+        }
+        return (<div onTouchTap={() => props.goBack()} className="menuItem links">
+                    <BackIcon style={{ padding: 8, float: 'left' }} />
+                    <span className="menuItemLabel">{props.locationName}</span>
+                </div>);
+    };
+
     return (
       <div className="header">
         <MediaQuery maxWidth={1000}>
@@ -36,9 +49,9 @@ const HeaderMenu = (props) => {
               : 'expandable_searchbar closed'
           }
           >
-            <Link to="/Home">
-              <FlatButton className="logo" label="IMR" />
-            </Link>
+
+          {printLocation()}
+
             <SearchInput
               handleSearch={props.handleSearch}
               searchState={props.searchState}
@@ -50,9 +63,9 @@ const HeaderMenu = (props) => {
           <FlatButton className="logo" label="IMR" />
           {HeaderMenuItem(props.pageItems)}
         </MediaQuery>
-        <MediaQuery minWidth={1500} className="inline">
+        {/* <MediaQuery minWidth={1500} className="inline">
           {HeaderMenuItem(props.categoryItems)}
-        </MediaQuery>
+        </MediaQuery> */}
         <div className="rightMenu">
           <SearchBar
             handleSearch={props.handleSearch}
@@ -72,6 +85,7 @@ HeaderMenu.propTypes = {
     searchState: PropTypes.objectOf(PropTypes.any).isRequired,
     handleSearch: PropTypes.func.isRequired,
     openCloseSearch: PropTypes.func.isRequired,
+    locationName: PropTypes.string.isRequired,
 };
 
 export default HeaderMenu;

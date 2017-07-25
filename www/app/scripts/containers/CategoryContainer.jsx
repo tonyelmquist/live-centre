@@ -58,23 +58,15 @@ class CategoryContainer extends Component {
         });
 
         return (
-          <div>
-            <div className="category">
-              <Link to="/Home">
-                <div className="item"><IconButton style={styles.medium} iconStyle={styles.mediumIcon}><BackButton color={blueGrey900} /></IconButton></div>
-              </Link>
-              <h2 className="item">{categoryID}</h2>
-            </div>
-            <div className="container-fluid">
-              <MasonryContainer>
-                <MasonryVideoTile
-                  // filter={this.filter}
-                  videos={videos}
-                  handleTileOpen={this._handleSelect}
-                  handleTilePlay={this.handleTilePlay}
-                />
-              </MasonryContainer>
-            </div>
+          <div className="container-fluid">
+            <MasonryContainer>
+            <MasonryVideoTile
+                // filter={this.filter}
+                videos={videos}
+                handleTileOpen={this._handleSelect}
+                handleTilePlay={this.handleTilePlay}
+            />
+            </MasonryContainer>
           </div>
         );
     }
