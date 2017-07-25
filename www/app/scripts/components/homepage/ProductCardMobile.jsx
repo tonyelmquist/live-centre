@@ -26,7 +26,7 @@ const styles = {
         color: '#f0f0f0',
     },
     mediumIcon: { width: 32, height: 32, color: '#f0f0f0' },
-    medium: { width: 40, height: 40, padding: 8, position:'absolute', top: 0, right: 10, zIndex: 100 },
+    medium: { width: 40, height: 40, padding: 8, position: 'absolute', top: 0, right: 10, zIndex: 100 },
 };
 
 

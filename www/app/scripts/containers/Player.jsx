@@ -111,16 +111,17 @@ class Player extends React.Component {
             if (this.videoLoaded !== this.props.video.videoUrl) {
                 const currTime = this.props.videoPosition;
                 this.largeVideoPlayer.load();
+                // this.largeVideoPlayer.pause();
                 this.largeVideoPlayer.video.video.addEventListener('loadedmetadata', function () {
                     this.currentTime = currTime;
-                    this.play();
+                    //this.play();
                 }, false);
                 this.videoLoaded = this.props.video.videoUrl;
             }
         }
         return (
           <div style={styles.playerStyle} className={'IMRPlayer'} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
-            <Video playsInline autoPlay ref={ref => (this.largeVideoPlayer = ref)}>
+            <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)}>
               <ControlBar autoHide >
                 <VolumeMenuButton horizontal />
                 <PlayToggle />
