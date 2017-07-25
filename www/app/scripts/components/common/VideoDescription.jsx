@@ -6,6 +6,7 @@ import FullStar from 'material-ui/svg-icons/toggle/star';
 import { yellow500 } from 'material-ui/styles/colors';
 
 const VideoDescription = ({ video }) => {
+    console.log(video);
     // const info = props.video.data;
     // const maxStars = 5;
     const renderStars = () => {
@@ -23,7 +24,7 @@ const VideoDescription = ({ video }) => {
 
         return stars;*/
         return (
-          <div>
+          <div className="inline">
             <FullStar color={yellow500} />
             <FullStar color={yellow500} />
             <FullStar color={yellow500} />
@@ -35,14 +36,10 @@ const VideoDescription = ({ video }) => {
 
     return (
       <div className="description">
-        {/* {
-                props.title.length > 32 ? <h2>{props.title}</h2> : <h3>{props.title}</h3>
-            } */}
-        <h1>{video.title}</h1>
-        <h3>Episode Title</h3>
+        <h1>{video.series}</h1>
+        <h3>{video.title}, Season {video.season}</h3>
         <span>Duration: {Math.round(45)} min</span>
-        <div>{renderStars()}</div>
-        <h3>Description</h3>
+        <div>Star Rating: {renderStars()}</div>
         <p>{video.description}</p>
       </div>
     );

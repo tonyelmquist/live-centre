@@ -8,6 +8,7 @@ class Season extends BaseClass {
         this._episodes = [data.episode];
         this._episodesFetched = 1;
         this._parentSeries = data.parentSeries; // key to series
+        console.log("Created new season", this);
     }
 
     get key() {

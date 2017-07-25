@@ -8,19 +8,25 @@ import { red500, fullWhite } from 'material-ui/styles/colors';
 
 import Poster from '../common/Poster';
 import VideoDescription from '../common/VideoDescription';
+import Recommendations from '../common/Recommendations';
+import SeasonsFooter from '../common/SeasonsFooter';
 
 const styles = {
     cardStyle: {
         position: 'fixed',
-        minWidth: '100%',
-        minHeight: '100%',
+     //   minWidth: '100%',
+     //   minHeight: '100%',
+        bottom: 1,
+        overflow: 'auto',
+        width: '100%',
         zIndex: 500,
         top: 0,
         left: 0,
-        backgroundColor: fullWhite,
+        backgroundColor: '#393939',
+        color: '#f0f0f0',
     },
-    mediumIcon: { width: 32, height: 32 },
-    medium: { width: 40, height: 40, padding: 8 },
+    mediumIcon: { width: 32, height: 32, color: '#f0f0f0' },
+    medium: { width: 40, height: 40, padding: 8, position:'absolute', top: 0, right: 10, zIndex: 100 },
 };
 
 
@@ -34,17 +40,20 @@ const ProductCardMobile = props => (
       >
         <CloseIcon hoverColor={red500} />
       </IconButton>
-      <Row>
-        <Col xs={12} md={6}>
-          {<Poster
-            handlePlay={() => {props.handlePlay(props.video.item); }} 
-            imageUrl={props.video.item.thumbnail}
-          />}
-        </Col>
-        <Col xs={12} md={6}>
-          <VideoDescription video={props.video.item} />
-        </Col>
-      </Row>
+      {<Poster
+        handlePlay={() => { props.handlePlay(props.video.item); }}
+        imageUrl={props.video.item.thumbnail}
+      />}
+      <VideoDescription video={props.video.item} />
+      {props.video.item.series === undefined
+        ? <Recommendations video={props.video.item} series={props.series} />
+        : <SeasonsFooter
+            video={props.video.item}
+            videos={props.videos}
+            series={props.series}
+            seasons={props.seasons}
+        />
+      }
     </div>
 );
 

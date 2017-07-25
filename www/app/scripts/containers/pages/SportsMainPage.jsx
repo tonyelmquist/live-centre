@@ -27,7 +27,7 @@ class SportsMainPage extends React.Component {
     const sports = this.props.sportsInfo.sports;
     
     for(const key in sports){
-      for(let i=0; i<100; i++){ //Cheat to simulate many sports.. 
+      for(let i=0; i<6; i++){ //Cheat to simulate many sports.. 
         tiles.push(
           <MasonryImageTile
             key={`sports-sport-${key+i}`}

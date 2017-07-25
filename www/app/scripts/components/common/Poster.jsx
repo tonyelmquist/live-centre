@@ -30,6 +30,7 @@ const Poster = props => (
         </IconButton>
       </div>
     </div>
+    <div className="carousel-underlay" />
   </div>
     );
 
