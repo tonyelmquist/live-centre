@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Motion, spring } from 'react-motion';
 import {
   Player as Video,
   ControlBar,
   PlayToggle,
-  CurrentTimeDisplay,
   VolumeMenuButton,
 } from 'video-react';
-import { setCurrentTimeInOverlayX, maximizeOverlayX, closeOverlayX, minimizeOverlayX } from '../actions/overlayX';
+import { maximizeOverlayX, closeOverlayX, minimizeOverlayX } from '../actions/overlayX';
 import { Orientation } from '../constants/reduxConstants';
-import IconButton from 'material-ui/IconButton';
 import DataOverlay from './DataOverlay';
 import { showReplay, hideReplay } from '../actions/replay';
 import { showHighlights } from '../actions/highlights';
@@ -37,39 +34,18 @@ const styles = {
     },
 };
 
+/**
+ * Overlay Video Player.
+ *
+ * @class Player
+ * @extends {React.Component}
+ */
 class Player extends React.Component {
-    showReplay = (videoUrl) => {
-        const { player } = this.largeVideoPlayer.getState();
-        const currentTime = player.currentTime;
-        this.props.dispatch(showReplay(videoUrl, currentTime - 10));
-        window.setTimeout(() => this.props.dispatch(hideReplay()), 12000);
-    };
-
-    showHighlights = (videoUrl, highlights) => {
-        this.props.dispatch(showHighlights(videoUrl, highlights));
-    };
-
-    showControlBar = () => {
-
-    };
-
-    // componentWillUnmount = () => {
-    //     const { player } = this.largeVideoPlayer.getState()
-    //     if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
-    //         console.log('On Unmount', player.currentTime);
-    //         this.props.dispatch(setCurrentTimeInOverlayX(player.currentTime));
-    //     }
-    // }
-
-    limit = 50;
-
     onTouchStart = (e) => {
         this.startTouchPosition = {
             x: e.changedTouches[0].clientX,
             y: e.changedTouches[0].clientY,
         };
-
-        console.log('Touch Start');
 
         e.preventDefault();
     }
@@ -79,7 +55,7 @@ class Player extends React.Component {
             x: e.changedTouches[0].clientX,
             y: e.changedTouches[0].clientY,
         };
-        
+
         if (this.startTouchPosition.y - this.endTouchPosition.y < -this.limit) {
             this.onMinimize();
         }
@@ -98,39 +74,49 @@ class Player extends React.Component {
         if (this.props.orientation === Orientation.PORTRAIT) {
             if (!this.props.overlayX.maximized) {
                 this.props.dispatch(closeOverlayX());
+                this.largeVideoPlayer.pause();
             } else {
                 this.props.dispatch(minimizeOverlayX());
             }
         }
     }
+    showReplay = (videoUrl) => {
+        const { player } = this.largeVideoPlayer.getState();
+        const currentTime = player.currentTime;
+        this.props.dispatch(showReplay(videoUrl, currentTime - 10));
+        window.setTimeout(() => this.props.dispatch(hideReplay()), 12000);
+    };
+
+    showHighlights = (videoUrl, highlights) => {
+        this.props.dispatch(showHighlights(videoUrl, highlights));
+    };
+
+    limit = 50;
+
 
     render() {
-        if(typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
+        if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
             if (this.videoLoaded !== this.props.video.videoUrl) {
-                console.log('?', this.videoLoaded, this.props.video.videoUrl);
                 const currTime = this.props.videoPosition;
                 this.largeVideoPlayer.load();
-                console.log(this.largeVideoPlayer);
-                this.largeVideoPlayer.video.video.addEventListener('loadedmetadata', function() {
+                this.largeVideoPlayer.video.video.addEventListener('loadedmetadata', function () {
                     this.currentTime = currTime;
                     this.play();
-                    console.log('LOADED META DATA');
-                }, false)
+                }, false);
                 this.videoLoaded = this.props.video.videoUrl;
             }
         }
-        console.log('Player.jsx re-rendered', this.props.video);
         return (
-          <div style={styles.playerStyle} className={`IMRPlayer`} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
+          <div style={styles.playerStyle} className={'IMRPlayer'} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
             <Video playsInline autoPlay ref={ref => (this.largeVideoPlayer = ref)}>
-              <ControlBar autoHide={true} >
+              <ControlBar autoHide >
                 <VolumeMenuButton horizontal />
                 <PlayToggle />
                 {/* <CurrentTimeDisplay /> */}
               </ControlBar>
-              <source src={this.props.video.videoUrl + '#t=' + this.props.videoPosition} />
+              <source src={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`} />
             </Video>
-                {/*<IconButton
+                {/* <IconButton
                   style={styles.iconButtons}
                   iconClassName="material-icons replay"
                   onTouchTap={() => this.showReplay(this.props.videoUrl, 0)}
@@ -159,7 +145,7 @@ class Player extends React.Component {
                 >
               movie_filter
               </IconButton>*/}
-            { this.props.orientation == Orientation.LANDSCAPE ? <DataOverlay /> : '' }
+            { this.props.orientation === Orientation.LANDSCAPE ? <DataOverlay /> : '' }
           </div>
         );
     }
@@ -167,12 +153,15 @@ class Player extends React.Component {
 
 Player.defaultProps = {
     videoPosition: 0,
-}
+};
 
 Player.propTypes = {
     videoUrl: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired,
     videoPosition: PropTypes.number,
+    orientation: PropTypes.string.isRequired,
+    video: PropTypes.object.isRequired,
+    overlayX: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
