@@ -5,6 +5,7 @@
 .chat {
     height: 100%;
     position: relative;
+    padding-left: 20px;
 
     &:before {
         content: '';
@@ -19,19 +20,20 @@
     }
 
     input {
-        position: absolute;
+        position: fixed;
         width: 50%;
         font-size: 21px;
         padding: 5px 10px;
-        bottom: 90px;
+        bottom: 10px;
+        left: 10px
         border: 1px solid black;
     }
 
     button {
         right: 20px;
         width: 30%;
-        position: absolute;
-        bottom: 90px;
+        position: fixed;
+        bottom: 10px;
         font-size: 21px;
         padding: 5px 10px;
         background: #333;
@@ -44,7 +46,7 @@
         list-style: none;
         padding: 40px 40px 20px 0;
         display: inline-block;
-        height: 70%;
+        height: 78%;
         width: 100%;
         overflow: scroll;
         margin-top: 0;
