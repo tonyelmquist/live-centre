@@ -14,8 +14,6 @@ import SeasonsFooter from '../common/SeasonsFooter';
 const styles = {
     cardStyle: {
         position: 'fixed',
-     //   minWidth: '100%',
-     //   minHeight: '100%',
         bottom: 1,
         overflow: 'auto',
         width: '100%',
@@ -26,7 +24,7 @@ const styles = {
         color: '#f0f0f0',
     },
     mediumIcon: { width: 32, height: 32, color: '#f0f0f0' },
-    medium: { width: 40, height: 40, padding: 8, position: 'absolute', top: 0, right: 10, zIndex: 100 },
+    medium: { width: 40, height: 40, padding: 8, position:'absolute', top: 0, right: 10, zIndex: 100 },
 };
 
 
@@ -46,7 +44,7 @@ const ProductCardMobile = props => (
       />}
       <VideoDescription video={props.video.item} />
       {props.video.item.series === undefined
-        ? <Recommendations video={props.video.item} series={props.series} />
+        ? <Recommendations video={props.video.item} tags={props.tags} allVideos={props.videos} />
         : <SeasonsFooter
             video={props.video.item}
             videos={props.videos}

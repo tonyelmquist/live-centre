@@ -116,6 +116,10 @@ class ReduxConstants {
     static get CHANGE_PLAYER_INDEX() {return 'CHANGE_PLAYER_INDEX'}
     static get CHANGE_PLAYER_INDEX_TAB() {return 'CHANGE_PLAYER_INDEX_TAB'}
 
+    //Collapsible in overlay-x
+    static get TOGGLE_COLLAPSE_INFO() {return 'TOGGLE_COLLAPSE_INFO'}
+    static get COLLAPSE_INFO() {return 'COLLAPSE_INFO'}
+
 }
 
 export class Orientation {
