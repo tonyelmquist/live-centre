@@ -73,7 +73,6 @@ export function setCurrentTimeInOverlayX(newTime) {
  * Action to reset current time in overlayX
  *
  * @memberof Actions
- * @deprecated Probably unneeded
  * @export
  * @returns Dispatchable Action
  */
@@ -81,3 +80,24 @@ export function resetCurrentTimeInOverlayX() {
     return { type: Actions.SET_CURRENT_TIME, time: 0 };
 }
 
+/**
+ * Action to toggle collapse in overlayX collapsible
+ *
+ * @memberof Actions
+ * @export
+ * @returns Dispatchable Action
+ */
+export function toggleCollapseInfo(){
+    return {type: Actions.TOGGLE_COLLAPSE_INFO}
+}
+
+/**
+ * Action to collapse collapseinfo in overlayX
+ *
+ * @memberof Actions
+ * @export
+ * @returns Dispatchable Action
+ */
+export function collapseInfo(){
+    return {type: Actions.COLLAPSE_INFO}
+}

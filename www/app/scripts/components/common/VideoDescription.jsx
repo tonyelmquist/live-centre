@@ -4,24 +4,10 @@ import FullStar from 'material-ui/svg-icons/toggle/star';
 // import BorderStar from 'material-ui/svg-icons/toggle/star-border';
 // import HalfStar from 'material-ui/svg-icons/toggle/star-half';
 import { yellow500 } from 'material-ui/styles/colors';
+import Collapsible from './Collapsible';
 
-const VideoDescription = ({ video }) => {
-    // const info = props.video.data;
-    // const maxStars = 5;
+const VideoDescription = ({ video, collapseInfo, toggleCollapseInfo, isCollapsed }) => {
     const renderStars = () => {
-        /* const stars = new Array(5);
-        for (let i = 0; i < maxStars; i + 1) {
-            const diff = maxStars - i;
-            if (diff >= 1) {
-                stars.push(<FullStar key={i} color={yellow500} />);
-            } else if (diff >= 0) {
-                stars.push(<HalfStar key={i} color={yellow500} />);
-            } else {
-                stars.push(<BorderStar key={i} color={yellow500} />);
-            }
-        }
-
-        return stars;*/
         return (
           <div className="inline">
             <FullStar color={yellow500} />
@@ -33,14 +19,20 @@ const VideoDescription = ({ video }) => {
         );
     };
 
+
+
     return (
-      <div className="description">
-        <h1>{video.series}</h1>
+      <Collapsible  
+        label={video.series}          
+        collapseInfo={collapseInfo}
+        toggleCollapseInfo={toggleCollapseInfo}
+        isCollapsed={isCollapsed}
+      >        
         <h3>{video.title}, Season {video.season}</h3>
         <span>Duration: {Math.round(45)} min</span>
         <div>Star Rating: {renderStars()}</div>
         <p>{video.description}</p>
-      </div>
+      </Collapsible>
     );
 };
 

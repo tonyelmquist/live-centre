@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CirclesRow from '../horizontal-scroll/CirclesRow';
 import ScrollItem from '../horizontal-scroll/ScrollItem';
+import FilterTabs from '../../components/horizontal-scroll/FilterTabs';
 
 const SeasonsFooter = (props) => {
     const currentSeason = props.video.series;
@@ -12,10 +13,16 @@ const SeasonsFooter = (props) => {
 
 
     const getSeasonsTabs = () => {
-        return seasonsList.map((value, key) =>
-            <p key={`seasons-tab-${value}`}>Season: {key + 1}</p>,
+        const seasons = seasonsList.map((value, key) =>
+            `Season: ${key + 1}`,
             //Onclick change current season tab.. 
         );
+        return (<FilterTabs
+            tabItems={seasons}
+            activeTab={0}
+            //changeTab={this.changeTab}
+            colortheme="dark"
+        />);
        // return seasons;
     };
 
