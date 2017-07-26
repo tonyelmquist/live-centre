@@ -64,17 +64,48 @@ class App extends Component {
             }
         }, 100);
     }
+    
+    _touchMove = (e) => {
+            console.log(e);
+            e.preventDefault()
+        }
+
+    
+
     render() {
+        const preventScroll = this.props.state_all.overlayX.open || this.props.state_all.search.isOpen;
+
+        // if(typeof this.mainContent !== 'undefined'){
+        //     console.log(this.mainContent);
+        //     this.mainContent.touchmove((e)=>{
+        //         console.log("TOUCH MOVE");
+        //     });
+            
+        //     // this.mainContent.('touchmove', function(e){
+        //     //     e.preventDefault()
+        //     // });
+        // }
+
+        // mainContent = (node) => {
+        //     if(node){
+        //         node.addEventListener('scroll', () => {
+        //             console.log("SCRull");
+        //         });
+        //     }
+        // };
+    
+
         return (
           <MemoryRouter initialEntries={['/Home']}>
             <div>
               <Header />
-              <div className="main" id="main">
+              <div className='main' id="main">
                 {/* this.props.state_all.search.isOpen ? <SearchContainer/>  : <div></div>*/}
 
                  {/*{this.props.state_all.overlay.isVisible ? <Overlay /> : <div /> }*/}
                 <SearchOverlay />
-                <div className="mainContent" id="mainContent">
+                <div ref={ref => (this.mainContent = ref)}
+                className={preventScroll ? `mainContent preventScroll` : 'mainContent'} id="mainContent">
                   <Route exact path="/Home" component={HomePage} />
                   <Route path="/Login" component={Login} />
                   <Route path="/Settings" component={SettingsPage} />

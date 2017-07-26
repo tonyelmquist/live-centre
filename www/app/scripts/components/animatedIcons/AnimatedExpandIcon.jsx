@@ -8,7 +8,7 @@ const AnimatedExpandIcon = ({isCollapsed}) => {
     return (
         <Motion style={isCollapsed ? {rot:spring(0)} : {rot:spring(180)}}>
             {style =>
-                (<ExpandIcon 
+                (<ExpandIcon className="expandIcon"
                 style={{color: 'white',
                         transform: `rotate(-${style.rot}deg)`
                         }}

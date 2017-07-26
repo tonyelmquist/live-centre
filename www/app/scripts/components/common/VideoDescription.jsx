@@ -7,31 +7,41 @@ import { yellow500 } from 'material-ui/styles/colors';
 import Collapsible from './Collapsible';
 
 const VideoDescription = ({ video, collapseInfo, toggleCollapseInfo, isCollapsed }) => {
+    const starStyle = {
+      verticalAlign: 'top',
+      height: 20,
+    }
     const renderStars = () => {
         return (
-          <div className="inline">
-            <FullStar color={yellow500} />
-            <FullStar color={yellow500} />
-            <FullStar color={yellow500} />
-            <FullStar color={yellow500} />
-            <FullStar color={yellow500} />
-          </div>
+          <span>
+            <FullStar style={starStyle} color={yellow500} />
+            <FullStar style={starStyle} color={yellow500} />
+            <FullStar style={starStyle} color={yellow500} />
+            <FullStar style={starStyle} color={yellow500} />
+            <FullStar style={starStyle} color={yellow500} />
+          </span>
         );
     };
 
-
+    const title = video.series ? video.series : video.title
+    const subtitle = video.series ? `${video.title}, season ${video.season}` : ""
+    const ipsum = `Morbi eu scelerisque justo. Sed finibus, tortor eu viverra fringilla, 
+    lectus sem condimentum mi, tempus tincidunt mauris dolor tempor 
+    nibh. Vestibulum quis convallis urna. Mauris massa lectus, 
+    convallis in mi id, blandit suscipit turpis. Integer egestas 
+    risus sodales dui euismod, quis auctor ex tincidunt. `;
 
     return (
       <Collapsible  
-        label={video.series}          
+        label={title}          
         collapseInfo={collapseInfo}
         toggleCollapseInfo={toggleCollapseInfo}
         isCollapsed={isCollapsed}
       >        
-        <h3>{video.title}, Season {video.season}</h3>
-        <span>Duration: {Math.round(45)} min</span>
-        <div>Star Rating: {renderStars()}</div>
-        <p>{video.description}</p>
+        <p>{subtitle}<br/>
+        Duration: {Math.round(45)} min<br/>
+        Star Rating: {renderStars()}</p>
+        <p>{ipsum}</p>
       </Collapsible>
     );
 };
