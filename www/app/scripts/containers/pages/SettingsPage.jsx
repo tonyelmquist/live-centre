@@ -30,6 +30,7 @@ const styles = {
 
 const selectBoxStyle = {
     width: '100%',
+    color: '#fff',
 };
 
 class SettingsPage extends React.Component {
@@ -43,27 +44,19 @@ class SettingsPage extends React.Component {
         };
     }
 
-    handleAudioChange = (event, index, value) => this.props.dispatch(changeAudioLang(value));
-    handleSubtitleChange = (event, index, value) => this.props.dispatch(changeSubtitleLang(value));
+    handleAudioChange = (event) => this.props.dispatch(changeAudioLang(event.target.value));
+    handleSubtitleChange = (event) => this.props.dispatch(changeSubtitleLang(event.target.value));
     handleRecommendationsChange = () => this.props.dispatch(toggleRecommendations());
-    handleAgeRatingChange = (event, index, value) => this.setState({ ageRating: value })
+    handleAgeRatingChange = (event) => this.setState({ ageRating: event.target.value })
 
     handleSaveTouch = () => {
+        console.log(this.props.settings.options);
         this.props.dispatch(saveUserSettings(this.props.settings.options));
         // this.state.snackbarIsOpen = true;
     }
 
-    handleRequestCloseSnackbar = () => {
-        this.state.snackbarIsOpen = false;
-        // console.log(this);
-        // console.log('Snackbaar', this.state.snackbarIsOpen);
-    }
-
-    handleActionTouchTap = () => {
-        this.state.snackbarIsOpen = false;
-    }
-
-    handleLanguageChange = (event, index, newLang) => {
+    handleLanguageChange = (event) => {
+        const newLang = event.target.value;
         if (newLang !== this.props.settings.lang) {
             i18next.changeLanguage(newLang, () => {
                 this.props.dispatch(changeLang(newLang));
@@ -78,40 +71,39 @@ class SettingsPage extends React.Component {
 
             <h3 style={styles.underlinedHeaderInline}>{i18next.t('setting_language_options')}</h3>
 
-            <SelectField
+            <h5>{i18next.t('setting_audio')}</h5>
+            <select
               style={selectBoxStyle}
-              floatingLabelText={i18next.t('setting_audio')}
               value={this.props.settings.options.audioLanguage}
               onChange={this.handleAudioChange}
             >
-
-              <MenuItem value={'en'} primaryText={i18next.t('language_english')} />
-              <MenuItem value={'nb'} primaryText={i18next.t('language_norwegian')} />
-            </SelectField>
+              <option value={'en'}>{i18next.t('language_english')}</option>
+              <option value={'nb'}>{i18next.t('language_norwegian')}</option>
+            </select>
 
             <br />
 
-            <SelectField
+            <h5>{i18next.t('setting_language')}</h5>
+            <select
               style={selectBoxStyle}
-              floatingLabelText={i18next.t('setting_language')}
               value={this.props.settings.options.language}
               onChange={this.handleLanguageChange}
             >
-              <MenuItem value={'en'} primaryText={i18next.t('language_english')} />
-              <MenuItem value={'nb'} primaryText={i18next.t('language_norwegian')} />
-            </SelectField>
+              <option value={'en'}>{i18next.t('language_english')}</option>
+              <option value={'nb'}>{i18next.t('language_norwegian')}</option>
+            </select>
 
             <br />
 
-            <SelectField
+            <h5>{i18next.t('setting_subtitle')}</h5>
+            <select
               style={selectBoxStyle}
-              floatingLabelText={i18next.t('setting_subtitle')}
               value={this.props.settings.options.subtitleLanguage}
               onChange={this.handleSubtitleChange}
             >
-              <MenuItem value={'en'} primaryText={i18next.t('language_english')} />
-              <MenuItem value={'nb'} primaryText={i18next.t('language_norwegian')} />
-            </SelectField>
+              <option value={'en'}>{i18next.t('language_english')}</option>
+              <option value={'nb'}>{i18next.t('language_norwegian')}</option>
+            </select>
 
             <h3 style={styles.underlinedHeaderInline}>General Settings</h3>
             <Toggle
@@ -126,38 +118,27 @@ class SettingsPage extends React.Component {
             <br />
 
             <h3 style={styles.underlinedHeaderInline}>Parental Controls</h3>
-
-            <SelectField
+            <h5>Age Rating</h5>
+            <select
               style={selectBoxStyle}
-              floatingLabelText="Age Rating"
               value={this.state.ageRating}
               onChange={this.handleAgeRatingChange}
             >
-              <MenuItem value={'4'} primaryText="4+" />
-              <MenuItem value={'9'} primaryText="9+" />
-              <MenuItem value={'12'} primaryText="12+" />
-              <MenuItem value={'17'} primaryText="17+" />
-              <MenuItem value={'all'} primaryText="Allow All" />
-            </SelectField>
+              <option value={'4'}>4+</option>
+              <option value={'9'}>9+</option>
+              <option value={'12'}>12+</option>
+              <option value={'17'}>17+</option>
+              <option value={'all'}>All</option>
+            </select>
 
-            <TextField
-              hintText="####"
-              floatingLabelText="Parental PIN code"
+            <h5>Parental Code</h5>
+            <input
               type="password"
               value={this.state.parentalCode}
             />
             <br />
 
             <RaisedButton label="Save" primary onTouchTap={this.handleSaveTouch} />
-
-            <Snackbar
-              open={this.state.snackbarIsOpen}
-              message="Settings saved!"
-              autoHideDuration={4000}
-              action="undo"
-              onActionTouchTap={this.handleActionTouchTap}
-              onRequestClose={this.handleRequestCloseSnackbar} 
-            />
           </div>
         );
     }

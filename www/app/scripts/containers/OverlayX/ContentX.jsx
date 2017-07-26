@@ -19,10 +19,10 @@ class ContentX extends Component {
                 {({ y, o }) =>
 
                     (<div className={'ox-content'} style={{ transform: `translate3d(0, ${y}%, 0)`, opacity: o }}>
-                        <ContentXInfo 
+                        {/*<ContentXInfo 
                             video={this.props.video}
-                        />
-                        {/*<Chat messages={this.props.chat} onMessageSend={this.props.onMessageSend} />*/}
+                        />*/}
+                        <Chat messages={this.props.chat} onMessageSend={this.props.onMessageSend} />
                     </div>)
                 }
             </Motion>

@@ -10,15 +10,19 @@ import { showOverlay } from '../../actions/overlay';
 import { showVideoCard, changeVideoInfo } from '../../actions/videoCard';
 import CardContainer from '../homepage/CardContainer';
 import { changeProgramTabIndex  } from '../../actions/ProgramsPage';
+import { maximizeOverlayX, openOverlayX, minimizeOverlayX } from '../../actions/overlayX';
 import FilterTabs from '../../components/horizontal-scroll/FilterTabs';
 
 
 class ProgramsPage extends React.Component {
 
     handleTileOpen = (video) => {
-        this.props.dispatch(changeVideoInfo(video));
+        //this.props.dispatch(changeVideoInfo(video));
         // this.props.dispatch(changeCardCategory(category));
-        this.props.dispatch(showVideoCard());
+        this.props.dispatch(openOverlayX());
+        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(videoSelected(video));
+        this.props.dispatch(resetCurrentTimeInOverlayX());
     }
 
     handleTilePlay = (videoUrl) => {

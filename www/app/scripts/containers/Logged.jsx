@@ -27,8 +27,8 @@ class Logged extends Component {
         return (
           <IconMenu
             iconButtonElement={
-              <IconButton><PersonIcon /></IconButton>
-          }
+              <i className="fa fa-user logged-menu-icon" />
+            }
             targetOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
           > 

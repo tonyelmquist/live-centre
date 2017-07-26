@@ -1,14 +1,13 @@
 .fidget-spinner-container {
     position: absolute;
-    bottom: 170px;
-    right: -150px;
+    top: 50%;
+    left: 98%;
     transition: .5s all;
     opacity: .3;
-    transform: scale(0) rotate(180deg) transform3d(0, 0, 0);
-    display: none;
+    transform: scale(0) rotate(180deg) translate(-50%, -50%);
 
     &.isShowing  {
-        transform: scale(1) rotate(0deg) transform3d(0, 0, 0);
+        transform: scale(1) rotate(0deg) translate(-50%, -50%);
     }
 
     &.isOpen {

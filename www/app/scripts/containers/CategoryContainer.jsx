@@ -28,7 +28,10 @@ const styles = {
 };
 class CategoryContainer extends Component {
     handleTileOpen = (video) => {
-        this.props.dispatch(videoSelected(`${videoPrefix + video.videoUrl}`));
+        this.props.dispatch(openOverlayX());
+        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(videoSelected(video));
+        this.props.dispatch(resetCurrentTimeInOverlayX());
     };
 
     handleTilePlay = (video) => {

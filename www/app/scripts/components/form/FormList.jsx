@@ -2,12 +2,10 @@ import React from 'react';
 
 
 const FormList = () => (
-  <div>
-    <ul className="formList">
-      <li>Ronjas iPhone</li>
-      <li>Tonys Macbook</li>
-    </ul>
-  </div>
+  <ul className="formList" style={{color: 'white'}}>
+    <li>Ronjas iPhone</li>
+    <li>Tonys Macbook</li>
+  </ul>
 );
 
 export default FormList;
