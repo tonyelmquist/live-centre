@@ -30,28 +30,27 @@ class DataOverlay extends Component {
             isBurstButtonShowing: false,
             isLineupShowing: false,
             isPlayerInfoShowing: false,
-            socket: io('http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com:3000/'), // Connect to specific video channel in the future?
         };
 
         const self = this;
 
-        this.state.socket.on('NEW_PENALTY_CARD', (data) => {
-            self.setState({
-                penaltyCard: {
-                    isShowing: true,
-                    text: data.message,
-                    color: data.type,
-                },
-            });
+        // this.state.socket.on('NEW_PENALTY_CARD', (data) => {
+        //     self.setState({
+        //         penaltyCard: {
+        //             isShowing: true,
+        //             text: data.message,
+        //             color: data.type,
+        //         },
+        //     });
 
-            setTimeout(() => {
-                self.setState({
-                    penaltyCard: {
-                        isShowing: false,
-                    },
-                });
-            }, 7000);
-        });
+        //     setTimeout(() => {
+        //         self.setState({
+        //             penaltyCard: {
+        //                 isShowing: false,
+        //             },
+        //         });
+        //     }, 7000);
+        // });
 
         this.onMessageSend = this.onMessageSend.bind(this);
         this.displayLineup = this.displayLineup.bind(this);
@@ -64,7 +63,7 @@ class DataOverlay extends Component {
 
     onMessageSend(message) {
         this.props.dispatch(
-      sendMessage(`User ${Math.round(Math.random() * 100)}`, message),
+      sendMessage(message),
     );
     }
 

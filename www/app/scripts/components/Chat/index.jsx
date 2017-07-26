@@ -8,7 +8,7 @@ class Chat extends Component {
         }
         return messages.map(value => (
           <li key={`message-${value.id}`}>
-            <span className="chat-avatar">D</span>
+            <span className="chat-avatar">{value.user.substr(5, 1)}</span>
             <span className="chat-user">{value.user}</span>
             <span className="chat-message">{value.message}</span>
           </li>

@@ -12,7 +12,7 @@ const initChangingScores = (store) => {
 
     socket.on('NEW_MESSAGE', (data) => {
         console.log('NEW_MESSAGE from socket received', data);
-        store.dispatch(getMessage(data.id, data.user, data.message));
+        store.dispatch(getMessage(data.id, 'Anon ' + data.animal, data.message));
     });
 
     socket.on('NEW_PENALTY_CARD', (data) => {

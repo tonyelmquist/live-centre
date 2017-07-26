@@ -32,7 +32,7 @@
       integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
       crossorigin="anonymous"></script>
     <script>
-        var socket = io('localhost:3000');
+        var socket = io('http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com:3000/');
 
         $('.penalty-card').on('click', function() {
             var type = $(this).hasClass('red-card') ? 'red' : 'yellow';

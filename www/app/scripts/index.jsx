@@ -25,7 +25,6 @@ initChangingScores(store);
 // Language: i18next Initialize
 initLang(store);
 
-
 initUserSettings(store);
 
 // Custom theme

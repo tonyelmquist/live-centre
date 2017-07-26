@@ -12,7 +12,7 @@ import { maximizeOverlayX, minimizeOverlayX, closeOverlayX } from '../../actions
 class OverlayX extends Component {
 
     onMessageSend = (message) => {
-        this.props.dispatch(sendMessage(`User ${Math.round(Math.random() * 100)}`, message));
+        this.props.dispatch(sendMessage(message));
     }
 
     toggleCollapseInfo = () => {
