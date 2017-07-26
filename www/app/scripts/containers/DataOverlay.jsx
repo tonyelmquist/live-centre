@@ -30,7 +30,7 @@ class DataOverlay extends Component {
             isBurstButtonShowing: false,
             isLineupShowing: false,
             isPlayerInfoShowing: false,
-            socket: io('localhost:3000'), // Connect to specific video channel in the future?
+            socket: io('http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com:3000/'), // Connect to specific video channel in the future?
         };
 
         const self = this;

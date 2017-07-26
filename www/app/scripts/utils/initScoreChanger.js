@@ -3,7 +3,7 @@ import changeScore from '../actions/score';
 import { getMessage } from '../actions/chatMessages';
 
 const initChangingScores = (store) => {
-    const socket = io('localhost:3000');
+    const socket = io('http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com:3000/');
 
     socket.on('SCORE_UPDATE', (data) => {
         console.log('SCORE_UPDATE from socket received', data);

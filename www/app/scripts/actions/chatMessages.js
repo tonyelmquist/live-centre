@@ -25,7 +25,7 @@ export function getMessage(id, user, message) {
  * @returns Dispatchable Action
  */
 export function sendMessage(user, message) {
-    const socket = io('localhost:3000');
+    const socket = io('http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com:3000/');
     //console.log('Socket emitted');
     socket.emit('SENT_MESSAGE', {
         user,
