@@ -8,56 +8,54 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 
-
 class SportsMainPage extends React.Component {
 
-  changeRoute = path => this.props.history.push(path);
+    changeRoute = path => this.props.history.push(path);
 
-  filterTile = () => {
-    console.log("filter");
-  }
+    filterTile = () => {
+        console.log('filter');
+    }
 
-  handleOnClick = (item) => {
-    console.log("handleclick:",item.title);
-    this.changeRoute(`/Sport/${item.title}`);
-  }
+    handleOnClick = (item) => {
+        console.log('handleclick:', item.title);
+        this.changeRoute(`/Sport/${item.title}`);
+    }
 
-  getTiles = () => {
-    const tiles = [];
-    const sports = this.props.sportsInfo.sports;
-    
-    for(const key in sports){
-      for(let i=0; i<6; i++){ //Cheat to simulate many sports.. 
-        tiles.push(
+    getTiles = () => {
+        const tiles = [];
+        const sports = this.props.sportsInfo.sports;
+
+        for (const key in sports) {
+          for (let i = 0; i < 6; i++) { // Cheat to simulate many sports..
+            tiles.push(
           <MasonryImageTile
-            key={`sports-sport-${key+i}`}
+            key={`sports-sport-${key + i}`}
             poster={sports[key].thumbnail}
             overlay={
-                <div 
+                <div
                   className="centerOverlay"
                   onTouchTap={() => this.handleOnClick(sports[key])}
                 >
                   <h4>{sports[key].title}</h4>
                 </div>
               }
-          />
+          />,
         );
+        }
       }
+        return tiles;
     }
-    return tiles;
-  }
 
-  render (){
-
-    return(
+    render() {
+        return (
         <div className="container-fluid sportsMainPage">
           <MasonryContainer>
             {this.getTiles()}
-          </MasonryContainer> 
+          </MasonryContainer>
         </div>
 
-    );
-  };
+      );
+    }
 }
 
 SportsMainPage.propTypes = {

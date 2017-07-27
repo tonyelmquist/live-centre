@@ -15,6 +15,8 @@ import { showReplay, hideReplay } from '../actions/replay';
 import { showHighlights } from '../actions/highlights';
 import '../../../node_modules/video-react/dist/video-react.css';
 
+import FontAwesome from 'react-fontawesome';
+
 const styles = {
     playerStyle: {
         position: 'relative',
@@ -121,9 +123,12 @@ class Player extends React.Component {
                             <div className="play-button" >
                                 <i className="fa fa-play-circle" />
                             </div>
-                            <div className="close-button" onClick={this.onCloseTouch}>
-                                <i className="fa fa-close" />
-                            </div>
+                            <FontAwesome
+                                className='close-button'
+                                name='close'
+                                size='2x'
+                                onTouchTap={this.onCloseTouch}
+                            />
                         </div>);
             }
         }

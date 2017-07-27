@@ -34,7 +34,7 @@ const HeaderMenu = (props) => {
                     </Link>);
         }
         return (<div onTouchTap={() => props.goBack()} className="menuItem links">
-                    <BackIcon style={{ padding: 8, float: 'left' }} />
+                    <BackIcon style={{ padding: 8, float: 'left', color:'#000' }} />
                     <span className="menuItemLabel">{props.locationName}</span>
                 </div>);
     };

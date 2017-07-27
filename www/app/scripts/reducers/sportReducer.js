@@ -19,9 +19,9 @@ const sportsDefaultState = {
 };
 
 const teamsDefaultState = {
-    teamA:{
-        key: "teamA",
-        title: "Team A",
+    RealMadrid:{
+        key: "RealMadrid",
+        title: "Real Madrid",
         logo: '/img/soccer-teams/Real-Madrid-Logo.png',
         img: '/img/soccer-teams/Real-Madrid-Team.jpg',
         players: [7, 8, 9],
@@ -31,7 +31,7 @@ const teamsDefaultState = {
 const playersDefaultState = {
     7 : {
         name: "Christiano Renaldo",
-        team: "teamA",
+        team: "RealMadrid",
         number: 7,
         description : "very famous",
         portrait: '/img/soccer-players/ronaldo.png',
@@ -40,7 +40,7 @@ const playersDefaultState = {
     },
     8 : {
         name: "Another dude",
-        team: "teamA",
+        team: "RealMadrid",
         number: 7,
         description : "not so famous",
         portrait: '/img/soccer-players/ronaldo.png',
@@ -48,7 +48,7 @@ const playersDefaultState = {
     },
     9 : {
         name: "a third dude",
-        team: "teamA",
+        team: "RealMadrid",
         number: 7,
         description : "who knows",
         portrait: '/img/soccer-players/ronaldo.png',
@@ -83,26 +83,22 @@ function activeTeamTab(state = 0, action,) {
         return state;
     }
 }
-function activePlayer(state = 0, action,) {
+function sportPlayerOverlay(state= {player: null, isOpen: false}, action,) {
     switch (action.type) {
-    case Actions.CHANGE_PLAYER_INDEX:{
-        return action.index;
-    }
+    case Actions.OPEN_SPORT_PLAYER_OVERLAY:
+        return Object.assign({}, state, {
+            isOpen: true,
+            player: action.player,
+        });
+    case Actions.CLOSE_SPORT_PLAYER_OVERLAY:
+        return Object.assign({}, state, {
+            isOpen: false,
+            player: null,
+        });
     default:
         return state;
     }
 }
-function activePlayerTab(state = 0, action,) {
-    switch (action.type) {
-    case Actions.CHANGE_PLAYER_INDEX_TAB:{
-        return action.index;
-    }
-    default:
-        return state;
-    }
-}
 
-
-
-export { sports, teams, players, activeTeamTab, activePlayer, activePlayerTab };
+export { sports, teams, players, activeTeamTab, sportPlayerOverlay };
 

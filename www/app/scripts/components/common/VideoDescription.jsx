@@ -38,7 +38,7 @@ const VideoDescription = ({ video, collapseInfo, toggleCollapseInfo, isCollapsed
         toggleCollapseInfo={toggleCollapseInfo}
         isCollapsed={isCollapsed}
       >        
-        <p>{subtitle}<br/>
+        <p>{subtitle}
         Duration: {Math.round(45)} min<br/>
         Star Rating: {renderStars()}</p>
         <p>{ipsum}</p>

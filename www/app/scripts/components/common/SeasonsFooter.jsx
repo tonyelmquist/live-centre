@@ -9,7 +9,7 @@ const SeasonsFooter = (props) => {
     const seasonsList = props.series.items[currentSeason].seasons;
     const seasons = props.seasons.items;
     const currentSeasonTab = 0;
-    const allVideos = props.videos.items;
+    const allVideos = props.allVideos.items;
 
 
     const getSeasonsTabs = () => {
@@ -33,6 +33,7 @@ const SeasonsFooter = (props) => {
             (<ScrollItem
                 img={allVideos[value].thumbnail}
                 key={`episode-${allVideos[value].title}`}
+                handleClick={() => props.onTileOpen(allVideos[value])}
             />),
         //<img className="image" src={allVideos[value].thumbnail} alt={`episode-${allVideos[value].title}`} />,
         );

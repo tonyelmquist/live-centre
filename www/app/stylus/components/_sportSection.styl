@@ -8,3 +8,56 @@
     display:block
     display:flex
     align-items: center
+    .avatar
+        margin: 0 10px 10px 0
+        border: solid 4px rgba(250,250,250,0.3);
+
+
+.sportPlayerOverlay
+    position:fixed
+    z-index:1200
+    top:0
+    bottom:0
+    left:0
+    right:0
+    overflow:auto
+    background-color: rgba(0, 0, 0, 0.8)
+    h1
+        10px 0
+    .avatar
+        margin:10px
+        border:solid 4px rgba(250, 250, 250, 0.2)
+    .personal-info
+        margin-bottom: 30px
+.sportPlayerOverlayInner
+    margin: 20px
+    .close-button
+        position:fixed
+        right: 15px
+        top: 10px
+    h1, h4
+        font-weight:bold
+
+.player-stats-personal
+    list-style-type:none
+    padding: 0
+    line-height: 1.5
+.player-stats-matches
+    table
+        border-spacing: 0
+        border-color:transparent
+        width: 100%
+    th
+        text-align:left
+        background-color: rgba(250,250,250,0.2)
+        width:100%
+        border-bottom: 2px solid white
+        font-weight:normal
+        font-size: 18px
+        padding:10px
+    td, th
+        padding-left:10px
+        height: 30px
+    td:first-child
+        width:40%
+        font-weight:bold

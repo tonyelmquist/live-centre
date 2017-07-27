@@ -42,77 +42,64 @@ class App extends Component {
         this.state = {};
         this.dispatchOrientation();
         if ('onorientationchange' in window) {
-            window.addEventListener("orientationchange", () => {
+            window.addEventListener('orientationchange', () => {
                 this.dispatchOrientation();
             }, false);
         } else {
-          window.addEventListener("resize", () => {
-                this.dispatchOrientation();
-            }, false);
+            window.addEventListener('resize', () => {
+              this.dispatchOrientation();
+          }, false);
         }
     }
 
     dispatchOrientation = () => {
         const self = this;
-        setTimeout(function() {
+        setTimeout(() => {
             if (screen.width < screen.height) {
-                self.props.dispatch(setPortrait())
+                self.props.dispatch(setPortrait());
             }
 
             if (screen.width > screen.height) {
-                self.props.dispatch(setLandscape())
+                self.props.dispatch(setLandscape());
             }
         }, 100);
     }
-    
-    _touchMove = (e) => {
-            console.log(e);
-            e.preventDefault()
-        }
 
+    // preventScroll = (e) => {
+    //     console.log("touchmove", e);
+    //     e.preventDefault();
+    //     e.nativeEvent.stopPropagation();
+    //     //Chrome also needs: touch-action
+    //     console.log(this.mainContent);
+    // }
     
-
     render() {
         const preventScroll = this.props.state_all.overlayX.open || this.props.state_all.search.isOpen;
-
-        // if(typeof this.mainContent !== 'undefined'){
-        //     console.log(this.mainContent);
-        //     this.mainContent.touchmove((e)=>{
-        //         console.log("TOUCH MOVE");
-        //     });
-            
-        //     // this.mainContent.('touchmove', function(e){
-        //     //     e.preventDefault()
-        //     // });
-        // }
-
-        // mainContent = (node) => {
-        //     if(node){
-        //         node.addEventListener('scroll', () => {
-        //             console.log("SCRull");
-        //         });
-        //     }
-        // };
-    
-
         return (
           <MemoryRouter initialEntries={['/Home']}>
             <div>
               <Header />
-              <div className='main' id="main">
+              <div className="main" id="main">
                 {/* this.props.state_all.search.isOpen ? <SearchContainer/>  : <div></div>*/}
 
-                 {/*{this.props.state_all.overlay.isVisible ? <Overlay /> : <div /> }*/}
+                 {/* {this.props.state_all.overlay.isVisible ? <Overlay /> : <div /> }*/}
                 <SearchOverlay />
-                <div ref={ref => (this.mainContent = ref)}
-                className={preventScroll ? `mainContent preventScroll` : 'mainContent'} id="mainContent">
+                <div
+                    id="mainContent"
+                    ref={ref => (this.mainContent = ref)}
+                    className="mainContent"
+                    //className={preventScroll ? 'mainContent preventScroll' : 'mainContent'}
+                    //className="preventScroll"
+                    //onTouchEnd={this.preventScroll.bind(this)}
+                    //onTouchStart={this.preventScroll.bind(this)}
+                 >
                   <Route exact path="/Home" component={HomePage} />
                   <Route path="/Login" component={Login} />
                   <Route path="/Settings" component={SettingsPage} />
                   <Route path="/Favorites" component={FavoritePage} />
                   <Route path="/Category/:categoryKey" component={CategoryContainer} />
                   <Route path="/Channels" component={ChannelsPage} />
-                  <Route path="/Channel/:channelKey" component={SingleChannelPage}/>
+                  <Route path="/Channel/:channelKey" component={SingleChannelPage} />
                   <Route path="/Programs" component={ProgramsPage} />
                   <Route path="/Sports" component={SportsMainPage} />
                   <Route path="/Sport/:sportKey" component={SingleSportPage} />

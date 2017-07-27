@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import VideoX from './VideoX';
 import ContentX from './ContentX';
 import { sendMessage } from '../../actions/chatMessages';
-import { toggleCollapseInfo, collapseInfo } from '../../actions/overlayX';
+import { toggleCollapseInfo, collapseInfo, resetCurrentTimeInOverlayX } from '../../actions/overlayX';
 import KeyboardArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 
-import { maximizeOverlayX, minimizeOverlayX, closeOverlayX } from '../../actions/overlayX';
+//import { maximizeOverlayX, minimizeOverlayX, closeOverlayX } from '../../actions/overlayX';
+import { videoSelected } from '../../actions/video';
 
 class OverlayX extends Component {
 
@@ -16,11 +17,19 @@ class OverlayX extends Component {
     }
 
     toggleCollapseInfo = () => {
+        console.log("toggle collapse");
         this.props.dispatch(toggleCollapseInfo())
     }
 
     collapseInfo = () => {
         this.props.dispatch(collapseInfo())
+    }
+
+    onTileOpen = (video) => {
+        //this.props.dispatch(openOverlayX());
+        //this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(videoSelected(video));
+        this.props.dispatch(resetCurrentTimeInOverlayX());
     }
 
     render() {
@@ -50,6 +59,7 @@ class OverlayX extends Component {
                     collapseInfo={this.collapseInfo}
                     toggleCollapseInfo={this.toggleCollapseInfo}
                     isCollapsed={this.props.overlayX.collapsedInfo}
+                    onTileOpen={this.onTileOpen}
                 />
             </div>
             );

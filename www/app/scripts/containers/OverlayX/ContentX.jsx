@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Motion, spring } from 'react-motion';
-import Chat from '../../components/Chat';
 import ContentXInfo from './ContentXInfo';
 
 class ContentX extends Component {
@@ -24,13 +23,14 @@ class ContentX extends Component {
                             allVideos={this.props.allVideos}
                             series={this.props.series}
                             seasons={this.props.seasons}
+                            tags={this.props.tags}
                             collapseInfo={this.props.collapseInfo}
                             toggleCollapseInfo={this.props.toggleCollapseInfo}
                             isCollapsed={this.props.isCollapsed}
                             messages={this.props.chat} 
                             onMessageSend={this.props.onMessageSend}
+                            onTileOpen={this.props.onTileOpen}
                         /> 
-                        {/* <Chat messages={this.props.chat} onMessageSend={this.props.onMessageSend} /> */}
                     </div>)
                 }
             </Motion>
