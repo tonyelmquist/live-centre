@@ -6,9 +6,10 @@ import ContentX from './ContentX';
 import { sendMessage } from '../../actions/chatMessages';
 import { toggleCollapseInfo, collapseInfo, resetCurrentTimeInOverlayX } from '../../actions/overlayX';
 import KeyboardArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
-
 //import { maximizeOverlayX, minimizeOverlayX, closeOverlayX } from '../../actions/overlayX';
 import { videoSelected } from '../../actions/video';
+import { markAsWishlist } from '../../actions/video';
+import { maximizeOverlayX, minimizeOverlayX, closeOverlayX } from '../../actions/overlayX';
 
 class OverlayX extends Component {
 
@@ -30,6 +31,10 @@ class OverlayX extends Component {
         //this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
         this.props.dispatch(resetCurrentTimeInOverlayX());
+    }
+  
+    handleAddToWishlist = (videoId) => {
+        this.props.dispatch(markAsWishlist(videoId));
     }
 
     render() {
@@ -60,6 +65,7 @@ class OverlayX extends Component {
                     toggleCollapseInfo={this.toggleCollapseInfo}
                     isCollapsed={this.props.overlayX.collapsedInfo}
                     onTileOpen={this.onTileOpen}
+                    handleAddToWishlist={this.handleAddToWishlist}
                 />
             </div>
             );

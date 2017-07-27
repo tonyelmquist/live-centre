@@ -15,6 +15,7 @@ class Video extends BaseClass {
             _title: '',
             _thumbnail: '',
             _videoUrl: '',
+            _wishlist: false,
         }, {
             _id: data.id,
             _author: data.author,
@@ -27,6 +28,7 @@ class Video extends BaseClass {
             _title: data.title,
             _thumbnail: data.thumbnail,
             _videoUrl: data.video_url,
+            _wishlist: false,
         });
 
 // this.hasMany(Tag);
@@ -130,6 +132,14 @@ class Video extends BaseClass {
 
     get season() {
         return this._season;
+    }
+
+    set wishlist(wishlist) {
+        this._wishlist = wishlist;
+    }
+
+    get wishlist() {
+        return this._wishlist;
     }
 
 }

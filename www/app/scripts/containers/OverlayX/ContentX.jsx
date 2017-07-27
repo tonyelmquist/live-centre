@@ -30,6 +30,7 @@ class ContentX extends Component {
                             messages={this.props.chat} 
                             onMessageSend={this.props.onMessageSend}
                             onTileOpen={this.props.onTileOpen}
+                            handleAddToWishlist={() => this.props.handleAddToWishlist(this.props.video.id)}
                         /> 
                     </div>)
                 }

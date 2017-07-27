@@ -16,10 +16,10 @@ msgstr "OK"
 #: 
 msgid "route_home"
 msgstr "Hjem"
-#. Route About
+#. Route Wishlist
 #: 
-msgid "route_about"
-msgstr "Om Oss"
+msgid "route_wishlist"
+msgstr "Ønskeliste"
 
 #. Route Topics
 #: 

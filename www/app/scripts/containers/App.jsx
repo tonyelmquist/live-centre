@@ -12,6 +12,7 @@ import Header from './Header';
 
 // Pages
 import HomePage from './pages/HomePage';
+import WishlistPage from './pages/WishlistPage';
 import SettingsPage from './pages/SettingsPage';
 import FavoritePage from './pages/FavoritePage';
 import ProgramsPage from './pages/ProgramsPage';
@@ -105,6 +106,7 @@ class App extends Component {
                   <Route path="/Sport/:sportKey" component={SingleSportPage} />
                   <Route path="/Team/:teamKey" component={SportsTeamPage} />
                   <Route path="/Profile" component={ProfilePage} />
+                  <Route path="/Wishlist" component={WishlistPage} />
                 </div>
 
                 <OverlayX />

@@ -61,7 +61,7 @@ class SearchContainer extends Component {
     _compareMetadata = (filter, video) => {
        // console.log("compare: ",filter);
         filter = filter.toLowerCase();
-        if(video.tags.toLowerCase() == filter)return true
+        if(video.tags.toLowerCase() == filter) return true
         if(video.title.toLowerCase().includes(filter)) return true
         if(video.series != undefined && video.series.toLowerCase().includes(filter)) return true
         else return false

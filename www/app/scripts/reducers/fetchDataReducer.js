@@ -1,4 +1,5 @@
 import Actions from '../constants/reduxConstants';
+import Video from '../classes/video';
 
 const defaultVideosState = {
     items: {},
@@ -46,6 +47,18 @@ function videosReducer(state = defaultVideosState, action) {
         return Object.assign({}, state, {
             failed: true,
         });
+    case Actions.MARK_AS_WISHLIST: 
+        console.log('marked');
+        let newVideo = Object.assign( Object.create( Object.getPrototypeOf(state.items[action.videoId])), state.items[action.videoId])
+        
+        newVideo.wishlist = true;
+
+        return Object.assign({}, state, {
+            items: Object.assign({}, state.items, {
+                [action.videoId] : newVideo,
+            })
+        });
+        
     default:
         return state;
     }
