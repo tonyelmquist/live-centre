@@ -13,12 +13,14 @@ class HomePage extends Component {
         this.props
             .dispatch(changeCardCategory(category));
     }
+    
     _onTileClick = (video) => {
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
         this.props.dispatch(resetCurrentTimeInOverlayX());
     }
+
     _changeVideoInfo = (video) => {
         this.props.dispatch(changeVideoInfo(video));
     }

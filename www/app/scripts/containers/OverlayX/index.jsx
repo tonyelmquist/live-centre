@@ -6,7 +6,7 @@ import ContentX from './ContentX';
 import { sendMessage } from '../../actions/chatMessages';
 import { toggleCollapseInfo, collapseInfo } from '../../actions/overlayX';
 import KeyboardArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
-
+import { markAsWishlist } from '../../actions/video';
 import { maximizeOverlayX, minimizeOverlayX, closeOverlayX } from '../../actions/overlayX';
 
 class OverlayX extends Component {
@@ -21,6 +21,10 @@ class OverlayX extends Component {
 
     collapseInfo = () => {
         this.props.dispatch(collapseInfo())
+    }
+
+    handleAddToWishlist = (videoId) => {
+        this.props.dispatch(markAsWishlist(videoId));
     }
 
     render() {
@@ -50,6 +54,7 @@ class OverlayX extends Component {
                     collapseInfo={this.collapseInfo}
                     toggleCollapseInfo={this.toggleCollapseInfo}
                     isCollapsed={this.props.overlayX.collapsedInfo}
+                    handleAddToWishlist={this.handleAddToWishlist}
                 />
             </div>
             );

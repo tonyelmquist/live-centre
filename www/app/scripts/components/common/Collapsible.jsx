@@ -11,7 +11,6 @@ const Collapsible = ({label, collapseInfo, toggleCollapseInfo, isCollapsed, chil
     let collapseHeight = 0
     if (typeof this.collapseInnerElement !== 'undefined') {
         collapseHeight = this.collapseInnerElement.scrollHeight;
-        console.log("col", collapseHeight);
     }
 
     return (

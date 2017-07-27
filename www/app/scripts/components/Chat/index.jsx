@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import FontAwesome from 'react-fontawesome';
 
 class Chat extends Component {
     static filterMessages(messages) {
@@ -63,8 +64,10 @@ class Chat extends Component {
             <ul className="chat-messages" ref="chat" onWheel={this.onScroll} onTouchMove={this.onScroll}>
               {Chat.filterMessages(this.props.messages)}
             </ul>
-            <input type="text" ref={ref => (this.inputBox = ref)} onKeyUp={this.onKeyDown}/>
-            <button type="submit" onClick={this.onSubmitClick}> Send </button>
+            <input type="text" ref={ref => (this.inputBox = ref)} onKeyUp={this.onKeyDown} placeholder="Write your message here..."/>
+            <button type="submit" onClick={this.onSubmitClick}> 
+                <FontAwesome name="paper-plane" />
+            </button>
           </div>
         );
     }

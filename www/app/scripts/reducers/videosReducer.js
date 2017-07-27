@@ -25,6 +25,7 @@ export default function requestSent(state = defaultRequestState, action) {
             isFetching: false,
             categories: action.categories,
         });
+    
     default:
         return state;
     }

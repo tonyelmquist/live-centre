@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import FontAwesome from 'react-fontawesome';
 import {
   Player as Video,
   ControlBar,
@@ -42,23 +43,20 @@ const styles = {
  * @extends {React.Component}
  */
 class Player extends React.Component {
+
     state = {
         isPreOverlayShowing: true,
     }
+
     onPrePlayTouch = (e) => {
         e.stopPropagation();
         console.log('onPrePlayTouch');
         this.setState({isPreOverlayShowing: false});
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
             this.largeVideoPlayer.video.video.play();
-            //  const currTime = this.props.videoPosition;
-
-            // this.largeVideoPlayer.video.video.addEventListener('loadedmetadata', function () {
-            //     this.currentTime = currTime;
-            //     this.play();
-            // }, false);
         }
     }
+
     onCloseTouch = (e) => {
         e.stopPropagation();
         this.props.dispatch(closeOverlayX());
@@ -126,17 +124,22 @@ class Player extends React.Component {
                             </div>
                         </div>);
             }
+        } else {
+            return (<div className="pre-play-overlay" onClick={this.onPrePlayTouch}>
+                            <div className="gradient-overlay" />
+                            <div className="play-button" >
+                                <i className="fa fa-play-circle" />
+                            </div>
+                            <div className="close-button" onClick={this.onCloseTouch}>
+                                <i className="fa fa-close" />
+                            </div>
+                        </div>);
         }
 
         return (<div />);
     }
 
     limit = 50;
-    
-    shouldComponentUpdate = (x, y, a) => {
-        console.log(x, y);
-        return true;
-    }
 
     componentWillUpdate = (nextProps) => {
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
@@ -144,12 +147,6 @@ class Player extends React.Component {
                  console.info('Component Will Update Loaded');
                  this.setState({isPreOverlayShowing: true});
                  this.largeVideoPlayer.video.video.load();
-                //  const currTime = this.props.videoPosition;
-
-                // this.largeVideoPlayer.video.video.addEventListener('loadedmetadata', function () {
-                //     this.currentTime = currTime;
-                //     this.play();
-                // }, false);
 
                 this.videoLoaded = this.props.video.videoUrl;
              }
@@ -157,19 +154,6 @@ class Player extends React.Component {
     }
 
     render() {
-        // if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
-        //     if (this.videoLoaded !== this.props.video.videoUrl) {
-        //         console.log('LOAD');
-        //         //this.largeVideoPlayer.load();
-        //         //const currTime = this.props.videoPosition;
-        //         // this.largeVideoPlayer.pause();
-        //         // this.largeVideoPlayer.video.video.addEventListener('loadedmetadata', function () {
-        //         //     this.currentTime = currTime;
-        //         //     //this.play();
-        //         // }, false);
-        //         //this.videoLoaded = this.props.video.videoUrl;
-        //     }
-        // }
         const minimizeIconStyles = {
             position: 'fixed',
             top: '20px',
@@ -189,6 +173,7 @@ class Player extends React.Component {
                 <PlayToggle />
                 {/* <CurrentTimeDisplay /> */}
                 <KeyboardArrowDown style={minimizeIconStyles} onTouchTap={this.onMinimize} />
+                {/*<FontAwesome name="expand" />*/}
               </ControlBar>
               <source src={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`} />
             </Video>

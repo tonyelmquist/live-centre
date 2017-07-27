@@ -45,3 +45,14 @@ export function fullScreenMode() {
 export function exitFullScreenMode() {
     return { type: Actions.EXIT_FULL_SCREEN };
 }
+
+/**
+ * Marks a video as wishlisted (saved for later)
+ * 
+ * @memberof Actions
+ * @param {int} videoId 
+ * @returns Dispatchable Action
+ */
+export function markAsWishlist(videoId) {
+    return { type: Actions.MARK_AS_WISHLIST, videoId}
+}

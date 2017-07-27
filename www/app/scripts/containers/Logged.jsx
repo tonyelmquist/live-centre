@@ -19,6 +19,10 @@ class Logged extends Component {
         this.props.changeRoute('/Settings');
     }
 
+    handleWishlistTouchTap = () => {
+        this.props.changeRoute('/Wishlist');
+    }
+
     handleOpenProfile = () => {
         this.props.changeRoute('/Profile');
     }
@@ -34,7 +38,7 @@ class Logged extends Component {
           > 
 
             <MenuItem primaryText={i18next.t('profile_page')} onTouchTap={this.handleOpenProfile} />
-            <MenuItem primaryText={i18next.t('route_about')} />
+            <MenuItem primaryText={i18next.t('route_wishlist')} onTouchTap={this.handleWishlistTouchTap}/>
             <MenuItem primaryText={i18next.t('route_settings')} onTouchTap={this.handleSettingsTouchTap} />
             <MenuItem primaryText={i18next.t('app_signout')} onTouchTap={this.handleLogout} />
           </IconMenu>

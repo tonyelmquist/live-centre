@@ -29,6 +29,7 @@ class ContentX extends Component {
                             isCollapsed={this.props.isCollapsed}
                             messages={this.props.chat} 
                             onMessageSend={this.props.onMessageSend}
+                            handleAddToWishlist={() => this.props.handleAddToWishlist(this.props.video.id)}
                         /> 
                         {/* <Chat messages={this.props.chat} onMessageSend={this.props.onMessageSend} /> */}
                     </div>)
