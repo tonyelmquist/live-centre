@@ -12,7 +12,7 @@ export default function ProfilePage() {
             
             <Badge
                 className="profile-badge"
-                badgeContent={<EditIcon/>}
+                badgeContent={<EditIcon style={{color:'#000'}}/>}
                 primary={true}
                 style={{padding:0}}
                 badgeStyle={{top: '25px', width: '48px', height: '48px', border: 'solid 3px #0092ab', color: '#0092ab'}}

@@ -51,11 +51,12 @@ const HeaderMenu = (props) => {
           >
 
           {printLocation()}
+          
+          <SearchInput
+            handleSearch={props.handleSearch}
+            searchState={props.searchState}
+          />
 
-            <SearchInput
-              handleSearch={props.handleSearch}
-              searchState={props.searchState}
-            />
           </div>
         </MediaQuery>
 
@@ -66,7 +67,11 @@ const HeaderMenu = (props) => {
         {/* <MediaQuery minWidth={1500} className="inline">
           {HeaderMenuItem(props.categoryItems)}
         </MediaQuery> */}
-        <div className="rightMenu">
+        <div className={
+            props.searchState.isOpen
+              ? 'rightMenu searchOpen'
+              : 'rightMenu searchClosed'}
+        >
           <SearchBar
             handleSearch={props.handleSearch}
             searchState={props.searchState}

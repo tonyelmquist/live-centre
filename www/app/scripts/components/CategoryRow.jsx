@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import CategoryItem from '../components/CategoryItem';
 import ProductCard from '../containers/homepage/CardContainer';
-
+import FontAwesome from 'react-fontawesome';
 class CategoryRow extends Component {
 
     constructor(props) {
@@ -87,7 +87,7 @@ class CategoryRow extends Component {
           <div className="slider">
             <div className="rowHeader">
               <Link className="rowTitle" to={`/Category/${this.props.tag.key}`}>
-                {this.props.tag.name}
+                {this.props.tag.name} <FontAwesome name="angle-right" style={{ fontSize: '18px', fontWeight: 'bold', margin: '5px' }} />
               </Link>
 
               {/*<Link to={`/Category/${this.props.tag.key}`}>*/}

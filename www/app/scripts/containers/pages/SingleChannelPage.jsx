@@ -6,6 +6,8 @@ import MasonryImageTile from '../../components/masonry/MasonryImageTile';
 import MasonryTextOverlay from '../../components/masonry/MasonryTextOverlay';
 import CirclesRow from '../../components/horizontal-scroll/CirclesRow';
 import CircleRowItem from '../../components/horizontal-scroll/CircleRowItem';
+import { videoSelected } from '../../actions/video';
+import { openOverlayX, maximizeOverlayX, resetCurrentTimeInOverlayX } from '../../actions/overlayX';
 
 // Dummy channels:
 const channels = {
@@ -41,6 +43,7 @@ class SingleChannelPage extends React.Component {
         const tiles = [];
         const channelVideos = this.props.tags[channelKey].videos;
         const videos = this.props.videos.items;
+
         for (const key in channelVideos) {
             const videoKey = channelVideos[key];
             const video = videos[videoKey];
@@ -49,6 +52,7 @@ class SingleChannelPage extends React.Component {
               <MasonryImageTile
                 key={`single-channel-video-${videoKey}`}
                 poster={video.thumbnail}
+                handleClick={() => this.handleTileOpen(video)}
                 overlay={<MasonryTextOverlay video={video} handleTilePlay={this.handleTilePlay} title={video.title} />}
               />,
             );
@@ -71,12 +75,20 @@ class SingleChannelPage extends React.Component {
         return rowItems;
     }
 
-    handleTilePlay = () => {
-        console.log('PLAY VIDEO');
+    handleTilePlay = (video) => {
+      console.log("Handle tile play", video);
+        this.props.dispatch(openOverlayX());
+        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(videoSelected(video));
+        this.props.dispatch(resetCurrentTimeInOverlayX());
     }
 
-    handleTileOpen = () => {
-        console.log('tile open');
+    handleTileOpen = (video) => {
+        console.log("Handle tile open", video);
+        this.props.dispatch(openOverlayX());
+        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(videoSelected(video));
+        this.props.dispatch(resetCurrentTimeInOverlayX());
     }
 
     handleFilter = () => {

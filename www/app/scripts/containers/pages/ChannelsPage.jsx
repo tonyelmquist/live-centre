@@ -7,7 +7,6 @@ import MasonryImageTile from '../../components/masonry/MasonryImageTile';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-
 // Dummy filters and channels
 const filters = [
   { key: 'barn', avatarStyle: 'background-color: red' },
@@ -43,6 +42,7 @@ class ChannelsPage extends React.Component {
 
     handleOnClick = (item) => {
         //console.log('Channel:', item);
+        console.log("Change route");
         this.changeRoute(`/Channel/${item.title}`);
     }
 
@@ -54,10 +54,10 @@ class ChannelsPage extends React.Component {
         <MasonryImageTile
           key={`channel-tile-${key}`}
           poster={channels[key].thumbnail}
-          overlay={
-              <img className="logo" src={channels[key].logo} />
-            }
           handleClick={() => this.handleOnClick(channels[key])}
+          overlay={
+              <img onTouchTap={() => this.handleOnClick(channels[key])} className="logo" src={channels[key].logo} />
+            }
         />,
       );
       }

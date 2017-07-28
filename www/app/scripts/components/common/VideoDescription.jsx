@@ -40,8 +40,8 @@ class VideoDescription extends React.Component {
         this.setState({wishlisted: true});
     }
 
-   title = this.props.video.series ? this.props.video.series : this.props.video.title
-    subtitle = this.props.video.series ? `${this.props.video.title}, season ${this.props.video.season}` : ""
+    title = this.props.video.series ? this.props.video.series : this.props.video.title;
+    subtitle = this.props.video.series ? `${this.props.video.title}, season ${this.props.video.season}` : null;
     ipsum = `Morbi eu scelerisque justo. Sed finibus, tortor eu viverra fringilla,
     lectus sem condimentum mi, tempus tincidunt mauris dolor tempor
     nibh. Vestibulum quis convallis urna. Mauris massa lectus,
@@ -56,12 +56,12 @@ class VideoDescription extends React.Component {
           toggleCollapseInfo={this.props.toggleCollapseInfo}
           isCollapsed={this.props.isCollapsed}
         >        
-         <p>{this.subtitle}<br/>
+         <p>{this.subtitle ? this.subtitle : ""}
           Duration: {Math.round(45)} min<br/>
-          Star Rating: {this.renderStars()}</p>
-          <p>
-            <FontAwesome name={this.state.wishlisted ? 'heart' : 'heart-o'} onClick={this.handleWishlistClick} style={{color: 'white'}}/>
+          Star Rating: {this.renderStars()}<br/>
+          Add to wishlist <FontAwesome name={this.state.wishlisted ? 'heart' : 'heart-o'} onClick={this.handleWishlistClick} style={{color: 'white'}}/>
           </p>
+
           <p>{this.ipsum}</p>
         </Collapsible>
       );
