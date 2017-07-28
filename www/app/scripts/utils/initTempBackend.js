@@ -3,7 +3,6 @@ import axios from 'axios';
 import Series from '../classes/series';
 import Video from '../classes/video';
 import Tag from '../classes/tag';
-// import {videosFetched, seriesFetched, seasonsFetched, channelsFetched, tagsFetched} from '../actions/video';
 import { fetchVideoSuccess, fetchSeriesSuccess, fetchTagsSuccess } from '../actions/fetchData';
 
 

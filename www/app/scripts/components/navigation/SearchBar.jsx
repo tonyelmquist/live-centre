@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import IconButton from 'material-ui/IconButton';
-import AnimatedSearchIcon from '../animatedIcons/AnimatedSearchIcon';
+import AnimatedSearchIcon from '../Icons/AnimatedSearchIcon';
 import SearchInput from './SearchInput';
 
 // Should also have validation.

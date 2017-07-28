@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import MediaQuery from 'react-responsive';
 import i18next from 'i18next';
-import AnimatedMenuIcon from './../animatedIcons/AnimatedMenuIcon';
+import AnimatedMenuIcon from './../Icons/AnimatedMenuIcon';
 
 
 function TabMenu({

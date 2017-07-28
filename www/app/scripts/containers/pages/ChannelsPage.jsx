@@ -1,11 +1,11 @@
 import React from 'react';
 import i18next from 'i18next';
-import CirclesRow from '../../components/horizontal-scroll/CirclesRow';
-import CircleRowItem from '../../components/horizontal-scroll/CircleRowItem';
-import MasonryContainer from '../../components/masonry/MasonryContainer';
-import MasonryImageTile from '../../components/masonry/MasonryImageTile';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import CirclesRow from '../../components/HorizontalScroll/CirclesRow';
+import CircleRowItem from '../../components/HorizontalScroll/CircleRowItem';
+import MasonryContainer from '../../components/Masonry/MasonryContainer';
+import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 
 // Dummy filters and channels
 const filters = [

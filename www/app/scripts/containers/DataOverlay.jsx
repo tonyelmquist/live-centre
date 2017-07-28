@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
-import FidgetSpinner from '../components/FidgetSpinner';
-import BurstButton from '../components/BurstButton';
-import ChatOverlay from '../components/ChatOverlay';
-import PenaltyCard from '../components/PenaltyCard';
-import ScoreOverlay from '../components/ScoreOverlay';
-import LineupOverlay from '../components/LineupOverlay';
-import Replayer from '../components/Replayer';
-import HighlightsRow from '../components/HighlightsRow';
-import PlayerInfoOverlay from '../components/PlayerInfoOverlay';
+import FidgetSpinner from '../components/Buttons/FidgetSpinner';
+import BurstButton from '../components/Buttons/BurstButton';
+import ChatOverlay from '../components/SecondLayer/ChatOverlay';
+import PenaltyCard from '../components/SecondLayer/PenaltyCard';
+import ScoreOverlay from '../components/SecondLayer/ScoreOverlay';
+import LineupOverlay from '../components/SecondLayer/LineupOverlay';
+import PlayerInfoOverlay from '../components/SecondLayer/PlayerInfoOverlay';
+import Replayer from '../components/VideoPlayer/Replayer';
+import HighlightsRow from '../components/VideoPlayer/HighlightsRow';
 import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
-import { hideHighlights } from '../actions/highlights';
+import { hideHighlights } from '../actions/videoPlayer';
 
 class DataOverlay extends Component {
     constructor(props) {

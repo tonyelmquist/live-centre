@@ -3,34 +3,31 @@ import { connect } from 'react-redux';
 import i18next from 'i18next';
 import PropTypes from 'prop-types';
 
-import MasonryContainer from '../components/masonry/MasonryContainer';
-import MasonryImageTile from '../components/masonry/MasonryImageTile';
-import MasonryTextOverlay from '../components/masonry/MasonryTextOverlay'
+import MasonryContainer from '../components/Masonry/MasonryContainer';
+import MasonryImageTile from '../components/Masonry/MasonryImageTile';
+import MasonryTextOverlay from '../components/Masonry/MasonryTextOverlay';
 
-import FilterTabs from '../components/horizontal-scroll/FilterTabs';
-import CirclesRow from '../components/horizontal-scroll/CirclesRow';
-import CircleRowItem from '../components/horizontal-scroll/CircleRowItem';
+import FilterTabs from '../components/HorizontalScroll/FilterTabs';
+import CirclesRow from '../components/HorizontalScroll/CirclesRow';
+import CircleRowItem from '../components/HorizontalScroll/CircleRowItem';
 
-import CardContainer from '../containers/homepage/CardContainer';
 
 import { changeSearchFilterIndex } from '../actions/search';
-import { videoSelected } from '../actions/video';
-import { showOverlay } from '../actions/overlay';
-import { showVideoCard, changeVideoInfo } from '../actions/videoCard';
+import { videoSelected, resetCurrentTimeInPlayer, openOverlayX, maximizeOverlayX } from '../actions/videoPlayer';
 
 import videoPrefix from '../constants/mediaPrefix';
 
 class SearchContainer extends Component {
 
     handleTileOpen = (video) => {
-        this.props.dispatch(changeVideoInfo(video));
-        // this.props.dispatch(changeCardCategory(category));
-        this.props.dispatch(showVideoCard());
+        this.props.dispatch(openOverlayX());
+        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(videoSelected(video));
+        this.props.dispatch(resetCurrentTimeInPlayer());
     }
 
     handleTilePlay = (videoUrl) => {
-        this.props.dispatch(showOverlay());
-        this.props.dispatch(videoSelected(`${videoPrefix}${videoUrl}`));
+        console.log("handletileplay");
     }
 
     satisfyFilter = (filter, video) => {
@@ -165,7 +162,6 @@ class SearchContainer extends Component {
                     : <h4>{i18next.t('suggested_videos')}</h4>
                 }
 
-              <CardContainer />
               <MasonryContainer>
                   {this.getTiles(tabs)}
               </MasonryContainer>

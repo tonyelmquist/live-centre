@@ -1,3 +1,9 @@
+ /**
+ * NOT AN ACTUAL CLASS, JUST USED TO ORGANISE THINGS
+ *
+ * @class Actions:FetchData
+ */
+
 import Actions from '../constants/reduxConstants';
 
 /** FETCHING VIDEOS */
@@ -5,7 +11,7 @@ import Actions from '../constants/reduxConstants';
 /**
  * Action to indicate success of fetching a single video
  *
- * @memberof Actions
+ * @memberof Actions:FetchData
  * @export
  * @param {Video} video
  * @returns Dispatchable Action
@@ -17,7 +23,7 @@ export function fetchVideoSuccess(video) {
 /**
  * Action to indicate success of fetching multiple videos
  *
- * @memberof Actions
+ * @memberof Actions:FetchData
  * @export
  * @param {any} videogroup
  * @param {any} length
@@ -30,7 +36,7 @@ export function fetchVideosSuccess(videogroup, length) {
 /**
  * Action to indicate failure of fetching video
  *
- * @memberof Actions
+ * @memberof Actions:FetchData
  * @export
  * @returns Dispatchable Action
  */
@@ -43,7 +49,7 @@ export function fetchVideoFailed() {
 /**
  * Action to indicate success of fetching series, and to update the store
  *
- * @memberof Actions
+ * @memberof Actions:FetchData
  * @param {any} items
  * @returns Dispatchable Action
  */
@@ -54,7 +60,7 @@ export function fetchSeriesSuccess(items) {
 /**
  * Action to indicate failure of fetching series
  *
- * @memberof Actions
+ * @memberof Actions:FetchData
  * @export
  * @returns Dispatchable Action
  */
@@ -67,7 +73,7 @@ export function fetchSeriesFailed() {
 /**
  * Action to indicate success of fetching channels, and ot update the store
  *
- * @memberof Actions
+ * @memberof Actions:FetchData
  * @export
  * @param {any} items
  * @returns Dispatchable Action
@@ -79,7 +85,7 @@ export function fetchChannelsSuccess(items) {
 /**
  * Action to indicate failure of fetching channels
  *
- * @memberof Actions
+ * @memberof Actions:FetchData
  * @export
  * @returns Dispatchable Action
  */
@@ -92,7 +98,7 @@ export function fetchChannelsFailed() {
 /**
  * Action to indicate success of fetching seasons, and to update the store
  *
- * @memberof Actions
+ * @memberof Actions:FetchData
  * @export
  * @param {any} items
  * @returns Dispatchable Action
@@ -104,7 +110,7 @@ export function fetchSeasonsSuccess(items) {
 /**
  * Action to indicate failure to fetch seasons
  *
- * @memberof Actions
+ * @memberof Actions:FetchData
  * @export
  * @returns Dispatchable Action
  */
@@ -117,7 +123,7 @@ export function fetchSeasonsFailed() {
 /**
  * Action to indicate the success of fetching tags, and to update the store
  *
- * @memberof Actions
+ * @memberof Actions:FetchData
  * @export
  * @param {any} items
  * @returns Dispatchable Action
@@ -129,7 +135,7 @@ export function fetchTagsSuccess(items) {
 /**
  * Action to indicate failure of fetching tags
  *
- * @memberof Actions
+ * @memberof Actions:FetchData
  * @export
  * @returns Dispatchable Action
  */

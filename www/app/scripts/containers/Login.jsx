@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import { loginSuccess, showRegistration, hideRegistration } from '../actions/login';
+import { loginSuccess, showRegistration, hideRegistration } from '../actions/authentication';
 
 // import RaisedButton from 'material-ui/RaisedButton';
-import LoginForm from '../components/LoginForm';
-import RegistrationForm from '../components/RegistrationForm';
+import LoginForm from '../components/Authentication/LoginForm';
+import RegistrationForm from '../components/Authentication/RegistrationForm';
 /**
  * A modal dialog can only be closed by selecting one of the actions.
  */

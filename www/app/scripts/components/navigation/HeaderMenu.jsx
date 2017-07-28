@@ -7,7 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import BackIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import SearchBar from './SearchBar';
 import SearchInput from './SearchInput';
-import Logged from '../../containers/Logged';
+import Logged from '../../containers/UserMenu';
 
 const HeaderMenu = (props) => {
     const HeaderMenuItem = (items) => {

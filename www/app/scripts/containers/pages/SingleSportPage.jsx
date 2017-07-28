@@ -1,64 +1,63 @@
-import React, {component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import MasonryContainer from '../../components/masonry/MasonryContainer';
-import MasonryImageTile from '../../components/masonry/MasonryImageTile';
-import MasonryTextOverlay from '../../components/masonry/MasonryTextOverlay';
-import CirclesRow from '../../components/horizontal-scroll/CirclesRow';
-import CircleRowItem from '../../components/horizontal-scroll/CircleRowItem';
+import MasonryContainer from '../../components/Masonry/MasonryContainer';
+import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
+import CirclesRow from '../../components/HorizontalScroll/CirclesRow';
+import CircleRowItem from '../../components/HorizontalScroll/CircleRowItem';
 
 
 class SingelSportsPage extends React.Component {
-  
-  handleTilePlay = () => {
-    console.log("PLAY VIDEO");
-  }
 
-  handleTileOpen = () => {
-    console.log("tile open");
-  }
+    handleTilePlay = () => {
+        console.log('PLAY VIDEO');
+    }
 
-  changeRoute = path => this.props.history.push(path);
+    handleTileOpen = () => {
+        console.log('tile open');
+    }
 
-  getTiles = () => {
-    const tiles = [];
-    for(let i = 0; i<10; i++){
-      tiles.push(
+    changeRoute = path => this.props.history.push(path);
+
+    getTiles = () => {
+        const tiles = [];
+        for (let i = 0; i < 10; i++) {
+          tiles.push(
         <MasonryImageTile
           key={`sport-video-${i}`}
           poster={'/img/soccer-background.jpg'}
-          //overlay={<MasonryTextOverlay video={video} handleTilePlay={this.handleTilePlay} title={video.title}/>}
-        />
+          // overlay={<MasonryTextOverlay video={video} handleTilePlay={this.handleTilePlay} title={video.title}/>}
+        />,
       );
+      }
+        return tiles;
     }
-    return tiles
-  }
 
-  handleTeamOpen = (teamKey) => {
-      this.changeRoute(`/team/${teamKey}`);
-  }
+    handleTeamOpen = (teamKey) => {
+        this.changeRoute(`/team/${teamKey}`);
+    }
 
-  getTeams = () => {
-      const teams = this.props.sportsInfo.teams;
-      const rowItems = [];
-      for(const key in teams){
-        for(let i = 0; i<10; i++){
-          rowItems.push (<CircleRowItem
-              key={key+i}
+    getTeams = () => {
+        const teams = this.props.sportsInfo.teams;
+        const rowItems = [];
+        for (const key in teams) {
+          for (let i = 0; i < 10; i++) {
+              rowItems.push(<CircleRowItem
+              key={key + i}
               img={teams[key].logo}
               handleClick={() => this.handleTeamOpen(key)}
-          />);
-        }
+            />);
+          }
       }
-      return rowItems
-  }
+        return rowItems;
+    }
 
-  render(){
-    const channelKey = this.props.match.params.channelKey;
-    
-    return (
+    render() {
+        const channelKey = this.props.match.params.channelKey;
+
+        return (
       <div>
-        <div className="container-fluid">        
+        <div className="container-fluid">
           <h4>Teams</h4>
         </div>
         <CirclesRow>
@@ -71,8 +70,8 @@ class SingelSportsPage extends React.Component {
          </MasonryContainer>
          </div>
       </div>
-    );
-  }
+      );
+    }
 
 }
 

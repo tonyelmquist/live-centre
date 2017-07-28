@@ -1,17 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import videoPrefix from '../../constants/mediaPrefix';
-import MasonryContainer from '../../components/masonry/MasonryContainer';
-import MasonryVideoTile from '../../components/masonry/MasonryVideoTile';
-import MasonryImageTile from '../../components/masonry/MasonryImageTile';
-import { videoSelected } from '../../actions/video';
-import { showOverlay } from '../../actions/overlay';
-import { showVideoCard, changeVideoInfo } from '../../actions/videoCard';
-import CardContainer from '../homepage/CardContainer';
-import { changeProgramTabIndex  } from '../../actions/ProgramsPage';
-import { maximizeOverlayX, openOverlayX, minimizeOverlayX } from '../../actions/overlayX';
-import FilterTabs from '../../components/horizontal-scroll/FilterTabs';
+import MasonryContainer from '../../components/Masonry/MasonryContainer';
+import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
+import { videoSelected, resetCurrentTimeInPlayer } from '../../actions/videoPlayer';
+import { changeProgramTabIndex } from '../../actions/pages/programsPage';
+import { maximizeOverlayX, openOverlayX } from '../../actions/overlayX';
+import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
 
 
 class WishlistPage extends React.Component {
@@ -20,14 +15,8 @@ class WishlistPage extends React.Component {
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
-        this.props.dispatch(resetCurrentTimeInOverlayX());
+        this.props.dispatch(resetCurrentTimeInPlayer());
     }
-
-    handleTilePlay = (videoUrl) => {
-        this.props.dispatch(showOverlay());
-        this.props.dispatch(videoSelected(`${videoPrefix}${videoUrl}`));
-    }
-
     changeTab = (index) => {
         this.props.dispatch(changeProgramTabIndex(index));
     }
@@ -148,8 +137,7 @@ class WishlistPage extends React.Component {
                     changeTab={this.changeTab}
                     colortheme="dark"
                 />
-                <div className="container-fluid">       
-                    <CardContainer />
+                <div className="container-fluid"> 
                     <MasonryContainer>
                         {this.getTiles(tabKeys)}
                     </MasonryContainer>

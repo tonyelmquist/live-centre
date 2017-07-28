@@ -11,9 +11,9 @@ import VideoIcon from 'material-ui/svg-icons/AV/videocam';
 import { toggleMenu, hideMenu, toggleDrawerMenu } from '../actions/navigation';
 
 // Menu components
-import HeaderMenu from './../components/navigation/HeaderMenu';
-import TabMenu from './../components/navigation/TabMenu';
-import ExpandableMenu from './../components/navigation/ExpandableMenu';
+import HeaderMenu from './../components/Navigation/HeaderMenu';
+import TabMenu from './../components/Navigation/TabMenu';
+import ExpandableMenu from './../components/Navigation/ExpandableMenu';
 import { searchKeyword, toggleSearch, closeSearch, emptySearch } from '../actions/search';
 // import VideoLibrary from 'material-ui/svg-icons/AV/video-library';
 

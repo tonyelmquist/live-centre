@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import changeScore from '../actions/score';
+import changeScore from '../actions/secondLayer';
 import { getMessage } from '../actions/chatMessages';
 
 const initChangingScores = (store) => {

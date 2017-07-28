@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-// import VideoGrid from '../components/common/VideoGrid';
-import IconButton from 'material-ui/IconButton';
-import BackButton from 'material-ui/svg-icons/hardware/keyboard-backspace';
-import { blueGrey900 } from 'material-ui/styles/colors';
-import { videoSelected } from '../actions/video';
-import videoPrefix from '../constants/mediaPrefix';
-// import {changeCardIndex, showVideoCard, hideVideoCard, changeCardCategory} from '../actions/videoCard';
-import { showOverlay } from '../actions/overlay';
-import { openOverlayX, maximizeOverlayX, resetCurrentTimeInOverlayX } from '../actions/overlayX';
+import { videoSelected, resetCurrentTimeInPlayer } from '../actions/videoPlayer';
 
-import MasonryContainer from '../components/masonry/MasonryContainer';
-import MasonryVideoTile from '../components/masonry/MasonryVideoTile';
+import MasonryContainer from '../components/Masonry/MasonryContainer';
+import MasonryVideoTile from '../components/Masonry/MasonryVideoTile';
 
 const styles = {
     mediumIcon: {
@@ -31,14 +22,14 @@ class CategoryContainer extends Component {
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
-        this.props.dispatch(resetCurrentTimeInOverlayX());
+        this.props.dispatch(resetCurrentTimeInPlayer());
     };
 
     handleTilePlay = (video) => {
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
-        this.props.dispatch(resetCurrentTimeInOverlayX());
+        this.props.dispatch(resetCurrentTimeInPlayer());
     }
 
     // filter = () => {
@@ -89,21 +80,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(CategoryContainer);
-/*
 
-<div>
-            <div className='category'>
-                <Link to='/Home'>
-                    <div className='item'><IconButton style={styles.medium} iconStyle={styles.mediumIcon}><BackButton color={blueGrey900}/></IconButton></div>
-                </Link>
-                <h2 className='item'>{categoryID}</h2>
-            </div>
-
-            <VideoGrid
-              videos={videos}
-              category={categoryID}
-              onSelect={this._handleSelect}
-            />
-        </div>
-
- */

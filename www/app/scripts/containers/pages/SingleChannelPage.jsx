@@ -1,13 +1,13 @@
 import React, { component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import MasonryContainer from '../../components/masonry/MasonryContainer';
-import MasonryImageTile from '../../components/masonry/MasonryImageTile';
-import MasonryTextOverlay from '../../components/masonry/MasonryTextOverlay';
-import CirclesRow from '../../components/horizontal-scroll/CirclesRow';
-import CircleRowItem from '../../components/horizontal-scroll/CircleRowItem';
-import { videoSelected } from '../../actions/video';
-import { openOverlayX, maximizeOverlayX, resetCurrentTimeInOverlayX } from '../../actions/overlayX';
+import MasonryContainer from '../../components/Masonry/MasonryContainer';
+import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
+import MasonryTextOverlay from '../../components/Masonry/MasonryTextOverlay';
+import CirclesRow from '../../components/HorizontalScroll/CirclesRow';
+import CircleRowItem from '../../components/HorizontalScroll/CircleRowItem';
+import { videoSelected, resetCurrentTimeInPlayer } from '../../actions/videoPlayer';
+import { openOverlayX, maximizeOverlayX } from '../../actions/overlayX';
 
 // Dummy channels:
 const channels = {
@@ -80,7 +80,7 @@ class SingleChannelPage extends React.Component {
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
-        this.props.dispatch(resetCurrentTimeInOverlayX());
+        this.props.dispatch(resetCurrentTimeInPlayer());
     }
 
     handleTileOpen = (video) => {
@@ -88,7 +88,7 @@ class SingleChannelPage extends React.Component {
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
-        this.props.dispatch(resetCurrentTimeInOverlayX());
+        this.props.dispatch(resetCurrentTimeInPlayer());
     }
 
     handleFilter = () => {

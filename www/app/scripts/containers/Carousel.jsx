@@ -8,10 +8,8 @@ import Slider from 'react-slick';
 // import { grey800 } from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import PlayCircleFilled from 'material-ui/svg-icons/av/play-circle-filled';
-import { videoSelected } from '../actions/video';
-import { showOverlay } from '../actions/overlay';
-import videoPrefix from '../constants/mediaPrefix';
-import { openOverlayX, maximizeOverlayX, setVideoInfo } from '../actions/overlayX';
+import { videoSelected } from '../actions/videoPlayer';
+import { openOverlayX, maximizeOverlayX } from '../actions/overlayX';
 
 // const FEATURED_CATEGORY = 'Uncategorized';
 

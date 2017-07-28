@@ -1,11 +1,6 @@
-import AnimatedExpandIcon from '../animatedIcons/AnimatedExpandIcon';
 import React from 'react';
 import { Motion, spring } from 'react-motion';
-
-const collapseStyle = {
-    color: 'red',
-};
-
+import AnimatedExpandIcon from '../Icons/AnimatedExpandIcon';
 
 const Collapsible = ({label, collapseInfo, toggleCollapseInfo, isCollapsed, children}) => {
     let collapseHeight = 0

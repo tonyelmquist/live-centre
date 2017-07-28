@@ -1,21 +1,18 @@
 import { combineReducers } from 'redux';
-// import sidebarState from './sidebarReducer';
-import { loginState, registrationDialog } from './loginReducer';
-// import langReducer from './langReducer';
-import playbackReducer from './playbackReducer';
-import dataOverlayReducer from './dataOverlayReducer';
-import { changeNavIndex, headerMenuState, drawerMenuState } from './navReducer';
-import { search, searchFilterTab } from './searchReducer';
-import { showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo } from './videoCardReducer';
-import overlayReducer from './productOverlayReducer';
-import { videosReducer, seasonReducer, seriesReducer, tagsReducer } from './fetchDataReducer';
-import settings from './settingsReducer';
+
+import { loginState, registrationDialog } from './authenticationReducer';
 import chat from './chatReducer';
-import replay from './replayReducer';
-import highlights from './highlightsReducer';
+import { videosReducer, seasonReducer, seriesReducer, tagsReducer } from './fetchDataReducer';
+import { changeNavIndex, headerMenuState, drawerMenuState } from './navigationReducer';
 import overlayX from './overlayXReducer';
-import programsPageTab from './programsPageReducer';
-import { sports, teams, players, activeTeamTab, sportPlayerOverlay } from './sportReducer';
+import { search, searchFilterTab } from './searchReducer';
+import dataOverlayReducer from './secondLayerReducer';
+import settings from './settingsReducer';
+import { showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo } from './videoCardReducer';
+import { replayReducer as replay, highlightsReducer as highlights, handleSelection } from './videoPlayerReducer';
+
+import programsPageTab from './pages/programsPageReducer';
+import { sports, teams, players, activeTeamTab, sportPlayerOverlay } from './pages/sportsPageReducer';
 
 
 const rootReducer = combineReducers({
@@ -23,7 +20,6 @@ const rootReducer = combineReducers({
     isRegistrationVisible: registrationDialog,
     isUserLoggedIn: loginState,
     index: changeNavIndex,
-    overlay: combineReducers({ isVisible: overlayReducer }),
     videoCard: combineReducers({
         isVisible: showVideoCard,
         index: changeCardIndex,
@@ -32,7 +28,7 @@ const rootReducer = combineReducers({
     }),
     programsPage: programsPageTab,
     videos: videosReducer,
-    playback: playbackReducer,
+    playback: handleSelection,
     dataOverlay: dataOverlayReducer,
     headerMenuState,
     drawerMenuState,
@@ -47,7 +43,7 @@ const rootReducer = combineReducers({
     chat,
     replay,
     highlights,
-    overlayX
+    overlayX,
 });
 
 export default rootReducer;

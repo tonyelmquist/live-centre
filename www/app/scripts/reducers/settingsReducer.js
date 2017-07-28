@@ -91,3 +91,21 @@ export default function settings(state = { options: defaultSettings, saving: fal
         return state;
     }
 }
+
+export function langReducer(state = 'en', action) {
+    let persistedLang = '';
+    if (typeof action.payload !== 'undefined') {
+        persistedLang = action.payload.lang;
+    }
+    switch (action.type) {
+    case REHYDRATE:
+        if (persistedLang) {
+            return persistedLang;
+        }
+        return state;
+    case Actions.CHANGE_LANG:
+        return action.lang;
+    default:
+        return state;
+    }
+}

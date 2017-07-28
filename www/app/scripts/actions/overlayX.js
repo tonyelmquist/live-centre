@@ -1,22 +1,15 @@
-import Actions from '../constants/reduxConstants';
-
-/**
- * Set Video info for overlay
+ /**
+ * NOT AN ACTUAL CLASS, JUST USED TO ORGANISE THINGS
  *
- * @memberof Actions
- * @deprecated Using other set video info action
- * @export
- * @param {any} videoInfo
- * @returns Dispatchable Action
+ * @class Actions:OverlayX
  */
-export function setVideoInfo(videoInfo) {
-    return { type: Actions.OVERLAY_X_SET_INFO, videoInfo };
-}
+
+import Actions from '../constants/reduxConstants';
 
 /**
  * Action UI to minimize OverlayX
  *
- * @memberof Actions
+ * @memberof Actions:OverlayX
  * @export
  * @returns Dispatchable Action
  */
@@ -27,7 +20,7 @@ export function minimizeOverlayX() {
 /**
  * Action UI to maximize OverlayX
  *
- * @memberof Actions
+ * @memberof Actions:OverlayX
  * @export
  * @returns Dispatchable Action
  */
@@ -38,7 +31,7 @@ export function maximizeOverlayX() {
 /**
  * Action UI to open OverlayX
  *
- * @memberof Actions
+ * @memberof Actions:OverlayX
  * @export
  * @returns Dispatchable Action
  */
@@ -49,7 +42,7 @@ export function openOverlayX() {
 /**
  * Action UI to close OverlayX
  *
- * @memberof Actions
+ * @memberof Actions:OverlayX
  * @export
  * @returns Dispatchable Action
  */
@@ -58,32 +51,9 @@ export function closeOverlayX() {
 }
 
 /**
- * Action to set current time in overlayX
- *
- * @deprecated Possibly unneeded, this was used to try and sync two seperate video players in the past, now they are one
- * @memberof Actions
- * @export
- * @returns Dispatchable Action
- */
-export function setCurrentTimeInOverlayX(newTime) {
-    return { type: Actions.SET_CURRENT_TIME, time: newTime };
-}
-
-/**
- * Action to reset current time in overlayX
- *
- * @memberof Actions
- * @export
- * @returns Dispatchable Action
- */
-export function resetCurrentTimeInOverlayX() {
-    return { type: Actions.SET_CURRENT_TIME, time: 0 };
-}
-
-/**
  * Action to toggle collapse in overlayX collapsible
  *
- * @memberof Actions
+ * @memberof Actions:OverlayX
  * @export
  * @returns Dispatchable Action
  */
@@ -94,7 +64,7 @@ export function toggleCollapseInfo(){
 /**
  * Action to collapse collapseinfo in overlayX
  *
- * @memberof Actions
+ * @memberof Actions:OverlayX
  * @export
  * @returns Dispatchable Action
  */

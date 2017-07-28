@@ -2,9 +2,9 @@ import React from 'react';
 import i18next from 'i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { RaisedButton, SelectField, MenuItem, Toggle, Snackbar, TextField } from 'material-ui';
+import { RaisedButton, Toggle } from 'material-ui';
 import { changeLang, changeAudioLang, changeSubtitleLang, toggleRecommendations, saveUserSettings } from '../../actions/settings';
-import FormList from '../../components/form/FormList';
+import FormList from '../../components/Form/FormList';
 
 const styles = {
     headline: {

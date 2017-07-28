@@ -1,9 +1,15 @@
+ /**
+ * NOT AN ACTUAL CLASS, JUST USED TO ORGANISE THINGS
+ *
+ * @class Actions:VideoCard
+ */
+
 import Actions from '../constants/reduxConstants';
 
 /**
  * Action to change the video card for the video card
  *
- * @memberof Actions
+ * @memberof Actions:VideoCard
  * @export
  * @param {any} index
  * @returns Dispatchable Action
@@ -15,7 +21,7 @@ export function changeCardIndex(index) {
 /**
  * Action to show the video card
  *
- * @memberof Actions
+ * @memberof Actions:VideoCard
  * @export
  * @param {any} index
  * @returns Dispatchable Action
@@ -27,7 +33,7 @@ export function showVideoCard() {
 /**
  * Action to hide the video card
  *
- * @memberof Actions
+ * @memberof Actions:VideoCard
  * @export
  * @param {any} index
  * @returns Dispatchable Action
@@ -39,7 +45,7 @@ export function hideVideoCard() {
 /**
  * Action to change the card category
  *
- * @memberof Actions
+ * @memberof Actions:VideoCard
  * @export
  * @param {any} index
  * @returns Dispatchable Action
@@ -51,7 +57,7 @@ export function changeCardCategory(category) {
 /**
  * Action to change the video info
  *
- * @memberof Actions
+ * @memberof Actions:VideoCard
  * @export
  * @param {any} index
  * @returns Dispatchable Action

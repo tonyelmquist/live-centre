@@ -1,9 +1,15 @@
+ /**
+ * NOT AN ACTUAL CLASS, JUST USED TO ORGANISE THINGS
+ *
+ * @class Actions:Search
+ */
+
 import Actions from '../constants/reduxConstants';
 
 /**
  * Action to toggle search dropdown
  *
- * @memberof Actions
+ * @memberof Actions:Search
  * @export
  * @returns Dispatchable Action
  */
@@ -14,7 +20,7 @@ export function toggleSearch() {
 /**
  * Action to close search dropdown
  *
- * @memberof Actions
+ * @memberof Actions:Search
  * @export
  * @returns Dispatchable Action
  */
@@ -25,7 +31,7 @@ export function closeSearch() {
 /**
  * Action to set search keyword
  *
- * @memberof Actions
+ * @memberof Actions:Search
  * @export
  * @returns Dispatchable Action
  */
@@ -36,7 +42,7 @@ export function searchKeyword(keyword) {
 /**
  * Action to empty the search dropdown
  *
- * @memberof Actions
+ * @memberof Actions:Search
  * @export
  * @returns Dispatchable Action
  */
@@ -47,7 +53,7 @@ export function emptySearch() {
 /**
  * Action to change the search filter index position
  *
- * @memberof Actions
+ * @memberof Actions:Search
  * @export
  * @returns Dispatchable Action
  */

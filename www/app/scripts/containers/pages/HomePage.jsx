@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import HeroCarousel from '../Carousel';
-import { showVideoCard, changeCardCategory, changeVideoInfo } from '../../actions/videoCard';
-import { videoSelected } from '../../actions/video';
-import { openOverlayX, maximizeOverlayX, resetCurrentTimeInOverlayX } from '../../actions/overlayX';
-import CategoryRow from '../../components/CategoryRow';
+import { changeCardCategory, changeVideoInfo } from '../../actions/videoCard';
+import { videoSelected, resetCurrentTimeInPlayer } from '../../actions/videoPlayer';
+import { openOverlayX, maximizeOverlayX } from '../../actions/overlayX';
+import VideoSwiper from '../../components/VideoSwiper';
 
 class HomePage extends Component {
 
@@ -18,7 +18,7 @@ class HomePage extends Component {
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
-        this.props.dispatch(resetCurrentTimeInOverlayX());
+        this.props.dispatch(resetCurrentTimeInPlayer());
     }
 
     _changeVideoInfo = (video) => {
@@ -34,8 +34,8 @@ class HomePage extends Component {
                 const videoInCategory = tags[key].videos.map(videoKey => videos[videoKey]);
 
                 videoList.push(
-                  <CategoryRow
-                    key={`categoryrow-${key}`}
+                  <VideoSwiper
+                    key={`videoswiper-${key}`}
                     handleCardCategory={this._changeCardCategory}
                     handleVideoInfo={this._changeVideoInfo}
                     onTileClick={this._onTileClick}
@@ -66,7 +66,6 @@ HomePage.propTypes = {
     dispatch: PropTypes.func.isRequired,
     videoCard: PropTypes.object.isRequired,
     videos: PropTypes.any.isRequired,
-    overlayVisible: PropTypes.bool.isRequired,
     tags: PropTypes.object.isRequired,
 };
 
@@ -76,7 +75,6 @@ const mapStateToProps = state => ({
     videoUrl: state.playback.url,
     selected: state.playback.isSelected,
     videoCard: state.videoCard,
-    overlayVisible: state.overlay.isVisible,
 });
 
 

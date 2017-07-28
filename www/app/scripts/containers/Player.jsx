@@ -6,14 +6,12 @@ import {
   Player as Video,
   ControlBar,
   PlayToggle,
-  VolumeMenuButton,
 } from 'video-react';
 import KeyboardArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import { maximizeOverlayX, closeOverlayX, minimizeOverlayX } from '../actions/overlayX';
 import { Orientation } from '../constants/reduxConstants';
 import DataOverlay from './DataOverlay';
-import { showReplay, hideReplay } from '../actions/replay';
-import { showHighlights } from '../actions/highlights';
+import { showReplay, hideReplay, showHighlights } from '../actions/videoPlayer';
 import '../../../node_modules/video-react/dist/video-react.css';
 
 const styles = {

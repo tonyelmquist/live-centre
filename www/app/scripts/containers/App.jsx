@@ -14,15 +14,13 @@ import Header from './Header';
 import HomePage from './pages/HomePage';
 import WishlistPage from './pages/WishlistPage';
 import SettingsPage from './pages/SettingsPage';
-import FavoritePage from './pages/FavoritePage';
 import ProgramsPage from './pages/ProgramsPage';
 import ChannelsPage from './pages/ChannelsPage';
 import SingleChannelPage from './pages/SingleChannelPage';
 import ProfilePage from './pages/ProfilePage';
-import SportsMainPage from './pages/SportsMainPage';
+import SportsPage from './pages/SportsPage';
 import SingleSportPage from './pages/SingleSportPage';
-import SportsTeamPage from './pages/SportsTeamPage';
-import Overlay from './OverlayContainer';
+import TeamPage from './pages/TeamPage';
 import OverlayX from './OverlayX';
 import CategoryContainer from './CategoryContainer';
 import SearchOverlay from './SearchOverlay';
@@ -97,14 +95,13 @@ class App extends Component {
                   <Route exact path="/Home" component={HomePage} />
                   <Route path="/Login" component={Login} />
                   <Route path="/Settings" component={SettingsPage} />
-                  <Route path="/Favorites" component={FavoritePage} />
                   <Route path="/Category/:categoryKey" component={CategoryContainer} />
                   <Route path="/Channels" component={ChannelsPage} />
                   <Route path="/Channel/:channelKey" component={SingleChannelPage} />
                   <Route path="/Programs" component={ProgramsPage} />
-                  <Route path="/Sports" component={SportsMainPage} />
+                  <Route path="/Sports" component={SportsPage} />
                   <Route path="/Sport/:sportKey" component={SingleSportPage} />
-                  <Route path="/Team/:teamKey" component={SportsTeamPage} />
+                  <Route path="/Team/:teamKey" component={TeamPage} />
                   <Route path="/Profile" component={ProfilePage} />
                   <Route path="/Wishlist" component={WishlistPage} />
                 </div>
