@@ -2,7 +2,7 @@ import React from 'react';
 import i18next from 'i18next';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import CirclesRow from '../../components/HorizontalScroll/CirclesRow';
+import HorizontalScrollContainer from '../../components/HorizontalScroll/HorizontalScrollContainer';
 import CircleRowItem from '../../components/HorizontalScroll/CircleRowItem';
 import MasonryContainer from '../../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
@@ -87,9 +87,9 @@ class ChannelsPage extends React.Component {
         </div>
 
         <div className="inline-circle-label">
-          <CirclesRow>
+          <HorizontalScrollContainer>
             {this.getCircleFilters(filters)}
-          </CirclesRow>
+          </HorizontalScrollContainer>
         </div>
         <div className="container-fluid">
 

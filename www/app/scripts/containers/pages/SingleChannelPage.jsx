@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import MasonryContainer from '../../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 import MasonryTextOverlay from '../../components/Masonry/MasonryTextOverlay';
-import CirclesRow from '../../components/HorizontalScroll/CirclesRow';
+import HorizontalScrollContainer from '../../components/HorizontalScroll/HorizontalScrollContainer';
 import CircleRowItem from '../../components/HorizontalScroll/CircleRowItem';
 import { videoSelected, resetCurrentTimeInPlayer } from '../../actions/videoPlayer';
 import { openOverlayX, maximizeOverlayX } from '../../actions/overlayX';
@@ -109,9 +109,9 @@ class SingleChannelPage extends React.Component {
             <div className="container-fluid">
               <h4>{i18next.t('filter')}</h4>
             </div>
-            <CirclesRow>
+            <HorizontalScrollContainer>
               {this.getFilters()}
-            </CirclesRow>
+            </HorizontalScrollContainer>
             <div className="container-fluid">
               <h4> LIVE Now </h4>
             <MasonryContainer>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MasonryContainer from '../../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
-import CirclesRow from '../../components/HorizontalScroll/CirclesRow';
+import HorizontalScrollContainer from '../../components/HorizontalScroll/HorizontalScrollContainer';
 import CircleRowItem from '../../components/HorizontalScroll/CircleRowItem';
 
 
@@ -60,9 +60,9 @@ class SingelSportsPage extends React.Component {
         <div className="container-fluid">
           <h4>Teams</h4>
         </div>
-        <CirclesRow>
+        <HorizontalScrollContainer>
             {this.getTeams()}
-        </CirclesRow>
+        </HorizontalScrollContainer>
         <div className="container-fluid">
           <h4> LIVE Now </h4>
           <MasonryContainer>

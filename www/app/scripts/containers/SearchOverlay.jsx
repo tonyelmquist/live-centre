@@ -8,7 +8,7 @@ import MasonryImageTile from '../components/Masonry/MasonryImageTile';
 import MasonryTextOverlay from '../components/Masonry/MasonryTextOverlay';
 
 import FilterTabs from '../components/HorizontalScroll/FilterTabs';
-import CirclesRow from '../components/HorizontalScroll/CirclesRow';
+import HorizontalScrollContainer from '../components/HorizontalScroll/HorizontalScrollContainer';
 import CircleRowItem from '../components/HorizontalScroll/CircleRowItem';
 
 
@@ -148,12 +148,12 @@ class SearchContainer extends Component {
             
             <h4 className="container-fluid">{i18next.t('suggested_people')}</h4>
             
-            {/* <CirclesRow>
+            {/* <HorizontalScrollContainer>
                 {this.getPortraitItems(people)}
-            </CirclesRow> */}
-            <CirclesRow>
+            </HorizontalScrollContainer> */}
+            <HorizontalScrollContainer>
                 {this.getPortraitItems(people)}
-            </CirclesRow>
+            </HorizontalScrollContainer>
 
             <div className="container-fluid">
 

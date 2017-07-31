@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CirclesRow from '../HorizontalScroll/CirclesRow';
+import HorizontalScrollContainer from '../HorizontalScroll/HorizontalScrollContainer';
 import ScrollItem from '../HorizontalScroll/ScrollItem';
 import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
 
@@ -42,9 +42,9 @@ const SeasonsFooter = (props) => {
     return (
         <div>
             {getSeasonsTabs()}
-            <CirclesRow>
+            <HorizontalScrollContainer>
                 {getEpisodes()}
-            </CirclesRow>
+            </HorizontalScrollContainer>
       </div>
     );
 };

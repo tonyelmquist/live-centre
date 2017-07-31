@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CirclesRow from '../HorizontalScroll/CirclesRow';
+import HorizontalScrollContainer from '../HorizontalScroll/HorizontalScrollContainer';
 import ScrollItem from '../HorizontalScroll/ScrollItem';
 
 //Recommendation based on tag. 
@@ -26,9 +26,9 @@ const Recommendations = (props) => {
     return (
       <span>
         <h4 style={{ padding: '15px 20px' }}>Recommendations:</h4>
-            <CirclesRow>
+            <HorizontalScrollContainer>
                 <div>{getVideos()}</div>
-            </CirclesRow>
+            </HorizontalScrollContainer>
         </span>
     );
 };

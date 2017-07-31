@@ -1,24 +1,24 @@
 import {enzymeMount, enzymeMountWithRouter, expect} from '../tests.helper.js';
-import CirclesRow from '../../scripts/components/common/CirclesRow';
+import HorizontalScrollContainer from '../../scripts/components/common/HorizontalScrollContainer';
 import sinon from 'sinon';
 
 
-describe('CirclesRow', () => {
+describe('HorizontalScrollContainer', () => {
     let wrapper;
 
     const props = {
     };
 
     it('calls the render function', () => {
-        sinon.spy(CirclesRow.prototype, 'render');
-        wrapper = enzymeMount(CirclesRow, props);
-        expect(CirclesRow.prototype.render.calledOnce)
+        sinon.spy(HorizontalScrollContainer.prototype, 'render');
+        wrapper = enzymeMount(HorizontalScrollContainer, props);
+        expect(HorizontalScrollContainer.prototype.render.calledOnce)
             .to
             .equal(true);
     });
 
-    it('renders CirclesRow', () => {
-        wrapper = enzymeMountWithRouter(CirclesRow, props);
+    it('renders HorizontalScrollContainer', () => {
+        wrapper = enzymeMountWithRouter(HorizontalScrollContainer, props);
         expect(wrapper.find('.horizontalScroll').exists()).to.be.true;
     });
 

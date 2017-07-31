@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CirclesRow (props) {
+function HorizontalScrollContainer (props) {
     return (
       <div className="horizontalScroll">
         <div className="horizontalScrollInner">
@@ -10,4 +10,4 @@ function CirclesRow (props) {
     );
 }
 
-export default CirclesRow;
+export default HorizontalScrollContainer;
