@@ -15,6 +15,7 @@ class ContentXInfo extends Component {
 
     render() {
         const video = this.props.video;
+
         const renderFooter = () => {
             if (video.series !== undefined) {
                 return (<SeasonsFooter
@@ -36,6 +37,7 @@ class ContentXInfo extends Component {
                     />);
         };
 
+        console.log('ContentXInfo rerender', video);
         return (
             <div className={'content-x-info'}>
                 {video.tags == 'Street Fighter'

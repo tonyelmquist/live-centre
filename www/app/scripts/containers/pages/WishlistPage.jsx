@@ -9,6 +9,7 @@ import { maximizeOverlayX, openOverlayX } from '../../actions/overlayX';
 import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
 
 
+
 class WishlistPage extends React.Component {
 
     handleTileOpen = (video) => {
@@ -21,97 +22,85 @@ class WishlistPage extends React.Component {
         this.props.dispatch(changeProgramTabIndex(index));
     }
 
-    tiles_handleFilter = (filterArray, video, filterby) => {
-        //console.log(filterArray, video, filterby);
-       /* if(filterArray === 'series') return this.episodeList(video);
-        else return null*/
-        if(filterArray == "Series"){
-            //Should also be a variable for Episode number so we could get the episode number. For now use season. 
-            if(video.series != undefined && video.season == 1){
-                return true
-            }
-        } else if(filterArray == "Movies"){
-            if(video.series == undefined ){
-                return true
-            }
-        } else {
-            if(video.tags == filterArray){
-                return true
-            }
-        }
-
-        return false
-        
-    }
-
-    //Must generate an object for the searchfilter box.
+    // Must generate an object for the searchfilter box.
     tabs = (tabKeys) => {
         const activeIndex = this.props.activetab;
         const tabs = {};
 
-        tabKeys.map(function(key, index){
-            const active = activeIndex == index ? true : false;
-            tabs[key] = {key: key, active: active, index: index};
-            
+        tabKeys.map((key, index) => {
+            const active = activeIndex == index;
+            tabs[key] = { key, active, index };
         });
 
-        return tabs
+        return tabs;
     }
 
-    //Must iterate through all videos to find which movie has no series.
-    getAllMovies(){
+    // Must iterate through all videos to find which movie has no series.
+
+    getAll() {
         const movies = [];
         const videos = this.props.videos;
-        
-        for(const key in videos){
-            console.log(videos[key].wishlist);
-            if (!videos[key].wishlist) {
-                continue;
-            }
-            console.log('push');
-            if(videos[key].series == undefined){
+
+        for (const key in videos) {
+            if (videos[key].wishlist) {
                 movies.push(videos[key]);
             }
         }
         return movies;
     }
 
-    getVideoFromTag(tag){
-        const programs = [];
-        const videoKeys = this.props.tags[tag].videos;
-        for (const key in this.props.tags[tag].videos) {
-            console.log(this.props.tags[tag].videos[key]);
-            const videoKey = this.props.tags[tag].videos[key];
-            if (!this.props.videos[videoKey].wishlist) {
+    getAllMovies() {
+        const movies = [];
+        const videos = this.props.videos;
+
+        for (const key in videos) {
+            if (!videos[key].wishlist) {
                 continue;
             }
-            console.log('push');
-            programs.push(this.props.videos[videoKey]);
+
+            if (videos[key].series == undefined) {
+                movies.push(videos[key]);
+            }
+        }
+        return movies;
+    }
+
+    getVideoFromTag(tag) {
+        const programs = [];
+        const videoKeys = this.props.tags[tag].videos;
+
+        for (const key in this.props.tags[tag].videos) {
+            const videoKey = this.props.tags[tag].videos[key];
+
+            if (this.props.videos[videoKey].wishlist) {
+                programs.push(this.props.videos[videoKey]);
+            }
         }
         return programs;
     }
 
-    getTiles(tabKeys){
+    getTiles(tabKeys) {
         let programs = [];
         const tiles = [];
         const currentTab = tabKeys[this.props.activetab];
-        switch(currentTab){
-            case "Movies":
-                programs = this.getAllMovies();
-                break;
-            default:
-                programs = this.getVideoFromTag(currentTab);
+        switch (currentTab) {
+        case 'All':
+            programs = this.getAll();
+            break;
+        case 'Movies':
+            programs = this.getAllMovies();
+            break;
+        default:
+            programs = this.getVideoFromTag(currentTab);
         }
 
-        console.log('programs length', programs.length);
-
-        for(const key in programs){
+        for (const key in programs) {
             tiles.push(
                 <MasonryImageTile
                 key={`channel-tile-${key}`}
                 poster={programs[key].thumbnail}
                 handleClick={() => this.handleTileOpen(programs[key])}
-                />
+                />,
             );
         }
         return tiles;
@@ -119,16 +108,19 @@ class WishlistPage extends React.Component {
 
 
     render() {
-
         const tabKeys = [
-            "Movies"
+            'All', 'Movies',
         ];
-        //Append all tags to tabkeys.
-        for(const key in this.props.tags){
-            tabKeys.push(this.props.tags[key].key);
+        const allVideos = this.getAll();
+        for (let i = 0; i < allVideos.length; i++) {
+            console.log('?', allVideos[i]);
+            console.log(allVideos[i].tags);
+            if (tabKeys.indexOf(allVideos[i].tags) <= -1) {
+                tabKeys.push(allVideos[i].tags);
+            }
         }
 
-        
+
         return (
             <div className="programsPage ">
                 <FilterTabs
@@ -137,12 +129,12 @@ class WishlistPage extends React.Component {
                     changeTab={this.changeTab}
                     colortheme="dark"
                 />
-                <div className="container-fluid"> 
+                <div className="container-fluid">
                     <MasonryContainer>
                         {this.getTiles(tabKeys)}
                     </MasonryContainer>
                 </div>
-                
+
             </div>
         );
     }
@@ -156,17 +148,14 @@ WishlistPage.propTypes = {
 };
 
 
-
 const mapStateToProps = state => ({
     videos: state.videos.items,
     series: state.series.items,
     activetab: state.programsPage,
     seasons: state.seasons.items,
     series: state.series.items,
-    tags: state.tags.items
+    tags: state.tags.items,
 });
-
-
 
 
 export default connect(mapStateToProps)(WishlistPage);

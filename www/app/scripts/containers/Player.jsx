@@ -48,8 +48,8 @@ class Player extends React.Component {
 
     onPrePlayTouch = (e) => {
         e.stopPropagation();
-        console.log('onPrePlayTouch');
-        this.setState({isPreOverlayShowing: false});
+
+        this.setState({ isPreOverlayShowing: false });
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
             this.largeVideoPlayer.video.video.play();
         }
@@ -57,6 +57,7 @@ class Player extends React.Component {
 
     onCloseTouch = (e) => {
         e.stopPropagation();
+        e.preventDefault();
         this.props.dispatch(closeOverlayX());
     }
     onTouchStart = (e) => {
