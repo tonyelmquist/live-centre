@@ -8,8 +8,9 @@ pipelines:
         caches:
           - node
         script:
+          - set -e
           - cd www
-          - npm install
+          - npm install || exit 1
           - npm test
           - npm run build || exit 1
           - npm run deploy || exit 1
