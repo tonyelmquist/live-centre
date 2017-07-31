@@ -25,14 +25,10 @@ import OverlayX from './OverlayX';
 import CategoryContainer from './CategoryContainer';
 import SearchOverlay from './SearchOverlay';
 import { setLandscape, setPortrait } from '../actions/settings';
+import TransitionRoutes from '../components/TransitionRoutes';
 
-// import { TransitionMotion, spring, presets } from 'react-motion';
-
-// import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
-
-// import createHistory from 'history/createMemoryHistory';
-// const history = createHistory();
-
+import { RouteTransition } from 'react-router-transition';
+import { Switch } from 'react-router';
 
 class App extends Component {
     constructor(props) {
@@ -63,14 +59,6 @@ class App extends Component {
             }
         }, 100);
     }
-
-    // preventScroll = (e) => {
-    //     console.log("touchmove", e);
-    //     e.preventDefault();
-    //     e.nativeEvent.stopPropagation();
-    //     //Chrome also needs: touch-action
-    //     console.log(this.mainContent);
-    // }
     
     render() {
         const preventScroll = this.props.state_all.overlayX.open || this.props.state_all.search.isOpen;
@@ -79,32 +67,24 @@ class App extends Component {
             <div>
               <Header />
               <div className="main" id="main">
-                {/* this.props.state_all.search.isOpen ? <SearchContainer/>  : <div></div>*/}
-
-                 {/* {this.props.state_all.overlay.isVisible ? <Overlay /> : <div /> }*/}
                 <SearchOverlay />
-                <div
-                    id="mainContent"
-                    ref={ref => (this.mainContent = ref)}
-                    className="mainContent"
-                    //className={preventScroll ? 'mainContent preventScroll' : 'mainContent'}
-                    //className="preventScroll"
-                    //onTouchEnd={this.preventScroll.bind(this)}
-                    //onTouchStart={this.preventScroll.bind(this)}
-                 >
-                  <Route exact path="/Home" component={HomePage} />
-                  <Route path="/Login" component={Login} />
-                  <Route path="/Settings" component={SettingsPage} />
-                  <Route path="/Category/:categoryKey" component={CategoryContainer} />
-                  <Route path="/Channels" component={ChannelsPage} />
-                  <Route path="/Channel/:channelKey" component={SingleChannelPage} />
-                  <Route path="/Programs" component={ProgramsPage} />
-                  <Route path="/Sports" component={SportsPage} />
-                  <Route path="/Sport/:sportKey" component={SingleSportPage} />
-                  <Route path="/Team/:teamKey" component={TeamPage} />
-                  <Route path="/Profile" component={ProfilePage} />
-                  <Route path="/Wishlist" component={WishlistPage} />
-                </div>
+
+                    <TransitionRoutes>
+                        <Route exact path="/Home" component={HomePage} state={{ fromDashboard: true }}/>
+                        <Route path="/Programs" component={ProgramsPage} />
+                        <Route path="/Channels" component={ChannelsPage} />
+                        <Route path="/Sports" component={SportsPage} />
+                        <Route path="/Login" component={Login} />
+                        <Route path="/Settings" component={SettingsPage} />
+                        <Route path="/Category/:categoryKey" component={CategoryContainer} />
+                        <Route path="/Channel/:channelKey" component={SingleChannelPage} />
+                        <Route path="/Sport/:sportKey" component={SingleSportPage} />
+                        <Route path="/Team/:teamKey" component={TeamPage} />
+                        <Route path="/Profile" component={ProfilePage} />
+                        <Route path="/Wishlist" component={WishlistPage} />
+
+                    </TransitionRoutes>
+                    
 
                 <OverlayX />
               </div>
@@ -128,3 +108,23 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(App);
+
+/*
+                    <TransitionRoutes>
+                        <Route exact path="/Home" component={HomePage} state={{ fromDashboard: true }}/>
+                        <Route path="/Programs" component={ProgramsPage} />
+                        <Route path="/Channels" component={ChannelsPage} />
+                        <Route path="/Sports" component={SportsPage} />
+
+                        <Route path="/Login" component={Login} />
+                        <Route path="/Settings" component={SettingsPage} />
+                        <Route path="/Category/:categoryKey" component={CategoryContainer} />
+                        <Route path="/Channel/:channelKey" component={SingleChannelPage} />
+                        
+                        <Route path="/Sport/:sportKey" component={SingleSportPage} />
+                        <Route path="/Team/:teamKey" component={TeamPage} />
+                        <Route path="/Profile" component={ProfilePage} />
+                        <Route path="/Wishlist" component={WishlistPage} />
+
+                    </TransitionRoutes>
+*/ 
