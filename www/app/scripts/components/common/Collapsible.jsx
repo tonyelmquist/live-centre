@@ -4,7 +4,7 @@ import AnimatedExpandIcon from '../Icons/AnimatedExpandIcon';
 
 const Collapsible = ({label, collapseInfo, toggleCollapseInfo, isCollapsed, children}) => {
     let collapseHeight = 0
-    if (typeof this.collapseInnerElement !== 'undefined') {
+    if (typeof this.collapseInnerElement !== 'undefined' && this.collapseInnerElement !== null) {
         collapseHeight = this.collapseInnerElement.scrollHeight;
     }
 
