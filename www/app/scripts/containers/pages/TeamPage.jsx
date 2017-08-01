@@ -6,7 +6,7 @@ import TeamInfoSection from '../../components/SportSection/TeamInfoSection';
 import SportPlayerOverlay from '../../components/SportSection/SportPlayerOverlay';
 import MasonryContainer from '../../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
-import { changeTeamTabIndex, openTeamMemberOverlay, closeTeamMemberOverlay } from '../../actions/pages/sportsPage';
+import { changeTeamTabIndex, openTeamMemberOverlay } from '../../actions/pages/sportsPage';
 
 const tabs = [
     'Info',
@@ -37,10 +37,7 @@ class TeamPage extends React.Component {
       console.log("open player overlay", player);
       this.props.dispatch(openTeamMemberOverlay(player));
     }
-    closePlayerOverlay = () => {
-      console.log("Close");
-      this.props.dispatch(closeTeamMemberOverlay());
-    }
+
     render() {
         const teamKey = this.props.match.params.teamKey;
         const team = this.props.team[teamKey];
@@ -48,11 +45,10 @@ class TeamPage extends React.Component {
         const activePlayerTab = this.props.sportsPage.activePlayerTab;
         const activePlayer = this.props.sportsPage.activePlayer;
         const players = this.props.players;
-        const playerOverlay = this.props.sportsPage.sportPlayerOverlay;
 
         return (
           <div>
-            {playerOverlay.isOpen ? <SportPlayerOverlay closeTeamMemberOverlay={this.closePlayerOverlay} teamMember={playerOverlay.player} /> : <div />}
+            
             <FilterTabs
               tabItems={tabs}
               activeTab={activeTab}

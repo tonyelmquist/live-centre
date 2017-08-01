@@ -13,12 +13,13 @@ const Recommendations = (props) => {
         const currentVideoTag = video.tags;
         const recommendedVideos = tags[currentVideoTag].videos;
 
-        return recommendedVideos.map((value) =>
-            (<ScrollItem
+        return recommendedVideos.map((value) => {
+            return (<ScrollItem
+                id={allVideos[value].id}
+                key={`recommendedVideos-${allVideos[value].id}`}
                 img={allVideos[value].thumbnail}
-                key={`episode-${allVideos[value].title}`}
                 handleClick={() => props.onTileOpen(allVideos[value])}
-            />),
+            />)},
         );
     };
     

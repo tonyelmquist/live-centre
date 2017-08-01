@@ -39,33 +39,39 @@ const teamsDefaultState = {
     },
 };
 
+
 const playersDefaultState = {
     7: {
-        name: 'Christiano Renaldo',
+        name: 'Cristiano Ronaldo',
         team: 'RealMadrid',
         number: 7,
-        description: 'very famous',
+        description: `Cristiano Ronaldo dos Santos Aveiro, 
+        is a Portuguese professional footballer who plays as a forward 
+        for Spanish club Real Madrid and the Portugal national team. 
+        Ronaldo has four FIFA Ballon d'Or awards,
+        the most for a European player, 
+        and is the first player in history to win four European Golden Shoes.`,
         portrait: '/img/soccer-players/ronaldo.png',
-        fullPortrait: '/img/soccer-players/ronaldo-fullbody.png',
-        position: 'GK',
+        actionShot: '/img/soccer-players/ronaldo-fullbody.jpg',
+
     },
-    8: {
-        name: 'Another dude',
+    11: {
+        name: 'Gareth Bale',
         team: 'RealMadrid',
-        number: 7,
-        description: 'not so famous',
-        portrait: '/img/soccer-players/ronaldo.png',
-        fullPortrait: '/img/soccer-players/ronaldo-fullbody.png',
-        position: 'CM',
+        number: 11,
+        description: 'Gareth Bale',
+        portrait: '/img/soccer-players/gareth-bale-portrait.jpg',
+        actionShot: '/img/soccer-players/gareth-bale-fullbody.jpg',
     },
-    9: {
-        name: 'a third dude',
+    1: {
+        name: 'Keylor Navas',
         team: 'RealMadrid',
-        number: 7,
-        description: 'who knows',
-        portrait: '/img/soccer-players/ronaldo.png',
-        fullPortrait: '/img/soccer-players/ronaldo-fullbody.png',
-        position: 'CF',
+        number: 1,
+        description: `Keylor Antonio Navas Gamboa (born 15 December 1986), 
+        known as Keylor Navas, is a Costa Rican professional footballer 
+        who plays as a goalkeeper for Spanish club Real Madrid and the Costa Rica national team.`,
+        portrait: '/img/soccer-players/KeylorNavas_portrait.jpg',
+        actionShot: '/img/soccer-players/KeylorNavas-fullbody.jpg',
     },
 };
 

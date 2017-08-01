@@ -7,22 +7,22 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { logoutSuccess } from '../actions/authentication';
 
-class Logged extends Component {
+class UserMenu extends Component {
     static muiName = 'IconMenu';
     handleLogout = () => {
         this.props.dispatch(logoutSuccess());
     }
 
     handleSettingsTouchTap = () => {
-        this.props.changeRoute('/Settings');
+        this.props.changeRoute({ path: '/Settings' });
     }
 
     handleWishlistTouchTap = () => {
-        this.props.changeRoute('/Wishlist');
+        this.props.changeRoute({ path: '/Wishlist' });
     }
 
     handleOpenProfile = () => {
-        this.props.changeRoute('/Profile');
+        this.props.changeRoute({ path: '/Profile' });
     }
 
     render() {
@@ -44,7 +44,7 @@ class Logged extends Component {
     }
 }
 
-Logged.propTypes = {
+UserMenu.propTypes = {
     dispatch: PropTypes.func.isRequired,
     // iconStyle: PropTypes.object.isRequired,
     // loginState: PropTypes.bool.isRequired,
@@ -58,4 +58,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps)(Logged);
+export default connect(mapStateToProps)(UserMenu);

@@ -7,7 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import BackIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import SearchBar from './SearchBar';
 import SearchInput from './SearchInput';
-import Logged from '../../containers/UserMenu';
+import UserMenu from '../../containers/UserMenu';
 
 const HeaderMenu = (props) => {
     const HeaderMenuItem = (items) => {
@@ -77,7 +77,7 @@ const HeaderMenu = (props) => {
             searchState={props.searchState}
             openCloseSearch={props.openCloseSearch}
           />
-          <Logged changeRoute={props.changeRoute} />
+          <UserMenu changeRoute={props.changeRoute} />
         </div>
       </div>
     );

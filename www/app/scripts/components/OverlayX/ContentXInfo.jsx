@@ -6,6 +6,18 @@ import Recommendations from './Recommendations';
 import Chat from '../../components/Chat';
 
 class ContentXInfo extends Component {
+
+    shouldComponentUpdate(nextProps) {
+        //only if this is a new video do update.
+        if (nextProps.video.id !== this.props.video.id) {
+            return true
+        } else if (nextProps.isCollapsed !== this.props.isCollapsed) {
+            return true 
+        }
+        //toggle = nextProps.video.id !== this.props.video.id || nextProps.toggleCollapseInfo !== this.props.toggleCollapseInfo;
+        return false
+    }
+
     render() {
         const video = this.props.video;
 
@@ -37,13 +49,13 @@ class ContentXInfo extends Component {
                 ? (
                     <Chat
                         messages={this.props.messages}
-                        onMessageSend={this.props.onMessageSend} 
+                        onMessageSend={this.props.onMessageSend}
                     />)
                 : (<VideoDescription
                         video={video}
                         collapseInfo={this.props.collapseInfo}
                         toggleCollapseInfo={this.props.toggleCollapseInfo}
-                        isCollapsed={this.props.isCollapsed} 
+                        isCollapsed={this.props.isCollapsed}
                         handleAddToWishlist={this.props.handleAddToWishlist}
                 />)
                 }

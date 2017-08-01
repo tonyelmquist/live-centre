@@ -3,26 +3,25 @@ import FontAwesome from 'react-fontawesome';
 import Avatar from 'material-ui/Avatar';
 import StatsMatches from './StatsMatches';
 
-const TeamMemberOverlay = ({teamMember, closeTeamMemberOverlay}) => {
-    console.log(teamMember);
-    return (
-        <div className="sportTeamMemberOverlay">
-            <div className="sportTeamMemberOverlayInner">
-                <FontAwesome
-                    className="close-button"
-                    name="close"
-                    size="2x"
-                    onTouchTap={() => closeTeamMemberOverlay()}
-                />
-                <div className="center">
-                    <h1>{teamMember.name} - #{teamMember.number} </h1>
-                    <Avatar size={170} src={teamMember.portrait} className="avatar" />
-                </div>
+const TeamMemberOverlay = ({ teamMember, closeTeamMemberOverlay }) => (
+    <div className="sportTeamMemberOverlay">
+        <div className="sportTeamMemberOverlayInner">
+            <FontAwesome
+                className="close-button"
+                name="close"
+                size="2x"
+                onTouchTap={() => closeTeamMemberOverlay()}
+            />
+            <div className="center">
+                <h1>{teamMember.name} - #{teamMember.number} </h1>
+                <img className="teamImg" src={teamMember.actionShot} />
+            </div>
+            
+            <div className="container-fluid">
                 <div className="personal-info">
                     <h4>Team: Real Madrid</h4>
-                    <p> A portugese itnernational, Ronaldo was named
-                        the bbest Portugese TeamMember of all time
-                        by the portuguese football federation in 2015 </p>
+                    <p>{teamMember.description}
+                    </p>
                     <ul className="TeamMember-stats-personal">
                         <li>Positions: Forward, mid fielder</li>
                         <li>Birthdate: xx/xx/xxxx</li>
@@ -36,7 +35,7 @@ const TeamMemberOverlay = ({teamMember, closeTeamMemberOverlay}) => {
                 <StatsMatches />
             </div>
         </div>
-    );
-};
+    </div>
+);
 
 export default TeamMemberOverlay;

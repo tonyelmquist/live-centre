@@ -22,7 +22,7 @@ function TabMenu({
       (<Tab
         label={i18next.t(item.key)}
         onClick={() => {
-            changeRoute(item.path);
+            changeRoute(item);
             closeSearch();
             hideMenu();
         }}

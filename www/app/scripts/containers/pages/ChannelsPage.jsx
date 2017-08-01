@@ -9,12 +9,12 @@ import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 
 // Dummy filters and channels
 const filters = [
-  { key: 'barn', avatarStyle: 'background-color: red' },
-  { key: 'drama' },
-  { key: 'pets' },
-  { key: 'humor' },
-  { key: 'fantasy' },
-  { key: 'documentaries' },
+  { key: 'Children', avatarStyle: {backgroundColor: '#E91E63'} },
+  { key: 'Drama', avatarStyle: {backgroundColor: '#FFC107'}},
+  { key: 'Pets', avatarStyle: {backgroundColor: '#00BCD4'}},
+  { key: 'Humor', avatarStyle: {backgroundColor: '#673AB7'}},
+  { key: 'Fantasy', avatarStyle: {backgroundColor: '#FF9800'}},
+  { key: 'Documentaries', avatarStyle: {backgroundColor: '#8BC34A'}},
 ];
 
 const channels = {
@@ -42,7 +42,6 @@ class ChannelsPage extends React.Component {
 
     handleOnClick = (item) => {
         //console.log('Channel:', item);
-        console.log("Change route");
         this.changeRoute(`/Channel/${item.title}`);
     }
 
@@ -76,6 +75,7 @@ class ChannelsPage extends React.Component {
         item={filter}
         overlay={(this.filterOverlay(filter))}
         key={filter.key}
+        style={filter.avatarStyle}
       />
     ))
 

@@ -10,7 +10,6 @@ import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
 
 
 class ProgramsPage extends React.Component {
-
     handleTileOpen = (video) => {
         // this.props.dispatch(changeVideoInfo(video));
         // this.props.dispatch(changeCardCategory(category));
@@ -28,18 +27,18 @@ class ProgramsPage extends React.Component {
         // console.log(filterArray, video, filterby);
        /* if(filterArray === 'series') return this.episodeList(video);
         else return null*/
-        if (filterArray == 'Series') {
+        if (filterArray === 'Series') {
             // Should also be a variable for Episode number so we could get the episode number. For now use season.
-            if (video.series != undefined && video.season == 1) {
+            if (video.series !== undefined && video.season === 1) {
                 return true;
             }
-        } else if (filterArray == 'Movies') {
-            if (video.series == undefined) {
+        } else if (filterArray === 'Movies') {
+            if (video.series === undefined) {
                 return true;
             }
-        } else if(video.tags == filterArray){
-                return true
-            }
+        } else if (video.tags === filterArray) {
+            return true;
+        }
 
         return false;
     }
@@ -49,75 +48,13 @@ class ProgramsPage extends React.Component {
         const activeIndex = this.props.activetab;
         const tabs = {};
 
-        tabKeys.map((key, index) =>  {
+        tabKeys.map((key, index) => {
             const active = activeIndex == index;
             tabs[key] = { key, active, index };
         });
 
         return tabs;
     }
-
-    // Gets the first episode of all the series.
-    getAllSeriesPilots() {
-        const pilots = [];
-
-        for (const key in this.props.seasons) {
-            if (this.props.seasons[key]._seasonNumber == 1) {
-                const videoKey = this.props.seasons[key].firstEpisode;
-                pilots.push(this.props.videos[videoKey]);
-            }
-        }
-        return pilots;
-    }
-    // Must iterate through all videos to find which movie has no series.
-    getAllMovies() {
-        const movies = [];
-        const videos = this.props.videos;
-        for (const key in videos) {
-            if (videos[key].series == undefined) {
-                movies.push(videos[key]);
-            }
-        }
-        return movies;
-    }
-
-    getVideoFromTag(tag) {
-        const programs = [];
-        const videoKeys = this.props.tags[tag].videos;
-        for (const key in this.props.tags[tag].videos) {
-            const videoKey = this.props.tags[tag].videos[key];
-            programs.push(this.props.videos[videoKey]);
-        }
-        return programs;
-    }
-
-    getTiles(tabKeys) {
-        let programs = [];
-        const tiles = [];
-        const currentTab = tabKeys[this.props.activetab];
-        switch (currentTab) {
-        case 'Series':
-            programs = this.getAllSeriesPilots();
-            break;
-        case 'Movies':
-            programs = this.getAllMovies();
-            break;
-        default:
-            programs = this.getVideoFromTag(currentTab);
-        }
-
-        for (const key in programs) {
-            tiles.push(
-                <MasonryImageTile
-                key={`channel-tile-${key}`}
-                poster={programs[key].thumbnail}
-                handleClick={() => this.handleTileOpen(programs[key])}
-                />,
-            );
-        }
-        return tiles;
-    }
-
 
     render() {
         const tabKeys = [

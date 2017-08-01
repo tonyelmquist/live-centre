@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ScrollItem = ({key, img, overlay, handleClick}) => {
+const ScrollItem = (props) => {
     return (
-        <div className="inline scrollItem" onTouchTap={handleClick} key={`circlerow-item-${key}`}>
-            <img size={80} src={img} className="itemImage" />
-            {overlay}
+        <div className="inline scrollItem" onTouchTap={props.handleClick} key={`scroll-item-${props.id}`}>
+            <img size={80} src={props.img} className="itemImage" />
+            {props.overlay}
         </div>
     );
 };

@@ -31,10 +31,10 @@ class Header extends Component {
     // Generate menu items that correspons with the react router paths.
     getPageItems = () => {
         const items = [
-      { key: 'route_home', path: '/Home', icon: <HomeIcon /> },
-      { key: 'route_programs', path: '/Programs', icon: <VideoIcon /> },
-      { key: 'route_channels', path: '/Channels', icon: <ChannelIcon /> },
-      { key: 'route_sports', path: '/Sports', icon: <TVicon /> },
+      { tabIndex: 0, key: 'route_home', path: '/Home', icon: <HomeIcon /> },
+      { tabIndex: 1, key: 'route_programs', path: '/Programs', icon: <VideoIcon /> },
+      { tabIndex: 2, key: 'route_channels', path: '/Channels', icon: <ChannelIcon /> },
+      { tabIndex: 3, key: 'route_sports', path: '/Sports', icon: <TVicon /> },
         ];
 
         return items;
@@ -92,8 +92,9 @@ class Header extends Component {
     isDrawerMenuOpen = () => this.props.isDrawerMenuOpen
     onTabMenuCenterClick = () => this.props.dispatch(toggleDrawerMenu())
 
-    changeRoute = path => this.props.history.push(path);
-
+    //changeRoute = item => this.props.history.push(item.path);
+    //Tabindex is used to know which direction to swipe the screen
+    changeRoute = item => this.props.history.push({pathname: item.path, state: {tabIndex: item.tabIndex}});
 
     categoryItems = () => {
         const items = [];

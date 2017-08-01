@@ -27,12 +27,12 @@ const channels = {
 
 // Dummy filters
 const filters = [
-  { key: 'barn' },
-  { key: 'drama' },
-  { key: 'pets' },
-  { key: 'humor' },
-  { key: 'fantasy' },
-  { key: 'documentaries' },
+  { key: 'Children', avatarStyle: {backgroundColor: '#E91E63'} },
+  { key: 'Drama', avatarStyle: {backgroundColor: '#FFC107'}},
+  { key: 'Pets', avatarStyle: {backgroundColor: '#00BCD4'}},
+  { key: 'Humor', avatarStyle: {backgroundColor: '#673AB7'}},
+  { key: 'Fantasy', avatarStyle: {backgroundColor: '#FF9800'}},
+  { key: 'Documentaries', avatarStyle: {backgroundColor: '#8BC34A'}},
 ];
 
 
@@ -69,6 +69,7 @@ class SingleChannelPage extends React.Component {
               key={key}
               handleClick={() => this.handleFilter(key)}
               overlay={(this.filterOverlay(filters[key]))}
+              style={filters[key].avatarStyle}
           />,
         );
         }
@@ -76,7 +77,6 @@ class SingleChannelPage extends React.Component {
     }
 
     handleTilePlay = (video) => {
-      console.log("Handle tile play", video);
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
@@ -84,7 +84,6 @@ class SingleChannelPage extends React.Component {
     }
 
     handleTileOpen = (video) => {
-        console.log("Handle tile open", video);
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
