@@ -1,60 +1,54 @@
 import React, { Component } from 'react';
-import { RouteTransition } from 'react-router-transition';
+import { RouteTransition, spring } from 'react-router-transition';
 import { Route, Switch } from 'react-router';
-
 let prevTab = 0;
 let direction = 1; // 1 = right, 0 = left, -1 == no direction
 
 
 const TransitionRoutes = (props) => {
 
-    const swipeStyle = () => {
-        console.log(direction);
-        if (direction === 1) {
-            return { e: 100, l: -100 };
-        } else if (direction === 0) {
-            console.log("direction == 0");
-            return { e: -100, l: 100 };
-        }
-        console.log("direction= -1");
-        return { e: 0, l: 0, };
-        
-    };
-
     return (<Route render={({ location, match, history }) => {
-        console.log('location', location);
+
+        let animStyle = {};
 
         if (location.state !== undefined) {
-            if (location.state.tabIndex > prevTab) {
-                direction = 1;
+            if (location.state.tabIndex == undefined) {
+                animStyle = { e: 0, l: 0, };
+            } else if (location.state.tabIndex > prevTab) {
+                animStyle = { e: 1, l: -1 };
             } else {
-                direction = 0;
+                animStyle = { e: -1, l: 1 };
             }
             prevTab = location.state.tabIndex;
         } else {
-            direction = -1;
+            animStyle = { e: 0, l: 0, };
+            console.log("undefined");
         }
-        console.log(prevTab);
+        console.log("location state", location.state, location);
+
         return (
-                <RouteTransition
-                    pathname={location.pathname}
-                    atEnter={{ translateX: swipeStyle().e }}
-                    atLeave={{ translateX: swipeStyle().l }}
-                    atActive={{ translateX: 0 }}
-                    mapStyles={styles => ({ transform: `translateX(${styles.translateX}%)` })}
+            <RouteTransition
+                pathname={location.pathname}
+                atEnter={{ translateX: animStyle.e, o:0,}}
+                atLeave={{ translateX: animStyle.l, o:0,}}
+                atActive={{ translateX: 0, o:1,}}
+                mapStyles={styles => ({ 
+                    transform: `translateX(${styles.translateX * 100}%)`,
+                    opacity: styles.o, })
+                }
+            >
+                <div
+                    id="mainContent"
+                    ref={ref => (this.mainContent = ref)}
+                    className="mainContent"
                 >
-                    <div
-                        id="mainContent"
-                        ref={ref => (this.mainContent = ref)}
-                        className="mainContent"
-                    >
                     <Switch key={location.key} location={location}>
                         {props.children}
                     </Switch>
-                    </div>
+                </div>
 
-                </RouteTransition>
-            );
+            </RouteTransition>
+        );
     }}
     />
     );
