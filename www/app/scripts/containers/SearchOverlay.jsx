@@ -10,12 +10,9 @@ import MasonryTextOverlay from '../components/Masonry/MasonryTextOverlay';
 import FilterTabs from '../components/HorizontalScroll/FilterTabs';
 import HorizontalScrollContainer from '../components/HorizontalScroll/HorizontalScrollContainer';
 import CircleRowItem from '../components/HorizontalScroll/CircleRowItem';
-
-
 import { changeSearchFilterIndex } from '../actions/search';
-import { videoSelected, resetCurrentTimeInPlayer, openOverlayX, maximizeOverlayX } from '../actions/videoPlayer';
-
-import videoPrefix from '../constants/mediaPrefix';
+import { videoSelected, resetCurrentTimeInPlayer } from '../actions/videoPlayer';
+import { maximizeOverlayX, openOverlayX } from '../actions/overlayX';
 
 class SearchContainer extends Component {
 
@@ -26,9 +23,6 @@ class SearchContainer extends Component {
         this.props.dispatch(resetCurrentTimeInPlayer());
     }
 
-    handleTilePlay = (videoUrl) => {
-        console.log("handletileplay");
-    }
 
     satisfyFilter = (filter, video) => {
         //this.props.search.isSearching || !this.props.filter.isClear
@@ -37,7 +31,7 @@ class SearchContainer extends Component {
         }
         if(filter == "Series"){
             if(video.series != undefined) return true
-        } else if (filter == "movies"){
+        } else if (filter == "Movies"){
             if(video.series == undefined) return true
         } else {
             //console.log("filter on tags, description, title etc...", filter, video);
@@ -88,7 +82,7 @@ class SearchContainer extends Component {
                     <MasonryImageTile
                         key={`search-tile-${video.id}`}
                         poster={video.thumbnail}
-                        overlay={<MasonryTextOverlay video={video} handleTilePlay={this.handleTilePlay} title={video.title}/>}
+                        overlay={<MasonryTextOverlay video={video} handleTilePlay={this.handleTileOpen} title={video.title}/>}
                         handleClick={() => this.handleTileOpen(video)}
                     />
                 );
@@ -148,9 +142,6 @@ class SearchContainer extends Component {
             
             <h4 className="container-fluid">{i18next.t('suggested_people')}</h4>
             
-            {/* <HorizontalScrollContainer>
-                {this.getPortraitItems(people)}
-            </HorizontalScrollContainer> */}
             <HorizontalScrollContainer>
                 {this.getPortraitItems(people)}
             </HorizontalScrollContainer>

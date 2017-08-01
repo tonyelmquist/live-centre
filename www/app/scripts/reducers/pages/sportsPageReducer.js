@@ -26,7 +26,7 @@ const teamsDefaultState = {
         img: '/img/soccer-teams/Real-Madrid-Team.jpg',
         colors: ['white'],
         abbr: 'RMA',
-        players: [7, 8, 9],
+        players: [7, 11, 1],
     },
     Barcelona: {
         key: 'Barcelona',
@@ -35,7 +35,7 @@ const teamsDefaultState = {
         img: '/img/soccer-teams/Real-Madrid-Team.jpg',
         colors: ['red', 'green'],
         abbr: 'FBC',
-        players: [7, 8, 9],
+        players: [7, 11, 1],
     },
 };
 

@@ -16,6 +16,7 @@ const FilterTabs = ({tabItems, activeTab, changeTab, colortheme}) => {
               className={`items` + (tabItems[activeTab] == tab ? ' active' : '')}
               onTouchTap={() => changeTab(key)}
               key={`filterTab-${tab}`}
+              role="button" 
             >
                 {tab}
             </div>

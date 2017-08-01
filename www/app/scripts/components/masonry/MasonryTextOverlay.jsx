@@ -13,18 +13,18 @@ const styles = {
 
 const MasonryTextOverlay = ({title, handleTilePlay, video}) => {
     return (
-        <div className="tile-overlay">
+        <div className="tile-overlay" onTouchTap={() => { handleTilePlay(video); }}>
             <div className="tile-text">
                 <h4>{video.title}</h4>
             </div>
-            <IconButton
+            {/* <IconButton
                 className="masonryPlayButton"
                 iconStyle={styles.mediumIcon}
                 // style={styles.medium}
                 onTouchTap={() => { handleTilePlay(video); }}
             >
                 <PlayCircleOutline hoverColor={amber300} color={fullWhite} />
-            </IconButton>
+            </IconButton> */}
         </div>
     );
 }
