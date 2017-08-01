@@ -22,9 +22,7 @@ const TransitionRoutes = (props) => {
             prevTab = location.state.tabIndex;
         } else {
             animStyle = { e: 0, l: 0, };
-            console.log("undefined");
         }
-        console.log("location state", location.state, location);
 
         return (
             <RouteTransition

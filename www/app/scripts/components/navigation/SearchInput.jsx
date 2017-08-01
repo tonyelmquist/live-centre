@@ -10,7 +10,6 @@ class SearchInput extends React.Component {
       }
     }
     render() {
-      console.log("searchstate", this.props.searchState.isOpen);
         return (
           <div className="searchInput inline">
             <input

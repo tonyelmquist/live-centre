@@ -25,6 +25,11 @@ const TeamInfoSection = ({ team, players, openPlayerOverlay }) => (
               <Avatar src={team.logo} />
               <h3> {team.title}</h3>
             </div>
+            <p> Founded in 6 March 1902 as Madrid Football Club, 
+                the club has traditionally worn a white home kit since inception. 
+                The word Real is Spanish for Royal and was bestowed to the club by 
+                King Alfonso XIII in 1920 together with the royal crown in the emblem.  
+            </p>
 
             <h4>Players:</h4>
             <ul className="playerList">

@@ -10,10 +10,12 @@ const Collapsible = ({label, collapseInfo, toggleCollapseInfo, isCollapsed, chil
 
     return (
         <div className="ox-content-inner">
-            <div className="accordion" onTouchTap={() => toggleCollapseInfo()}> 
+
+            <div className="accordion" role="button" onTouchTap={() => toggleCollapseInfo()}> 
                 <h4 className="accordion-label">{label}</h4>
-                <AnimatedExpandIcon handleTouch={() => toggleCollapseInfo} isCollapsed={isCollapsed} />
+                <AnimatedExpandIcon isCollapsed={isCollapsed} />
             </div>
+
             <Motion style={isCollapsed ? {height:spring(0)} : {height:spring(collapseHeight)}}>
                 {style =>
                     <div 

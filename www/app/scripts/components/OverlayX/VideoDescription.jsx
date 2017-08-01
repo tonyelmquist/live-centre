@@ -55,16 +55,16 @@ class VideoDescription extends React.Component {
         console.log('VideoDescription Rerender', this.props.video);
         return (
         <Collapsible
-         label={this.props.video.series ? this.props.video.series : this.props.video.title}
-         collapseInfo={this.collapseInfo}
+          label={this.props.video.series ? this.props.video.series : this.props.video.title}
+          collapseInfo={this.collapseInfo}
           toggleCollapseInfo={this.props.toggleCollapseInfo}
           isCollapsed={this.props.isCollapsed}
         >
-         <p>{this.subtitle ? this.subtitle : ''}
-          Duration: {Math.round(45)} min <br />
-          Star Rating: {this.renderStars()} <br />
-          Add to wishlist <FontAwesome name={this.state.wishlisted ? 'heart' : 'heart-o'} onClick={this.handleWishlistClick} style={{ color: 'white' }} />
-          </p>
+            <p>{this.subtitle ? this.subtitle : ''}
+                Duration: {Math.round(45)} min <br />
+                Star Rating: {this.renderStars()} <br />
+                Add to wishlist <FontAwesome name={this.state.wishlisted ? 'heart' : 'heart-o'} onClick={this.handleWishlistClick} style={{ color: 'white' }} />
+            </p>
 
           <p>{this.ipsum}</p>
         </Collapsible>

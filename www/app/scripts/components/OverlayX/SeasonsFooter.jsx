@@ -32,7 +32,8 @@ const SeasonsFooter = (props) => {
         return seasons[currentSeasonKey].episodes.map((value, key) =>
             (<ScrollItem
                 img={allVideos[value].thumbnail}
-                key={`episode-${allVideos[value].title}`}
+                key={`episode-${allVideos[value].id}`}
+                id={allVideos[value].id}
                 handleClick={() => props.onTileOpen(allVideos[value])}
             />),
         //<img className="image" src={allVideos[value].thumbnail} alt={`episode-${allVideos[value].title}`} />,

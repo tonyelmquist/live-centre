@@ -77,7 +77,6 @@ class SingleChannelPage extends React.Component {
     }
 
     handleTilePlay = (video) => {
-      console.log("Handle tile play", video);
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
@@ -85,7 +84,6 @@ class SingleChannelPage extends React.Component {
     }
 
     handleTileOpen = (video) => {
-        console.log("Handle tile open", video);
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));

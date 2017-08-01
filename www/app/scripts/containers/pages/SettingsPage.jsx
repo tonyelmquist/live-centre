@@ -50,7 +50,6 @@ class SettingsPage extends React.Component {
     handleAgeRatingChange = (event) => this.setState({ ageRating: event.target.value })
 
     handleSaveTouch = () => {
-        console.log(this.props.settings.options);
         this.props.dispatch(saveUserSettings(this.props.settings.options));
         // this.state.snackbarIsOpen = true;
     }

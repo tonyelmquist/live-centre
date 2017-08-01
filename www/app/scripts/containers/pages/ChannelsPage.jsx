@@ -42,7 +42,6 @@ class ChannelsPage extends React.Component {
 
     handleOnClick = (item) => {
         //console.log('Channel:', item);
-        console.log("Change route");
         this.changeRoute(`/Channel/${item.title}`);
     }
 

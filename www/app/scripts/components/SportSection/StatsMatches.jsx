@@ -7,7 +7,7 @@ const StatsMatches  = () => (
                 <th colSpan="2">LaLiga</th>
             </tr>
             <tr>
-                <td>Apperances</td>
+                <td>Appearances</td>
                 <td>254</td>
             </tr>
             <tr>
