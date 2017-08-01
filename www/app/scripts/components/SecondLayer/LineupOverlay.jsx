@@ -9,13 +9,9 @@ class LineupOverlay extends Component {
         this.state = {
             openTeam: 1,
         };
-
-        this.toTeam1 = this.toTeam1.bind(this);
-        this.toTeam2 = this.toTeam2.bind(this);
-        this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps = (nextProps) => {
         if (nextProps.teamToDisplay === 1) {
             this.toTeam1();
         }
@@ -24,15 +20,24 @@ class LineupOverlay extends Component {
         }
     }
 
-    toTeam1() {
+    toTeam1 = () => {
         this.setState({ openTeam: 1 });
     }
 
-    toTeam2() {
+    toTeam2 = () => {
         this.setState({ openTeam: 2 });
     }
 
     render() {
+        const teamOneColors = [];
+        const teamTwoColors = [];
+
+        teamOneColors[0] = this.props.teamOneData.colors[0] ? this.props.teamOneData.colors[0] : 'white';
+        teamOneColors[1] = this.props.teamOneData.colors[1] ? this.props.teamOneData.colors[1] : this.props.teamOneData.colors[0];
+
+        teamTwoColors[0] = this.props.teamTwoData.colors[0] ? this.props.teamTwoData.colors[0] : 'white';
+        teamTwoColors[1] = this.props.teamTwoData.colors[1] ? this.props.teamTwoData.colors[1] : this.props.teamTwoData.colors[0];
+
         return (
           <div className={`lineup-overlay ${this.props.isShowing ? 'isShowing' : ''}`}>
             <div className="football-field-outline" />
@@ -42,15 +47,15 @@ class LineupOverlay extends Component {
               <div className={`team2-colors ${this.state.openTeam === 2 ? '' : 'faded'}`} onClick={this.toTeam2} role="button" tabIndex="0" />
 
               {/* Team Names*/}
-              <div className={`team1-name ${this.state.openTeam === 1 ? '' : 'faded'}`} onClick={this.toTeam1} role="button" tabIndex="0">Real Madrid</div>
-              <div className={`team2-name ${this.state.openTeam === 2 ? '' : 'faded'}`} onClick={this.toTeam2} role="button" tabIndex="0">Barcelona</div>
+              <div className={`team1-name ${this.state.openTeam === 1 ? '' : 'faded'}`} onClick={this.toTeam1} role="button" tabIndex="0">{this.props.teamOneData.title}</div>
+              <div className={`team2-name ${this.state.openTeam === 2 ? '' : 'faded'}`} onClick={this.toTeam2} role="button" tabIndex="0">{this.props.teamTwoData.title}</div>
 
               {/* Line up*/}
               <div className={`team1-lineup ${this.state.openTeam === 1 ? '' : 'transparent'}`}>
-                <LineupShirt colorLeft="rgb(250, 250, 250)" colorRight="rgb(240, 240, 240)" colorDarker="black" textColor="black" number="1" position="GK" onClick={this.props.onIconClick} />
+                <LineupShirt colorLeft={teamOneColors[0]} colorRight={teamOneColors[1]} colorDarker="black" number="1" position="GK" onClick={() => this.props.onIconClick()} />
               </div>
               <div className={`team2-lineup ${this.state.openTeam === 2 ? '' : 'transparent'}`}>
-                <LineupShirt colorLeft="#003175" colorRight="#850D37" colorDarker="black" number="12" position="GK2" onClick={this.props.onIconClick} />
+                <LineupShirt colorLeft={teamTwoColors[0]} colorRight={teamTwoColors[1]} colorDarker="black" textColor="black" number="12" position="GK2" onClick={this.props.onIconClick} />
               </div>
             </div>
 
@@ -66,6 +71,8 @@ LineupOverlay.defaultProps = {
 };
 
 LineupOverlay.propTypes = {
+    teamOneData: PropTypes.object.isRequired,
+    teamTwoData: PropTypes.object.isRequired,
     onClose: PropTypes.func.isRequired,
     onIconClick: PropTypes.func.isRequired,
     teamToDisplay: PropTypes.number,

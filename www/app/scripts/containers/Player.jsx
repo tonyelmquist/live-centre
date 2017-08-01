@@ -49,8 +49,11 @@ class Player extends React.Component {
     onPrePlayTouch = (e) => {
         e.stopPropagation();
 
+        console.log('largeVideoPlayer?', this.largeVideoPlayer);
+
         this.setState({ isPreOverlayShowing: false });
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
+            console.log('try to play?');
             this.largeVideoPlayer.video.video.play();
         }
     }
@@ -112,16 +115,19 @@ class Player extends React.Component {
 
     printPrePlayOverlay = () => {
         if (typeof this.largeVideoPlayer !== 'undefined') {
-            if (this.largeVideoPlayer.video.video.paused && this.largeVideoPlayer.video.video.currentTime === 0 && this.state.isPreOverlayShowing && this.props.overlayX.maximized) {
+            if (this.largeVideoPlayer.video.video.paused &&
+                this.largeVideoPlayer.video.video.currentTime === 0 &&
+                this.state.isPreOverlayShowing &&
+                this.props.overlayX.maximized) {
                 return (<div className="pre-play-overlay" onClick={this.onPrePlayTouch}>
                             <div className="gradient-overlay" />
                             <div className="play-button" >
                                 <i className="fa fa-play-circle" />
                             </div>
                             <FontAwesome
-                                className='close-button'
-                                name='close'
-                                size='2x'
+                                className="close-button"
+                                name="close"
+                                size="2x"
                                 onTouchTap={this.onCloseTouch}
                             />
                         </div>);
@@ -132,9 +138,12 @@ class Player extends React.Component {
                             <div className="play-button" >
                                 <i className="fa fa-play-circle" />
                             </div>
-                            <div className="close-button" onClick={this.onCloseTouch}>
-                                <i className="fa fa-close" />
-                            </div>
+                            <FontAwesome
+                                className="close-button"
+                                name="close"
+                                size="2x"
+                                onTouchTap={this.onCloseTouch}
+                            />
                         </div>);
         }
 
@@ -145,13 +154,17 @@ class Player extends React.Component {
 
     componentWillUpdate = (nextProps) => {
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
-             if (this.videoLoaded !== nextProps.video.videoUrl) {
-                 console.info('Component Will Update Loaded');
-                 this.setState({isPreOverlayShowing: true});
-                 this.largeVideoPlayer.video.video.load();
+            console.log(this.videoLoaded, nextProps.video.videoUrl);
+            if (typeof this.videoLoaded === 'undefined') {
+                return;
+            }
+            if (this.videoLoaded !== nextProps.video.videoUrl) {
+                console.info('Component Will Update Loaded');
+                this.setState({ isPreOverlayShowing: true });
+                this.largeVideoPlayer.video.video.load();
 
-                this.videoLoaded = this.props.video.videoUrl;
-             }
+                this.videoLoaded = nextProps.video.videoUrl;
+            }
         }
     }
 
@@ -167,7 +180,7 @@ class Player extends React.Component {
             opacity: `${this.props.overlayX.maximized ? '1' : '0'}`,
         };
 
-        
+
         return (
           <div style={styles.playerStyle} className={'IMRPlayer'} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
             <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)}>
@@ -175,7 +188,7 @@ class Player extends React.Component {
                 <PlayToggle />
                 {/* <CurrentTimeDisplay /> */}
                 <KeyboardArrowDown style={minimizeIconStyles} onTouchTap={this.onMinimize} />
-                {/*<FontAwesome name="expand" />*/}
+                {/* <FontAwesome name="expand" />*/}
               </ControlBar>
               <source src={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`} />
             </Video>
@@ -209,7 +222,7 @@ class Player extends React.Component {
                 >
               movie_filter
               </IconButton>*/}
-            { this.props.orientation === Orientation.LANDSCAPE ? <DataOverlay /> : '' }
+            { this.props.orientation === Orientation.LANDSCAPE && typeof this.largeVideoPlayer !== 'undefined' && !this.largeVideoPlayer.video.video.paused ? <DataOverlay /> : '' }
           </div>
         );
     }

@@ -11,6 +11,17 @@ class ScoreOverlay extends Component {
     }
 
     render() {
+        const teamOneColors = [];
+        const teamTwoColors = [];
+
+        teamOneColors[0] = this.props.teamOneData.colors[0] ? this.props.teamOneData.colors[0] : 'white';
+        teamOneColors[1] = this.props.teamOneData.colors[1] ? this.props.teamOneData.colors[1] : this.props.teamOneData.colors[0];
+
+        teamTwoColors[0] = this.props.teamTwoData.colors[0] ? this.props.teamTwoData.colors[0] : 'white';
+        teamTwoColors[1] = this.props.teamTwoData.colors[1] ? this.props.teamTwoData.colors[1] : this.props.teamTwoData.colors[0];
+
+        console.log(this.props.teamOneData.colors);
+
         return (
           <div className="score-overlay-container">
             <div className="counter-skew">
@@ -18,19 +29,25 @@ class ScoreOverlay extends Component {
                 {this.props.score.team1Score}
               </div>
 
-              <div className="team1-icon" />
+              <div className="team1-icon">
+                <div className="team-icon-upper" style={{ background: teamOneColors[0] }} />
+                <div className="team-icon-lower" style={{ background: teamOneColors[1] }} />
+              </div>
 
               <div className="team1-name" onClick={this.props.onTeamOneClick} role="button" tabIndex="0">
-                        RMA
-                    </div>
+                  {this.props.teamOneData.abbr}
+              </div>
 
               <ScoreClock />
 
               <div className="team2-name" onClick={this.props.onTeamTwoClick} role="button" tabIndex="0">
-                        FBC
-                    </div>
+                  {this.props.teamTwoData.abbr}
+              </div>
 
-              <div className="team2-icon" />
+              <div className="team2-icon">
+                <div className="team-icon-upper" style={{ background: teamTwoColors[0] }} />
+                <div className="team-icon-lower" style={{ background: teamTwoColors[1] }} />
+              </div>
 
               <div className="team2-score">
                 {this.props.score.team2Score}
@@ -42,6 +59,8 @@ class ScoreOverlay extends Component {
 }
 
 ScoreOverlay.propTypes = {
+    teamOneData: PropTypes.object.isRequired,
+    teamTwoData: PropTypes.object.isRequired,
     onTeamOneClick: PropTypes.func.isRequired,
     onTeamTwoClick: PropTypes.func.isRequired,
     score: PropTypes.objectOf(PropTypes.any).isRequired,

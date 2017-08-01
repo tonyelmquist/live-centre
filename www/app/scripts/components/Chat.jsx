@@ -29,7 +29,7 @@ class Chat extends Component {
     onSubmitClick = () => {
         if (!(this.state.message.length <= 0)) {
             this.props.onMessageSend(this.state.message);
-            this.setState({ message: '' })
+            this.setState({ message: '' });
             this.inputBox.value = '';
         }
     }
@@ -58,14 +58,14 @@ class Chat extends Component {
 
 
     render() {
-
         return (
           <div className={`chat`}>
+            <span className="chat-title">Chat</span>
             <ul className="chat-messages" ref="chat" onWheel={this.onScroll} onTouchMove={this.onScroll}>
               {Chat.filterMessages(this.props.messages)}
             </ul>
             <input type="text" ref={ref => (this.inputBox = ref)} onKeyUp={this.onKeyDown} placeholder="Write your message here..."/>
-            <button type="submit" onClick={this.onSubmitClick}> 
+            <button type="submit" onClick={this.onSubmitClick}>
                 <FontAwesome name="paper-plane" />
             </button>
           </div>

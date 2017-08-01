@@ -6,13 +6,6 @@ import Recommendations from './Recommendations';
 import Chat from '../../components/Chat';
 
 class ContentXInfo extends Component {
-    // shouldComponentUpdate(nextProps) {
-    //     //only if this is a new video do update.
-    //     const toggle = nextProps.video.id !== this.props.video.id || nextProps.collapseInfo !== this.props.collapseInfo;
-    //     console.log("toggle?", toggle);
-    //     return toggle
-    // }
-
     render() {
         const video = this.props.video;
 
@@ -40,11 +33,12 @@ class ContentXInfo extends Component {
         console.log('ContentXInfo rerender', video);
         return (
             <div className={'content-x-info'}>
-                {video.tags == 'Street Fighter'
-                ? (<Chat
+                {video.tags === 'Street Fighter'
+                ? (
+                    <Chat
                         messages={this.props.messages}
                         onMessageSend={this.props.onMessageSend} 
-                />)
+                    />)
                 : (<VideoDescription
                         video={video}
                         collapseInfo={this.props.collapseInfo}
@@ -53,7 +47,7 @@ class ContentXInfo extends Component {
                         handleAddToWishlist={this.props.handleAddToWishlist}
                 />)
                 }
-                {video.tags == 'Street Fighter'
+                {video.tags === 'Street Fighter'
                 ? <div />
                 : renderFooter()}
 

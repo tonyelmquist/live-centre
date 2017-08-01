@@ -262,8 +262,8 @@ io.on('connection', (socket) => {
         console.log('emitting PENALTY CARD', message);
         socket.broadcast.emit('NEW_PENALTY_CARD', message);
     });
-    
-    socket.on('disconnect', function() {
+
+    socket.on('disconnect', () => {
         console.log('Disconnected socket');
         delete connectedUsers[socket.id];
     });
@@ -272,9 +272,17 @@ io.on('connection', (socket) => {
 
 setInterval(() => {
     if (Math.random() < 0.5) {
-        score.team1Score += 1;
+        if (score.team1Score > 5) {
+            score.team1Score -= 4;
+        } else {
+            score.team1Score += 1;
+        }
     } else {
-        score.team2Score += 1;
+        if (score.team2Score > 5) {
+            score.team2Score -= 4;
+        } else {
+            score.team2Score += 1;
+        }
     }
     io.emit('SCORE_UPDATE', score);
     console.log('SCORE_UPDATE EMITTED', score);

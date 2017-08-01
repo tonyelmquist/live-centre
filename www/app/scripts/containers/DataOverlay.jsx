@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
-import FidgetSpinner from '../components/Buttons/FidgetSpinner';
-import BurstButton from '../components/Buttons/BurstButton';
+import FidgetSpinner from '../components/buttons/FidgetSpinner';
+import BurstButton from '../components/buttons/BurstButton';
 import ChatOverlay from '../components/SecondLayer/ChatOverlay';
 import PenaltyCard from '../components/SecondLayer/PenaltyCard';
 import ScoreOverlay from '../components/SecondLayer/ScoreOverlay';
 import LineupOverlay from '../components/SecondLayer/LineupOverlay';
+import PopIndicator from '../components/SecondLayer/PopIndicator';
 import PlayerInfoOverlay from '../components/SecondLayer/PlayerInfoOverlay';
 import Replayer from '../components/VideoPlayer/Replayer';
 import HighlightsRow from '../components/VideoPlayer/HighlightsRow';
@@ -30,9 +31,8 @@ class DataOverlay extends Component {
             isBurstButtonShowing: false,
             isLineupShowing: false,
             isPlayerInfoShowing: false,
+            now: new Date().getTime(),
         };
-
-        const self = this;
 
         // this.state.socket.on('NEW_PENALTY_CARD', (data) => {
         //     self.setState({
@@ -107,76 +107,22 @@ class DataOverlay extends Component {
         this.props.dispatch(hideHighlights());
     }
 
-    render() {
-        const self = this;
-        this.burstButtonLinks = [
-            {
-                id: 1,
-                action() {
-                    self.props.dispatch(toggleChatMenu());
-                },
-                icon: (
-          <g>
-            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z" />
-            <path d="M0 0h24v24H0z" fill="none" />
-          </g>
-        ),
-            },
-            {
-                id: 2,
-                action() {
-                },
-                icon: (
-          <g>
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-          </g>
-        ),
-            },
-            {
-                id: 3,
-                icon: (
-          <g>
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
-          </g>
-        ),
-            },
-            {
-                id: 4,
-                icon: (
-          <g>
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
-          </g>
-        ),
-            },
-            {
-                id: 5,
-                action() {
-                    self.setState({ isPenaltyCardShowing: true });
-                    setTimeout(() => {
-                        self.setState({ isPenaltyCardShowing: false });
-                    }, 7000);
-                },
-                icon: (
-          <g>
-            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
-            <path d="M0 0h24v24H0z" fill="none" />
-          </g>
-        ),
-            },
-        ];
+    getTeamDetails = (team) => {
+        if (typeof this.props.sportsInfo.teams[team] === 'undefined') {
+            console.warn('Attempted to get no existant team - ', team, ' - check line 112 DataOverlay');
+            return {};
+        }
 
+        return this.props.sportsInfo.teams[team];
+    }
+
+    teamOne = 'Barcelona';
+    teamTwo = 'RealMadrid';
+
+    render() {
+        console.log(this.props.sportsInfo);
         return (
-      <div className='data-overlay'>
-        <BurstButton buttonLinks={this.burstButtonLinks} color="rgb(8, 3, 28)" hidden={this.state.isBurstButtonShowing} />
-        <FidgetSpinner />
-        <ChatOverlay
-          open={this.props.chat.chatOpen}
-          messages={this.props.chat.messages}
-          onMessageSend={this.onMessageSend}
-        />
+      <div className="data-overlay">
         <PenaltyCard
           open={this.state.penaltyCard.isShowing}
           text={this.state.penaltyCard.text}
@@ -184,11 +130,20 @@ class DataOverlay extends Component {
         />
         <ScoreOverlay
           score={this.props.score}
+          teamOneData={this.getTeamDetails(this.teamOne)}
+          teamTwoData={this.getTeamDetails(this.teamTwo)}
           onTeamOneClick={() => this.displayLineup(1)}
           onTeamTwoClick={() => this.displayLineup(2)}
         />
+        <PopIndicator
+          startTime={this.state.now}
+          endTime={this.state.now + (1 * 60000)}
+          onClick={() => console.log('click')}
+        />
         <LineupOverlay
           isShowing={this.state.isLineupShowing}
+          teamOneData={this.getTeamDetails(this.teamOne)}
+          teamTwoData={this.getTeamDetails(this.teamTwo)}
           onClose={this.onLineupClose}
           teamToDisplay={this.state.teamToDisplay}
           onIconClick={this.moveToPlayerInfo}
@@ -222,6 +177,7 @@ DataOverlay.propTypes = {
     chat: PropTypes.object.isRequired,
     replay: PropTypes.object.isRequired,
     highlights: PropTypes.object.isRequired,
+    sportsInfo: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -229,6 +185,7 @@ const mapStateToProps = state => ({
     chat: state.chat,
     replay: state.replay,
     highlights: state.highlights,
+    sportsInfo: state.sportsInfo,
 });
 
 export default connect(mapStateToProps)(DataOverlay);

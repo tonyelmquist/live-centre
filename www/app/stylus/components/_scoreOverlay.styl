@@ -19,7 +19,7 @@
         position: relative;
         font-size: 18px;
 
-        div {
+        > div {
             position: absolute;
             display: inline-block;
             top: 50%;
@@ -36,14 +36,28 @@
     }
 
     .team1-icon {
-        background: white;
         left: 42px;
+        top: 0;
+        overflow: hidden;
+        .team-icon-upper, .team-icon-lower  {
+            height: 50%;
+            width: 100%;
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .team-icon-lower {
+            background: white;
+            top: auto;
+            bottom: 0;
+        }
     }
     .team2-icon {
         right: 42px;
         overflow: hidden;
-        &:before, &:after  {
-            content: '';
+        .team-icon-upper, .team-icon-lower  {
             height: 50%;
             width: 100%;
             background: #003175;
@@ -52,7 +66,7 @@
             left: 0;
         }
 
-        &:after {
+        .team-icon-lower {
             background: #850D37;
             top: auto;
             bottom: 0;
