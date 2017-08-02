@@ -19,7 +19,7 @@ msgstr "Hjem"
 #. Route Wishlist
 #: 
 msgid "route_wishlist"
-msgstr "Ønskeliste"
+msgstr "Overvåkningsliste"
 
 #. Route Topics
 #: 

@@ -65,6 +65,7 @@ class Player extends React.Component {
         e.preventDefault();
         this.props.dispatch(closeOverlayX());
     }
+
     onTouchStart = (e) => {
         this.startTouchPosition = {
             x: e.changedTouches[0].clientX,

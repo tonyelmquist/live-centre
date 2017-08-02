@@ -44,7 +44,7 @@ class TeamPage extends React.Component {
         const activeTab = this.props.sportsPage.activeTeamTab;
         const activePlayerTab = this.props.sportsPage.activePlayerTab;
         const activePlayer = this.props.sportsPage.activePlayer;
-        const players = this.props.players;
+        const players = this.props.team[teamKey].players;
 
         return (
           <div>
@@ -78,7 +78,7 @@ const mapStateToProps = state => ({
     tags: state.tags.items,
     sportsPage: state.sportsPage,
     team: state.sportsInfo.teams,
-    players: state.sportsInfo.players,
+    //players: state.sportsInfo.players,
 });
 
 export default connect(mapStateToProps)(TeamPage);

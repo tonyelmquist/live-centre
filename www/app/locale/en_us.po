@@ -20,7 +20,7 @@ msgstr "Home"
 #. Route Wishlist
 #:
 msgid "route_wishlist"
-msgstr "Wishlist"
+msgstr "Watchlist"
 
 #. Route Topics
 #:

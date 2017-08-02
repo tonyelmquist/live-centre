@@ -26,17 +26,22 @@ class PlayerInfoOverlay extends Component {
     }
 
     render() {
+        let teamMember = {};
+
+        if (this.props.player !== null) {
+            teamMember = this.props.player;
+        }
         return (
           <div className={`player-info-overlay ${this.props.isShowing ? 'isShowing' : ''} ${this.state.isModalOpen ? 'isModalOpen' : ''}`}>
             <div className="player-icon">
-              <img src="/img/soccer-players/ronaldo.png" alt="Ronaldo" />
+              <img src={teamMember.portrait} alt="Ronaldo" />
             </div>
             <div className="player-info">
-              <span className="player-info-name">Cristiano RONALDO</span>
+              <span className="player-info-name">{teamMember.name}</span>
               <span className="player-info-team">Real Madrid</span>
-              <span className="player-info-position">Wide Forward</span>
+              <span className="player-info-position">{teamMember.position}</span>
 
-              <span className="player-info-number">7</span>
+              <span className="player-info-number">{teamMember.number}</span>
               <div className="player-info-tabs">
                 <div className="player-info-tab tab-player-info" onClick={this.openModal} role="button" tabIndex="0"><i className="fa fa-user" /></div>
                 <div className="player-info-tab tab-statistics" onClick={this.closeModal} role="button" tabIndex="0"><i className="fa fa-bar-chart" /></div>
@@ -45,8 +50,8 @@ class PlayerInfoOverlay extends Component {
             </div>
 
             <div className="player-modal">
-                    Info
-                </div>
+                {teamMember.description}
+            </div>
 
             <div className="close-btn" onClick={this.props.onClose} role="button" tabIndex="0"><i className="fa fa-close" /></div>
             <div className="right-btn" onClick={this.props.onRightButton} role="button" tabIndex="0"><i className="fa fa-chevron-right" /></div>
@@ -59,6 +64,7 @@ PlayerInfoOverlay.propTypes = {
     isShowing: PropTypes.bool.isRequired,
     onRightButton: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
+    player: PropTypes.object.isRequired,
 };
 
 export default PlayerInfoOverlay;

@@ -28,6 +28,7 @@ class DataOverlay extends Component {
             fidgetSpinner: {
                 isShowing: false,
             },
+            selectedPlayer: null,
             isBurstButtonShowing: false,
             isLineupShowing: false,
             isPlayerInfoShowing: false,
@@ -88,8 +89,9 @@ class DataOverlay extends Component {
         });
     }
 
-    moveToPlayerInfo() {
+    moveToPlayerInfo(player) {
         this.setState({
+            selectedPlayer: player,
             isLineupShowing: false,
             isPlayerInfoShowing: true,
         });
@@ -149,6 +151,7 @@ class DataOverlay extends Component {
           onIconClick={this.moveToPlayerInfo}
         />
         <PlayerInfoOverlay
+          player={this.state.selectedPlayer}
           isShowing={this.state.isPlayerInfoShowing}
           onClose={this.onPlayerInfoClose}
           onRightButton={this.onPlayerInfoBack}

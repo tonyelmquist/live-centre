@@ -1,4 +1,5 @@
 import diff from 'deep-diff';
+import store from '../utils/store';
 
 export default class BaseClass {
 
@@ -47,9 +48,34 @@ export default class BaseClass {
         return result;
     }
 
-    // hasMany(type) {
 
-    // }
+    hasMany(storePosition, foreignKey) {
+        const keys = this[foreignKey];
+
+        let state = store.getState();
+
+        if (storePosition.length === 1) {
+            state = state[storePosition[0]];
+        } else if (storePosition.length === 2) {
+            state = state[storePosition[0]][storePosition[1]];
+        }
+
+        if (typeof state === 'undefined') {
+            console.error({ name: 'State not found', message: 'Error, Store position inputted does not exist!', storePosition });
+        }
+
+        let result = [];
+
+        for (let i = 0; i < keys.length; i++) {
+            if (typeof state[keys[i]] === 'undefined') {
+                console.error({ name: 'Foreign key not found', message: 'Did not find relevant foreign key', state, key: keys[i] });
+            }
+
+            result[keys[i]] = state[keys[i]];
+        }
+
+        return result;
+    }
 
     // belongsTo(type) {
 
