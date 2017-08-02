@@ -130,22 +130,21 @@ class HeroCarousel extends Component {
                 return (
                   <div key={`carousel-${videoKey}`} style={styles.carousel}>
                     <div className="heroCarouselImage" key={videoKey}>
-                      <div className="carousel-underlay" />
-                      <div className="carouselImageButton">
-                        <IconButton
-                          iconStyle={styles.largeIcon}
-                          onTouchTap={() => {
-                              this._handlePlay(video);
-                          }}
-                        >
-                          <PlayCircleFilled color="white" />
-                        </IconButton>
-                      </div>
                       <div className="carouselImageTitleAndDescription">
-                        <h4 className="carouselImageTitle">
+                        <h4
+                        className="carouselImageTitle"
+                        onTouchTap={() => {
+                            this._handlePlay(video);
+                        }}
+                        >
                           {video.title}
                         </h4>
-                        <p className="imageDescription">
+                        <p
+                        className="imageDescription"
+                            onTouchTap={() => {
+                                this._handlePlay(video);
+                            }}
+                        >
                           {video.description}
                         </p>
                       </div>
