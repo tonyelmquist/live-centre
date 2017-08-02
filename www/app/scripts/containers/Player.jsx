@@ -55,6 +55,8 @@ class Player extends React.Component {
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
             console.log('try to play?');
             this.largeVideoPlayer.video.video.play();
+
+            this.videoLoaded = this.props.video.videoUrl;
         }
     }
 
@@ -154,7 +156,7 @@ class Player extends React.Component {
 
     componentWillUpdate = (nextProps) => {
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
-            console.log(this.videoLoaded, nextProps.video.videoUrl);
+            console.log('componentWillUpdate', this.videoLoaded, nextProps.video.videoUrl);
             if (typeof this.videoLoaded === 'undefined') {
                 return;
             }
