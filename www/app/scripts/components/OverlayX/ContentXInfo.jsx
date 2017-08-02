@@ -7,17 +7,6 @@ import Chat from '../../components/Chat';
 
 class ContentXInfo extends Component {
 
-    shouldComponentUpdate(nextProps) {
-        //only if this is a new video do update.
-        if (nextProps.video.id !== this.props.video.id) {
-            return true
-        } else if (nextProps.isCollapsed !== this.props.isCollapsed) {
-            return true 
-        }
-        //toggle = nextProps.video.id !== this.props.video.id || nextProps.toggleCollapseInfo !== this.props.toggleCollapseInfo;
-        return false
-    }
-
     render() {
         const video = this.props.video;
 
@@ -42,7 +31,7 @@ class ContentXInfo extends Component {
                     />);
         };
 
-        console.log('ContentXInfo rerender', video);
+        console.log('ContentXInfo rerender', this.props.messages);
         return (
             <div className={'content-x-info'}>
                 {video.tags === 'Street Fighter'

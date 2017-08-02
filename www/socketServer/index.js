@@ -243,7 +243,7 @@ let connectedUsers = [];
 io.on('connection', (socket) => {
     io.to(socket.id).emit('SCORE_UPDATE', score);
     connectedUsers[socket.id] = {
-        animal: animals[Math.round(Math.random()*animals.length)],
+        animal: animals[Math.round(Math.random() * animals.length)],
     }
     console.log('a user connected as a ' + connectedUsers[socket.id].animal);
 

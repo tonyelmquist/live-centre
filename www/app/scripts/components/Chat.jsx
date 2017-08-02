@@ -58,6 +58,7 @@ class Chat extends Component {
 
 
     render() {
+        console.log('chat', this.props.messages);
         return (
           <div className={`chat`}>
             <span className="chat-title">Chat</span>
