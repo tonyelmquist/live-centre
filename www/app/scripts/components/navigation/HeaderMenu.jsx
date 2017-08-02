@@ -55,6 +55,7 @@ const HeaderMenu = (props) => {
           <SearchInput
             handleSearch={props.handleSearch}
             searchState={props.searchState}
+            handleSearchFocus={props.handleSearchFocus}
           />
 
           </div>
@@ -76,6 +77,7 @@ const HeaderMenu = (props) => {
             handleSearch={props.handleSearch}
             searchState={props.searchState}
             openCloseSearch={props.openCloseSearch}
+            handleSearchFocus={props.handleSearchFocus}
           />
           <UserMenu changeRoute={props.changeRoute} />
         </div>
@@ -91,6 +93,7 @@ HeaderMenu.propTypes = {
     handleSearch: PropTypes.func.isRequired,
     openCloseSearch: PropTypes.func.isRequired,
     locationName: PropTypes.string.isRequired,
+    handleSearchFocus: PropTypes.func.isRequired,
 };
 
 export default HeaderMenu;

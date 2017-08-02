@@ -33,7 +33,7 @@ class SportsPage extends React.Component {
                   className="centerOverlay"
                   onTouchTap={() => this.handleOnClick(sports[key])}
                 >
-                  <h4>{sports[key].title}</h4>
+                  <h2>{sports[key].title}</h2>
                 </div>
               }
           />,
@@ -46,6 +46,7 @@ class SportsPage extends React.Component {
     render() {
         return (
         <div className="container-fluid sportsMainPage">
+          <br />
           <MasonryContainer>
             {this.getTiles()}
           </MasonryContainer>

@@ -12,6 +12,7 @@ function TabMenu({
   changeRoute,
   isMenuOpen,
   isSubPage,
+  searchState,
   openCloseMenu,
   hideMenu,
   isNaviconIncluded,
@@ -43,9 +44,11 @@ function TabMenu({
       return listItems;
     }
 
+    console.log(searchState);
+
     return (
       <MediaQuery maxWidth={1000}>
-        <Tabs className="bottomTabs">
+        <Tabs className={searchState.isFocused && searchState.isOpen ? 'bottomTabs fadeOut' : 'bottomTabs fadeIn'}>
           {insertCenterTab(listItems)}
 
         </Tabs>

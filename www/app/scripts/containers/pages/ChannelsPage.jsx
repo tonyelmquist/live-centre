@@ -91,8 +91,8 @@ class ChannelsPage extends React.Component {
             {this.getCircleFilters(filters)}
           </HorizontalScrollContainer>
         </div>
+        <br />
         <div className="container-fluid">
-
           <MasonryContainer>
             {this.getTiles()}
           </MasonryContainer>

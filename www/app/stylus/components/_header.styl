@@ -85,6 +85,7 @@
 }
 
 .expandableMenu{
+  text-align:center;
   background-color: $color_ocean;
   position: fixed;
   bottom: $bottom_offset;
@@ -118,9 +119,11 @@ p.expandableMenuItem{
 
 //Only the dividers
 p.divider{
-  padding-top: 30px;
-  padding-bottom: 10px;
+  padding: 35px 10px 10px;
   font-weight:bold;
+  border-bottom:solid 1px rgba(250, 250, 250, 0.5);
+  display:inline-block
+  
   color: #efefef;
 }
 
@@ -143,6 +146,11 @@ p.divider{
   @media (min-aspect-ratio: 13/9) {
     z-index: 900;
   }
+}
+
+.tabIcons{
+  font-size: 1.4em;
+  margin-bottom: 4px;
 }
 
 // MENU BUTTON ANIMATIONS

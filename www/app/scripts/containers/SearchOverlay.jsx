@@ -101,9 +101,10 @@ class SearchContainer extends Component {
 
     getPortraitItems = (people) => {
         return people.map(person => (
-            <CircleRowItem 
+            <CircleRowItem
                 img={person.img}
                 key={person.key}
+                size={50}
                 overlay={
                     (this.portraitOverlay(person))
                 }
@@ -140,13 +141,13 @@ class SearchContainer extends Component {
             
             <FilterTabs tabItems={tabs} activeTab={this.props.activeFilter} changeTab={this.changeTab}/>
             
-            <h4 className="container-fluid">{i18next.t('suggested_people')}</h4>
+            <div className="container-fluid">
+            <h4>{i18next.t('suggested_people')}</h4>
             
             <HorizontalScrollContainer>
                 {this.getPortraitItems(people)}
             </HorizontalScrollContainer>
 
-            <div className="container-fluid">
 
               {this.props.search.isSearching || this.props.activeFilter == 0 
                     ? <h4>{i18next.t('search_results')} {this.props.search.keyword}</h4>

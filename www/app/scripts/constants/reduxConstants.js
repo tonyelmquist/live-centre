@@ -57,6 +57,8 @@ class ReduxConstants {
     static get EMPTY_SEARCH() { return 'EMPTY_SEARCH'; }
     static get CLOSE_SEARCH() { return 'CLOSE_SEARCH'; }
     static get CHANGE_SEARCH_FILTER_INDEX() { return 'CHANGE_SEARCH_FILTER_INDEX'; }
+    static get FOCUSED_SEARCH() { return 'FOCUS_SEARCH'; }
+    static get BLURRED_SEARCH() { return 'BLUR_SEARCH'; }
 
     // SECOND LAYER
     static get CHANGE_SCORE() { return 'CHANGE_SCORE'; }

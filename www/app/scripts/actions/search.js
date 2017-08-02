@@ -18,6 +18,21 @@ export function toggleSearch() {
 }
 
 /**
+ * Action to toggle search dropdown
+ *
+ * @memberof Actions:Search
+ * @export
+ * @returns Dispatchable Action
+ */
+export function focusedSearch() {
+    return { type: Actions.FOCUSED_SEARCH };
+}
+
+export function blurredSearch() {
+    return { type: Actions.BLURRED_SEARCH };
+}
+
+/**
  * Action to close search dropdown
  *
  * @memberof Actions:Search

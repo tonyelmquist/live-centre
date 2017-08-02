@@ -27,6 +27,14 @@ function search(state = initialState, action) {
             keyword: initialState.keyword,
             isSearching: false,
         });
+    case Actions.FOCUSED_SEARCH:
+        return Object.assign({}, state, {
+            isFocused: true,
+        });
+    case Actions.BLURRED_SEARCH:
+        return Object.assign({}, state, {
+            isFocused: false,
+        });
     default:
         return state;
     }

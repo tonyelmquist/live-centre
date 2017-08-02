@@ -63,6 +63,7 @@ class SingelSportsPage extends React.Component {
         <HorizontalScrollContainer>
             {this.getTeams()}
         </HorizontalScrollContainer>
+        <br />
         <div className="container-fluid">
           <h4> LIVE Now </h4>
           <MasonryContainer>

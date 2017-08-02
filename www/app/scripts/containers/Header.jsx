@@ -4,17 +4,20 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 // Shared icons
-import HomeIcon from 'material-ui/svg-icons/action/home';
-import TVicon from 'material-ui/svg-icons/hardware/tv';
-import ChannelIcon from 'material-ui/svg-icons/action/language';
-import VideoIcon from 'material-ui/svg-icons/AV/videocam';
+// import HomeIcon from 'material-ui/svg-icons/action/home';
+// import TVicon from 'material-ui/svg-icons/hardware/tv';
+// import ChannelIcon from 'material-ui/svg-icons/action/language';
+// import VideoIcon from 'material-ui/svg-icons/AV/videocam';
+
 import { toggleMenu, hideMenu, toggleDrawerMenu } from '../actions/navigation';
+
+import { HomeIcon, ProgramsIcon, ChannelsIcon, SportIcon } from '../components/Icons/TabIcons';
 
 // Menu components
 import HeaderMenu from './../components/Navigation/HeaderMenu';
 import TabMenu from './../components/Navigation/TabMenu';
 import ExpandableMenu from './../components/Navigation/ExpandableMenu';
-import { searchKeyword, toggleSearch, closeSearch, emptySearch } from '../actions/search';
+import { searchKeyword, toggleSearch, closeSearch, emptySearch, focusedSearch, blurredSearch } from '../actions/search';
 // import VideoLibrary from 'material-ui/svg-icons/AV/video-library';
 
 /* This component is the starting point for all navigation.
@@ -32,9 +35,9 @@ class Header extends Component {
     getPageItems = () => {
         const items = [
       { tabIndex: 0, key: 'route_home', path: '/Home', icon: <HomeIcon /> },
-      { tabIndex: 1, key: 'route_programs', path: '/Programs', icon: <VideoIcon /> },
-      { tabIndex: 2, key: 'route_channels', path: '/Channels', icon: <ChannelIcon /> },
-      { tabIndex: 3, key: 'route_sports', path: '/Sports', icon: <TVicon /> },
+      { tabIndex: 1, key: 'route_programs', path: '/Programs', icon: <ProgramsIcon /> },
+      { tabIndex: 2, key: 'route_channels', path: '/Channels', icon: <ChannelsIcon /> },
+      { tabIndex: 3, key: 'route_sports', path: '/Sports', icon: <SportIcon /> },
         ];
 
         return items;
@@ -74,6 +77,14 @@ class Header extends Component {
         this.props.dispatch(closeSearch());
     }
 
+    handleSearchFocus = (isFocused) => {
+        if(isFocused){
+            this.props.dispatch(focusedSearch());
+        } else {
+            this.props.dispatch(blurredSearch());
+        }
+    }
+
     handleSearch = (event) => {
         const keyword = event.target.value;
         if (keyword.length > 0) {
@@ -82,6 +93,10 @@ class Header extends Component {
         if (keyword.length <= 0) {
             this.props.dispatch(emptySearch());
         }
+    }
+
+    isSearching = () => {
+        this.props.dispatch(searchKeyword(event.target.value));
     }
 
     emptySearch = () => {
@@ -134,6 +149,7 @@ class Header extends Component {
               changeRoute={this.changeRoute}
               openCloseSearch={this.openCloseSearch}
               handleSearch={this.handleSearch}
+              handleSearchFocus={this.handleSearchFocus}
               searchState={this.props.search}
               settingsState={this.props.settings}
               closeSearch={this.closeSearch}
@@ -144,6 +160,7 @@ class Header extends Component {
               changeRoute={this.changeRoute}
               isMenuOpen={this.isMenuOpen}
               isSubPage={this.isSubPage()}
+              searchState={this.props.search}
               openCloseMenu={this.openCloseMenu}
               closeSearch={this.closeSearch}
               hideMenu={this.hideMenu}
