@@ -18,7 +18,7 @@ export function ProgramsIcon() {
     return (
         <FontAwesome
         className="tabIcons"
-        name="video-camera"
+        name="th-list"
         size={size}
         />
     );

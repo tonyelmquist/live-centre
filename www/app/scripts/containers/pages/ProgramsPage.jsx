@@ -7,7 +7,7 @@ import { videoSelected, resetCurrentTimeInPlayer } from '../../actions/videoPlay
 import { changeProgramTabIndex } from '../../actions/pages/programsPage';
 import { maximizeOverlayX, openOverlayX } from '../../actions/overlayX';
 import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
-
+import LiveTag from '../../components/common/LiveTag';
 
 class ProgramsPage extends React.Component {
     // Gets the first episode of all the series.
@@ -59,11 +59,13 @@ class ProgramsPage extends React.Component {
         }
 
         for (const key in programs) {
+            console.log(programs);
             tiles.push(
                 <MasonryImageTile
                 key={`channel-tile-${key}`}
                 poster={programs[key].thumbnail}
                 handleClick={() => this.handleTileOpen(programs[key])}
+                overlay={programs[key].tags === 'Street Fighter' ? <LiveTag /> : <div />}
                 />,
             );
         }
