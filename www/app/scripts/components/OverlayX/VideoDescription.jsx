@@ -63,7 +63,7 @@ class VideoDescription extends React.Component {
             <p>{this.subtitle ? this.subtitle : ''}
                 Duration: {Math.round(45)} min <br />
                 Star Rating: {this.renderStars()} <br />
-                Add to wishlist <FontAwesome name={this.state.wishlisted ? 'heart' : 'heart-o'} onClick={this.handleWishlistClick} style={{ color: 'white' }} />
+                Add to Watchlist <FontAwesome name={this.state.wishlisted ? 'heart' : 'heart-o'} onClick={this.handleWishlistClick} style={{ color: 'white' }} />
             </p>
 
           <p>{this.ipsum}</p>

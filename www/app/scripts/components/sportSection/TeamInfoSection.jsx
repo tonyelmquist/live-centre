@@ -3,13 +3,11 @@ import Avatar from 'material-ui/Avatar';
 
 const getPlayerItems = (team, players, openPlayerOverlay) => {
     const playerItems = [];
-    for (const key in team.players) {
-        const playerKey = team.players[key];
-        const player = players[playerKey];
+    for (const key in players) {
         playerItems.push(
-      <li className="playerItem" key={`player-li-${key}`} onTouchTap={() => openPlayerOverlay(player)}>
-        <Avatar size={70} src={player.portrait} className="avatar" />
-        <h4>#{player.number} {player.name} </h4>
+      <li className="playerItem" key={`player-li-${key}`} onTouchTap={() => openPlayerOverlay(players[key])}>
+        <Avatar size={70} src={players[key].portrait} className="avatar" />
+        <h4>#{players[key].number} {players[key].name} </h4>
       </li>,
     );
     }

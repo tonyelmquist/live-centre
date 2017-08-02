@@ -52,10 +52,15 @@ class LineupOverlay extends Component {
 
               {/* Line up*/}
               <div className={`team1-lineup ${this.state.openTeam === 1 ? '' : 'transparent'}`}>
-                <LineupShirt colorLeft={teamOneColors[0]} colorRight={teamOneColors[1]} colorDarker="black" number="1" position="GK" onClick={() => this.props.onIconClick()} />
+                {this.props.teamOneData.players.map((value) => {
+                    console.log(value);
+                    return (<LineupShirt colorLeft={teamOneColors[0]} colorRight={teamOneColors[1]} colorDarker="black" number={value.number} position={value.position} side="L" onClick={() => this.props.onIconClick(value)} />);
+                })}
               </div>
               <div className={`team2-lineup ${this.state.openTeam === 2 ? '' : 'transparent'}`}>
-                <LineupShirt colorLeft={teamTwoColors[0]} colorRight={teamTwoColors[1]} colorDarker="black" textColor="black" number="12" position="GK2" onClick={this.props.onIconClick} />
+                {this.props.teamTwoData.players.map(value =>
+                    <LineupShirt colorLeft={teamTwoColors[0]} colorRight={teamTwoColors[1]} colorDarker="black" number={value.number} position={value.position} side="R" onClick={() => this.props.onIconClick(value)} />,
+                )}
               </div>
             </div>
 
@@ -73,6 +78,7 @@ LineupOverlay.defaultProps = {
 LineupOverlay.propTypes = {
     teamOneData: PropTypes.object.isRequired,
     teamTwoData: PropTypes.object.isRequired,
+    playerData: PropTypes.object.isRequired,
     onClose: PropTypes.func.isRequired,
     onIconClick: PropTypes.func.isRequired,
     teamToDisplay: PropTypes.number,

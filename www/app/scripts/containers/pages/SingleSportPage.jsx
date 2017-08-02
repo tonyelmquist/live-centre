@@ -41,13 +41,12 @@ class SingelSportsPage extends React.Component {
         const teams = this.props.sportsInfo.teams;
         const rowItems = [];
         for (const key in teams) {
-          for (let i = 0; i < 10; i++) {
-              rowItems.push(<CircleRowItem
-              key={key + i}
-              img={teams[key].logo}
-              handleClick={() => this.handleTeamOpen(key)}
-            />);
-          }
+            console.log(teams, key);
+            rowItems.push(<CircleRowItem
+            key={key}
+            img={teams[key].logo}
+            handleClick={() => this.handleTeamOpen(key)}
+        />);
       }
         return rowItems;
     }

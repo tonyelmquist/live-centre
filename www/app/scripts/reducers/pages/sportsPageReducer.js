@@ -1,4 +1,6 @@
 import Actions from '../../constants/reduxConstants';
+import TeamMember from '../../classes/teamMember';
+import Team from '../../classes/team';
 
 // Dummy Sports and channels
 const filters = [
@@ -19,24 +21,26 @@ const sportsDefaultState = {
 };
 
 const teamsDefaultState = {
-    RealMadrid: {
+    RealMadrid: new Team({
+        id: 0,
         key: 'RealMadrid',
         title: 'Real Madrid',
         logo: '/img/soccer-teams/Real-Madrid-Logo.png',
         img: '/img/soccer-teams/Real-Madrid-Team.jpg',
-        colors: ['white'],
+        colors: ['#fff'],
         abbr: 'RMA',
-        players: [7, 11, 1],
-    },
-    Barcelona: {
+        players: [7, 11],
+    }),
+    Barcelona: new Team({
+        id: 1,
         key: 'Barcelona',
         title: 'Barcelona',
         logo: '/img/soccer-teams/Real-Madrid-Logo.png',
         img: '/img/soccer-teams/Real-Madrid-Team.jpg',
-        colors: ['red', 'green'],
+        colors: ['#003175', '#850d37'],
         abbr: 'FBC',
         players: [7, 11, 1],
-    },
+    }),
 };
 
 
@@ -45,6 +49,7 @@ const playersDefaultState = {
         name: 'Cristiano Ronaldo',
         team: 'RealMadrid',
         number: 7,
+        position: 'SS',
         description: `Cristiano Ronaldo dos Santos Aveiro, 
         is a Portuguese professional footballer who plays as a forward 
         for Spanish club Real Madrid and the Portugal national team. 
@@ -58,6 +63,7 @@ const playersDefaultState = {
     11: {
         name: 'Gareth Bale',
         team: 'RealMadrid',
+        position: 'CB',
         number: 11,
         description: 'Gareth Bale',
         portrait: '/img/soccer-players/gareth-bale-portrait.jpg',
@@ -67,6 +73,7 @@ const playersDefaultState = {
         name: 'Keylor Navas',
         team: 'RealMadrid',
         number: 1,
+        position: 'GK',
         description: `Keylor Antonio Navas Gamboa (born 15 December 1986), 
         known as Keylor Navas, is a Costa Rican professional footballer 
         who plays as a goalkeeper for Spanish club Real Madrid and the Costa Rica national team.`,
