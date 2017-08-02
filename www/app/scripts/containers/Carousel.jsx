@@ -33,7 +33,6 @@ const styles = {
         marginLeft: 0,
         zIndex: 3,
     },
-
     largeIcon: {
         width: 40,
         height: 40,
@@ -54,9 +53,9 @@ class HeroCarousel extends Component {
     // }
 
     _handlePlay = (video) => {
-        this.props.dispatch(videoSelected(video));
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(videoSelected(video));
     };
 
     syncLeft(currentSlide) {
@@ -170,24 +169,23 @@ class HeroCarousel extends Component {
                 const video = this.props.videos.items[videoKey];
                 return (
                   <div key={video.id} className="infoTile">
-                    <h4 className="infoTileCTA">Watch now</h4>
-                    <IconButton
-                      iconStyle={styles.largeIcon}
-                      style={styles.large}
-                      onTouchTap={() => {
-                          this._handlePlay(video.id);
-                      }}
-                    >
-                      <PlayCircleFilled color="white" />
-                    </IconButton>
+                    <h4
+                    className="infoTileCTA"
+                    onTouchTap={() => {
+                        this._handlePlay(video);
+                    }}
+                    >Watch now</h4>
                     <div className="carouselTitleAndDescription">
-                      <h4 className="carouselTitle">
+                      <h4
+                      className="carouselTitle"
+                      onTouchTap={() => {
+                          this._handlePlay(video);
+                      }}
+                      >
                         {video.title}
                       </h4>
                       <p className="description">
-                He says hes found the main computer to power the tractor beam
-                thats holding the ship here. Hell try to make the precise
-                location appear on the monitor.
+                        {video.description}
               </p>
                     </div>
                   </div>
