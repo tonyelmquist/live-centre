@@ -273,6 +273,7 @@
   font-size: 2em
   margin: 22px
   font-weight: normal
+  cursor: pointer
 
 .carouselRight .slick-dots li.slick-active button:before, .carouselRight .slick-dots li button::before
   color: white!important
@@ -281,9 +282,8 @@
   color: white!important
   
 .carouselRight .carouselTitleAndDescription
-  width: calc(70% - 60px)
+  width: calc(100% - 20px)
   float: left
-  margin: 32px 0 0 0
 
 .carouselRight .slick-next:before, .carouselRight .slick-prev:before
   font-size: 50px
@@ -298,6 +298,8 @@
 .carouselTitle
   text-overflow: ellipsis
   overflow: hidden
+  margin-left: 20px
+  cursor: pointer
 
 .carouselImageButton
   position: absolute
@@ -307,12 +309,13 @@
   position: absolute
   bottom: 15px
   color: white
-  left: 66px
+  left: 40px
   width: 75%
   z-index: 2
 
 .carouselImageTitle, .imageDescription
   margin: 0
+  cursor: pointer
 
 .imageDescription 
   font-size: 12px
@@ -333,6 +336,9 @@
   display: block
 .heroCarouselImage 
   display: none
+
+.carouselTitleAndDescription .description
+  margin-left: 20px
 
 @media (max-width: 1024px)
   .carouselRight .videoDescription
