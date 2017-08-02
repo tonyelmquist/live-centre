@@ -11,7 +11,7 @@ const AnimatedExpandIcon = ({isCollapsed, handleTouch}) => {
                 (<ExpandIcon 
                     //onTouchTap={handleTouch}
                     className="expandIcon"
-                    style={{color: 'white',
+                    style={{color: 'black',
                             transform: `rotate(-${style.rot}deg)`
                             }}
                 />)

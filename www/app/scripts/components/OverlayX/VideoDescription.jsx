@@ -45,8 +45,8 @@ class VideoDescription extends React.Component {
             this.setState({ wishlisted: nextProps.video.wishlist });
         }
     }
-    ipsum = `Morbi eu scelerisque justo. Sed finibus, tortor eu viverra fringilla,
-    lectus sem condimentum mi, tempus tincidunt mauris dolor tempor
+    ipsum = `Morbi eu scelerisque justo. Sed finibus, to rtor eu viverra fringilla,
+    lectus sem cond imen tum mi, tempus tincidunt mauris dolor tempor
     nibh. Vestibulum quis convallis urna. Mauris massa lectus,
     convallis in mi id, blandit suscipit turpis. Integer egestas
     risus sodales dui euismod, quis auctor ex tincidunt. `;
@@ -54,20 +54,24 @@ class VideoDescription extends React.Component {
     render() {
         console.log('VideoDescription Rerender', this.props.video);
         return (
-        <Collapsible
-          label={this.props.video.series ? this.props.video.series : this.props.video.title}
-          collapseInfo={this.collapseInfo}
-          toggleCollapseInfo={this.props.toggleCollapseInfo}
-          isCollapsed={this.props.isCollapsed}
-        >
-            <p>{this.subtitle ? this.subtitle : ''}
-                Duration: {Math.round(45)} min <br />
-                Star Rating: {this.renderStars()} <br />
-                Add to Watchlist <FontAwesome name={this.state.wishlisted ? 'heart' : 'heart-o'} onClick={this.handleWishlistClick} style={{ color: 'white' }} />
-            </p>
-
-          <p>{this.ipsum}</p>
-        </Collapsible>
+            <div className="ox-content-inner">
+                <h4>{this.props.video.series ? this.props.video.series : this.props.video.title}</h4>
+                <p>{this.subtitle ? this.subtitle : ''}
+                    Duration: {Math.round(45)} min <br />
+                    Star Rating: {this.renderStars()} <br />
+                    Add to Watchlist <FontAwesome name={this.state.wishlisted ? 'heart' : 'heart-o'} onClick={this.handleWishlistClick} style={{ color: 'white' }} />
+                </p>
+            
+                <Collapsible
+                    label={"Description"}
+                    collapseInfo={this.collapseInfo}
+                    toggleCollapseInfo={this.props.toggleCollapseInfo}
+                    isCollapsed={this.props.isCollapsed}
+                    text={this.ipsum}
+                />       
+                {/* <p>{this.ipsum}</p>
+                </Collapsible>  */}
+            </div>
         );
     }
 }
