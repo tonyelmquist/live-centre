@@ -102,6 +102,12 @@ class ReduxConstants {
     static get VIDEO_SELECTED() { return 'VIDEO_SELECTED'; }
     static get INVALIDATE_SELECTED() { return 'INVALIDATE_SELECTED'; }
 
+
+    //NOTIFICATIONS
+    static get ADD_NEW_NOTIFICATION() { return 'ADD_NEW_NOTIFICAITON'; }
+    static get REHYDRATE_NOTIFICATIONS() { return 'REHYDRATE_NOTIFICATIONS'; }
+    static get REMOVE_NOTIFICATION() { return 'REMOVE_NOTIFICATION'; }
+
     //PAGES
     //PROGRAMPAGE
     static get CHANGE_PROGRAMS_TAB_INDEX() { return 'CHANGE_PROGRAMS_TAB_INDEX'; }

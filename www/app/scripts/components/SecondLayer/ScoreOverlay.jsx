@@ -20,8 +20,6 @@ class ScoreOverlay extends Component {
         teamTwoColors[0] = this.props.teamTwoData.colors[0] ? this.props.teamTwoData.colors[0] : 'white';
         teamTwoColors[1] = this.props.teamTwoData.colors[1] ? this.props.teamTwoData.colors[1] : this.props.teamTwoData.colors[0];
 
-        console.log(this.props.teamOneData.colors);
-
         return (
           <div className="score-overlay-container">
             <div className="counter-skew">

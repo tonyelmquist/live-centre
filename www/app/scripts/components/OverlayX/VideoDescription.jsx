@@ -52,7 +52,6 @@ class VideoDescription extends React.Component {
     risus sodales dui euismod, quis auctor ex tincidunt. `;
 
     render() {
-        console.log('VideoDescription Rerender', this.props.video);
         return (
             <div className="ox-content-inner">
                 <h4>{this.props.video.series ? this.props.video.series : this.props.video.title}</h4>
