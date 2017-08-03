@@ -53,7 +53,7 @@ class LineupOverlay extends Component {
               {/* Line up*/}
               <div className={`team1-lineup ${this.state.openTeam === 1 ? '' : 'transparent'}`}>
                 {this.props.teamOneData.players.map((value) => {
-                    return (<LineupShirt key={`team1-${value.number}`} colorLeft={teamOneColors[0]} colorRight={teamOneColors[1]} colorDarker="black" number={value.number} position={value.position} side="L" onClick={() => this.props.onIconClick(value)} />);
+                    return (<LineupShirt key={`team1-${value.number}`} clickIndicator={(value.number === 1)} colorLeft={teamOneColors[0]} colorRight={teamOneColors[1]} colorDarker="black" number={value.number} position={value.position} side="L" onClick={() => this.props.onIconClick(value)} />);
                 })}
               </div>
               <div className={`team2-lineup ${this.state.openTeam === 2 ? '' : 'transparent'}`}>

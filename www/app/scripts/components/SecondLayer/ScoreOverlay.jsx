@@ -7,7 +7,16 @@ class ScoreOverlay extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            clicked: false,
+        };
+    }
+    
+    onTeamOneClick = () => {
+        this.props.onTeamOneClick();
+        this.setState({
+            clicked: true,
+        });
     }
 
     render() {
@@ -32,7 +41,9 @@ class ScoreOverlay extends Component {
                 <div className="team-icon-lower" style={{ background: teamOneColors[1] }} />
               </div>
 
-              <div className="team1-name" onClick={this.props.onTeamOneClick} role="button" tabIndex="0">
+              {this.state.clicked ? <div /> : <div className="click-indicator-text" />}
+
+              <div className="team1-name" onClick={this.onTeamOneClick} role="button" tabIndex="0">
                   {this.props.teamOneData.abbr}
               </div>
 

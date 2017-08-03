@@ -10,6 +10,7 @@ class PopIndicator extends Component {
             currentTime: 0,
             showing: false,
             finished: false,
+            clicked: false,
         };
 
         this.percent = 100;
@@ -79,9 +80,13 @@ class PopIndicator extends Component {
         return (<path d={pathData} fill="#f39c12" />);
     }
 
+    onClick = () => {
+        this.setState({ clicked: true });
+        this.props.onClick();
+    }
 
     render() {
-        const svgStyle = {
+        const containerStyle = {
             transform: 'rotate(-0.25turn)',
             transition: '.5s all',
             position: 'absolute',
@@ -92,18 +97,19 @@ class PopIndicator extends Component {
         };
 
         return (
-            <svg
-                className="pop-indicator click-indicator"
-                xmlns="http://www.w3.org/2000/svg"
-                onClick={this.props.onClick}
-                viewBox="-1 -1 2 2"
-                style={svgStyle}
-            >
-                {this.renderPath()}
-                <text x="-0.3" y="0.4" fontFamily="Space Mono" fontSize="1" fill="white" style={{ transform: 'rotate(.25turn)' }}>
-                    i
-                </text>
-            </svg>
+            <div className="pop-indicator-container" style={containerStyle} onClick={this.onClick}>
+                { this.state.clicked ? <div /> : <div className="click-indicator-pop" /> }
+                <svg
+                    className="pop-indicator"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="-1 -1 2 2"
+                >
+                    {this.renderPath()}
+                    <text x="-0.18" y="0.4" fontFamily="Georgia" fontWeight="bold" fontSize="1" fill="white" style={{ transform: 'rotate(.25turn)' }}>
+                        i
+                    </text>
+                </svg>
+            </div>
         );
     }
 }
