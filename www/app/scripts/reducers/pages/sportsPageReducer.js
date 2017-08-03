@@ -29,7 +29,7 @@ const teamsDefaultState = {
         img: '/img/soccer-teams/Real-Madrid-Team.jpg',
         colors: ['#fff'],
         abbr: 'RMA',
-        players: [7, 11],
+        players: [7, 11, 12],
     }),
     Barcelona: new Team({
         id: 1,
@@ -39,7 +39,7 @@ const teamsDefaultState = {
         img: '/img/soccer-teams/Real-Madrid-Team.jpg',
         colors: ['#003175', '#850d37'],
         abbr: 'FBC',
-        players: [7, 11, 1],
+        players: [7, 11, 12, 1],
     }),
 };
 
@@ -63,8 +63,17 @@ const playersDefaultState = {
     11: {
         name: 'Gareth Bale',
         team: 'RealMadrid',
-        position: 'CB',
+        position: 'CB2',
         number: 11,
+        description: 'Gareth Bale',
+        portrait: '/img/soccer-players/gareth-bale-portrait.jpg',
+        actionShot: '/img/soccer-players/gareth-bale-fullbody.jpg',
+    },
+    12: {
+        name: 'Gareth Bale',
+        team: 'RealMadrid',
+        position: 'CB1',
+        number: 12,
         description: 'Gareth Bale',
         portrait: '/img/soccer-players/gareth-bale-portrait.jpg',
         actionShot: '/img/soccer-players/gareth-bale-fullbody.jpg',

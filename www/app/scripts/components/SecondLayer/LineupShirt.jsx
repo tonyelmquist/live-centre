@@ -10,51 +10,115 @@ class LineupShirt extends Component {
             yPosition: 0,
         };
 
-        const centralPosition = 51;
         const GKPositions = [12.5, 87.5];
         const CBPositions = [25, 75];
         const SSPositions = [80, 20];
 
+        const Rows = {
+            LW: 15,
+            LMW: 20,
+            CL: 33,
+            C: 50,
+            CR: 66,
+            RMW: 80,
+            RW: 85,
+        };
+
+        const Cols = {
+            GK: 12.5,
+            CB: 25,
+            FB: 35,
+            WB: 40,
+            DMF: 40,
+            CMF: 50,
+            OMF: 60,
+            S: 70,
+            FW: 80,
+        };
+
         this.positions = {
             GK: {
-                L: {
-                    x: GKPositions[0],
-                    y: centralPosition,
-                },
-                R: {
-                    x: GKPositions[1],
-                    y: centralPosition,
-                },
+                x: Cols.GK,
+                y: Rows.C,
             },
             SS: {
-                L: {
-                    x: SSPositions[0],
-                    y: centralPosition,
-                },
-                R: {
-                    x: SSPositions[1],
-                    y: centralPosition,
-                },
+                x: Cols.S,
+                y: Rows.C,
             },
-            CB: {
-                L: {
-                    x: CBPositions[0],
-                    y: centralPosition,
-                },
-                R: {
-                    x: CBPositions[1],
-                    y: centralPosition,
-                },
+
+            // Center Backs
+            CB1: {
+                x: Cols.CB,
+                y: Rows.CL,
+            },
+            CB2: {
+                x: Cols.CB,
+                y: Rows.C,
+            },
+            CB3: {
+                x: Cols.CB,
+                y: Rows.CR,
+            },
+
+            // Defensive Mid Field
+            DMF1: {
+                x: Cols.DMF,
+                y: Rows.CL,
+            },
+            DMF2: {
+                x: Cols.DMF,
+                y: Rows.C,
+            },
+            DMF3: {
+                x: Cols.DMF,
+                y: Rows.CR,
+            },
+
+            // Central Mid Field
+            CMF1: {
+                x: Cols.CMF,
+                y: Rows.CL,
+            },
+            CMF2: {
+                x: Cols.CMF,
+                y: Rows.C,
+            },
+            CMF3: {
+                x: Cols.CMF,
+                y: Rows.CR,
+            },
+
+            // Offensive Mid Field
+            OMF1: {
+                x: Cols.OMG,
+                y: Rows.CL,
+            },
+            OMF2: {
+                x: Cols.OMF,
+                y: Rows.C,
+            },
+            OMF3: {
+                x: Cols.OMF,
+                y: Rows.CR,
             },
         };
+
+        const sideSwitch = (this.props.side === 'L');
 
         if (typeof this.positions[this.props.position] === 'undefined') {
             console.error({ name: 'Unknown Position', message: `Position '${this.props.position}' is unknown` });
         } else {
-            this.state = {
-                xPosition: this.positions[this.props.position][this.props.side].x,
-                yPosition: this.positions[this.props.position][this.props.side].y,
-            };
+            if (sideSwitch) {
+                this.state = {
+                    xPosition: this.positions[this.props.position].x,
+                    yPosition: this.positions[this.props.position].y,
+                };
+            } else {
+                this.state = {
+                    xPosition: 100 - this.positions[this.props.position].x,
+                    yPosition: 100 - this.positions[this.props.position].y,
+                };
+            }
         }
     }
 
@@ -120,3 +184,43 @@ LineupShirt.propTypes = {
 };
 
 export default LineupShirt;
+
+
+/**
+ * 
+ * 
++---------------------------------------------------+-------------------------------------------------+
+|                                                   |                                                ||
+|                                                   |                                                ||
+|               LFB          LWB                 LMF|                            LSW                 ||
+|                                                   |                                                ||
+|                                                   |                                                ||
++---------------+                                   |                                -----------------+
+|               |                                   |                                |                |
+|               |                                   |                                |                |
+|               |                                   |                                |                |
+|            CB1|                                   |                                |                |
++-------+       |                         +-------------------+                      |       +--------+
+|       |       |                     DMF1|       CM|F1       |OMF1                S1|       |        |
+|       |       |                         |         |         |                      |       |        |
+|       |       +----+                    |         |         |                 +----+       |        |
+|       |       |    |                    |         |         |                 |    |       |        |
+|     GK|    CB2|    |                DMF2|       CM|F2       |OMF2             |  S2|   CF  |        |
+|       |       |    |                    |         |         |                 |    |       |        |
+|       |       +----+                    |         |         |                 +----+       |        |
+|       |       |                         |         |         |                      |       |        |
+|       |       |                         |         |         |                      |       |        |
++-------+       |                     DMF3|       CM|F3       |OMF3                S3|       +--------+
+|            CB3|                         +-------------------+                      |                |
+|               |                                   |                                |                |
+|               |                                   |                                |                |
+|               |                                   |                                |                |
++---------------+                                   |                                -----------------+
+|                                                   |                                                 |
+|                                                   |                                                 |
+|               RFB         RWB                     |                            RSW                  |
+|                                                   |                                                 |
+|                                                   |                                                 |
++---------------------------------------------------+-------------------------------------------------+
+ * 
+ */
