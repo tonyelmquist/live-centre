@@ -120,7 +120,7 @@ class Player extends React.Component {
                 this.largeVideoPlayer.video.video.currentTime === 0 &&
                 this.state.isPreOverlayShowing &&
                 this.props.overlayX.maximized) {
-                return (<div className="pre-play-overlay" onClick={this.onPrePlayTouch}>
+                return (<div className="pre-play-overlay" onTouchTap={this.onPrePlayTouch}>
                             <div className="gradient-overlay" />
                             <div className="play-button" >
                                 <i className="fa fa-play-circle" />
@@ -134,7 +134,7 @@ class Player extends React.Component {
                         </div>);
             }
         } else {
-            return (<div className="pre-play-overlay" onClick={this.onPrePlayTouch}>
+            return (<div className="pre-play-overlay" onTouchTap={this.onPrePlayTouch}>
                             <div className="gradient-overlay" />
                             <div className="play-button" >
                                 <i className="fa fa-play-circle" />
