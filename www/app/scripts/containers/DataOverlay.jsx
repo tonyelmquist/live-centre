@@ -8,11 +8,12 @@ import ChatOverlay from '../components/SecondLayer/ChatOverlay';
 import PenaltyCard from '../components/SecondLayer/PenaltyCard';
 import ScoreOverlay from '../components/SecondLayer/ScoreOverlay';
 import LineupOverlay from '../components/SecondLayer/LineupOverlay';
-import PopIndicator from '../components/SecondLayer/PopIndicator';
+import PopIndicatorManager from '../components/SecondLayer/PopIndicatorManager';
 import PlayerInfoOverlay from '../components/SecondLayer/PlayerInfoOverlay';
 import Replayer from '../components/VideoPlayer/Replayer';
 import HighlightsRow from '../components/VideoPlayer/HighlightsRow';
 import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
+import { removeNotification } from '../actions/notifications';
 import { hideHighlights } from '../actions/videoPlayer';
 
 class DataOverlay extends Component {
@@ -31,8 +32,7 @@ class DataOverlay extends Component {
             selectedPlayer: null,
             isBurstButtonShowing: false,
             isLineupShowing: false,
-            isPlayerInfoShowing: false,
-            now: new Date().getTime(),
+            isPlayerInfoShowing: false
         };
 
         // this.state.socket.on('NEW_PENALTY_CARD', (data) => {
@@ -52,44 +52,36 @@ class DataOverlay extends Component {
         //         });
         //     }, 7000);
         // });
-
-        this.onMessageSend = this.onMessageSend.bind(this);
-        this.displayLineup = this.displayLineup.bind(this);
-        this.moveToPlayerInfo = this.moveToPlayerInfo.bind(this);
-        this.onPlayerInfoClose = this.onPlayerInfoClose.bind(this);
-        this.onPlayerInfoBack = this.onPlayerInfoBack.bind(this);
-        this.onLineupClose = this.onLineupClose.bind(this);
-        this.handleHighlightsClose = this.handleHighlightsClose.bind(this);
     }
 
-    onMessageSend(message) {
+    onMessageSend = (message) => {
         this.props.dispatch(
       sendMessage(message),
     );
     }
 
-    onPlayerInfoClose() {
+    onPlayerInfoClose = () => {
         this.setState({
             isPlayerInfoShowing: false,
             isBurstButtonShowing: true,
         });
     }
 
-    onPlayerInfoBack() {
+    onPlayerInfoBack = () => {
         this.setState({
             isPlayerInfoShowing: false,
             isLineupShowing: true,
         });
     }
 
-    onLineupClose() {
+    onLineupClose = () => {
         this.setState({
             isLineupShowing: false,
             isBurstButtonShowing: true,
         });
     }
 
-    moveToPlayerInfo(player) {
+    moveToPlayerInfo = (player) => {
         this.setState({
             selectedPlayer: player,
             isLineupShowing: false,
@@ -97,7 +89,7 @@ class DataOverlay extends Component {
         });
     }
 
-    displayLineup(teamToDisplay) {
+    displayLineup = (teamToDisplay) => {
         this.setState({
             isBurstButtonShowing: false,
             isLineupShowing: true,
@@ -105,8 +97,12 @@ class DataOverlay extends Component {
         });
     }
 
-    handleHighlightsClose() {
+    handleHighlightsClose = () => {
         this.props.dispatch(hideHighlights());
+    }
+
+    removeNotification = (id) => {
+        this.props.dispatch(removeNotification(id));
     }
 
     getTeamDetails = (team) => {
@@ -122,7 +118,6 @@ class DataOverlay extends Component {
     teamTwo = 'RealMadrid';
 
     render() {
-        console.log(this.props.sportsInfo);
         return (
       <div className="data-overlay">
         <PenaltyCard
@@ -137,10 +132,9 @@ class DataOverlay extends Component {
           onTeamOneClick={() => this.displayLineup(1)}
           onTeamTwoClick={() => this.displayLineup(2)}
         />
-        <PopIndicator
-          startTime={this.state.now}
-          endTime={this.state.now + (1 * 60000)}
-          onClick={() => console.log('click')}
+        <PopIndicatorManager
+          removeNotification={id => this.removeNotification(id)}
+          notifications={this.props.notifications}
         />
         <LineupOverlay
           isShowing={this.state.isLineupShowing}
@@ -177,10 +171,11 @@ class DataOverlay extends Component {
 DataOverlay.propTypes = {
     dispatch: PropTypes.func.isRequired,
     score: PropTypes.object.isRequired,
-    chat: PropTypes.object.isRequired,
+    // chat: PropTypes.object.isRequired,
     replay: PropTypes.object.isRequired,
     highlights: PropTypes.object.isRequired,
     sportsInfo: PropTypes.object.isRequired,
+    notifications: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -189,6 +184,7 @@ const mapStateToProps = state => ({
     replay: state.replay,
     highlights: state.highlights,
     sportsInfo: state.sportsInfo,
+    notifications: state.notifications.notifications,
 });
 
 export default connect(mapStateToProps)(DataOverlay);

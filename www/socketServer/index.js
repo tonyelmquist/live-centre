@@ -240,11 +240,17 @@ let animals = [
 let messageID = 0;
 let connectedUsers = [];
 
+let notificationId = 0;
+let notifications = [];
+
 io.on('connection', (socket) => {
     io.to(socket.id).emit('SCORE_UPDATE', score);
+    io.to(socket.id).emit('REHYDRATE_NOTIFICATIONS', notifications);
+
     connectedUsers[socket.id] = {
         animal: animals[Math.round(Math.random() * animals.length)],
-    }
+    };
+
     console.log('a user connected as a ' + connectedUsers[socket.id].animal);
 
     socket.on('SENT_MESSAGE', (data) => {
@@ -261,6 +267,24 @@ io.on('connection', (socket) => {
         const message = data;
         console.log('emitting PENALTY CARD', message);
         socket.broadcast.emit('NEW_PENALTY_CARD', message);
+    });
+
+    socket.on('NEW_NOTIFICATION', (data) => {
+        notificationId += 1;
+        const message = data;
+        message.id = notificationId;
+        message.start = new Date().getTime();
+        delete message.socketId;
+
+        notifications.push(message);
+
+        console.log('emitting NOITIFICATIONS', notifications);
+        socket.broadcast.emit('NOTIFICATIONS', {
+            id: message.id,
+            message: message.message,
+            minutes: message.minutes,
+            start: message.start,
+        });
     });
 
     socket.on('disconnect', () => {
@@ -286,7 +310,13 @@ setInterval(() => {
     }
     io.emit('SCORE_UPDATE', score);
     console.log('SCORE_UPDATE EMITTED', score);
-}, 30000);
+
+    for (let i = 0; i < notifications.length; i++) {
+        if (notifications[i].start + (notifications[i].minutes * 60000) < new Date().getTime()) {
+            notifications.splice(i, 1);
+        }
+    }
+}, 10000);
 
 http.listen(3000, () => {
     console.log('listening on *:3000');

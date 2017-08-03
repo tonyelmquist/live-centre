@@ -49,8 +49,6 @@ class Player extends React.Component {
     onPrePlayTouch = (e) => {
         e.stopPropagation();
 
-        console.log('largeVideoPlayer?', this.largeVideoPlayer);
-
         this.setState({ isPreOverlayShowing: false });
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
             console.log('try to play?');

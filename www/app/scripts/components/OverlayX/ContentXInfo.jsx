@@ -31,7 +31,6 @@ class ContentXInfo extends Component {
                     />);
         };
 
-        console.log('ContentXInfo rerender', this.props.messages);
         return (
             <div className={'content-x-info'}>
                 {video.tags === 'Street Fighter'

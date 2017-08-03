@@ -64,7 +64,6 @@ PlayerInfoOverlay.propTypes = {
     isShowing: PropTypes.bool.isRequired,
     onRightButton: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
-    player: PropTypes.object.isRequired,
 };
 
 export default PlayerInfoOverlay;

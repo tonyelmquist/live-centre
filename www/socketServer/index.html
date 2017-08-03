@@ -30,10 +30,11 @@
 
     <h2>New Time Limited Event</h2>
     <label> Title </label>
-    <input type='text' /> <br /> <br />
+    <input type='text' class='timed-event-title' /> <br /> <br />
+
     <label> Minutes </label>
-    <input type='number'> <br /><br />
-    <button>Send</button>
+    <input type='number' class='timed-event-minutes'> <br /><br />
+    <button class='send-new-timed-event'>Send</button>
 
     <script src="/socket.io/socket.io.js"></script>
     <script
@@ -50,6 +51,16 @@
             socket.emit('PENALTY_CARD_EMIT', {
               type: type,
               message: message,
+          });
+        })
+
+        $('.send-new-timed-event').on('click', function() {
+            var message = $('.timed-event-title').val();
+            var minutes = $('.timed-event-minutes').val();
+            console.log('send-new-timed-event', message, minutes);
+            socket.emit('NEW_NOTIFICATION', {
+              message: message,
+              minutes: minutes,
           });
         })
     </script>
