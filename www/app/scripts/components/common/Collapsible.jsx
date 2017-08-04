@@ -1,41 +1,110 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Motion, spring } from 'react-motion';
 import AnimatedExpandIcon from '../Icons/AnimatedExpandIcon';
 
-const Collapsible = ({label, collapseInfo, toggleCollapseInfo, isCollapsed, text}) => {
-    let collapseHeight = 57
-    if (typeof this.collapseInnerElement !== 'undefined' && this.collapseInnerElement !== null) {
-        collapseHeight = this.collapseInnerElement.scrollHeight;
+class Collapsible extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            showCollapseButton: true,
+        };
     }
-    const textLength = text.length;
-    const springFloat = {stiffness: 170, damping:20};
 
-    return (
-        <div>
+    componentDidMount() {
+        const el = this.collapseInnerElement;
+        const fullText = this.props.text;
 
-            <div className="accordion" role="button" onTouchTap={() => toggleCollapseInfo()}> 
-                <h4 className="accordion-label">{label}</h4>
-                {<AnimatedExpandIcon isCollapsed={isCollapsed} /> }
-            </div>
+        if (el.scrollHeight <= el.clientHeight) {
+            this.setCollapseState(false);
+        }  
+        if (this.props.isCollapsed) {
+            this.shortenText(el);
+        }
+    }
 
-            <Motion style={isCollapsed ? {height:spring(57, springFloat)} : {height:spring(collapseHeight, springFloat)}}>
+    componentDidUpdate() {
+        console.log('component did update');
+        const el = this.collapseInnerElement;
+        if (this.props.isCollapsed) {
+            setTimeout(() => { this.shortenText(el); }, 300);
+        } else {
+            el.textContent = this.props.text;
+        }
+    }
+
+    shortenText(el) {
+        console.log('shortenText');
+        console.log(el.scrollHeight);
+        // For loop for maximal amount of iterations, should break before maxlength.
+        for (let i = 0; i < el.textContent.length; i++) {
+            if (el.scrollHeight <= el.clientHeight) {
+                break;
+            }
+            el.textContent = el.textContent.replace(/\W*\s(\S)*$/, '...');
+        }
+    }
+
+    collapseButton() {
+        if (typeof this.collapseInnerElement !== 'undefined' && this.collapseInnerElement !== null) {
+            if (this.collapseInnerElement.scrollHeight <= this.collapseInnerElement.clientHeight) {
+                return (<span onTouchTap={() => this.props.toggleCollapseInfo()} className="collapseIcon">
+                <AnimatedExpandIcon isCollapsed={this.props.isCollapsed} />
+                </span>);
+            }
+        }
+        return (<span />);
+    }
+
+
+    getCollapseHeight(){
+        const defaultHeight = 55;
+        if (typeof this.collapseInnerElement !== 'undefined' && this.collapseInnerElement !== null) {
+            console.log(this.collapseInnerElement.scrollHeight, this.collapseInnerElement.clientHeight);
+
+            if (this.props.isCollapsed) {
+                return defaultHeight;
+            } 
+                this.collapseInnerElement.textContent = this.props.text;
+                return this.collapseInnerElement.scrollHeight;
+        }
+        return defaultHeight;
+    }
+
+    setCollapseState(showCollapseButton) {
+        this.setState(() => ({showCollapseButton}));
+    }
+
+    render() {
+        const collapseHeight = this.getCollapseHeight();
+
+        return (
+            <div className="collapsible">
+            {this.state.showCollapseButton
+                ? <span onTouchTap={() => this.props.toggleCollapseInfo()} className="collapseIcon">
+                    <AnimatedExpandIcon isCollapsed={this.props.isCollapsed} />
+                  </span>
+                : <span />
+            }
+
+            <Motion style={this.props.isCollapsed ? { height: spring(55) } : { height: spring(collapseHeight) }} >
                 {style =>
-                    <div 
-                    className="collapsible"
-                    ref={ref => (this.collapseInnerElement = ref)}
-                    style={{
-                        overflow: 'hidden',
-                        maxHeight: `${style.height}px`,
-                    }}>
-                        <span onTouchTap={() => toggleCollapseInfo()} className="collapseIcon">
-                            <AnimatedExpandIcon isCollapsed={isCollapsed} />
-                        </span>
-                        <p>{text}</p>
-                    </div>
+                    (<div
+                        id="hest"
+                        ref={ref => (this.collapseInnerElement = ref)}
+                        style={{
+                            overflow: 'hidden',
+                            maxHeight: `${style.height}px`,
+                        }}
+                    >
+                        {this.props.text}
+                    </div>)
                 }
             </Motion>
-        </div>
-    );
+            </div>
+        );
+    }
 }
+
 
 export default Collapsible;

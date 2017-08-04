@@ -48,8 +48,7 @@ class VideoDescription extends React.Component {
     ipsum = `Morbi eu scelerisque justo. Sed finibus, to rtor eu viverra fringilla,
     lectus sem cond imen tum mi, tempus tincidunt mauris dolor tempor
     nibh. Vestibulum quis convallis urna. Mauris massa lectus,
-    convallis in mi id, blandit suscipit turpis. Integer egestas
-    risus sodales dui euismod, quis auctor ex tincidunt. `;
+    convallis in mi id, blandit suscipit turpis. `;
 
     render() {
         return (
