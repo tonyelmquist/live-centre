@@ -60,8 +60,8 @@ class Chat extends Component {
     render() {
         return (
           <div className={`chat`}>
-            <span className="chat-title">Chat</span>
             <ul className="chat-messages" ref="chat" onWheel={this.onScroll} onTouchMove={this.onScroll}>
+                <li style={{ opacity: '.8' }}>Welcome to the chatroom! Write your message below..</li>
               {Chat.filterMessages(this.props.messages)}
             </ul>
             <input type="text" ref={ref => (this.inputBox = ref)} onKeyUp={this.onKeyDown} placeholder="Write your message here..."/>

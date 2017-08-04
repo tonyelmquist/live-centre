@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import AnimatedMenuCrossIcon from '../components/Icons/AnimatedMenuCrossIcon';
 
 // Shared icons
 // import HomeIcon from 'material-ui/svg-icons/action/home';
@@ -9,13 +10,13 @@ import { withRouter } from 'react-router';
 // import ChannelIcon from 'material-ui/svg-icons/action/language';
 // import VideoIcon from 'material-ui/svg-icons/AV/videocam';
 
-import { toggleMenu, hideMenu, toggleDrawerMenu } from '../actions/navigation';
+import { toggleMenu, hideMenu } from '../actions/navigation';
 
 import { HomeIcon, ProgramsIcon, ChannelsIcon, SportIcon } from '../components/Icons/TabIcons';
 
 // Menu components
-import HeaderMenu from './../components/Navigation/HeaderMenu';
-import TabMenu from './../components/Navigation/TabMenu';
+import HeaderMenu from '../components/Navigation/HeaderMenu';
+import MobileMenu from '../components/navigation/MobileMenu';
 import ExpandableMenu from './../components/Navigation/ExpandableMenu';
 import { searchKeyword, toggleSearch, closeSearch, emptySearch, focusedSearch, blurredSearch } from '../actions/search';
 // import VideoLibrary from 'material-ui/svg-icons/AV/video-library';
@@ -31,20 +32,11 @@ import { searchKeyword, toggleSearch, closeSearch, emptySearch, focusedSearch, b
  */
 
 class Header extends Component {
-    // Generate menu items that correspons with the react router paths.
-    getPageItems = () => {
-        const items = [
-      { tabIndex: 0, key: 'route_home', path: '/Home', icon: <HomeIcon /> },
-      { tabIndex: 1, key: 'route_programs', path: '/Programs', icon: <ProgramsIcon /> },
-      { tabIndex: 2, key: 'route_channels', path: '/Channels', icon: <ChannelsIcon /> },
-      { tabIndex: 3, key: 'route_sports', path: '/Sports', icon: <SportIcon /> },
-        ];
 
-        return items;
-    }
-
-    goBack = () => {
-        return this.props.history.goBack();
+    onMenuItemClick = (path, index) => {
+        this.changeRoute(path, index);
+        this.closeSearch();
+        this.hideMenu();
     }
 
     // Dont know if this is the best way to get the pathname. but it sure is the easiest..
@@ -57,6 +49,43 @@ class Header extends Component {
         }
         return pathname.replace('/', '');
     }
+
+    goBack = () => this.props.history.goBack()
+
+    // all the subpages, eg. Category/Program master. They have two slashes in the pathname.
+    isSubPage = () => {
+        const pathname = this.props.history.location.pathname;
+        const pathSegments = pathname.split('/');
+        const noOfSlashes = pathSegments.length - 1;
+
+        if (noOfSlashes > 1) {
+            return true;
+        }
+        return false;
+    }
+
+    menuItems = [
+        {
+            key: 'route_home',
+            onClick: () => this.onMenuItemClick('/Home', 0),
+            icon: <HomeIcon /> },
+        {
+            key: 'route_programs',
+            onClick: () => this.onMenuItemClick('/Programs', 1),
+            icon: <ProgramsIcon /> },
+        {
+            key: '',
+            onClick: () => this.openCloseMenu(),
+            icon: <AnimatedMenuCrossIcon isMenuOpen={() => this.props.menuIsOpen} /> },
+        {
+            key: 'route_channels',
+            onClick: () => this.onMenuItemClick('/Channels', 2),
+            icon: <ChannelsIcon /> },
+        {
+            key: 'route_sports',
+            onClick: () => this.onMenuItemClick('/Sports', 3),
+            icon: <SportIcon /> },
+    ];
 
     openCloseMenu = () => {
         this.props.dispatch(toggleMenu());
@@ -78,7 +107,7 @@ class Header extends Component {
     }
 
     handleSearchFocus = (isFocused) => {
-        if(isFocused){
+        if (isFocused) {
             this.props.dispatch(focusedSearch());
         } else {
             this.props.dispatch(blurredSearch());
@@ -105,11 +134,10 @@ class Header extends Component {
 
     isMenuOpen = () => this.props.menuIsOpen
     isDrawerMenuOpen = () => this.props.isDrawerMenuOpen
-    onTabMenuCenterClick = () => this.props.dispatch(toggleDrawerMenu())
 
-    //changeRoute = item => this.props.history.push(item.path);
-    //Tabindex is used to know which direction to swipe the screen
-    changeRoute = item => this.props.history.push({pathname: item.path, state: {tabIndex: item.tabIndex}});
+    // changeRoute = item => this.props.history.push(item.path);
+    // Tabindex is used to know which direction to swipe the screen
+    changeRoute = (path, index) => this.props.history.push({ pathname: path, state: { tabIndex: index } });
 
     categoryItems = () => {
         const items = [];
@@ -124,55 +152,37 @@ class Header extends Component {
         return items;
     }
 
-    // all the subpages, eg. Category/Program master. They have two slashes in the pathname.
-    isSubPage = () => {
-        const pathname = this.props.history.location.pathname;
-        const pathSegments = pathname.split('/');
-        const noOfSlashes = pathSegments.length - 1;
-
-        if (noOfSlashes > 1) {
-            return true;
-        }
-        return false;
-    }
-
     render() {
         return (
           <div id="header-container">
             <HeaderMenu
-              pageItems={this.getPageItems()}
-              categoryItems={this.categoryItems()}
-              openCloseMenu={this.openCloseMenu}
-              isMenuOpen={this.isMenuOpen}
-              locationName={this.getLocationName()}
-              isSubPage={this.isSubPage()}
-              changeRoute={this.changeRoute}
-              openCloseSearch={this.openCloseSearch}
-              handleSearch={this.handleSearch}
-              handleSearchFocus={this.handleSearchFocus}
-              searchState={this.props.search}
-              settingsState={this.props.settings}
-              closeSearch={this.closeSearch}
-              goBack={this.goBack}
+                pageItems={this.menuItems}
+                categoryItems={this.categoryItems()}
+                openCloseMenu={this.openCloseMenu}
+                isMenuOpen={this.isMenuOpen}
+                locationName={this.getLocationName()}
+                isSubPage={this.isSubPage()}
+                changeRoute={this.changeRoute}
+                openCloseSearch={this.openCloseSearch}
+                handleSearch={this.handleSearch}
+                handleSearchFocus={this.handleSearchFocus}
+                searchState={this.props.search}
+                settingsState={this.props.settings}
+                closeSearch={this.closeSearch}
+                goBack={this.goBack}
             />
-            <TabMenu
-              pageItems={this.getPageItems()}
-              changeRoute={this.changeRoute}
-              isMenuOpen={this.isMenuOpen}
-              isSubPage={this.isSubPage()}
-              searchState={this.props.search}
-              openCloseMenu={this.openCloseMenu}
-              closeSearch={this.closeSearch}
-              hideMenu={this.hideMenu}
-              onCenterClick={this.onTabMenuCenterClick}
+            <MobileMenu
+                menuItems={this.menuItems}
+                openCloseMenu={this.openCloseMenu}
+                indicatorColor="rgb(144, 202, 249)"
             />
             <ExpandableMenu
-              categoryItems={this.categoryItems()}
-              pageItems={this.getPageItems()}
-              openCloseMenu={this.openCloseMenu}
-              isMenuOpen={this.isMenuOpen}
-              changeRoute={this.changeRoute}
-              closeSearch={this.closeSearch}
+                categoryItems={this.categoryItems()}
+                pageItems={this.menuItems}
+                openCloseMenu={this.openCloseMenu}
+                isMenuOpen={this.isMenuOpen}
+                changeRoute={this.changeRoute}
+                closeSearch={this.closeSearch}
             />
           </div>
         );
@@ -188,7 +198,6 @@ Header.propTypes = {
     tags: PropTypes.object.isRequired,
     search: PropTypes.object.isRequired,
     settings: PropTypes.object.isRequired,
-    isDrawerMenuOpen: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({

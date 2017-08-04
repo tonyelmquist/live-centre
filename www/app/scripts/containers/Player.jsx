@@ -8,6 +8,7 @@ import {
   PlayToggle,
 } from 'video-react';
 import KeyboardArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
+import Settings from 'material-ui/svg-icons/action/settings';
 import { maximizeOverlayX, closeOverlayX, minimizeOverlayX } from '../actions/overlayX';
 import { Orientation } from '../constants/reduxConstants';
 import DataOverlay from './DataOverlay';
@@ -169,6 +170,11 @@ class Player extends React.Component {
         }
     }
 
+    onOpenSettings = () => {
+        console.log('Open Settings');
+        //this.props.onOpenSettings();
+    };
+
     render() {
         const minimizeIconStyles = {
             position: 'fixed',
@@ -181,14 +187,27 @@ class Player extends React.Component {
             opacity: `${this.props.overlayX.maximized ? '1' : '0'}`,
         };
 
+        const settingsIconStyles = {
+            position: 'fixed',
+            top: '20px',
+            right: '20px',
+            color: 'white',
+            zIndex: '2000',
+            width: '32px',
+            height: '32px',
+            opacity: `${this.props.overlayX.maximized ? '1' : '0'}`,
+        };
+
+        
+
 
         return (
           <div style={styles.playerStyle} className={'IMRPlayer'} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
             <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)}>
               <ControlBar autoHide >
                 <PlayToggle />
-                {/* <CurrentTimeDisplay /> */}
                 <KeyboardArrowDown style={minimizeIconStyles} onTouchTap={this.onMinimize} />
+                <Settings style={settingsIconStyles} onTouchTap={this.onOpenSettings} />
                 {/* <FontAwesome name="expand" />*/}
               </ControlBar>
               <source src={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`} />

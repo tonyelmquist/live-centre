@@ -45,7 +45,7 @@ msgstr "Series"
 #. Route Programs
 #:
 msgid "route_programs"
-msgstr "Programs"
+msgstr "Shows"
 
 #.Route Channels
 #:

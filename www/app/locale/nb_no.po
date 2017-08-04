@@ -64,7 +64,7 @@ msgstr "Sport"
 #. Route Programs
 #:
 msgid "route_programs"
-msgstr "Programmer"
+msgstr "Viser"
 
 
 #. Topics Rendering

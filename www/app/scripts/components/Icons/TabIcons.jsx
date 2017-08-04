@@ -1,7 +1,7 @@
-var React = require('react');
-var FontAwesome = require('react-fontawesome');
+const React = require('react');
+const FontAwesome = require('react-fontawesome');
 
-const size="2x";
+const size = '2x';
 
 
 export function HomeIcon() {
