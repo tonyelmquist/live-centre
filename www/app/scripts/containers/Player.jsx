@@ -15,26 +15,6 @@ import DataOverlay from './DataOverlay';
 import { showReplay, hideReplay, showHighlights } from '../actions/videoPlayer';
 import '../../../node_modules/video-react/dist/video-react.css';
 
-const styles = {
-    playerStyle: {
-        position: 'relative',
-        height: '100%',
-        width: '100%',
-        zIndex: 1500,
-        top: 0,
-        left: 0,
-    },
-    fullscreenButton: {
-        position: 'absolute',
-        bottom: 5,
-        right: 5,
-    },
-    iconButtons: {
-        marginLeft: '12px',
-        marginRight: '12px',
-    },
-};
-
 /**
  * Overlay Video Player.
  *
@@ -45,7 +25,8 @@ class Player extends React.Component {
 
     state = {
         isPreOverlayShowing: true,
-    }
+        forcedLandscapeMode: false,
+    };
 
     onPrePlayTouch = (e) => {
         e.stopPropagation();
@@ -198,17 +179,24 @@ class Player extends React.Component {
             opacity: `${this.props.overlayX.maximized ? '1' : '0'}`,
         };
 
-        
-
+        const playerStyles = {
+            position: 'relative',
+            transition: '.2s all',
+            height: 'auto',
+            width: `${window.innerWidth}px`,
+            zIndex: 1500,
+            top: 0,
+            left: 0,
+        };
 
         return (
-          <div style={styles.playerStyle} className={'IMRPlayer'} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
+          <div style={playerStyles} className={'IMRPlayer'} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
             <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)}>
-              <ControlBar autoHide >
+              <ControlBar autoHide>
                 <PlayToggle />
                 <KeyboardArrowDown style={minimizeIconStyles} onTouchTap={this.onMinimize} />
-                <Settings style={settingsIconStyles} onTouchTap={this.onOpenSettings} />
-                {/* <FontAwesome name="expand" />*/}
+                { this.props.orientation === Orientation.LANDSCAPE ? <Settings style={settingsIconStyles} onTouchTap={this.onOpenSettings} /> : <div />}
+                {/* <FontAwesome name="expand" /> */}
               </ControlBar>
               <source src={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`} />
             </Video>
