@@ -4,34 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { RaisedButton, Toggle } from 'material-ui';
 import { changeLang, changeAudioLang, changeSubtitleLang, toggleRecommendations, saveUserSettings } from '../../actions/settings';
-import FormList from '../../components/Form/FormList';
-
-const styles = {
-    headline: {
-        fontSize: 24,
-        fontWeight: 400,
-        height: '100%',
-        borderBottom: '1px solid rgba(0, 0, 0, .1)',
-        paddingBottom: '16px',
-        marginBottom: '8px',
-    },
-    container: {
-        padding: '20px',
-        paddingBottom: '60px',
-    },
-    underlinedHeaderInline: {
-        display: 'inline-block',
-        borderBottom: '1px solid rgba(0, 0, 0, .1)',
-        paddingBottom: '16px',
-        marginBottom: '16px',
-        marginTop: '32px',
-    },
-};
-
-const selectBoxStyle = {
-    width: '100%',
-    color: '#fff',
-};
+import FontAwesome from 'react-fontawesome';
 
 class SettingsPage extends React.Component {
     constructor() {
@@ -41,13 +14,14 @@ class SettingsPage extends React.Component {
             snackbarIsOpen: false,
             ageRating: '4',
             parentalCode: '1234',
+            devices: ['Ronjas Huawei', 'Tonys Macbook Pro', 'Dans PS4'],
         };
     }
 
-    handleAudioChange = (event) => this.props.dispatch(changeAudioLang(event.target.value));
-    handleSubtitleChange = (event) => this.props.dispatch(changeSubtitleLang(event.target.value));
+    handleAudioChange = event => this.props.dispatch(changeAudioLang(event.target.value));
+    handleSubtitleChange = event => this.props.dispatch(changeSubtitleLang(event.target.value));
     handleRecommendationsChange = () => this.props.dispatch(toggleRecommendations());
-    handleAgeRatingChange = (event) => this.setState({ ageRating: event.target.value })
+    handleAgeRatingChange = event => this.setState({ ageRating: event.target.value })
 
     handleSaveTouch = () => {
         this.props.dispatch(saveUserSettings(this.props.settings.options));
@@ -63,81 +37,114 @@ class SettingsPage extends React.Component {
         }
     }
 
+    removeFromDevices(id) {
+        console.log('remove id', id);
+
+        this.setState((state) => {
+            console.log(state);
+            return { devices: [...state.devices.slice(0, id), ...state.devices.slice(id + 1)] };
+        });
+    }
+
+
+    getFormList = () => {
+        let formList = (<li />);
+        if (this.state.devices.length > 0) {
+            const closeBtn = id => (
+          <FontAwesome
+            className="formListcloseBtn"
+            name="times"
+            onTouchTap={() => { this.removeFromDevices(id); }}
+          />);
+
+            formList = this.state.devices.map((device, key) =>
+            <li>{device} {closeBtn(key)} </li>,
+          );
+        } else {
+            formList = (<li className="unactive">No devices active</li>);
+        }
+        return (<ul className="formList">{formList}</ul>);
+    }
+
     render() {
         return (
-          <div className="settings-page" style={styles.container}>
-            <h1 style={styles.headline}>{i18next.t('setting_title')}</h1>
+          <div className="settingsPage container-fluid">
+            <div className="section">
+              <h3>{i18next.t('setting_language_options')}</h3>
 
-            <h3 style={styles.underlinedHeaderInline}>{i18next.t('setting_language_options')}</h3>
+              <label htmlFor="settings_audio">{i18next.t('setting_audio')}</label>
+              <select
+                value={this.props.settings.options.audioLanguage}
+                onChange={this.handleAudioChange}
+                id="settings_audio"
+              >
+                <option value={'en'}>{i18next.t('language_english')}</option>
+                <option value={'nb'}>{i18next.t('language_norwegian')}</option>
+              </select>
 
-            <h5>{i18next.t('setting_audio')}</h5>
-            <select
-              style={selectBoxStyle}
-              value={this.props.settings.options.audioLanguage}
-              onChange={this.handleAudioChange}
-            >
-              <option value={'en'}>{i18next.t('language_english')}</option>
-              <option value={'nb'}>{i18next.t('language_norwegian')}</option>
-            </select>
+              <label htmlFor="settings_language">{i18next.t('setting_language')}</label>
+              <select
+                value={this.props.settings.options.language}
+                onChange={this.handleLanguageChange}
+                id="settings_language"
+              >
+                <option value={'en'}>{i18next.t('language_english')}</option>
+                <option value={'nb'}>{i18next.t('language_norwegian')}</option>
+              </select>
 
-            <br />
+              <br />
 
-            <h5>{i18next.t('setting_language')}</h5>
-            <select
-              style={selectBoxStyle}
-              value={this.props.settings.options.language}
-              onChange={this.handleLanguageChange}
-            >
-              <option value={'en'}>{i18next.t('language_english')}</option>
-              <option value={'nb'}>{i18next.t('language_norwegian')}</option>
-            </select>
+              <label htmlFor="settings_subtitle">{i18next.t('setting_subtitle')}</label>
+              <select
+                value={this.props.settings.options.subtitleLanguage}
+                onChange={this.handleSubtitleChange}
+              >
+                <option value={'en'}>{i18next.t('language_english')}</option>
+                <option value={'nb'}>{i18next.t('language_norwegian')}</option>
+              </select>
+            </div>
 
-            <br />
+            <div className="section">
+              <h3>General Settings</h3>
+              <Toggle
+                label="Reccomendations"
+                toggled={this.props.settings.options.recommendations}
+                onToggle={this.handleRecommendationsChange}
+              />
+            </div>
 
-            <h5>{i18next.t('setting_subtitle')}</h5>
-            <select
-              style={selectBoxStyle}
-              value={this.props.settings.options.subtitleLanguage}
-              onChange={this.handleSubtitleChange}
-            >
-              <option value={'en'}>{i18next.t('language_english')}</option>
-              <option value={'nb'}>{i18next.t('language_norwegian')}</option>
-            </select>
+            <div className="section">
+              <h3>Active Devices</h3>
+              {this.getFormList()}
+            </div>
 
-            <h3 style={styles.underlinedHeaderInline}>General Settings</h3>
-            <Toggle
-              label="Reccomendations"
-              toggled={this.props.settings.options.recommendations}
-              onToggle={this.handleRecommendationsChange}
-            />
-            <br />
+            <div className="section">
+              <h3>Parental Controls</h3>
+              <label htmlFor="age_rating_setting">Age Rating</label>
+              <select
+                id="age_rating_setting"
+                value={this.state.ageRating}
+                onChange={this.handleAgeRatingChange}
+              >
+                <option value={'4'}>4+</option>
+                <option value={'9'}>9+</option>
+                <option value={'12'}>12+</option>
+                <option value={'17'}>17+</option>
+                <option value={'all'}>All</option>
+              </select>
 
-            <h3 style={styles.underlinedHeaderInline}>Active Devices</h3>
-            <FormList />
-            <br />
-
-            <h3 style={styles.underlinedHeaderInline}>Parental Controls</h3>
-            <h5>Age Rating</h5>
-            <select
-              style={selectBoxStyle}
-              value={this.state.ageRating}
-              onChange={this.handleAgeRatingChange}
-            >
-              <option value={'4'}>4+</option>
-              <option value={'9'}>9+</option>
-              <option value={'12'}>12+</option>
-              <option value={'17'}>17+</option>
-              <option value={'all'}>All</option>
-            </select>
-
-            <h5>Parental Code</h5>
-            <input
-              type="password"
-              value={this.state.parentalCode}
-            />
-            <br />
-
-            <RaisedButton label="Save" primary onTouchTap={this.handleSaveTouch} />
+              <label htmlFor="parental_password">Parental Code</label>
+              <input
+                id="parental_password"
+                type="password"
+                value={this.state.parentalCode}
+              />
+            </div>
+            <div className="section">
+              <button onTouchTap={this.handleSaveTouch} className="formBtn halfBtn"> Save </button>
+              <button className="formBtn secondaryBtn halfBtn"> Cancel </button>
+              {/* <RaisedButton label="Save" primary onTouchTap={this.handleSaveTouch} /> */}
+            </div>
           </div>
         );
     }
