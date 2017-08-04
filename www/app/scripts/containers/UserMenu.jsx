@@ -14,15 +14,15 @@ class UserMenu extends Component {
     }
 
     handleSettingsTouchTap = () => {
-        this.props.changeRoute({ path: '/Settings' });
+        this.props.changeRoute('/Settings');
     }
 
     handleWishlistTouchTap = () => {
-        this.props.changeRoute({ path: '/Wishlist' });
+        this.props.changeRoute('/Wishlist');
     }
 
     handleOpenProfile = () => {
-        this.props.changeRoute({ path: '/Profile' });
+        this.props.changeRoute('/Profile');
     }
 
     render() {

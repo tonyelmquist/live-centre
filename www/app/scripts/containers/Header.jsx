@@ -137,7 +137,10 @@ class Header extends Component {
 
     // changeRoute = item => this.props.history.push(item.path);
     // Tabindex is used to know which direction to swipe the screen
-    changeRoute = (path, index) => this.props.history.push({ pathname: path, state: { tabIndex: index } });
+    changeRoute = (path, index) => {
+        const tabIndex = index;
+        this.props.history.push({ pathname: path, state: { tabIndex } });
+    }
 
     categoryItems = () => {
         const items = [];
