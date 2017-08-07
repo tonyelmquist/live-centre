@@ -55,7 +55,7 @@ export function highlightsReducer(
     }
 }
 
-export function handleSelection(state = { isSelected: false, video: {}, isFullscreen: false, currentTime: 0, controlBarVisibility: true }, action) {
+export function handleSelection(state = { isSelected: false, video: {}, isFullscreen: false, currentTime: 0, controlBarVisibility: true, isVideoSettingsOpen: false }, action) {
     switch (action.type) {
     case Actions.VIDEO_SELECTED:
         return Object.assign({}, state, {
@@ -82,7 +82,11 @@ export function handleSelection(state = { isSelected: false, video: {}, isFullsc
     case Actions.SET_CONTROL_BAR_VISIBILITY:
         return Object.assign({}, state, {
             controlBarVisibility: action.visibility,
-        })
+        });
+    case Actions.SET_VIDEO_SETTINGS_OPEN:
+        return Object.assign({}, state, {
+            isVideoSettingsOpen: action.isOpen,
+        });
     default:
         return state;
     }

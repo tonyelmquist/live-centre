@@ -103,6 +103,7 @@ class ReduxConstants {
     static get INVALIDATE_SELECTED() { return 'INVALIDATE_SELECTED'; }
 
     static get SET_CONTROL_BAR_VISIBILITY() { return 'SET_CONTROL_BAR_VISIBILITY'; }
+    static get SET_VIDEO_SETTINGS_OPEN() { return 'SET_VIDEO_SETTINGS_OPEN'; }
 
 
     //NOTIFICATIONS

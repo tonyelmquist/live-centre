@@ -12,7 +12,7 @@ import Settings from 'material-ui/svg-icons/action/settings';
 import { maximizeOverlayX, closeOverlayX, minimizeOverlayX } from '../actions/overlayX';
 import { Orientation } from '../constants/reduxConstants';
 import DataOverlay from './DataOverlay';
-import { showReplay, hideReplay, showHighlights, setControlBarVisibility } from '../actions/videoPlayer';
+import { showReplay, hideReplay, showHighlights, setControlBarVisibility, isVideoSettingsOpen } from '../actions/videoPlayer';
 import '../../../node_modules/video-react/dist/video-react.css';
 
 /**
@@ -157,12 +157,15 @@ class Player extends React.Component {
 
     onOpenSettings = () => {
         console.log('Open Settings');
-        // this.props.onOpenSettings();
+        this.props.dispatch(isVideoSettingsOpen(true));
     };
 
     controlBarTimeoutTest1 = null;
 
     onTouchTap = () => {
+        if (this.props.orientation === Orientation.LANDSCAPE) {
+            return;
+        }
         if (this.props.overlayX.maximized) {
             this.props.dispatch(setControlBarVisibility(true));
             clearTimeout(this.controlBarTimeoutTest1);

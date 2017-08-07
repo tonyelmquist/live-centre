@@ -7,6 +7,7 @@ import BurstButton from '../components/buttons/BurstButton';
 import ChatOverlay from '../components/SecondLayer/ChatOverlay';
 import PenaltyCard from '../components/SecondLayer/PenaltyCard';
 import ScoreOverlay from '../components/SecondLayer/ScoreOverlay';
+import EmptyOverlay from '../components/SecondLayer/EmptyOverlay';
 import LineupOverlay from '../components/SecondLayer/LineupOverlay';
 import PopIndicatorManager from '../components/SecondLayer/PopIndicatorManager';
 import PlayerInfoOverlay from '../components/SecondLayer/PlayerInfoOverlay';
@@ -14,7 +15,7 @@ import Replayer from '../components/VideoPlayer/Replayer';
 import HighlightsRow from '../components/VideoPlayer/HighlightsRow';
 import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
 import { removeNotification } from '../actions/notifications';
-import { hideHighlights } from '../actions/videoPlayer';
+import { hideHighlights, isVideoSettingsOpen } from '../actions/videoPlayer';
 
 class DataOverlay extends Component {
     constructor(props) {
@@ -33,6 +34,7 @@ class DataOverlay extends Component {
             isBurstButtonShowing: false,
             isLineupShowing: false,
             isPlayerInfoShowing: false,
+            isSettingsOverlayShowing: false,
         };
     }
 
@@ -132,6 +134,10 @@ class DataOverlay extends Component {
           onClose={this.onPlayerInfoClose}
           onRightButton={this.onPlayerInfoBack}
         />
+        <EmptyOverlay
+            isOpen={this.props.playback.isVideoSettingsOpen}
+            onClose={() => this.props.dispatch(isVideoSettingsOpen(false))}
+        />
         {this.props.replay.replayerOpen &&
           <Replayer
             open={this.props.replay.replayerOpen}
@@ -167,6 +173,7 @@ const mapStateToProps = state => ({
     highlights: state.highlights,
     sportsInfo: state.sportsInfo,
     notifications: state.notifications.notifications,
+    playback: state.playback,
 });
 
 export default connect(mapStateToProps)(DataOverlay);

@@ -130,6 +130,7 @@ class HeroCarousel extends Component {
                 return (
                   <div key={`carousel-${videoKey}`} style={styles.carousel}>
                     <div className="heroCarouselImage" key={videoKey}>
+                        <div className="carousel-underlay" />
                       <div className="carouselImageTitleAndDescription">
                         <h4
                         className="carouselImageTitle"

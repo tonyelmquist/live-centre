@@ -149,3 +149,15 @@ export function hideReplay() {
 export function setControlBarVisibility(visibility) {
     return { type: Actions.SET_CONTROL_BAR_VISIBILITY, visibility };
 }
+
+/**
+ * Opens and closes video settings overlay
+ *
+ * @export
+ * @param {bool} isOpen
+ * @memberof Actions:VideoPlayer
+ * @returns Dispatchable Action
+ */
+export function isVideoSettingsOpen(isOpen) {
+    return { type: Actions.SET_VIDEO_SETTINGS_OPEN, isOpen };
+}
