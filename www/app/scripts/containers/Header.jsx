@@ -79,11 +79,11 @@ class Header extends Component {
             icon: <AnimatedMenuCrossIcon isMenuOpen={() => this.props.menuIsOpen} /> },
         {
             key: 'route_channels',
-            onClick: () => this.onMenuItemClick('/Channels', 2),
+            onClick: () => this.onMenuItemClick('/Channels', 3),
             icon: <ChannelsIcon /> },
         {
             key: 'route_sports',
-            onClick: () => this.onMenuItemClick('/Sports', 3),
+            onClick: () => this.onMenuItemClick('/Sports', 4),
             icon: <SportIcon /> },
     ];
 
@@ -155,7 +155,21 @@ class Header extends Component {
         return items;
     }
 
+    activeItem = 0;
+
+    setActiveItem = () => {
+        const location = this.props.location.state;
+        console.log(this.props.location, 'location');
+        if (typeof location !== 'undefined') {
+            this.activeItem = this.props.location.state.tabIndex;
+        }
+        if (this.props.location.pathname === '/Home') {
+            this.activeItem = 0;
+        }
+    }
+
     render() {
+        this.setActiveItem();
         return (
           <div id="header-container">
             <HeaderMenu
@@ -178,6 +192,8 @@ class Header extends Component {
                 menuItems={this.menuItems}
                 openCloseMenu={this.openCloseMenu}
                 indicatorColor="rgb(144, 202, 249)"
+                searchState={this.props.search}
+                activeItem={this.activeItem}
             />
             <ExpandableMenu
                 categoryItems={this.categoryItems()}
@@ -201,6 +217,7 @@ Header.propTypes = {
     tags: PropTypes.object.isRequired,
     search: PropTypes.object.isRequired,
     settings: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

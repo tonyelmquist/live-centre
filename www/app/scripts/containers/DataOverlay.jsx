@@ -32,26 +32,8 @@ class DataOverlay extends Component {
             selectedPlayer: null,
             isBurstButtonShowing: false,
             isLineupShowing: false,
-            isPlayerInfoShowing: false
+            isPlayerInfoShowing: false,
         };
-
-        // this.state.socket.on('NEW_PENALTY_CARD', (data) => {
-        //     self.setState({
-        //         penaltyCard: {
-        //             isShowing: true,
-        //             text: data.message,
-        //             color: data.type,
-        //         },
-        //     });
-
-        //     setTimeout(() => {
-        //         self.setState({
-        //             penaltyCard: {
-        //                 isShowing: false,
-        //             },
-        //         });
-        //     }, 7000);
-        // });
     }
 
     onMessageSend = (message) => {

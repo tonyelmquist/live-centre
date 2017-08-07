@@ -22,13 +22,17 @@ class MobileMenu extends Component {
     render() {
         const indicatorStyle = {
             width: `${100 / this.props.menuItems.length}%`,
-            left: `${(100 / this.props.menuItems.length) * this.state.active}%`,
+            left: `${(100 / this.props.menuItems.length) * this.props.activeItem}%`,
             background: this.props.indicatorColor,
             height: `${this.props.indicatorHeight}px`,
         };
 
+        const containerStyle = {
+            opacity: this.props.searchState.isSearching && this.props.searchState.isOpen ? 0 : 1,
+        };
+
         return (
-            <div className="mobile-menu">
+            <div className="mobile-menu" style={containerStyle}>
                 <div className="mobile-menu-items">
                     {this.props.menuItems.map((value, id) =>
                         (<a key={`mobile-menu-${value.key}`} className={`mobile-menu-item ${value.key.length <= 0 ? 'icon-only ' : ' '}${value.key}`} onClick={() => this.onClick(value, id)} tabIndex="0" role="link">
@@ -46,12 +50,15 @@ class MobileMenu extends Component {
 MobileMenu.defaultProps = {
     indicatorColor: 'rgb(144, 202, 249)',
     indicatorHeight: 4,
+    activeItem: 0,
 };
 
 MobileMenu.propTypes = {
     menuItems: PropTypes.array.isRequired,
     indicatorColor: PropTypes.string,
     indicatorHeight: PropTypes.bool,
+    searchState: PropTypes.object.isRequired,
+    activeItem: PropTypes.bool,
 };
 
 export default MobileMenu;
