@@ -136,3 +136,16 @@ export function showReplay(videoUrl, timestamp) {
 export function hideReplay() {
     return { type: Actions.HIDE_REPLAY };
 }
+
+
+/**
+ * Set Control Bar visibility (doesn't effect the actual control bar of the player, only replicates, check Player.js)
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @param {bool} visibility - Visibility to set of control bar
+ * @returns Dispatchable Action
+ */
+export function setControlBarVisibility(visibility) {
+    return { type: Actions.SET_CONTROL_BAR_VISIBILITY, visibility };
+}

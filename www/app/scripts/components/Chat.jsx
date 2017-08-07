@@ -58,9 +58,22 @@ class Chat extends Component {
 
 
     render() {
+        const chatTitleStyles = {
+            transition: '.7s all',
+            transform: `translateY(-${this.props.showChatTitle ? '0' : '100'}%)`,
+        };
+
+        const messagesStyle = {
+            transition: '.7s all',
+            marginTop: `${this.props.showChatTitle ? '40px' : '0'}`,
+        };
+
         return (
-          <div className={`chat`}>
-            <ul className="chat-messages" ref="chat" onWheel={this.onScroll} onTouchMove={this.onScroll}>
+          <div className="chat">
+            <div className="chat-title" style={chatTitleStyles} ref={ref => (this.chatTitleRef = ref)}>
+                {this.props.video.title}
+            </div>
+            <ul className="chat-messages" ref="chat" onWheel={this.onScroll} onTouchMove={this.onScroll} style={messagesStyle}>
                 <li style={{ opacity: '.8' }}>Welcome to the chatroom! Write your message below..</li>
               {Chat.filterMessages(this.props.messages)}
             </ul>

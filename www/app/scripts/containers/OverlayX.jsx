@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import VideoX from '../components/OverlayX/VideoX';
 import ContentX from '../components/OverlayX/ContentX';
@@ -45,7 +46,8 @@ class OverlayX extends Component {
                     onMinimize={this.onMinimize}
                     isOpen={this.props.overlayX.open}
                     isMaximized={this.props.overlayX.maximized}
-                    videoUrl={this.props.video.videoUrl} />
+                    videoUrl={this.props.video.videoUrl}
+                />
                 <ContentX
                     video={this.props.video}
                     allVideos={this.props.allVideos}
@@ -61,6 +63,7 @@ class OverlayX extends Component {
                     isCollapsed={this.props.overlayX.collapsedInfo}
                     onTileOpen={this.onTileOpen}
                     handleAddToWishlist={this.handleAddToWishlist}
+                    isControlBarVisible={this.props.playback.controlBarVisibility}
                 />
             </div>
             );
@@ -75,7 +78,15 @@ class OverlayX extends Component {
 }
 
 OverlayX.propTypes = {
-
+    video: PropTypes.object.isRequired,
+    settings: PropTypes.object.isRequired,
+    overlayX: PropTypes.object.isRequired,
+    playback: PropTypes.object.isRequired,
+    chat: PropTypes.object.isRequired,
+    seasons: PropTypes.object.isRequired,
+    series: PropTypes.object.isRequired,
+    allVideos: PropTypes.object.isRequired,
+    tags: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

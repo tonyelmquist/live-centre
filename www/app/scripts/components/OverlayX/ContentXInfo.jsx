@@ -38,6 +38,8 @@ class ContentXInfo extends Component {
                     <Chat
                         messages={this.props.messages}
                         onMessageSend={this.props.onMessageSend}
+                        showChatTitle={this.props.isControlBarVisible}
+                        video={video}
                     />)
                 : (<VideoDescription
                         video={video}

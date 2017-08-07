@@ -12,7 +12,7 @@ import Settings from 'material-ui/svg-icons/action/settings';
 import { maximizeOverlayX, closeOverlayX, minimizeOverlayX } from '../actions/overlayX';
 import { Orientation } from '../constants/reduxConstants';
 import DataOverlay from './DataOverlay';
-import { showReplay, hideReplay, showHighlights } from '../actions/videoPlayer';
+import { showReplay, hideReplay, showHighlights, setControlBarVisibility } from '../actions/videoPlayer';
 import '../../../node_modules/video-react/dist/video-react.css';
 
 /**
@@ -33,10 +33,16 @@ class Player extends React.Component {
 
         this.setState({ isPreOverlayShowing: false });
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
-            console.log('try to play?');
             this.largeVideoPlayer.video.video.play();
 
             this.videoLoaded = this.props.video.videoUrl;
+
+            this.props.dispatch(setControlBarVisibility(true));
+            setTimeout(() => {
+                if (!this.largeVideoPlayer.video.video.paused) {
+                    this.props.dispatch(setControlBarVisibility(false));
+                }
+            }, 3000);
         }
     }
 
@@ -137,12 +143,10 @@ class Player extends React.Component {
 
     componentWillUpdate = (nextProps) => {
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
-            console.log('componentWillUpdate', this.videoLoaded, nextProps.video.videoUrl);
             if (typeof this.videoLoaded === 'undefined') {
                 return;
             }
             if (this.videoLoaded !== nextProps.video.videoUrl) {
-                console.info('Component Will Update Loaded');
                 this.setState({ isPreOverlayShowing: true });
                 this.largeVideoPlayer.video.video.load();
 
@@ -153,8 +157,28 @@ class Player extends React.Component {
 
     onOpenSettings = () => {
         console.log('Open Settings');
-        //this.props.onOpenSettings();
+        // this.props.onOpenSettings();
     };
+
+    controlBarTimeoutTest1 = null;
+
+    onTouchTap = () => {
+        if (this.props.overlayX.maximized) {
+            this.props.dispatch(setControlBarVisibility(true));
+            clearTimeout(this.controlBarTimeoutTest1);
+            this.controlBarTimeoutTest1 = setTimeout(() => {
+                if (!this.largeVideoPlayer.video.video.paused) {
+                    this.props.dispatch(setControlBarVisibility(false));
+                }
+            }, 3000);
+        } else {
+            if (this.largeVideoPlayer.video.video.paused) {
+                this.largeVideoPlayer.video.video.play();
+            } else {
+                this.largeVideoPlayer.video.video.pause();
+            }
+        }
+    }
 
     render() {
         const minimizeIconStyles = {
@@ -190,7 +214,7 @@ class Player extends React.Component {
         };
 
         return (
-          <div style={playerStyles} className={'IMRPlayer'} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
+          <div style={playerStyles} className={'IMRPlayer'} onTouchTap={this.onTouchTap} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
             <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)}>
               <ControlBar autoHide>
                 <PlayToggle />

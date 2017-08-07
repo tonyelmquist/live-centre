@@ -102,6 +102,8 @@ class ReduxConstants {
     static get VIDEO_SELECTED() { return 'VIDEO_SELECTED'; }
     static get INVALIDATE_SELECTED() { return 'INVALIDATE_SELECTED'; }
 
+    static get SET_CONTROL_BAR_VISIBILITY() { return 'SET_CONTROL_BAR_VISIBILITY'; }
+
 
     //NOTIFICATIONS
     static get ADD_NEW_NOTIFICATION() { return 'ADD_NEW_NOTIFICAITON'; }

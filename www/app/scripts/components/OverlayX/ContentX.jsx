@@ -30,6 +30,7 @@ class ContentX extends Component {
                             onMessageSend={this.props.onMessageSend}
                             onTileOpen={this.props.onTileOpen}
                             handleAddToWishlist={() => this.props.handleAddToWishlist(this.props.video.id)}
+                            isControlBarVisible={this.props.isControlBarVisible}
                         /> 
                     </div>)
                 }
