@@ -12,6 +12,9 @@ class ReduxConstants {
     static get CLEAR_MESSAGES() { return 'CLEAR_MESSAGES'; }
     static get TOGGLE_CHAT_MENU() { return 'TOGGLE_CHAT_MENU'; }
 
+    // MODALS
+    static get SHOW_LOGIN_MODAL() { return 'SHOW_LOGIN_MODAL'; }
+
     // FETCH DATA
     static get FETCH_VIDEO_SUCCESS() { return 'FETCH_VIDEO_SUCCESS'; }
     static get FETCH_VIDEO_FAILED() { return 'FETCH_VIDEO_FAILED'; }

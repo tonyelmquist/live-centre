@@ -9,6 +9,7 @@ import style from './constants/MuiStyle';
 import initLang from './utils/i18nextInit';
 import store from './utils/store';
 import initVideos from './utils/initVideos';
+import initFirebase from './utils/initFirebase';
 // import io from 'socket.io-client';
 import initChangingScores from './utils/initScoreChanger';
 import initUserSettings from './utils/initUserSettings';
@@ -26,6 +27,17 @@ initChangingScores(store);
 initLang(store);
 
 initUserSettings(store);
+
+// Init Firebase
+initFirebase();
+
+// capture back button
+
+window.jsBridge = {};
+
+window.jsBridge.onBackPressed = () => {
+    window.alert('you pressed the back button! now do with this what you will...');
+};
 
 // Custom theme
 const muiTheme = getMuiTheme(style);

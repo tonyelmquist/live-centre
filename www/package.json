@@ -27,6 +27,7 @@
     "deep-diff": "^0.3.8",
     "express": "^4.15.2",
     "file-loader": "^0.11.2",
+    "firebase": "^4.2.0",
     "i18next": "^8.4.0",
     "loglevel": "^1.4.1",
     "material-ui": "^0.18.2",

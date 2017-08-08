@@ -22,9 +22,11 @@ import Header from './Header';
 //Components
 import TransitionRoutes from '../components/TransitionRoutes';
 import SportPlayerOverlay from '../components/SportSection/SportPlayerOverlay';
+import LoginModal from '../components/Modals/LoginModal';
 //Actions
 import { setLandscape, setPortrait } from '../actions/settings';
 import { closeTeamMemberOverlay } from '../actions/pages/sportsPage';
+import { showLoginModal } from '../actions/modals';
 
 
 class App extends Component {
@@ -61,9 +63,15 @@ class App extends Component {
         this.props.dispatch(closeTeamMemberOverlay());
     }
 
+    closeLoginModal = () => {
+        this.props.dispatch(showLoginModal(false));
+    }
+
     render() {
-        //const preventScroll = this.props.state_all.overlayX.open || this.props.state_all.search.isOpen;
+        // const preventScroll = this.props.state_all.overlayX.open || this.props.state_all.search.isOpen;
+        // TODO: probably not use state_all here
         const teamMemberOverlay = this.props.state_all.sportsPage.sportPlayerOverlay;
+        console.log(this.props.modals);
         return (
           <MemoryRouter initialEntries={['/Home']}>
             <div>
@@ -73,7 +81,7 @@ class App extends Component {
                 {teamMemberOverlay.isOpen ? <SportPlayerOverlay closeTeamMemberOverlay={this.closeTeamMemberOverlay} teamMember={teamMemberOverlay.player} /> : <div />}
 
                     <TransitionRoutes>
-                        <Route exact path="/Home" component={HomePage}/>
+                        <Route exact path="/Home" component={HomePage} />
                         <Route path="/Programs" component={ProgramsPage} />
                         <Route path="/Channels" component={ChannelsPage} />
                         <Route path="/Sports" component={SportsPage} />
@@ -87,11 +95,10 @@ class App extends Component {
                         <Route path="/Wishlist" component={WishlistPage} />
 
                     </TransitionRoutes>
-                    
 
                 <OverlayX />
               </div>
-
+              <LoginModal isOpen={this.props.modals.showLoginModal} onClose={this.closeLoginModal} />
             </div>
           </MemoryRouter>
 
@@ -100,13 +107,13 @@ class App extends Component {
 }
 App.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    // loginState: PropTypes.bool,
-    // sidebarState: PropTypes.bool,
+    modals: PropTypes.object.isRequired,
     state_all: PropTypes.any.isRequired,
 };
 const mapStateToProps = state => ({
     loginState: state.isUserLoggedIn,
     sidebarState: state.isSidebarVisible,
+    modals: state.modals,
     state_all: state,
 });
 

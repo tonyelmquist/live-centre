@@ -8,6 +8,7 @@ import overlayX from './overlayXReducer';
 import notificationReducer from './notificationReducer';
 import { search, searchFilterTab } from './searchReducer';
 import dataOverlayReducer from './secondLayerReducer';
+import modalsReducer from './modalsReducer';
 import settings from './settingsReducer';
 import { showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo } from './videoCardReducer';
 import { replayReducer as replay, highlightsReducer as highlights, handleSelection } from './videoPlayerReducer';
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
         category: changeCardCategory,
         video: changeVideoInfo,
     }),
+    modals: modalsReducer,
     programsPage: programsPageTab,
     videos: videosReducer,
     playback: handleSelection,

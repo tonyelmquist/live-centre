@@ -6,11 +6,16 @@ import i18next from 'i18next';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { logoutSuccess } from '../actions/authentication';
+import { showLoginModal } from '../actions/modals';
 
 class UserMenu extends Component {
     static muiName = 'IconMenu';
     handleLogout = () => {
         this.props.dispatch(logoutSuccess());
+    }
+
+    handleLogin = () => {
+        this.props.dispatch(showLoginModal(true));
     }
 
     handleSettingsTouchTap = () => {
@@ -35,6 +40,7 @@ class UserMenu extends Component {
             anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
           > 
 
+            <MenuItem primaryText='Login' onTouchTap={this.handleLogin} />
             <MenuItem primaryText={i18next.t('profile_page')} onTouchTap={this.handleOpenProfile} />
             <MenuItem primaryText={i18next.t('route_wishlist')} onTouchTap={this.handleWishlistTouchTap}/>
             <MenuItem primaryText={i18next.t('route_settings')} onTouchTap={this.handleSettingsTouchTap} />
