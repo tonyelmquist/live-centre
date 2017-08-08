@@ -110,8 +110,8 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
         mJavascriptBridge.onBackPressed();
+        //super.onBackPressed();
     }
 
     @JavascriptInterface
@@ -127,4 +127,5 @@ public class MainActivity extends FragmentActivity {
         });
         return true;
     }
+
 }

@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.util.Log;
 import android.webkit.ValueCallback;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -81,7 +83,21 @@ public class JavascriptBridge {
 
     public void onBackPressed() {
         String javascriptString = "window.jsBridge.onBackPressed()";
-        sendJS(javascriptString, null);
+
+        sendJS(javascriptString, new ValueCallback<String>() {
+            @Override
+            public void onReceiveValue(String s) {
+                String test = new String("\"moveTaskToBack\"");
+
+                if (test.equals(s)) {
+                    mainActivity.moveTaskToBack(true);
+                }
+            }
+        });
+    }
+
+    public void showToast(String toast) {
+        Toast.makeText(getContext(), toast, Toast.LENGTH_SHORT).show();
     }
 
     private Boolean isTrue(String booleanString) {

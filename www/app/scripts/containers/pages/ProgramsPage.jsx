@@ -59,7 +59,6 @@ class ProgramsPage extends React.Component {
         }
 
         for (const key in programs) {
-            console.log(programs);
             tiles.push(
                 <MasonryImageTile
                 key={`channel-tile-${key}`}

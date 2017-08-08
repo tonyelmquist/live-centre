@@ -6,11 +6,7 @@ let direction = 1; // 1 = right, 0 = left, -1 == no direction
 
 
 const TransitionRoutes = (props) => {
-    
-
-
     return (<Route render={({ location, match, history }) => {
-            console.log(history);
         let animStyle = {};
 
         if (location.state !== undefined) {

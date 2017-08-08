@@ -19,6 +19,7 @@ import HeaderMenu from '../components/Navigation/HeaderMenu';
 import MobileMenu from '../components/navigation/MobileMenu';
 import ExpandableMenu from './../components/Navigation/ExpandableMenu';
 import { searchKeyword, toggleSearch, closeSearch, emptySearch, focusedSearch, blurredSearch } from '../actions/search';
+import {closeOverlayX} from '../actions/overlayX';
 // import VideoLibrary from 'material-ui/svg-icons/AV/video-library';
 
 /* This component is the starting point for all navigation.
@@ -159,7 +160,6 @@ class Header extends Component {
 
     setActiveItem = () => {
         const location = this.props.location.state;
-        console.log(this.props.location, 'location');
         if (typeof location !== 'undefined') {
             this.activeItem = this.props.location.state.tabIndex;
         }
@@ -167,9 +167,32 @@ class Header extends Component {
             this.activeItem = 0;
         }
     }
+    nativeBackAction = () => {
+        const canGoBack = (this.props.history.length > 1);
+        //Check if search or video overlay is open. 
+        if(this.props.menuIsOpen){
+            this.openCloseMenu();
+            return "false";
+        } else if(this.props.search.isOpen){
+            this.openCloseSearch();
+            return "false";
+        } else if(this.props.overlayX.open){
+            this.props.dispatch(closeOverlayX());
+            return "false";
+        } else if (this.props.location.pathname !== '/Home') {
+            this.props.history.goBack();
+            return "false";
+        } else {
+            return 'moveTaskToBack';
+        }
+    }
 
     render() {
         this.setActiveItem();
+        window.jsBridge = {};
+        window.jsBridge.onBackPressed = () => {
+            return this.nativeBackAction();
+        };
         return (
           <div id="header-container">
             <HeaderMenu
@@ -226,6 +249,7 @@ const mapStateToProps = state => ({
     search: state.search,
     settings: state.settings,
     isDrawerMenuOpen: state.drawerMenuState,
+    overlayX: state.overlayX,
 });
 
 
