@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MasonryContainer from '../../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
-
+import Path from 'path';
+import soccer from '../../../img/mockup/sport/soccer.png';
 
 class SportsPage extends React.Component {
 
@@ -22,12 +23,13 @@ class SportsPage extends React.Component {
         const tiles = [];
         const sports = this.props.sportsInfo.sports;
 
+
         for (const key in sports) {
-          for (let i = 0; i < 6; i++) { // Cheat to simulate many sports..
-            tiles.push(
+            for (let i = 0; i < 6; i++) { // Cheat to simulate many sports..
+                tiles.push(
           <MasonryImageTile
             key={`sports-sport-${key + i}`}
-            poster={sports[key].thumbnail}
+            poster={soccer}
             overlay={
                 <div
                   className="centerOverlay"
@@ -38,8 +40,8 @@ class SportsPage extends React.Component {
               }
           />,
         );
+            }
         }
-      }
         return tiles;
     }
 
@@ -52,7 +54,7 @@ class SportsPage extends React.Component {
           </MasonryContainer>
         </div>
 
-      );
+        );
     }
 }
 

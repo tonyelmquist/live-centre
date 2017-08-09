@@ -67,6 +67,13 @@ class HeroCarousel extends Component {
     }
 
     render() {
+        let autoPlay = true;
+
+        console.log(this.props);
+        // if(this.props.history.length > 0){
+        //     autoPlay = false;
+        // }
+
         const self = this;
 
         const settingsLeft = {
@@ -152,7 +159,7 @@ class HeroCarousel extends Component {
                     </div>
                     <div className="heroCarouselVideo">
                       <Video
-                        autoPlay
+                        autoPlay={autoPlay}
                         playsInline
                         muted
                         controls={[]}
@@ -223,11 +230,13 @@ HeroCarousel.propTypes = {
     dispatch: PropTypes.func.isRequired,
     // selected: PropTypes.bool,
     tags: PropTypes.any.isRequired,
+    history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
     videos: state.videos,
     selected: state.playback.isSelected,
     tags: state.tags,
+    history: state.history,
 });
 export default connect(mapStateToProps)(HeroCarousel);

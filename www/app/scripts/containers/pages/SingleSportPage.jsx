@@ -6,6 +6,8 @@ import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 import HorizontalScrollContainer from '../../components/HorizontalScroll/HorizontalScrollContainer';
 import CircleRowItem from '../../components/HorizontalScroll/CircleRowItem';
 import LiveTag from '../../components/common/LiveTag';
+import soccerBG from '../../../img/mockup/sport/soccer-background.jpg';
+import teamImg from '../../../img/mockup/sport/soccer-teams/Real-Madrid-Logo.png';
 
 class SingelSportsPage extends React.Component {
 
@@ -25,7 +27,7 @@ class SingelSportsPage extends React.Component {
           tiles.push(
         <MasonryImageTile
           key={`sport-video-${i}`}
-          poster={'/img/soccer-background.jpg'}
+          poster={soccerBG}
           overlay={<LiveTag />}
           // overlay={<MasonryTextOverlay video={video} handleTilePlay={this.handleTilePlay} title={video.title}/>}
         />,
@@ -45,7 +47,7 @@ class SingelSportsPage extends React.Component {
             console.log(teams, key);
             rowItems.push(<CircleRowItem
             key={key}
-            img={teams[key].logo}
+            img={teamImg}
             handleClick={() => this.handleTeamOpen(key)}
         />);
       }

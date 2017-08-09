@@ -2,6 +2,14 @@ import Actions from '../../constants/reduxConstants';
 import TeamMember from '../../classes/teamMember';
 import Team from '../../classes/team';
 
+//import of local images. Should be replaced later with remote images. 
+import garethPortrait from '../../../img//mockup/sport/soccer-players/gareth-bale-portrait.jpg'
+import garethActionShot from '../../../img/mockup/sport/soccer-players/gareth-bale-fullbody.jpg'
+import keylorPortrait from '../../../img/mockup/sport/soccer-players/KeylorNavas_portrait.jpg'
+import keylorActionShot from '../../../img/mockup/sport/soccer-players/KeylorNavas-fullbody.jpg'
+import cristianoPortrait from  '../../../img/mockup/sport/soccer-players/ronaldo.png';
+import cristianoActionShot from '../../../img/mockup/sport/soccer-players/KeylorNavas-fullbody.jpg';
+
 // Dummy Sports and channels
 const filters = [
   { key: 'barn', avatarStyle: 'background-color: red' },
@@ -56,8 +64,8 @@ const playersDefaultState = {
         Ronaldo has four FIFA Ballon d'Or awards,
         the most for a European player, 
         and is the first player in history to win four European Golden Shoes.`,
-        portrait: '/img/soccer-players/ronaldo.png',
-        actionShot: '/img/soccer-players/ronaldo-fullbody.jpg',
+        portrait: cristianoPortrait,
+        actionShot: cristianoActionShot,
 
     },
     11: {
@@ -66,8 +74,8 @@ const playersDefaultState = {
         position: 'CB2',
         number: 11,
         description: 'Gareth Bale',
-        portrait: '/img/soccer-players/gareth-bale-portrait.jpg',
-        actionShot: '/img/soccer-players/gareth-bale-fullbody.jpg',
+        portrait: garethPortrait,
+        actionShot: garethActionShot,
     },
     12: {
         name: 'Gareth Bale',
@@ -75,8 +83,8 @@ const playersDefaultState = {
         position: 'CB1',
         number: 12,
         description: 'Gareth Bale',
-        portrait: '/img/soccer-players/gareth-bale-portrait.jpg',
-        actionShot: '/img/soccer-players/gareth-bale-fullbody.jpg',
+        portrait: garethPortrait,
+        actionShot: garethActionShot,
     },
     1: {
         name: 'Keylor Navas',
@@ -86,8 +94,8 @@ const playersDefaultState = {
         description: `Keylor Antonio Navas Gamboa (born 15 December 1986), 
         known as Keylor Navas, is a Costa Rican professional footballer 
         who plays as a goalkeeper for Spanish club Real Madrid and the Costa Rica national team.`,
-        portrait: '/img/soccer-players/KeylorNavas_portrait.jpg',
-        actionShot: '/img/soccer-players/KeylorNavas-fullbody.jpg',
+        portrait: keylorPortrait,
+        actionShot: keylorActionShot,
     },
 };
 

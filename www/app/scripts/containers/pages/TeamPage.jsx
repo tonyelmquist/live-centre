@@ -8,6 +8,9 @@ import MasonryContainer from '../../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 import { changeTeamTabIndex, openTeamMemberOverlay } from '../../actions/pages/sportsPage';
 
+import picture1 from '../../../img/mockup/sport/soccer-background-1.jpg';
+import picture2 from '../../../img/mockup/sport/soccer-background-2.jpg';
+
 const tabs = [
     'Info',
     'Games',
@@ -21,12 +24,13 @@ class TeamPage extends React.Component {
         this.props.dispatch(changeTeamTabIndex(index));
     }
     getVideoTiles = (activeTab) => {
+        const img = activeTab == 1 ? picture1 : picture2;
         const tiles = [];
         for (let i = 0; i < 10; i++) {
             tiles.push(
         <MasonryImageTile
           key={`sport-video-${i}`}
-          poster={`img/soccer-background-${activeTab}.jpg`}
+          poster={img}
           // overlay={<MasonryTextOverlay video={video} handleTilePlay={this.handleTilePlay} title={video.title}/>}
         />,
       );
