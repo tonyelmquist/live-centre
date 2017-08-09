@@ -101,14 +101,14 @@ class Overlay extends React.Component {
                     'transform': `translate3d(0, ${y}%, 0) scale3d(${scale}, ${scale}, 1)`
                 }}
                     id="overlayDiv">
-                    <div className="overlay-header" style={styles.overlayHeaderStyle}>
+                    {/*<div className="overlay-header" style={styles.overlayHeaderStyle}>
                         <IconButton
                             iconStyle={styles.mediumIcon}
                             style={styles.medium}
                             onTouchTap={this.props.handleClose}>
                             <ArrowBack hoverColor={blue500}/>
                         </IconButton>
-                    </div>
+                    </div>*/}
                     {this.props.children}
                     {/*<FloatingActionButton
                         mini

@@ -6,6 +6,7 @@
 
 import axios from 'axios';
 import Actions, { Orientation } from '../constants/reduxConstants';
+import FirebaseDB from '../utils/FirebaseDB';
 
 /**
  * Action to indicate that a request has been sent to get the user details
@@ -132,20 +133,7 @@ export function toggleRecommendations() {
 export function saveUserSettings(settings) {
     return (dispatch) => {
         dispatch(savingUserSettings());
-        // const promise =
-        axios({
-            method: 'post',
-            url: 'http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/user',
-            headers: {
-                Authorization: 'Basic mcAPI2o17-H35t-password',
-            },
-            data: settings.toJson(),
-
-        }).then(() => {
-            dispatch(savedUserSettings());
-        }).catch(() => {
-            dispatch(savingUserSettingsFailed());
-        });
+        FirebaseDB.writeNewUserSettings(settings, () => dispatch(savedUserSettings()), () => dispatch(savingUserSettingsFailed()));
     };
 }
 

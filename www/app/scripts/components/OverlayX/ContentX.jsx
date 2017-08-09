@@ -31,6 +31,7 @@ class ContentX extends Component {
                             onTileOpen={this.props.onTileOpen}
                             handleAddToWishlist={() => this.props.handleAddToWishlist(this.props.video.id)}
                             isControlBarVisible={this.props.isControlBarVisible}
+                            isLoggedIn={this.props.isLoggedIn}
                         /> 
                     </div>)
                 }
@@ -43,6 +44,7 @@ ContentX.propTypes = {
     chat: PropTypes.array.isRequired,
     onMessageSend: PropTypes.func.isRequired,
     video: PropTypes.object.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default ContentX;

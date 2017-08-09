@@ -1,11 +1,12 @@
 import firebase from 'firebase';
+import i18next from 'i18next';
 import { loginSuccess, logoutSuccess } from '../actions/authentication';
 import store from './store';
+import { fetchUserSettingsSuccess, changeLang } from '../actions/settings';
 
 export default class Authentication {
 
     init = () => {
-        console.log('auth init');
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 console.log('User is signed in');
@@ -19,6 +20,52 @@ export default class Authentication {
                 const providerData = user.providerData;
 
                 store.dispatch(loginSuccess({ uid, email, emailVerified, isAnonymous, displayName, photoURL, providerData }));
+
+                // Set settings
+                let settings = {
+                    audioLanguage: 'nb',
+                    language: 'en',
+                    recommendations: 1,
+                    subtitleLanguage: 'nb',
+                };
+
+                let profileInfo = {
+                    displayName: 'Name',
+                    profileImage: '',
+                    description: 'This is me!',
+                };
+
+                const firebaseCurrentUserRef = firebase.database().ref(`/users/${uid}`);
+
+                firebaseCurrentUserRef.on('value', (snapshot) => {
+                    if (snapshot.val() === null) {
+                        // If no user info, set default info in firebase
+                        firebaseCurrentUserRef.set({
+                            settings,
+                            profileInfo,
+                        });
+                    } else {
+                        if (typeof snapshot.val().settings === 'undefined') {
+                            firebaseCurrentUserRef.child('settings').set(settings);
+                        } else {
+                            settings = snapshot.val().settings;
+                        }
+
+                        if (typeof snapshot.val().profileInfo === 'undefined') {
+                            firebaseCurrentUserRef.child('profileInfo').set(profileInfo);
+                        } else {
+                            profileInfo = snapshot.val().profileInfo;
+                        }
+                        // Otherwise, use info from firebase
+                    }
+
+                    store.dispatch(fetchUserSettingsSuccess(settings));
+                    i18next.changeLanguage(settings.language, () => {
+                        store.dispatch(changeLang(settings.language));
+                    });
+
+                    console.log('Profile info', profileInfo);
+                });
             } else {
                 console.log('User is NOT signed in');
             }

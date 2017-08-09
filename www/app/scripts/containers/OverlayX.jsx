@@ -57,6 +57,7 @@ class OverlayX extends Component {
                     onTileOpen={this.onTileOpen}
                     handleAddToWishlist={this.handleAddToWishlist}
                     isControlBarVisible={this.props.playback.controlBarVisibility}
+                    isLoggedIn={this.props.authentication.isLoggedIn}
                 />
             </div>
             );
@@ -80,6 +81,7 @@ OverlayX.propTypes = {
     series: PropTypes.object.isRequired,
     allVideos: PropTypes.object.isRequired,
     tags: PropTypes.object.isRequired,
+    authentication: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -92,6 +94,7 @@ const mapStateToProps = state => ({
     series: state.series,
     allVideos: state.videos,
     tags: state.tags,
+    authentication: state.authentication,
 });
 
 export default connect(mapStateToProps)(OverlayX);

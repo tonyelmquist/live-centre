@@ -77,8 +77,14 @@ class Chat extends Component {
                 <li style={{ opacity: '.8' }}>Welcome to the chatroom! Write your message below..</li>
               {Chat.filterMessages(this.props.messages)}
             </ul>
-            <input type="text" ref={ref => (this.inputBox = ref)} onKeyUp={this.onKeyDown} placeholder="Write your message here..."/>
-            <button type="submit" onClick={this.onSubmitClick}>
+            <input
+                type="text"
+                ref={ref => (this.inputBox = ref)}
+                onKeyUp={this.onKeyDown}
+                placeholder={`${this.props.isLoggedIn ? 'Write your message here...' : 'Please log in to chat'}`}
+                disabled={!this.props.isLoggedIn}
+            />
+            <button type="submit" onClick={this.onSubmitClick} disabled={!this.props.isLoggedIn} >
                 <FontAwesome name="paper-plane" />
             </button>
           </div>
@@ -89,6 +95,7 @@ class Chat extends Component {
 Chat.propTypes = {
     messages: PropTypes.arrayOf(PropTypes.object).isRequired,
     onMessageSend: PropTypes.func.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default Chat;

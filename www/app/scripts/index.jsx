@@ -11,6 +11,7 @@ import store from './utils/store';
 import initVideos from './utils/initVideos';
 import initFirebase from './utils/initFirebase';
 import Authentication from './utils/Authentication';
+import FirebaseDB from './utils/FirebaseDB';
 // import io from 'socket.io-client';
 import initChangingScores from './utils/initScoreChanger';
 import initUserSettings from './utils/initUserSettings';
@@ -35,6 +36,11 @@ initFirebase();
 // Init Authentication
 const Auth = new Authentication();
 Auth.init();
+
+// Init FirebaseDB
+// const fdb = new FirebaseDB();
+// console.log('init firebase');
+// fdb.initListeners();
 
 // capture back button
 
