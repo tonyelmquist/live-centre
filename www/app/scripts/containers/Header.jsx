@@ -15,11 +15,11 @@ import { toggleMenu, hideMenu } from '../actions/navigation';
 import { HomeIcon, ProgramsIcon, ChannelsIcon, SportIcon } from '../components/Icons/TabIcons';
 
 // Menu components
-import HeaderMenu from '../components/Navigation/HeaderMenu';
+import HeaderMenu from '../components/navigation/HeaderMenu';
 import MobileMenu from '../components/navigation/MobileMenu';
-import ExpandableMenu from './../components/Navigation/ExpandableMenu';
+import ExpandableMenu from './../components/navigation/ExpandableMenu';
 import { searchKeyword, toggleSearch, closeSearch, emptySearch, focusedSearch, blurredSearch } from '../actions/search';
-import {closeOverlayX} from '../actions/overlayX';
+import { closeOverlayX } from '../actions/overlayX';
 // import VideoLibrary from 'material-ui/svg-icons/AV/video-library';
 
 /* This component is the starting point for all navigation.
@@ -74,10 +74,6 @@ class Header extends Component {
             key: 'route_programs',
             onClick: () => this.onMenuItemClick('/Programs', 1),
             icon: <ProgramsIcon /> },
-        {
-            key: '',
-            onClick: () => this.openCloseMenu(),
-            icon: <AnimatedMenuCrossIcon isMenuOpen={() => this.props.menuIsOpen} /> },
         {
             key: 'route_channels',
             onClick: () => this.onMenuItemClick('/Channels', 3),
@@ -217,6 +213,7 @@ class Header extends Component {
                 indicatorColor="rgb(144, 202, 249)"
                 searchState={this.props.search}
                 activeItem={this.activeItem}
+                menuIsOpen={this.props.menuIsOpen}
             />
             <ExpandableMenu
                 categoryItems={this.categoryItems()}

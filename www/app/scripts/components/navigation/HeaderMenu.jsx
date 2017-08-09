@@ -13,15 +13,14 @@ const HeaderMenu = (props) => {
     const HeaderMenuItem = (items) => {
         if (items.length > 0) {
             return items.map(item =>
-        (<FlatButton
+        (<a
+          style={{ color: 'black' }}
           onTouchTap={() => {
-              props.changeRoute(item.path);
-              props.closeSearch();
+              item.onClick();
           }}
-          className="menuItem links"
-          label={i18next.t(item.key)}
-          key={`${item.key}-flatButton`}
-        />),
+          className="menu-item links"
+          key={`${item.key}-header-nav`}
+        >{i18next.t(item.key)}</a>),
       );
         }
         return <div />;

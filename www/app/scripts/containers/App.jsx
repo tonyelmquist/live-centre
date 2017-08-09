@@ -75,22 +75,18 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.props.authentication.user);
         const ProfilePageWithProps = () => (
             <ProfilePage
                 user={this.props.authentication.user}
             />);
 
-        // const preventScroll = this.props.state_all.overlayX.open || this.props.state_all.search.isOpen;
-        // TODO: probably not use state_all here
-        const teamMemberOverlay = this.props.state_all.sportsPage.sportPlayerOverlay;
         return (
           <MemoryRouter initialEntries={['/Home']}>
             <div>
               <Header />
               <div className="main" id="main">
                 <SearchOverlay />
-                {teamMemberOverlay.isOpen ? <SportPlayerOverlay closeTeamMemberOverlay={this.closeTeamMemberOverlay} teamMember={teamMemberOverlay.player} /> : <div />}
+                {this.props.teamMemberOverlay.isOpen ? <SportPlayerOverlay closeTeamMemberOverlay={this.closeTeamMemberOverlay} teamMember={this.props.teamMemberOverlay.player} /> : <div />}
 
                     <TransitionRoutes>
                         <Route exact path="/Home" component={HomePage} />
@@ -119,7 +115,6 @@ class App extends Component {
 App.propTypes = {
     dispatch: PropTypes.func.isRequired,
     modals: PropTypes.object.isRequired,
-    state_all: PropTypes.any.isRequired,
     authentication: PropTypes.object.isRequired,
 };
 const mapStateToProps = state => ({
@@ -127,7 +122,7 @@ const mapStateToProps = state => ({
     sidebarState: state.isSidebarVisible,
     modals: state.modals,
     authentication: state.authentication,
-    state_all: state,
+    teamMemberOverlay: state.sportsPage.sportPlayerOverlay,
 });
 
 export default connect(mapStateToProps)(App);

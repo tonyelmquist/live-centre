@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import VideoX from '../components/OverlayX/VideoX';
+import Overlay from '../components/OverlayX/Overlay';
+import Player from './Player';
 import ContentX from '../components/OverlayX/ContentX';
 import { sendMessage } from '../actions/chatMessages';
 import { toggleCollapseInfo, collapseInfo } from '../actions/overlayX';
@@ -14,40 +15,32 @@ class OverlayX extends Component {
     }
 
     toggleCollapseInfo = () => {
-        console.log("toggle collapse");
-        this.props.dispatch(toggleCollapseInfo())
+        console.log('toggle collapse');
+        this.props.dispatch(toggleCollapseInfo());
     }
 
     collapseInfo = () => {
-        this.props.dispatch(collapseInfo())
+        this.props.dispatch(collapseInfo());
     }
 
     onTileOpen = (video) => {
-        //this.props.dispatch(openOverlayX());
-        //this.props.dispatch(maximizeOverlayX());
+        // this.props.dispatch(openOverlayX());
+        // this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
         this.props.dispatch(resetCurrentTimeInPlayer());
     }
-  
+
     handleAddToWishlist = (videoId) => {
         this.props.dispatch(markAsWishlist(videoId));
     }
 
     render() {
-        if (typeof this.props.video.id !== "undefined") {
+        if (typeof this.props.video.id !== 'undefined') {
             return (
             <div className={`overlay-x-container ${this.props.overlayX.maximized ? 'maximized' : 'minimized'} ${this.props.overlayX.open ? 'open' : 'closed'}`}>
-                <VideoX
-                    currentTime={this.props.playback.currentTime}
-                    updateTime={this.updateTime}
-                    resetTime={this.resetTime}
-                    screenOrientation={this.props.settings.screenOrientation}
-                    onMaximize={this.onMaximize}
-                    onMinimize={this.onMinimize}
-                    isOpen={this.props.overlayX.open}
-                    isMaximized={this.props.overlayX.maximized}
-                    videoUrl={this.props.video.videoUrl}
-                />
+                <Overlay isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized}>
+                    <Player />
+                </Overlay>
                 <ContentX
                     video={this.props.video}
                     allVideos={this.props.allVideos}
@@ -78,8 +71,8 @@ class OverlayX extends Component {
 }
 
 OverlayX.propTypes = {
+    dispatch: PropTypes.func.isRequired,
     video: PropTypes.object.isRequired,
-    settings: PropTypes.object.isRequired,
     overlayX: PropTypes.object.isRequired,
     playback: PropTypes.object.isRequired,
     chat: PropTypes.object.isRequired,
@@ -102,7 +95,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(OverlayX);
-
 
 
                     // allVideos={this.props.allVideos}

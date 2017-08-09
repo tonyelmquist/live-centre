@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import i18next from 'i18next';
+import MediaQuery from 'react-responsive';
+import AnimatedMenuCrossIcon from '../../components/Icons/AnimatedMenuCrossIcon';
 
 class MobileMenu extends Component {
 
@@ -19,6 +21,17 @@ class MobileMenu extends Component {
         value.onClick();
     }
 
+    addCenterMenu = (menuItems) => {
+        const newMenuItems = menuItems.slice();
+        newMenuItems.splice(2, 0,
+            {
+                key: '',
+                onClick: () => this.props.openCloseMenu(),
+                icon: <AnimatedMenuCrossIcon isMenuOpen={() => this.props.menuIsOpen} />,
+            });
+        return newMenuItems;
+    }
+
     render() {
         const indicatorStyle = {
             width: `${100 / this.props.menuItems.length}%`,
@@ -32,17 +45,19 @@ class MobileMenu extends Component {
         };
 
         return (
-            <div className="mobile-menu" style={containerStyle}>
-                <div className="mobile-menu-items">
-                    {this.props.menuItems.map((value, id) =>
-                        (<a key={`mobile-menu-${value.key}`} className={`mobile-menu-item ${value.key.length <= 0 ? 'icon-only ' : ' '}${value.key}`} onClick={() => this.onClick(value, id)} tabIndex="0" role="link">
-                            {value.icon}
-                            {value.key.length > 0 ? <span className="mobile-menu-item-text">{i18next.t(value.key)}</span> : ''}
-                        </a>),
-                    )}
+            <MediaQuery maxWidth={1000}>
+                <div className="mobile-menu" style={containerStyle}>
+                    <div className="mobile-menu-items">
+                        {this.addCenterMenu(this.props.menuItems).map((value, id) =>
+                            (<a key={`mobile-menu-${value.key}`} className={`mobile-menu-item ${value.key.length <= 0 ? 'icon-only ' : ' '}${value.key}`} onClick={() => this.onClick(value, id)} tabIndex="0" role="link">
+                                {value.icon}
+                                {value.key.length > 0 ? <span className="mobile-menu-item-text">{i18next.t(value.key)}</span> : ''}
+                            </a>),
+                        )}
+                    </div>
+                    <div className="mobile-menu-indicator" style={indicatorStyle} />
                 </div>
-                <div className="mobile-menu-indicator" style={indicatorStyle} />
-            </div>
+            </MediaQuery>
         );
     }
 }
@@ -54,11 +69,13 @@ MobileMenu.defaultProps = {
 };
 
 MobileMenu.propTypes = {
+    openCloseMenu: PropTypes.func.isRequired,
     menuItems: PropTypes.array.isRequired,
     indicatorColor: PropTypes.string,
     indicatorHeight: PropTypes.bool,
     searchState: PropTypes.object.isRequired,
     activeItem: PropTypes.bool,
+    menuIsOpen: PropTypes.bool.isRequired,
 };
 
 export default MobileMenu;
