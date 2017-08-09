@@ -6,7 +6,7 @@ export default function initFirebase() {
         authDomain: 'tfg-media-center.firebaseapp.com',
         databaseURL: 'https://tfg-media-center.firebaseio.com',
         projectId: 'tfg-media-center',
-        storageBucket: '',
+        storageBucket: 'tfg-media-center.appspot.com',
         messagingSenderId: '38902981364',
     };
 

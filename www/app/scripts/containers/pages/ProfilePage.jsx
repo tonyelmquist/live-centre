@@ -3,7 +3,9 @@ import Avatar from 'material-ui/Avatar';
 import { Link } from 'react-router-dom';
 import Badge from 'material-ui/Badge';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
-// import FileInput from 'react-file-input';
+import FileInput from 'react-file-input';
+import firebase from 'firebase';
+import FirebaseDB from '../../utils/FirebaseDB';
 
 class ProfilePage extends React.Component {
 
@@ -11,25 +13,54 @@ class ProfilePage extends React.Component {
         super(props);
 
         this.state = {
-            profileImage: '/img/avatars/3.jpg',
+            profileImage: '/img/avatars/blank.png',
         };
+
+        this.setProfilePicture();
     }
 
-    handleChange = (e) => {
-        console.log(e.target.files[0]);
+    setProfilePicture = () => {
+        FirebaseDB.readProfilePicture((url) => {
+            console.log('url', url);
+            this.setState({ profileImage: url });
+        });
     }
+
+    handleChange = () => {
+        const currentUser = firebase.auth().currentUser;
+        const file = this.fileUpload.files[0];
+        let extension = '.';
+        if (file.type === 'image/png') {
+            extension = '.png';
+        } else if (file.type === 'image/jpg' || file.type === 'image/jpeg') {
+            extension = '.jpg';
+        } else {
+            console.error('Wrong file type, handle this error more elegantly', file.type);
+            return;
+        }
+
+        const imageUrl = `/ProfilePictures/${currentUser.uid}_ProfileImage${extension}`;
+
+        const storageRef = firebase.storage().ref(imageUrl);
+
+        storageRef.put(file).then((snapshot) => {
+            console.log('Uploaded a blob or file!', snapshot);
+            FirebaseDB.writeNewUserProfilePicture(imageUrl, () => {
+                this.setProfilePicture();
+            }, () => { console.error('no'); });
+        });
+    }
+
+    uploadNewImage = () => {
+        this.fileUpload.click();
+    }
+
+    profilePictureUrl = '';
 
     render() {
-        console.log('profile page rerender');
         return (
         <div className="slide container-fluid profile-page">
-            {/*<FileInput
-                name="myImage"
-                accept=".png,.gif"
-                placeholder="My Image"
-                className="inputClass"
-                onChange={this.handleChange}
-            />*/}
+            <input type="file" accept="image/*" onChange={this.handleChange} ref={ref => (this.fileUpload = ref)} style={{ position: 'absolute', left: '200%'}}/>
             <div className="center">
 
                 <Badge
