@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import Badge from 'material-ui/Badge';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 
-export default function ProfilePage() {
+export default function ProfilePage({ user }) {
+    console.log(user);
     return (
       <div className="slide container-fluid profile-page">
           
@@ -24,8 +25,8 @@ export default function ProfilePage() {
                 />
             </Badge>
             
-            <h1>Jane Doe</h1>
-            <p>Life Explorer</p>
+            <h1>User</h1>
+            <p>{user.email}</p>
         </div>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 

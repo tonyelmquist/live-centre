@@ -10,6 +10,7 @@ import initLang from './utils/i18nextInit';
 import store from './utils/store';
 import initVideos from './utils/initVideos';
 import initFirebase from './utils/initFirebase';
+import Authentication from './utils/Authentication';
 // import io from 'socket.io-client';
 import initChangingScores from './utils/initScoreChanger';
 import initUserSettings from './utils/initUserSettings';
@@ -30,6 +31,10 @@ initUserSettings(store);
 
 // Init Firebase
 initFirebase();
+
+// Init Authentication
+const Auth = new Authentication();
+Auth.init();
 
 // capture back button
 

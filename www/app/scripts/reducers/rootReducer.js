@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { loginState, registrationDialog } from './authenticationReducer';
+import authenticationReducer from './authenticationReducer';
 import chat from './chatReducer';
 import { videosReducer, seasonReducer, seriesReducer, tagsReducer } from './fetchDataReducer';
 import { changeNavIndex, headerMenuState, drawerMenuState } from './navigationReducer';
@@ -18,9 +18,7 @@ import { sports, teams, players, activeTeamTab, sportPlayerOverlay } from './pag
 
 
 const rootReducer = combineReducers({
-    // lang: langReducer,
-    isRegistrationVisible: registrationDialog,
-    isUserLoggedIn: loginState,
+    authentication: authenticationReducer,
     index: changeNavIndex,
     videoCard: combineReducers({
         isVisible: showVideoCard,

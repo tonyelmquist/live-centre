@@ -1,10 +1,7 @@
 class ReduxConstants {
     // AUTHENTICATION
     static get LOGIN_SUCCESS() { return 'LOGIN_SUCCESS'; }
-    static get LOGIN_FAILED() { return 'LOGIN_FAILED'; }
     static get LOGOUT_SUCCESS() { return 'LOGOUT_SUCCESS'; }
-    static get SHOW_REG_DIALOG() { return 'SHOW_REG_DIALOG'; }
-    static get HIDE_REG_DIALOG() { return 'HIDE_REG_DIALOG'; }
 
     // CHAT MESSAGES
     static get GET_MESSAGE() { return 'GET_MESSAGE'; }

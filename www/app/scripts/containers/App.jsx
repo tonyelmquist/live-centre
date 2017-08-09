@@ -27,6 +27,7 @@ import LoginModal from '../components/Modals/LoginModal';
 import { setLandscape, setPortrait } from '../actions/settings';
 import { closeTeamMemberOverlay } from '../actions/pages/sportsPage';
 import { showLoginModal } from '../actions/modals';
+import Authentication from '../utils/Authentication';
 
 
 class App extends Component {
@@ -67,11 +68,22 @@ class App extends Component {
         this.props.dispatch(showLoginModal(false));
     }
 
+    loginAttempt = (username, password) => {
+        const auth = new Authentication();
+        auth.signInAttempt(username, password);
+        this.closeLoginModal();
+    }
+
     render() {
+        console.log(this.props.authentication.user);
+        const ProfilePageWithProps = () => (
+            <ProfilePage
+                user={this.props.authentication.user}
+            />);
+
         // const preventScroll = this.props.state_all.overlayX.open || this.props.state_all.search.isOpen;
         // TODO: probably not use state_all here
         const teamMemberOverlay = this.props.state_all.sportsPage.sportPlayerOverlay;
-        console.log(this.props.modals);
         return (
           <MemoryRouter initialEntries={['/Home']}>
             <div>
@@ -91,14 +103,13 @@ class App extends Component {
                         <Route path="/Channel/:channelKey" component={SingleChannelPage} />
                         <Route path="/Sport/:sportKey" component={SingleSportPage} />
                         <Route path="/Team/:teamKey" component={TeamPage} />
-                        <Route path="/Profile" component={ProfilePage} />
+                        <Route path="/Profile" component={ProfilePageWithProps} />
                         <Route path="/Wishlist" component={WishlistPage} />
-
                     </TransitionRoutes>
 
                 <OverlayX />
               </div>
-              <LoginModal isOpen={this.props.modals.showLoginModal} onClose={this.closeLoginModal} />
+              <LoginModal isOpen={this.props.modals.showLoginModal} onClose={this.closeLoginModal} onSubmit={this.loginAttempt} />
             </div>
           </MemoryRouter>
 
@@ -109,11 +120,13 @@ App.propTypes = {
     dispatch: PropTypes.func.isRequired,
     modals: PropTypes.object.isRequired,
     state_all: PropTypes.any.isRequired,
+    authentication: PropTypes.object.isRequired,
 };
 const mapStateToProps = state => ({
     loginState: state.isUserLoggedIn,
     sidebarState: state.isSidebarVisible,
     modals: state.modals,
+    authentication: state.authentication,
     state_all: state,
 });
 

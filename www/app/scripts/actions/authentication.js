@@ -13,8 +13,8 @@ import Actions from '../constants/reduxConstants';
  * @export
  * @returns Dispatchable Action
  */
-export function loginSuccess() {
-    return { type: Actions.LOGIN_SUCCESS };
+export function loginSuccess(user) {
+    return { type: Actions.LOGIN_SUCCESS, user };
 }
 
 /**
@@ -60,3 +60,4 @@ export function showRegistration() {
 export function hideRegistration() {
     return { type: Actions.HIDE_REG_DIALOG };
 }
+
