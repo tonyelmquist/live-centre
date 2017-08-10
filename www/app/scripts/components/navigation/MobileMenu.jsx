@@ -49,7 +49,7 @@ class MobileMenu extends Component {
                 <div className="mobile-menu" style={containerStyle}>
                     <div className="mobile-menu-items">
                         {this.addCenterMenu(this.props.menuItems).map((value, id) =>
-                            (<a key={`mobile-menu-${value.key}`} className={`mobile-menu-item ${value.key.length <= 0 ? 'icon-only ' : ' '}${value.key}`} onClick={() => this.onClick(value, id)} tabIndex="0" role="link">
+                            (<a key={`mobile-menu-${value.key}`} className={`mobile-menu-item ${value.key.length <= 0 ? 'icon-only ' : ' '}${value.key}`} onTouchTap={() => this.onClick(value, id)} tabIndex="0" role="link">
                                 {value.icon}
                                 {value.key.length > 0 ? <span className="mobile-menu-item-text">{i18next.t(value.key)}</span> : ''}
                             </a>),

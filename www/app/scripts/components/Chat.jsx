@@ -88,7 +88,7 @@ class Chat extends Component {
                 placeholder={`${this.props.isLoggedIn ? 'Write your message here...' : 'Please log in to chat'}`}
                 disabled={!this.props.isLoggedIn}
             />
-            <button type="submit" onClick={this.onSubmitClick} disabled={!this.props.isLoggedIn} >
+            <button type="submit" onTouchTap={this.onSubmitClick} disabled={!this.props.isLoggedIn} >
                 <FontAwesome name="paper-plane" />
             </button>
           </div>

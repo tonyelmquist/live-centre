@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MemoryRouter, Route } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 // Pages
 import HomePage from './pages/HomePage';
 import WishlistPage from './pages/WishlistPage';
@@ -29,6 +31,7 @@ import { closeTeamMemberOverlay } from '../actions/pages/sportsPage';
 import { showLoginModal } from '../actions/modals';
 import Authentication from '../utils/Authentication';
 
+const history = createHistory();
 
 class App extends Component {
     constructor(props) {
@@ -79,15 +82,17 @@ class App extends Component {
             <ProfilePage
                 user={this.props.authentication.user}
             />);
+        
+        history.push('/Home');
+    
 
         return (
-          <MemoryRouter initialEntries={['/Home']}>
+          <BrowserRouter history={history}>
             <div>
               <Header />
               <div className="main" id="main">
                 <SearchOverlay />
                 {this.props.teamMemberOverlay.isOpen ? <SportPlayerOverlay closeTeamMemberOverlay={this.closeTeamMemberOverlay} teamMember={this.props.teamMemberOverlay.player} /> : <div />}
-
                     <TransitionRoutes>
                         <Route exact path="/Home" component={HomePage} />
                         <Route path="/Programs" component={ProgramsPage} />
@@ -107,7 +112,7 @@ class App extends Component {
               </div>
               <LoginModal isOpen={this.props.modals.showLoginModal} onClose={this.closeLoginModal} onSubmit={this.loginAttempt} />
             </div>
-          </MemoryRouter>
+          </BrowserRouter>
 
         );
     }
