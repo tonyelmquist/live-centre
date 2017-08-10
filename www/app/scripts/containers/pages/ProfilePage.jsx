@@ -3,7 +3,6 @@ import Avatar from 'material-ui/Avatar';
 import { Link } from 'react-router-dom';
 import Badge from 'material-ui/Badge';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
-import FileInput from 'react-file-input';
 import firebase from 'firebase';
 import FirebaseDB from '../../utils/FirebaseDB';
 

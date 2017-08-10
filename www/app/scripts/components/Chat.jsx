@@ -7,13 +7,17 @@ class Chat extends Component {
         if (typeof messages === 'undefined') {
             return '';
         }
-        return messages.map(value => (
-          <li key={`message-${value.id}`}>
-            <span className="chat-avatar">{value.user.substr(5, 1)}</span>
-            <span className="chat-user">{value.user}</span>
-            <span className="chat-message">{value.message}</span>
-          </li>
+        const result = [];
+        for (const key of Object.keys(messages)) {
+            result.push((
+                <li key={`message-${key}`}>
+                    <span className="chat-avatar">{messages[key].senderName.substr(0, 1)}</span>
+                    <span className="chat-user">{messages[key].senderName}</span>
+                    <span className="chat-message">{messages[key].text}</span>
+                </li>
             ));
+        }
+        return result;
     }
 
     constructor(props) {

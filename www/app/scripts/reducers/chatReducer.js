@@ -14,6 +14,11 @@ export default function dataOverlayReducer(state = { chatOpen: false, messages: 
                 },
             ],
         };
+    case Actions.GET_MESSAGES:
+        return {
+            ...state,
+            messages: action.messages,
+        };
     case Actions.SEND_MESSAGE:
     case Actions.TOGGLE_CHAT_MENU:
         return {

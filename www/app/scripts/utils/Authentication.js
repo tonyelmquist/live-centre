@@ -6,7 +6,7 @@ import { fetchUserSettingsSuccess, changeLang } from '../actions/settings';
 
 export default class Authentication {
 
-    init = () => {
+    static init = () => {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 console.log('User is signed in');
@@ -29,9 +29,9 @@ export default class Authentication {
                     subtitleLanguage: 'nb',
                 };
 
-                let profileInfo = {
+                let profile = {
                     displayName: 'Name',
-                    profileImage: '',
+                    imageUrl: null,
                     description: 'This is me!',
                 };
 
@@ -42,7 +42,7 @@ export default class Authentication {
                         // If no user info, set default info in firebase
                         firebaseCurrentUserRef.set({
                             settings,
-                            profileInfo,
+                            profile,
                         });
                     } else {
                         if (typeof snapshot.val().settings === 'undefined') {
@@ -52,9 +52,9 @@ export default class Authentication {
                         }
 
                         if (typeof snapshot.val().profileInfo === 'undefined') {
-                            firebaseCurrentUserRef.child('profileInfo').set(profileInfo);
+                            firebaseCurrentUserRef.child('profile').set(profile);
                         } else {
-                            profileInfo = snapshot.val().profileInfo;
+                            profile = snapshot.val().profile;
                         }
                         // Otherwise, use info from firebase
                     }
@@ -64,7 +64,7 @@ export default class Authentication {
                         store.dispatch(changeLang(settings.language));
                     });
 
-                    console.log('Profile info', profileInfo);
+                    console.log('Profile info', profile);
                 });
             } else {
                 console.log('User is NOT signed in');

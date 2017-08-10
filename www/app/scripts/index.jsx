@@ -34,8 +34,7 @@ initUserSettings(store);
 initFirebase();
 
 // Init Authentication
-const Auth = new Authentication();
-Auth.init();
+Authentication.init();
 
 // Init FirebaseDB
 // const fdb = new FirebaseDB();

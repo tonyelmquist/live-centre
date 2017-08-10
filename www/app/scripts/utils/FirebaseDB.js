@@ -39,4 +39,50 @@ export default class FirebaseDB {
             }
         });
     }
+
+    static currentMessageChannel = null;
+
+    static readMessagesInChannel = (channelId, callback) => {
+        // Cleanup of possible old listener
+        if (FirebaseDB.currentMessageChannel !== channelId) {
+            firebase.database().ref(`messageChannels/${FirebaseDB.currentMessageChannel}`).off('value');
+
+            firebase.database().ref(`messageChannels/${channelId}`).on('value', (snapshot) => {
+                if (snapshot.val() === null) {
+                    callback({});
+                } else {
+                    callback(snapshot.val());
+                }
+            });
+
+            FirebaseDB.currentMessageChannel = channelId;
+        }
+
+        if (FirebaseDB.currentMessageChannel === null) {
+            FirebaseDB.currentMessageChannel = channelId;
+
+            firebase.database().ref(`messageChannels/${channelId}`).on('value', (snapshot) => {
+                if (snapshot.val() === null) {
+                    callback({});
+                } else {
+                    callback(snapshot.val());
+                }
+            });
+        }
+    }
+
+    static writeMessageToChannel = (message) => {
+        const currentUser = firebase.auth().currentUser;
+        if (FirebaseDB.currentMessageChannel === null) {
+            console.error('Something went horribly wrong');
+            return;
+        }
+
+        const newMessage = firebase.database().ref(`messageChannels/${FirebaseDB.currentMessageChannel}`).push();
+        newMessage.set({
+            senderId: currentUser.uid,
+            senderName: 'bobby',
+            text: message,
+        });
+    }
 }

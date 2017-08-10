@@ -5,6 +5,7 @@ class ReduxConstants {
 
     // CHAT MESSAGES
     static get GET_MESSAGE() { return 'GET_MESSAGE'; }
+    static get GET_MESSAGES() { return 'GET_MESSAGES'; }
     static get SEND_MESSAGE() { return 'SEND_MESSAGE'; }
     static get CLEAR_MESSAGES() { return 'CLEAR_MESSAGES'; }
     static get TOGGLE_CHAT_MENU() { return 'TOGGLE_CHAT_MENU'; }

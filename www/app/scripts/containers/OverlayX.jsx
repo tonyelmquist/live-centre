@@ -4,14 +4,15 @@ import { connect } from 'react-redux';
 import Overlay from '../components/OverlayX/Overlay';
 import Player from './Player';
 import ContentX from '../components/OverlayX/ContentX';
-import { sendMessage } from '../actions/chatMessages';
+import { sendMessage, getMessages } from '../actions/chatMessages';
 import { toggleCollapseInfo, collapseInfo } from '../actions/overlayX';
 import { videoSelected, markAsWishlist, resetCurrentTimeInPlayer } from '../actions/videoPlayer';
+import FirebaseDB from '../utils/FirebaseDB';
 
 class OverlayX extends Component {
 
     onMessageSend = (message) => {
-        this.props.dispatch(sendMessage(message));
+        FirebaseDB.writeMessageToChannel(message);
     }
 
     toggleCollapseInfo = () => {
@@ -34,8 +35,15 @@ class OverlayX extends Component {
         this.props.dispatch(markAsWishlist(videoId));
     }
 
+    setChatChannel = () => {
+        FirebaseDB.readMessagesInChannel(this.props.video.id, (value) => {
+            this.props.dispatch(getMessages(value));
+        });
+    }
+
     render() {
         if (typeof this.props.video.id !== 'undefined') {
+            this.setChatChannel();
             return (
             <div className={`overlay-x-container ${this.props.overlayX.maximized ? 'maximized' : 'minimized'} ${this.props.overlayX.open ? 'open' : 'closed'}`}>
                 <Overlay isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized}>
