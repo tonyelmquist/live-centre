@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import productArray from '../../constants/products';
 import { hideProductOverlay } from '../../actions/videoPlayer';
+import { Orientation } from '../../constants/reduxConstants';
 
 class ProductOverlay extends Component {
     product = (productID) => {
@@ -26,6 +27,8 @@ class ProductOverlay extends Component {
       <div
         className={`product-overlay ${this.props.showProductOverlay
           ? 'isShowing'
+          : ''} ${this.props.orientation === Orientation.PORTRAIT
+          ? 'portrait'
           : ''}`}
       >
         <img
@@ -52,6 +55,7 @@ class ProductOverlay extends Component {
 ProductOverlay.propTypes = {
     showProductOverlay: PropTypes.bool.isRequired,
     productID: PropTypes.number.isRequired,
+    orientation: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired,
 };
 
@@ -63,6 +67,7 @@ ProductOverlay.defaultProps = {
 const mapStateToProps = state => ({
     productID: state.productThumb.productID,
     showProductThumb: state.productThumb.showProductThumb,
+    orientation: state.settings.screenOrientation,
 });
 
 export default connect(mapStateToProps)(ProductOverlay);
