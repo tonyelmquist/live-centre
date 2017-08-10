@@ -137,7 +137,6 @@ export function hideReplay() {
     return { type: Actions.HIDE_REPLAY };
 }
 
-
 /**
  * Set Control Bar visibility (doesn't effect the actual control bar of the player, only replicates, check Player.js)
  *
@@ -160,4 +159,48 @@ export function setControlBarVisibility(visibility) {
  */
 export function isVideoSettingsOpen(isOpen) {
     return { type: Actions.SET_VIDEO_SETTINGS_OPEN, isOpen };
+}
+
+/**
+ * Action to show an ecommerce overlay
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @returns Dispatchable Action
+ */
+export function showProductOverlay() {
+    return { type: Actions.SHOW_PRODUCT_OVERLAY };
+}
+
+/**
+ * Action to hide an ecommerce overlay
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @returns Dispatchable Action
+ */
+export function hideProductOverlay() {
+    return { type: Actions.HIDE_PRODUCT_OVERLAY };
+}
+
+/**
+ * Action to show an ecommerce overlay
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @returns Dispatchable Action
+ */
+export function showProductThumb(productID) {
+    return { type: Actions.SHOW_PRODUCT_THUMB, productID };
+}
+
+/**
+ * Action to hide an ecommerce overlay
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @returns Dispatchable Action
+ */
+export function hideProductThumb(productID) {
+    return { type: Actions.HIDE_PRODUCT_THUMB, productID };
 }

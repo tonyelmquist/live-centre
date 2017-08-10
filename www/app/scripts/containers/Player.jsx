@@ -12,8 +12,34 @@ import Settings from 'material-ui/svg-icons/action/settings';
 import { maximizeOverlayX, closeOverlayX, minimizeOverlayX } from '../actions/overlayX';
 import { Orientation } from '../constants/reduxConstants';
 import DataOverlay from './DataOverlay';
-import { showReplay, hideReplay, showHighlights, setControlBarVisibility, isVideoSettingsOpen } from '../actions/videoPlayer';
+import { showReplay, hideReplay, showHighlights, setControlBarVisibility, isVideoSettingsOpen, showProductOverlay, showProductThumb, hideProductThumb } from '../actions/videoPlayer';
 import '../../../node_modules/video-react/dist/video-react.css';
+import ProductThumb from '../components/OverlayX/ProductThumb';
+import ProductOverlay from '../components/OverlayX/ProductOverlay';
+
+import timelines from '../constants/timelines';
+
+const tickProximityInterval = 2000;
+
+const styles = {
+    playerStyle: {
+        position: 'relative',
+        height: '100%',
+        width: '100%',
+        zIndex: 1500,
+        top: 0,
+        left: 0,
+    },
+    fullscreenButton: {
+        position: 'absolute',
+        bottom: 5,
+        right: 5,
+    },
+    iconButtons: {
+        marginLeft: '12px',
+        marginRight: '12px',
+    },
+};
 
 /**
  * Overlay Video Player.
@@ -22,10 +48,12 @@ import '../../../node_modules/video-react/dist/video-react.css';
  * @extends {React.Component}
  */
 class Player extends React.Component {
-
     state = {
         isPreOverlayShowing: true,
         forcedLandscapeMode: false,
+        productID: 0,
+        showProductOverlay: false,
+        showProductThumb: false,
     };
 
     onPrePlayTouch = (e) => {
@@ -34,7 +62,6 @@ class Player extends React.Component {
         this.setState({ isPreOverlayShowing: false });
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
             this.largeVideoPlayer.video.video.play();
-
             this.videoLoaded = this.props.video.videoUrl;
 
             this.props.dispatch(setControlBarVisibility(true));
@@ -44,13 +71,13 @@ class Player extends React.Component {
                 }
             }, 3000);
         }
-    }
+    };
 
     onCloseTouch = (e) => {
         e.stopPropagation();
         e.preventDefault();
         this.props.dispatch(closeOverlayX());
-    }
+    };
 
     onTouchStart = (e) => {
         this.startTouchPosition = {
@@ -59,7 +86,7 @@ class Player extends React.Component {
         };
 
         e.preventDefault();
-    }
+    };
 
     onTouchEnd = (e) => {
         this.endTouchPosition = {
@@ -73,13 +100,13 @@ class Player extends React.Component {
         if (this.startTouchPosition.y - this.endTouchPosition.y > this.limit) {
             this.onMaximize();
         }
-    }
+    };
 
     onMaximize = () => {
         if (this.props.orientation === Orientation.PORTRAIT) {
             this.props.dispatch(maximizeOverlayX());
         }
-    }
+    };
 
     onMinimize = () => {
         if (this.props.orientation === Orientation.PORTRAIT) {
@@ -90,7 +117,7 @@ class Player extends React.Component {
                 this.props.dispatch(minimizeOverlayX());
             }
         }
-    }
+    };
     showReplay = (videoUrl) => {
         const { player } = this.largeVideoPlayer.getState();
         const currentTime = player.currentTime;
@@ -98,8 +125,32 @@ class Player extends React.Component {
         window.setTimeout(() => this.props.dispatch(hideReplay()), 12000);
     };
 
+    onShowProductOverlay = () => {
+        this.props.dispatch(showProductOverlay());
+    };
+
+    tickInProximity = (currentTime) => {
+        const currentTimeInMS = currentTime * 1000;
+        const thisTimeline = this.timeline(this.props.video.id);
+
+        const currentEvent = thisTimeline[0].events.find(
+        event => ((event.timestamp - tickProximityInterval < currentTimeInMS) && (currentTimeInMS < event.timestamp + tickProximityInterval)),
+        );
+
+        if (currentEvent !== undefined) {
+            if (!this.props.showProductThumb) { this.props.dispatch(showProductThumb(currentEvent.productID)); }
+        } else if (this.props.showProductThumb) { this.props.dispatch(hideProductThumb()); }
+    }
+
     showHighlights = (videoUrl, highlights) => {
         this.props.dispatch(showHighlights(videoUrl, highlights));
+    };
+
+    timeline = (videoID) => {
+        const thisTimeline = timelines.filter(
+        timeline => timeline.video === videoID,
+    );
+        return thisTimeline;
     };
 
     printPrePlayOverlay = () => {
@@ -136,12 +187,25 @@ class Player extends React.Component {
                         </div>);
         }
 
-        return (<div />);
-    }
+        return <div />;
+    };
 
     limit = 50;
 
+    componentDidMount = () => {
+        this.largeVideoPlayer.subscribeToStateChange(this.handleStateChange.bind(this));
+    };
+
+    handleStateChange = (state, prevState) => {
+        this.setState({
+            player: state,
+            currentTime: state.currentTime,
+        });
+        this.tickInProximity(state.currentTime);
+    };
+
     componentWillUpdate = (nextProps) => {
+
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
             if (typeof this.videoLoaded === 'undefined') {
                 return;
@@ -153,7 +217,7 @@ class Player extends React.Component {
                 this.videoLoaded = nextProps.video.videoUrl;
             }
         }
-    }
+    };
 
     onOpenSettings = () => {
         console.log('Open Settings');
@@ -260,15 +324,24 @@ class Player extends React.Component {
                 ])}
                 >
               movie_filter
-              </IconButton>*/}
-            { this.props.orientation === Orientation.LANDSCAPE && typeof this.largeVideoPlayer !== 'undefined' && !this.largeVideoPlayer.video.video.paused ? <DataOverlay /> : '' }
-          </div>
+              </IconButton> */}
+        <ProductThumb productID={this.props.productID} showProductThumb={this.props.showProductThumb} onTouchTap={() => this.onShowProductOverlay()} />
+        <ProductOverlay productID={this.props.productID} showProductOverlay={this.props.showProductOverlay}/>
+        {this.props.orientation === Orientation.LANDSCAPE &&
+        typeof this.largeVideoPlayer !== 'undefined' &&
+        !this.largeVideoPlayer.video.video.paused
+          ? <DataOverlay />
+          : ''}
+      </div>
         );
     }
 }
 
 Player.defaultProps = {
     videoPosition: 0,
+    showProductOverlay: false,
+    showProductThumb: false,
+    productID: 0,
 };
 
 Player.propTypes = {
@@ -277,6 +350,9 @@ Player.propTypes = {
     orientation: PropTypes.string.isRequired,
     video: PropTypes.object.isRequired,
     overlayX: PropTypes.object.isRequired,
+    productID: PropTypes.number.isRequired,
+    showProductThumb: PropTypes.bool.isRequired,
+    showProductOverlay: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -284,6 +360,9 @@ const mapStateToProps = state => ({
     videoPosition: state.playback.currentTime,
     overlayX: state.overlayX,
     orientation: state.settings.screenOrientation,
+    productID: state.productThumb.productID,
+    showProductThumb: state.productThumb.showProductThumb,
+    showProductOverlay: state.productOverlay.showProductOverlay,
 });
 
 export default connect(mapStateToProps)(Player);

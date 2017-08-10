@@ -11,7 +11,7 @@ import dataOverlayReducer from './secondLayerReducer';
 import modalsReducer from './modalsReducer';
 import settings from './settingsReducer';
 import { showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo } from './videoCardReducer';
-import { replayReducer as replay, highlightsReducer as highlights, handleSelection } from './videoPlayerReducer';
+import { replayReducer as replay, highlightsReducer as highlights, handleSelection, productOverlayReducer, productThumbReducer } from './videoPlayerReducer';
 
 import programsPageTab from './pages/programsPageReducer';
 import { sports, teams, players, activeTeamTab, sportPlayerOverlay } from './pages/sportsPageReducer';
@@ -46,6 +46,8 @@ const rootReducer = combineReducers({
     replay,
     highlights,
     overlayX,
+    productOverlay: productOverlayReducer,
+    productThumb: productThumbReducer,
 });
 
 export default rootReducer;

@@ -66,6 +66,7 @@ const transformVideoData = (unfiltered, store) => {
         // video.email = attr.metadata.UploadUserEmail;
         video.rating = attr.metadata.Rating;
         video.season = attr.metadata.Season;
+        video.duration = attr.metadata.GeneralDuration;
         video.series = attr.metadata.ProgramSeries;
         video.tags = attr.metadata.Category || uncategorized;
         video.title = attr.metadata.Title;

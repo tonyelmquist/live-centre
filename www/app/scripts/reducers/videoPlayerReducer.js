@@ -25,7 +25,6 @@ export default function requestSent(state = defaultRequestState, action) {
             isFetching: false,
             categories: action.categories,
         });
-    
     default:
         return state;
     }
@@ -115,3 +114,46 @@ export function replayReducer(
         return state;
     }
 }
+
+export function productOverlayReducer(
+  state = { showProductOverlay: false },
+  action,
+) {
+    switch (action.type) {
+    case Actions.SHOW_PRODUCT_OVERLAY:
+        return {
+            ...state,
+            showProductOverlay: true,
+        };
+    case Actions.HIDE_PRODUCT_OVERLAY:
+        return {
+            ...state,
+            showProductOverlay: false,
+        };
+    default:
+        return state;
+    }
+}
+
+
+export function productThumbReducer(
+  state = { showProductThumb: false, productID: 0 },
+  action,
+) {
+    switch (action.type) {
+    case Actions.SHOW_PRODUCT_THUMB:
+        return {
+            ...state,
+            showProductThumb: true,
+            productID: action.productID,
+        };
+    case Actions.HIDE_PRODUCT_THUMB:
+        return {
+            ...state,
+            showProductThumb: false,
+        };
+    default:
+        return state;
+    }
+}
+

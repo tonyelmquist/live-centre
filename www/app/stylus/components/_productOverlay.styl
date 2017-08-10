@@ -1,0 +1,106 @@
+.product-overlay {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    bottom: 0;
+    right: 0px;
+    border-radius: 4px;
+    background-color: rgba(255,255,255,.5);
+    -webkit-transition: 0.5s all;
+    transition: 0.5s all;
+    -webkit-transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+
+    &.isShowing {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    img {
+        left: 50%;
+        transform: translate(-50%, 0);
+        position: absolute;
+    }
+
+    .product-description {
+        font-size: 12px;
+        color: white;
+        background: rgba(2,12,28,0.7);
+        margin: 10px
+        border-radius: 4px
+        padding: 2px
+        position: absolute
+        bottom: 0
+
+    }
+
+    .close-btn, .right-btn {
+        background: rgba(2,12,28,0.7);
+        position: absolute;
+        right: 3px;
+        top: 3px;
+        width: 20px;
+        height: 20px;
+        color: #fff;
+
+        i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    .right-btn {
+        left: auto;
+        top: auto;
+        bottom: 0;
+        right: -30px;
+    }
+
+    .product-modal {
+        background: rgba(2,12,28,0.7);
+        position: absolute;
+        top: 100%;
+        left: -25px;
+        transform: skew(-10deg);
+        width: 100%;
+        margin-top: 10px;
+        height: 150px;
+        opacity: 0;
+        transition: .5s all;
+        color: white;
+        padding: 20px 25px;
+        box-sizing: border-box;
+    }
+}
+
+
+.product-tabs {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 130px;
+    height: 30px;
+    display: flex;
+
+    .product-tab {
+        display: inline-block;
+        flex-grow: 1;
+        text-align: center;
+        height: 100%;
+        padding: 6px 0;
+        box-sizing: border-box;
+
+        &:nth-child(3) {
+            background: rgba(255, 255, 255, .1);
+        }
+        &:nth-child(2) {
+            background: rgba(255, 255, 255, .2);
+        }
+        &:nth-child(1) {
+            background: rgba(255, 255, 255, .3);
+        }
+    }
+}

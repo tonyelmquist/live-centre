@@ -99,6 +99,12 @@ class ReduxConstants {
     static get ENTER_FULL_SCREEN() { return 'ENTER_FULL_SCREEN'; }
     static get EXIT_FULL_SCREEN() { return 'EXIT_FULL_SCREEN'; }
 
+    static get SHOW_PRODUCT_THUMB() { return 'SHOW_PRODUCT_THUMB'; }
+    static get HIDE_PRODUCT_THUMB() { return 'HIDE_PRODUCT_THUMB'; }
+
+    static get SHOW_PRODUCT_OVERLAY() { return 'SHOW_PRODUCT_OVERLAY'; }
+    static get HIDE_PRODUCT_OVERLAY() { return 'HIDE_PRODUCT_OVERLAY'; }
+
     static get VIDEO_SELECTED() { return 'VIDEO_SELECTED'; }
     static get INVALIDATE_SELECTED() { return 'INVALIDATE_SELECTED'; }
 
