@@ -27,7 +27,7 @@ class UserMenu extends Component {
     }
 
     handleWishlistTouchTap = () => {
-        this.props.changeRoute('/Wishlist');
+        this.props.changeRoute('/Watchlist');
     }
 
     handleOpenProfile = () => {

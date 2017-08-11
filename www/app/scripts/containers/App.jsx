@@ -105,7 +105,7 @@ class App extends Component {
                         <Route path="/Sport/:sportKey" component={SingleSportPage} />
                         <Route path="/Team/:teamKey" component={TeamPage} />
                         <Route path="/Profile" component={ProfilePageWithProps} />
-                        <Route path="/Wishlist" component={WishlistPage} />
+                        <Route path="/Watchlist" component={WishlistPage} />
                     </TransitionRoutes>
 
                 <OverlayX />

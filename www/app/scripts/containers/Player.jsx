@@ -112,12 +112,18 @@ class Player extends React.Component {
         if (this.props.orientation === Orientation.PORTRAIT) {
             if (!this.props.overlayX.maximized) {
                 this.props.dispatch(closeOverlayX());
-                this.largeVideoPlayer.pause();
             } else {
                 this.props.dispatch(minimizeOverlayX());
             }
         }
     };
+
+    componentDidUpdate = () => {
+        if (!this.props.overlayX.open) {
+            this.largeVideoPlayer.pause();
+        }
+    }
+
     showReplay = (videoUrl) => {
         const { player } = this.largeVideoPlayer.getState();
         const currentTime = player.currentTime;

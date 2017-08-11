@@ -34,8 +34,8 @@ class MobileMenu extends Component {
 
     render() {
         const indicatorStyle = {
-            width: `${100 / this.props.menuItems.length}%`,
-            left: `${(100 / this.props.menuItems.length) * this.props.activeItem}%`,
+            width: `${100 / (this.props.menuItems.length + 1)}%`,
+            left: `${(100 / (this.props.menuItems.length + 1)) * this.props.activeItem}%`,
             background: this.props.indicatorColor,
             height: `${this.props.indicatorHeight}px`,
         };
