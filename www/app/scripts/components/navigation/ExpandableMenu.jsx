@@ -18,8 +18,7 @@ const ExpandableMenu = ({
         (<p
           key={item.key}
           onTouchTap={() => {
-              changeRoute(item.path);
-              openCloseMenu();
+              item.onClick();
           }}
           className="expandableMenuItem"
         >

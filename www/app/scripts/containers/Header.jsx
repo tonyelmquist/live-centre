@@ -145,7 +145,7 @@ class Header extends Component {
             for (const key in this.props.tags) {
                 if (Object.prototype.hasOwnProperty.call(this.props.tags, key)) {
                     const name = this.props.tags[key].name;
-                    items.push({ key: name, path: `/Category/${name}` });
+                    items.push({ key: name, onClick: () => this.onMenuItemClick(`/Category/${name}`), path: `/Category/${name}` });
                 }
             }
         }

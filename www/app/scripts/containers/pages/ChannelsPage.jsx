@@ -154,6 +154,7 @@ class ChannelsPage extends React.Component {
         item={filter}
         overlay={(this.filterOverlay(filter))}
         key={filter.key}
+        size={50}
         style={filter.avatarStyle}
         handleClick={() => { this.handleFiltering(filter.key); }}
       />

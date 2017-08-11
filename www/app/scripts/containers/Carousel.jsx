@@ -48,9 +48,27 @@ class HeroCarousel extends Component {
         selected: false,
     };
 
-    // constructor(props, defaultProps) {
-    //     super(props, defaultProps);
-    // }
+    constructor(props){
+        super(props);
+        this.state = {
+            autoPlay: false,
+        };
+    }
+
+    //After the component have rendered for the first time, add the autoplay tag. 
+    //This will prevent react router transition from waiting. 
+    componentDidMount() {
+        if (this.state.autoPlay === false) {
+            this.setAutoPlayState();
+        }
+    }
+
+    setAutoPlayState = () => {
+        console.log("set autoplay state");
+        this.setState((prevState, props) => {
+            return { autoPlay: true };
+        });
+    }
 
     _handlePlay = (video) => {
         this.props.dispatch(openOverlayX());
@@ -67,13 +85,6 @@ class HeroCarousel extends Component {
     }
 
     render() {
-        let autoPlay = true;
-
-        console.log(this.props);
-        // if(this.props.history.length > 0){
-        //     autoPlay = false;
-        // }
-
         const self = this;
 
         const settingsLeft = {
@@ -125,10 +136,7 @@ class HeroCarousel extends Component {
         };
 
     // Are videos fetched, and is the category loaded?
-        if (
-      this.props.videos.videosFetched > 0 &&
-      this.props.tags.items['Promotional Videos']
-    ) {
+        if (this.props.tags.items['Promotional Videos'] && this.props.videos.videosFetched > 0) {
             const videoKeys = this.props.tags.items['Promotional Videos'].videos;
 
             const imageList = videoKeys.map((videoKey) => {
@@ -159,7 +167,7 @@ class HeroCarousel extends Component {
                     </div>
                     <div className="heroCarouselVideo">
                       <Video
-                        autoPlay={autoPlay}
+                        autoPlay={this.state.autoPlay}
                         playsInline
                         muted
                         controls={[]}
@@ -237,6 +245,5 @@ const mapStateToProps = state => ({
     videos: state.videos,
     selected: state.playback.isSelected,
     tags: state.tags,
-    history: state.history,
 });
 export default connect(mapStateToProps)(HeroCarousel);

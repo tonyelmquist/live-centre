@@ -127,7 +127,7 @@ class BurstButton extends React.Component {
 
     render() {
         const links = this.state.links.map((link, i) => (
-          <g key={`burstbutton-link-${link.id}`} className={`burst-small-circle ${this.state.isOpen ? 'open' : ''} ${this.state.activeButton === i ? 'active' : ''}`} onClick={link.action}>
+          <g key={`burstbutton-link-${link.id}`} className={`burst-small-circle ${this.state.isOpen ? 'open' : ''} ${this.state.activeButton === i ? 'active' : ''}`} onTouchTap={link.action}>
             <circle cx={link.x + this.centerXY} cy={link.y + this.centerXY} r={link.size / 2} fill={this.props.color} />
             <svg fill="#FFFFFF" x={(link.x + this.centerXY) - 12} y={(link.y + this.centerXY) - 12} height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               {link.icon}
