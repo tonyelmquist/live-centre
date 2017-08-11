@@ -132,14 +132,15 @@ class Player extends React.Component {
     tickInProximity = (currentTime) => {
         const currentTimeInMS = currentTime * 1000;
         const thisTimeline = this.timeline(this.props.video.id);
+        if (typeof thisTimeline[0] !== 'undefined') {
+            const currentEvent = thisTimeline[0].events.find(
+            event => ((event.timestamp - tickProximityInterval < currentTimeInMS) && (currentTimeInMS < event.timestamp + tickProximityInterval)),
+            );
 
-        const currentEvent = thisTimeline[0].events.find(
-        event => ((event.timestamp - tickProximityInterval < currentTimeInMS) && (currentTimeInMS < event.timestamp + tickProximityInterval)),
-        );
-
-        if (currentEvent !== undefined) {
-            if (!this.props.showProductThumb) { this.props.dispatch(showProductThumb(currentEvent.productID)); }
-        } else if (this.props.showProductThumb) { this.props.dispatch(hideProductThumb()); }
+            if (currentEvent !== undefined) {
+                if (!this.props.showProductThumb) { this.props.dispatch(showProductThumb(currentEvent.productID)); }
+            } else if (this.props.showProductThumb) { this.props.dispatch(hideProductThumb()); }
+        }
     }
 
     showHighlights = (videoUrl, highlights) => {
@@ -281,8 +282,6 @@ class Player extends React.Component {
             top: 0,
             left: 0,
         };
-
-        console.log(playerStyles, 'playerstyles');
 
         return (
           <div style={playerStyles} className={'IMRPlayer'} onTouchTap={this.onTouchTap} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
