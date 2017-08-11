@@ -9,11 +9,22 @@ class LoginModal extends Component {
         this.passwordInput.value = '';
     }
 
+    shouldComponentUpdate(nextProps, nextState){
+
+        console.log("should component update", nextProps, nextState);
+        if(this.props.isOpen !== nextProps.isOpen){
+            console.log("yes");
+            return true
+        }
+        return false 
+    }
+
     componentDidUpdate = () => {
-        console.log('update', this.usernameInput);
-        setTimeout(() => {
-            this.usernameInput.focus();
-        }, 200);
+        if(this.props.isOpen == true){
+            setTimeout(() => {
+                this.usernameInput.focus();
+            }, 200);
+        }
     }
 
     onUsernameFieldKeyDown = (e) => {
