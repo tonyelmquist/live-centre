@@ -3,7 +3,11 @@ package com.futureuniverse.livecentre;
 import com.futureuniverse.livecentre.R;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.webkit.WebView;
@@ -17,7 +21,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         mWebView = new WebView(this);
-        mWebView.loadUrl("file:///android_asset/index.html");
+        mWebView.loadUrl("http://mediacenter.futureuniverse.com");
         mWebView.getSettings().setJavaScriptEnabled(true); 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
@@ -39,4 +43,3 @@ public class MainActivity extends Activity {
         return super.onKeyDown(keyCode, event);
     }
 }
-
