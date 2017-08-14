@@ -35,6 +35,12 @@ export default class Authentication {
                     description: 'This is me!',
                 };
 
+                let notifications = {
+                    0: {
+                        message: 'This is a test notification',
+                    },
+                };
+
                 const firebaseCurrentUserRef = firebase.database().ref(`/users/${uid}`);
 
                 firebaseCurrentUserRef.on('value', (snapshot) => {
@@ -56,7 +62,12 @@ export default class Authentication {
                         } else {
                             profile = snapshot.val().profile;
                         }
-                        // Otherwise, use info from firebase
+
+                        if (typeof snapshot.val().notifications === 'undefined') {
+                            firebaseCurrentUserRef.child('notifications').set(notifications);
+                        } else {
+                            notifications = snapshot.val().notifications;
+                        }
                     }
 
                     store.dispatch(fetchUserSettingsSuccess(settings));

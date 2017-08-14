@@ -10,6 +10,7 @@ import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 import android.view.KeyEvent;
 import android.view.Window;
+import android.webkit.HttpAuthHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -22,14 +23,23 @@ public class MainActivity extends Activity {
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         mWebView = new WebView(this);
         mWebView.loadUrl("http://mediacenter.futureuniverse.com");
-        mWebView.getSettings().setJavaScriptEnabled(true); 
-        mWebView.setWebViewClient(new WebViewClient() {
+        mWebView.setWebViewClient(new WebViewClient () {
+
+            @Override
+            public void onReceivedHttpAuthRequest(WebView view,
+                                                  HttpAuthHandler handler, String host, String realm) {
+
+                handler.proceed("tfg-stage", "-0KvcgbqOWTX");
+            }
+
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
+
         });
+        mWebView.getSettings().setJavaScriptEnabled(true);
 
         this.setContentView(mWebView);
     }
