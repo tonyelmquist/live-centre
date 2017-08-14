@@ -50,7 +50,12 @@ class LoginModal extends Component {
         return (
             <div className={`modal ${this.props.isOpen ? 'isOpen' : ''}`}>
                 <div className="inner-modal">
-                    <FontAwesome name="close" onClick={this.props.onClose} />
+                    <FontAwesome
+                        className="close-button"
+                        name="close"
+                        size="2x"
+                        onClick={this.props.onClose}
+                    />
 
                     <h2>{i18next.t('app_login')}</h2>
                     <input type="email" placeholder={i18next.t('placeholder_email')} ref={ref => (this.usernameInput = ref)} onKeyDown={this.onUsernameFieldKeyDown}/>

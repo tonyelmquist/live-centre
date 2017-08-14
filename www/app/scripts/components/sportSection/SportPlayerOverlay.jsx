@@ -12,8 +12,11 @@ const TeamMemberOverlay = ({ teamMember, closeTeamMemberOverlay }) => (
                 size="2x"
                 onTouchTap={() => closeTeamMemberOverlay()}
             />
+            
+            <div className="container-fluid">
+                <h2>{teamMember.name} - #{teamMember.number} </h2>
+            </div>
             <div className="center">
-                <h1>{teamMember.name} - #{teamMember.number} </h1>
                 <img className="teamImg" src={teamMember.actionShot} />
             </div>
             
