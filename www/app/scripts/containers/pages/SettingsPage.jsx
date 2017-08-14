@@ -107,7 +107,7 @@ class SettingsPage extends React.Component {
             <div className="section">
               <h3>General Settings</h3>
               <Toggle
-                label="Reccomendations"
+                label="Recommendations"
                 toggled={this.props.settings.options.recommendations}
                 onToggle={this.handleRecommendationsChange}
               />
