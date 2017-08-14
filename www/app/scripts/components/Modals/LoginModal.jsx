@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import i18next from 'i18next';
 
 class LoginModal extends Component {
 
@@ -51,10 +52,10 @@ class LoginModal extends Component {
                 <div className="inner-modal">
                     <FontAwesome name="close" onClick={this.props.onClose} />
 
-                    <h2>Login</h2>
-                    <input type="email" placeholder="Email" ref={ref => (this.usernameInput = ref)} onKeyDown={this.onUsernameFieldKeyDown}/>
-                    <input type="password" placeholder="Password" ref={ref => (this.passwordInput = ref)} onKeyDown={this.onPasswordFieldKeyDown}/>
-                    <input type="submit" className="btn" onClick={this.onSubmit} />
+                    <h2>{i18next.t('app_login')}</h2>
+                    <input type="email" placeholder={i18next.t('placeholder_email')} ref={ref => (this.usernameInput = ref)} onKeyDown={this.onUsernameFieldKeyDown}/>
+                    <input type="password" placeholder={i18next.t('placeholder_password')} ref={ref => (this.passwordInput = ref)} onKeyDown={this.onPasswordFieldKeyDown}/>
+                    <input type="submit" value={i18next.t('submit_login')} className="btn" onClick={this.onSubmit} />
                 </div>
             </div>
         );

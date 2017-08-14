@@ -4,6 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import FullStar from 'material-ui/svg-icons/toggle/star';
 import { yellow500 } from 'material-ui/styles/colors';
 import Collapsible from '../Common/Collapsible';
+import i18next from 'i18next';
 
 class VideoDescription extends React.Component {
     constructor(props) {
@@ -55,13 +56,12 @@ class VideoDescription extends React.Component {
             <div className="ox-content-inner">
                 <h4>{this.props.video.series ? this.props.video.series : this.props.video.title}</h4>
                 <p>{this.subtitle ? this.subtitle : ''}
-                    Duration: {Math.round(45)} min <br />
-                    Star Rating: {this.renderStars()} <br />
-                    Add to Watchlist <FontAwesome name={this.state.wishlisted ? 'heart' : 'heart-o'} onClick={this.handleWishlistClick} style={{ color: 'white' }} />
+                    {i18next.t('video_duration')} {Math.round(45)} min <br />
+                    {i18next.t('video_star_rating')} {this.renderStars()} <br />
+                    {i18next.t('video_add_watchlist')} <FontAwesome name={this.state.wishlisted ? 'heart' : 'heart-o'} onClick={this.handleWishlistClick} style={{ color: 'white' }} />
                 </p>
             
                 <Collapsible
-                    label={"Description"}
                     collapseInfo={this.collapseInfo}
                     toggleCollapseInfo={this.props.toggleCollapseInfo}
                     isCollapsed={this.props.isCollapsed}

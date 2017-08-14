@@ -12,9 +12,9 @@ import picture1 from '../../../img/mockup/sport/soccer-background-1.jpg';
 import picture2 from '../../../img/mockup/sport/soccer-background-2.jpg';
 
 const tabs = [
-    'Info',
-    'Games',
-    'Highlights',
+    'sport_info',
+    'sport_games',
+    'sport_highlights',
 ];
 
 class TeamPage extends React.Component {

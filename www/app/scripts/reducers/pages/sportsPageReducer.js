@@ -23,7 +23,7 @@ const filters = [
 const sportsDefaultState = {
     1: {
         id: 1,
-        title: 'Soccer',
+        title: 'Football',
         thumbnail: '/img/soccer.png',
     },
 };

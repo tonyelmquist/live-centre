@@ -67,20 +67,20 @@ class Header extends Component {
 
     menuItems = [
         {
-            key: 'route_home',
-            onClick: () => this.onMenuItemClick('/Home', 0),
+            key: 'home',
+            onClick: () => this.onMenuItemClick('/home', 0),
             icon: <HomeIcon /> },
         {
-            key: 'route_programs',
-            onClick: () => this.onMenuItemClick('/Programs', 1),
+            key: 'programs',
+            onClick: () => this.onMenuItemClick('/programs', 1),
             icon: <ProgramsIcon /> },
         {
-            key: 'route_channels',
-            onClick: () => this.onMenuItemClick('/Channels', 3),
+            key: 'channels',
+            onClick: () => this.onMenuItemClick('/channels', 3),
             icon: <ChannelsIcon /> },
         {
-            key: 'route_sports',
-            onClick: () => this.onMenuItemClick('/Sports', 4),
+            key: 'sports',
+            onClick: () => this.onMenuItemClick('/sports', 4),
             icon: <SportIcon /> },
     ];
 

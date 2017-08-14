@@ -27,14 +27,13 @@ const HeaderMenu = (props) => {
     };
 
     const printLocation = () => {
-        if (props.locationName === 'Home') {
-            return (<Link to="/Home">
-                      <FlatButton className="menuItem logo" label="IMR" />
-                    </Link>);
+      console.log(props.locationName);
+        if (props.locationName === 'home') {
+            return (<FlatButton className="menuItem logo" label="IMR" />);
         }
         return (<div onTouchTap={() => props.goBack()} className="menuItem links">
                     <BackIcon style={{ padding: 8, float: 'left', color:'#000' }} />
-                    <span className="menuItemLabel">{props.locationName}</span>
+                    <span className="menuItemLabel">{i18next.t(props.locationName)}</span>
                 </div>);
     };
 

@@ -78,14 +78,14 @@ class Chat extends Component {
                 {this.props.video.title}
             </div>
             <ul className="chat-messages" ref="chat" onWheel={this.onScroll} onTouchMove={this.onScroll} style={messagesStyle}>
-                <li style={{ opacity: '.8' }}>Welcome to the chatroom! Write your message below..</li>
+                <li style={{ opacity: '.8' }}>{i18next.t('video_chatrom_welcome')}</li>
               {Chat.filterMessages(this.props.messages)}
             </ul>
             <input
                 type="text"
                 ref={ref => (this.inputBox = ref)}
                 onKeyUp={this.onKeyDown}
-                placeholder={`${this.props.isLoggedIn ? 'Write your message here...' : 'Please log in to chat'}`}
+                placeholder={`${this.props.isLoggedIn ? i18next.t('video_chatrom_input_placeholder') : i18next.t('video_chatrom_please_login')}`}
                 disabled={!this.props.isLoggedIn}
             />
             <button type="submit" onTouchTap={this.onSubmitClick} disabled={!this.props.isLoggedIn} >

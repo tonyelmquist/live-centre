@@ -14,57 +14,57 @@ msgstr "Ok"
 
 #. Route Home
 #:
-msgid "route_home"
+msgid "home"
 msgstr "Home"
 
-#. Route Wishlist
+#. Route Watchlist
 #:
-msgid "route_wishlist"
+msgid "watchlist"
 msgstr "Watchlist"
 
 #. Route Topics
 #:
-msgid "route_topics"
+msgid "topics"
 msgstr "Topics"
 
 #. Route Settings
 #:
-msgid "route_settings"
+msgid "settings"
 msgstr "Settings"
 
 #. Route Favorites
 #:
-msgid "route_favorites"
+msgid "favorites"
 msgstr "Favorites"
 
 #. Route Series
 #:
-msgid "route_series"
+msgid "series"
 msgstr "Series"
 
 #. Route Programs
 #:
-msgid "route_programs"
+msgid "programs"
 msgstr "Shows"
 
 #.Route Channels
 #:
-msgid "route_channels"
+msgid "channels"
 msgstr "Channels"
 
 #.Route Tv-Guide
 #:
-msgid "route_tvguide"
+msgid "tvguide"
 msgstr "TV-Guide"
 
 #.Route Profile
 #:
-msgid "profile_page"
+msgid "profile"
 msgstr "My profile"
 
 #.Route Sports
 #:
-msgid "route_sports"
+msgid "sports"
 msgstr "Sports"
 
 #. Topics Rendering
@@ -86,6 +86,11 @@ msgstr "State vs Props"
 #:
 msgid "app_signout"
 msgstr "Sign Out"
+
+#. Appbar Sign in
+#:
+msgid "app_login"
+msgstr "Login"
 
 
 #. Language: English
@@ -123,6 +128,36 @@ msgstr "Language"
 #:
 msgid "setting_subtitle"
 msgstr "Subtitle"
+
+#. Setting: General
+#:
+msgid "settings_general"
+msgstr "General settings"
+
+#. Setting: Recommendations
+#:
+msgid "settings_recommendations"
+msgstr "Recommendations"
+
+#. Setting: Parental
+#:
+msgid "settings_parental"
+msgstr "Parental Controls"
+
+#. Setting: Parental code
+#:
+msgid "settings_parental_code"
+msgstr "Parental Code"
+
+#. Setting: Active Devices
+#:
+msgid "settings_active_devices"
+msgstr "Active Devices"
+
+#. Setting: Age Rating
+#:
+msgid "settings_age_rating"
+msgstr "Age rating"
 
 #. Search: Placeholder
 #: 
@@ -213,4 +248,135 @@ msgstr "Space Age"
 #:
 msgid "soccer"
 msgstr "Soccer"
+
+#. Filters and keys
+#:
+msgid "children"
+msgstr "Children"
+
+#. Filters and keys
+#:
+msgid "drama"
+msgstr "Drama"
+
+#. Filters and keys
+#:
+msgid "pets"
+msgstr "Pets"
+
+#. Filters and keys
+#:
+msgid "comedy"
+msgstr "Comedy"
+
+#. Filters and keys
+#:
+msgid "fantasy"
+msgstr "Fantasy"
+
+#. Filters and keys
+#:
+msgid "documentaries"
+msgstr "Documentaries"
+
+#. Video description
+#:
+msgid "video_add_watchlist"
+msgstr "Add to watchlist"
+
+#. Video description
+#:
+msgid "video_duration"
+msgstr "Duration"
+
+#. Video description
+#:
+msgid "video_recommendations"
+msgstr "Recommendations"
+
+#. Video description
+#:
+msgid "video_season"
+msgstr "Season"
+
+#. Video description
+#:
+msgid "video_star_rating"
+msgstr "Star rating"
+
+#. Video chatrom
+#:
+msgid "video_chatrom_welcome"
+msgstr "Welcome to the chatrooom. To chat write your message in the box below."
+
+#. Video chatrom
+#:
+msgid "video_chatrom_please_login"
+msgstr "Please log in to chat"
+
+#. Video chatrom
+#:
+msgid "video_chatrom_input_placeholder"
+msgstr "Write your message here"
+
+#. Login and registration
+#:
+msgid "placeholder_email"
+msgstr "Email"
+
+#. Login and registration
+#:
+msgid "placeholder_password"
+msgstr "Password"
+
+#. Submit and buttons
+#:
+msgid "submit_login"
+msgstr "Login"
+
+#. Submit and buttons
+#:
+msgid "submit_save"
+msgstr "Save"
+
+#. Submit and buttons
+#:
+msgid "submit_cancel"
+msgstr "Cancel"
+
+#. Sport
+#:
+msgid "Football"
+msgstr "Football"
+
+#. Sport
+#:
+msgid "sport_teams"
+msgstr "Teams"
+
+#. Sport
+#:
+msgid "sport_matches"
+msgstr "Matches"
+
+#. Sport
+#:
+msgid "sport_highlights"
+msgstr "Highlights"
+
+#. Sport
+#:
+msgid "sport_games"
+msgstr "Games"
+
+#. Sport
+#:
+msgid "sport_info"
+msgstr "Info"
+
+#. Sport
+#:
+msgid "sport_players"
+msgstr "Players"
+
 

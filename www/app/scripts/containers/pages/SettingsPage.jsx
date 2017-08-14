@@ -105,22 +105,22 @@ class SettingsPage extends React.Component {
             </div>
 
             <div className="section">
-              <h3>General Settings</h3>
+              <h3>{i18next.t('settings_general')}</h3>
               <Toggle
-                label="Recommendations"
+                label={i18next.t('settings_recommendations')}
                 toggled={this.props.settings.options.recommendations}
                 onToggle={this.handleRecommendationsChange}
               />
             </div>
 
             <div className="section">
-              <h3>Active Devices</h3>
+              <h3>{i18next.t('settings_active_devices')}</h3>
               {this.getFormList()}
             </div>
 
             <div className="section">
-              <h3>Parental Controls</h3>
-              <label htmlFor="age_rating_setting">Age Rating</label>
+              <h3>{i18next.t('settings_parental')}</h3>
+              <label htmlFor="age_rating_setting">{i18next.t('settings_age_rating')}</label>
               <select
                 id="age_rating_setting"
                 value={this.state.ageRating}
@@ -133,7 +133,7 @@ class SettingsPage extends React.Component {
                 <option value={'all'}>All</option>
               </select>
 
-              <label htmlFor="parental_password">Parental Code</label>
+              <label htmlFor="parental_password">{i18next.t('settings_parental_code')}</label>
               <input
                 id="parental_password"
                 type="password"
@@ -141,8 +141,8 @@ class SettingsPage extends React.Component {
               />
             </div>
             <div className="section">
-              <button onTouchTap={this.handleSaveTouch} className="formBtn halfBtn"> Save </button>
-              <button className="formBtn secondaryBtn halfBtn"> Cancel </button>
+              <button onTouchTap={this.handleSaveTouch} className="formBtn halfBtn"> {i18next.t('submit_save')} </button>
+              <button className="formBtn secondaryBtn halfBtn">  {i18next.t('submit_cancel')} </button>
               {/* <RaisedButton label="Save" primary onTouchTap={this.handleSaveTouch} /> */}
             </div>
           </div>

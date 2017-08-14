@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
+import i18next from 'i18next';
 import FontAwesome from 'react-fontawesome';
 import VideoSwiperItem from '../components/VideoSwiperItem';
 
@@ -84,7 +85,7 @@ class VideoSwiper extends Component {
           <div className="slider">
             <div className="rowHeader">
               <Link className="rowTitle" to={`/Category/${this.props.tag.key}`}>
-                {this.props.tag.name} <FontAwesome name="angle-right" style={{ fontSize: '18px', fontWeight: 'bold', margin: '5px' }} />
+                {i18next.t(this.props.tag.name)} <FontAwesome name="angle-right" style={{ fontSize: '18px', fontWeight: 'bold', margin: '5px' }} />
               </Link>
             </div>
 

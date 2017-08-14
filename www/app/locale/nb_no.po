@@ -14,56 +14,57 @@ msgstr "OK"
 
 #. Route Home
 #: 
-msgid "route_home"
+msgid "home"
 msgstr "Hjem"
-#. Route Wishlist
-#: 
-msgid "route_wishlist"
-msgstr "Overvåkningsliste"
+
+#. Route Watchlist
+#:
+msgid "watchlist"
+msgstr "Ønskeliste"
 
 #. Route Topics
 #: 
-msgid "route_topics"
+msgid "topics"
 msgstr "Emner"
 
 #. Route Settings
 #:
-msgid "route_settings"
+msgid "settings"
 msgstr "Innstillinger"
 
 #. Route Favorites
 #:
-msgid "route_favorites"
+msgid "favorites"
 msgstr "Favoritter"
 
 #. Route Series
 #:
-msgid "route_series"
+msgid "series"
 msgstr "Serier"
 
 #.Route Channels
 #:
-msgid "route_channels"
+msgid "channels"
 msgstr "Kanaler"
 
 #.Route Tv-Guide
 #:
-msgid "route_tvguide"
+msgid "tvguide"
 msgstr "TV-Guide"
 
 #.Route Profile
 #:
-msgid "profile_page"
+msgid "profile"
 msgstr "Min profil"
 
 #.Route Sports
 #:
-msgid "route_sports"
+msgid "sports"
 msgstr "Sport"
 
 #. Route Programs
 #:
-msgid "route_programs"
+msgid "programs"
 msgstr "Sending"
 
 
@@ -87,6 +88,10 @@ msgstr "State vs Props"
 msgid "app_signout"
 msgstr "Logg Av"
 
+#. Appbar Sign in
+#:
+msgid "app_login"
+msgstr "Logg inn"
 
 #. Language: English
 #:
@@ -122,6 +127,36 @@ msgstr "Språk"
 #:
 msgid "setting_subtitle"
 msgstr "Undertekst"
+
+#. Setting: General
+#:
+msgid "settings_general"
+msgstr "Generelle innstillinger"
+
+#. Setting: Recommendations
+#:
+msgid "settings_recommendations"
+msgstr "Anbefalinger"
+
+#. Setting: Parental code
+#:
+msgid "settings_parental_code"
+msgstr "Foreldrekontroll kode"
+
+#. Setting: Parental controll
+#:
+msgid "settings_parental"
+msgstr "Foreldrekontroll"
+
+#. Setting: Active Devices
+#:
+msgid "settings_active_devices"
+msgstr "Aktive enheter"
+
+#. Setting: Recommendations
+#:
+msgid "settings_age_rating"
+msgstr "Aldersgrense"
 
 #. Search: Placeholder
 #: 
@@ -208,8 +243,174 @@ msgstr "Glade 20åra"
 msgid "spaceage"
 msgstr "Romalderen"
 
+#. Tag & category names
+#:
+msgid "Game Shows"
+msgstr "Spill show"
+
+#. Tag & category names
+#:
+msgid "Uncategorized"
+msgstr "Ukategorisert"
+
+#. Tag & category names
+#:
+msgid "Promotional Videos"
+msgstr "Promoteringsvideoer"
+
+#. Tag & category names
+#:
+msgid "Live events"
+msgstr "Live arrangementer"
+
+#. Tag & category names
+#:
+msgid "Movies"
+msgstr "Filmer"
+
+#. Tag & category names
+#:
+msgid "Series"
+msgstr "Serier"
+
+#. Tag & category names
+#:
+msgid "All"
+msgstr "Alle"
 
 #. Sport
 #:
 msgid "soccer"
 msgstr "Fotball"
+
+#. Filters and keys
+#:
+msgid "children"
+msgstr "Barn"
+
+#. Filters and keys
+#:
+msgid "drama"
+msgstr "Drama"
+
+#. Filters and keys
+#:
+msgid "pets"
+msgstr "Dyr"
+
+#. Filters and keys
+#:
+msgid "comedy"
+msgstr "Humor"
+
+#. Filters and keys
+#:
+msgid "fantasy"
+msgstr "Fantasi"
+
+#. Filters and keys
+#:
+msgid "documentaries"
+msgstr "Dokumentarer"
+
+#. Video description
+#:
+msgid "video_add_watchlist"
+msgstr "Legg til i ønskeliste"
+
+#. Video description
+#:
+msgid "video_duration"
+msgstr "Lengde"
+
+#. Video description
+#:
+msgid "video_recommendations"
+msgstr "Anbefalinger"
+
+#. Video description
+#:
+msgid "video_season"
+msgstr "Sesong"
+
+#. Video description
+#:
+msgid "video_star_rating"
+msgstr "Vurdering"
+
+#. Video chatrom
+#:
+msgid "video_chatrom_welcome"
+msgstr "Velkommen til chatrommet. For å chatte, skriv beskjeden din i boksen nedenfor."
+
+#. Video chatrom
+#:
+msgid "video_chatrom_please_login"
+msgstr "Logg inn for å chatte"
+
+#. Video chatrom
+#:
+msgid "video_chatrom_input_placeholder"
+msgstr "Skriv din melding her"
+
+#. Login and registration
+#:
+msgid "placeholder_email"
+msgstr "Epost"
+
+#. Login and registration
+#:
+msgid "placeholder_password"
+msgstr "Passord"
+
+#. Submit and buttons
+#:
+msgid "submit_login"
+msgstr "Logg inn"
+
+#. Submit and buttons
+#:
+msgid "submit_save"
+msgstr "Lagre"
+
+#. Submit and buttons
+#:
+msgid "submit_cancel"
+msgstr "Avbryt"
+
+
+
+#. Sport
+#:
+msgid "Football"
+msgstr "Fotball"
+
+#. Sport
+#:
+msgid "sport_teams"
+msgstr "Lag"
+
+#. Sport
+#:
+msgid "sport_matches"
+msgstr "Kamper"
+
+#. Sport
+#:
+msgid "sport_highlights"
+msgstr "Høydepunkter"
+
+#. Sport
+#:
+msgid "sport_games"
+msgstr "Kamper"
+
+#. Sport
+#:
+msgid "sport_info"
+msgstr "Info"
+
+#. Sport
+#:
+msgid "sport_players"
+msgstr "Spillere"

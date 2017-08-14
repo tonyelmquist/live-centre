@@ -94,18 +94,18 @@ class App extends Component {
                 <SearchOverlay />
                 {this.props.teamMemberOverlay.isOpen ? <SportPlayerOverlay closeTeamMemberOverlay={this.closeTeamMemberOverlay} teamMember={this.props.teamMemberOverlay.player} /> : <div />}
                     <TransitionRoutes>
-                        <Route exact path="/Home" component={HomePage} />
-                        <Route path="/Programs" component={ProgramsPage} />
-                        <Route path="/Channels" component={ChannelsPage} />
-                        <Route path="/Sports" component={SportsPage} />
-                        <Route path="/Login" component={Login} />
-                        <Route path="/Settings" component={SettingsPage} />
-                        <Route path="/Category/:categoryKey" component={CategoryContainer} />
-                        <Route path="/Channel/:channelKey" component={SingleChannelPage} />
-                        <Route path="/Sport/:sportKey" component={SingleSportPage} />
-                        <Route path="/Team/:teamKey" component={TeamPage} />
-                        <Route path="/Profile" component={ProfilePageWithProps} />
-                        <Route path="/Watchlist" component={WishlistPage} />
+                        <Route exact path="/home" component={HomePage} />
+                        <Route path="/programs" component={ProgramsPage} />
+                        <Route path="/channels" component={ChannelsPage} />
+                        <Route path="/sports" component={SportsPage} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/settings" component={SettingsPage} />
+                        <Route path="/category/:categoryKey" component={CategoryContainer} />
+                        <Route path="/channel/:channelKey" component={SingleChannelPage} />
+                        <Route path="/sport/:sportKey" component={SingleSportPage} />
+                        <Route path="/team/:teamKey" component={TeamPage} />
+                        <Route path="/profile" component={ProfilePageWithProps} />
+                        <Route path="/watchlist" component={WishlistPage} />
                     </TransitionRoutes>
 
                 <OverlayX />

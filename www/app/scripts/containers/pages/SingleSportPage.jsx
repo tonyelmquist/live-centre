@@ -8,6 +8,7 @@ import CircleRowItem from '../../components/HorizontalScroll/CircleRowItem';
 import LiveTag from '../../components/common/LiveTag';
 import soccerBG from '../../../img/mockup/sport/soccer-background.jpg';
 import teamImg from '../../../img/mockup/sport/soccer-teams/Real-Madrid-Logo.png';
+import i18next from 'i18next';
 
 class SingelSportsPage extends React.Component {
 
@@ -60,7 +61,7 @@ class SingelSportsPage extends React.Component {
         return (
       <div>
         <div className="container-fluid">
-          <h4>Teams</h4>
+          <h4>{i18next.t('sport_teams')}</h4>
         </div>
         <HorizontalScrollContainer>
             {this.getTeams()}

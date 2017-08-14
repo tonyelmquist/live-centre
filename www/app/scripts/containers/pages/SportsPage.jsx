@@ -5,6 +5,7 @@ import MasonryContainer from '../../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 import Path from 'path';
 import soccer from '../../../img/mockup/sport/soccer.png';
+import i18next from 'i18next';
 
 class SportsPage extends React.Component {
 
@@ -35,7 +36,7 @@ class SportsPage extends React.Component {
                   className="centerOverlay"
                   onTouchTap={() => this.handleOnClick(sports[key])}
                 >
-                  <h2>{sports[key].title}</h2>
+                  <h2>{i18next.t(sports[key].title)}</h2>
                 </div>
               }
           />,

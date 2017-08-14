@@ -24,7 +24,7 @@ import animal from '../../../img/mockup/channels/animal.png';
 //   { key: 'Children', avatarStyle: { backgroundColor: '#E91E63' } },
 //   { key: 'Drama', avatarStyle: { backgroundColor: '#FFC107' } },
 //   { key: 'Pets', avatarStyle: { backgroundColor: '#00BCD4' } },
-//   { key: 'Humor', avatarStyle: { backgroundColor: '#673AB7' } },
+//   { key: 'comedy', avatarStyle: { backgroundColor: '#673AB7' } },
 //   { key: 'Fantasy', avatarStyle: { backgroundColor: '#FF9800' } },
 //   { key: 'Documentaries', avatarStyle: { backgroundColor: '#8BC34A' } },
 // ];
@@ -51,35 +51,35 @@ const channels = {
         title: 'MAX',
         logo: require('../../../img/mockup/channels/logo_max.png'),
         thumbnail: require('../../../img/mockup/channels/max.png'),
-        tags: ['drama', 'humor', 'documentaries'],
+        tags: ['drama', 'comedy', 'documentaries'],
     },
     2: {
         id: 2,
         title: 'Fem',
         logo: femLOGO,
         thumbnail: fem,
-        tags: ['drama', 'humor'],
+        tags: ['drama', 'comedy'],
     },
     3: {
         id: 3,
         title: 'TLC',
         // logo: tlcLOGO,
         thumbnail: tlc,
-        tags: ['drama', 'humor'],
+        tags: ['drama', 'comedy'],
     },
     4: {
         id: 4,
         title: 'VOX',
         // logo: vox,
         thumbnail: vox,
-        tags: ['drama', 'humor'],
+        tags: ['drama', 'comedy'],
     },
     5: {
         id: 5,
         title: 'TV Norge',
         logo: tvNorgeLOGO,
         thumbnail: tvNorge,
-        tags: ['drama', 'humor', 'children', 'documentaries'],
+        tags: ['drama', 'comedy', 'children', 'documentaries'],
     },
     6: {
         id: 6,
@@ -98,7 +98,7 @@ class ChannelsPage extends React.Component {
               { key: 'children', avatarStyle: { backgroundColor: '#E91E63' } },
               { key: 'drama', avatarStyle: { backgroundColor: '#FFC107' } },
               { key: 'pets', avatarStyle: { backgroundColor: '#00BCD4' } },
-              { key: 'humor', avatarStyle: { backgroundColor: '#673AB7' } },
+              { key: 'comedy', avatarStyle: { backgroundColor: '#673AB7' } },
               { key: 'fantasy', avatarStyle: { backgroundColor: '#FF9800' } },
               { key: 'documentaries', avatarStyle: { backgroundColor: '#8BC34A' } },
             ],
@@ -145,7 +145,7 @@ class ChannelsPage extends React.Component {
 
     filterOverlay = filter => (
       <div className="circleFilterOverlay">
-        {filter.key}
+        <p className="label">{i18next.t(filter.key)}</p>
       </div>
     )
 
@@ -154,7 +154,7 @@ class ChannelsPage extends React.Component {
         item={filter}
         overlay={(this.filterOverlay(filter))}
         key={filter.key}
-        size={50}
+        size={60}
         style={filter.avatarStyle}
         handleClick={() => { this.handleFiltering(filter.key); }}
       />

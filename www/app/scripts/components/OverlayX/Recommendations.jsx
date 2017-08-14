@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import i18next from 'i18next';
 import HorizontalScrollContainer from '../HorizontalScroll/HorizontalScrollContainer';
 import ScrollItem from '../HorizontalScroll/ScrollItem';
 
@@ -26,7 +27,7 @@ const Recommendations = (props) => {
 
     return (
       <span>
-        <h4 style={{ padding: '15px 20px' }}>Recommendations:</h4>
+        <h4 style={{ padding: '15px 20px' }}>{i18next.t('video_recommendations')}</h4>
             <HorizontalScrollContainer>
                 <div>{getVideos()}</div>
             </HorizontalScrollContainer>

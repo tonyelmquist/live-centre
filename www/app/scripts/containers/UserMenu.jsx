@@ -15,7 +15,7 @@ class UserMenu extends Component {
         this.props.dispatch(logoutSuccess());
         const auth = new Authentication();
         auth.logoutAttempt();
-        this.props.changeRoute('/Home');
+        this.props.changeRoute('/home');
     }
 
     handleLogin = () => {
@@ -23,15 +23,15 @@ class UserMenu extends Component {
     }
 
     handleSettingsTouchTap = () => {
-        this.props.changeRoute('/Settings');
+        this.props.changeRoute('/settings');
     }
 
     handleWishlistTouchTap = () => {
-        this.props.changeRoute('/Watchlist');
+        this.props.changeRoute('/watchlist');
     }
 
     handleOpenProfile = () => {
-        this.props.changeRoute('/Profile');
+        this.props.changeRoute('/profile');
     }
 
     renderAuthenticatedUser = () => (
@@ -43,9 +43,9 @@ class UserMenu extends Component {
             anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
           >
 
-            <MenuItem primaryText={i18next.t('profile_page')} onTouchTap={this.handleOpenProfile} />
-            <MenuItem primaryText={i18next.t('route_wishlist')} onTouchTap={this.handleWishlistTouchTap}/>
-            <MenuItem primaryText={i18next.t('route_settings')} onTouchTap={this.handleSettingsTouchTap} />
+            <MenuItem primaryText={i18next.t('profile')} onTouchTap={this.handleOpenProfile} />
+            <MenuItem primaryText={i18next.t('watchlist')} onTouchTap={this.handleWishlistTouchTap}/>
+            <MenuItem primaryText={i18next.t('settings')} onTouchTap={this.handleSettingsTouchTap} />
             <MenuItem primaryText={i18next.t('app_signout')} onTouchTap={this.handleLogout} />
           </IconMenu>
         );
@@ -59,7 +59,7 @@ class UserMenu extends Component {
             anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
           >
 
-            <MenuItem primaryText='Login' onTouchTap={this.handleLogin} />
+            <MenuItem primaryText={i18next.t('app_login')} onTouchTap={this.handleLogin} />
           </IconMenu>
         );
 

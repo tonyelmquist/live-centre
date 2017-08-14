@@ -1,7 +1,9 @@
 import React from 'react';
 import Avatar from 'material-ui/Avatar';
 import teamLogo from '../../../img/mockup/sport/soccer-teams/Real-Madrid-Logo.png';
-import teamImg from '../../../img//mockup/sport/soccer-teams/Real-Madrid-Team.jpg'
+import teamImg from '../../../img//mockup/sport/soccer-teams/Real-Madrid-Team.jpg';
+import i18next from 'i18next';
+
 const getPlayerItems = (team, players, openPlayerOverlay) => {
     const playerItems = [];
     for (const key in players) {
@@ -30,7 +32,7 @@ const TeamInfoSection = ({ team, players, openPlayerOverlay }) => (
                 King Alfonso XIII in 1920 together with the royal crown in the emblem.  
             </p>
 
-            <h4>Players:</h4>
+            <h4>{i18next.t('sport_players')}</h4>
             <ul className="playerList">
               {getPlayerItems(team, players, openPlayerOverlay)}
             </ul>

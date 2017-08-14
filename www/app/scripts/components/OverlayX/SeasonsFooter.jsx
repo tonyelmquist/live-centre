@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import HorizontalScrollContainer from '../HorizontalScroll/HorizontalScrollContainer';
 import ScrollItem from '../HorizontalScroll/ScrollItem';
 import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
+import i18next from 'i18next';
 
 const SeasonsFooter = (props) => {
     const currentSeason = props.video.series;
@@ -14,8 +15,8 @@ const SeasonsFooter = (props) => {
 
     const getSeasonsTabs = () => {
         const seasons = seasonsList.map((value, key) =>
-            `Season: ${key + 1}`,
-            //Onclick change current season tab.. 
+            `${i18next.t('video_season')  } ${key + 1}` ,
+            //TODO: Onclick change current season tab.. 
         );
         return (<FilterTabs
             tabItems={seasons}
