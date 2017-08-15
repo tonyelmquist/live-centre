@@ -59,11 +59,11 @@ const ExpandableMenu = ({
                 opacity: value.o,
             }}
           >
-            <p className="divider">Menu</p>
+            <p className="divider">{i18next.t('menus_menu')}</p>
             <div className="expandableMenuInner">
               {MenuItems(pageItems)}
 
-              <p className="divider">Categories</p>
+              <p className="divider">{i18next.t('menus_categories')}</p>
               {MenuItems(categoryItems)}
             </div>
           </div>)}
