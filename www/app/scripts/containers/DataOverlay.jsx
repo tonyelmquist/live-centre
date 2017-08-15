@@ -16,6 +16,7 @@ import HighlightsRow from '../components/VideoPlayer/HighlightsRow';
 import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
 import { removeNotification } from '../actions/notifications';
 import { hideHighlights, isVideoSettingsOpen } from '../actions/videoPlayer';
+import { newNotification } from '../actions/notifications';
 
 class DataOverlay extends Component {
     constructor(props) {
@@ -36,6 +37,15 @@ class DataOverlay extends Component {
             isPlayerInfoShowing: false,
             isSettingsOverlayShowing: false,
         };
+
+        window.addEventListener('keydown', (e) => {
+            console.log(e.keyCode);
+
+            if (e.shiftKey && e.keyCode === 81) {
+                console.log('notification');
+                this.props.dispatch(newNotification(Math.round(Math.random() * 100), "data.message", 2, new Date().getTime()));
+            }
+        });
     }
 
     onMessageSend = (message) => {
@@ -104,11 +114,11 @@ class DataOverlay extends Component {
     render() {
         return (
       <div className="data-overlay">
-        <PenaltyCard
+        {/*<PenaltyCard
           open={this.state.penaltyCard.isShowing}
           text={this.state.penaltyCard.text}
           color={this.state.penaltyCard.color}
-        />
+        />*/}
         <ScoreOverlay
           score={this.props.score}
           teamOneData={this.getTeamDetails(this.teamOne)}

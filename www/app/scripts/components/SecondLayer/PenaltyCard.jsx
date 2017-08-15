@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class PenaltyCard extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            color: 'red',
-        };
-    }
 
     render() {
         return (

@@ -121,6 +121,8 @@ class Player extends React.Component {
             } else {
                 this.props.dispatch(minimizeOverlayX());
             }
+        } else {
+            this.props.dispatch(closeOverlayX());
         }
     };
 
@@ -294,7 +296,7 @@ class Player extends React.Component {
             <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)}>
               <ControlBar autoHide>
                 <PlayToggle />
-                { this.props.orientation !== Orientation.LANDSCAPE ? <KeyboardArrowDown style={minimizeIconStyles} onTouchTap={this.onMinimize} /> : <div />}
+                <KeyboardArrowDown style={minimizeIconStyles} onTouchTap={this.onMinimize} />
                 { this.props.orientation === Orientation.LANDSCAPE ? <Settings style={settingsIconStyles} onTouchTap={this.onOpenSettings} /> : <div />}
                 {/* <FontAwesome name="expand" /> */}
               </ControlBar>
