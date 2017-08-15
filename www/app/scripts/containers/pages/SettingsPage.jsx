@@ -1,8 +1,10 @@
 import React from 'react';
 import i18next from 'i18next';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { RaisedButton, Toggle } from 'material-ui';
+
 import { changeLang, changeAudioLang, changeSubtitleLang, toggleRecommendations, saveUserSettings } from '../../actions/settings';
 import FontAwesome from 'react-fontawesome';
 
@@ -25,7 +27,11 @@ class SettingsPage extends React.Component {
 
     handleSaveTouch = () => {
         this.props.dispatch(saveUserSettings(this.props.settings.options));
-        // this.state.snackbarIsOpen = true;
+        this.props.history.goBack();
+    }
+
+    handleCancelTouch = () => {
+        this.props.history.goBack();
     }
 
     handleLanguageChange = (event) => {
@@ -142,7 +148,7 @@ class SettingsPage extends React.Component {
             </div>
             <div className="section">
               <button onTouchTap={this.handleSaveTouch} className="formBtn halfBtn"> {i18next.t('submit_save')} </button>
-              <button className="formBtn secondaryBtn halfBtn">  {i18next.t('submit_cancel')} </button>
+              <button onTouchTap={this.handleCancelTouch} className="formBtn secondaryBtn halfBtn">  {i18next.t('submit_cancel')} </button>
               {/* <RaisedButton label="Save" primary onTouchTap={this.handleSaveTouch} /> */}
             </div>
           </div>
@@ -153,6 +159,7 @@ class SettingsPage extends React.Component {
 SettingsPage.propTypes = {
     dispatch: PropTypes.func.isRequired,
     settings: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
 };
 
 
@@ -160,4 +167,4 @@ const mapStateToProps = state => ({
     settings: state.settings,
 });
 
-export default connect(mapStateToProps)(SettingsPage);
+export default withRouter(connect(mapStateToProps)(SettingsPage));
