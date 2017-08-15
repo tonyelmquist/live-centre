@@ -414,3 +414,13 @@ msgstr "Info"
 #:
 msgid "sport_players"
 msgstr "Spillere"
+
+#. Menus
+#:
+msgid "menus_categories"
+msgstr "Kategorier"
+
+#. Menus
+#:
+msgid "menus_menu"
+msgstr "Meny"
