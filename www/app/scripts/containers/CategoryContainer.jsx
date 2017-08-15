@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { videoSelected, resetCurrentTimeInPlayer } from '../actions/videoPlayer';
+import { openOverlayX,maximizeOverlayX } from '../actions/overlayX';
 
 import MasonryContainer from '../components/Masonry/MasonryContainer';
 import MasonryVideoTile from '../components/Masonry/MasonryVideoTile';
