@@ -51,14 +51,13 @@ class App extends Component {
     }
 
     dispatchOrientation = () => {
-        const self = this;
         setTimeout(() => {
-            if (screen.width < screen.height) {
-                self.props.dispatch(setPortrait());
+            if (window.innerWidth < window.innerHeight) {
+                this.props.dispatch(setPortrait());
             }
 
-            if (screen.width > screen.height) {
-                self.props.dispatch(setLandscape());
+            if (window.innerWidth > window.innerHeight) {
+                this.props.dispatch(setLandscape());
             }
         }, 100);
     }

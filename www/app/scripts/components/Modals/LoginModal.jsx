@@ -61,6 +61,7 @@ class LoginModal extends Component {
                     <input type="email" placeholder={i18next.t('placeholder_email')} ref={ref => (this.usernameInput = ref)} onKeyDown={this.onUsernameFieldKeyDown}/>
                     <input type="password" placeholder={i18next.t('placeholder_password')} ref={ref => (this.passwordInput = ref)} onKeyDown={this.onPasswordFieldKeyDown}/>
                     <input type="submit" value={i18next.t('submit_login')} className="btn" onClick={this.onSubmit} />
+
                 </div>
             </div>
         );

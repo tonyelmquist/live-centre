@@ -79,6 +79,12 @@ class Player extends React.Component {
         this.props.dispatch(closeOverlayX());
     };
 
+    onMinimizeTouch = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        this.props.dispatch(minimizeOverlayX());
+    };
+
     onTouchStart = (e) => {
         this.startTouchPosition = {
             x: e.changedTouches[0].clientX,
@@ -161,37 +167,32 @@ class Player extends React.Component {
     };
 
     printPrePlayOverlay = () => {
-        if (typeof this.largeVideoPlayer !== 'undefined') {
-            if (this.largeVideoPlayer.video.video.paused &&
-                this.largeVideoPlayer.video.video.currentTime === 0 &&
-                this.state.isPreOverlayShowing &&
-                this.props.overlayX.maximized) {
-                return (<div className="pre-play-overlay" onTouchTap={this.onPrePlayTouch}>
-                            <div className="gradient-overlay" />
-                            <div className="play-button" >
-                                <i className="fa fa-play-circle" />
-                            </div>
-                            <FontAwesome
-                                className="close-button"
-                                name="close"
-                                size="2x"
-                                onTouchTap={this.onCloseTouch}
-                            />
-                        </div>);
-            }
-        } else {
+        if (typeof this.largeVideoPlayer !== 'undefined' &&
+            this.largeVideoPlayer.video.video.paused &&
+            this.largeVideoPlayer.video.video.currentTime === 0 &&
+            this.state.isPreOverlayShowing &&
+            this.props.overlayX.maximized) {
             return (<div className="pre-play-overlay" onTouchTap={this.onPrePlayTouch}>
-                            <div className="gradient-overlay" />
-                            <div className="play-button" >
-                                <i className="fa fa-play-circle" />
-                            </div>
+                        {this.props.orientation === Orientation.PORTRAIT ? <div className="gradient-overlay" /> : ''}
+                        <div className="play-button" >
                             <FontAwesome
-                                className="close-button"
-                                name="close"
+                                name="play-circle"
                                 size="2x"
-                                onTouchTap={this.onCloseTouch}
                             />
-                        </div>);
+                        </div>
+                        <FontAwesome
+                            className="close-button"
+                            name="close"
+                            size="2x"
+                            onTouchTap={this.onCloseTouch}
+                        />
+                        <FontAwesome
+                            className="minimize-button"
+                            name="chevron-down"
+                            size="2x"
+                            onTouchTap={this.onMinimizeTouch}
+                        />
+                    </div>);
         }
 
         return <div />;
@@ -212,7 +213,6 @@ class Player extends React.Component {
     };
 
     componentWillUpdate = (nextProps) => {
-
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
             if (typeof this.videoLoaded === 'undefined') {
                 return;
@@ -294,7 +294,7 @@ class Player extends React.Component {
             <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)}>
               <ControlBar autoHide>
                 <PlayToggle />
-                <KeyboardArrowDown style={minimizeIconStyles} onTouchTap={this.onMinimize} />
+                { this.props.orientation !== Orientation.LANDSCAPE ? <KeyboardArrowDown style={minimizeIconStyles} onTouchTap={this.onMinimize} /> : <div />}
                 { this.props.orientation === Orientation.LANDSCAPE ? <Settings style={settingsIconStyles} onTouchTap={this.onOpenSettings} /> : <div />}
                 {/* <FontAwesome name="expand" /> */}
               </ControlBar>
@@ -331,10 +331,10 @@ class Player extends React.Component {
               movie_filter
               </IconButton> */}
         <ProductThumb productID={this.props.productID} showProductThumb={this.props.showProductThumb} onTouchTap={() => this.onShowProductOverlay()} />
-        <ProductOverlay productID={this.props.productID} showProductOverlay={this.props.showProductOverlay}/>
+        <ProductOverlay productID={this.props.productID} showProductOverlay={this.props.showProductOverlay} />
         {this.props.orientation === Orientation.LANDSCAPE &&
         typeof this.largeVideoPlayer !== 'undefined' &&
-        !this.largeVideoPlayer.video.video.paused
+        !this.state.isPreOverlayShowing
           ? <DataOverlay />
           : ''}
       </div>
