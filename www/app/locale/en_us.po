@@ -201,6 +201,11 @@ msgstr "Series"
 
 #. Tag & category names
 #:
+msgid "movies"
+msgstr "Movies"
+
+#. Tag & category names
+#:
 msgid "lostintime"
 msgstr "Lost In Time"
 

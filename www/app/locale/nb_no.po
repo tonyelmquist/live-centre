@@ -200,6 +200,11 @@ msgstr "Serier"
 
 #. Tag & category names
 #:
+msgid "movies"
+msgstr "Filmer"
+
+#. Tag & category names
+#:
 msgid "lostintime"
 msgstr "Lost in Time"
 
