@@ -6,9 +6,7 @@ import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 import { videoSelected, resetCurrentTimeInPlayer } from '../../actions/videoPlayer';
 import { changeProgramTabIndex } from '../../actions/pages/programsPage';
 import { maximizeOverlayX, openOverlayX } from '../../actions/overlayX';
-import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
-
-
+import FilterTabs from '../FilterTabs';
 
 class WishlistPage extends React.Component {
 

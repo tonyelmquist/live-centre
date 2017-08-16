@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import HorizontalScrollContainer from '../HorizontalScroll/HorizontalScrollContainer';
 import ScrollItem from '../HorizontalScroll/ScrollItem';
-import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
+import FilterTabs from '../../containers/FilterTabs';
 import i18next from 'i18next';
 
 const SeasonsFooter = (props) => {
