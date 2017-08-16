@@ -21,6 +21,7 @@ import CategoryContainer from './CategoryContainer';
 import SearchOverlay from './SearchOverlay';
 import Login from './Login';
 import Header from './Header';
+import NotificationManager from './NotificationManager';
 //Components
 import TransitionRoutes from '../components/TransitionRoutes';
 import SportPlayerOverlay from '../components/SportSection/SportPlayerOverlay';
@@ -29,6 +30,7 @@ import LoginModal from '../components/Modals/LoginModal';
 import { setLandscape, setPortrait } from '../actions/settings';
 import { closeTeamMemberOverlay } from '../actions/pages/sportsPage';
 import { showLoginModal } from '../actions/modals';
+import { newNotification, removeNotification } from '../actions/notifications';
 import Authentication from '../utils/Authentication';
 
 const history = createHistory();
@@ -37,7 +39,11 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            loginModal: {
+                error: false,
+            },
+        };
         this.dispatchOrientation();
         if ('onorientationchange' in window) {
             window.addEventListener('orientationchange', () => {
@@ -48,6 +54,19 @@ class App extends Component {
               this.dispatchOrientation();
           }, false);
         }
+
+        window.addEventListener('keydown', (e) => {
+            console.log(e.keyCode);
+
+            if (e.shiftKey && e.keyCode === 81) {
+                console.log('notification');
+                this.props.dispatch(newNotification('This is a success message!', 5, 'success'));
+            }
+            if (e.shiftKey && e.keyCode === 87) {
+                console.log('notification');
+                this.props.dispatch(newNotification('Your login details were incorrect!', 7, 'error'));
+            }
+        });
     }
 
     dispatchOrientation = () => {
@@ -71,19 +90,38 @@ class App extends Component {
     }
 
     loginAttempt = (username, password) => {
-        const auth = new Authentication();
-        auth.signInAttempt(username, password);
-        this.closeLoginModal();
+        Authentication.signInAttempt(username, password, (success, e) => {
+            console.log(success, '?');
+            if (success) {
+                this.props.dispatch(newNotification('Welcome back, user!', 7, 'success'));
+                this.closeLoginModal();
+                this.setState({
+                    loginModal: {
+                        error: false,
+                    },
+                });
+            } else {
+                this.props.dispatch(newNotification(e.errorMessage, 7, 'error'));
+                this.setState({
+                    loginModal: {
+                        error: true,
+                    },
+                });
+            }
+        });
     }
+
+    dispatchRemoveNotification = (id) => {
+        this.props.dispatch(removeNotification(id));
+    };
 
     render() {
         const ProfilePageWithProps = () => (
             <ProfilePage
                 user={this.props.authentication.user}
             />);
-        
+
         history.push('/Home');
-    
 
         return (
           <BrowserRouter history={history}>
@@ -109,7 +147,8 @@ class App extends Component {
 
                 <OverlayX />
               </div>
-              <LoginModal isOpen={this.props.modals.showLoginModal} onClose={this.closeLoginModal} onSubmit={this.loginAttempt} />
+              <LoginModal isOpen={this.props.modals.showLoginModal} onClose={this.closeLoginModal} onSubmit={this.loginAttempt} error={this.state.loginModal.error}/>
+              <NotificationManager notifications={this.props.notifications} removeNotification={this.dispatchRemoveNotification} />
             </div>
           </BrowserRouter>
 
@@ -120,8 +159,10 @@ App.propTypes = {
     dispatch: PropTypes.func.isRequired,
     modals: PropTypes.object.isRequired,
     authentication: PropTypes.object.isRequired,
+    notifications: PropTypes.array.isRequired,
 };
 const mapStateToProps = state => ({
+    notifications: state.notifications.notifications,
     loginState: state.isUserLoggedIn,
     sidebarState: state.isSidebarVisible,
     modals: state.modals,

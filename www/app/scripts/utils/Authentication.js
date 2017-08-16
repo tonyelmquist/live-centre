@@ -3,6 +3,7 @@ import i18next from 'i18next';
 import { loginSuccess, logoutSuccess } from '../actions/authentication';
 import store from './store';
 import { fetchUserSettingsSuccess, changeLang } from '../actions/settings';
+import { newNotification } from '../actions/notifications';
 
 export default class Authentication {
 
@@ -83,14 +84,15 @@ export default class Authentication {
         });
     }
 
-    signInAttempt = (email, password) => {
-        firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
-            // Handle Errors here.
+    static signInAttempt = (email, password, callback) => {
+        firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+            callback(true);
+        }).catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
 
-            console.log(errorCode, errorMessage);
-            // ...
+            callback(false, { errorCode, errorMessage });
+            console.error(errorCode, errorMessage);
         });
     }
 

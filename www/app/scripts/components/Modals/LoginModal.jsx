@@ -10,18 +10,21 @@ class LoginModal extends Component {
         this.passwordInput.value = '';
     }
 
-    shouldComponentUpdate(nextProps, nextState){
-
-        console.log("should component update", nextProps, nextState);
-        if(this.props.isOpen !== nextProps.isOpen){
-            console.log("yes");
-            return true
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('should component update', nextProps, nextState);
+        if (this.props.isOpen !== nextProps.isOpen) {
+            console.log('yes');
+            return true;
         }
-        return false 
+        if (this.props.error !== nextProps.error) {
+            console.log('yes');
+            return true;
+        }
+        return false;
     }
 
     componentDidUpdate = () => {
-        if(this.props.isOpen == true){
+        if (this.props.isOpen === true) {
             setTimeout(() => {
                 this.usernameInput.focus();
             }, 200);
@@ -46,6 +49,10 @@ class LoginModal extends Component {
         }
     }
 
+    errorStyles = {
+        border: '2px solid red',
+    }
+
     render() {
         return (
             <div className={`modal ${this.props.isOpen ? 'isOpen' : ''}`}>
@@ -58,8 +65,8 @@ class LoginModal extends Component {
                     />
 
                     <h2>{i18next.t('app_login')}</h2>
-                    <input type="email" placeholder={i18next.t('placeholder_email')} ref={ref => (this.usernameInput = ref)} onKeyDown={this.onUsernameFieldKeyDown}/>
-                    <input type="password" placeholder={i18next.t('placeholder_password')} ref={ref => (this.passwordInput = ref)} onKeyDown={this.onPasswordFieldKeyDown}/>
+                    <input type="email" placeholder={i18next.t('placeholder_email')} ref={ref => (this.usernameInput = ref)} onKeyDown={this.onUsernameFieldKeyDown} style={this.props.error ? this.errorStyles : {}} />
+                    <input type="password" placeholder={i18next.t('placeholder_password')} ref={ref => (this.passwordInput = ref)} onKeyDown={this.onPasswordFieldKeyDown} style={this.props.error ? this.errorStyles : {}} />
                     <input type="submit" value={i18next.t('submit_login')} className="btn" onClick={this.onSubmit} />
 
                 </div>
@@ -72,6 +79,7 @@ LoginModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
+    error: PropTypes.bool.isRequired,
 };
 
 export default LoginModal;

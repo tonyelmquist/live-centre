@@ -5,7 +5,7 @@ import chat from './chatReducer';
 import { videosReducer, seasonReducer, seriesReducer, tagsReducer } from './fetchDataReducer';
 import { changeNavIndex, headerMenuState, drawerMenuState } from './navigationReducer';
 import overlayX from './overlayXReducer';
-import notificationReducer from './notificationReducer';
+import { notificationReducer, popNotificationReducer } from './notificationReducer';
 import { search, searchFilterTab } from './searchReducer';
 import dataOverlayReducer from './secondLayerReducer';
 import modalsReducer from './modalsReducer';
@@ -40,7 +40,10 @@ const rootReducer = combineReducers({
     sportsInfo: combineReducers({ sports, teams, players }),
     tags: tagsReducer,
     seasons: seasonReducer,
-    notifications: notificationReducer,
+    notifications: combineReducers({
+        popNotifications: popNotificationReducer,
+        notifications: notificationReducer,
+    }),
     settings,
     chat,
     replay,

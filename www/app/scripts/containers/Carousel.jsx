@@ -172,6 +172,7 @@ class HeroCarousel extends Component {
                         muted
                         controls={[]}
                         poster={video.thumbnail}
+                        loop
                       >
                         <source src={videoUrl} />
                       </Video>

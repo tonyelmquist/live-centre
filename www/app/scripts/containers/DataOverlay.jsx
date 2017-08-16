@@ -14,9 +14,8 @@ import PlayerInfoOverlay from '../components/SecondLayer/PlayerInfoOverlay';
 import Replayer from '../components/VideoPlayer/Replayer';
 import HighlightsRow from '../components/VideoPlayer/HighlightsRow';
 import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
-import { removeNotification } from '../actions/notifications';
+import { removePopNotification, newPopNotification } from '../actions/notifications';
 import { hideHighlights, isVideoSettingsOpen } from '../actions/videoPlayer';
-import { newNotification } from '../actions/notifications';
 
 class DataOverlay extends Component {
     constructor(props) {
@@ -43,7 +42,7 @@ class DataOverlay extends Component {
 
             if (e.shiftKey && e.keyCode === 81) {
                 console.log('notification');
-                this.props.dispatch(newNotification(Math.round(Math.random() * 100), "data.message", 2, new Date().getTime()));
+                this.props.dispatch(newPopNotification(Math.round(Math.random() * 100), "data.message", 2, new Date().getTime()));
             }
         });
     }
@@ -96,7 +95,7 @@ class DataOverlay extends Component {
     }
 
     removeNotification = (id) => {
-        this.props.dispatch(removeNotification(id));
+        this.props.dispatch(removePopNotification(id));
     }
 
     getTeamDetails = (team) => {
@@ -128,7 +127,7 @@ class DataOverlay extends Component {
         />
         <PopIndicatorManager
           removeNotification={id => this.removeNotification(id)}
-          notifications={this.props.notifications}
+          notifications={this.props.popNotifications}
         />
         <LineupOverlay
           isShowing={this.state.isLineupShowing}
@@ -173,7 +172,7 @@ DataOverlay.propTypes = {
     replay: PropTypes.object.isRequired,
     highlights: PropTypes.object.isRequired,
     sportsInfo: PropTypes.object.isRequired,
-    notifications: PropTypes.array.isRequired,
+    popNotifications: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -182,7 +181,7 @@ const mapStateToProps = state => ({
     replay: state.replay,
     highlights: state.highlights,
     sportsInfo: state.sportsInfo,
-    notifications: state.notifications.notifications,
+    popNotifications: state.notifications.popNotifications,
     playback: state.playback,
 });
 

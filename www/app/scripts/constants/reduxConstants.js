@@ -113,15 +113,19 @@ class ReduxConstants {
     static get SET_VIDEO_SETTINGS_OPEN() { return 'SET_VIDEO_SETTINGS_OPEN'; }
 
 
-    //NOTIFICATIONS
+    // NOTIFICATIONS
+    static get ADD_NEW_POP_NOTIFICATION() { return 'ADD_NEW_POP_NOTIFICAITON'; }
+    static get REHYDRATE_POP_NOTIFICATIONS() { return 'REHYDRATE_POP_NOTIFICATIONS'; }
+    static get REMOVE_POP_NOTIFICATION() { return 'REMOVE_POP_NOTIFICATION'; }
+
     static get ADD_NEW_NOTIFICATION() { return 'ADD_NEW_NOTIFICAITON'; }
     static get REHYDRATE_NOTIFICATIONS() { return 'REHYDRATE_NOTIFICATIONS'; }
     static get REMOVE_NOTIFICATION() { return 'REMOVE_NOTIFICATION'; }
 
-    //PAGES
-    //PROGRAMPAGE
+    // PAGES
+    //   PROGRAMPAGE
     static get CHANGE_PROGRAMS_TAB_INDEX() { return 'CHANGE_PROGRAMS_TAB_INDEX'; }
-    //SPORTSPAGE
+    //   SPORTSPAGE
     static get CHANGE_TEAM_TAB_INDEX() { return 'CHANGE_TEAM_TAB_INDEX' ;}
     static get CHANGE_PLAYER_INDEX() { return 'CHANGE_PLAYER_INDEX' ;}
     static get CHANGE_PLAYER_INDEX_TAB() { return 'CHANGE_PLAYER_INDEX_TAB' ;}
