@@ -161,7 +161,7 @@ msgstr "Aldersgrense"
 #. Search: Placeholder
 #: 
 msgid "search_placeholder"
-msgstr "Jeg vil se.."
+msgstr "Søk etter..."
 
 #. Searchoverlay: Suggested people
 #:

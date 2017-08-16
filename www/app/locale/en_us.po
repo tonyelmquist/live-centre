@@ -162,7 +162,7 @@ msgstr "Age rating"
 #. Search: Placeholder
 #: 
 msgid "search_placeholder"
-msgstr "I want to see"
+msgstr "Search for..."
 
 #. Searchoverlay: Suggested people
 #:

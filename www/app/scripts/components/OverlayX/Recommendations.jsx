@@ -26,12 +26,12 @@ const Recommendations = (props) => {
     
 
     return (
-      <span>
-        <h4 style={{ padding: '15px 20px' }}>{i18next.t('video_recommendations')}</h4>
+      <div className="video-scroller">
+        <h4 style={{ padding: '20px 0 5px 15px', fontWeight: 'bold' }}>{i18next.t('video_recommendations')}</h4>
             <HorizontalScrollContainer>
                 <div>{getVideos()}</div>
             </HorizontalScrollContainer>
-        </span>
+        </div>
     );
 };
 

@@ -3,7 +3,7 @@ import i18next from 'i18next';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import HorizontalScrollContainer from '../../components/HorizontalScroll/HorizontalScrollContainer';
-import CircleRowItem from '../../components/HorizontalScroll/CircleRowItem';
+import ScrollItem from '../../components/HorizontalScroll/ScrollItem';
 import MasonryContainer from '../../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 
@@ -18,6 +18,16 @@ import tvNorge from '../../../img/mockup/channels/tvNorge.png';
 import tvNorgeLOGO from '../../../img/mockup/channels/logo_tvNorge.png';
 import vox from '../../../img/mockup/channels/vox.png';
 import animal from '../../../img/mockup/channels/animal.png';
+
+import childrenIcon from '../../../img/channel-genres/children.png';
+import comedyIcon from '../../../img/channel-genres/comedy.png';
+import crimeIcon from '../../../img/channel-genres/crime.png';
+import docIcon from '../../../img/channel-genres/doc.png';
+import dramaIcon from '../../../img/channel-genres/drama.png';
+import fantasyIcon from '../../../img/channel-genres/fantasy.png';
+import foodIcon from '../../../img/channel-genres/food.png';
+import petsIcon from '../../../img/channel-genres/pets.png';
+import sportIcon from '../../../img/channel-genres/sport.png';
 
 // // Dummy filters and channels
 // const filters = [
@@ -95,12 +105,15 @@ class ChannelsPage extends React.Component {
         this.state = {
             activeFilter: -1,
             filters: [
-              { key: 'children', avatarStyle: { backgroundColor: '#E91E63' } },
-              { key: 'drama', avatarStyle: { backgroundColor: '#FFC107' } },
-              { key: 'pets', avatarStyle: { backgroundColor: '#00BCD4' } },
-              { key: 'comedy', avatarStyle: { backgroundColor: '#673AB7' } },
-              { key: 'fantasy', avatarStyle: { backgroundColor: '#FF9800' } },
-              { key: 'documentaries', avatarStyle: { backgroundColor: '#8BC34A' } },
+              { key: 'children', img: childrenIcon },
+              { key: 'comedy', img: comedyIcon },
+              { key: 'crime', img: crimeIcon },
+              { key: 'documentaries', img: docIcon },
+              { key: 'drama', img: dramaIcon },
+              { key: 'fantasy', img: fantasyIcon },
+              { key: 'food', img: foodIcon },
+              { key: 'pets', img: petsIcon },
+              { key: 'sport', img: sportIcon },
             ],
         };
     }
@@ -125,8 +138,6 @@ class ChannelsPage extends React.Component {
         console.log(this.state.activeFilter);
         for (const key in channels) {
             if (this.state.activeFilter === -1 || channels[key].tags.indexOf(this.state.activeFilter) >= 0) {
-              console.log("TRUE", this.state.activeFilter);
-              console.log(channels[key].tags);
                 tiles.push(
                   <MasonryImageTile
                     key={`channel-tile-${key}`}
@@ -149,28 +160,40 @@ class ChannelsPage extends React.Component {
       </div>
     )
 
+
+
     getCircleFilters = filters => filters.map(filter => (
-      <CircleRowItem
-        item={filter}
-        overlay={(this.filterOverlay(filter))}
-        key={filter.key}
-        size={60}
-        style={filter.avatarStyle}
-        handleClick={() => { this.handleFiltering(filter.key); }}
-      />
+    //   <CircleRowItem
+    //     item={filter}
+    //     overlay={(this.filterOverlay(filter))}
+    //     key={filter.key}
+    //     size={60}
+    //     img={filter.img}
+    //     style={filter.avatarStyle}
+    //     handleClick={() => { this.handleFiltering(filter.key); }}
+    //   />
+        <ScrollItem
+            img={filter.img}
+            key={filter.key}
+            //id={allVideos[value].id}
+            handleClick={() => { this.handleFiltering(filter.key); }}
+            imgStyle={{ width: '50px', height: 'auto'}}
+            overlay={<p className="label">{i18next.t(filter.key)}</p>}
+        />
     ))
 
     render() {
+        console.log(this.state.filters);
         return (
         <div className="channel-page">
         <div className="container-fluid">
-          <h4>{i18next.t('filter')}</h4>
-        </div>
+          <h4>{i18next.t('Genres')}</h4>
 
-        <div className="inline-circle-label">
-          <HorizontalScrollContainer>
-            {this.getCircleFilters(this.state.filters)}
-          </HorizontalScrollContainer>
+            <div className="inline-circle-label">
+            <HorizontalScrollContainer height={75}>
+                {this.getCircleFilters(this.state.filters)}
+            </HorizontalScrollContainer>
+            </div>
         </div>
         <br />
         <div className="container-fluid">

@@ -6,8 +6,9 @@ import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 import { videoSelected, resetCurrentTimeInPlayer } from '../../actions/videoPlayer';
 import { changeProgramTabIndex } from '../../actions/pages/programsPage';
 import { maximizeOverlayX, openOverlayX } from '../../actions/overlayX';
-import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
+//import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
 import LiveTag from '../../components/common/LiveTag';
+import FilterTabs from '../FilterTabs';
 
 class ProgramsPage extends React.Component {
     // Gets the first episode of all the series.

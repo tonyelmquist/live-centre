@@ -7,7 +7,8 @@ import MasonryContainer from '../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../components/Masonry/MasonryImageTile';
 import MasonryTextOverlay from '../components/Masonry/MasonryTextOverlay';
 
-import FilterTabs from '../components/HorizontalScroll/FilterTabs';
+//import FilterTabs from '../components/HorizontalScroll/FilterTabs';
+import FilterTabs from './FilterTabs';
 import HorizontalScrollContainer from '../components/HorizontalScroll/HorizontalScrollContainer';
 import CircleRowItem from '../components/HorizontalScroll/CircleRowItem';
 import { changeSearchFilterIndex } from '../actions/search';
@@ -128,13 +129,22 @@ class SearchContainer extends Component {
         ];
 
         const tabs = [
-            "All", "Series", "Movies"
+            "All", "Series", "Movies",
         ];
         //Append all tags to tabkeys.
         for(const key in this.props.tags){
             tabs.push(this.props.tags[key].key);
         }
 
+        let contentHeading = <h4 />;
+
+        if (this.props.search.isSearching){
+            contentHeading = <h4>{i18next.t('search_results')} {this.props.search.keyword} </h4>;
+        } else if (this.props.activeFilter !== undefined){
+            contentHeading = <h4>{i18next.t('search_results')} {i18next.t(tabs[this.props.activeFilter])} </h4>;
+        } else {
+            contentHeading = <h4>{i18next.t('suggested_videos')}</h4>;
+        }
         return (
           <div className={(this.props.search.isOpen) ? 'searchContainer expand' : 'searchContainer close'}>
             <h4 className="container-fluid hideOnTablet">{i18next.t('filter')}</h4>
@@ -142,17 +152,14 @@ class SearchContainer extends Component {
             <FilterTabs tabItems={tabs} activeTab={this.props.activeFilter} changeTab={this.changeTab}/>
             
             <div className="container-fluid">
-            <h4>{i18next.t('suggested_people')}</h4>
-            
-            <HorizontalScrollContainer>
-                {this.getPortraitItems(people)}
-            </HorizontalScrollContainer>
-
-
-              {this.props.search.isSearching || this.props.activeFilter == 0 
-                    ? <h4>{i18next.t('search_results')} {this.props.search.keyword}</h4>
-                    : <h4>{i18next.t('suggested_videos')}</h4>
-                }
+            {!this.props.search.isSearching && (this.props.activeFilter === 0) //3 == people
+                ? (<div><h4>{i18next.t('suggested_people')}</h4>
+                    <HorizontalScrollContainer height={70}>
+                        {this.getPortraitItems(people)}
+                    </HorizontalScrollContainer> </div>)
+                : <span />
+            }
+                {contentHeading}
 
               <MasonryContainer>
                   {this.getTiles(tabs)}

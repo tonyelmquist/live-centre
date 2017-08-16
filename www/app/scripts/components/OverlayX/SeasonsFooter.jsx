@@ -44,10 +44,12 @@ const SeasonsFooter = (props) => {
     return (
         <div>
             {getSeasonsTabs()}
-            <HorizontalScrollContainer>
-                {getEpisodes()}
-            </HorizontalScrollContainer>
-      </div>
+            <div className="video-scroller">
+                <HorizontalScrollContainer>
+                    {getEpisodes()}
+                </HorizontalScrollContainer>
+            </div>
+        </div>
     );
 };
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import i18next from 'i18next';
 
 const styles = {
     mediumIcon: {
@@ -19,7 +18,7 @@ const FilterTabs = ({tabItems, activeTab, changeTab, colortheme}) => {
               key={`filterTab-${tab}`}
               role="button" 
             >
-                {i18next.t(tab)}
+                {tab}
             </div>
         );
     });

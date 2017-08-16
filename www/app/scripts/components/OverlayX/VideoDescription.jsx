@@ -54,11 +54,12 @@ class VideoDescription extends React.Component {
     render() {
         return (
             <div className="ox-content-inner">
-                <h4>{this.props.video.series ? this.props.video.series : this.props.video.title}</h4>
-                <p>{this.subtitle ? this.subtitle : ''}
+                <h3 style={{marginTop: 0}}><b>{this.props.video.series ? this.props.video.series : this.props.video.title}</b></h3>
+                <p><b>{this.subtitle ? this.subtitle : ''}</b></p>
+                <p style={{ lineHeight: 1.5 }}>
                     {i18next.t('video_duration')} {Math.round(45)} min <br />
                     {i18next.t('video_star_rating')} {this.renderStars()} <br />
-                    {i18next.t('video_add_watchlist')} <FontAwesome name={this.state.wishlisted ? 'heart' : 'heart-o'} onClick={this.handleWishlistClick} style={{ color: 'white' }} />
+                    {i18next.t('video_add_watchlist')} <FontAwesome name={this.state.wishlisted ? 'heart' : 'heart-o'} onClick={this.handleWishlistClick} style={{ color: '#ff009f' }} />
                 </p>
             
                 <Collapsible
