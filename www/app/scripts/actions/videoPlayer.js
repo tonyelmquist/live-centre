@@ -63,6 +63,16 @@ export function markAsWishlist(videoId) {
 }
 
 /**
+ * Marks a video as wishlisted (saved for later)
+ *
+ * @memberof Actions:VideoPlayer
+ * @returns Dispatchable Action
+ */
+export function markSelectedAsWishlist() {
+    return { type: Actions.MARK_SELECTED_AS_WISHLIST }
+}
+
+/**
  * Action to set current time in overlayX
  *
  * @deprecated Possibly unneeded, this was used to try and sync two seperate video players in the past, now they are one

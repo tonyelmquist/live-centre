@@ -96,6 +96,7 @@ class ReduxConstants {
     static get SET_CURRENT_TIME() { return 'SET_CURRENT_TIME'; }
 
     static get MARK_AS_WISHLIST() { return 'MARK_AS_WISHLIST'; }
+    static get MARK_SELECTED_AS_WISHLIST() { return 'MARK_SELECTED_AS_WISHLIST'; }
 
     static get ENTER_FULL_SCREEN() { return 'ENTER_FULL_SCREEN'; }
     static get EXIT_FULL_SCREEN() { return 'EXIT_FULL_SCREEN'; }

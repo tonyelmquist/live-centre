@@ -55,6 +55,9 @@ export function highlightsReducer(
 }
 
 export function handleSelection(state = { isSelected: false, video: {}, isFullscreen: false, currentTime: 0, controlBarVisibility: true, isVideoSettingsOpen: false }, action) {
+    let newVideo = Object.assign( Object.create( Object.getPrototypeOf(state.video)), state.video)
+    
+    
     switch (action.type) {
     case Actions.VIDEO_SELECTED:
         return Object.assign({}, state, {
@@ -85,6 +88,11 @@ export function handleSelection(state = { isSelected: false, video: {}, isFullsc
     case Actions.SET_VIDEO_SETTINGS_OPEN:
         return Object.assign({}, state, {
             isVideoSettingsOpen: action.isOpen,
+        });
+    case Actions.MARK_SELECTED_AS_WISHLIST:
+        newVideo.wishlist = true;
+        return Object.assign({}, state, {
+            video: newVideo,
         });
     default:
         return state;

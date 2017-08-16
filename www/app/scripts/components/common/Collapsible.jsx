@@ -23,8 +23,14 @@ class Collapsible extends Component {
         }
     }
 
+    shouldComponentUpdate(nextProps) {
+        // console.log(nextProps === this.props);
+        // console.log(nextProps, this.props);
+        return true;
+    }
+
     componentDidUpdate() {
-        console.log('component did update');
+        // console.log('component did update');
         const el = this.collapseInnerElement;
         if (this.props.isCollapsed) {
             setTimeout(() => { this.shortenText(el); }, 300);
@@ -34,8 +40,8 @@ class Collapsible extends Component {
     }
 
     shortenText(el) {
-        console.log('shortenText');
-        console.log(el.scrollHeight);
+        // console.log('shortenText');
+        // console.log(el.scrollHeight);
         // For loop for maximal amount of iterations, should break before maxlength.
         for (let i = 0; i < el.textContent.length; i++) {
             if (el.scrollHeight <= el.clientHeight) {
@@ -60,13 +66,14 @@ class Collapsible extends Component {
     getCollapseHeight(){
         const defaultHeight = 55;
         if (typeof this.collapseInnerElement !== 'undefined' && this.collapseInnerElement !== null) {
-            console.log(this.collapseInnerElement.scrollHeight, this.collapseInnerElement.clientHeight);
+            // console.log(this.collapseInnerElement.scrollHeight, this.collapseInnerElement.clientHeight);
 
             if (this.props.isCollapsed) {
                 return defaultHeight;
-            } 
-                this.collapseInnerElement.textContent = this.props.text;
-                return this.collapseInnerElement.scrollHeight;
+            }
+
+            this.collapseInnerElement.textContent = this.props.text;
+            return this.collapseInnerElement.scrollHeight;
         }
         return defaultHeight;
     }
@@ -77,7 +84,6 @@ class Collapsible extends Component {
 
     render() {
         const collapseHeight = this.getCollapseHeight();
-
         return (
             <div className="collapsible">
             {this.state.showCollapseButton
