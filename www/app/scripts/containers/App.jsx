@@ -44,7 +44,6 @@ class App extends Component {
                 error: false,
             },
         };
-        this.dispatchOrientation();
         if ('onorientationchange' in window) {
             window.addEventListener('orientationchange', () => {
                 this.dispatchOrientation();
@@ -54,6 +53,9 @@ class App extends Component {
               this.dispatchOrientation();
           }, false);
         }
+        window.addEventListener('load', () => {
+            this.dispatchOrientation();
+        });
 
         window.addEventListener('keydown', (e) => {
             console.log(e.keyCode);
@@ -70,15 +72,13 @@ class App extends Component {
     }
 
     dispatchOrientation = () => {
-        setTimeout(() => {
-            if (window.innerWidth < window.innerHeight) {
-                this.props.dispatch(setPortrait());
-            }
+        if (window.innerWidth < window.innerHeight) {
+            this.props.dispatch(setPortrait());
+        }
 
-            if (window.innerWidth > window.innerHeight) {
-                this.props.dispatch(setLandscape());
-            }
-        }, 100);
+        if (window.innerWidth > window.innerHeight) {
+            this.props.dispatch(setLandscape());
+        }
     }
 
     closeTeamMemberOverlay = () => {
@@ -120,8 +120,6 @@ class App extends Component {
             <ProfilePage
                 user={this.props.authentication.user}
             />);
-
-        // history.push('/Home');
 
         return (
           <BrowserRouter history={history}>

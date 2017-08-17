@@ -215,15 +215,14 @@ class Player extends React.Component {
     };
 
     componentWillUpdate = (nextProps) => {
+        console.log('?', this.largeVideoPlayer, this.videoLoaded);
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
-            if (typeof this.videoLoaded === 'undefined') {
-                return;
-            }
             if (this.videoLoaded !== nextProps.video.videoUrl) {
                 this.setState({ isPreOverlayShowing: true });
                 this.largeVideoPlayer.video.video.load();
 
                 this.videoLoaded = nextProps.video.videoUrl;
+                console.log('new video loaded', this.videoLoaded);
             }
         }
     };
