@@ -18,6 +18,7 @@ class Video extends BaseClass {
             _thumbnail: '',
             _videoUrl: '',
             _wishlist: false,
+            _sport: '',
         }, {
             _id: data.id,
             _author: data.author,
@@ -33,6 +34,7 @@ class Video extends BaseClass {
             _thumbnail: data.thumbnail,
             _videoUrl: data.video_url,
             _wishlist: false,
+            _sport: data.sport,
         });
 
         // this.hasMany(Tag);

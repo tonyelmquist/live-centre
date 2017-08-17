@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
+import FilterTabs from '../FilterTabs';
 import TeamInfoSection from '../../components/SportSection/TeamInfoSection';
 import SportPlayerOverlay from '../../components/SportSection/SportPlayerOverlay';
 import MasonryContainer from '../../components/Masonry/MasonryContainer';

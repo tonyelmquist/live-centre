@@ -9,18 +9,6 @@ import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 
 import FilterTabs from '../FilterTabs';
 
-import img1 from '../../../img/mockup/series/1.png';
-import img2 from '../../../img/mockup/series/2.png';
-import img3 from '../../../img/mockup/series/3.jpg';
-import img4 from '../../../img/mockup/series/4.png';
-import img5 from '../../../img/mockup/series/5.png';
-import img6 from '../../../img/mockup/series/movies/6.png';
-import img7 from '../../../img/mockup/series/movies/7.png';
-import img8 from '../../../img/mockup/series/movies/8.png';
-
-
-
-
 // Dummy filters and channels
 const filters = [
   { key: 'Children', avatarStyle: {backgroundColor: '#E91E63'} },
@@ -35,50 +23,50 @@ const programs = {
     1: {
         id: 1,
         title: 'Big bang theory',
-        thumbnail: img1,
-        tags: ['series', 'drama', 'humor'],
+        thumbnail: "https://firebasestorage.googleapis.com/v0/b/tfg-media-center.appspot.com/o/Series%2F1.png?alt=media&token=7d088a34-4af7-4b88-9807-aeb08acf58d4",
+        tags: ['series', 'drama', 'comedy'],
     },
     2: {
         id: 2,
         title: 'Insider',
-        thumbnail: img2,
-        tags: ['series','drama',],
+        thumbnail: "https://firebasestorage.googleapis.com/v0/b/tfg-media-center.appspot.com/o/Series%2F2.png?alt=media&token=e2677357-2580-4565-b7ea-01a874830d4a",
+        tags: ['series','documentary', 'crime'],
     },
     3: {
         id: 3,
         title: 'IT Crowd',
-        thumbnail: img3,
-        tags: ['series','drama', 'humor', 'documentaries'],
+        thumbnail: "https://firebasestorage.googleapis.com/v0/b/tfg-media-center.appspot.com/o/Series%2F3.jpg?alt=media&token=50ad7d19-f4f2-4606-b1a1-a9f0b7e66746",
+        tags: ['series','comedy',],
     },
     4: {
         id: 4,
         title: 'Special Victims Unit',
-        thumbnail: img4,
-        tags: ['series','drama', 'humor', 'documentaries'],
+        thumbnail: "https://firebasestorage.googleapis.com/v0/b/tfg-media-center.appspot.com/o/Series%2F4.png?alt=media&token=93f41d14-6acd-4bb3-bf59-eb795ca34c00",
+        tags: ['series', 'crime'],
     },
     5: {
         id: 5,
         title: 'Flash',
-        thumbnail: img5,
-        tags: ['series','drama', 'humor', 'documentaries'],
+        thumbnail: "https://firebasestorage.googleapis.com/v0/b/tfg-media-center.appspot.com/o/Series%2F5.png?alt=media&token=112fa34c-1d29-4483-b03a-672a1656cee7",
+        tags: ['series', 'humor',],
     },
     6: {
         id: 6,
         title: 'Avatar',
-        thumbnail: img6,
-        tags: ['movies','drama', 'humor', 'documentaries'],
+        thumbnail: "https://firebasestorage.googleapis.com/v0/b/tfg-media-center.appspot.com/o/Series%2F6.png?alt=media&token=c642cad6-fd1a-4ba3-8ef4-0159ff0294a1",
+        tags: ['movies','drama', 'fantasy', 'humor'],
     },
     7: {
         id: 7,
         title: 'Nausicca',
-        thumbnail: img7,
-        tags: ['movies','drama', 'humor', 'documentaries'],
+        thumbnail: "https://firebasestorage.googleapis.com/v0/b/tfg-media-center.appspot.com/o/Series%2F7.png?alt=media&token=df4c3c3a-aaa6-45ee-8575-6b9f65a3e1b0",
+        tags: ['movies','drama', 'fantasy',],
     },
     8: {
         id: 8,
         title: 'Wolverine',
-        thumbnail: img8,
-        tags: ['movies', 'drama', 'humor', 'documentaries'],
+        thumbnail: "https://firebasestorage.googleapis.com/v0/b/tfg-media-center.appspot.com/o/Series%2F8.png?alt=media&token=bae2e8dc-05e1-4e93-b6df-45e69405946e",
+        tags: ['movies', 'drama'],
     },
 };
 
