@@ -249,6 +249,46 @@ msgstr "Roaring Twenties"
 msgid "spaceage"
 msgstr "Space Age"
 
+#. Tag & category names
+#:
+msgid "Game Shows"
+msgstr "Game Shows"
+
+#. Tag & category names
+#:
+msgid "Sports"
+msgstr "Sports"
+
+#. Tag & category names
+#:
+msgid "Uncategorized"
+msgstr "Uncategorized"
+
+#. Tag & category names
+#:
+msgid "Promotional Videos"
+msgstr "Promotional Videos"
+
+#. Tag & category names
+#:
+msgid "Live events"
+msgstr "Live events"
+
+#. Tag & category names
+#:
+msgid "Movies"
+msgstr "Movies"
+
+#. Tag & category names
+#:
+msgid "Series"
+msgstr "Series"
+
+#. Tag & category names
+#:
+msgid "All"
+msgstr "All"
+
 #. Sport
 #:
 msgid "soccer"
