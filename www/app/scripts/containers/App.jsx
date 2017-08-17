@@ -129,7 +129,7 @@ class App extends Component {
                 <SearchOverlay />
                 {this.props.teamMemberOverlay.isOpen ? <SportPlayerOverlay closeTeamMemberOverlay={this.closeTeamMemberOverlay} teamMember={this.props.teamMemberOverlay.player} /> : <div />}
                     <TransitionRoutes>
-                        <Route exact path="/home" component={HomePage} />
+                        <Route exact path="/" component={HomePage} />
                         <Route path="/programs" component={ProgramsPage} />
                         <Route path="/channels" component={ChannelsPage} />
                         <Route path="/sports" component={SportsPage} />
