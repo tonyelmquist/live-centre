@@ -17,7 +17,7 @@ class FilterTabs extends React.Component {
     componentDidMount() {
         const activeTab = this.props.activeTab;
         if (this.tabElements[activeTab] !== undefined && this.scroller !== undefined) {
-            this.updateScrollBar(this.tabElements[activeTab]);
+            this.updateScrollBar(0, this.tabElements[activeTab].offsetWidth);
         }
     }
 
@@ -25,13 +25,16 @@ class FilterTabs extends React.Component {
     componentDidUpdate(prevProps) {
         const activeTab = this.props.activeTab;
         if (prevProps.activeTab !== activeTab && this.tabElements[activeTab] !== undefined && this.scroller !== undefined) {
-            this.updateScrollBar(this.tabElements[activeTab]);
+            const barPos = this.tabElements[activeTab].getBoundingClientRect().left + this.scroller.scrollLeft;
+            const barWidth = this.tabElements[activeTab].offsetWidth;
+            this.updateScrollBar(barPos, barWidth);
         }
     }
 
-    updateScrollBar(activeElement) {
-        const barPos = activeElement.getBoundingClientRect().left + this.scroller.scrollLeft;
-        const barWidth = activeElement.offsetWidth;
+    updateScrollBar(barPos, barWidth) {
+
+
+        console.log("update scroll bar", barPos, barWidth);
 
         this.setState({ barWidth, barPos });
     }

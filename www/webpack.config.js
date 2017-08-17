@@ -23,7 +23,7 @@ module.exports = {
                 ],
                 include: /flexboxgrid/,
             }, {
-                test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+                test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|svg)$/,
                 loader: 'url-loader',
                 options: {
                     limit: 9000000,

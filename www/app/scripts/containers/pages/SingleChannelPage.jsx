@@ -7,7 +7,7 @@ import CircleRowItem from '../../components/HorizontalScroll/CircleRowItem';
 import MasonryContainer from '../../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 
-import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
+import FilterTabs from '../FilterTabs';
 
 import img1 from '../../../img/mockup/series/1.png';
 import img2 from '../../../img/mockup/series/2.png';
