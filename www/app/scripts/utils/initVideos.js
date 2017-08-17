@@ -43,7 +43,7 @@ const transformVideoData = (unfiltered, store) => {
 
   // If we want to limit the amount of data recieved, reduce the iterations in this for loop.
     for (const index in data) {
-        if (i > 1000) { break; } // Stop after 1000 movies
+        // if (i > 1000) { break; } // Stop after 1000 movies
         const video = {
             title: '',
             thumbnail: '',
@@ -72,6 +72,11 @@ const transformVideoData = (unfiltered, store) => {
         video.title = attr.metadata.Title;
         video.thumbnail = attr.metadata.PosterURL;
         video.videoUrl = video.id; // asset id is for now used to get url.
+
+        console.log(video.tags);
+        if(video.tags == 'Program Masters' || video.tags == 'IMR Test Files' || video.tags == 'Discovery Networks' || video.tags == 'Game Shows' || video.tags == 'The Future Group' || video.tags == 'Uncategorized'){
+            continue;
+        }
 
         if (allChannels[video.channel]) {
             allChannels[video.channel].video = video.id;
