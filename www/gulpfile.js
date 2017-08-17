@@ -154,6 +154,12 @@ gulp.task('assets', function() {
         .pipe(gulp.dest(DEST_FOLDER));
 })
 
+gulp.task('htaccess', function() {
+    return gulp.src('.htaccess')
+        .pipe($.newer(DEST_FOLDER))
+        .pipe(gulp.dest(DEST_FOLDER));
+})
+
 //Watch Assets
 gulp.task('watch', function() {
     gulp.watch('app/stylus/**', ['stylus']);
@@ -263,7 +269,7 @@ gulp.task('test', function(done) {
 
 //Sequence of Tasks
 // gulp.task('build', $.sequence('lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], ['watch', 'serve']));
-gulp.task('build', $.sequence( !isDev && 'test','lint', 'clean', ['stylus', 'assets', 'html', 'webpack'], (WATCH) ? ['watch'] : []));
+gulp.task('build', $.sequence( !isDev && 'test','lint', 'clean', ['stylus', 'assets', 'html', 'htaccess', 'webpack'], (WATCH) ? ['watch'] : []));
 gulp.task('deploy', ['copy:ios', 'copy:android']);
 
 // const SERVE_FOLDER = fs.existsSync(path.resolve(__dirname, DEST_FOLDER));
