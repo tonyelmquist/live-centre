@@ -121,7 +121,7 @@ class App extends Component {
                 user={this.props.authentication.user}
             />);
 
-        history.push('/Home');
+        // history.push('/Home');
 
         return (
           <BrowserRouter history={history}>
