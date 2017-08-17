@@ -158,7 +158,7 @@ class ChannelsPage extends React.Component {
         <div className="channel-page">
         <div className="container-fluid">
 
-          <h4>{i18next.t('Genres')}</h4>
+          <h4>{i18next.t('genres')}</h4>
 
             <div className="inline-circle-label">
             <HorizontalScrollContainer height={80}>

@@ -284,6 +284,31 @@ msgstr "Fantasy"
 msgid "documentaries"
 msgstr "Documentaries"
 
+#. Filters and keys
+#:
+msgid "food"
+msgstr "Food"
+
+#. Filters and keys
+#:
+msgid "sport"
+msgstr "Sport"
+
+#. Filters and keys
+#:
+msgid "sports"
+msgstr "Sports"
+
+#. Filters and keys
+#:
+msgid "crime"
+msgstr "Crime"
+
+#. Filters and keys
+#:
+msgid "genres"
+msgstr "Genres"
+
 #. Video description
 #:
 msgid "video_add_watchlist"

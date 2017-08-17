@@ -255,6 +255,11 @@ msgstr "Spill show"
 
 #. Tag & category names
 #:
+msgid "Sports"
+msgstr "Sport"
+
+#. Tag & category names
+#:
 msgid "Uncategorized"
 msgstr "Ukategorisert"
 
@@ -317,6 +322,26 @@ msgstr "Fantasi"
 #:
 msgid "documentaries"
 msgstr "Dokumentarer"
+
+#. Filters and keys
+#:
+msgid "food"
+msgstr "Mat"
+
+#. Filters and keys
+#:
+msgid "sport"
+msgstr "Sport"
+
+#. Filters and keys
+#:
+msgid "crime"
+msgstr "Krim"
+
+#. Filters and keys
+#:
+msgid "genres"
+msgstr "Sjanger"
 
 #. Video description
 #:
