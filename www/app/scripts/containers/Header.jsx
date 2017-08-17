@@ -68,7 +68,7 @@ class Header extends Component {
     menuItems = [
         {
             key: 'home',
-            onClick: () => this.onMenuItemClick('/home', 0),
+            onClick: () => this.onMenuItemClick('/', 0),
             icon: <HomeIcon /> },
         {
             key: 'programs',

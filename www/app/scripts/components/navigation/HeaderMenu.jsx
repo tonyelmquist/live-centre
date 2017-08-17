@@ -28,7 +28,7 @@ const HeaderMenu = (props) => {
 
     const printLocation = () => {
       console.log(props.locationName);
-        if (props.locationName === 'home') {
+        if (props.locationName === '') {
             return (<FlatButton className="menuItem logo" label="IMR" />);
         }
         return (<div onTouchTap={() => props.goBack()} className="menuItem links">
