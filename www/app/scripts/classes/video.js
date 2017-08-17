@@ -9,6 +9,7 @@ class Video extends BaseClass {
             _id: 0,
             _author: '',
             _description: '',
+            _timeline: [],
             _episode_number: '',
             _duration: 0,
             _rating: 0,
@@ -20,7 +21,8 @@ class Video extends BaseClass {
         }, {
             _id: data.id,
             _author: data.author,
-            _description: data.title,
+            _description: data.description,
+            _timeline: data.timeline,
             _episode_number: data.episode_number,
             _duration: data.duration,
             _rating: data.rating,
@@ -33,13 +35,13 @@ class Video extends BaseClass {
             _wishlist: false,
         });
 
-// this.hasMany(Tag);
-// this.belongsTo(Season);
+        // this.hasMany(Tag);
+        // this.belongsTo(Season);
     }
 
     get id() {
         if (typeof this._id === 'undefined') {
-        // console.error('Tried to get ID of Video, was not set');
+            // console.error('Tried to get ID of Video, was not set');
             return false;
         }
         return this._id;

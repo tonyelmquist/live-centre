@@ -1,8 +1,6 @@
-const timelines = [
-    {
+const timelines = [{
         video: 222908001,
-        events: [
-            {
+        events: [{
                 timestamp: 9332,
                 type: 'ecom',
                 productID: 1,
@@ -10,7 +8,7 @@ const timelines = [
             {
                 timestamp: 18043,
                 type: 'ecom',
-                productID: 2,                
+                productID: 2,
             },
             {
                 timestamp: 33245,
@@ -31,8 +29,7 @@ const timelines = [
     },
     {
         video: 222905001,
-        events: [
-            {
+        events: [{
                 timestamp: 9332,
                 type: 'ecom',
                 productID: 3,
@@ -40,7 +37,7 @@ const timelines = [
             {
                 timestamp: 18043,
                 type: 'ecom',
-                productID: 1,                
+                productID: 1,
             },
             {
                 timestamp: 33245,
@@ -61,8 +58,7 @@ const timelines = [
     },
     {
         video: 222904001,
-        events: [
-            {
+        events: [{
                 timestamp: 9332,
                 type: 'ecom',
                 productID: 2,

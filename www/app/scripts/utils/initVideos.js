@@ -41,13 +41,15 @@ const transformVideoData = (unfiltered, store) => {
     const data = unfiltered.filter(asset => asset.metadata.MimeType === 'video');
 
 
-  // If we want to limit the amount of data recieved, reduce the iterations in this for loop.
+    // If we want to limit the amount of data recieved, reduce the iterations in this for loop.
     for (const index in data) {
         // if (i > 1000) { break; } // Stop after 1000 movies
         const video = {
             title: '',
+            description: '',
             thumbnail: '',
             author: '',
+            timeline: '',
             company: '',
             tag: '',
             email: '',
@@ -56,6 +58,7 @@ const transformVideoData = (unfiltered, store) => {
             series: '',
             channel: '',
             rating: '',
+            sport: '',
         };
 
         const attr = data[index];
@@ -63,14 +66,16 @@ const transformVideoData = (unfiltered, store) => {
         video.author = attr.metadata.UploadUserFullName;
         video.channel = attr.metadata.Broadcaster;
         video.company = attr.metadata.UploadCompanyName;
-        // video.email = attr.metadata.UploadUserEmail;
+        video.description = attr.metadata.Description;
+        video.timeline = attr.metadata.ProductTimeline;
         video.rating = attr.metadata.Rating;
         video.season = attr.metadata.Season;
         video.duration = attr.metadata.GeneralDuration;
         video.series = attr.metadata.ProgramSeries;
         video.tags = attr.metadata.Category || uncategorized;
         video.title = attr.metadata.Title;
-        video.thumbnail = attr.metadata.PosterURL;
+        video.sport = attr.metadata.Sport;
+        video.thumbnail = attr.metadata.PosterImageURL || attr.metadata.PosterURL;
         video.videoUrl = video.id; // asset id is for now used to get url.
 
         console.log(video.tags);
