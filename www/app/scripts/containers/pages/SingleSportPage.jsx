@@ -28,7 +28,8 @@ class SingelSportsPage extends React.Component {
 
     getTiles = (sportKey) => {
         const tiles = [];
-        const videos = this.props.sportsInfo.sports[sportKey].videoItems;
+        let videos = this.props.sportsInfo.sports[sportKey].videoItems;
+        videos = videos.reverse();
 
         for (const key in videos) {
             tiles.push(

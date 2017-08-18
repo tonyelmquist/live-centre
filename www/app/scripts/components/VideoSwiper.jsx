@@ -84,9 +84,10 @@ class VideoSwiper extends Component {
         return (
           <div className="slider">
             <div className="rowHeader">
-              <Link className="rowTitle" to={`/Category/${this.props.tag.key}`}>
+              <h4 className="rowTitle"><Link to={`/Category/${this.props.tag.key}`}>
                 {i18next.t(this.props.tag.name)} <FontAwesome name="angle-right" style={{ fontSize: '18px', fontWeight: 'bold', margin: '5px' }} />
               </Link>
+              </h4>
             </div>
 
             <div className="slider">

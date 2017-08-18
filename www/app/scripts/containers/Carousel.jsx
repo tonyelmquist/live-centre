@@ -147,14 +147,14 @@ class HeroCarousel extends Component {
                     <div className="heroCarouselImage" key={videoKey}>
                         <div className="carousel-underlay" />
                       <div className="carouselImageTitleAndDescription">
-                        <h4
+                        <h3
                         className="carouselImageTitle"
                         onTouchTap={() => {
                             this._handlePlay(video);
                         }}
                         >
                           {video.title}
-                        </h4>
+                        </h3>
                         <p
                         className="imageDescription"
                             onTouchTap={() => {
