@@ -6,7 +6,7 @@ export default (store) => {
     i18next.init({
         lngs: ['en', 'nb'],
         lng: store.getState().settings.options.language,
-        fallbackLng: 'nb',
+        fallbackLng: 'en',
         resources: {
             en: {
                 translation: enUSTranslation,
