@@ -45,7 +45,7 @@ class App extends Component {
                 error: false,
             },
         };
-        
+
         window.addEventListener('resize', () => {
             this.dispatchOrientation();
         }, false);
@@ -77,7 +77,7 @@ class App extends Component {
             if (window.innerWidth > window.innerHeight) {
                 this.props.dispatch(setLandscape());
             }
-        }, 500);
+        }, 0);
     }
 
     closeTeamMemberOverlay = () => {
