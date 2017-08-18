@@ -215,7 +215,6 @@ class Player extends React.Component {
     };
 
     componentWillUpdate = (nextProps) => {
-        console.log('?', this.largeVideoPlayer, this.videoLoaded);
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
             if (this.videoLoaded !== nextProps.video.videoUrl) {
                 this.setState({ isPreOverlayShowing: true });

@@ -4,6 +4,7 @@ import { loginSuccess, logoutSuccess } from '../actions/authentication';
 import store from './store';
 import { fetchUserSettingsSuccess, changeLang } from '../actions/settings';
 import { newNotification } from '../actions/notifications';
+import FirebaseDB from '../utils/FirebaseDB';
 
 export default class Authentication {
 
@@ -31,9 +32,9 @@ export default class Authentication {
                 };
 
                 let profile = {
-                    displayName: 'Name',
-                    imageUrl: null,
-                    description: 'This is me!',
+                    displayName: 'Anon',
+                    imageUrl: '/ProfilePictures/default.png',
+                    description: 'This is me???',
                 };
 
                 let notifications = {
@@ -44,7 +45,7 @@ export default class Authentication {
 
                 const firebaseCurrentUserRef = firebase.database().ref(`/users/${uid}`);
 
-                firebaseCurrentUserRef.on('value', (snapshot) => {
+                firebaseCurrentUserRef.once('value', (snapshot) => {
                     if (snapshot.val() === null) {
                         // If no user info, set default info in firebase
                         firebaseCurrentUserRef.set({
@@ -58,7 +59,7 @@ export default class Authentication {
                             settings = snapshot.val().settings;
                         }
 
-                        if (typeof snapshot.val().profileInfo === 'undefined') {
+                        if (typeof snapshot.val().profile === 'undefined') {
                             firebaseCurrentUserRef.child('profile').set(profile);
                         } else {
                             profile = snapshot.val().profile;
@@ -77,6 +78,8 @@ export default class Authentication {
                     });
 
                     console.log('Profile info', profile);
+                    FirebaseDB.readProfilePicture(() => {});
+                    FirebaseDB.readDisplayName();
                 });
             } else {
                 console.log('User is NOT signed in');

@@ -14,10 +14,23 @@ export default class FirebaseDB {
         }
     }
 
+    static currentUserProfileImage = 'https://firebasestorage.googleapis.com/v0/b/tfg-media-center.appspot.com/o/ProfilePictures%2Fdefault.png?alt=media&token=f032761a-41b0-4733-99fe-4907d8ce9573';
+    static currentUserDisplayName = 'Anon';
+
     static writeNewUserProfilePicture = (imageUrl, onSuccess, onError) => {
         const currentUser = firebase.auth().currentUser;
         if (currentUser) {
             firebase.database().ref(`users/${currentUser.uid}/profile/imageUrl`).set(imageUrl);
+            onSuccess();
+        } else {
+            onError();
+        }
+    }
+
+    static writeNewUserDisplayName = (name, onSuccess, onError) => {
+        const currentUser = firebase.auth().currentUser;
+        if (currentUser) {
+            firebase.database().ref(`users/${currentUser.uid}/profile/displayName`).set(name);
             onSuccess();
         } else {
             onError();
@@ -30,12 +43,25 @@ export default class FirebaseDB {
             console.log('snapshot', snapshot.val());
             if (snapshot.val() === null) {
                 firebase.storage().ref('/ProfilePictures/default.png').getDownloadURL().then((url) => {
+                    FirebaseDB.currentUserProfileImage = url;
                     callback(url);
                 });
             } else {
                 firebase.storage().ref(snapshot.val()).getDownloadURL().then((url) => {
+                    FirebaseDB.currentUserProfileImage = url;
                     callback(url);
                 });
+            }
+        });
+    }
+
+    static readDisplayName = () => {
+        const currentUser = firebase.auth().currentUser;
+        firebase.database().ref(`users/${currentUser.uid}/profile/displayName`).once('value').then((snapshot) => {
+            if (snapshot.val() === null) {
+                FirebaseDB.currentUserDisplayName = 'Anon';
+            } else {
+                FirebaseDB.currentUserDisplayName = snapshot.val();
             }
         });
     }
@@ -81,7 +107,8 @@ export default class FirebaseDB {
         const newMessage = firebase.database().ref(`messageChannels/${FirebaseDB.currentMessageChannel}`).push();
         newMessage.set({
             senderId: currentUser.uid,
-            senderName: 'bobby',
+            senderImage: FirebaseDB.currentUserProfileImage,
+            senderName: FirebaseDB.currentUserDisplayName,
             text: message,
         });
     }

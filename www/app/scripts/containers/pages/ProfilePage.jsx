@@ -41,10 +41,11 @@ class ProfilePage extends React.Component {
         const imageUrl = `/ProfilePictures/${currentUser.uid}_ProfileImage${extension}`;
 
         const storageRef = firebase.storage().ref(imageUrl);
-
+        console.log('UPLOADING...');
         storageRef.put(file).then((snapshot) => {
-            console.log('Uploaded a blob or file!', snapshot);
+            console.log('Uploaded a blob or file!', snapshot, imageUrl);
             FirebaseDB.writeNewUserProfilePicture(imageUrl, () => {
+                console.log('success!');
                 this.setProfilePicture();
             }, () => { console.error('no'); });
         });
