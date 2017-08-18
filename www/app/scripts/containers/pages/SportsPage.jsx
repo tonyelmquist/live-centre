@@ -30,7 +30,7 @@ class SportsPage extends React.Component {
                 tiles.push(
           <MasonryImageTile
             key={`sports-sport-${key + i}`}
-            poster={soccer}
+            poster={sports[key].thumbnail}
             overlay={
                 <div
                   className="centerOverlay"

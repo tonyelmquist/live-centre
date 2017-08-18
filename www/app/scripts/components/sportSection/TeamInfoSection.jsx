@@ -1,7 +1,5 @@
 import React from 'react';
 import Avatar from 'material-ui/Avatar';
-import teamLogo from '../../../img/mockup/sport/soccer-teams/Real-Madrid-Logo.png';
-import teamImg from '../../../img//mockup/sport/soccer-teams/Real-Madrid-Team.jpg';
 import i18next from 'i18next';
 
 const getPlayerItems = (team, players, openPlayerOverlay) => {
@@ -19,11 +17,11 @@ const getPlayerItems = (team, players, openPlayerOverlay) => {
 
 const TeamInfoSection = ({ team, players, openPlayerOverlay }) => (
         <div>
-          <img className="teamImg" src={teamImg} />
+          <img className="teamImg" src={team.img} />
 
           <div className="container-fluid">
             <div className="playerItem">
-              <Avatar src={teamLogo} />
+              <Avatar src={team.logo} />
               <h3> {team.title}</h3>
             </div>
             <p> Founded in 6 March 1902 as Madrid Football Club, 

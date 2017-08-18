@@ -7,7 +7,6 @@ import HorizontalScrollContainer from '../../components/HorizontalScroll/Horizon
 import CircleRowItem from '../../components/HorizontalScroll/CircleRowItem';
 import LiveTag from '../../components/common/LiveTag';
 import soccerBG from '../../../img/mockup/sport/soccer-background.jpg';
-import teamImg from '../../../img/mockup/sport/soccer-teams/Real-Madrid-Logo.png';
 import i18next from 'i18next';
 
 class SingelSportsPage extends React.Component {
@@ -48,7 +47,7 @@ class SingelSportsPage extends React.Component {
             console.log(teams, key);
             rowItems.push(<CircleRowItem
             key={key}
-            img={teamImg}
+            img={teams[key].logo}
             handleClick={() => this.handleTeamOpen(key)}
         />);
       }
