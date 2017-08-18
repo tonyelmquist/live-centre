@@ -38,7 +38,6 @@ class ProductOverlay extends Component {
           className="product-overlay-image"
         />
         <p className="product-description"> {product.description}</p>
-{/*        <p className="product-price"> {product.price}</p>*/}
         <div
           className="close-btn"
           onTouchTap={() => this.onHideProductOverlay()}
@@ -46,6 +45,17 @@ class ProductOverlay extends Component {
           tabIndex="0"
         >
           <i className="fa fa-close" />
+          </div>
+          <p className="product-price">Price: {product.price}</p>      
+          <div
+          className="buy-btn"
+          onTouchTap={() => this.onHideProductOverlay()}
+          role="button"
+          tabIndex="0"
+        >
+        
+          <span>{i18next.t('buttons_buy_now')}</span>
+          {/*<i className="fa fa-shopping-cart" />*/}
         </div>
       </div>
         );
