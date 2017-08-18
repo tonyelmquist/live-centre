@@ -246,11 +246,7 @@ class Player extends React.Component {
                 }
             }, 3000);
         } else {
-            if (this.largeVideoPlayer.video.video.paused) {
-                this.largeVideoPlayer.video.video.play();
-            } else {
-                this.largeVideoPlayer.video.video.pause();
-            }
+            this.props.dispatch(maximizeOverlayX());
         }
     }
 

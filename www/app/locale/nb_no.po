@@ -454,3 +454,8 @@ msgstr "Kategorier"
 #:
 msgid "menus_menu"
 msgstr "Meny"
+
+#. Buttons
+#:
+msgid "buttons_buy_now"
+msgstr "Kjøp nå"

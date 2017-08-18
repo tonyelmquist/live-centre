@@ -84,6 +84,15 @@ export default class Authentication {
                 });
             } else {
                 console.log('User is NOT signed in');
+                if (navigator.language.indexOf('nb') !== -1) {
+                    i18next.changeLanguage('nb', () => {
+                        console.log('language set to en');
+                    });
+                } else {
+                    i18next.changeLanguage('en', () => {
+                        console.log('language set to en');
+                    });
+                }
             }
         });
     }

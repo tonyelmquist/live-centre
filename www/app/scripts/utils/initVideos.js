@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { fetchVideosSuccess, fetchSeriesSuccess, fetchSeasonsSuccess, fetchTagsSuccess } from '../actions/fetchData';
-import { addSportVideo } from '../actions/pages/sportsPage';
+import { addSportVideo, addTeamVideo } from '../actions/pages/sportsPage';
 // Classes:
 import Video from '../classes/video';
 import Tag from '../classes/tag';
@@ -44,6 +44,7 @@ const transformVideoData = (unfiltered, store) => {
 
     // If we want to limit the amount of data recieved, reduce the iterations in this for loop.
     for (const index in data) {
+
         // if (i > 1000) { break; } // Stop after 1000 movies
         const video = {
             title: '',
@@ -63,6 +64,11 @@ const transformVideoData = (unfiltered, store) => {
         };
 
         const attr = data[index];
+
+        if(attr.metadata.Sport !== undefined){
+            console.log(attr);
+        }
+
         video.id = Number(attr.assetid);
         video.author = attr.metadata.UploadUserFullName;
         video.channel = attr.metadata.Broadcaster;
@@ -79,13 +85,23 @@ const transformVideoData = (unfiltered, store) => {
         video.thumbnail = attr.metadata.PosterImageURL || attr.metadata.PosterURL;
         video.videoUrl = video.id; // asset id is for now used to get url.
 
-        console.log(video.tags);
         if (video.tags == 'Program Masters' || video.tags == 'IMR Test Files' || video.tags == 'Discovery Networks' || video.tags == 'Game Shows' || video.tags == 'The Future Group' || video.tags == 'Uncategorized') {
             continue;
         }
 
         if (typeof video.sport !== 'undefined') {
+            //console.log(video);
             store.dispatch(addSportVideo(video.sport, video.id));
+            video.sport = video.sport;
+
+            if(video.teams !== 'undefined'){
+
+                const teams = video.Teams.split(', ');
+                store.dispatch(addTeamVideo(teams[1], video.id));
+                store.dispatch(addTeamVideo(teams[2], video.id));
+            }
+            //get team from string  
+
         }
 
         if (allChannels[video.channel]) {
