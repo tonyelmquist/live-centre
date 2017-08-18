@@ -31,6 +31,7 @@ import { setLandscape, setPortrait } from '../actions/settings';
 import { closeTeamMemberOverlay } from '../actions/pages/sportsPage';
 import { showLoginModal } from '../actions/modals';
 import { newNotification, removeNotification } from '../actions/notifications';
+import { setDisplayName } from '../actions/authentication';
 import Authentication from '../utils/Authentication';
 
 const history = createHistory();
@@ -119,6 +120,7 @@ class App extends Component {
         const ProfilePageWithProps = () => (
             <ProfilePage
                 user={this.props.authentication.user}
+                setDisplayName={(name) => this.props.dispatch(setDisplayName(name))}
             />);
 
         return (

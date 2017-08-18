@@ -15,7 +15,7 @@ class UserMenu extends Component {
         this.props.dispatch(logoutSuccess());
         const auth = new Authentication();
         auth.logoutAttempt();
-        this.props.changeRoute('/home');
+        this.props.changeRoute('/');
     }
 
     handleLogin = () => {

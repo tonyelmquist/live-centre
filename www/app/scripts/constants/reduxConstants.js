@@ -2,6 +2,7 @@ class ReduxConstants {
     // AUTHENTICATION
     static get LOGIN_SUCCESS() { return 'LOGIN_SUCCESS'; }
     static get LOGOUT_SUCCESS() { return 'LOGOUT_SUCCESS'; }
+    static get AUTH_SET_DISPLAY_NAME() { return 'AUTH_SET_DISPLAY_NAME'; }
 
     // CHAT MESSAGES
     static get GET_MESSAGE() { return 'GET_MESSAGE'; }

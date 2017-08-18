@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import FirebaseDB from '../utils/FirebaseDB';
 
 class Chat extends Component {
-    static filterMessages(messages) {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            message: '',
+            isScrolling: false,
+            userImages: {},
+        };
+    }
+
+    filterMessages(messages) {
         if (typeof messages === 'undefined') {
             return '';
         }
@@ -11,7 +23,7 @@ class Chat extends Component {
         for (const key of Object.keys(messages)) {
             result.push((
                 <li key={`message-${key}`}>
-                    <span className="chat-avatar">{messages[key].senderName.substr(0, 1)}</span>
+                    <span className="chat-avatar"><img src={messages[key].senderImage} alt="test" /></span>
                     <span className="chat-user">{messages[key].senderName}</span>
                     <span className="chat-message">{messages[key].text}</span>
                 </li>
@@ -20,14 +32,6 @@ class Chat extends Component {
         return result;
     }
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            message: '',
-            isScrolling: false,
-        };
-    }
 
 
     onSubmitClick = () => {
@@ -79,7 +83,7 @@ class Chat extends Component {
             </div>
             <ul className="chat-messages" ref="chat" onWheel={this.onScroll} onTouchMove={this.onScroll} style={messagesStyle}>
                 <li style={{ opacity: '.8' }}>{i18next.t('video_chatrom_welcome')}</li>
-              {Chat.filterMessages(this.props.messages)}
+              {this.filterMessages(this.props.messages)}
             </ul>
             <input
                 type="text"
