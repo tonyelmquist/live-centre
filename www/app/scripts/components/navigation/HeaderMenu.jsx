@@ -4,7 +4,8 @@ import MediaQuery from 'react-responsive';
 import { Link } from 'react-router-dom';
 import i18next from 'i18next';
 import FlatButton from 'material-ui/FlatButton';
-import BackIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
+// import BackIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
+import FontAwesome from 'react-fontawesome';
 import SearchBar from './SearchBar';
 import SearchInput from './SearchInput';
 import UserMenu from '../../containers/UserMenu';
@@ -27,12 +28,12 @@ const HeaderMenu = (props) => {
     };
 
     const printLocation = () => {
-      console.log(props.locationName);
+        console.log(props.locationName);
         if (props.locationName === '') {
-            return (<FlatButton className="menuItem logo" label="IMR" />);
+            return (<FlatButton className="menuItem logo" style={{ margin: 7 }} label="IMR" />);
         }
         return (<div onTouchTap={() => props.goBack()} className="menuItem links">
-                    <BackIcon style={{ padding: 8, float: 'left', color:'#000' }} />
+                    <FontAwesome name="chevron-left" className="white menuItemBackButton" style={{ padding: 17, float: 'left', color: '#000' }} />
                     <span className="menuItemLabel">{i18next.t(props.locationName)}</span>
                 </div>);
     };
@@ -49,7 +50,7 @@ const HeaderMenu = (props) => {
           >
 
           {printLocation()}
-          
+
           <SearchInput
             handleSearch={props.handleSearch}
             searchState={props.searchState}

@@ -161,7 +161,7 @@ class ChannelsPage extends React.Component {
           <h4>{i18next.t('genres')}</h4>
 
             <div className="inline-circle-label">
-            <HorizontalScrollContainer height={80}>
+            <HorizontalScrollContainer height={90}>
                 {this.getCircleFilters(this.state.filters)}
             </HorizontalScrollContainer>
             </div>

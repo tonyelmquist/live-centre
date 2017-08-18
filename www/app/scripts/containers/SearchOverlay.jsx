@@ -154,7 +154,7 @@ class SearchContainer extends Component {
             <div className="container-fluid">
             {!this.props.search.isSearching && (this.props.activeFilter === 0) //3 == people
                 ? (<div><h4>{i18next.t('suggested_people')}</h4>
-                    <HorizontalScrollContainer height={70}>
+                    <HorizontalScrollContainer height={75}>
                         {this.getPortraitItems(people)}
                     </HorizontalScrollContainer> </div>)
                 : <span />
