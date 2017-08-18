@@ -45,15 +45,11 @@ class App extends Component {
                 error: false,
             },
         };
-        if ('onorientationchange' in window) {
-            window.addEventListener('orientationchange', () => {
-                this.dispatchOrientation();
-            }, false);
-        } else {
-            window.addEventListener('resize', () => {
-              this.dispatchOrientation();
-          }, false);
-        }
+        
+        window.addEventListener('resize', () => {
+            this.dispatchOrientation();
+        }, false);
+        
         window.addEventListener('load', () => {
             this.dispatchOrientation();
         });
@@ -73,13 +69,15 @@ class App extends Component {
     }
 
     dispatchOrientation = () => {
-        if (window.innerWidth < window.innerHeight) {
-            this.props.dispatch(setPortrait());
-        }
+        setTimeout(() => {
+            if (window.innerWidth < window.innerHeight) {
+                this.props.dispatch(setPortrait());
+            }
 
-        if (window.innerWidth > window.innerHeight) {
-            this.props.dispatch(setLandscape());
-        }
+            if (window.innerWidth > window.innerHeight) {
+                this.props.dispatch(setLandscape());
+            }
+        }, 500);
     }
 
     closeTeamMemberOverlay = () => {
