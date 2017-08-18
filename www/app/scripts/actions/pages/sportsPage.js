@@ -65,15 +65,15 @@ export function closeTeamMemberOverlay() {
 export function addSportVideo(sport, videoID) {
     return { type: Actions.ADD_SPORT_VIDEO, sport, videoID };
 }
-/**
- * Action to close player overlay in sports team page.
- *
- * @memberof Actions:Page:Sports
- * @export
- * @param {int} id
- * @returns Dispatchable Action
- */
-export function addTeamVideo(team, videoID) {
-    return { type: Actions.ADD_TEAM_VIDEO, team, videoID };
-}
+// /**
+//  * Action to close player overlay in sports team page.
+//  *
+//  * @memberof Actions:Page:Sports
+//  * @export
+//  * @param {int} id
+//  * @returns Dispatchable Action
+//  */
+// export function addTeamVideo(team, videoID) {
+//     return { type: Actions.ADD_TEAM_VIDEO, team, videoID };
+// }
 

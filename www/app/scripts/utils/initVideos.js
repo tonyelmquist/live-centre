@@ -92,15 +92,15 @@ const transformVideoData = (unfiltered, store) => {
         if (typeof video.sport !== 'undefined') {
             //console.log(video);
             store.dispatch(addSportVideo(video.sport, video.id));
-            video.sport = video.sport;
+            // video.sport = video.sport;
 
-            if(video.teams !== 'undefined'){
+            // if(video.teams !== 'undefined'){
 
-                const teams = video.Teams.split(', ');
-                store.dispatch(addTeamVideo(teams[1], video.id));
-                store.dispatch(addTeamVideo(teams[2], video.id));
-            }
-            //get team from string  
+            //     const teams = video.Teams.split(', ');
+            //     store.dispatch(addTeamVideo(teams[1], video.id));
+            //     store.dispatch(addTeamVideo(teams[2], video.id));
+            // }
+            // //get team from string  
 
         }
 
