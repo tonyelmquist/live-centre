@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import i18next from 'i18next';
-import { loginSuccess, logoutSuccess } from '../actions/authentication';
+import { loginSuccess, logoutSuccess, setDisplayName } from '../actions/authentication';
 import store from './store';
 import { fetchUserSettingsSuccess, changeLang } from '../actions/settings';
 import { newNotification } from '../actions/notifications';
@@ -77,9 +77,10 @@ export default class Authentication {
                         store.dispatch(changeLang(settings.language));
                     });
 
+                    store.dispatch(setDisplayName(profile.displayName));
+
                     console.log('Profile info', profile);
                     FirebaseDB.readProfilePicture(() => {});
-                    FirebaseDB.readDisplayName();
                 });
             } else {
                 console.log('User is NOT signed in');

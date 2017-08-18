@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import store from './store.js';
 
 export default class FirebaseDB {
 
@@ -39,31 +40,22 @@ export default class FirebaseDB {
 
     static readProfilePicture = (callback) => {
         const currentUser = firebase.auth().currentUser;
-        firebase.database().ref(`users/${currentUser.uid}/profile/imageUrl`).once('value').then((snapshot) => {
-            console.log('snapshot', snapshot.val());
-            if (snapshot.val() === null) {
-                firebase.storage().ref('/ProfilePictures/default.png').getDownloadURL().then((url) => {
-                    FirebaseDB.currentUserProfileImage = url;
-                    callback(url);
-                });
-            } else {
-                firebase.storage().ref(snapshot.val()).getDownloadURL().then((url) => {
-                    FirebaseDB.currentUserProfileImage = url;
-                    callback(url);
-                });
-            }
-        });
-    }
-
-    static readDisplayName = () => {
-        const currentUser = firebase.auth().currentUser;
-        firebase.database().ref(`users/${currentUser.uid}/profile/displayName`).once('value').then((snapshot) => {
-            if (snapshot.val() === null) {
-                FirebaseDB.currentUserDisplayName = 'Anon';
-            } else {
-                FirebaseDB.currentUserDisplayName = snapshot.val();
-            }
-        });
+        if (currentUser) {
+            firebase.database().ref(`users/${currentUser.uid}/profile/imageUrl`).once('value').then((snapshot) => {
+                console.log('snapshot', snapshot.val());
+                if (snapshot.val() === null) {
+                    firebase.storage().ref('/ProfilePictures/default.png').getDownloadURL().then((url) => {
+                        FirebaseDB.currentUserProfileImage = url;
+                        callback(url);
+                    });
+                } else {
+                    firebase.storage().ref(snapshot.val()).getDownloadURL().then((url) => {
+                        FirebaseDB.currentUserProfileImage = url;
+                        callback(url);
+                    });
+                }
+            });
+        }
     }
 
     static currentMessageChannel = null;
@@ -108,7 +100,7 @@ export default class FirebaseDB {
         newMessage.set({
             senderId: currentUser.uid,
             senderImage: FirebaseDB.currentUserProfileImage,
-            senderName: FirebaseDB.currentUserDisplayName,
+            senderName: store.getState().authentication.user.displayName,
             text: message,
         });
     }

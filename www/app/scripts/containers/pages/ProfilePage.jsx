@@ -5,6 +5,7 @@ import Badge from 'material-ui/Badge';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import firebase from 'firebase';
 import FirebaseDB from '../../utils/FirebaseDB';
+import EditableInput from '../../components/common/EditableInput';
 
 class ProfilePage extends React.Component {
 
@@ -55,6 +56,12 @@ class ProfilePage extends React.Component {
         this.fileUpload.click();
     }
 
+    onDisplayNameChange = (newValue) => {
+        FirebaseDB.writeNewUserDisplayName(newValue, () => {
+            this.props.setDisplayName(newValue);
+        });
+    }
+
     profilePictureUrl = '';
 
     render() {
@@ -77,7 +84,7 @@ class ProfilePage extends React.Component {
                     />
                 </Badge>
 
-                <h1>User</h1>
+                <h1><EditableInput value={this.props.user.displayName} onChange={this.onDisplayNameChange} /></h1>
                 <p>{this.props.user.email}</p>
             </div>
 

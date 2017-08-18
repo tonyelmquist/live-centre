@@ -14,6 +14,14 @@ export default function authenticationReducer(state = { isLoggedIn: false, user:
             isLoggedIn: false,
             user: [],
         };
+    case Actions.AUTH_SET_DISPLAY_NAME:
+        return {
+            ...state,
+            user: {
+                ...state.user,
+                displayName: action.name,
+            },
+        };
     default:
         return state;
     }

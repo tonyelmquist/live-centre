@@ -61,3 +61,16 @@ export function hideRegistration() {
     return { type: Actions.HIDE_REG_DIALOG };
 }
 
+/**
+ * Action to change display name in store
+ *
+ * @memberof Actions:Authentication
+ * @export
+ * @returns Dispatchable Action
+ */
+export function setDisplayName(name) {
+    return { type: Actions.AUTH_SET_DISPLAY_NAME, name };
+}
+
+
+
