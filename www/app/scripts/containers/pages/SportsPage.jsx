@@ -16,34 +16,31 @@ class SportsPage extends React.Component {
     }
 
     handleOnClick = (item) => {
-        console.log('handleclick:', item.title);
-        this.changeRoute(`/Sport/${item.title}`);
+        console.log('handleclick:', item);
+        this.changeRoute(`/Sport/${item.key}`);
     }
 
     getTiles = () => {
         const tiles = [];
         const sports = this.props.sportsInfo.sports;
+        console.log(sports);
+        console.log(sports['Soccer'].thumbnail);
 
 
-        for (const key in sports) {
-            for (let i = 0; i < 6; i++) { // Cheat to simulate many sports..
-                tiles.push(
-          <MasonryImageTile
-            key={`sports-sport-${key + i}`}
-            poster={sports[key].thumbnail}
-            overlay={
-                <div
-                  className="centerOverlay"
-                  onTouchTap={() => this.handleOnClick(sports[key])}
-                >
-                  <h2>{i18next.t(sports[key].title)}</h2>
-                </div>
-              }
-          />,
-        );
-            }
+        for(const key in sports){
+            tiles.push(
+                <MasonryImageTile
+                    key={`sports-sport-${key}`}
+                    poster={sports[key].thumbnail}
+                    overlay={<div 
+                        className="centerOverlay" 
+                        onTouchTap={() => this.handleOnClick(sports[key])}> 
+                        <h2>{sports[key].title}</h2>
+                        </div>}
+                />,
+            );
         }
-        return tiles;
+        return tiles;f
     }
 
     render() {

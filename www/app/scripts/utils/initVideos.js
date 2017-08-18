@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { fetchVideosSuccess, fetchSeriesSuccess, fetchSeasonsSuccess, fetchTagsSuccess } from '../actions/fetchData';
+import { addSportVideo } from '../actions/pages/sportsPage';
 // Classes:
 import Video from '../classes/video';
 import Tag from '../classes/tag';
@@ -79,8 +80,12 @@ const transformVideoData = (unfiltered, store) => {
         video.videoUrl = video.id; // asset id is for now used to get url.
 
         console.log(video.tags);
-        if(video.tags == 'Program Masters' || video.tags == 'IMR Test Files' || video.tags == 'Discovery Networks' || video.tags == 'Game Shows' || video.tags == 'The Future Group' || video.tags == 'Uncategorized'){
+        if (video.tags == 'Program Masters' || video.tags == 'IMR Test Files' || video.tags == 'Discovery Networks' || video.tags == 'Game Shows' || video.tags == 'The Future Group' || video.tags == 'Uncategorized') {
             continue;
+        }
+
+        if (typeof video.sport !== 'undefined') {
+            store.dispatch(addSportVideo(video.sport, video.id));
         }
 
         if (allChannels[video.channel]) {

@@ -1,8 +1,10 @@
 import Actions from '../../constants/reduxConstants';
 import TeamMember from '../../classes/teamMember';
 import Team from '../../classes/team';
+import Sport from '../../classes/sport';
 
-//import of local images. Should be replaced later with remote images. 
+
+// import of local images. Should be replaced later with remote images.
 // import garethPortrait from '../../../img//mockup/sport/soccer-players/gareth-bale-portrait.jpg'
 // import garethActionShot from '../../../img/mockup/sport/soccer-players/gareth-bale-fullbody.jpg'
 // import keylorPortrait from '../../../img/mockup/sport/soccer-players/KeylorNavas_portrait.jpg'
@@ -21,11 +23,22 @@ const filters = [
 ];
 
 const sportsDefaultState = {
-    1: {
-        id: 1,
+    Soccer: new Sport({
+        id: 0,
+        key: 'Soccer',
         title: 'Football',
         thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZtLfjPzgWKlJtULL5N-DBluskWcqTtq6cqnB3UqCYna_ilAJ',
-    },
+        videos: [],
+        teams: ['RealMadrid', 'Barcelona'],
+    }),
+    Basketball: new Sport({
+        id: 1,
+        key: 'Basketball',
+        title: 'Basketball',
+        thumbnail: '',
+        videos: [],
+        teams: [],
+    }),
 };
 
 const teamsDefaultState = {
@@ -99,9 +112,15 @@ const playersDefaultState = {
         actionShot: 'http://estaticos.marca.com/imagenes/2015/10/27/en/football/real_madrid/1445935832_extras_noticia_foton_7_0.jpg',
     },
 };
-
 function sports(state = sportsDefaultState, action) {
     switch (action.type) {
+    case Actions.ADD_SPORT_VIDEO:
+        const sportCopy = Object.assign(Object.create(Object.getPrototypeOf(state[action.sport])), state[action.sport]);
+        sportCopy.videos = [...sportCopy.videos, action.videoID];
+        return {
+            ...state,
+            [action.sport]: sportCopy,
+        };
     default:
         return state;
     }

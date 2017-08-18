@@ -140,6 +140,16 @@ class Video extends BaseClass {
         return this._season;
     }
 
+    set sport(sport) {
+        if (sport) {
+            this._sport = sport;
+        }
+    }
+
+    get sport() {
+        return this._sport;
+    }
+
     set wishlist(wishlist) {
         this._wishlist = wishlist;
     }

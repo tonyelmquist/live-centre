@@ -53,3 +53,15 @@ export function openTeamMemberOverlay(player) {
 export function closeTeamMemberOverlay() {
     return { type: Actions.CLOSE_SPORT_PLAYER_OVERLAY };
 }
+
+/**
+ * Action to close player overlay in sports team page.
+ *
+ * @memberof Actions:Page:Sports
+ * @export
+ * @param {int} id
+ * @returns Dispatchable Action
+ */
+export function addSportVideo(sport, videoID) {
+    return { type: Actions.ADD_SPORT_VIDEO, sport, videoID };
+}
