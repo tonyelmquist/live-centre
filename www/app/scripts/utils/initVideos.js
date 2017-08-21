@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { fetchVideosSuccess, fetchSeriesSuccess, fetchSeasonsSuccess, fetchTagsSuccess } from '../actions/fetchData';
 import { addSportVideo, addTeamVideo } from '../actions/pages/sportsPage';
+import { videoSelected } from '../actions/videoPlayer';
 // Classes:
 import Video from '../classes/video';
 import Tag from '../classes/tag';
@@ -36,12 +37,13 @@ const transformVideoData = (unfiltered, store) => {
     const allChannels = {};
     const allSeasons = {};
     let seasonKey = '';
+    let videoId = 0;
 
     let i = 0;
 
     const data = unfiltered.filter(asset => asset.metadata.MimeType === 'video');
 
-
+    let startVideo = null;
     // If we want to limit the amount of data recieved, reduce the iterations in this for loop.
     for (const index in data) {
 
@@ -65,7 +67,7 @@ const transformVideoData = (unfiltered, store) => {
 
         const attr = data[index];
 
-        if(attr.metadata.Sport !== undefined){
+        if (attr.metadata.Sport !== undefined){
             console.log(attr);
         }
 
@@ -143,6 +145,9 @@ const transformVideoData = (unfiltered, store) => {
             }
         }
         allVideos[video.id] = new Video(video);
+        if (i === 2) {
+            startVideo = new Video(video);
+        }
         i += 1;
     }
     // console.log("all channels", allChannels);
@@ -155,6 +160,7 @@ const transformVideoData = (unfiltered, store) => {
     store.dispatch(fetchTagsSuccess(allChannels));
     store.dispatch(fetchSeriesSuccess(allSeries));
     store.dispatch(fetchSeasonsSuccess(allSeasons));
+    store.dispatch(videoSelected(startVideo));
 
     return true;
 };

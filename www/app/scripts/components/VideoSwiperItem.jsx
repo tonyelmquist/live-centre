@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { GridTile } from 'material-ui/GridList';
 import LiveTag from './common/LiveTag';
+import NewTag from './common/NewTag';
 
 const styles = {
     mediumIcon: {
@@ -23,12 +24,13 @@ class VideoSwiperItem extends Component {
               title={''}
               subtitle={''}
               onTouchTap={() => { this.props.handleClick(); }}
-              actionIcon={<div>
-              </div>}
+              actionIcon={<div />}
             >
               <img src={this.props.video.thumbnail} alt={this.props.video.description} />
             </GridTile>
             {this.props.video.tags === 'Street Fighter' ? <LiveTag /> : ''}
+            {this.props.video.id === 238449001 ? <NewTag /> : ''}
+            {this.props.video.id === 221459001 ? <NewTag /> : ''}
           </div>
         );
     }
