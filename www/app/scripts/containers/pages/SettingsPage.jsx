@@ -113,6 +113,7 @@ class SettingsPage extends React.Component {
             <div className="section">
               <h3>{i18next.t('settings_general')}</h3>
               <Toggle
+                className="toggle-recommendations"
                 label={i18next.t('settings_recommendations')}
                 toggled={this.props.settings.options.recommendations}
                 onToggle={this.handleRecommendationsChange}

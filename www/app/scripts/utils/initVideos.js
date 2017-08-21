@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { fetchVideosSuccess, fetchSeriesSuccess, fetchSeasonsSuccess, fetchTagsSuccess } from '../actions/fetchData';
 import { addSportVideo, addTeamVideo } from '../actions/pages/sportsPage';
+import { videoSelected } from '../actions/videoPlayer';
 // Classes:
 import Video from '../classes/video';
 import Tag from '../classes/tag';
@@ -35,14 +36,14 @@ const transformVideoData = (unfiltered, store) => {
     const allSeries = {};
     const allChannels = {};
     const allSeasons = {};
-    const teams = [];
     let seasonKey = '';
+    let videoId = 0;
 
     let i = 0;
 
     const data = unfiltered.filter(asset => asset.metadata.MimeType === 'video');
 
-
+    let startVideo = null;
     // If we want to limit the amount of data recieved, reduce the iterations in this for loop.
     for (const index in data) {
 
@@ -66,8 +67,8 @@ const transformVideoData = (unfiltered, store) => {
 
         const attr = data[index];
 
-        if(attr.metadata.Sport !== undefined){
-            //console.log(attr);
+        if (attr.metadata.Sport !== undefined){
+            console.log(attr);
         }
 
         video.id = Number(attr.assetid);
@@ -103,10 +104,6 @@ const transformVideoData = (unfiltered, store) => {
             // }
             // //get team from string  
 
-            if(video.Teams !== undefined){
-                teams.push(video.teams);
-            }
-
         }
 
         if (allChannels[video.channel]) {
@@ -135,7 +132,7 @@ const transformVideoData = (unfiltered, store) => {
                 // Therefore add the episode to the season.
                 allSeasons[seasonKey].episode = video.id;
             } else if (allSeries[video.series]) {
-                //console.log("create season");
+                console.log("create season");
                 // Series exist but not season.
                 const season = createSeason(video.series, seasonKey, video.season, video.id);
                 allSeries[video.season] = seasonKey;
@@ -148,6 +145,9 @@ const transformVideoData = (unfiltered, store) => {
             }
         }
         allVideos[video.id] = new Video(video);
+        if (i === 2) {
+            startVideo = new Video(video);
+        }
         i += 1;
     }
     // console.log("all channels", allChannels);
@@ -160,8 +160,7 @@ const transformVideoData = (unfiltered, store) => {
     store.dispatch(fetchTagsSuccess(allChannels));
     store.dispatch(fetchSeriesSuccess(allSeries));
     store.dispatch(fetchSeasonsSuccess(allSeasons));
-
-    console.log("teams", teams);
+    store.dispatch(videoSelected(startVideo));
 
     return true;
 };

@@ -32,12 +32,8 @@ class VideoDescription extends React.Component {
 
     title = this.props.video.series ? this.props.video.series : this.props.video.title;
     subtitle = this.props.video.series ? `${this.props.video.title}, season ${this.props.video.season}` : null;
-
-    ipsum = `Morbi eu scelerisque justo. Sed finibus, to rtor eu viverra fringilla,
-    lectus sem cond imen tum mi, tempus tincidunt mauris dolor tempor
-    nibh. Vestibulum quis convallis urna. Mauris massa lectus,
-    convallis in mi id, blandit suscipit turpis. `;
-
+    description = this.props.video.description ? this.props.video.description : this.props.video.title;
+    
     render() {
         return (
             <div className="ox-content-inner">
@@ -48,13 +44,13 @@ class VideoDescription extends React.Component {
                     {i18next.t('video_star_rating')} {this.renderStars()} <br />
                     {i18next.t('video_add_watchlist')} <FontAwesome name={this.props.video.wishlist ? 'heart' : 'heart-o'} onClick={this.handleWishlistClick} style={{ color: 'white' }} />
                 </p>
-            
+
                 <Collapsible
                     collapseInfo={this.collapseInfo}
                     toggleCollapseInfo={this.props.toggleCollapseInfo}
                     isCollapsed={this.props.isCollapsed}
-                    text={this.ipsum}
-                />       
+                    text={this.description}
+                />
                 {/* <p>{this.ipsum}</p>
                 </Collapsible>  */}
             </div>
