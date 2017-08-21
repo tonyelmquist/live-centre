@@ -10,7 +10,6 @@ import IconButton from 'material-ui/IconButton';
 import PlayCircleFilled from 'material-ui/svg-icons/av/play-circle-filled';
 import { videoSelected } from '../actions/videoPlayer';
 import { openOverlayX, maximizeOverlayX } from '../actions/overlayX';
-
 // const FEATURED_CATEGORY = 'Uncategorized';
 
 const styles = {

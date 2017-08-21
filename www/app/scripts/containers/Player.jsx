@@ -19,7 +19,7 @@ import ProductOverlay from '../components/OverlayX/ProductOverlay';
 
 import timelines from '../constants/timelines';
 
-const tickProximityInterval = 2000;
+const tickProximityInterval = 10000;
 
 const styles = {
     playerStyle: {
