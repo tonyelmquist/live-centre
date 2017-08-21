@@ -11,7 +11,7 @@ class ContentXInfo extends Component {
         const video = this.props.video;
 
         const renderFooter = () => {
-            if (video.series !== undefined) {
+            if (video.series !== undefined && video.season !== undefined) {
                 return (<SeasonsFooter
                           video={this.props.video}
                           allVideos={this.props.allVideos}

@@ -6,8 +6,8 @@ import FilterTabs from '../../containers/FilterTabs';
 import i18next from 'i18next';
 
 const SeasonsFooter = (props) => {
-    const currentSeason = props.video.series;
-    const seasonsList = props.series.items[currentSeason].seasons;
+    const currentSeries = props.video.series;
+    const seasonsList = props.series.items[currentSeries].seasons;
     const seasons = props.seasons.items;
     const currentSeasonTab = 0;
     const allVideos = props.allVideos.items;
