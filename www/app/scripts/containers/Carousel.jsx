@@ -47,26 +47,30 @@ class HeroCarousel extends Component {
         selected: false,
     };
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            autoPlay: false,
+            autoPlay: true,
+            renderVideo: false,
         };
     }
 
-    //After the component have rendered for the first time, add the autoplay tag. 
-    //This will prevent react router transition from waiting. 
+    // After the component have rendered for the first time, add the autoplay tag.
+    // This will prevent react router transition from waiting.
     componentDidMount() {
-        if (this.state.autoPlay === false) {
-            this.setAutoPlayState();
+        this.setVideoState();
+    }
+    shouldComponentUpdate(nextProps){
+        if(nextProps.transitionStarting && this.carouselVideo){
+            //this.carouselVideo.videoEl.pause();
+            this.setState({ renderVideo: false });
         }
+        return true
     }
 
-    setAutoPlayState = () => {
-        console.log("set autoplay state");
-        this.setState((prevState, props) => {
-            return { autoPlay: true };
-        });
+    setVideoState = () => {
+        setTimeout(() => console.log('Wait until we start playing video.'), 1500);
+        setTimeout(() => this.setState({ renderVideo: true }), 1500);
     }
 
     _handlePlay = (video) => {
@@ -165,16 +169,19 @@ class HeroCarousel extends Component {
                       </div>
                     </div>
                     <div className="heroCarouselVideo">
-                      <Video
+                        {this.state.renderVideo ?
+                    <Video
                         autoPlay={this.state.autoPlay}
                         playsInline
                         muted
                         controls={[]}
                         poster={video.thumbnail}
                         loop
-                      >
-                        <source src={videoUrl} />
-                      </Video>
+                        ref={ref => (this.carouselVideo = ref)}
+                    >
+                       <source src={videoUrl} />
+                      </Video> : <img src={video.thumbnail} /> }
+
                     </div>
                   </div>
                 );
@@ -238,7 +245,6 @@ HeroCarousel.propTypes = {
     dispatch: PropTypes.func.isRequired,
     // selected: PropTypes.bool,
     tags: PropTypes.any.isRequired,
-    history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

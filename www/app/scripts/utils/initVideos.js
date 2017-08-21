@@ -35,6 +35,7 @@ const transformVideoData = (unfiltered, store) => {
     const allSeries = {};
     const allChannels = {};
     const allSeasons = {};
+    const teams = [];
     let seasonKey = '';
 
     let i = 0;
@@ -66,7 +67,7 @@ const transformVideoData = (unfiltered, store) => {
         const attr = data[index];
 
         if(attr.metadata.Sport !== undefined){
-            console.log(attr);
+            //console.log(attr);
         }
 
         video.id = Number(attr.assetid);
@@ -102,6 +103,10 @@ const transformVideoData = (unfiltered, store) => {
             // }
             // //get team from string  
 
+            if(video.Teams !== undefined){
+                teams.push(video.teams);
+            }
+
         }
 
         if (allChannels[video.channel]) {
@@ -130,7 +135,7 @@ const transformVideoData = (unfiltered, store) => {
                 // Therefore add the episode to the season.
                 allSeasons[seasonKey].episode = video.id;
             } else if (allSeries[video.series]) {
-                console.log("create season");
+                //console.log("create season");
                 // Series exist but not season.
                 const season = createSeason(video.series, seasonKey, video.season, video.id);
                 allSeries[video.season] = seasonKey;
@@ -155,6 +160,8 @@ const transformVideoData = (unfiltered, store) => {
     store.dispatch(fetchTagsSuccess(allChannels));
     store.dispatch(fetchSeriesSuccess(allSeries));
     store.dispatch(fetchSeasonsSuccess(allSeasons));
+
+    console.log("teams", teams);
 
     return true;
 };

@@ -9,11 +9,15 @@ import VideoSwiper from '../../components/VideoSwiper';
 
 class HomePage extends Component {
 
+    componentWillUnmount() {
+        console.log('HOMEPAGE WILL UNMOUNT');
+    }
+
     _changeCardCategory = (category) => {
         this.props
             .dispatch(changeCardCategory(category));
     }
-    
+
     _onTileClick = (video) => {
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
@@ -50,10 +54,15 @@ class HomePage extends Component {
     }
 
     render() {
+        let transitionStarting = false;
+        if (this.props.history.location.pathname !== '/') {
+            transitionStarting = true;
+        }
+
         return (
 
           <div>
-            {this.props.overlayVisible ? <div /> : <HeroCarousel history={this.props.history}/> }
+            {this.props.overlayVisible ? <div /> : <HeroCarousel transitionStarting={transitionStarting} /> }
             <div className={this.props.overlayVisible ? 'hidden' : ''}>
               {this.createVideoList(this.props.tags, this.props.videos)}
             </div>

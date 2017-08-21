@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { RouteTransition, spring } from 'react-router-transition';
+import { RouteTransition } from 'react-router-transition';
+import {  spring } from 'react-motion';
 import { Route, Switch } from 'react-router';
+
 let prevTab = 0;
 let direction = 1; // 1 = right, 0 = left, -1 == no direction
 
+const slideConfig = { stiffness: 330, damping: 30 };
 
 const TransitionRoutes = (props) => {
     return (<Route render={({ location, match, history }) => {
@@ -30,7 +33,9 @@ const TransitionRoutes = (props) => {
                 atActive={{ translateX: 0, o:1,}}
                 mapStyles={styles => ({ 
                     transform: `translateX(${styles.translateX * 100}%)`,
-                    opacity: styles.o, })
+                    //opacity: styles.o, 
+                    willChange: 'transform',
+                    })
                 }
             >
                 <div
