@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { GridTile } from 'material-ui/GridList';
+import LiveTag from './common/LiveTag';
 
 const styles = {
     mediumIcon: {
@@ -27,6 +28,7 @@ class VideoSwiperItem extends Component {
             >
               <img src={this.props.video.thumbnail} alt={this.props.video.description} />
             </GridTile>
+            {this.props.video.tags === 'Street Fighter' ? <LiveTag /> : ''}
           </div>
         );
     }
