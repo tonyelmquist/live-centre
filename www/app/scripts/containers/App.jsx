@@ -54,18 +54,18 @@ class App extends Component {
             this.dispatchOrientation();
         });
 
-        window.addEventListener('keydown', (e) => {
-            console.log(e.keyCode);
+        // window.addEventListener('keydown', (e) => {
+        //     console.log(e.keyCode);
 
-            if (e.shiftKey && e.keyCode === 81) {
-                console.log('notification');
-                this.props.dispatch(newNotification('This is a success message!', 5, 'success'));
-            }
-            if (e.shiftKey && e.keyCode === 87) {
-                console.log('notification');
-                this.props.dispatch(newNotification('Your login details were incorrect!', 7, 'error'));
-            }
-        });
+        //     if (e.shiftKey && e.keyCode === 81) {
+        //         console.log('notification');
+        //         this.props.dispatch(newNotification('This is a success message!', 5, 'success'));
+        //     }
+        //     if (e.shiftKey && e.keyCode === 87) {
+        //         console.log('notification');
+        //         this.props.dispatch(newNotification('Your login details were incorrect!', 7, 'error'));
+        //     }
+        // });
     }
 
     dispatchOrientation = () => {

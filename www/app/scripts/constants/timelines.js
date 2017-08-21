@@ -85,6 +85,16 @@ const timelines = [{
             },
         ],
     },
+    {
+        video: 238449001,
+        events: [
+            {
+                timestamp: 60245,
+                type: 'ecom',
+                productID: 1,
+            },
+        ],
+    },
 ];
 
 export default timelines;
