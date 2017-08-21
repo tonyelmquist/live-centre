@@ -11,23 +11,47 @@ import Masonry from 'react-masonry-component';
     react version: https://github.com/eiriklv/react-masonry-component#basic-usage
 */
 
-function MasonryContainer(props) {
-    const masonryOptions = {
+class MasonryContainer extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isShowing: false,
+        }
+    }
+    masonryOptions = {
         itemSelector: '.tile',
         percentPosition: true,
         columnWidth: '.tile',
         //stagger: 20,
     };
 
-    return (
-      <Masonry // More options; https://masonry.desandro.com/options.html
-        className={'masonry_tiles'}
-        options={masonryOptions}
-      >
-        { props.children }
+    handleImagesLoaded = () => {
+        if (!this.state.isShowing) {
+            this.setState({
+                isShowing: true,
+            });
+        }
+    };
 
-      </Masonry>
-    );
+    render() {
+        const style = {
+            transition: '.2s opacity',
+            opacity: this.state.isShowing ? 1 : 0,
+        };
+
+        return (
+        <Masonry // More options; https://masonry.desandro.com/options.html
+            className={'masonry_tiles'}
+            style={style}
+            options={this.masonryOptions}
+            onImagesLoaded={this.handleImagesLoaded}
+        >
+            { this.props.children }
+
+        </Masonry>
+        );
+    }
 }
 
 MasonryContainer.propTypes = {
