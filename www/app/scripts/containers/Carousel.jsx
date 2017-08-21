@@ -83,6 +83,26 @@ class HeroCarousel extends Component {
         this.refs.rightSlider.slickGoTo(currentSlide);
     }
 
+    getDescriptionSnippet(string, maxCharacters) {
+        const array = string.split(' ');
+        let count = 0;
+
+        let finalCount = 0;
+
+        for (let i = 0; i < array.length; i++) {
+            count += array[i].length;
+            if (count + i > maxCharacters) {
+                finalCount = count + i;
+                break;
+            }
+        }
+        
+        if (finalCount === string.length) {
+            return string;
+        }
+        return `${string.substr(0, finalCount)}...`;
+    }
+
     render() {
         const self = this;
 
@@ -134,6 +154,7 @@ class HeroCarousel extends Component {
             },
         };
 
+
     // Are videos fetched, and is the category loaded?
         if (this.props.tags.items['Promotional Videos'] && this.props.videos.videosFetched > 0) {
             const videoKeys = this.props.tags.items['Promotional Videos'].videos;
@@ -160,7 +181,7 @@ class HeroCarousel extends Component {
                                 this._handlePlay(video);
                             }}
                         >
-                          {video.description}
+                          {this.getDescriptionSnippet(video.description, 100)}
                         </p>
                       </div>
                     </div>
