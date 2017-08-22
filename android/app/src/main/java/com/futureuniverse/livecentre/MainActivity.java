@@ -16,12 +16,21 @@ import android.webkit.WebViewClient;
 
 public class MainActivity extends Activity {
     private WebView mWebView;
+            JavascriptBridge mJavascriptBridge;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         mWebView = new WebView(this);
+        mJavascriptBridge = new JavascriptBridge(this, mWebView);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            mWebView.setWebContentsDebuggingEnabled(true);
+        }
+
+        mWebView.setWebContentsDebuggingEnabled(true);
+        
         //mWebView.loadUrl("http://mediacenter.futureuniverse.com");
         mWebView.loadUrl("file:///android_asset/index.html");
         mWebView.setWebViewClient(new WebViewClient () {
@@ -52,5 +61,11 @@ public class MainActivity extends Activity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        mJavascriptBridge.onBackPressed();
+        //super.onBackPressed();
     }
 }

@@ -11,7 +11,8 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xwalk.core.XWalkView;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 /**
  * Created by minch on 12/06/16.
@@ -19,11 +20,11 @@ import org.xwalk.core.XWalkView;
  */
 public class JavascriptBridge {
     Activity mainActivity;
-    XWalkView mXview;
+    WebView mWebView;
 
-    public JavascriptBridge(Activity activity, XWalkView xview) {
+    public JavascriptBridge(Activity activity, WebView webview) {
         mainActivity = activity;
-        mXview = xview;
+        mWebView = webview;
     }
 
     public void isWebViewLoaded(final ValueCallback<Boolean> callback) {
@@ -117,7 +118,7 @@ public class JavascriptBridge {
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                mXview.evaluateJavascript("javascript:" + javascriptString, callback);
+                mWebView.evaluateJavascript("javascript:" + javascriptString, callback);
             }
         });
     }
@@ -175,6 +176,6 @@ public class JavascriptBridge {
     }
 
     private Context getContext() {
-        return mXview.getContext();
+        return mWebView.getContext();
     }
 }

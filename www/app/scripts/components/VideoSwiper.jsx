@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Slider from 'react-slick';
 import i18next from 'i18next';
 import FontAwesome from 'react-fontawesome';
+import NewTag from '../components/common/NewTag';
+import LiveTag from '../components/common/LiveTag';
 
 
 import HorizontalScrollContainer from '../components/HorizontalScroll/HorizontalScrollContainer';
@@ -81,15 +82,23 @@ class VideoSwiper extends Component {
             if (this.props.tag && this.props.videos) {
                 for (const key in this.props.videos) {
                     const video = this.props.videos[key];
+                    let overlay = (<div />)
+                    if (video.id === 238449001) {
+                        overlay = (<NewTag />)
+                    }
+                    if (video.tags === 'Street Fighter') {
+                        overlay = (<LiveTag />)
+                    }
                     videoList.push(<ScrollItem
                         img={video.thumbnail}
                         key={video.id}
                         id={video.id}
                         handleClick={() => handleClick(video)}
+                        overlay={overlay}
                     />);
-
                 }
             }
+            videoList.reverse();
             return videoList;
         }
 

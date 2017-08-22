@@ -43,14 +43,19 @@ class OverlayX extends Component {
     }
 
     render() {
+        let videoHeight = 200;
+        if (typeof this.overlayRef !== 'undefined') {
+            videoHeight = this.overlayRef.overlayRef.clientHeight;
+        }
         if (typeof this.props.video.id !== 'undefined') {
             this.setChatChannel();
             return (
             <div className={`overlay-x-container ${this.props.overlayX.maximized ? 'maximized' : 'minimized'} ${this.props.overlayX.open ? 'open' : 'closed'}`}>
-                <Overlay isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized}>
+                <Overlay isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized} ref={ref => (this.overlayRef = ref)}>
                     <Player />
                 </Overlay>
                 <ContentX
+                    videoHeight={videoHeight}
                     video={this.props.video}
                     allVideos={this.props.allVideos}
                     isOpen={this.props.overlayX.open}

@@ -7,98 +7,78 @@ import Close from 'material-ui/svg-icons/navigation/close';
 import {blue500} from 'material-ui/styles/colors';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
-let styles = {};
+class Overlay extends React.Component {
 
-const deviceHeight = window.innerHeight;
+    render() {
+        const deviceHeight = window.innerHeight;
+        const deviceWidth = window.innerWidth;
 
-const deviceWidth = window.innerWidth;
+        const minWidth = Math.min(deviceHeight, deviceWidth);
+        const maxWidth = Math.max(deviceHeight, deviceWidth);
+        console.log(deviceWidth);
 
-const minWidth = Math.min(deviceHeight, deviceWidth);
-
-const maxWidth = Math.max(deviceHeight, deviceWidth);
-
-if (minWidth < 800) {
-    styles = {
-        overlayStyle: {
-            position: 'fixed',
-            height: 'auto',
-            width: deviceWidth,
-            minWidth: '100%',
-            zIndex: 1500,
-            top: 0,
-            left: 0,
-            backgroundColor: 'black'
-        },
-        mediumIcon: {
-            width: 28,
-            height: 28
-        },
-        fullscreenButton: {
-            position: 'absolute',
-            zIndex: 1500,
-            top: 5,
-            right: 5
-        },
-        medium: {
-            width: 40,
-            height: 40,
-            padding: 8
-        },
-        overlayHeaderStyle: {
-            display: 'none'
-        }
-    };
-} else {
-    styles = {
-        overlayStyle: {
+        let overlayStyle = {
             position: 'relative',
             height: '100%',
             width: '100%',
             zIndex: 1500,
             top: 0,
-            left: 0
-        },
-        fullscreenButton: {
-            display: 'none'
-        },
-        mediumIcon: {
-            width: 28,
-            height: 28
-        },
-        medium: {
-            width: 40,
-            height: 40,
-            padding: 8
+            left: 0,
+        };
+
+        if (minWidth < 800) {
+            overlayStyle = {
+                position: 'fixed',
+                height: 'auto',
+                width: deviceWidth,
+                minWidth: '100%',
+                zIndex: 1500,
+                top: 0,
+                left: 0,
+                backgroundColor: 'black',
+            };
         }
-    };
-}
 
-class Overlay extends React.Component {
+        let offscreenY = 320;
+        let minimizedY = 190;
+        if (typeof this.overlayRef !== 'undefined') {
+            offscreenY = Math.round((window.innerHeight / this.overlayRef.clientHeight) * 110);
+            minimizedY = Math.round((window.innerHeight / this.overlayRef.clientHeight) * 66);
+        }
+        let _y = 0;
+        let _scale = 1;
 
-    render() {
+        if (this.props.isOpen) {
+            if (this.props.isMaximized) {
+                _scale = 1;
+                _y = 0;
+            } else {
+                _y = minimizedY;
+                _scale = 0.5;
+            }
+        } else {
+            _y = offscreenY;
+            _scale = 1;
+        }
+
         return (
             <Motion
-                style={{
-                y: spring(this.props.isOpen
-                    ? (this.props.isMaximized
-                        ? 0
-                        : 190)
-                    : 320, {
+            style={{
+                y: spring(_y, {
                     stiffness: 60,
-                    damping: 15
+                    damping: 15,
                 }),
-                scale: spring(this.props.isMaximized
-                    ? 1
-                    : .5, {
+                scale: spring(_scale, {
                     stiffness: 60,
-                    damping: 15
-                })
+                    damping: 15,
+                }),
             }}>
                 {({y, scale}) => <div
                     className={`fs-overlay isOpen`}
+                    ref={ref => (this.overlayRef = ref)}
                     style={{
-                    ...styles.overlayStyle,
-                    'transform': `translate3d(0, ${y}%, 0) scale3d(${scale}, ${scale}, 1)`
+                        ...overlayStyle,
+                        'transform': `translate3d(0, ${y}%, 0) scale3d(${scale}, ${scale}, 1)`
                 }}
                     id="overlayDiv">
                     {/*<div className="overlay-header" style={styles.overlayHeaderStyle}>
@@ -127,7 +107,8 @@ class Overlay extends React.Component {
 
 Overlay.propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    children: PropTypes.node.isRequired
+    isMaximized: PropTypes.bool.isRequired,
+    children: PropTypes.node.isRequired,
 };
 
 export default Overlay;
