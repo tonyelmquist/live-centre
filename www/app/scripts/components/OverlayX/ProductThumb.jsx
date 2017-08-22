@@ -18,7 +18,6 @@ class ProductThumb extends React.Component {
     };
 
     render() {
-
         let thisProduct = {};
 
         if (this.props.productID) { thisProduct = this.product(this.props.productID); }
@@ -29,7 +28,8 @@ class ProductThumb extends React.Component {
         className={`productThumb ${this.props.showProductThumb
           ? 'highlighted'
           : ''}`}
-          onTouchTap={() => this.onShowProductOverlay()}>    
+          onTouchTap={() => this.onShowProductOverlay()}
+      >
         <img
           src={thisProduct.thumbnailImage}
           alt={thisProduct.description}

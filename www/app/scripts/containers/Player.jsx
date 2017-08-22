@@ -151,7 +151,7 @@ class Player extends React.Component {
 
             if (currentEvent !== undefined) {
                 if (!this.props.showProductThumb) { this.props.dispatch(showProductThumb(currentEvent.productID)); }
-            } else if (this.props.showProductThumb) { this.props.dispatch(hideProductThumb()); }
+            } else if (this.props.showProductThumb) { this.props.dispatch(hideProductThumb(0)); }
         }
     }
 
