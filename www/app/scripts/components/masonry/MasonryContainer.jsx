@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-component';
+import Spinner from '../Icons/Spinner';
 
 /*
     This component takes in an array of videos and returns a div with tiles,
@@ -40,16 +41,24 @@ class MasonryContainer extends React.Component {
             opacity: this.state.isShowing ? 1 : 0,
         };
 
-        return (
-        <Masonry // More options; https://masonry.desandro.com/options.html
-            className={'masonry_tiles'}
-            style={style}
-            options={this.masonryOptions}
-            onImagesLoaded={this.handleImagesLoaded}
-        >
-            { this.props.children }
+        const spinnerStyle  = {
+            transition: '.2s opacity',
+            opacity: this.state.isShowing ? 0 : 0.9,
+        };
 
-        </Masonry>
+        return (
+        <div>
+            <Spinner style={spinnerStyle} />
+            <Masonry // More options; https://masonry.desandro.com/options.html
+                className={'masonry_tiles'}
+                style={style}
+                options={this.masonryOptions}
+                onImagesLoaded={this.handleImagesLoaded}
+            >
+                { this.props.children }
+
+            </Masonry>
+        </div>
         );
     }
 }

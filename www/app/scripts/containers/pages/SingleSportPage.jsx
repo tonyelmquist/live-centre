@@ -12,6 +12,8 @@ import i18next from 'i18next';
 import { videoSelected, resetCurrentTimeInPlayer } from '../../actions/videoPlayer';
 import { maximizeOverlayX, openOverlayX } from '../../actions/overlayX';
 
+import ChannelIcon from '../../components/HorizontalScroll/ChannelIcon';
+
 class SingelSportsPage extends React.Component {
 
     
@@ -54,11 +56,12 @@ class SingelSportsPage extends React.Component {
         const rowItems = [];
         for (const key in teams) {
             console.log(teams, key);
-            rowItems.push(<CircleRowItem
-            key={key}
-            img={teams[key].logo}
-            handleClick={() => this.handleTeamOpen(key)}
-            />);
+            // rowItems.push(<CircleRowItem
+            // key={key}
+            // img={teams[key].logo}
+            // handleClick={() => this.handleTeamOpen(key)}
+            // />);
+            rowItems.push(<div className="scrollable-team-logo"><img src={teams[key].logo}/></div>)
         }
         return rowItems;
     }

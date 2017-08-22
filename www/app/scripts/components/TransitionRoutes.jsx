@@ -32,8 +32,8 @@ const TransitionRoutes = (props) => {
                 atLeave={{ translateX: animStyle.l, o:0,}}
                 atActive={{ translateX: 0, o:1,}}
                 mapStyles={styles => ({ 
-                    transform: `translateX(${styles.translateX * 100}%)`,
-                    opacity: styles.o, 
+                    transform: `translateX(${spring(styles.translateX, slideConfig).val * 100}%)`,
+                    opacity: spring(styles.o).val, 
                     willChange: 'transform',
                     })
                 }
