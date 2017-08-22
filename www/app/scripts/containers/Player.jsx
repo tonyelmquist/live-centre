@@ -17,9 +17,7 @@ import '../../../node_modules/video-react/dist/video-react.css';
 import ProductThumb from '../components/OverlayX/ProductThumb';
 import ProductOverlay from '../components/OverlayX/ProductOverlay';
 
-import timelines from '../constants/timelines';
-
-const tickProximityInterval = 10000;
+const tickProximityInterval = 5000;
 
 const styles = {
     playerStyle: {
@@ -145,27 +143,20 @@ class Player extends React.Component {
 
     tickInProximity = (currentTime) => {
         const currentTimeInMS = currentTime * 1000;
-        const thisTimeline = this.timeline(this.props.video.id);
-        if (typeof thisTimeline[0] !== 'undefined') {
-            const currentEvent = thisTimeline[0].events.find(
+        const thisTimeline = this.props.video._timeline;
+        if (thisTimeline.events !== undefined) {
+            const currentEvent = thisTimeline.events.find(
             event => ((event.timestamp - tickProximityInterval < currentTimeInMS) && (currentTimeInMS < event.timestamp + tickProximityInterval)),
             );
 
             if (currentEvent !== undefined) {
                 if (!this.props.showProductThumb) { this.props.dispatch(showProductThumb(currentEvent.productID)); }
-            } else if (this.props.showProductThumb) { this.props.dispatch(hideProductThumb()); }
+            } else if (this.props.showProductThumb) { this.props.dispatch(hideProductThumb(0)); }
         }
     }
 
     showHighlights = (videoUrl, highlights) => {
         this.props.dispatch(showHighlights(videoUrl, highlights));
-    };
-
-    timeline = (videoID) => {
-        const thisTimeline = timelines.filter(
-        timeline => timeline.video === videoID,
-    );
-        return thisTimeline;
     };
 
     printPrePlayOverlay = () => {

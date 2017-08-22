@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import i18next from 'i18next';
 import PropTypes from 'prop-types';
 import { MemoryRouter, Route } from 'react-router';
 //import { BrowserRouter } from 'react-router-dom';
@@ -89,8 +90,8 @@ class App extends Component {
     }
 
     loginAttempt = (username, password) => {
+        let errorMessage = 'Something went wrong.';
         Authentication.signInAttempt(username, password, (success, e) => {
-            console.log(success, '?');
             if (success) {
                 this.props.dispatch(newNotification('Welcome back, user!', 7, 'success'));
                 this.closeLoginModal();
@@ -100,7 +101,17 @@ class App extends Component {
                     },
                 });
             } else {
-                this.props.dispatch(newNotification(e.errorMessage, 7, 'error'));
+                if (e.errorCode === 'auth/invalid-email') {
+                    errorMessage = i18next.t('auth_invalid_email');
+                }
+                if (e.errorCode === 'auth/wrong-password') {
+                    errorMessage = i18next.t('auth_wrong_password');
+                }
+                if (e.errorCode === 'auth/user-not-found') {
+                    errorMessage = i18next.t('auth_user_not_found');
+                }
+                console.log(errorMessage);
+                this.props.dispatch(newNotification(errorMessage, 7, 'error'));
                 this.setState({
                     loginModal: {
                         error: true,

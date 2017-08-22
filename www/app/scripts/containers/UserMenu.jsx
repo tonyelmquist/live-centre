@@ -59,6 +59,7 @@ class UserMenu extends Component {
             anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
           >
 
+            <MenuItem primaryText={i18next.t('watchlist')} onTouchTap={this.handleWishlistTouchTap}/>
             <MenuItem primaryText={i18next.t('app_login')} onTouchTap={this.handleLogin} />
           </IconMenu>
         );

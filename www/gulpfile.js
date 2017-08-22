@@ -141,8 +141,12 @@ gulp.task('html', function() {
     return gulp.src('app/**/*.html')
         .pipe($.if(!isDev, $.htmlReplace({
             'css': 'css/' + FILE_NAME + '.css',
-            'js': 'js/' + FILE_NAME + '.js',
+            'js': 'js/' + FILE_NAME + '.js#'+new Date().toISOString(),
             'jsx': 'js/' + FILE_NAME + '.jsx'
+        })))
+        .pipe($.if(isDev, $.htmlReplace({
+            'css': 'css/' + FILE_NAME + '.css?buildDate='+new Date().toISOString(),
+            'js': 'js/' + FILE_NAME + '.js?buildDate='+new Date().toISOString(),
         })))
         .pipe($.newer(DEST_FOLDER))
         .pipe(gulp.dest(DEST_FOLDER));
