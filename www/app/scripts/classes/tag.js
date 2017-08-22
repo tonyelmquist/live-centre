@@ -29,6 +29,10 @@ class Tag extends BaseClass {
         this._videos.push(...videoGroup);
     }
 
+    getVideos(){
+        return this.hasMany(['videos', 'items'], '_videos');
+    }
+
     get videos() {
         return this._videos;
     }

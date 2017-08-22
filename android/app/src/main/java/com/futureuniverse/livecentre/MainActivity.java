@@ -22,7 +22,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         mWebView = new WebView(this);
-        mWebView.loadUrl("http://mediacenter.futureuniverse.com");
+        //mWebView.loadUrl("http://mediacenter.futureuniverse.com");
+        mWebView.loadUrl("file:///android_asset/index.html");
         mWebView.setWebViewClient(new WebViewClient () {
 
             @Override

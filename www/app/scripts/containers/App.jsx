@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import i18next from 'i18next';
 import PropTypes from 'prop-types';
 import { MemoryRouter, Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+//import { BrowserRouter } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 // Pages
 import HomePage from './pages/HomePage';
@@ -35,7 +35,7 @@ import { newNotification, removeNotification } from '../actions/notifications';
 import { setDisplayName } from '../actions/authentication';
 import Authentication from '../utils/Authentication';
 
-const history = createHistory();
+//const history = createHistory();
 
 class App extends Component {
     constructor(props) {
@@ -133,7 +133,7 @@ class App extends Component {
             />);
 
         return (
-          <BrowserRouter history={history}>
+          <MemoryRouter history={history}>
             <div>
               <Header />
               <div className="main" id="main">
@@ -159,7 +159,7 @@ class App extends Component {
               <LoginModal isOpen={this.props.modals.showLoginModal} onClose={this.closeLoginModal} onSubmit={this.loginAttempt} error={this.state.loginModal.error}/>
               <NotificationManager notifications={this.props.notifications} removeNotification={this.dispatchRemoveNotification} />
             </div>
-          </BrowserRouter>
+          </MemoryRouter>
 
         );
     }

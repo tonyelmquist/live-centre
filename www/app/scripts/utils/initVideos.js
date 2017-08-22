@@ -169,8 +169,9 @@ const transformVideoData = (unfiltered, store) => {
     // console.log("all series", allSeries);
     // console.log('all seasons', allSeasons);
     store.dispatch(fetchVideosSuccess(allVideos, i));
-    store.dispatch(fetchTagsSuccess(allTags));
-    store.dispatch(fetchTagsSuccess(allChannels));
+    //store.dispatch(fetchTagsSuccess(allTags));
+    const tags = {...allTags, ...allChannels};
+    store.dispatch(fetchTagsSuccess(tags));
     store.dispatch(fetchSeriesSuccess(allSeries));
     store.dispatch(fetchSeasonsSuccess(allSeasons));
     store.dispatch(videoSelected(startVideo));

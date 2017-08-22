@@ -14,6 +14,7 @@ const defaultSeriesState = {
 const defaultTagsState = {
     items: {},
     failed: false,
+    fetched: false,
 };
 const defaultSeasonState = {
     items: {},
@@ -103,10 +104,12 @@ function tagsReducer(state = defaultTagsState, action) {
         return Object.assign({}, state, {
             items: { ...state.items, ...action.items },
             failed: false,
+            fetched: true,
         });
     case Actions.FETCH_TAGS_FAILED:
         return Object.assign({}, state, {
             failed: true,
+            fetched: false,
         });
     default:
         return state;

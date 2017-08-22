@@ -32,25 +32,25 @@ class HomePage extends Component {
     createVideoList = (tags, videos) => {
         const videoList = [];
 
-        // Extract the videos from the categories
-        for (const key in tags) {
-            if (Object.prototype.hasOwnProperty.call(tags, key)) {
-                const videoInCategory = tags[key].videos.map(videoKey => videos[videoKey]);
-
-                videoList.push(
-                  <VideoSwiper
+        //Check if the tags are fetched before generating the list. 
+        if(tags.fetched){
+            Object.keys(tags.items).map(key => {
+                const videos = tags.items[key].getVideos();
+                videoList.push(<VideoSwiper
                     key={`videoswiper-${key}`}
                     handleCardCategory={this._changeCardCategory}
                     handleVideoInfo={this._changeVideoInfo}
                     onTileClick={this._onTileClick}
                     cardIsVisible={this.props.videoCard.isVisible}
                     videoCard={this.props.videoCard}
-                    videos={videoInCategory}
-                    tag={tags[key]}
-                  />);
-            }
+                    videos={videos}
+                    tag={tags.items[key]}
+                />);
+            });
+            return videoList;
         }
-        return videoList;
+
+        return <div />;
     }
 
     render() {
@@ -80,7 +80,7 @@ HomePage.propTypes = {
 
 const mapStateToProps = state => ({
     videos: state.videos.items,
-    tags: state.tags.items,
+    tags: state.tags,
     videoUrl: state.playback.url,
     selected: state.playback.isSelected,
     videoCard: state.videoCard,

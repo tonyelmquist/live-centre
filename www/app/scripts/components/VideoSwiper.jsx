@@ -6,6 +6,9 @@ import i18next from 'i18next';
 import FontAwesome from 'react-fontawesome';
 import VideoSwiperItem from '../components/VideoSwiperItem';
 
+import HorizontalScrollContainer from '../components/HorizontalScroll/HorizontalScrollContainer';
+import ScrollItem from '../components/HorizontalScroll/ScrollItem';
+
 class VideoSwiper extends Component {
 
     constructor(props) {
@@ -61,7 +64,7 @@ class VideoSwiper extends Component {
             ],
         };
 
-        let videos = '';
+        const videos = [];
 
         const handleClick = (video) => {
             this.props.handleVideoInfo(video);
@@ -72,13 +75,22 @@ class VideoSwiper extends Component {
             this.props.onTileClick(video);
         };
 
-        if (this.props.tag && this.props.videos) {
-            videos = this.props.videos.map(video => (<div key={`category-item-${video.id}`}>
-              <VideoSwiperItem
-                video={video}
-                handleClick={() => handleClick(video)}
-              />
-            </div>));
+        const getVideoList = () => {
+            const videoList = [];
+
+            if (this.props.tag && this.props.videos) {
+                for (const key in this.props.videos) {
+                    const video = this.props.videos[key];
+                    videoList.push(<ScrollItem
+                        img={video.thumbnail}
+                        key={video.id}
+                        id={video.id}
+                        handleClick={() => handleClick(video)}
+                    />);
+
+                }
+            }
+            return videoList;
         }
 
         return (
@@ -89,13 +101,12 @@ class VideoSwiper extends Component {
               </Link>
               </h4>
             </div>
-
             <div className="slider">
-              <Slider ref={c => this.slider = c} {...settings}>
-                {videos}
-              </Slider>
+                <HorizontalScrollContainer>
+                    {getVideoList()}
+                </HorizontalScrollContainer>
             </div>
-          
+
           </div>
         );
     }
@@ -103,7 +114,7 @@ class VideoSwiper extends Component {
 
 VideoSwiper.propTypes = {
     tag: PropTypes.objectOf(PropTypes.any).isRequired,
-    videos: PropTypes.arrayOf(PropTypes.any).isRequired,
+    // videos: PropTypes.arrayOf(PropTypes.any).isRequired,
     handleCardCategory: PropTypes.func.isRequired,
     handleVideoInfo: PropTypes.func.isRequired,
     onTileClick: PropTypes.func.isRequired,
