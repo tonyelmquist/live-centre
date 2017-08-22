@@ -23,6 +23,10 @@ public class MainActivity extends Activity {
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         mWebView = new WebView(this);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            mWebView.setWebContentsDebuggingEnabled(true);
+        }
+
         mWebView.setWebContentsDebuggingEnabled(true);
         
         //mWebView.loadUrl("http://mediacenter.futureuniverse.com");
