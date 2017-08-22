@@ -463,3 +463,18 @@ msgstr "Menu"
 #:
 msgid "buttons_buy_now"
 msgstr "Buy now"
+
+#. Error Messages: Invalid Email
+#: 
+msgid "auth_invalid_email"
+msgstr "You have entered an invalid email, please try again."
+
+#. Error Messages: User Not Found
+#: 
+msgid "auth_user_not_found"
+msgstr "Sorry, we couldn't find an account with that username."
+
+#. Error Messages: Wrong Password
+#: 
+msgid "auth_wrong_password"
+msgstr "Sorry, that password isn't correct."

@@ -459,3 +459,18 @@ msgstr "Meny"
 #:
 msgid "buttons_buy_now"
 msgstr "Kjøp nå"
+
+#. Error Messages: Invalid Email
+#: 
+msgid "auth_invalid_email"
+msgstr "Du har skrevet inn en ugyldig e-post, prøv igjen."
+
+#. Error Messages: User Not Found
+#: 
+msgid "auth_user_not_found"
+msgstr "Beklager, vi kunne ikke finne en konto med det brukernavnet."
+
+#. Error Messages: Wrong Password
+#: 
+msgid "auth_wrong_password"
+msgstr "Beklager, det passordet er ikke riktig."
