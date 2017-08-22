@@ -33,7 +33,7 @@ const TransitionRoutes = (props) => {
                 atActive={{ translateX: 0, o:1,}}
                 mapStyles={styles => ({ 
                     transform: `translateX(${styles.translateX * 100}%)`,
-                    //opacity: styles.o, 
+                    opacity: styles.o, 
                     willChange: 'transform',
                     })
                 }

@@ -73,7 +73,8 @@
   position:fixed
   width:100%
   right:0
-  top:$top_offset
+  top: 0
+  transform: translate3d(0, $top_offset px, 0);
   bottom: 0//$bottom_offset
   z-index: 600
   overflow:auto
@@ -83,7 +84,7 @@
     margin: 14px 0 0 10px
 .searchContainer.close
     //bottom:100%
-    transform: translate3d(0,-100%,0);
+    transform: translate3d(0,-105%,0);
 @media (min-width: $big_screen)
   .searchContainer
     top: $top_offset_desktop
