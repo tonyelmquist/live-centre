@@ -144,7 +144,7 @@ class Player extends React.Component {
     tickInProximity = (currentTime) => {
         const currentTimeInMS = currentTime * 1000;
         const thisTimeline = this.props.video._timeline;
-        if (typeof thisTimeline !== 'undefined') {
+        if (thisTimeline.events !== undefined) {
             const currentEvent = thisTimeline.events.find(
             event => ((event.timestamp - tickProximityInterval < currentTimeInMS) && (currentTimeInMS < event.timestamp + tickProximityInterval)),
             );
