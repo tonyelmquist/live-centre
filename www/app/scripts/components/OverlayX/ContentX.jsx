@@ -16,7 +16,7 @@ class ContentX extends Component {
             >
                 {({ y, o }) =>
 
-                    (<div className={'ox-content'} style={{ transform: `translate3d(0, ${y}%, 0)`, opacity: o }}>
+                    (<div className={'ox-content'} style={{ transform: `translate3d(0, ${y}%, 0)`, opacity: o, height: window.innerHeight - this.props.videoHeight }}>
                          <ContentXInfo 
                             video={this.props.video}
                             allVideos={this.props.allVideos}

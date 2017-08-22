@@ -67,7 +67,7 @@ class ProfilePage extends React.Component {
     render() {
         return (
         <div className="slide container-fluid profile-page">
-            <input type="file" accept="image/*" onChange={this.handleChange} ref={ref => (this.fileUpload = ref)} style={{ position: 'absolute', left: '200%'}}/>
+            <input type="file" accept="image/*" onChange={this.handleChange} ref={ref => (this.fileUpload = ref)} style={{ position: 'absolute', right: '200%' }}/>
             <div className="center">
 
                 <Badge

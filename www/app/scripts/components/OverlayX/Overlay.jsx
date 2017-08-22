@@ -76,26 +76,43 @@ if (minWidth < 800) {
 class Overlay extends React.Component {
 
     render() {
+        let offscreenY = 320;
+        let minimizedY = 190;
+        if (typeof this.overlayRef !== 'undefined') {
+            offscreenY = Math.round((window.innerHeight / this.overlayRef.clientHeight) * 110);
+            minimizedY = Math.round((window.innerHeight / this.overlayRef.clientHeight) * 66);
+        }
+        let _y = 0;
+        let _scale = 1;
+
+        if (this.props.isOpen) {
+            if (this.props.isMaximized) {
+                _scale = 1;
+                _y = 0;
+            } else {
+                _y = minimizedY;
+                _scale = 0.5;
+            }
+        } else {
+            _y = offscreenY;
+            _scale = 1;
+        }
+
         return (
             <Motion
-                style={{
-                y: spring(this.props.isOpen
-                    ? (this.props.isMaximized
-                        ? 0
-                        : 190)
-                    : 320, {
+            style={{
+                y: spring(_y, {
                     stiffness: 60,
-                    damping: 15
+                    damping: 15,
                 }),
-                scale: spring(this.props.isMaximized
-                    ? 1
-                    : .5, {
+                scale: spring(_scale, {
                     stiffness: 60,
-                    damping: 15
-                })
+                    damping: 15,
+                }),
             }}>
                 {({y, scale}) => <div
                     className={`fs-overlay isOpen`}
+                    ref={ref => (this.overlayRef = ref)}
                     style={{
                     ...styles.overlayStyle,
                     'transform': `translate3d(0, ${y}%, 0) scale3d(${scale}, ${scale}, 1)`
@@ -127,7 +144,8 @@ class Overlay extends React.Component {
 
 Overlay.propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    children: PropTypes.node.isRequired
+    isMaximized: PropTypes.bool.isRequired,
+    children: PropTypes.node.isRequired,
 };
 
 export default Overlay;
