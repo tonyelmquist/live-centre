@@ -55,13 +55,7 @@ class SingelSportsPage extends React.Component {
         const teams = this.props.sportsInfo.teams;
         const rowItems = [];
         for (const key in teams) {
-            console.log(teams, key);
-            // rowItems.push(<CircleRowItem
-            // key={key}
-            // img={teams[key].logo}
-            // handleClick={() => this.handleTeamOpen(key)}
-            // />);
-            rowItems.push(<div className="scrollable-team-logo"><img src={teams[key].logo}/></div>)
+            rowItems.push(<div key={key} onTouchTap={() => this.handleTeamOpen(key)} className="scrollable-team-logo"><img src={teams[key].logo}/></div>)
         }
         return rowItems;
     }

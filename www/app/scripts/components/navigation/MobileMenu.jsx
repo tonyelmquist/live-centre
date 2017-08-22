@@ -41,7 +41,7 @@ class MobileMenu extends Component {
         };
 
         const containerStyle = {
-            opacity: this.props.searchState.isSearching && this.props.searchState.isOpen ? 0 : 1,
+            opacity: this.props.searchState.isFocused && this.props.searchState.isOpen ? 0 : 1,
         };
 
         return (

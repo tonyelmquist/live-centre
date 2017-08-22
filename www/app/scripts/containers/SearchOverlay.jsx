@@ -152,7 +152,7 @@ class SearchContainer extends Component {
             <FilterTabs tabItems={tabs} activeTab={this.props.activeFilter} changeTab={this.changeTab}/>
             
             <div className="container-fluid">
-            {!this.props.search.isSearching && (this.props.activeFilter === 0) //3 == people
+            {!this.props.search.isFocused && (this.props.activeFilter === 0) //3 == people
                 ? (<div><h4>{i18next.t('suggested_people')}</h4>
                     <HorizontalScrollContainer height={75}>
                         {this.getPortraitItems(people)}
