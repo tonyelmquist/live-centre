@@ -10,7 +10,7 @@ const productArray = {
             productID: 2,
             productTitle: 'Nike Tiempo',
             thumbnailImage: 'https://firebasestorage.googleapis.com/v0/b/tfg-media-center.appspot.com/o/Images%2FProducts%2FnikeTiempoSmall.gif?alt=media&token=0a18edcd-68de-45b9-8e00-b2589faf7c26',
-            description: 'The Nike Tiempo Legend VII Firm-Ground Football Boot combines lightweight Flyknit with premium kangaroo leather for a flexible fit and dominating touch on short-grass pitches.',
+            description: 'The Nike Tiempo Legend VII Firm-Ground Football Boot has a flexible fit and dominating touch on short-grass pitches.',
             price: 12.99,
         },
         {

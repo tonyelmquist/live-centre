@@ -29,6 +29,14 @@ const createSeason = (seriesKey, seasonKey, seasonNumber, videoID) => {
     return new Season(season);
 };
 
+const isValidJSON = (jsonString) => {
+    try {
+        JSON.parse(jsonString);
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
 
 const transformVideoData = (unfiltered, store) => {
     const allVideos = {};
@@ -67,16 +75,21 @@ const transformVideoData = (unfiltered, store) => {
 
         const attr = data[index];
 
-        if (attr.metadata.Sport !== undefined){
+
+        if (attr.metadata.Sport !== undefined) {
             console.log(attr);
         }
+
+        console.log(attr.metadata.ProductTimeline);
+
+        console.log((attr.metadata.ProductTimeline) ? JSON.parse(attr.metadata.ProductTimeline) : {});
 
         video.id = Number(attr.assetid);
         video.author = attr.metadata.UploadUserFullName;
         video.channel = attr.metadata.Broadcaster;
         video.company = attr.metadata.UploadCompanyName;
         video.description = attr.metadata.Description;
-        video.timeline = attr.metadata.ProductTimeline;
+        video.timeline = isValidJSON(attr.metadata.ProductTimeline) ? JSON.parse(attr.metadata.ProductTimeline) : {};
         video.rating = attr.metadata.Rating;
         video.season = attr.metadata.Season;
         video.duration = attr.metadata.GeneralDuration;
@@ -85,7 +98,7 @@ const transformVideoData = (unfiltered, store) => {
         video.title = attr.metadata.Title;
         video.sport = attr.metadata.Sport;
         video.thumbnail = attr.metadata.PosterImageURL || attr.metadata.PosterURL;
-        video.videoUrl = video.id; // asset id is for now used to get url.
+        video.videoUrl = video.id; // asset id is for now used to get url.=
 
         if (video.tags == 'Program Masters' || video.tags == 'IMR Test Files' || video.tags == 'Discovery Networks' || video.tags == 'Game Shows' || video.tags == 'The Future Group' || video.tags == 'Uncategorized') {
             continue;
