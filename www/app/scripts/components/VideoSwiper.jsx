@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import i18next from 'i18next';
 import FontAwesome from 'react-fontawesome';
-import VideoSwiperItem from '../components/VideoSwiperItem';
+
 
 import HorizontalScrollContainer from '../components/HorizontalScroll/HorizontalScrollContainer';
 import ScrollItem from '../components/HorizontalScroll/ScrollItem';
