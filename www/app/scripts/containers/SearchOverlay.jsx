@@ -24,6 +24,12 @@ class SearchContainer extends Component {
         this.props.dispatch(resetCurrentTimeInPlayer());
     }
 
+    shouldComponentUpdate(nextProps){
+        if(this.props.search.isOpen || nextProps.search.isOpen){
+            return true;
+        }
+        return false
+    }
 
     satisfyFilter = (filter, video) => {
         //this.props.search.isSearching || !this.props.filter.isClear
@@ -149,7 +155,7 @@ class SearchContainer extends Component {
           <div className={(this.props.search.isOpen) ? 'searchContainer expand' : 'searchContainer close'}>
             <h4 className="container-fluid hideOnTablet">{i18next.t('filter')}</h4>
             
-            <FilterTabs tabItems={tabs} activeTab={this.props.activeFilter} changeTab={this.changeTab}/>
+            {this.props.search.isOpen ? <FilterTabs tabItems={tabs} activeTab={this.props.activeFilter} changeTab={this.changeTab} /> : <div />}
             
             <div className="container-fluid">
             {!this.props.search.isFocused && (this.props.activeFilter === 0) //3 == people

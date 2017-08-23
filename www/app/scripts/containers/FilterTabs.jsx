@@ -11,14 +11,18 @@ class FilterTabs extends React.Component {
         this.state = {
             barPos: 0,
             barWidth: 0,
+            scrollAnimation: 300,
+            opacity: 0,
         };
     }
 
     componentDidMount() {
+        console.log("component did mount");
         const activeTab = this.props.activeTab;
         if (this.tabElements[activeTab] !== undefined && this.scroller !== undefined) {
             this.updateScrollBar(0, this.tabElements[activeTab].offsetWidth);
         }
+        this.scrollToZero();
     }
 
     // Only update if the active element has changed.
@@ -32,11 +36,13 @@ class FilterTabs extends React.Component {
     }
 
     updateScrollBar(barPos, barWidth) {
-
-
-        console.log("update scroll bar", barPos, barWidth);
-
         this.setState({ barWidth, barPos });
+    }
+
+
+    scrollToZero() {
+        setTimeout(() => this.setState({ scrollAnimation: 0, opacity: 100 }), 300);
+        //this.setState({ scrollAnimation: 0, opacity: 100 });
     }
 
     render() {
@@ -62,12 +68,12 @@ class FilterTabs extends React.Component {
         return (
             <div className={`horizontalScroll-outer filterTabs ${this.props.colortheme}`}>
                 <div ref={(ref) => { this.scroller = ref; }} className='horizontalScroll' >
-                    <div className={'horizontalScrollInner'}>
+                    <div className={'horizontalScrollInner'} style={{ transition: '0.5s all', transform: `translate(-${this.state.scrollAnimation}px)`}}>
                         {tabs}
                     </div>
                     <Motion style={{ w: spring(this.state.barWidth), p: spring(this.state.barPos) }} >
                         {({ w, p }) =>
-                            <div style={{ width: w, left: `${p}px` }} className="scroll-bar" />
+                            <div style={{ width: w, left: `${p}px`, transition: '0.7s opacity', opacity: this.state.opacity }} className="scroll-bar" />
                         }
                     </Motion>
                 </div>
