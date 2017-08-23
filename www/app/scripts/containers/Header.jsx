@@ -159,7 +159,7 @@ class Header extends Component {
         if (typeof location !== 'undefined') {
             this.activeItem = this.props.location.state.tabIndex;
         }
-        if (this.props.location.pathname === '/Home') {
+        if (this.props.location.pathname === '/') {
             this.activeItem = 0;
         }
     }
