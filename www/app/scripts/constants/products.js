@@ -2,14 +2,14 @@ const productArray = {
     products: [{
             productID: 1,
             productTitle: 'Dortmund Jersey',
-            thumbnailImage: 'https://firebasestorage.googleapis.com/v0/b/tfg-media-center.appspot.com/o/Images%2FProducts%2FdortmundShirtSmall.gif?alt=media&token=8da34a6a-dfb0-43f4-aebc-44e63312827b',
+            thumbnailImage: 'http://35.158.87.9/images/Products/dortmundShirtSmall.gif',
             description: 'Founded in 1909, Borussia Dortmund is one of the most popular sports clubs in Germany.',
             price: 12.99,
         },
         {
             productID: 2,
             productTitle: 'Nike Tiempo',
-            thumbnailImage: 'https://firebasestorage.googleapis.com/v0/b/tfg-media-center.appspot.com/o/Images%2FProducts%2FnikeTiempoSmall.gif?alt=media&token=0a18edcd-68de-45b9-8e00-b2589faf7c26',
+            thumbnailImage: 'http://35.158.87.9/images/Products/nikeTiempoSmall.gif',
             description: 'The Nike Tiempo Legend VII Firm-Ground Football Boot has a flexible fit and dominating touch on short-grass pitches.',
             price: 12.99,
         },
