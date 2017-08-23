@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Motion, spring } from 'react-motion';
+import { Orientation } from '../../constants/reduxConstants';
 
 class Overlay extends React.Component {
 
@@ -32,16 +33,29 @@ class Overlay extends React.Component {
         };
 
         if (minWidth < 800) {
-            overlayStyle = {
-                position: 'fixed',
-                height: 'auto',
-                width: deviceWidth,
-                minWidth: '100%',
-                zIndex: 1500,
-                top: 0,
-                left: 0,
-                backgroundColor: 'black',
-            };
+            if (this.props.orientation === Orientation.LANDSCAPE) {
+                overlayStyle = {
+                    position: 'fixed',
+                    height: '100%',
+                    width: deviceWidth,
+                    minWidth: '100%',
+                    zIndex: 1500,
+                    top: 0,
+                    left: 0,
+                    backgroundColor: 'black',
+                };
+            } else {
+                overlayStyle = {
+                    position: 'fixed',
+                    height: 'auto',
+                    width: deviceWidth,
+                    minWidth: '100%',
+                    zIndex: 1500,
+                    top: 0,
+                    left: 0,
+                    backgroundColor: 'black',
+                };
+            }
         }
 
         if (typeof this.overlayRef !== 'undefined') {
@@ -123,6 +137,7 @@ Overlay.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     isMaximized: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
+    orientation: PropTypes.string.isRequired,
 };
 
 export default Overlay;

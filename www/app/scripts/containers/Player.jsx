@@ -269,8 +269,8 @@ class Player extends React.Component {
 
         const playerStyles = {
             position: 'relative',
-            height: 'auto',
-            width: `${this.props.orientation === Orientation.LANDSCAPE ? landscapeWidth : portraitWidth}px`,
+            height: '100%',
+            width: `100%`,
             zIndex: 1500,
             top: 0,
             left: 0,

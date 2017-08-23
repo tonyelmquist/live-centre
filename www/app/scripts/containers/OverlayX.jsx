@@ -62,7 +62,12 @@ class OverlayX extends Component {
             this.setChatChannel();
             return (
             <div className={`overlay-x-container ${this.props.overlayX.maximized ? 'maximized' : 'minimized'} ${this.props.overlayX.open ? 'open' : 'closed'}`}>
-                <Overlay isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized} ref={ref => (this.overlayRef = ref)} orientation={this.props.orientation}>
+                <Overlay
+                    isOpen={this.props.overlayX.open}
+                    isMaximized={this.props.overlayX.maximized}
+                    ref={ref => (this.overlayRef = ref)}
+                    orientation={this.props.orientation}
+                >
                     <Player />
                 </Overlay>
                 {this.props.orientation === Orientation.PORTRAIT ? <ContentX
