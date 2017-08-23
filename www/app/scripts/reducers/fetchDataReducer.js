@@ -48,18 +48,17 @@ function videosReducer(state = defaultVideosState, action) {
         return Object.assign({}, state, {
             failed: true,
         });
-    case Actions.MARK_AS_WISHLIST: 
-        console.log('marked');
-        let newVideo = Object.assign( Object.create( Object.getPrototypeOf(state.items[action.videoId])), state.items[action.videoId])
-        
-        newVideo.wishlist = true;
+    case Actions.MARK_AS_WISHLIST:
+        let newVideo = Object.assign(Object.create(Object.getPrototypeOf(state.items[action.videoId])), state.items[action.videoId]);
+
+        newVideo.wishlist = action.wishlisted;
 
         return Object.assign({}, state, {
             items: Object.assign({}, state.items, {
-                [action.videoId] : newVideo,
-            })
+                [action.videoId]: newVideo,
+            }),
         });
-        
+
     default:
         return state;
     }

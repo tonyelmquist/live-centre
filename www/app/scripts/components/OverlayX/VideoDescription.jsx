@@ -25,14 +25,14 @@ class VideoDescription extends React.Component {
 
     handleWishlistClick = () => {
         if (this.props.video.wishlist) {
-            return;
+            this.props.handleRemoveFromWishlist();
+        } else {
+            this.props.handleAddToWishlist();
         }
-        this.props.handleAddToWishlist();
     }
 
     title = this.props.video.series ? this.props.video.series : this.props.video.title;
     subtitle = this.props.video.series ? `${this.props.video.title}, season ${this.props.video.season}` : null;
-    description = this.props.video.description ? this.props.video.description : this.props.video.title;
     
     render() {
         return (
@@ -49,7 +49,7 @@ class VideoDescription extends React.Component {
                     collapseInfo={this.collapseInfo}
                     toggleCollapseInfo={this.props.toggleCollapseInfo}
                     isCollapsed={this.props.isCollapsed}
-                    text={this.description}
+                    text={this.props.video.description}
                 />
                 {/* <p>{this.ipsum}</p>
                 </Collapsible>  */}
@@ -65,6 +65,7 @@ VideoDescription.defaultProps = {
 VideoDescription.propTypes = {
     video: PropTypes.objectOf(PropTypes.any).isRequired,
     handleAddToWishlist: PropTypes.func,
+    handleRemoveFromWishlist: PropTypes.func,
     // stars: PropTypes.string.isRequired
 };
 

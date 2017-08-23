@@ -48,6 +48,7 @@ class ContentXInfo extends Component {
                         toggleCollapseInfo={this.props.toggleCollapseInfo}
                         isCollapsed={this.props.isCollapsed}
                         handleAddToWishlist={this.props.handleAddToWishlist}
+                        handleRemoveFromWishlist={this.props.handleRemoveFromWishlist}
                 />)
                 }
                 {video.tags === 'Street Fighter'
@@ -62,6 +63,7 @@ class ContentXInfo extends Component {
 ContentXInfo.propTypes = {
     video: PropTypes.object,
     handleAddToWishlist: PropTypes.func,
+    handleRemoveFromWishlist: PropTypes.func,
 };
 
 export default ContentXInfo;
