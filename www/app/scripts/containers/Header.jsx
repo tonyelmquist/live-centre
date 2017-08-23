@@ -35,9 +35,9 @@ import { closeOverlayX } from '../actions/overlayX';
 class Header extends Component {
 
     onMenuItemClick = (path, index) => {
+        if(this.props.search.isOpen){this.closeSearch()};
+        if(this.props.menuIsOpen){this.hideMenu()};
         this.changeRoute(path, index);
-        this.closeSearch();
-        this.hideMenu();
     }
 
     // Dont know if this is the best way to get the pathname. but it sure is the easiest..
@@ -132,7 +132,7 @@ class Header extends Component {
     isMenuOpen = () => this.props.menuIsOpen
     isDrawerMenuOpen = () => this.props.isDrawerMenuOpen
 
-    // changeRoute = item => this.props.history.push(item.path);
+    
     // Tabindex is used to know which direction to swipe the screen
     changeRoute = (path, index) => {
         const tabIndex = index;

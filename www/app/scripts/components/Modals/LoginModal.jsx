@@ -11,13 +11,10 @@ class LoginModal extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log('should component update', nextProps, nextState);
         if (this.props.isOpen !== nextProps.isOpen) {
-            console.log('yes');
             return true;
         }
         if (this.props.error !== nextProps.error) {
-            console.log('yes');
             return true;
         }
         return false;

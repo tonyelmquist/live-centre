@@ -76,13 +76,13 @@ const transformVideoData = (unfiltered, store) => {
         const attr = data[index];
 
 
-        if (attr.metadata.Sport !== undefined) {
-            console.log(attr);
-        }
+        // if (attr.metadata.Sport !== undefined) {
+        //     console.log(attr);
+        // }
 
-        console.log(attr.metadata.ProductTimeline);
+       // console.log(attr.metadata.ProductTimeline);
 
-        console.log((attr.metadata.ProductTimeline) ? JSON.parse(attr.metadata.ProductTimeline) : {});
+        //console.log((attr.metadata.ProductTimeline) ? JSON.parse(attr.metadata.ProductTimeline) : {});
 
         video.id = Number(attr.assetid);
         video.author = attr.metadata.UploadUserFullName;
