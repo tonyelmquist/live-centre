@@ -8,6 +8,7 @@ class ContentX extends Component {
     render() {
         const _y = this.props.isOpen ? (this.props.isMaximized ? -100 : 0) : 0;
         const _o = this.props.isOpen ? (this.props.isMaximized ? 1 : 0) : 0;
+        
         return (
             <Motion style={{
                 y: spring(_y, { stiffness: 60, damping: 15 }),

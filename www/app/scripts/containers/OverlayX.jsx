@@ -7,6 +7,7 @@ import ContentX from '../components/OverlayX/ContentX';
 import { sendMessage, getMessages } from '../actions/chatMessages';
 import { toggleCollapseInfo, collapseInfo } from '../actions/overlayX';
 import { videoSelected, markAsWishlist, resetCurrentTimeInPlayer, markSelectedAsWishlist } from '../actions/videoPlayer';
+import { Orientation } from '../constants/reduxConstants';
 import FirebaseDB from '../utils/FirebaseDB';
 
 class OverlayX extends Component {
@@ -42,20 +43,30 @@ class OverlayX extends Component {
         });
     }
 
-    render() {
-        let videoHeight = 200;
+    videoHeight = 200;
+
+    componentDidUpdate = () => {
         if (typeof this.overlayRef !== 'undefined') {
-            videoHeight = this.overlayRef.overlayRef.clientHeight;
+            if (this.videoHeight !== this.overlayRef.overlayRef.clientHeight) {
+                this.forceUpdate();
+            }
+        }
+    }
+
+    render() {
+        if (typeof this.overlayRef !== 'undefined') {
+            this.videoHeight = this.overlayRef.overlayRef.clientHeight;
+            console.log('vh', this.videoHeight);
         }
         if (typeof this.props.video.id !== 'undefined') {
             this.setChatChannel();
             return (
             <div className={`overlay-x-container ${this.props.overlayX.maximized ? 'maximized' : 'minimized'} ${this.props.overlayX.open ? 'open' : 'closed'}`}>
-                <Overlay isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized} ref={ref => (this.overlayRef = ref)}>
+                <Overlay isOpen={this.props.overlayX.open} isMaximized={this.props.overlayX.maximized} ref={ref => (this.overlayRef = ref)} orientation={this.props.orientation}>
                     <Player />
                 </Overlay>
-                <ContentX
-                    videoHeight={videoHeight}
+                {this.props.orientation === Orientation.PORTRAIT ? <ContentX
+                    videoHeight={this.videoHeight}
                     video={this.props.video}
                     allVideos={this.props.allVideos}
                     isOpen={this.props.overlayX.open}
@@ -72,7 +83,7 @@ class OverlayX extends Component {
                     handleAddToWishlist={this.handleAddToWishlist}
                     isControlBarVisible={this.props.playback.controlBarVisibility}
                     isLoggedIn={this.props.authentication.isLoggedIn}
-                />
+                /> : <div />}
             </div>
             );
         }
@@ -96,6 +107,7 @@ OverlayX.propTypes = {
     allVideos: PropTypes.object.isRequired,
     tags: PropTypes.object.isRequired,
     authentication: PropTypes.object.isRequired,
+    orientation: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -109,6 +121,7 @@ const mapStateToProps = state => ({
     allVideos: state.videos,
     tags: state.tags,
     authentication: state.authentication,
+    orientation: state.settings.screenOrientation,
 });
 
 export default connect(mapStateToProps)(OverlayX);

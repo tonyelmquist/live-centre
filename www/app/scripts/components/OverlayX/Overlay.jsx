@@ -1,21 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Motion, spring} from 'react-motion';
-import IconButton from 'material-ui/IconButton';
-import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
-import Close from 'material-ui/svg-icons/navigation/close';
-import {blue500} from 'material-ui/styles/colors';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
+import { Motion, spring } from 'react-motion';
 
 class Overlay extends React.Component {
+
+    componentDidUpdate() {
+        if (typeof this.overlayRef !== 'undefined') {
+            if (this.heightCheck !== this.overlayRef.clientHeight) {
+                this.forceUpdate();
+            }
+        }
+    }
+
+    heightCheck = 0;
+    offscreenY = 320;
+    minimizedY = 190;
 
     render() {
         const deviceHeight = window.innerHeight;
         const deviceWidth = window.innerWidth;
 
         const minWidth = Math.min(deviceHeight, deviceWidth);
-        const maxWidth = Math.max(deviceHeight, deviceWidth);
-        console.log(deviceWidth);
 
         let overlayStyle = {
             position: 'relative',
@@ -39,25 +44,27 @@ class Overlay extends React.Component {
             };
         }
 
-        let offscreenY = 320;
-        let minimizedY = 190;
         if (typeof this.overlayRef !== 'undefined') {
-            offscreenY = Math.round((window.innerHeight / this.overlayRef.clientHeight) * 110);
-            minimizedY = Math.round((window.innerHeight / this.overlayRef.clientHeight) * 66);
+            this.heightCheck = this.overlayRef.clientHeight;
+            this.offscreenY = Math.round((window.innerHeight / this.overlayRef.clientHeight) * 110);
+            this.minimizedY = Math.round((window.innerHeight / this.overlayRef.clientHeight) * 66);
         }
         let _y = 0;
         let _scale = 1;
+        let _opacity = 1;
 
         if (this.props.isOpen) {
+            _opacity = 1;
             if (this.props.isMaximized) {
                 _scale = 1;
                 _y = 0;
             } else {
-                _y = minimizedY;
+                _y = this.minimizedY;
                 _scale = 0.5;
             }
         } else {
-            _y = offscreenY;
+            _y = this.offscreenY;
+            _opacity = 0;
             _scale = 1;
         }
 
@@ -72,16 +79,23 @@ class Overlay extends React.Component {
                     stiffness: 60,
                     damping: 15,
                 }),
-            }}>
-                {({y, scale}) => <div
-                    className={`fs-overlay isOpen`}
+                opacity: spring(_opacity, {
+                    stiffness: 60,
+                    damping: 15,
+                }),
+            }}
+            >
+                {({ y, scale, opacity }) => (<div
+                    className={'fs-overlay isOpen'}
                     ref={ref => (this.overlayRef = ref)}
                     style={{
                         ...overlayStyle,
-                        'transform': `translate3d(0, ${y}%, 0) scale3d(${scale}, ${scale}, 1)`
-                }}
-                    id="overlayDiv">
-                    {/*<div className="overlay-header" style={styles.overlayHeaderStyle}>
+                        opacity,
+                        transform: `translate3d(0, ${y}%, 0) scale3d(${scale}, ${scale}, 1)`,
+                    }}
+                    id="overlayDiv"
+                >
+                    {/* <div className="overlay-header" style={styles.overlayHeaderStyle}>
                         <IconButton
                             iconStyle={styles.mediumIcon}
                             style={styles.medium}
@@ -90,7 +104,7 @@ class Overlay extends React.Component {
                         </IconButton>
                     </div>*/}
                     {this.props.children}
-                    {/*<FloatingActionButton
+                    {/* <FloatingActionButton
                         mini
                         secondary
                         style={styles.fullscreenButton}
@@ -98,7 +112,7 @@ class Overlay extends React.Component {
                         >
                         <Close />
                         </FloatingActionButton>*/}
-                </div>
+                </div>)
 }
             </Motion>
         );
