@@ -35,7 +35,6 @@ class HomePage extends Component {
         //Check if the tags are fetched before generating the list. 
         if(tags.fetched){
             Object.keys(tags.items).map(key => {
-                const videos = tags.items[key].getVideos();
                 videoList.push(<VideoSwiper
                     key={`videoswiper-${key}`}
                     handleCardCategory={this._changeCardCategory}
