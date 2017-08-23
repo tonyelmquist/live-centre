@@ -35,6 +35,10 @@ const TransitionRoutes = (props) => {
                     transform: `translateX(${spring(styles.translateX, slideConfig).val * 100}%)`,
                     opacity: spring(styles.o).val, 
                     willChange: 'transform',
+                    position: 'absolute',
+                    top: '0px',
+                    left: '0px',
+                    width: '100%',
                     })
                 }
             >

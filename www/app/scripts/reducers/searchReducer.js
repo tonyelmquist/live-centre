@@ -4,6 +4,7 @@ const initialState = {
     keyword: '',
     isSearching: false,
     isOpen: false,
+    isFocused: false,
 };
 
 function search(state = initialState, action) {
