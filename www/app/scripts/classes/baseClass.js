@@ -27,7 +27,7 @@ export default class BaseClass {
             const missingKeys = results.filter(result =>
                 // Only kept the deleted ones (i.e. listed in the initial state
                 // but not in the data added
-                 result.kind === 'D');
+                result.kind === 'D');
 
             for (const missingKey of missingKeys) {
                 console.warn(`${initialState.constructor.name} is missing property: ${missingKey.path}`);
@@ -71,7 +71,7 @@ export default class BaseClass {
                 console.error({ name: 'Foreign key not found', message: 'Did not find relevant foreign key', state, key: keys[i] });
             }
 
-            result[keys[i]] = state[keys[i]];
+            result[i] = state[keys[i]];
         }
 
         return result;

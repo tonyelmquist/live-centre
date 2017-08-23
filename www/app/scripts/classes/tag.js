@@ -3,18 +3,15 @@ import BaseClass from './baseClass';
 class Tag extends BaseClass {
     constructor(data) {
         super();
-        this.assignData(
-            {
-                _type: '',
-                _key: '',
-                _name: '',
-            },
-            {
-                _type: data.type,
-                _key: data.key,
-                _name: data.name,
-            },
-        );
+        this.assignData({
+            _type: '',
+            _key: '',
+            _name: '',
+        }, {
+            _type: data.type,
+            _key: data.key,
+            _name: data.name,
+        }, );
 
         this._videos = [];
         this._videosLoaded = 0;
@@ -29,7 +26,7 @@ class Tag extends BaseClass {
         this._videos.push(...videoGroup);
     }
 
-    getVideos(){
+    getVideos() {
         return this.hasMany(['videos', 'items'], '_videos');
     }
 

@@ -98,7 +98,6 @@ class VideoSwiper extends Component {
                     />);
                 }
             }
-            videoList.reverse();
             return videoList;
         }
 
