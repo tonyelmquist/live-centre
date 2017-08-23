@@ -281,7 +281,7 @@ class Player extends React.Component {
             <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)}>
               <ControlBar autoHide>
                 <PlayToggle />
-                <KeyboardArrowDown style={minimizeIconStyles} onTouchTap={this.onMinimize} />
+                <FontAwesome name="chevron-down" style={minimizeIconStyles} onTouchTap={this.onMinimize} />
                 { this.props.orientation === Orientation.LANDSCAPE ? <Settings style={settingsIconStyles} onTouchTap={this.onOpenSettings} /> : <div />}
                 {/* <FontAwesome name="expand" /> */}
               </ControlBar>
