@@ -474,3 +474,19 @@ msgstr "Beklager, vi kunne ikke finne en konto med det brukernavnet."
 #: 
 msgid "auth_wrong_password"
 msgstr "Beklager, det passordet er ikke riktig."
+
+
+#. Profile page: Legal
+#: 
+msgid "profile_legal"
+msgstr "Juridisk"
+
+#. Profile page: Privacy Policy
+#: 
+msgid "profile_privacy_policy"
+msgstr "Personvern"
+
+#. Profile page: Terms of use
+#: 
+msgid "profile_terms_use"
+msgstr "Vilkår for bruk"

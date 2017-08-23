@@ -478,3 +478,19 @@ msgstr "Sorry, we couldn't find an account with that username."
 #: 
 msgid "auth_wrong_password"
 msgstr "Sorry, that password isn't correct."
+
+
+#. Profile page: Legal
+#: 
+msgid "profile_legal"
+msgstr "Legal"
+
+#. Profile page: Privacy Policy
+#: 
+msgid "profile_privacy_policy"
+msgstr "Privacy policy"
+
+#. Profile page: Terms of use
+#: 
+msgid "profile_terms_use"
+msgstr "Terms of use"

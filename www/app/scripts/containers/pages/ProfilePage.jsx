@@ -6,6 +6,8 @@ import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import firebase from 'firebase';
 import FirebaseDB from '../../utils/FirebaseDB';
 import EditableInput from '../../components/common/EditableInput';
+import i18next from 'i18next';
+
 
 class ProfilePage extends React.Component {
 
@@ -88,7 +90,8 @@ class ProfilePage extends React.Component {
                 <p>{this.props.user.email}</p>
             </div>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Curabitur at nunc et diam vestibulum fermentum vel ut nisi.
                 Aliquam a dapibus diam. Cras vulputate rhoncus nibh quis pretium.
                 Morbi ultricies mi eget gravida congue. Nulla ut tincidunt dui.
@@ -96,9 +99,9 @@ class ProfilePage extends React.Component {
                 nec lacinia augue turpis ac sapien. </p>
 
             <p className="bottom-info">
-            <strong>Legal</strong><br />
-            <Link to="/privacy">Privacy Policy</Link><br />
-            <Link to="/terms">Terms of Use</Link>
+            <strong>{i18next.t('profile_legal')}</strong><br />
+            <Link to="/privacy">{i18next.t('profile_privacy_policy')}</Link><br />
+            <Link to="/terms">{i18next.t('profile_terms_use')}</Link>
             </p>
         </div>
         );
