@@ -77,8 +77,8 @@ class HeroCarousel extends Component {
     }
 
     setVideoState = () => {
-        setTimeout(() => console.log('Wait until we start playing video.'), 1500);
-        setTimeout(() => this.setState({ renderVideo: true }), 1500);
+        setTimeout(() => console.log('Wait until we start playing video.'), 3000);
+        setTimeout(() => this.setState({ renderVideo: true }), 3000);
     }
 
     _handlePlay = (video) => {
