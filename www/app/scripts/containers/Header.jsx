@@ -175,7 +175,7 @@ class Header extends Component {
         } else if(this.props.overlayX.open){
             this.props.dispatch(closeOverlayX());
             return "false";
-        } else if (this.props.location.pathname !== '/Home') {
+        } else if (this.props.location.pathname !== '/') {
             this.props.history.goBack();
             return "false";
         } else {
