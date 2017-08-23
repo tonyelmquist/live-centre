@@ -53,13 +53,13 @@ export function exitFullScreenMode() {
 
 /**
  * Marks a video as wishlisted (saved for later)
- * 
+ *
  * @memberof Actions:VideoPlayer
- * @param {int} videoId 
+ * @param {int} videoId
  * @returns Dispatchable Action
  */
-export function markAsWishlist(videoId) {
-    return { type: Actions.MARK_AS_WISHLIST, videoId}
+export function markAsWishlist(videoId, wishlisted) {
+    return { type: Actions.MARK_AS_WISHLIST, videoId, wishlisted };
 }
 
 /**
@@ -68,8 +68,8 @@ export function markAsWishlist(videoId) {
  * @memberof Actions:VideoPlayer
  * @returns Dispatchable Action
  */
-export function markSelectedAsWishlist() {
-    return { type: Actions.MARK_SELECTED_AS_WISHLIST }
+export function markSelectedAsWishlist(wishlisted) {
+    return { type: Actions.MARK_SELECTED_AS_WISHLIST, wishlisted };
 }
 
 /**

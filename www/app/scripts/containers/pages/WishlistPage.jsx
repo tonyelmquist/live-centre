@@ -34,7 +34,7 @@ class WishlistPage extends React.Component {
     }
 
     // Must iterate through all videos to find which movie has no series.
-
+    isAnyWishlistedVideos = false;
     getAll() {
         const movies = [];
         const videos = this.props.videos;
@@ -42,6 +42,7 @@ class WishlistPage extends React.Component {
         for (const key in videos) {
             if (videos[key].wishlist) {
                 movies.push(videos[key]);
+                this.isAnyWishlistedVideos = true;
             }
         }
         return movies;
@@ -129,7 +130,9 @@ class WishlistPage extends React.Component {
                 />
                 <div className="container-fluid">
                     <MasonryContainer>
-                        {this.getTiles(tabKeys)}
+                        {this.isAnyWishlistedVideos ?
+                        this.getTiles(tabKeys) :
+                        <p>No videos to see here...</p> }
                     </MasonryContainer>
                 </div>
 

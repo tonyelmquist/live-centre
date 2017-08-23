@@ -25,9 +25,10 @@ class VideoDescription extends React.Component {
 
     handleWishlistClick = () => {
         if (this.props.video.wishlist) {
-            return;
+            this.props.handleRemoveFromWishlist();
+        } else {
+            this.props.handleAddToWishlist();
         }
-        this.props.handleAddToWishlist();
     }
 
     title = this.props.video.series ? this.props.video.series : this.props.video.title;
@@ -64,6 +65,7 @@ VideoDescription.defaultProps = {
 VideoDescription.propTypes = {
     video: PropTypes.objectOf(PropTypes.any).isRequired,
     handleAddToWishlist: PropTypes.func,
+    handleRemoveFromWishlist: PropTypes.func,
     // stars: PropTypes.string.isRequired
 };
 

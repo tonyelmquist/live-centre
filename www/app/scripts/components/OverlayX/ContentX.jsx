@@ -31,6 +31,7 @@ class ContentX extends Component {
                             onMessageSend={this.props.onMessageSend}
                             onTileOpen={this.props.onTileOpen}
                             handleAddToWishlist={() => this.props.handleAddToWishlist(this.props.video.id)}
+                            handleRemoveFromWishlist={() => this.props.handleRemoveFromWishlist(this.props.video.id)}
                             isControlBarVisible={this.props.isControlBarVisible}
                             isLoggedIn={this.props.isLoggedIn}
                         /> 

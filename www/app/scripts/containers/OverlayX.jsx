@@ -6,7 +6,7 @@ import Player from './Player';
 import ContentX from '../components/OverlayX/ContentX';
 import { sendMessage, getMessages } from '../actions/chatMessages';
 import { toggleCollapseInfo, collapseInfo } from '../actions/overlayX';
-import { videoSelected, markAsWishlist, resetCurrentTimeInPlayer, markSelectedAsWishlist } from '../actions/videoPlayer';
+import { videoSelected, markAsWishlist, resetCurrentTimeInPlayer, removeFromWishlist, markSelectedAsWishlist } from '../actions/videoPlayer';
 import { Orientation } from '../constants/reduxConstants';
 import FirebaseDB from '../utils/FirebaseDB';
 
@@ -33,8 +33,12 @@ class OverlayX extends Component {
     }
 
     handleAddToWishlist = (videoId) => {
-        this.props.dispatch(markAsWishlist(videoId));
-        this.props.dispatch(markSelectedAsWishlist());
+        this.props.dispatch(markAsWishlist(videoId, true));
+        this.props.dispatch(markSelectedAsWishlist(true));
+    }
+    handleRemoveFromWishlist = (videoId) => {
+        this.props.dispatch(markAsWishlist(videoId, false));
+        this.props.dispatch(markSelectedAsWishlist(false));
     }
 
     setChatChannel = () => {
@@ -86,6 +90,7 @@ class OverlayX extends Component {
                     isCollapsed={this.props.overlayX.collapsedInfo}
                     onTileOpen={this.onTileOpen}
                     handleAddToWishlist={this.handleAddToWishlist}
+                    handleRemoveFromWishlist={this.handleRemoveFromWishlist}
                     isControlBarVisible={this.props.playback.controlBarVisibility}
                     isLoggedIn={this.props.authentication.isLoggedIn}
                 /> : <div />}
