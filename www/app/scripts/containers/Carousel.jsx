@@ -60,12 +60,20 @@ class HeroCarousel extends Component {
     componentDidMount() {
         this.setVideoState();
     }
-    shouldComponentUpdate(nextProps){
-        if(nextProps.transitionStarting && this.carouselVideo){
+    // shouldComponentUpdate(nextProps){
+    //     // if(nextProps.transitionStarting && this.carouselVideo){
+    //     //     //this.carouselVideo.videoEl.pause();
+    //     //     this.setState({ renderVideo: false });
+    //     // }
+    //     return true
+    // }
+
+    componentDidUpdate(){
+        console.log(this.props.transitionStarting);
+        if(this.props.transitionStarting && this.carouselVideo){
             //this.carouselVideo.videoEl.pause();
             this.setState({ renderVideo: false });
         }
-        return true
     }
 
     setVideoState = () => {
