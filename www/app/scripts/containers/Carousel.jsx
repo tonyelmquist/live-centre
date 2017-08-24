@@ -95,8 +95,18 @@ class HeroCarousel extends Component {
         this.refs.rightSlider.slickGoTo(currentSlide);
     }
 
-    getDescriptionSnippet(string, maxCharacters) {
+    getMaxCharacters(){
+        const maxLettertWidth = 8;
+        const windowWidth = window.innerWidth;
+        const padding = 60 + 15;
+        const numberOfLines = 2;
+        const maxCharactersPRLine = (windowWidth - padding) / maxLettertWidth;
+        return maxCharactersPRLine * numberOfLines;
+    }
+
+    getDescriptionSnippet(string) {
         const array = string.split(' ');
+        const maxCharacters = this.getMaxCharacters();
         let count = 0;
 
         let finalCount = 0;
@@ -193,7 +203,7 @@ class HeroCarousel extends Component {
                                 this._handlePlay(video);
                             }}
                         >
-                          {this.getDescriptionSnippet(video.description, 100)}
+                          { window.innerWidth > 370 ? this.getDescriptionSnippet(video.description) : <div /> }
                         </p>
                       </div>
                     </div>
