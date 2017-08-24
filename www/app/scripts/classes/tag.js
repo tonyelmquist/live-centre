@@ -11,7 +11,7 @@ class Tag extends BaseClass {
             _type: data.type,
             _key: data.key,
             _name: data.name,
-        }, );
+        });
 
         this._videos = [];
         this._videosLoaded = 0;

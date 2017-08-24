@@ -71,6 +71,3 @@ export function hideRegistration() {
 export function setDisplayName(name) {
     return { type: Actions.AUTH_SET_DISPLAY_NAME, name };
 }
-
-
-

@@ -4,7 +4,6 @@
  * @class Actions:Settings
  */
 
-import axios from 'axios';
 import Actions, { Orientation } from '../constants/reduxConstants';
 import FirebaseDB from '../utils/FirebaseDB';
 

@@ -64,7 +64,7 @@ export default class BaseClass {
             console.error({ name: 'State not found', message: 'Error, Store position inputted does not exist!', storePosition });
         }
 
-        let result = [];
+        const result = [];
 
         for (let i = 0; i < keys.length; i++) {
             if (typeof state[keys[i]] === 'undefined') {

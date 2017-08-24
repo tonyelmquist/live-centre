@@ -5,7 +5,6 @@
  */
 
 /** Chat Messages Actions */
-import io from 'socket.io-client';
 import Actions from '../constants/reduxConstants';
 
 /**

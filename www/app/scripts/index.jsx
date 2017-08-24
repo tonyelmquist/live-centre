@@ -13,7 +13,6 @@ import initFirebase from './utils/initFirebase';
 import Authentication from './utils/Authentication';
 // import FirebaseDB from './utils/FirebaseDB';
 // import io from 'socket.io-client';
-import initChangingScores from './utils/initScoreChanger';
 // import initUserSettings from './utils/initUserSettings';
 
 // Enable Touch/Tap Events
@@ -21,9 +20,6 @@ injectTapEventPlugin();
 
 // Initialize Video List
 initVideos(store);
-
-// init scores overlay
-initChangingScores(store);
 
 // Language: i18next Initialize
 initLang(store);

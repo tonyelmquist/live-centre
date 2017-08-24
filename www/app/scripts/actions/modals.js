@@ -13,6 +13,6 @@ import Actions from '../constants/reduxConstants';
  * @export
  * @returns Dispatchable Action
  */
-export function showLoginModal(isOpen) {
+export function showLoginModal(isOpen) { // eslint-disable-line import/prefer-default-export
     return { type: Actions.SHOW_LOGIN_MODAL, isOpen };
 }

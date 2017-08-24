@@ -268,13 +268,10 @@ class Player extends React.Component {
             opacity: `${this.props.overlayX.maximized ? '1' : '0'}`,
         };
 
-        const landscapeWidth = Math.max(window.innerWidth, window.innerHeight);
-        const portraitWidth = Math.min(window.innerWidth, window.innerHeight);
-
         const playerStyles = {
             position: 'relative',
             height: '100%',
-            width: `100%`,
+            width: '100%',
             zIndex: 1500,
             top: 0,
             left: 0,

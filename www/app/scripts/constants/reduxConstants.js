@@ -44,14 +44,14 @@ class ReduxConstants {
     static get BOTTOM_NAV_HIDE() { return 'BOTTOM_NAV_HIDE'; }
     static get CHANGE_NAV_INDEX() { return 'CHANGE_NAV_INDEX'; }
 
-    //OVERLAY-X
+    // OVERLAY-X
     static get OVERLAY_X_OPEN() { return 'OVERLAY_X_OPEN'; }
     static get OVERLAY_X_CLOSE() { return 'OVERLAY_X_CLOSE'; }
     static get OVERLAY_X_MAXIMIZE() { return 'OVERLAY_X_MAXIMIZE'; }
     static get OVERLAY_X_MINIMIZE() { return 'OVERLAY_X_MINIMIZE'; }
     static get OVERLAY_X_SET_INFO() { return 'OVERLAY_X_SET_INFO'; }
-    static get TOGGLE_COLLAPSE_INFO() { return 'TOGGLE_COLLAPSE_INFO' ;}
-    static get COLLAPSE_INFO() { return 'COLLAPSE_INFO' ;}
+    static get TOGGLE_COLLAPSE_INFO() { return 'TOGGLE_COLLAPSE_INFO'; }
+    static get COLLAPSE_INFO() { return 'COLLAPSE_INFO'; }
 
     // SEARCH
     static get TOGGLE_SEARCH() { return 'TOGGLE_SEARCH'; }
@@ -65,7 +65,7 @@ class ReduxConstants {
     // SECOND LAYER
     static get CHANGE_SCORE() { return 'CHANGE_SCORE'; }
 
-    //SETTINGS
+    // SETTINGS
     static get CHANGE_LANG() { return 'CHANGE_LANG'; }
     static get CHANGE_SUBTITLE_LANG() { return 'CHANGE_SUBTITLE_LANG'; }
     static get CHANGE_AUDIO_LANG() { return 'CHANGE_AUDIO_LANG'; }
@@ -80,14 +80,14 @@ class ReduxConstants {
     static get SAVED_USER_SETTINGS() { return 'SAVED_USER_SETTINGS'; }
     static get SAVING_USER_SETTINGS_FAILED() { return 'SAVING_USER_SETTINGS_FAILED'; }
 
-    //VIDEOCARD
+    // VIDEOCARD
     static get CHANGE_CARD_INDEX() { return 'CHANGE_CARD_INDEX'; }
     static get SHOW_VIDEO_CARD() { return 'SHOW_VIDEO_CARD'; }
     static get HIDE_VIDEO_CARD() { return 'HIDE_VIDEO_CARD'; }
     static get CHANGE_CARD_CATEGORY() { return 'CHANGE_CARD_CATEGORY'; }
     static get CHANGE_VIDEO_INFO() { return 'CHANGE_VIDEO_INFO'; }
 
-    //VIDEO PLAYER
+    // VIDEO PLAYER
     static get SHOW_REPLAY() { return 'SHOW_REPLAY'; }
     static get HIDE_REPLAY() { return 'HIDE_REPLAY'; }
 
@@ -129,10 +129,10 @@ class ReduxConstants {
     //   PROGRAMPAGE
     static get CHANGE_PROGRAMS_TAB_INDEX() { return 'CHANGE_PROGRAMS_TAB_INDEX'; }
     //   SPORTSPAGE
-    static get CHANGE_TEAM_TAB_INDEX() { return 'CHANGE_TEAM_TAB_INDEX' ;}
-    static get CHANGE_PLAYER_INDEX() { return 'CHANGE_PLAYER_INDEX' ;}
-    static get CHANGE_PLAYER_INDEX_TAB() { return 'CHANGE_PLAYER_INDEX_TAB' ;}
-    static get OPEN_SPORT_PLAYER_OVERLAY() { return 'OPEN_SPORT_PLAYER_OVERLAY' ;}
+    static get CHANGE_TEAM_TAB_INDEX() { return 'CHANGE_TEAM_TAB_INDEX'; }
+    static get CHANGE_PLAYER_INDEX() { return 'CHANGE_PLAYER_INDEX'; }
+    static get CHANGE_PLAYER_INDEX_TAB() { return 'CHANGE_PLAYER_INDEX_TAB'; }
+    static get OPEN_SPORT_PLAYER_OVERLAY() { return 'OPEN_SPORT_PLAYER_OVERLAY'; }
     static get CLOSE_SPORT_PLAYER_OVERLAY() { return 'CLOSE_SPORT_PLAYER_OVERLAY'; }
     static get ADD_SPORT_VIDEO() { return 'ADD_SPORT_VIDEO'; }
 

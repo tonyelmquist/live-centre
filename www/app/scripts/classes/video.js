@@ -88,7 +88,7 @@ class Video extends BaseClass {
         }
         return videoPrefix + this._id;
     }
-    set videoUrl(videoUrl) {
+    static set videoUrl(videoUrl) {
         return false; // Cant set videoUrl
     }
 

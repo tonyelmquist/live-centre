@@ -52,7 +52,7 @@ class Sport extends BaseClass {
         return this._teams;
     }
 
-    set teams(teamID){
+    set teams(teamID) {
         if (teamID) {
             this._teams.push(teamID);
         }
@@ -83,7 +83,7 @@ class Sport extends BaseClass {
         return this._thumbnail;
     }
 
-    set thumbnail(thumbnail){
+    set thumbnail(thumbnail) {
         if (thumbnail) {
             this._thumbnail = thumbnail;
         }

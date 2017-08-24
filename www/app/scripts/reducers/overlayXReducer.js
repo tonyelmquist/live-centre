@@ -5,7 +5,7 @@ const defaultState = {
     open: false,
     maximized: true,
     collapsedInfo: true,
-}
+};
 
 export default function overlayX(state = defaultState, action) {
     switch (action.type) {
@@ -27,11 +27,11 @@ export default function overlayX(state = defaultState, action) {
         });
     case Actions.OVERLAY_X_SET_INFO:
         return Object.assign({}, state, {
-            info: action.videoInfo
-        })
+            info: action.videoInfo,
+        });
     case Actions.TOGGLE_COLLAPSE_INFO:
         return Object.assign({}, state, {
-            collapsedInfo: !state.collapsedInfo
+            collapsedInfo: !state.collapsedInfo,
         });
     case Actions.COLLAPSE_INFO:
         return Object.assign({}, state, {

@@ -14,6 +14,6 @@ import Actions from '../../constants/reduxConstants';
  * @param {any} index
  * @returns Dispatchable Action
  */
-export function changeProgramTabIndex(index) {
+export function changeProgramTabIndex(index) { // eslint-disable-line import/prefer-default-export
     return { type: Actions.CHANGE_PROGRAMS_TAB_INDEX, index };
 }

@@ -14,11 +14,6 @@ export default function settings(state = { options: defaultSettings, saving: fal
     const newSettings = Object.assign({}, state.options);
     Object.setPrototypeOf(newSettings, Settings.prototype);
 
-    let settingsPayload = {};
-    if (typeof action.payload !== 'undefined') {
-        settingsPayload = action.payload.isUserLoggedIn;
-    }
-
     switch (action.type) {
     // case REHYDRATE:
     //     if (settings) {
@@ -85,8 +80,8 @@ export default function settings(state = { options: defaultSettings, saving: fal
         // Default
     case Actions.SET_ORIENTATION:
         return Object.assign({}, state, {
-            screenOrientation: action.orientation
-        })
+            screenOrientation: action.orientation,
+        });
     default:
         return state;
     }

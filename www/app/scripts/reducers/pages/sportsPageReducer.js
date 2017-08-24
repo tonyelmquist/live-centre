@@ -1,5 +1,4 @@
 import Actions from '../../constants/reduxConstants';
-import TeamMember from '../../classes/teamMember';
 import Team from '../../classes/team';
 import Sport from '../../classes/sport';
 
@@ -13,14 +12,6 @@ import Sport from '../../classes/sport';
 // import cristianoActionShot from '../../../img/mockup/sport/soccer-players/KeylorNavas-fullbody.jpg';
 
 // Dummy Sports and channels
-const filters = [
-  { key: 'barn', avatarStyle: 'background-color: red' },
-  { key: 'drama' },
-  { key: 'pets' },
-  { key: 'humor' },
-  { key: 'fantasy' },
-  { key: 'documentaries' },
-];
 
 const sportsDefaultState = {
     Soccer: new Sport({
@@ -170,9 +161,12 @@ const playersDefaultState = {
     },
 };
 function sports(state = sportsDefaultState, action) {
+    let sportCopy = null;
+    if (typeof action.sport !== 'undefined') {
+        sportCopy = Object.assign(Object.create(Object.getPrototypeOf(state[action.sport])), state[action.sport]);
+    }
     switch (action.type) {
     case Actions.ADD_SPORT_VIDEO:
-        const sportCopy = Object.assign(Object.create(Object.getPrototypeOf(state[action.sport])), state[action.sport]);
         sportCopy.videos = [...sportCopy.videos, action.videoID];
         return {
             ...state,

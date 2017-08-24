@@ -1,5 +1,4 @@
 import BaseClass from './baseClass';
-import TeamMember from './teamMember';
 
 class Team extends BaseClass {
     constructor(data) {

@@ -57,8 +57,8 @@ export function closeOverlayX() {
  * @export
  * @returns Dispatchable Action
  */
-export function toggleCollapseInfo(){
-    return {type: Actions.TOGGLE_COLLAPSE_INFO}
+export function toggleCollapseInfo() {
+    return { type: Actions.TOGGLE_COLLAPSE_INFO };
 }
 
 /**
@@ -68,6 +68,6 @@ export function toggleCollapseInfo(){
  * @export
  * @returns Dispatchable Action
  */
-export function collapseInfo(){
-    return {type: Actions.COLLAPSE_INFO}
+export function collapseInfo() {
+    return { type: Actions.COLLAPSE_INFO };
 }

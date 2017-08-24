@@ -6,14 +6,14 @@
 import Actions from '../constants/reduxConstants';
 
 /**
- * 
+ *
  * Adds a new pop notificaiton to the store
- * 
+ *
  * @export
  * @param {int} id
- * @param {string} message 
- * @param {int} minutes 
- * @param {int} start 
+ * @param {string} message
+ * @param {int} minutes
+ * @param {int} start
  * @memberof Actions:Notifications
  * @returns Dispatchable Action
  */
@@ -22,14 +22,14 @@ export function newPopNotification(id, message, minutes, start) {
 }
 
 /**
- * 
+ *
  * Adds a new notificaiton to the store
- * 
+ *
  * @export
  * @param {int} id
- * @param {string} message 
- * @param {int} minutes 
- * @param {int} start 
+ * @param {string} message
+ * @param {int} minutes
+ * @param {int} start
  * @memberof Actions:Notifications
  * @returns Dispatchable Action
  */
@@ -38,9 +38,9 @@ export function newNotification(message, seconds, notificationType) {
 }
 
 /**
- * 
+ *
  * Rehydrates notifications from socket server
- * 
+ *
  * @export
  * @param {array} notifications
  * @memberof Actions:Notifications
@@ -51,9 +51,9 @@ export function rehydrateNotifications(notifications) {
 }
 
 /**
- * 
+ *
  * Removes notifications from store
- * 
+ *
  * @export
  * @param {array} notifications
  * @memberof Actions:Notifications
@@ -64,14 +64,14 @@ export function removePopNotification(id) {
 }
 
 /**
- * 
+ *
  * Removes notificaiton to the store
- * 
+ *
  * @export
  * @param {int} id
- * @param {string} message 
- * @param {int} minutes 
- * @param {int} start 
+ * @param {string} message
+ * @param {int} minutes
+ * @param {int} start
  * @memberof Actions:Notifications
  * @returns Dispatchable Action
  */

@@ -3,7 +3,6 @@ import i18next from 'i18next';
 import { loginSuccess, logoutSuccess, setDisplayName } from '../actions/authentication';
 import store from './store';
 import { fetchUserSettingsSuccess, changeLang } from '../actions/settings';
-import { newNotification } from '../actions/notifications';
 import FirebaseDB from '../utils/FirebaseDB';
 
 export default class Authentication {
