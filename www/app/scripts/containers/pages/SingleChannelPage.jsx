@@ -94,7 +94,7 @@ class ChannelsPage extends React.Component {
         const tiles = [];
         
         for (const key in programs) {
-            if (this.props.activetab === 0 || programs[key].tags.indexOf(this.props.activetab) >= 0) {
+            if (this.props.activetab === 0 || programs[key].tags.indexOf(this.state.tabs[this.props.activetab]) >= 0) {
                 console.log("true", this.props.activetab);
                 tiles.push(
                     <MasonryImageTile
