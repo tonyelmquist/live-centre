@@ -207,7 +207,10 @@ class Player extends React.Component {
     };
 
     componentWillUpdate = (nextProps) => {
-        if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
+        if (
+        typeof this.largeVideoPlayer !== 'undefined' &&
+        this.largeVideoPlayer !== null
+    ) {
             if (this.videoLoaded !== nextProps.video.videoUrl) {
                 this.setState({ isPreOverlayShowing: true });
                 this.largeVideoPlayer.video.video.load();
@@ -216,7 +219,24 @@ class Player extends React.Component {
                 console.log('new video loaded', this.videoLoaded);
             }
         }
+
+        if (this.props.orientation === 'LANDSCAPE') {
+            const i = document.getElementById('overlayDiv');
+
+        // go full-screen
+            if (i.requestFullscreen) {
+                i.requestFullscreen();
+            } else if (i.webkitRequestFullscreen) {
+                i.webkitRequestFullscreen();
+            } else if (i.mozRequestFullScreen) {
+                i.mozRequestFullScreen();
+            } else if (i.msRequestFullscreen) {
+                i.msRequestFullscreen();
+            }
+        }
     };
+
+
 
     onOpenSettings = () => {
         console.log('Open Settings');
@@ -230,6 +250,18 @@ class Player extends React.Component {
             e.preventDefault();
         }
         if (this.props.orientation === Orientation.LANDSCAPE) {
+            const i = document.getElementById('overlayDiv');
+
+        // go full-screen
+            if (i.requestFullscreen) {
+                i.requestFullscreen();
+            } else if (i.webkitRequestFullscreen) {
+                i.webkitRequestFullscreen();
+            } else if (i.mozRequestFullScreen) {
+                i.mozRequestFullScreen();
+            } else if (i.msRequestFullscreen) {
+                i.msRequestFullscreen();
+            }
             return;
         }
         if (this.props.overlayX.maximized) {
