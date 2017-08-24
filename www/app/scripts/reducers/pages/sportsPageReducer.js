@@ -140,13 +140,22 @@ const playersDefaultState = {
         actionShot: 'http://hairstylecamp.com/wp-content/uploads/Gareth-Bale-Spike-Hairstyle.jpg',
     },
     12: {
-        name: 'Gareth Bale',
+        name: 'Karim Benzema',
         team: 'RealMadrid',
-        position: 'CB1',
+        position: 'OMF1',
         number: 12,
-        description: 'Gareth Bale',
-        portrait: 'http://www.menshairstylestoday.com/wp-content/uploads/2017/04/Gareth-Bale-Haircut-Long-Combed-Over-Hair.jpg',
-        actionShot: 'http://hairstylecamp.com/wp-content/uploads/Gareth-Bale-Spike-Hairstyle.jpg',
+        description: 'Karim Benzema',
+        portrait: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXXn-XEnCoLQg866vF5oafP0Idn6t7GYi6GmgfZotNVQha5-VyCw',
+        actionShot: 'http://i2.cdn.cnn.com/cnnnext/dam/assets/140615214339-karim-benzema-social-tease-horizontal-large-gallery.jpg',
+    },
+    10: {
+        name: 'Lionel Messi',
+        team: 'Barcelona',
+        position: 'OMF1',
+        number: 10,
+        description: 'Often considered the best player in the world and regarded by many as the greatest of all time, Messi is the only player in history to win five FIFA Ballon d\'Or awards, four of which he won consecutively, and a record-tying four European Golden Shoes.',
+        portrait: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGN-B9jXxg16haDvmXFAdrS2LIwy8K4hZwiUqsyXqs9yvc0b7wtOHzkazyzg',
+        actionShot: 'https://pmchollywoodlife.files.wordpress.com/2016/02/lionel-messi-bio-photo.jpg?w=620',
     },
     1: {
         name: 'Keylor Navas',
@@ -158,6 +167,15 @@ const playersDefaultState = {
         who plays as a goalkeeper for Spanish club Real Madrid and the Costa Rica national team.`,
         portrait: 'https://s-media-cache-ak0.pinimg.com/736x/af/85/68/af856898016df90dde9694e876ea897b--real-madrid-football.jpg',
         actionShot: 'http://estaticos.marca.com/imagenes/2015/10/27/en/football/real_madrid/1445935832_extras_noticia_foton_7_0.jpg',
+    },
+    22: {
+        name: 'Marc-André Ter-Stegen',
+        team: 'Barcelona',
+        number: 22,
+        position: 'GK',
+        description: 'Marc-André ter Stegen is a German professional footballer who plays as a goalkeeper for Spanish club FC Barcelona and the Germany national team.',
+        portrait: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Bar%C3%A7a_-_Napoli_-_20140806_-_Marc-Andr%C3%A9_ter_Stegen_1.jpg/220px-Bar%C3%A7a_-_Napoli_-_20140806_-_Marc-Andr%C3%A9_ter_Stegen_1.jpg',
+        actionShot: 'https://i.ytimg.com/vi/SqxCJCQSd78/maxresdefault.jpg',
     },
 };
 function sports(state = sportsDefaultState, action) {

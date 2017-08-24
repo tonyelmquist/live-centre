@@ -101,7 +101,7 @@ class SearchContainer extends Component {
     portraitOverlay = (person) => {
         return (
             <div className="circle-overlay">
-                <p className="label">{person.key}</p>
+                <p className="label">{person.name}</p>
             </div>
         );
     }
@@ -121,18 +121,14 @@ class SearchContainer extends Component {
 
 
     render() {
-        const people = [
-            { img: '/img/avatars/1.jpg', key: 'Lisa10', uid: 0 },
-            { img: '/img/avatars/2.jpg', key: 'Per1', uid: 1 },
-            { img: '/img/avatars/3.jpg', key: 'BoyGamer192', uid: 2 },
-            { img: '/img/avatars/4.jpg', key: 'Lisa23', uid: 3 },
-            { img: '/img/avatars/5.jpg', key: 'Mari4', uid: 4 },
-            { img: '/img/avatars/6.jpg', key: 'Helene5', uid: 5 },
-            { img: '/img/avatars/1.jpg', key: 'Hans16', uid: 6 },
-            { img: '/img/avatars/2.jpg', key: 'SuperNintendoLongNameTest', uid: 7 },
-            { img: '/img/avatars/3.jpg', key: 'Hans27', uid: 8 },
-            { img: '/img/avatars/4.jpg', key: 'Petter8', uid: 9 },
-        ];
+        const people = [];
+        for (const key of Object.keys(this.props.suggestedPeople)) {
+            people.push({
+                img: this.props.suggestedPeople[key].portrait,
+                name: this.props.suggestedPeople[key].name.split(' ')[1],
+                key,
+            });
+        }
 
         const tabs = [
             "All", "Series", "Movies",
@@ -190,6 +186,7 @@ const mapStateToProps = state => ({
     activeFilter: state.searchFilterTab,
     videos: state.videos.items,
     tags: state.tags.items,
+    suggestedPeople : state.sportsInfo.players,
 });
 
 export default connect(mapStateToProps)(SearchContainer);
