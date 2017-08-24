@@ -490,3 +490,8 @@ msgstr "Personvern"
 #: 
 msgid "profile_terms_use"
 msgstr "Vilkår for bruk"
+
+#. Wishlist page: no videos
+#: 
+msgid "wishlist_no_videos"
+msgstr "Du har ikke lagret noen videoer i ønskelisten."

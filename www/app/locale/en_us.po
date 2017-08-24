@@ -494,3 +494,8 @@ msgstr "Privacy policy"
 #: 
 msgid "profile_terms_use"
 msgstr "Terms of use"
+
+#. Wishlist page: no videos
+#: 
+msgid "wishlist_no_videos"
+msgstr "You have not saved any videos to the watchlist"
