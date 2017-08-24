@@ -6,11 +6,19 @@ const getPlayerItems = (team, players, openPlayerOverlay) => {
     const playerItems = [];
     for (const key in players) {
         playerItems.push(
-      <li className="playerItem" key={`player-li-${key}`} onTouchTap={() => openPlayerOverlay(players[key])}>
-        <Avatar size={70} src={players[key].portrait} className="avatar" />
-        <h4>#{players[key].number} {players[key].name} </h4>
-      </li>,
-    );
+            <li className="playerItem" key={`player-li-${key}`} onTouchTap={() => openPlayerOverlay(players[key])}>
+              <Avatar size={70} src={players[key].portrait} className="avatar" />
+              <h4>#{players[key].number} {players[key].name} </h4>
+            </li>,
+        );
+    }
+
+    if (playerItems.length <= 0) {
+        playerItems.push(
+            <li className="playerItem">
+              We have no records of players for this team available right now.
+            </li>,
+        );
     }
     return playerItems;
 };
@@ -24,13 +32,9 @@ const TeamInfoSection = ({ team, players, openPlayerOverlay }) => (
               <Avatar src={team.logo} />
               <h3> {team.title}</h3>
             </div>
-            <p> Founded in 6 March 1902 as Madrid Football Club, 
-                the club has traditionally worn a white home kit since inception. 
-                The word Real is Spanish for Royal and was bestowed to the club by 
-                King Alfonso XIII in 1920 together with the royal crown in the emblem.  
-            </p>
+            <p> {team.description} </p>
 
-            <h4>{i18next.t('sport_players')}</h4>
+            <h3>{i18next.t('sport_players')}</h3>
             <ul className="playerList">
               {getPlayerItems(team, players, openPlayerOverlay)}
             </ul>

@@ -11,6 +11,7 @@ class Team extends BaseClass {
             _title: '',
             _logo: '',
             _img: '/',
+            description: '',
             _colors: [],
             _abbr: '',
             _players: [7, 11, 1],
@@ -20,6 +21,7 @@ class Team extends BaseClass {
             _title: data.title,
             _logo: data.logo,
             _img: data.img,
+            _description: data.description,
             _colors: data.colors,
             _abbr: data.abbr,
             _players: data.players,
@@ -49,6 +51,19 @@ class Team extends BaseClass {
     set title(newtitle) {
         if (newtitle) {
             this._title = newtitle;
+        }
+    }
+
+    get description() {
+        if (typeof this._description === 'undefined') {
+        // console.error('Tried to get description of Vdescriptioneo, was not set');
+            return false;
+        }
+        return this._description;
+    }
+    set description(newdescription) {
+        if (newdescription) {
+            this._description = newdescription;
         }
     }
 
