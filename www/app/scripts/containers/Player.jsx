@@ -208,9 +208,9 @@ class Player extends React.Component {
 
     componentWillUpdate = (nextProps) => {
         if (
-        typeof this.largeVideoPlayer !== 'undefined' &&
-        this.largeVideoPlayer !== null
-    ) {
+            typeof this.largeVideoPlayer !== 'undefined' &&
+            this.largeVideoPlayer !== null
+        ) {
             if (this.videoLoaded !== nextProps.video.videoUrl) {
                 this.setState({ isPreOverlayShowing: true });
                 this.largeVideoPlayer.video.video.load();
@@ -220,10 +220,13 @@ class Player extends React.Component {
             }
         }
 
-        if (this.props.orientation === 'LANDSCAPE') {
+        const myRegex = new RegExp('wv', 'i');
+        const result = myRegex.test(navigator.userAgent.toLowerCase());
+
+        if (result && this.props.orientation === 'LANDSCAPE') {
             const i = document.getElementById('overlayDiv');
 
-        // go full-screen
+            // go full-screen
             if (i.requestFullscreen) {
                 i.requestFullscreen();
             } else if (i.webkitRequestFullscreen) {
@@ -235,7 +238,6 @@ class Player extends React.Component {
             }
         }
     };
-
 
 
     onOpenSettings = () => {
