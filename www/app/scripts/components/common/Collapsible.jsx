@@ -17,7 +17,7 @@ class Collapsible extends Component {
 
         if (el.scrollHeight <= el.clientHeight) {
             this.setCollapseState(false);
-        }  
+        }
         if (this.props.isCollapsed) {
             this.shortenText(el);
         }
@@ -39,16 +39,29 @@ class Collapsible extends Component {
         }
     }
 
-    shortenText(el) {
-        // console.log('shortenText');
-        // console.log(el.scrollHeight);
-        // For loop for maximal amount of iterations, should break before maxlength.
-        for (let i = 0; i < el.textContent.length; i++) {
-            if (el.scrollHeight <= el.clientHeight) {
+    getDescriptionSnippet(string, maxCharacters) {
+        const array = string.split(' ');
+        let count = 0;
+
+        let finalCount = 0;
+
+        for (let i = 0; i < array.length; i++) {
+            count += array[i].length;
+            if (count + i > maxCharacters) {
+                finalCount = count + i;
                 break;
             }
-            el.textContent = el.textContent.replace(/\W*\s(\S)*$/, '...');
         }
+        console.log(finalCount, string.length, array, maxCharacters);
+        if (finalCount === string.length) {
+            return string;
+        }
+        return `${string.substr(0, finalCount)}...`;
+    }
+
+    shortenText(el) {
+        console.log(el.textContent);
+        el.textContent = this.getDescriptionSnippet(el.textContent, 80);
     }
 
     collapseButton() {
@@ -63,8 +76,8 @@ class Collapsible extends Component {
     }
 
 
-    getCollapseHeight(){
-        const defaultHeight = 55;
+    getCollapseHeight() {
+        const defaultHeight = 45;
         if (typeof this.collapseInnerElement !== 'undefined' && this.collapseInnerElement !== null) {
             // console.log(this.collapseInnerElement.scrollHeight, this.collapseInnerElement.clientHeight);
 
@@ -79,7 +92,7 @@ class Collapsible extends Component {
     }
 
     setCollapseState(showCollapseButton) {
-        this.setState(() => ({showCollapseButton}));
+        this.setState(() => ({ showCollapseButton }));
     }
 
     render() {
@@ -93,10 +106,9 @@ class Collapsible extends Component {
                 : <span />
             }
 
-            <Motion style={this.props.isCollapsed ? { height: spring(55) } : { height: spring(collapseHeight) }} >
+            <Motion style={this.props.isCollapsed ? { height: spring(45) } : { height: spring(collapseHeight) }} >
                 {style =>
                     (<div
-                        id="hest"
                         ref={ref => (this.collapseInnerElement = ref)}
                         style={{
                             overflow: 'hidden',
