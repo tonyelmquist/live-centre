@@ -125,7 +125,7 @@ export function replayReducer(
 }
 
 export function productOverlayReducer(
-    state = { showProductOverlay: false },
+    state = { showProductOverlay: false, productID: 0 },
     action,
 ) {
     switch (action.type) {
@@ -133,6 +133,7 @@ export function productOverlayReducer(
         return {
             ...state,
             showProductOverlay: true,
+            selectedProductID: action.productID,
         };
     case Actions.HIDE_PRODUCT_OVERLAY:
         return {

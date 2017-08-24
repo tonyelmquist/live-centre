@@ -178,8 +178,8 @@ export function isVideoSettingsOpen(isOpen) {
  * @memberof Actions:VideoPlayer
  * @returns Dispatchable Action
  */
-export function showProductOverlay() {
-    return { type: Actions.SHOW_PRODUCT_OVERLAY };
+export function showProductOverlay(productID) {
+    return { type: Actions.SHOW_PRODUCT_OVERLAY, productID };
 }
 
 /**

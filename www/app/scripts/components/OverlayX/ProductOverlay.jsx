@@ -75,7 +75,7 @@ ProductOverlay.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-    productID: state.productThumb.productID,
+    productID: state.productOverlay.selectedProductID,
     showProductThumb: state.productThumb.showProductThumb,
     orientation: state.settings.screenOrientation,
 });
