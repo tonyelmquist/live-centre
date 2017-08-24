@@ -132,7 +132,7 @@ class WishlistPage extends React.Component {
                     <MasonryContainer>
                         {this.isAnyWishlistedVideos ?
                         this.getTiles(tabKeys) :
-                        <p>No videos to see here...</p> }
+                        <p>{i18next.t("wishlist_no_videos")}</p> }
                     </MasonryContainer>
                 </div>
 
