@@ -6,17 +6,6 @@
 
 import Actions from '../../constants/reduxConstants';
 
-/**
- * Actiont to Change team tab on the sports page
- *
- * @memberof Actions:Page:Sports
- * @export
- * @param {any} index
- * @returns Dispatchable Action
- */
-export function changeTeamTabIndex(index) {
-    return { type: Actions.CHANGE_TEAM_TAB_INDEX, index };
-}
 
 /**
  * Action to Change player index on the sports page

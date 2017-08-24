@@ -19,6 +19,7 @@ import HeaderMenu from '../components/navigation/HeaderMenu';
 import MobileMenu from '../components/navigation/MobileMenu';
 import ExpandableMenu from './../components/navigation/ExpandableMenu';
 import { searchKeyword, toggleSearch, closeSearch, emptySearch, focusedSearch, blurredSearch } from '../actions/search';
+import { pageTabGoBack, removePageTabIndex } from '../actions/navigation';
 import { closeOverlayX } from '../actions/overlayX';
 // import VideoLibrary from 'material-ui/svg-icons/AV/video-library';
 
@@ -51,7 +52,14 @@ class Header extends Component {
         return pathname.replace('/', '');
     }
 
-    goBack = () => this.props.history.goBack()
+    goBack = () => {
+        if(this.props.pageTabIndex.past.length === 0){
+            this.props.dispatch(removePageTabIndex());
+            this.props.history.goBack(); 
+        } else {
+            this.props.dispatch(pageTabGoBack());
+        }
+    }
 
     // all the subpages, eg. Category/Program master. They have two slashes in the pathname.
     isSubPage = () => {
@@ -247,6 +255,7 @@ const mapStateToProps = state => ({
     settings: state.settings,
     isDrawerMenuOpen: state.drawerMenuState,
     overlayX: state.overlayX,
+    pageTabIndex: state.pageTabIndex,
 });
 
 

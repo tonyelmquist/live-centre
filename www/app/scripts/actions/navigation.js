@@ -77,19 +77,6 @@ export function closeDrawerMenu() {
 }
 
 /**
- * Action to toggle the menu
- *
- * @memberof Actions:Navigation
- * @deprecated Not currently used in version, also replicated
- * @param {any} index Index to chang nav menu
- * @export
- * @returns Dispatchable Action
- */
-export function changeNavMenuIndex(index) {
-    return { type: Actions.CHANGE_NAV_INDEX, index };
-}
-
-/**
  * ACTION to reveal bottom navigation menu
  *
  * @memberof Actions:Navigation
@@ -109,4 +96,34 @@ export function showNavBottom() {
  */
 export function hideNavBottom() {
     return { type: Actions.BOTTOM_NAV_HIDE };
+}
+
+/**
+ * ACTION change current page's tabindex
+ *
+ * @memberof Actions:Navigation
+ * @returns Dispatchable action
+ */
+export function changePageTabIndex(tabIndex) {
+    return { type: Actions.CHANGE_PAGE_TAB_INDEX, tabIndex };
+}
+
+/**
+ * ACTION to remove page tab index
+ *
+ * @memberof Actions:Navigation
+ * @returns Dispatchable action
+ */
+export function removePageTabIndex() {
+    return { type: Actions.REMOVE_PAGE_TAB_INDEX };
+}
+
+/**
+ * ACTION to go back in page tab history. 
+ *
+ * @memberof Actions:Navigation
+ * @returns Dispatchable action
+ */
+export function pageTabGoBack() {
+    return { type: Actions.PAGE_TAB_GO_BACK };
 }

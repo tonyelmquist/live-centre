@@ -35,6 +35,9 @@ class ReduxConstants {
     static get MENU_TOGGLE() { return 'MENU_TOGGLE'; }
     static get MENU_SHOW() { return 'MENU_SHOW'; }
     static get MENU_HIDE() { return 'MENU_HIDE'; }
+    static get CHANGE_PAGE_TAB_INDEX() { return 'CHANGE_PAGE_TAB_INDEX'; }
+    static get REMOVE_PAGE_TAB_INDEX() { return 'REMOVE_PAGE_TAB_INDEX'; }
+    static get PAGE_TAB_GO_BACK() { return 'PAGE_TAB_GO_BACK'; }
 
     static get DRAWER_MENU_TOGGLE() { return 'DRAWER_MENU_TOGGLE'; }
     static get DRAWER_MENU_SHOW() { return 'DRAWER_MENU_SHOW'; }
@@ -129,10 +132,9 @@ class ReduxConstants {
     //   PROGRAMPAGE
     static get CHANGE_PROGRAMS_TAB_INDEX() { return 'CHANGE_PROGRAMS_TAB_INDEX'; }
     //   SPORTSPAGE
-    static get CHANGE_TEAM_TAB_INDEX() { return 'CHANGE_TEAM_TAB_INDEX'; }
-    static get CHANGE_PLAYER_INDEX() { return 'CHANGE_PLAYER_INDEX'; }
-    static get CHANGE_PLAYER_INDEX_TAB() { return 'CHANGE_PLAYER_INDEX_TAB'; }
-    static get OPEN_SPORT_PLAYER_OVERLAY() { return 'OPEN_SPORT_PLAYER_OVERLAY'; }
+    static get CHANGE_PLAYER_INDEX() { return 'CHANGE_PLAYER_INDEX' ;}
+    static get CHANGE_PLAYER_INDEX_TAB() { return 'CHANGE_PLAYER_INDEX_TAB' ;}
+    static get OPEN_SPORT_PLAYER_OVERLAY() { return 'OPEN_SPORT_PLAYER_OVERLAY' ;}
     static get CLOSE_SPORT_PLAYER_OVERLAY() { return 'CLOSE_SPORT_PLAYER_OVERLAY'; }
     static get ADD_SPORT_VIDEO() { return 'ADD_SPORT_VIDEO'; }
 

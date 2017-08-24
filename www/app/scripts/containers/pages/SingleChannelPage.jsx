@@ -7,6 +7,8 @@ import CircleRowItem from '../../components/HorizontalScroll/CircleRowItem';
 import MasonryContainer from '../../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 
+import { changePageTabIndex, removePageTabIndex } from '../../actions/navigation';
+
 import FilterTabs from '../FilterTabs';
 
 // Dummy filters and channels
@@ -75,9 +77,13 @@ class ChannelsPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            activeTab: 0,
+            //activeTab: 0,
             tabs: ['all', 'series', 'movies', 'drama', 'comedy', 'documentaries'],
         }
+    }
+
+    componentWillMount(){
+        this.props.dispatch(removePageTabIndex());
     }
 
     filterTile = () => {
@@ -88,16 +94,13 @@ class ChannelsPage extends React.Component {
         const tiles = [];
         
         for (const key in programs) {
-            const activeTab = this.state.tabs[this.state.activeTab];
-            if (this.state.activeTab === 0 || programs[key].tags.indexOf(activeTab) >= 0) {
-                console.log("true", this.state.activeTab);
+            if (this.props.activetab === 0 || programs[key].tags.indexOf(this.props.activetab) >= 0) {
+                console.log("true", this.props.activetab);
                 tiles.push(
                     <MasonryImageTile
                     key={`channel-tile-${key}`}
                     poster={programs[key].thumbnail}
                     handleClick={() => this.changeRoute('/Channel/Street Fighter')}
-                    //handleClick={() => this.handleOnClick(channels[key])}
-                    //overlay={<img onTouchTap={() => this.handleOnClick(channels[key])} className="logo" src={channels[key].logo} />}
                     />,
                 );
             }
@@ -110,23 +113,20 @@ class ChannelsPage extends React.Component {
     }
 
     changeTab = (index) => {
-        this.setState((prevState, props) => {
-            return {activeTab : index}
-        });
+        this.props.dispatch(changePageTabIndex(index));
     }
 
     render() {
         const channelKey = this.props.match.params.channelKey;
-
+        console.log("active tab", this.props.activetab);
         
         return (
         <div className="channel-page">
 
         <FilterTabs
             tabItems={this.state.tabs}
-            //activeTab={this.props.activetab}
             changeTab={this.changeTab}
-            activeTab={this.state.activeTab}
+            activeTab={this.props.activetab}
             colortheme="dark"
         />
 
@@ -143,6 +143,7 @@ class ChannelsPage extends React.Component {
 }
 
 ChannelsPage.propTypes = {
+    dispatch: PropTypes.func.isRequired,
     videos: PropTypes.any.isRequired,
     tags: PropTypes.object.isRequired,
 };
@@ -150,6 +151,7 @@ ChannelsPage.propTypes = {
 const mapStateToProps = state => ({
     videos: state.videos.items,
     tags: state.tags.items,
+    activetab: state.pageTabIndex.present,
 });
 
 export default connect(mapStateToProps)(ChannelsPage);

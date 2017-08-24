@@ -17,7 +17,6 @@ class FilterTabs extends React.Component {
     }
 
     componentDidMount() {
-        console.log("component did mount");
         const activeTab = this.props.activeTab;
         if (this.tabElements[activeTab] !== undefined && this.scroller !== undefined) {
             this.updateScrollBar(0, this.tabElements[activeTab].offsetWidth);
@@ -55,7 +54,7 @@ class FilterTabs extends React.Component {
         // TODO; move to component did mount so this doesent happen with each update.
         const tabs = tabItems.map((tab, key) => (
                 <div
-                  className={'items' + (tabItems[activeTab] == tab ? ' active' : '')}
+                  className={'items' + (tabItems[activeTab] === tab ? ' active' : '')}
                   onTouchTap={() => this.props.changeTab(key)}
                   key={`filterTab-${tab}`}
                   ref={(ref) => { this.tabElements[key] = ref; }}
@@ -82,4 +81,17 @@ class FilterTabs extends React.Component {
     }
 
 }
+
+FilterTabs.propTypes = {
+    activeTab: PropTypes.number.isRequired,
+    tabItems: PropTypes.array.isRequired,
+    changeTab: PropTypes.func.isRequired,
+    colortheme: PropTypes.string,
+};
+
+FilterTabs.defaultProps = {
+    colortheme: '',
+};
+
+
 export default FilterTabs;

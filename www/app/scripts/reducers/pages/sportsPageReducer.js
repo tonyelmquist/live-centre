@@ -188,15 +188,7 @@ function players(state = playersDefaultState, action) {
         return state;
     }
 }
-function activeTeamTab(state = 0, action) {
-    switch (action.type) {
-    case Actions.CHANGE_TEAM_TAB_INDEX: {
-        return action.index;
-    }
-    default:
-        return state;
-    }
-}
+
 function sportPlayerOverlay(state = { player: null, isOpen: false }, action) {
     switch (action.type) {
     case Actions.OPEN_SPORT_PLAYER_OVERLAY:
@@ -214,5 +206,5 @@ function sportPlayerOverlay(state = { player: null, isOpen: false }, action) {
     }
 }
 
-export { sports, teams, players, activeTeamTab, sportPlayerOverlay };
+export { sports, teams, players, sportPlayerOverlay };
 

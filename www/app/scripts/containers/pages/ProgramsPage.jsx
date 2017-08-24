@@ -9,8 +9,15 @@ import { maximizeOverlayX, openOverlayX } from '../../actions/overlayX';
 //import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
 import LiveTag from '../../components/common/LiveTag';
 import FilterTabs from '../FilterTabs';
+import { changePageTabIndex, removePageTabIndex } from '../../actions/navigation';
 
 class ProgramsPage extends React.Component {
+    componentWillMount() {
+        this.props.dispatch(removePageTabIndex());
+    }
+    // componentWillUnmount() {
+    //     this.props.dispatch(removePageTabIndex());
+    // }
     // Gets the first episode of all the series.
     getAllSeriesPilots() {
         const pilots = [];
@@ -82,6 +89,7 @@ class ProgramsPage extends React.Component {
     }
 
     changeTab = (index) => {
+        this.props.dispatch(changePageTabIndex(index));
         this.props.dispatch(changeProgramTabIndex(index));
     }
 
@@ -135,6 +143,7 @@ class ProgramsPage extends React.Component {
                     activeTab={this.props.activetab}
                     changeTab={this.changeTab}
                     colortheme="dark"
+                    dispatch={this.props.dispatch}
                 />
                 <br />
                 <div className="container-fluid">
@@ -159,7 +168,8 @@ ProgramsPage.propTypes = {
 const mapStateToProps = state => ({
     videos: state.videos.items,
     series: state.series.items,
-    activetab: state.programsPage,
+    activetab: state.pageTabIndex.present,
+    //activetab: state.programsPage,
     seasons: state.seasons.items,
     series: state.series.items,
     tags: state.tags.items,

@@ -36,5 +36,29 @@ function drawerMenuState(state = false, action) {
     }
 }
 
-export { changeNavIndex, headerMenuState, drawerMenuState };
+const defaultPageTabIndex = {
+    past: [],
+    present: 0,
+};
+
+function pageTabIndex(state = defaultPageTabIndex, action) {
+    switch (action.type) {
+    case Actions.CHANGE_PAGE_TAB_INDEX:
+        return {
+            past: [...state.past, state.present],
+            present: action.tabIndex,
+        };
+    case Actions.REMOVE_PAGE_TAB_INDEX:
+        return { past: [], present: 0 };
+    case Actions.PAGE_TAB_GO_BACK:
+        return {
+            past: state.past.slice(0, state.past.length - 1),
+            present: state.past[state.past.length - 1],
+        };
+    default:
+        return state;
+    }
+}
+
+export { changeNavIndex, headerMenuState, drawerMenuState, pageTabIndex };
 
