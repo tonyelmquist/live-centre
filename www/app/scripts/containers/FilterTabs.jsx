@@ -41,7 +41,6 @@ class FilterTabs extends React.Component {
 
     scrollToZero() {
         setTimeout(() => this.setState({ scrollAnimation: 0, opacity: 100 }), 300);
-        //this.setState({ scrollAnimation: 0, opacity: 100 });
     }
 
     render() {

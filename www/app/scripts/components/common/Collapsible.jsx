@@ -52,7 +52,7 @@ class Collapsible extends Component {
                 break;
             }
         }
-        console.log(finalCount, string.length, array, maxCharacters);
+        //console.log(finalCount, string.length, array, maxCharacters);
         if (finalCount === string.length) {
             return string;
         }
@@ -60,7 +60,7 @@ class Collapsible extends Component {
     }
 
     shortenText(el) {
-        console.log(el.textContent);
+        //console.log(el.textContent);
         el.textContent = this.getDescriptionSnippet(el.textContent, 80);
     }
 

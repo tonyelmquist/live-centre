@@ -110,7 +110,7 @@ class VideoSwiper extends Component {
               </h4>
             </div>
             <div className="slider">
-                <HorizontalScrollContainer>
+                <HorizontalScrollContainer animate={false}>
                     {getVideoList()}
                 </HorizontalScrollContainer>
             </div>
