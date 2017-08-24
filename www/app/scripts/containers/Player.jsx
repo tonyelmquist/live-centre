@@ -16,6 +16,7 @@ import { showReplay, hideReplay, showHighlights, setControlBarVisibility, isVide
 import '../../../node_modules/video-react/dist/video-react.css';
 import ProductThumb from '../components/OverlayX/ProductThumb';
 import ProductOverlay from '../components/OverlayX/ProductOverlay';
+import isDblTouchTap from '../utils/isDblTouchTap';
 
 const tickProximityInterval = 5000;
 
@@ -224,7 +225,10 @@ class Player extends React.Component {
 
     controlBarTimeoutTest1 = null;
 
-    onTouchTap = () => {
+    onTouchTap = (e) => {
+        if (isDblTouchTap(e)) {
+            e.preventDefault();
+        }
         if (this.props.orientation === Orientation.LANDSCAPE) {
             return;
         }
@@ -278,7 +282,7 @@ class Player extends React.Component {
 
         return (
           <div style={playerStyles} className={'IMRPlayer'} onTouchTap={this.onTouchTap} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
-            <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)}>
+            <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)} >
               <ControlBar autoHide>
                 <PlayToggle />
                 <FontAwesome name="chevron-down" style={minimizeIconStyles} onTouchTap={this.onMinimize} />
