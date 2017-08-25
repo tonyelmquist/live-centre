@@ -8,6 +8,8 @@ class LoginModal extends Component {
     onSubmit = () => {
         this.props.onSubmit(this.usernameInput.value, this.passwordInput.value);
         this.passwordInput.value = '';
+        this.passwordInput.blur();
+        this.usernameInput.blur();
     }
 
     shouldComponentUpdate(nextProps, nextState) {
