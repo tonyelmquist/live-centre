@@ -475,6 +475,10 @@ msgstr "Beklager, vi kunne ikke finne en konto med det brukernavnet."
 msgid "auth_wrong_password"
 msgstr "Beklager, det passordet er ikke riktig."
 
+#. Success Message: Successfully logged in
+#: 
+msgid "auth_success"
+msgstr "Du har logget inn."
 
 #. Profile page: Legal
 #: 

@@ -479,6 +479,10 @@ msgstr "Sorry, we couldn't find an account with that username."
 msgid "auth_wrong_password"
 msgstr "Sorry, that password isn't correct."
 
+#. Success Message: Successfully logged in
+#: 
+msgid "auth_success"
+msgstr "You have successfully logged in."
 
 #. Profile page: Legal
 #: 

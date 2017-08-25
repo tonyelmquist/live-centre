@@ -93,7 +93,7 @@ class App extends Component {
         let errorMessage = 'Something went wrong.';
         Authentication.signInAttempt(username, password, (success, e) => {
             if (success) {
-                this.props.dispatch(newNotification('Welcome back, user!', 7, 'success'));
+                this.props.dispatch(newNotification(i18next.t('auth_success'), 7, 'success'));
                 this.closeLoginModal();
                 this.setState({
                     loginModal: {
