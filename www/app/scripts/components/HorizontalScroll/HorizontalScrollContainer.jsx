@@ -16,7 +16,7 @@ class HorizontalScrollContainer extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.state.scrollAnimation !== 0){
+        if (this.state.scrollAnimation !== 0) {
             this.scrollToZero();
         }
     }
@@ -28,7 +28,7 @@ class HorizontalScrollContainer extends React.Component {
 
     render() {
         return (
-          <div className="horizontalScroll-outer" style={{ transition: '0.5s all', transform: `translate(-${this.state.scrollAnimation}px)`, height: `${this.props.height}px` }}>
+          <div className="horizontalScroll-outer" style={{ transition: '0.5s all', transform: `translate(${this.state.scrollAnimation}px)`, height: `${this.props.height}px` }}>
             <div className="horizontalScroll">
               <div className="horizontalScrollInner" >
                 {this.props.children}
