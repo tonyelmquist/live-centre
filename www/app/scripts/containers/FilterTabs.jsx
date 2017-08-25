@@ -18,7 +18,9 @@ class FilterTabs extends React.Component {
 
     componentDidMount() {
         const activeTab = this.props.activeTab;
+        this.props.changeTab(0);
         if (this.tabElements[activeTab] !== undefined && this.scroller !== undefined) {
+            console.log('updateScrollbarTo0');
             this.updateScrollBar(0, this.tabElements[activeTab].offsetWidth);
         }
         this.scrollToZero();
@@ -27,8 +29,11 @@ class FilterTabs extends React.Component {
     // Only update if the active element has changed.
     componentDidUpdate(prevProps) {
         const activeTab = this.props.activeTab;
+        let barPos = 0;
         if (prevProps.activeTab !== activeTab && this.tabElements[activeTab] !== undefined && this.scroller !== undefined) {
-            const barPos = this.tabElements[activeTab].getBoundingClientRect().left + this.scroller.scrollLeft;
+            if (activeTab !== 0) {
+                barPos = this.tabElements[activeTab].getBoundingClientRect().left + this.scroller.scrollLeft;
+            }
             const barWidth = this.tabElements[activeTab].offsetWidth;
             this.updateScrollBar(barPos, barWidth);
         }
@@ -66,7 +71,7 @@ class FilterTabs extends React.Component {
         return (
             <div className={`horizontalScroll-outer filterTabs ${this.props.colortheme}`}>
                 <div ref={(ref) => { this.scroller = ref; }} className='horizontalScroll' >
-                    <div className={'horizontalScrollInner'} style={{ transition: '0.5s all', transform: `translate(-${this.state.scrollAnimation}px)`}}>
+                    <div className={'horizontalScrollInner'} style={{ transition: '0.5s all', transform: `translate(${this.state.scrollAnimation}px)`}}>
                         {tabs}
                     </div>
                     <Motion style={{ w: spring(this.state.barWidth), p: spring(this.state.barPos) }} >
