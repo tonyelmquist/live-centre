@@ -57,6 +57,9 @@ class Player extends React.Component {
 
     onPrePlayTouch = (e) => {
         e.stopPropagation();
+        if (isDblTouchTap(e)) {
+            return;
+        }
 
         this.setState({ isPreOverlayShowing: false });
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
@@ -249,9 +252,11 @@ class Player extends React.Component {
     controlBarTimeoutTest1 = null;
 
     onTouchTap = (e) => {
+        e.preventDefault();
         if (isDblTouchTap(e)) {
-            e.preventDefault();
+            return;
         }
+
         if (this.props.orientation === Orientation.LANDSCAPE) {
             const i = document.getElementById('overlayDiv');
 
@@ -268,6 +273,12 @@ class Player extends React.Component {
             return;
         }
         if (this.props.overlayX.maximized) {
+            if (this.largeVideoPlayer.video.video.paused) {
+                this.largeVideoPlayer.video.video.play();
+            } else {
+                this.largeVideoPlayer.video.video.pause();
+            }
+
             this.props.dispatch(setControlBarVisibility(true));
             clearTimeout(this.controlBarTimeoutTest1);
             this.controlBarTimeoutTest1 = setTimeout(() => {
