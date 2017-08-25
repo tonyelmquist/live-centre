@@ -5,6 +5,13 @@ import i18next from 'i18next';
 
 class LoginModal extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            focused: false,
+        };
+    }
+
     onSubmit = () => {
         this.props.onSubmit(this.usernameInput.value, this.passwordInput.value);
         this.passwordInput.value = '';
@@ -20,14 +27,6 @@ class LoginModal extends Component {
             return true;
         }
         return false;
-    }
-
-    componentDidUpdate = () => {
-        if (this.props.isOpen === true) {
-            setTimeout(() => {
-                this.usernameInput.focus();
-            }, 200);
-        }
     }
 
     onUsernameFieldKeyDown = (e) => {
@@ -48,14 +47,31 @@ class LoginModal extends Component {
         }
     }
 
+    blurModal = () => {
+        console.log('blurring modal');
+        this.setState({
+            focused: false,
+        });
+        this.forceUpdate();
+    }
+
+    focusModal = () => {
+        console.log('focusing modal');
+        this.setState({
+            focused: true,
+        });
+        this.forceUpdate();
+    }
+
     errorStyles = {
         border: '2px solid red',
     }
 
     render() {
+        console.log('rendered modal', this.state.focused);
         return (
             <div className={`modal ${this.props.isOpen ? 'isOpen' : ''}`}>
-                <div className="inner-modal">
+                <div className="inner-modal" style={{ marginTop: this.state.focused ? 0 : 'auto' }}>
                     <FontAwesome
                         className="close-button"
                         name="close"
@@ -64,8 +80,8 @@ class LoginModal extends Component {
                     />
 
                     <h2>{i18next.t('app_login')}</h2>
-                    <input type="email" placeholder={i18next.t('placeholder_email')} ref={ref => (this.usernameInput = ref)} onKeyDown={this.onUsernameFieldKeyDown} style={this.props.error ? this.errorStyles : {}} />
-                    <input type="password" placeholder={i18next.t('placeholder_password')} ref={ref => (this.passwordInput = ref)} onKeyDown={this.onPasswordFieldKeyDown} style={this.props.error ? this.errorStyles : {}} />
+                    <input type="email" placeholder={i18next.t('placeholder_email')} ref={ref => (this.usernameInput = ref)} onBlur={this.blurModal} onFocus={this.focusModal} onKeyDown={this.onUsernameFieldKeyDown} style={this.props.error ? this.errorStyles : {}} />
+                    <input type="password" placeholder={i18next.t('placeholder_password')} ref={ref => (this.passwordInput = ref)} onBlur={this.blurModal} onFocus={this.focusModal} onKeyDown={this.onPasswordFieldKeyDown} style={this.props.error ? this.errorStyles : {}} />
                     <input type="submit" value={i18next.t('submit_login')} className="btn" onClick={this.onSubmit} />
 
                 </div>
