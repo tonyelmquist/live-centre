@@ -96,7 +96,7 @@ class HeroCarousel extends Component {
     }
 
     getMaxCharacters(){
-        const maxLettertWidth = 8;
+        const maxLettertWidth = 7;
         const windowWidth = window.innerWidth;
         const padding = 60 + 15;
         const numberOfLines = 2;

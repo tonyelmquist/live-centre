@@ -6,8 +6,15 @@ import BoxNotification from '../components/Notifications/BoxNotification';
 class NotificationManager extends Component {
 
     renderNotifications = () => {
-        return this.props.notifications.map((value, i) =>
-            (<BoxNotification
+        const messageStorage = [];
+        return this.props.notifications.map((value, i) => {
+            if (messageStorage.indexOf(value.message) < 0) {
+                messageStorage.push(value.message);
+            } else {
+                this.props.removeNotification(value.id);
+                return (<div />);
+            }
+            return (<BoxNotification
                 key={`notification-${value.id}`}
                 type={value.type}
                 text={value.message}
@@ -16,7 +23,8 @@ class NotificationManager extends Component {
                 startTime={value.start}
                 endTime={value.start + (value.seconds * 1000)}
                 // onClick={() => { console.log(value.id, 'pop clicked'); }}
-            />));
+            />);
+        });
     }
 
     render() {

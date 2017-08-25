@@ -93,7 +93,7 @@ class App extends Component {
         let errorMessage = 'Something went wrong.';
         Authentication.signInAttempt(username, password, (success, e) => {
             if (success) {
-                this.props.dispatch(newNotification(i18next.t('auth_success'), 7, 'success'));
+                this.props.dispatch(newNotification(i18next.t('auth_success'), 3.5, 'success'));
                 this.closeLoginModal();
                 this.setState({
                     loginModal: {
@@ -111,7 +111,7 @@ class App extends Component {
                     errorMessage = i18next.t('auth_user_not_found');
                 }
                 console.log(errorMessage);
-                this.props.dispatch(newNotification(errorMessage, 7, 'error'));
+                this.props.dispatch(newNotification(errorMessage, 3.5, 'error'));
                 this.setState({
                     loginModal: {
                         error: true,

@@ -20,7 +20,7 @@ class BoxNotification extends Component {
     }
 
     componentDidMount = () => {
-        const intervalId = setInterval(this.timer, 1000);
+        const intervalId = setInterval(this.timer, 100);
         // store intervalId in the state so it can be accessed later:
         this.setState({ intervalId });
     }
