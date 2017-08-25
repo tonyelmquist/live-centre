@@ -290,6 +290,7 @@ class Player extends React.Component {
             width: '42px',
             height: '42px',
             opacity: `${this.props.overlayX.maximized ? '1' : '0'}`,
+            textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
         };
 
         const settingsIconStyles = {
