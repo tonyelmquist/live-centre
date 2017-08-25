@@ -14,7 +14,9 @@ class ProductThumb extends React.Component {
     };
 
     onShowProductOverlay = () => {
-        this.props.dispatch(showProductOverlay(this.props.productID));
+        if (this.props.showProductThumb) {
+            this.props.dispatch(showProductOverlay(this.props.productID));
+        }
     };
 
     render() {
