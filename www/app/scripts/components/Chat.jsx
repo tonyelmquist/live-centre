@@ -39,6 +39,7 @@ class Chat extends Component {
             this.props.onMessageSend(this.state.message);
             this.setState({ message: '' });
             this.inputBox.value = '';
+            this.inputBox.blur();
         }
     }
 

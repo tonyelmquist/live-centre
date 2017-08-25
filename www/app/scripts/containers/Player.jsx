@@ -75,6 +75,7 @@ class Player extends React.Component {
     onCloseTouch = (e) => {
         e.stopPropagation();
         e.preventDefault();
+        document.activeElement.blur();
         this.props.dispatch(closeOverlayX());
     };
 

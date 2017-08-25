@@ -71,14 +71,14 @@ class App extends Component {
 
     dispatchOrientation = () => {
         setTimeout(() => {
-            if (window.innerWidth < window.innerHeight) {
+            if (window.orientation === 0) {
                 this.props.dispatch(setPortrait());
             }
 
-            if (window.innerWidth > window.innerHeight) {
+            if (window.orientation === -90 || window.orientation === 90) {
                 this.props.dispatch(setLandscape());
             }
-        }, 0);
+        }, 10);
     }
 
     closeTeamMemberOverlay = () => {
