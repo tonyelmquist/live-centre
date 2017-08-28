@@ -57,6 +57,7 @@ class Player extends React.Component {
 
     onPrePlayTouch = (e) => {
         e.stopPropagation();
+        e.preventDefault();
         if (isDblTouchTap(e)) {
             return;
         }
