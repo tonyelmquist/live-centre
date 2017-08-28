@@ -91,7 +91,7 @@ class LineupShirt extends Component {
 
             // Offensive Mid Field
             OMF1: {
-                x: Cols.OMG,
+                x: Cols.OMF,
                 y: Rows.CL,
             },
             OMF2: {
