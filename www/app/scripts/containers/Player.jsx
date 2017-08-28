@@ -257,7 +257,10 @@ class Player extends React.Component {
             return;
         }
 
-        if (this.props.orientation === Orientation.LANDSCAPE) {
+        const myRegex = new RegExp('wv', 'i');
+        const result = myRegex.test(navigator.userAgent.toLowerCase());
+
+        if (result && this.props.orientation === 'LANDSCAPE') {
             const i = document.getElementById('overlayDiv');
 
         // go full-screen

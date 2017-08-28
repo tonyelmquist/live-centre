@@ -109,9 +109,7 @@ class HeroCarousel extends Component {
         let count = 0;
 
         let finalCount = 0;
-        console.log(array, maxCharacters);
         for (let i = 0; i < array.length; i++) {
-            console.log(count + i);
             count += array[i].length;
             if (count + i > maxCharacters) {
                 finalCount = count + i;
