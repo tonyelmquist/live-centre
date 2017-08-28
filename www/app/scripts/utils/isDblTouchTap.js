@@ -1,4 +1,4 @@
-const dblTouchTapMaxDelay = 500;
+const dblTouchTapMaxDelay = 700;
 let latestTouchTap = {
     time: 0,
     target: null,

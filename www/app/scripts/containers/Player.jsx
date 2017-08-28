@@ -120,6 +120,7 @@ class Player extends React.Component {
     };
 
     onMinimize = () => {
+        document.activeElement.blur();
         if (this.props.orientation === Orientation.PORTRAIT) {
             if (!this.props.overlayX.maximized) {
                 this.props.dispatch(closeOverlayX());
@@ -254,6 +255,7 @@ class Player extends React.Component {
     controlBarTimeoutTest1 = null;
 
     onTouchTap = (e) => {
+        document.activeElement.blur();
         e.preventDefault();
         if (isDblTouchTap(e)) {
             return;
