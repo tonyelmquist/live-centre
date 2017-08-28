@@ -112,7 +112,7 @@ class DataOverlay extends Component {
 
     render() {
         return (
-      <div className="data-overlay">
+      <div className="data-overlay" onTouchTap={(e) => e.stopPropagation()}>
         {/*<PenaltyCard
           open={this.state.penaltyCard.isShowing}
           text={this.state.penaltyCard.text}

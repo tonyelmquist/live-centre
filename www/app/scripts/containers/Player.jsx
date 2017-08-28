@@ -57,6 +57,7 @@ class Player extends React.Component {
 
     onPrePlayTouch = (e) => {
         e.stopPropagation();
+        e.preventDefault();
         if (isDblTouchTap(e)) {
             return;
         }
@@ -85,6 +86,7 @@ class Player extends React.Component {
     onMinimizeTouch = (e) => {
         e.stopPropagation();
         e.preventDefault();
+        document.activeElement.blur();
         this.props.dispatch(minimizeOverlayX());
     };
 
@@ -257,7 +259,10 @@ class Player extends React.Component {
             return;
         }
 
-        if (this.props.orientation === Orientation.LANDSCAPE) {
+        const myRegex = new RegExp('wv', 'i');
+        const result = myRegex.test(navigator.userAgent.toLowerCase());
+
+        if (result && this.props.orientation === 'LANDSCAPE') {
             const i = document.getElementById('overlayDiv');
 
         // go full-screen
