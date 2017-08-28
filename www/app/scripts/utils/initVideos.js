@@ -139,7 +139,6 @@ const transformVideoData = (unfiltered, store) => {
                     // Therefore add the episode to the season.
                     allSeasons[seasonKey].episode = video.id;
                 } else if (allSeries[video.series]) {
-                    console.log('create season');
                     // Series exist but not season.
                     const season = createSeason(video.series, seasonKey, video.season, video.id);
                     allSeries[video.season] = seasonKey;

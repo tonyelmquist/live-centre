@@ -3,7 +3,6 @@ import Actions from '../constants/reduxConstants';
 export function popNotificationReducer(state = [], action) {
     switch (action.type) {
     case Actions.ADD_NEW_POP_NOTIFICATION:
-        console.log(action);
         return [
             ...state,
             {

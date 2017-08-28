@@ -3,7 +3,6 @@ import Actions from '../constants/reduxConstants';
 function changeNavIndex(state = 0, action) {
     switch (action.type) {
     case Actions.CHANGE_NAV_INDEX:
-        console.log('change nav index');
         return action.index;
     default:
         return state;

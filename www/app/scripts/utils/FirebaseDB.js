@@ -42,7 +42,6 @@ export default class FirebaseDB {
         const currentUser = firebase.auth().currentUser;
         if (currentUser) {
             firebase.database().ref(`users/${currentUser.uid}/profile/imageUrl`).once('value').then((snapshot) => {
-                console.log('snapshot', snapshot.val());
                 if (snapshot.val() === null) {
                     firebase.storage().ref('/ProfilePictures/default.png').getDownloadURL().then((url) => {
                         FirebaseDB.currentUserProfileImage = url;
@@ -92,7 +91,7 @@ export default class FirebaseDB {
     static writeMessageToChannel = (message) => {
         const currentUser = firebase.auth().currentUser;
         if (FirebaseDB.currentMessageChannel === null) {
-            console.error('Something went horribly wrong');
+            console.error('Something went wrong while writing message');
             return;
         }
 

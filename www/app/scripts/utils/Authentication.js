@@ -78,20 +78,14 @@ export default class Authentication {
 
                     store.dispatch(setDisplayName(profile.displayName));
 
-                    console.log('Profile info', profile);
                     FirebaseDB.readProfilePicture(() => {});
                 });
+            } else if (navigator.language.indexOf('nb') !== -1) {
+                i18next.changeLanguage('nb', () => {
+                });
             } else {
-                console.log('User is NOT signed in');
-                if (navigator.language.indexOf('nb') !== -1) {
-                    i18next.changeLanguage('nb', () => {
-                        console.log('language set to en');
-                    });
-                } else {
-                    i18next.changeLanguage('en', () => {
-                        console.log('language set to en');
-                    });
-                }
+                i18next.changeLanguage('en', () => {
+                });
             }
         });
     }
@@ -110,10 +104,9 @@ export default class Authentication {
 
     logoutAttempt = () => {
         firebase.auth().signOut().then(() => {
-            console.log('Signout Success');
             store.dispatch(logoutSuccess());
         }, (error) => {
-            console.log('ERROR Sign out', error);
+            //console.err('ERROR Sign out', error);
         });
     }
 

@@ -62,7 +62,7 @@ getData("tags").then(function(response){
     console.log("tags", response.data);
     //tagsFetched(response.data);
     //Save to store
-});*/
+}); */
 };
 
 

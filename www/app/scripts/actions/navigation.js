@@ -119,7 +119,7 @@ export function removePageTabIndex() {
 }
 
 /**
- * ACTION to go back in page tab history. 
+ * ACTION to go back in page tab history.
  *
  * @memberof Actions:Navigation
  * @returns Dispatchable action

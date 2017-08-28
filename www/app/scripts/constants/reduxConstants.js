@@ -132,9 +132,9 @@ class ReduxConstants {
     //   PROGRAMPAGE
     static get CHANGE_PROGRAMS_TAB_INDEX() { return 'CHANGE_PROGRAMS_TAB_INDEX'; }
     //   SPORTSPAGE
-    static get CHANGE_PLAYER_INDEX() { return 'CHANGE_PLAYER_INDEX' ;}
-    static get CHANGE_PLAYER_INDEX_TAB() { return 'CHANGE_PLAYER_INDEX_TAB' ;}
-    static get OPEN_SPORT_PLAYER_OVERLAY() { return 'OPEN_SPORT_PLAYER_OVERLAY' ;}
+    static get CHANGE_PLAYER_INDEX() { return 'CHANGE_PLAYER_INDEX'; }
+    static get CHANGE_PLAYER_INDEX_TAB() { return 'CHANGE_PLAYER_INDEX_TAB'; }
+    static get OPEN_SPORT_PLAYER_OVERLAY() { return 'OPEN_SPORT_PLAYER_OVERLAY'; }
     static get CLOSE_SPORT_PLAYER_OVERLAY() { return 'CLOSE_SPORT_PLAYER_OVERLAY'; }
     static get ADD_SPORT_VIDEO() { return 'ADD_SPORT_VIDEO'; }
 
