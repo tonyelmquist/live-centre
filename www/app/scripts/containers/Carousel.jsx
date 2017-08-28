@@ -60,16 +60,8 @@ class HeroCarousel extends Component {
     componentDidMount() {
         this.setVideoState();
     }
-    // shouldComponentUpdate(nextProps){
-    //     // if(nextProps.transitionStarting && this.carouselVideo){
-    //     //     //this.carouselVideo.videoEl.pause();
-    //     //     this.setState({ renderVideo: false });
-    //     // }
-    //     return true
-    // }
 
     componentDidUpdate(){
-        console.log(this.props.transitionStarting);
         if(this.props.transitionStarting && this.carouselVideo){
             //this.carouselVideo.videoEl.pause();
             this.setState({ renderVideo: false });
@@ -77,7 +69,6 @@ class HeroCarousel extends Component {
     }
 
     setVideoState = () => {
-        setTimeout(() => console.log('Wait until we start playing video.'), 3000);
         setTimeout(() => this.setState({ renderVideo: true }), 3000);
     }
 

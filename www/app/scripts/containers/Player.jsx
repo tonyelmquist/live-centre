@@ -223,14 +223,12 @@ class Player extends React.Component {
                 this.largeVideoPlayer.video.video.load();
 
                 this.videoLoaded = nextProps.video.videoUrl;
-                console.log('new video loaded', this.videoLoaded);
             }
         }
     };
 
 
     onOpenSettings = () => {
-        console.log('Open Settings');
         this.props.dispatch(isVideoSettingsOpen(true));
     };
 

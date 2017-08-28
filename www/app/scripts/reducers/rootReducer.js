@@ -14,7 +14,7 @@ import { showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo } f
 import { replayReducer as replay, highlightsReducer as highlights, handleSelection, productOverlayReducer, productThumbReducer } from './videoPlayerReducer';
 
 import programsPageTab from './pages/programsPageReducer';
-import { sports, teams, players, activeTeamTab, sportPlayerOverlay } from './pages/sportsPageReducer';
+import { sports, teams, players, sportPlayerOverlay } from './pages/sportsPageReducer';
 
 
 const rootReducer = combineReducers({
@@ -36,7 +36,7 @@ const rootReducer = combineReducers({
     searchFilterTab,
     pageTabIndex,
     series: seriesReducer,
-    sportsPage: combineReducers({ activeTeamTab, sportPlayerOverlay }),
+    sportsPage: combineReducers({ sportPlayerOverlay }),
     sportsInfo: combineReducers({ sports, teams, players }),
     tags: tagsReducer,
     seasons: seasonReducer,

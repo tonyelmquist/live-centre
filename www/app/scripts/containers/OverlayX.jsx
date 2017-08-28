@@ -17,7 +17,6 @@ class OverlayX extends Component {
     }
 
     toggleCollapseInfo = () => {
-        console.log('toggle collapse');
         this.props.dispatch(toggleCollapseInfo());
     }
 
@@ -60,7 +59,6 @@ class OverlayX extends Component {
     render() {
         if (typeof this.overlayRef !== 'undefined') {
             this.videoHeight = this.overlayRef.overlayRef.clientHeight;
-            console.log('vh', this.videoHeight);
         }
         if (typeof this.props.video.id !== 'undefined') {
             this.setChatChannel();

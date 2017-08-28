@@ -72,10 +72,13 @@ MobileMenu.propTypes = {
     openCloseMenu: PropTypes.func.isRequired,
     menuItems: PropTypes.array.isRequired,
     indicatorColor: PropTypes.string,
-    indicatorHeight: PropTypes.bool,
+    indicatorHeight: PropTypes.number,
     searchState: PropTypes.object.isRequired,
-    activeItem: PropTypes.bool,
-    menuIsOpen: PropTypes.bool.isRequired,
+    activeItem: PropTypes.number,
+    menuIsOpen: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.bool,
+    ]).isRequired,
 };
 
 export default MobileMenu;

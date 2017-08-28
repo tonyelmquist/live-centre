@@ -22,7 +22,6 @@ class HorizontalScrollContainer extends React.Component {
     }
 
     scrollToZero() {
-        console.log('animate scroll');
         setTimeout(() => this.setState({ scrollAnimation: 0 }), 300);
     }
 
@@ -43,8 +42,14 @@ class HorizontalScrollContainer extends React.Component {
 HorizontalScrollContainer.propTypes = {
     animate: PropTypes.bool,
     animateOnUpdate: PropTypes.bool,
-    height: PropTypes.string,
-    children: PropTypes.object.isRequired,
+    height: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
+    children: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array,
+    ]),
 };
 
 HorizontalScrollContainer.defaultProps = {

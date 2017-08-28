@@ -43,7 +43,10 @@ class ContentX extends Component {
 }
 
 ContentX.propTypes = {
-    chat: PropTypes.array.isRequired,
+    chat: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]).isRequired,
     onMessageSend: PropTypes.func.isRequired,
     video: PropTypes.object.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,

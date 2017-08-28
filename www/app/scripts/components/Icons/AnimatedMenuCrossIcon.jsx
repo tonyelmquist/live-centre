@@ -14,7 +14,7 @@ const AnimatedMenuCrossIcon = ({ isMenuOpen }) => {
 };
 
 AnimatedMenuCrossIcon.propTypes = {
-    isMenuOpen: PropTypes.bool.isRequired,
+    isMenuOpen: PropTypes.func.isRequired,
     // isSubPage: PropTypes.bool,
 };
 
