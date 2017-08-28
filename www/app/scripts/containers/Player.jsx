@@ -85,6 +85,7 @@ class Player extends React.Component {
     onMinimizeTouch = (e) => {
         e.stopPropagation();
         e.preventDefault();
+        document.activeElement.blur();
         this.props.dispatch(minimizeOverlayX());
     };
 
