@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import productArray from '../../constants/products';
-import { hideProductOverlay } from '../../actions/videoPlayer';
+import { hideProductOverlay, hideProductThumb } from '../../actions/videoPlayer';
 import { Orientation } from '../../constants/reduxConstants';
 
 class ProductOverlay extends Component {
@@ -10,8 +10,8 @@ class ProductOverlay extends Component {
         //Hide product overlay when overlayX is minimized. 
         if (!this.props.overlayMaximized){
             this.props.dispatch(hideProductOverlay());
+            this.props.dispatch(hideProductThumb());
         }
-    
     }
     
     product = (productID) => {
