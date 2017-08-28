@@ -27,10 +27,9 @@ class MasonryVideoTile extends Component {
             if (!this.props.filter || this.props.handlefilter(this.props.filter, videos[key])) {
                 const video = videos[key];
                 tiles.push(
-                  <div className="tile" key={`masonry-videos-${video.id}`}>
+                  <div className="tile" key={`masonry-videos-${video.id}`} onTouchTap={() => { this.props.handleTilePlay(video); }}>
                     <div className="masonry_tile_inner" >
                       <img
-                        onTouchTap={() => { this.props.handleTileOpen(video); }}
                         src={video.thumbnail}
                         alt={`${video.title}-videoTile`}
                       />
@@ -38,14 +37,6 @@ class MasonryVideoTile extends Component {
                         <div className="tile-text">
                           <h4>{video.title}</h4>
                         </div>
-                        <IconButton
-                          className="masonryPlayButton"
-                          iconStyle={styles.mediumIcon}
-                            // style={styles.medium}
-                          onTouchTap={() => { this.props.handleTilePlay(video); }}
-                        >
-                          <PlayCircleOutline hoverColor={amber300} color={fullWhite} />
-                        </IconButton>
                       </div>
                     </div>
                   </div>);

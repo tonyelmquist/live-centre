@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import { videoSelected, resetCurrentTimeInPlayer } from '../actions/videoPlayer';
 import { openOverlayX,maximizeOverlayX } from '../actions/overlayX';
 
-import MasonryContainer from '../components/Masonry/MasonryContainer';
-import MasonryVideoTile from '../components/Masonry/MasonryVideoTile';
+import MasonryContainer from '../components/masonry/MasonryContainer';
+import MasonryVideoTile from '../components/masonry/MasonryVideoTile';
 
 const styles = {
     mediumIcon: {
