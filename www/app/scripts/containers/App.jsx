@@ -146,7 +146,7 @@ class App extends Component {
           <MemoryRouter history={history}>
             <div>
               <Header />
-              <div className="main" id="main">
+              <div className={`main ${this.props.orientation}`} id="main">
                 <SearchOverlay />
                 {this.props.teamMemberOverlay.isOpen ? <SportPlayerOverlay closeTeamMemberOverlay={this.closeTeamMemberOverlay} teamMember={this.props.teamMemberOverlay.player} /> : <div />}
                     <TransitionRoutes>
@@ -179,6 +179,7 @@ App.propTypes = {
     modals: PropTypes.object.isRequired,
     authentication: PropTypes.object.isRequired,
     notifications: PropTypes.array.isRequired,
+    orientation: PropTypes.string.isRequired,
 };
 const mapStateToProps = state => ({
     notifications: state.notifications.notifications,
@@ -187,6 +188,7 @@ const mapStateToProps = state => ({
     modals: state.modals,
     authentication: state.authentication,
     teamMemberOverlay: state.sportsPage.sportPlayerOverlay,
+    orientation: state.settings.screenOrientation,
 });
 
 export default connect(mapStateToProps)(App);
