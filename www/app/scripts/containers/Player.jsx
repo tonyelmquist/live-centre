@@ -226,24 +226,6 @@ class Player extends React.Component {
                 console.log('new video loaded', this.videoLoaded);
             }
         }
-
-        const myRegex = new RegExp('wv', 'i');
-        const result = myRegex.test(navigator.userAgent.toLowerCase());
-
-        if (result && this.props.orientation === 'LANDSCAPE') {
-            const i = document.getElementById('overlayDiv');
-
-            // go full-screen
-            if (i.requestFullscreen) {
-                i.requestFullscreen();
-            } else if (i.webkitRequestFullscreen) {
-                i.webkitRequestFullscreen();
-            } else if (i.mozRequestFullScreen) {
-                i.mozRequestFullScreen();
-            } else if (i.msRequestFullscreen) {
-                i.msRequestFullscreen();
-            }
-        }
     };
 
 
@@ -261,24 +243,6 @@ class Player extends React.Component {
             return;
         }
 
-        const myRegex = new RegExp('wv', 'i');
-        const result = myRegex.test(navigator.userAgent.toLowerCase());
-
-        if (result && this.props.orientation === 'LANDSCAPE') {
-            const i = document.getElementById('overlayDiv');
-
-        // go full-screen
-            if (i.requestFullscreen) {
-                i.requestFullscreen();
-            } else if (i.webkitRequestFullscreen) {
-                i.webkitRequestFullscreen();
-            } else if (i.mozRequestFullScreen) {
-                i.mozRequestFullScreen();
-            } else if (i.msRequestFullscreen) {
-                i.msRequestFullscreen();
-            }
-            return;
-        }
         if (this.props.overlayX.maximized) {
             if (this.largeVideoPlayer.video.video.paused) {
                 this.largeVideoPlayer.video.video.play();
