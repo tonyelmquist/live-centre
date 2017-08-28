@@ -6,6 +6,14 @@ import { hideProductOverlay } from '../../actions/videoPlayer';
 import { Orientation } from '../../constants/reduxConstants';
 
 class ProductOverlay extends Component {
+    componentDidUpdate(){
+        //Hide product overlay when overlayX is minimized. 
+        if (!this.props.overlayMaximized){
+            this.props.dispatch(hideProductOverlay());
+        }
+    
+    }
+    
     product = (productID) => {
         const thisProduct = productArray.products.find(
       product => product.productID === productID,
@@ -67,6 +75,7 @@ ProductOverlay.propTypes = {
     productID: PropTypes.number.isRequired,
     orientation: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired,
+    overlayMaximized: PropTypes.bool.isRequired,
 };
 
 ProductOverlay.defaultProps = {
