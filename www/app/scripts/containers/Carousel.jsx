@@ -95,31 +95,30 @@ class HeroCarousel extends Component {
         this.refs.rightSlider.slickGoTo(currentSlide);
     }
 
-    getMaxCharacters(){
-        const maxLettertWidth = 7;
+    getMaxCharacters(maxLetterWidth) {
         const windowWidth = window.innerWidth;
         const padding = 60 + 15;
         const numberOfLines = 2;
-        const maxCharactersPRLine = (windowWidth - padding) / maxLettertWidth;
+        const maxCharactersPRLine = (windowWidth - padding) / maxLetterWidth;
         return maxCharactersPRLine * numberOfLines;
     }
 
-    getDescriptionSnippet(string) {
+    getSnippet(string, letterWidth) {
         const array = string.split(' ');
-        const maxCharacters = this.getMaxCharacters();
+        const maxCharacters = this.getMaxCharacters(letterWidth);
         let count = 0;
 
         let finalCount = 0;
-
+        console.log(array, maxCharacters);
         for (let i = 0; i < array.length; i++) {
+            console.log(count + i);
             count += array[i].length;
             if (count + i > maxCharacters) {
                 finalCount = count + i;
                 break;
             }
         }
-        
-        if (finalCount === string.length) {
+        if (finalCount === string.length || finalCount === 0) {
             return string;
         }
         return `${string.substr(0, finalCount)}...`;
@@ -195,7 +194,7 @@ class HeroCarousel extends Component {
                             this._handlePlay(video);
                         }}
                         >
-                          {video.title}
+                          {this.getSnippet(video.title, 10)}
                         </h3>
                         <p
                         className="imageDescription"
@@ -203,7 +202,7 @@ class HeroCarousel extends Component {
                                 this._handlePlay(video);
                             }}
                         >
-                          { window.innerWidth > 370 ? this.getDescriptionSnippet(video.description) : <div /> }
+                          { window.innerWidth > 370 ? this.getSnippet(video.description, 7) : <div /> }
                         </p>
                       </div>
                     </div>
