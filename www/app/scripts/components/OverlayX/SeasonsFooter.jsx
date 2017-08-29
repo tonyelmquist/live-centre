@@ -12,7 +12,6 @@ const SeasonsFooter = (props) => {
     const currentSeasonTab = 0;
     const allVideos = props.allVideos.items;
 
-
     const getSeasonsTabs = () => {
         const seasons = seasonsList.map((value, key) =>
             `${i18next.t('video_season')  } ${key + 1}` ,
@@ -21,7 +20,7 @@ const SeasonsFooter = (props) => {
         return (<FilterTabs
             tabItems={seasons}
             activeTab={0}
-            //changeTab={this.changeTab}
+            changeTab={() => (console.log('change tab'))}
             colortheme="dark"
         />);
        // return seasons;
