@@ -21,7 +21,8 @@ class ProductOverlay extends Component {
         return thisProduct;
     };
 
-    onHideProductOverlay = () => {
+    onHideProductOverlay = (e) => {
+        e.stopPropagation();
         this.props.dispatch(hideProductOverlay());
     };
 
@@ -38,6 +39,7 @@ class ProductOverlay extends Component {
           : ''} ${this.props.orientation === Orientation.PORTRAIT
           ? 'portrait'
           : ''}`}
+          onTouchTap={e => e.stopPropagation()}
       >
         <img
           src={product.thumbnailImage}
@@ -48,7 +50,7 @@ class ProductOverlay extends Component {
         <p className="product-description"> {product.description}</p>
         <div
           className="close-btn"
-          onTouchTap={() => this.onHideProductOverlay()}
+          onTouchTap={this.onHideProductOverlay}
           role="button"
           tabIndex="0"
         >
@@ -57,7 +59,7 @@ class ProductOverlay extends Component {
           <p className="product-price">Price: {product.price}</p>      
           <div
           className="buy-btn"
-          onTouchTap={() => this.onHideProductOverlay()}
+          onTouchTap={this.onHideProductOverlay}
           role="button"
           tabIndex="0"
         >

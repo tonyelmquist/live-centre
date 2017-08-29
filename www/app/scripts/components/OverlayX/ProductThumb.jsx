@@ -13,7 +13,8 @@ class ProductThumb extends React.Component {
         return thisProduct;
     };
 
-    onShowProductOverlay = () => {
+    onShowProductOverlay = (e) => {
+        e.stopPropagation();
         if (this.props.showProductThumb) {
             this.props.dispatch(showProductOverlay(this.props.productID));
         }
@@ -30,7 +31,7 @@ class ProductThumb extends React.Component {
         className={`productThumb ${this.props.showProductThumb
           ? 'highlighted'
           : ''}`}
-          onTouchTap={() => this.onShowProductOverlay()}
+          onTouchTap={this.onShowProductOverlay}
       >
         <img
           src={thisProduct.thumbnailImage}
