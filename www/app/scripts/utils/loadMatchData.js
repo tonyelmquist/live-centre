@@ -8,27 +8,27 @@ import SportRadarApi from './SportRadarApi';
 export const getMatchData = (matchId) => {
     if (typeof store.getState().sportsInfo.matches[matchId] === 'undefined') {
         SportRadarApi.getMatchLineup(`sr:match:${matchId}`, (data) => {
-            const containsLineupInfo = typeof data.lineup !== 'undefined';
+            const containsLineupInfo = typeof data.lineups !== 'undefined';
             // Construct Match Data
             const matchDataForStore = new Match({
                 id: matchId,
                 home: {
                     team: {
                         ...data.sport_event.competitors.filter(val => val.qualifier === 'home')[0],
-                        jersey: containsLineupInfo ? data.lineups.filter(val => val.team === 'home')[0].jersey : [],
+                        jersey: containsLineupInfo ? data.lineups.filter(val => val.team === 'home')[0].jersey : [{ jersey: {} }],
                     },
                     lineup: {
-                        ...containsLineupInfo ? data.lineups.filter(val => val.team === 'home')[0] : {},
+                        ...containsLineupInfo ? data.lineups.filter(val => val.team === 'home')[0] : { jersey: {} },
                         name: data.sport_event.competitors.filter(val => val.qualifier === 'home')[0].name,
                     },
                 },
                 away: {
                     team: {
                         ...data.sport_event.competitors.filter(val => val.qualifier === 'away')[0],
-                        jersey: containsLineupInfo ? data.lineups.filter(val => val.team === 'away')[0].jersey : [],
+                        jersey: containsLineupInfo ? data.lineups.filter(val => val.team === 'away')[0].jersey : [{ jersey: {} }],
                     },
                     lineup: {
-                        ...containsLineupInfo ? data.lineups.filter(val => val.team === 'away')[0] : {},
+                        ...containsLineupInfo ? data.lineups.filter(val => val.team === 'away')[0] : { jersey: {} },
                         name: data.sport_event.competitors.filter(val => val.qualifier === 'away')[0].name,
                     },
                 },

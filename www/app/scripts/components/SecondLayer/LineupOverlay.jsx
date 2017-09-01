@@ -29,7 +29,15 @@ class LineupOverlay extends Component {
     }
 
     render() {
-        console.log('Home Jersey', this.props.awayData.jersey);
+        if (
+            typeof this.props.homeData.starting_lineup === 'undefined' ||
+            typeof this.props.awayData.starting_lineup === 'undefined'
+        ) {
+            return (<div className={`lineup-overlay ${this.props.isShowing ? 'isShowing' : ''}`}>
+                <div className="close-btn" onClick={this.props.onClose} role="button" tabIndex="0"><i className="fa fa-close" /></div>
+                <p>We do not have any lineup data for this match.</p>
+            </div>);
+        }
         return (
           <div className={`lineup-overlay ${this.props.isShowing ? 'isShowing' : ''}`}>
             <div className="football-field-outline" />
@@ -61,7 +69,6 @@ class LineupOverlay extends Component {
               </div>
             </div>
 
-            <div className="close-btn" onClick={this.props.onClose} role="button" tabIndex="0"><i className="fa fa-close" /></div>
           </div>
         );
     }
