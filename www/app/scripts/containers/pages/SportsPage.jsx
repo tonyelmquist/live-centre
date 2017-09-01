@@ -27,7 +27,7 @@ class SportsPage extends React.Component {
         console.log(sports['Soccer'].thumbnail);
 
 
-        for(const key in sports){
+        for(const key in sports) {
             tiles.push(
                 <MasonryImageTile
                     key={`sports-sport-${key}`}
@@ -40,7 +40,7 @@ class SportsPage extends React.Component {
                 />,
             );
         }
-        return tiles;f
+        return tiles;
     }
 
     render() {

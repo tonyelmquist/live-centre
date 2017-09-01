@@ -182,10 +182,30 @@ const playersDefaultState = {
 
 function sports(state = sportsDefaultState, action) {
     let sportCopy = null;
+
+    // Setup ADD_SPORT_VIDEO
     if (typeof action.sport !== 'undefined') {
         sportCopy = Object.assign(Object.create(Object.getPrototypeOf(state[action.sport])), state[action.sport]);
     }
+
+    let sportsPayload = {};
+    // Setup REHYDRATE
+    if (typeof action.payload !== 'undefined' && typeof action.payload.sportsInfo !== 'undefined') {
+        sportsPayload = action.payload.sportsInfo.sports;
+        for (const iKey of Object.keys(sportsPayload)) {
+            for (const rKey of Object.keys(sportsPayload[iKey])) {
+                sportsPayload[iKey][rKey.split('_')[1]] = sportsPayload[iKey][rKey];
+            }
+            sportsPayload[iKey].videos = [];
+            sportsPayload[iKey] = new Sport(sportsPayload[iKey]);
+        }
+    }
     switch (action.type) {
+    case REHYDRATE:
+        if (typeof action.playload !== 'undefined') {
+            return sportsPayload;
+        }
+        return state;
     case Actions.ADD_SPORT_VIDEO:
         sportCopy.videos = [...sportCopy.videos, action.videoID];
         return {
@@ -197,7 +217,23 @@ function sports(state = sportsDefaultState, action) {
     }
 }
 function teams(state = teamsDefaultState, action) {
+    let teamsPayload = {};
+    // Setup REHYDRATE
+    if (typeof action.payload !== 'undefined' && typeof action.payload.sportsInfo !== 'undefined') {
+        teamsPayload = action.payload.sportsInfo.teams;
+        for (const iKey of Object.keys(teamsPayload)) {
+            for (const rKey of Object.keys(teamsPayload[iKey])) {
+                teamsPayload[iKey][rKey.split('_')[1]] = teamsPayload[iKey][rKey];
+            }
+            teamsPayload[iKey] = new Team(teamsPayload[iKey]);
+        }
+    }
     switch (action.type) {
+    case REHYDRATE:
+        if (typeof action.playload !== 'undefined') {
+            return teamsPayload;
+        }
+        return state;
     case Actions.INSERT_TEAM_DATA:
         return {
             ...state,
