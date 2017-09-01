@@ -102,7 +102,7 @@ const transformVideoData = (unfiltered, store) => {
         if (video.tags !== 'Program Masters' && video.tags !== 'IMR Test Files' && video.tags !== 'Discovery Networks' && video.tags !== 'Game Shows' && video.tags !== 'The Future Group' && video.tags !== 'Uncategorized') {
             if (typeof video.sport !== 'undefined') {
                 // console.log(video);
-                // store.dispatch(addSportVideo(video.sport, video.id));
+                store.dispatch(addSportVideo(video.sport, video.id));
                 // video.sport = video.sport;
 
                 // if(video.teams !== 'undefined'){
