@@ -12,6 +12,7 @@ class Video extends BaseClass {
             _timeline: [],
             _episode_number: '',
             _duration: 0,
+            _formattedDuration: '',
             _rating: 0,
             _tags: [],
             _title: '',
@@ -20,6 +21,8 @@ class Video extends BaseClass {
             _wishlist: false,
             _sport: '',
             _matchId: null,
+            _matchStart: 0,
+            _secondHalfStart: 0,
         }, {
             _id: data.id,
             _author: data.author,
@@ -27,6 +30,7 @@ class Video extends BaseClass {
             _timeline: data.timeline,
             _episode_number: data.episode_number,
             _duration: data.duration,
+            _formattedDuration: data.formattedDuration,
             _rating: data.rating,
             _season: data.season,
             _series: data.series,
@@ -37,6 +41,8 @@ class Video extends BaseClass {
             _wishlist: false,
             _sport: data.sport,
             _matchId: data.matchId || null,
+            _matchStart: data.matchStart,
+            _secondHalfStart: data.secondHalfStart,
         });
     }
 
@@ -138,6 +144,47 @@ class Video extends BaseClass {
     get season() {
         return this._season;
     }
+
+    set duration(duration) {
+        if (duration) {
+            this._duration = duration;
+        }
+    }
+
+    get duration() {
+        return this._duration;
+    }
+
+    set formattedDuration(formattedDuration) {
+        if (formattedDuration) {
+            this._formattedDuration = formattedDuration;
+        }
+    }
+
+    get formattedDuration() {
+        return this._formattedDuration;
+    }
+
+    set matchStart(matchStart) {
+        if (matchStart) {
+            this._matchStart = matchStart;
+        }
+    }
+
+    get matchStart() {
+        return this._matchStart;
+    }
+
+    set secondHalfStart(secondHalfStart) {
+        if (secondHalfStart) {
+            this._secondHalfStart = secondHalfStart;
+        }
+    }
+
+    get secondHalfStart() {
+        return this._secondHalfStart;
+    }
+
 
     set sport(sport) {
         if (sport) {

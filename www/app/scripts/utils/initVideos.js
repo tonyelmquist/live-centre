@@ -38,6 +38,17 @@ const isValidJSON = (jsonString) => {
     }
 };
 
+const formatDuration = (durationMilliseconds) => {
+    const ms = durationMilliseconds % 1000;
+    let s = (durationMilliseconds - ms) / 1000;
+    const secs = s % 60;
+    s = (s - secs) / 60;
+    const mins = s % 60;
+    const hrs = (s - mins) / 60;
+
+    return `${hrs}:${mins}:${secs}`;
+};
+
 const transformVideoData = (unfiltered, store) => {
     const allVideos = {};
     const allTags = {};
@@ -69,18 +80,13 @@ const transformVideoData = (unfiltered, store) => {
             channel: '',
             rating: '',
             sport: '',
+            duration: 0,
+            formattedDuration: '',
+            matchStart: 0,
+            secondHalfStart: 0,
         };
 
         const attr = data[index];
-
-
-        // if (attr.metadata.Sport !== undefined) {
-        //     console.log(attr);
-        // }
-
-       // console.log(attr.metadata.ProductTimeline);
-
-        // console.log((attr.metadata.ProductTimeline) ? JSON.parse(attr.metadata.ProductTimeline) : {});
 
         video.id = Number(attr.assetid);
         video.author = attr.metadata.UploadUserFullName;
@@ -91,6 +97,7 @@ const transformVideoData = (unfiltered, store) => {
         video.rating = attr.metadata.Rating;
         video.season = attr.metadata.Season;
         video.duration = attr.metadata.GeneralDuration;
+        video.formattedDuration = formatDuration(attr.metadata.GeneralDuration);
         video.series = attr.metadata.ProgramSeries;
         video.tags = attr.metadata.Category || uncategorized;
         video.title = attr.metadata.Title;
@@ -98,6 +105,8 @@ const transformVideoData = (unfiltered, store) => {
         video.thumbnail = attr.metadata.PosterImageURL || attr.metadata.PosterURL;
         video.videoUrl = video.id; // asset id is for now used to get url.=
         video.matchId = attr.metadata.MatchID;
+        video.matchStart = attr.metadata.MatchStart;
+        video.secondHalfStart = attr.metadata.SecondHalfStart;
 
         if (video.tags !== 'Program Masters' && video.tags !== 'IMR Test Files' && video.tags !== 'Discovery Networks' && video.tags !== 'Game Shows' && video.tags !== 'The Future Group' && video.tags !== 'Uncategorized') {
             if (typeof video.sport !== 'undefined') {
@@ -165,7 +174,7 @@ const transformVideoData = (unfiltered, store) => {
     // console.log('all seasons', allSeasons);
     store.dispatch(fetchVideosSuccess(allVideos, i));
     // store.dispatch(fetchTagsSuccess(allTags));
-    const tags = { ...allTags, ...allChannels };
+    const tags = {...allTags, ...allChannels };
     store.dispatch(fetchTagsSuccess(tags));
     store.dispatch(fetchSeriesSuccess(allSeries));
     store.dispatch(fetchSeasonsSuccess(allSeasons));
