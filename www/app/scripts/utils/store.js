@@ -38,7 +38,7 @@ const store = compose(
 
 
 // Persist Store
-persistStore(store, { whitelist: ['isUserLoggedIn', 'settings'], keyPrefix: 'state_' });
+persistStore(store, { whitelist: ['sportsInfo'], keyPrefix: 'state_' });
 
 export default store;
 

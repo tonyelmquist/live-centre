@@ -58,7 +58,7 @@ class LineupOverlay extends Component {
 
               {/* Line up*/}
               <div className={`team1-lineup ${this.state.openTeam === 1 ? '' : 'transparent'}`}>
-                {this.props.homeData.starting_lineup.map(value => 
+                {this.props.homeData.starting_lineup.map(value =>
                     <LineupShirt key={`team1-${value.jersey_number}`} clickIndicator={(value.jersey_number === 1)} text={this.props.homeData.jersey.number} base={this.props.homeData.jersey.base} sleeve={this.props.homeData.jersey.sleeve} number={value.jersey_number} position={value.position} side="L" onClick={() => this.props.onIconClick(value.id.split('sr:player:')[1])} />)
                 }
               </div>
@@ -68,6 +68,8 @@ class LineupOverlay extends Component {
                 )}
               </div>
             </div>
+
+            <div className="close-btn" onClick={this.props.onClose} role="button" tabIndex="0"><i className="fa fa-close" /></div>
 
           </div>
         );

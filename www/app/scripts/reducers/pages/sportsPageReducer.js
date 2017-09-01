@@ -1,6 +1,8 @@
+import { REHYDRATE } from 'redux-persist/constants';
 import Actions from '../../constants/reduxConstants';
 import Team from '../../classes/team';
 import Sport from '../../classes/sport';
+import TeamMember from '../../classes/teamMember';
 
 
 // import of local images. Should be replaced later with remote images.
@@ -112,7 +114,6 @@ const teamsDefaultState = {
     }),
 };
 
-
 const playersDefaultState = {
     7: {
         name: 'Cristiano Ronaldo',
@@ -178,6 +179,7 @@ const playersDefaultState = {
         actionShot: 'https://i.ytimg.com/vi/SqxCJCQSd78/maxresdefault.jpg',
     },
 };
+
 function sports(state = sportsDefaultState, action) {
     let sportCopy = null;
     if (typeof action.sport !== 'undefined') {
@@ -206,7 +208,23 @@ function teams(state = teamsDefaultState, action) {
     }
 }
 function players(state = playersDefaultState, action) {
+    let playersPayload = {};
+    // Setup REHYDRATE
+    if (typeof action.payload !== 'undefined' && typeof action.payload.sportsInfo !== 'undefined') {
+        playersPayload = action.payload.sportsInfo.players;
+        for (const iKey of Object.keys(playersPayload)) {
+            for (const rKey of Object.keys(playersPayload[iKey])) {
+                playersPayload[iKey][rKey.split('_')[1]] = playersPayload[iKey][rKey];
+            }
+            playersPayload[iKey] = new TeamMember(playersPayload[iKey]);
+        }
+    }
     switch (action.type) {
+    case REHYDRATE:
+        if (typeof action.playload !== 'undefined') {
+            return playersPayload;
+        }
+        return state;
     case Actions.INSERT_PLAYER_DATA:
         return {
             ...state,
