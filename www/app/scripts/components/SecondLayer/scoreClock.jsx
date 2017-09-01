@@ -11,7 +11,7 @@ class ScoreClock extends Component {
         };
     }
 
-    componentDidMount = () => this.startClock();
+    // componentDidMount = () => this.startClock();
     componentWillUnmount = () => this.endClock();
 
     startClock = () => this.setState({interval: setInterval(this.incrementClock, 1000)});

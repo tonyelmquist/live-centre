@@ -62,9 +62,9 @@ const teamsDefaultState = {
         logo: 'http://35.158.87.9/images/Sport/Teams/fc_ausburg_logo.png',
         img: 'http://www.spox.com/de/sport/fussball/bundesliga/1408/Bilder/fc-augsburgs-mannschaftsbild-600.jpg',
         description: 'Fußball-Club Augsburg 1907 e. V., commonly known as FC Augsburg or Augsburg, is a German football club based in Augsburg, Bavaria. FC Augsburg play in the Bundesliga, the top tier of the German football league system. The team was founded as Fußball-Klub Alemania Augsburg in 1907 and played as BC Augsburg from 1921 to 1969. With over 12,200 members, it is the largest football club in Swabian Bavaria.',
-        colors: ['#003175', '#850d37'],
+        colors: ['#FF0000', '#FFF'],
         abbr: 'FCA',
-        players: [],
+        players: [7, 11, 12],
     }),
     BorussiaDortmund: new Team({
         id: 4,
@@ -196,12 +196,22 @@ function sports(state = sportsDefaultState, action) {
 }
 function teams(state = teamsDefaultState, action) {
     switch (action.type) {
+    case Actions.INSERT_TEAM_DATA:
+        return {
+            ...state,
+            [action.id]: action.team,
+        };
     default:
         return state;
     }
 }
 function players(state = playersDefaultState, action) {
     switch (action.type) {
+    case Actions.INSERT_PLAYER_DATA:
+        return {
+            ...state,
+            [action.id]: action.data,
+        };
     default:
         return state;
     }

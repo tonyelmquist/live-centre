@@ -97,6 +97,7 @@ const transformVideoData = (unfiltered, store) => {
         video.sport = attr.metadata.Sport;
         video.thumbnail = attr.metadata.PosterImageURL || attr.metadata.PosterURL;
         video.videoUrl = video.id; // asset id is for now used to get url.=
+        video.matchId = attr.metadata.MatchID;
 
         if (video.tags !== 'Program Masters' && video.tags !== 'IMR Test Files' && video.tags !== 'Discovery Networks' && video.tags !== 'Game Shows' && video.tags !== 'The Future Group' && video.tags !== 'Uncategorized') {
             if (typeof video.sport !== 'undefined') {

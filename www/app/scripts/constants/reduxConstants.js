@@ -31,6 +31,10 @@ class ReduxConstants {
     static get FETCH_TAGS_SUCCESS() { return 'FETCH_TAGS_SUCCESS'; }
     static get FETCH_TAGS_FAILED() { return 'FETCH_TAGS_FAILED'; }
 
+    static get INSERT_MATCH_DATA() { return 'INSERT_MATCH_DATA'; }
+    static get INSERT_TEAM_DATA() { return 'INSERT_TEAM_DATA'; }
+    static get INSERT_PLAYER_DATA() { return 'INSERT_PLAYER_DATA'; }
+
     // NAVIGATION
     static get MENU_TOGGLE() { return 'MENU_TOGGLE'; }
     static get MENU_SHOW() { return 'MENU_SHOW'; }

@@ -29,36 +29,34 @@ class LineupOverlay extends Component {
     }
 
     render() {
-        const teamOneColors = [];
-        const teamTwoColors = [];
-
-        teamOneColors[0] = this.props.teamOneData.colors[0] ? this.props.teamOneData.colors[0] : 'white';
-        teamOneColors[1] = this.props.teamOneData.colors[1] ? this.props.teamOneData.colors[1] : this.props.teamOneData.colors[0];
-
-        teamTwoColors[0] = this.props.teamTwoData.colors[0] ? this.props.teamTwoData.colors[0] : 'white';
-        teamTwoColors[1] = this.props.teamTwoData.colors[1] ? this.props.teamTwoData.colors[1] : this.props.teamTwoData.colors[0];
-
+        console.log('Home Jersey', this.props.awayData.jersey);
         return (
           <div className={`lineup-overlay ${this.props.isShowing ? 'isShowing' : ''}`}>
             <div className="football-field-outline" />
             <div className="counter-skew">
               {/* Team Colours*/}
-              <div className={`team1-colors ${this.state.openTeam === 1 ? '' : 'faded'}`} onClick={this.toTeam1} role="button" tabIndex="0" />
-              <div className={`team2-colors ${this.state.openTeam === 2 ? '' : 'faded'}`} onClick={this.toTeam2} role="button" tabIndex="0" />
+              <div className={`team1-colors ${this.state.openTeam === 1 ? '' : 'faded'}`}>
+                <div className="color-1" style={{ background: `#${this.props.homeData.jersey.base}` }} />
+                <div className="color-2" style={{ background: `#${this.props.homeData.jersey.sleeve}` }} />
+              </div>
+              <div className={`team2-colors ${this.state.openTeam === 2 ? '' : 'faded'}`}>
+                <div className="color-1" style={{ background: `#${this.props.awayData.jersey.base}` }} />
+                <div className="color-2" style={{ background: `#${this.props.awayData.jersey.sleeve}` }} />
+              </div>
 
               {/* Team Names*/}
-              <div className={`team1-name ${this.state.openTeam === 1 ? '' : 'faded'}`} onClick={this.toTeam1} role="button" tabIndex="0">{this.props.teamOneData.title}</div>
-              <div className={`team2-name ${this.state.openTeam === 2 ? '' : 'faded'}`} onClick={this.toTeam2} role="button" tabIndex="0">{this.props.teamTwoData.title}</div>
+              <div className={`team1-name ${this.state.openTeam === 1 ? '' : 'faded'}`} onClick={this.toTeam1} role="button" tabIndex="0">{this.props.homeData.name}</div>
+              <div className={`team2-name ${this.state.openTeam === 2 ? '' : 'faded'}`} onClick={this.toTeam2} role="button" tabIndex="0">{this.props.awayData.name}</div>
 
               {/* Line up*/}
               <div className={`team1-lineup ${this.state.openTeam === 1 ? '' : 'transparent'}`}>
-                {this.props.teamOneData.players.map((value) => {
-                    return (<LineupShirt key={`team1-${value.number}`} clickIndicator={(value.number === 1)} colorLeft={teamOneColors[0]} colorRight={teamOneColors[1]} colorDarker="black" number={value.number} position={value.position} side="L" onClick={() => this.props.onIconClick(value)} />);
-                })}
+                {this.props.homeData.starting_lineup.map(value => 
+                    <LineupShirt key={`team1-${value.jersey_number}`} clickIndicator={(value.jersey_number === 1)} text={this.props.homeData.jersey.number} base={this.props.homeData.jersey.base} sleeve={this.props.homeData.jersey.sleeve} number={value.jersey_number} position={value.position} side="L" onClick={() => this.props.onIconClick(value.id.split('sr:player:')[1])} />)
+                }
               </div>
               <div className={`team2-lineup ${this.state.openTeam === 2 ? '' : 'transparent'}`}>
-                {this.props.teamTwoData.players.map(value =>
-                    <LineupShirt key={`team2-${value.number}`} colorLeft={teamTwoColors[0]} colorRight={teamTwoColors[1]} colorDarker="black" number={value.number} position={value.position} side="R" onClick={() => this.props.onIconClick(value)} />,
+                {this.props.awayData.starting_lineup.map(value =>
+                    <LineupShirt key={`team2-${value.jersey_number}`} text={this.props.awayData.jersey.number} base={this.props.awayData.jersey.base} sleeve={this.props.awayData.jersey.sleeve} number={value.jersey_number} position={value.position} side="R" onClick={() => this.props.onIconClick(value.id.split('sr:player:')[1])} />,
                 )}
               </div>
             </div>
@@ -75,8 +73,8 @@ LineupOverlay.defaultProps = {
 };
 
 LineupOverlay.propTypes = {
-    teamOneData: PropTypes.object.isRequired,
-    teamTwoData: PropTypes.object.isRequired,
+    homeData: PropTypes.object.isRequired,
+    awayData: PropTypes.object.isRequired,
     onClose: PropTypes.func.isRequired,
     onIconClick: PropTypes.func.isRequired,
     teamToDisplay: PropTypes.number,

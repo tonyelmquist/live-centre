@@ -2,7 +2,7 @@
     position: absolute;
     width: 70%;
     height: 120px;
-    top: 50%;
+    top: 52%;
     left: 50%;
     transition: .5s all;
     transform: translate(-50%, -50%) scale(0);
@@ -14,7 +14,7 @@
     }
 
     &.isModalOpen {
-        top: 30%;
+        top: 42%;
         .player-modal {
             opacity: 1;
         }
@@ -43,7 +43,6 @@
     .player-info {
         background: rgba(2, 12, 28, .7);
         transform: skew(-10deg);
-        border-right: 8px solid white;
         position: absolute;
         right: 0;
         top: 0;
@@ -59,6 +58,9 @@
             font-weight: bold;
             padding-bottom: 10px;
             font-size: 21px;
+        }
+        .player-info-name {
+            padding-bottom: 6px;
         }
 
         .player-info-team, .player-info-position  {
@@ -102,7 +104,6 @@
     }
 
     .player-modal {
-        background: rgba(2,12,28,0.7);
         position: absolute;
         top: 100%;
         left: -25px;
@@ -115,6 +116,41 @@
         color: white;
         padding: 20px 25px;
         box-sizing: border-box;
+
+        .player-stats {
+            background: rgba(2, 12, 28, .7);
+            width: 34%;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: bold;
+
+            &.player-matches_played {
+                position: absolute;
+                top: 0;
+                left: 29%;
+            }
+
+            &.player-red_cards {
+                background: rgba(237, 28, 36, .7);
+                position: absolute;
+                top: 56px;
+                left: 29%;
+            }
+
+            &.player-goals_scored {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            &.player-yellow_cards {
+                background: rgba(247, 147, 30, .8);
+                position: absolute;
+                top: 56px;
+                right: 0;
+            }
+        }
     }
 }
 

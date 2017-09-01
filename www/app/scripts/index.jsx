@@ -10,6 +10,7 @@ import initLang from './utils/i18nextInit';
 import store from './utils/store';
 import initVideos from './utils/initVideos';
 import initFirebase from './utils/initFirebase';
+import { getMatchData } from './utils/loadMatchData';
 import Authentication from './utils/Authentication';
 // import FirebaseDB from './utils/FirebaseDB';
 // import io from 'socket.io-client';
@@ -42,7 +43,7 @@ Authentication.init();
 window.jsBridge = {};
 
 window.jsBridge.onBackPressed = () => {
-    //window.alert('you pressed the back button! now do with this what you will...');
+    // window.alert('you pressed the back button! now do with this what you will...');
 };
 
 // Custom theme

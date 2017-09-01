@@ -142,3 +142,26 @@ export function fetchTagsSuccess(items) {
 export function fetchTagsFailed() {
     return { type: Actions.FETCH_TAGS_FAILED };
 }
+
+/**
+ * Action to indicate failure of fetching tags
+ *
+ * @memberof Actions:FetchData
+ * @export
+ * @returns Dispatchable Action
+ */
+export function insertMatchData(id, data) {
+    return { type: Actions.INSERT_MATCH_DATA, id, data };
+}
+
+/**
+ * Action to indicate failure of fetching tags
+ *
+ * @memberof Actions:FetchData
+ * @export
+ * @returns Dispatchable Action
+ */
+export function insertPlayerData(id, data) {
+    return { type: Actions.INSERT_PLAYER_DATA, id, data };
+}
+

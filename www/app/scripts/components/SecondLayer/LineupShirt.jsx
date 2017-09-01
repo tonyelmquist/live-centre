@@ -11,10 +11,6 @@ class LineupShirt extends Component {
             clicked: false,
         };
 
-        const GKPositions = [12.5, 87.5];
-        const CBPositions = [25, 75];
-        const SSPositions = [80, 20];
-
         const Rows = {
             LW: 15,
             LMW: 20,
@@ -38,25 +34,25 @@ class LineupShirt extends Component {
         };
 
         this.positions = {
-            GK: {
+            'Goalkeeper': {
                 x: Cols.GK,
                 y: Rows.C,
             },
-            SS: {
+            'Striker': {
                 x: Cols.S,
                 y: Rows.C,
             },
 
             // Center Backs
-            CB1: {
+            'Left back': {
                 x: Cols.CB,
                 y: Rows.CL,
             },
-            CB2: {
+            'Central defender': {
                 x: Cols.CB,
                 y: Rows.C,
             },
-            CB3: {
+            'Right back': {
                 x: Cols.CB,
                 y: Rows.CR,
             },
@@ -76,15 +72,15 @@ class LineupShirt extends Component {
             },
 
             // Central Mid Field
-            CMF1: {
+            'Left winger': {
                 x: Cols.CMF,
                 y: Rows.CL,
             },
-            CMF2: {
+            'Central midfielder': {
                 x: Cols.CMF,
                 y: Rows.C,
             },
-            CMF3: {
+            'Right winger': {
                 x: Cols.CMF,
                 y: Rows.CR,
             },
@@ -166,12 +162,12 @@ class LineupShirt extends Component {
                     onClick={this.onClick}
                 >
                     <g>
-                    <polygon fill={this.props.colorLeft} points="0,0.6 0,5.8 2.8,5.8 2.8,17.5 9.6,17.5 9.6,5.8 9.6,5.7 9.6,3.1 12.1,0.6 " />
-                    <polygon fill={this.props.colorRight} points="19.2,0.6 19.2,5.8 16.4,5.8 16.4,17.5 9.6,17.5 9.6,5.8 9.6,5.7 9.6,3.3 11.9,0.6 " />
-                    <path fill="#FFFFFF" d="M9.6,3.7L6.3,0.5h6.5L9.6,3.7z M7.7,1.1l1.9,1.8l1.8-1.8H7.7z" />
-                    <rect fill={this.props.colorDarker} x="0" y="5.1" width="2.8" height="0.8" />
-                    <rect fill={this.props.colorDarker} x="16.4" y="5.1" width="2.8" height="0.8" />
-                    <text fill={this.getTextColor()} x="9.5" y="13" fontSize="9" textAnchor="middle">{this.props.number}</text>
+                    <polygon fill={`#${this.props.base}`} points="0,0.6 0,5.8 2.8,5.8 2.8,17.5 9.6,17.5 9.6,5.8 9.6,5.7 9.6,3.1 12.1,0.6 " />
+                    <polygon fill={`#${this.props.base}`} points="19.2,0.6 19.2,5.8 16.4,5.8 16.4,17.5 9.6,17.5 9.6,5.8 9.6,5.7 9.6,3.3 11.9,0.6 " />
+                    <path fill={`#${this.props.sleeve}`} d="M9.6,3.7L6.3,0.5h6.5L9.6,3.7z M7.7,1.1l1.9,1.8l1.8-1.8H7.7z" />
+                    <rect fill={`#${this.props.sleeve}`} x="0" y="5.1" width="2.8" height="0.8" />
+                    <rect fill={`#${this.props.sleeve}`} x="16.4" y="5.1" width="2.8" height="0.8" />
+                    <text fill={`#${this.props.text}`} x="9.5" y="14" fontSize="9" textAnchor="middle">{this.props.number}</text>
                     </g>
                 </svg>
           </div>
@@ -187,9 +183,9 @@ LineupShirt.defaultProps = {
 };
 
 LineupShirt.propTypes = {
-    colorLeft: PropTypes.string.isRequired,
-    colorRight: PropTypes.string.isRequired,
-    colorDarker: PropTypes.string.isRequired,
+    base: PropTypes.string.isRequired,
+    sleeve: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
     position: PropTypes.string.isRequired,
     side: PropTypes.string.isRequired,

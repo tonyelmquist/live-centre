@@ -73,33 +73,28 @@
         height: 100%;
         overflow: hidden;
         transition: .3s all;
-        &.faded {
-            opacity: .5;
-        }
-    }
-
-    .team1-colors {
-        background: white;
-    }
-
-    .team2-colors {
-        left: auto;
-        right: 0;
-        &:before, &:after  {
-            content: '';
+        .color-1, .color-2  {
+            display: inline-block;
             height: 50%;
             width: 100%;
-            background: #003175;
             position: absolute;
             top: 0;
             left: 0;
         }
 
-        &:after {
-            background: #850D37;
-            top: auto;
-            bottom: 0;
+        .color-2 {
+            top: 50%;
         }
+
+        &.faded {
+            opacity: .5;
+        }
+    }
+
+    .team2-colors {
+        left: auto;
+        right: 0;
+        
     }
 
     .team1-lineup, .team2-lineup {

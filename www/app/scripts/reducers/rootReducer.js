@@ -6,6 +6,7 @@ import { videosReducer, seasonReducer, seriesReducer, tagsReducer } from './fetc
 import { headerMenuState, drawerMenuState, pageTabIndex } from './navigationReducer';
 import overlayX from './overlayXReducer';
 import { notificationReducer, popNotificationReducer } from './notificationReducer';
+import matches from './matchDataReducer';
 import { search, searchFilterTab } from './searchReducer';
 import dataOverlayReducer from './secondLayerReducer';
 import modalsReducer from './modalsReducer';
@@ -37,7 +38,7 @@ const rootReducer = combineReducers({
     pageTabIndex,
     series: seriesReducer,
     sportsPage: combineReducers({ sportPlayerOverlay }),
-    sportsInfo: combineReducers({ sports, teams, players }),
+    sportsInfo: combineReducers({ sports, teams, players, matches }),
     tags: tagsReducer,
     seasons: seasonReducer,
     notifications: combineReducers({

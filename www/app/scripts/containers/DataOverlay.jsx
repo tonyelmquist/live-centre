@@ -16,6 +16,7 @@ import HighlightsRow from '../components/VideoPlayer/HighlightsRow';
 import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
 import { removePopNotification, newPopNotification } from '../actions/notifications';
 import { hideHighlights, isVideoSettingsOpen } from '../actions/videoPlayer';
+import { getMatchData, getPlayerData } from '../utils/loadMatchData';
 
 class DataOverlay extends Component {
     constructor(props) {
@@ -74,12 +75,24 @@ class DataOverlay extends Component {
         });
     }
 
-    moveToPlayerInfo = (player) => {
-        this.setState({
-            selectedPlayer: player,
-            isLineupShowing: false,
-            isPlayerInfoShowing: true,
-        });
+    moveToPlayerInfo = (playerId) => {
+        if (typeof this.props.sportsInfo.players[playerId] === 'undefined') {
+            console.log('sport info undefined, getting data');
+            getPlayerData(playerId, (player) => {
+                this.setState({
+                    selectedPlayer: player,
+                    isLineupShowing: false,
+                    isPlayerInfoShowing: true,
+                });
+            });
+        } else {
+            console.log('Data for Player', this.props.sportsInfo.players[playerId]);
+            this.setState({
+                selectedPlayer: this.props.sportsInfo.players[playerId],
+                isLineupShowing: false,
+                isPlayerInfoShowing: true,
+            });
+        }
     }
 
     displayLineup = (teamToDisplay) => {
@@ -99,6 +112,7 @@ class DataOverlay extends Component {
     }
 
     getTeamDetails = (team) => {
+        console.log('team', team);
         if (typeof this.props.sportsInfo.teams[team] === 'undefined') {
             console.warn('Attempted to get no existant team - ', team, ' - check line 112 DataOverlay');
             return {};
@@ -107,23 +121,72 @@ class DataOverlay extends Component {
         return this.props.sportsInfo.teams[team];
     }
 
+    getHomeTeam = () => {
+        if (typeof this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
+            return {
+                jersey: {},
+            };
+        }
+        return this.props.sportsInfo.matches[this.props.selectedVideo.matchId].home.team;
+    }
+
+    getAwayTeam = () => {
+        if (typeof this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
+            return {
+                jersey: {},
+            };
+        }
+        return this.props.sportsInfo.matches[this.props.selectedVideo.matchId].away.team;
+    }
+
+    getHomeLineup = () => {
+        if (typeof this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
+            return {
+                jersey: {},
+                starting_lineup: [],
+            };
+        }
+        return this.props.sportsInfo.matches[this.props.selectedVideo.matchId].home.lineup;
+    }
+
+    getAwayLineup = () => {
+        if (typeof this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
+            return {
+                jersey: {},
+                starting_lineup: [],
+            };
+        }
+        return this.props.sportsInfo.matches[this.props.selectedVideo.matchId].away.lineup;
+    }
+
     teamOne = 'Barcelona';
-    teamTwo = 'RealMadrid';
+    teamTwo = 'Barcelona';
+
+    getOverlayData = () => {
+        // If this videos match data isn't in the store, retreive it
+        if (typeof this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
+            getMatchData(this.props.selectedVideo.matchId);
+        } else {
+            console.log('Data for Match', this.props.sportsInfo.matches[this.props.selectedVideo.matchId]);
+        }
+    }
+
 
     render() {
+        this.getOverlayData();
         return (
-      <div className="data-overlay" onTouchTap={(e) => e.stopPropagation()}>
-        {/*<PenaltyCard
+      <div className="data-overlay" onTouchTap={e => e.stopPropagation()}>
+        {/* <PenaltyCard
           open={this.state.penaltyCard.isShowing}
           text={this.state.penaltyCard.text}
           color={this.state.penaltyCard.color}
         />*/}
         <ScoreOverlay
           score={this.props.score}
-          teamOneData={this.getTeamDetails(this.teamOne)}
-          teamTwoData={this.getTeamDetails(this.teamTwo)}
-          onTeamOneClick={() => this.displayLineup(1)}
-          onTeamTwoClick={() => this.displayLineup(2)}
+          homeData={this.getHomeTeam()}
+          awayData={this.getAwayTeam()}
+          onHomeTeamClick={() => this.displayLineup(1)}
+          onAwayTeamClick={() => this.displayLineup(2)}
         />
         <PopIndicatorManager
           removeNotification={id => this.removeNotification(id)}
@@ -131,8 +194,8 @@ class DataOverlay extends Component {
         />
         <LineupOverlay
           isShowing={this.state.isLineupShowing}
-          teamOneData={this.getTeamDetails(this.teamOne)}
-          teamTwoData={this.getTeamDetails(this.teamTwo)}
+          homeData={this.getHomeLineup()}
+          awayData={this.getAwayLineup()}
           onClose={this.onLineupClose}
           teamToDisplay={this.state.teamToDisplay}
           onIconClick={this.moveToPlayerInfo}
@@ -173,6 +236,7 @@ DataOverlay.propTypes = {
     highlights: PropTypes.object.isRequired,
     sportsInfo: PropTypes.object.isRequired,
     popNotifications: PropTypes.array.isRequired,
+    selectedVideo: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -183,6 +247,7 @@ const mapStateToProps = state => ({
     sportsInfo: state.sportsInfo,
     popNotifications: state.notifications.popNotifications,
     playback: state.playback,
+    selectedVideo: state.playback.video,
 });
 
 export default connect(mapStateToProps)(DataOverlay);

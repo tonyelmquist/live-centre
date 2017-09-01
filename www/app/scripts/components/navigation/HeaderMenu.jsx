@@ -28,7 +28,6 @@ const HeaderMenu = (props) => {
     };
 
     const printLocation = () => {
-        console.log(props.locationName);
         if (props.locationName === '') {
             return (<FlatButton className="menuItem logo" style={{ margin: 7 }} label="IMR" />);
         }

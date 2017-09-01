@@ -19,6 +19,7 @@ class Video extends BaseClass {
             _videoUrl: '',
             _wishlist: false,
             _sport: '',
+            _matchId: null,
         }, {
             _id: data.id,
             _author: data.author,
@@ -35,10 +36,8 @@ class Video extends BaseClass {
             _videoUrl: data.video_url,
             _wishlist: false,
             _sport: data.sport,
+            _matchId: data.matchId || null,
         });
-
-        // this.hasMany(Tag);
-        // this.belongsTo(Season);
     }
 
     get id() {
@@ -156,6 +155,14 @@ class Video extends BaseClass {
 
     get wishlist() {
         return this._wishlist;
+    }
+
+    set matchId(matchId) {
+        this._matchId = matchId;
+    }
+
+    get matchId() {
+        return this._matchId;
     }
 
 }

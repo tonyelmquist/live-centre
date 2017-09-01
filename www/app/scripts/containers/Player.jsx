@@ -219,6 +219,7 @@ class Player extends React.Component {
             this.largeVideoPlayer !== null
         ) {
             if (this.videoLoaded !== nextProps.video.videoUrl) {
+                
                 this.setState({ isPreOverlayShowing: true });
                 this.largeVideoPlayer.video.video.load();
 
@@ -338,7 +339,8 @@ class Player extends React.Component {
         <ProductOverlay overlayMaximized={this.props.overlayX.maximized} productID={this.props.productID} showProductOverlay={this.props.showProductOverlay} />
         {this.props.orientation === Orientation.LANDSCAPE &&
         typeof this.largeVideoPlayer !== 'undefined' &&
-        !this.state.isPreOverlayShowing
+        !this.state.isPreOverlayShowing &&
+        this.props.video.matchId !== null
           ? <DataOverlay />
           : ''}
       </div>

@@ -11,7 +11,7 @@ class ScoreOverlay extends Component {
             clicked: false,
         };
     }
-    
+
     onTeamOneClick = () => {
         this.props.onTeamOneClick();
         this.setState({
@@ -20,46 +20,37 @@ class ScoreOverlay extends Component {
     }
 
     render() {
-        const teamOneColors = [];
-        const teamTwoColors = [];
-
-        teamOneColors[0] = this.props.teamOneData.colors[0] ? this.props.teamOneData.colors[0] : 'white';
-        teamOneColors[1] = this.props.teamOneData.colors[1] ? this.props.teamOneData.colors[1] : this.props.teamOneData.colors[0];
-
-        teamTwoColors[0] = this.props.teamTwoData.colors[0] ? this.props.teamTwoData.colors[0] : 'white';
-        teamTwoColors[1] = this.props.teamTwoData.colors[1] ? this.props.teamTwoData.colors[1] : this.props.teamTwoData.colors[0];
-
         return (
           <div className="score-overlay-container">
             <div className="counter-skew">
               <div className="team1-score">
-                {this.props.score.team1Score}
+                0
               </div>
 
               <div className="team1-icon">
-                <div className="team-icon-upper" style={{ background: teamOneColors[0] }} />
-                <div className="team-icon-lower" style={{ background: teamOneColors[1] }} />
+                <div className="team-icon-upper" style={{ background: `#${this.props.homeData.jersey.base || 'fff'}` }} />
+                <div className="team-icon-lower" style={{ background: `#${this.props.homeData.jersey.sleeve || 'fff'}` }} />
               </div>
 
               {this.state.clicked ? <div /> : <div className="click-indicator-text" />}
 
-              <div className="team1-name" onClick={this.onTeamOneClick} role="button" tabIndex="0">
-                  {this.props.teamOneData.abbr}
+              <div className="team1-name" onTouchTap={this.props.onHomeTeamClick} role="button" tabIndex="0">
+                  {this.props.homeData.abbreviation || '...' }
               </div>
 
               <ScoreClock />
 
-              <div className="team2-name" onClick={this.props.onTeamTwoClick} role="button" tabIndex="0">
-                  {this.props.teamTwoData.abbr}
+              <div className="team2-name" onTouchTap={this.props.onAwayTeamClick} role="button" tabIndex="0">
+                  {this.props.awayData.abbreviation || '...'}
               </div>
 
               <div className="team2-icon">
-                <div className="team-icon-upper" style={{ background: teamTwoColors[0] }} />
-                <div className="team-icon-lower" style={{ background: teamTwoColors[1] }} />
+                <div className="team-icon-upper" style={{ background: `#${this.props.awayData.jersey.base || 'fff'}` }} />
+                <div className="team-icon-lower" style={{ background: `#${this.props.awayData.jersey.sleeve || 'fff'}` }} />
               </div>
 
               <div className="team2-score">
-                {this.props.score.team2Score}
+                0
               </div>
             </div>
           </div>
@@ -68,10 +59,10 @@ class ScoreOverlay extends Component {
 }
 
 ScoreOverlay.propTypes = {
-    teamOneData: PropTypes.object.isRequired,
-    teamTwoData: PropTypes.object.isRequired,
-    onTeamOneClick: PropTypes.func.isRequired,
-    onTeamTwoClick: PropTypes.func.isRequired,
+    homeData: PropTypes.object.isRequired,
+    awayData: PropTypes.object.isRequired,
+    onHomeTeamClick: PropTypes.func.isRequired,
+    onAwayTeamClick: PropTypes.func.isRequired,
     score: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
