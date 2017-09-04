@@ -17,6 +17,10 @@ class Overlay extends React.Component {
     offscreenY = 320;
     minimizedY = 190;
 
+    onScroll = (e) => {
+        e.stopPropagation();
+    }
+
     render() {
         const deviceHeight = window.innerHeight;
         const deviceWidth = window.innerWidth;
@@ -108,6 +112,7 @@ class Overlay extends React.Component {
                         transform: `translate3d(0, ${y}%, 0) scale3d(${scale}, ${scale}, 1)`,
                     }}
                     id="overlayDiv"
+                    onScroll={this.onScroll}
                 >
                     {/* <div className="overlay-header" style={styles.overlayHeaderStyle}>
                         <IconButton
