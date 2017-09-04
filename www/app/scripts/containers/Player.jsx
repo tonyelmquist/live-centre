@@ -17,6 +17,7 @@ import '../../../node_modules/video-react/dist/video-react.css';
 import ProductThumb from '../components/OverlayX/ProductThumb';
 import ProductOverlay from '../components/OverlayX/ProductOverlay';
 import isDblTouchTap from '../utils/isDblTouchTap';
+import VideoSplashContainer from '../components/VideoPlayer/VideoSplashContainer';
 
 const tickProximityInterval = 5000;
 
@@ -335,13 +336,14 @@ class Player extends React.Component {
                 >
               movie_filter
               </IconButton> */}
+              
         <ProductThumb productID={this.props.productID} showProductThumb={this.props.showProductThumb} onTouchTap={() => this.onShowProductOverlay()} />
         <ProductOverlay overlayMaximized={this.props.overlayX.maximized} productID={this.props.productID} showProductOverlay={this.props.showProductOverlay} />
         {this.props.orientation === Orientation.LANDSCAPE &&
         typeof this.largeVideoPlayer !== 'undefined' &&
         !this.state.isPreOverlayShowing &&
         this.props.video.matchId !== null
-          ? <DataOverlay />
+          ?  <div><DataOverlay /><VideoSplashContainer /></div>
           : ''}
       </div>
         );

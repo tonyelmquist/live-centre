@@ -4,6 +4,7 @@ import i18next from 'i18next';
 import PropTypes from 'prop-types';
 import { MemoryRouter, Route } from 'react-router';
 //import { BrowserRouter } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
 import createHistory from 'history/createBrowserHistory';
 // Pages
 import HomePage from './pages/HomePage';
@@ -145,6 +146,17 @@ class App extends Component {
         return (
           <MemoryRouter history={history}>
             <div>
+            <MediaQuery minWidth={800}>
+            <div style={{width: '100%', height: '100vh', position: 'absolute', zIndex: 9999, color: 'white', margin: '0 10', textAlign: 'center', backgroundColor: 'black'}}>
+                <h1>IMR Media Center.</h1> 
+                <p>Not available for desktop yet.</p> 
+                <p>Please open the site on a smaller device.</p>
+                <p>In chrome you can also display the site as a phone, 
+                    by right clicking and click inspect. <br />
+                    Then choose a phone from the dropdown menu at the top. <br/> 
+                    After inspecting you also need to refresh the page to remove the scrollbars.</p>
+            </div>
+            </MediaQuery>
               <Header />
               <div className={`main ${this.props.orientation}`} id="main">
                 <SearchOverlay />
