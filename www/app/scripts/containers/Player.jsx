@@ -340,15 +340,13 @@ class Player extends React.Component {
                 >
               movie_filter
               </IconButton> */}
-        
-        <VideoSplashContainer />
         <ProductThumb productID={this.props.productID} showProductThumb={this.props.showProductThumb} onTouchTap={() => this.onShowProductOverlay()} />
         <ProductOverlay overlayMaximized={this.props.overlayX.maximized} productID={this.props.productID} showProductOverlay={this.props.showProductOverlay} />
         {this.props.orientation === Orientation.LANDSCAPE &&
         typeof this.largeVideoPlayer !== 'undefined' &&
         !this.state.isPreOverlayShowing &&
         this.props.video.matchId !== null
-          ?  <div><DataOverlay /></div>
+          ?  <div><DataOverlay /><VideoSplashContainer /></div>
           : ''}
       </div>
         );

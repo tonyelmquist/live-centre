@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import VideoSplash from './VideoSplash';
 
 import { Motion, spring, TransitionMotion } from 'react-motion';
-import Scroll from 'react-scroll'; // Imports all Mixins
 
 class VideoSplashContainer extends React.Component {
     constructor(props) {
@@ -29,13 +28,13 @@ class VideoSplashContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('splashInFocus:', this.state.splashInFocus);
+        //console.log('splashInFocus:', this.state.splashInFocus);
         // IF preventautoscroll, wait til until it is Not preventautoscroll
             // then if new item, scroll down, 
             // if we have hidden the items, scroll down (reset).
         if (!this.state.preventAutoScroll) {
             if (this.state.currentSplash !== this.state.splashInFocus) {
-                console.log('scroll To Bottom', this.state.currentSplash);
+                //console.log('scroll To Bottom', this.state.currentSplash);
                 this.scrollToBottom();
             }
             // } else {
@@ -47,7 +46,7 @@ class VideoSplashContainer extends React.Component {
             // } else {
             //     //console.log('dont scroll to bottom');
             // }
-        } else { console.log('prevent autoscroll'); }
+        } 
     }
 
     pushAllMessages = () => {
@@ -80,10 +79,13 @@ class VideoSplashContainer extends React.Component {
     easeOutCubic = (currentIteration, startValue, changeInValue, totalIterations) => changeInValue * (Math.pow(currentIteration / totalIterations - 1, 3) + 1) + startValue;
 
     moveScroller = (from, to, currentIteration) => {
-        const totalIterations = 600; // Max duration.
-        const MPS = 10;
         const changeInValue = to - from;
+        let totalIterations;
+        changeInValue < 100 ? totalIterations = changeInValue * 3 : totalIterations = 600; // total iteration + frames per milisec = time spent. 
+        const FPM = 10; //How smooth/ hard the animation will be. 
+        
         const newPos = this.easeOutCubic(currentIteration, from, changeInValue, totalIterations);
+       // console.log(newPos);
         if (currentIteration >= totalIterations) {
             this.scroller.scrollTop = newPos;
             this.setState({isScrolling: false});
@@ -92,8 +94,8 @@ class VideoSplashContainer extends React.Component {
         this.scroller.scrollTop = newPos;
 
         setTimeout(() => {
-            this.moveScroller(from, to, currentIteration + MPS);
-        }, MPS);
+            this.moveScroller(from, to, currentIteration + FPM);
+        }, FPM);
     }
 
     animateScrollBarFromTo = (from, to) => {
@@ -111,7 +113,7 @@ class VideoSplashContainer extends React.Component {
         }
         //Check if we need to scroll (if the items height exceed the height of the window)
         //Wait 500 milisec so we know the new item has been put into the scrollbar to prevent jumping.
-        if ((window.innerHeight + padding) <= scroller.clientHeight) {
+        if (window.innerHeight <= (scroller.clientHeight + padding)) {
             setTimeout(() => {
                 //Scroll from where the scroller is now to the full height (bottom) of the page. 
                 const scrollFrom = this.scroller.scrollTop;
@@ -166,6 +168,7 @@ class VideoSplashContainer extends React.Component {
     }
 
     render() {
+        // const { messages, currentSplash } = this.state;
         const { messages, currentSplash } = this.state;
         const style = {
             position: 'absolute',
@@ -176,6 +179,7 @@ class VideoSplashContainer extends React.Component {
             maxHeight: '100%',
             overflow: 'scroll',
         };
+
 
         return (
             <div
