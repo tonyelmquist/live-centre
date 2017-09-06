@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import authenticationReducer from './authenticationReducer';
 import chat from './chatReducer';
 import { videosReducer, seasonReducer, seriesReducer, tagsReducer } from './fetchDataReducer';
-import { headerMenuState, drawerMenuState, pageTabIndex } from './navigationReducer';
+import { headerMenuState, drawerMenuState, pageTabIndex, shadeReducer, userMenuReducer } from './navigationReducer';
 import overlayX from './overlayXReducer';
 import { notificationReducer, popNotificationReducer } from './notificationReducer';
 import matches from './matchDataReducer';
@@ -36,6 +36,8 @@ const rootReducer = combineReducers({
     search,
     searchFilterTab,
     pageTabIndex,
+    shade: shadeReducer,
+    userMenu: userMenuReducer,
     series: seriesReducer,
     sportsPage: combineReducers({ sportPlayerOverlay }),
     sportsInfo: combineReducers({ sports, teams, players, matches }),

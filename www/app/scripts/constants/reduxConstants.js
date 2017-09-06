@@ -51,6 +51,9 @@ class ReduxConstants {
     static get BOTTOM_NAV_HIDE() { return 'BOTTOM_NAV_HIDE'; }
     static get CHANGE_NAV_INDEX() { return 'CHANGE_NAV_INDEX'; }
 
+    static get SWITCH_SHADE() { return 'SWITCH_SHADE'; }
+    static get SWITCH_USER_MENU() { return 'SWITCH_USER_MENU'; }
+
     // OVERLAY-X
     static get OVERLAY_X_OPEN() { return 'OVERLAY_X_OPEN'; }
     static get OVERLAY_X_CLOSE() { return 'OVERLAY_X_CLOSE'; }

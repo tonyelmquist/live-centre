@@ -12,15 +12,18 @@ export default class Authentication {
             if (user) {
                 console.log('User is signed in');
                 // User is signed in.
-                const displayName = user.displayName;
                 const email = user.email;
                 const emailVerified = user.emailVerified;
-                const photoURL = user.photoURL;
                 const isAnonymous = user.isAnonymous;
                 const uid = user.uid;
                 const providerData = user.providerData;
 
-                store.dispatch(loginSuccess({ uid, email, emailVerified, isAnonymous, displayName, photoURL, providerData }));
+                FirebaseDB.readProfilePicture((url) => {
+                    FirebaseDB.readDisplayName((name) => {
+                        store.dispatch(loginSuccess({ uid, email, emailVerified, isAnonymous, displayName: name, photoURL: url, providerData }));
+                    });
+                });
+                
 
                 // Set settings
                 let settings = {

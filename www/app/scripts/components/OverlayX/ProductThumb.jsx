@@ -36,7 +36,7 @@ class ProductThumb extends React.Component {
         <img
           src={thisProduct.thumbnailImage}
           alt={thisProduct.description}
-          productId={thisProduct.productID}
+          key={thisProduct.productID}
         />
       </div>
     );

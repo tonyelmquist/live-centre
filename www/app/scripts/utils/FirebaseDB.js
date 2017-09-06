@@ -57,6 +57,19 @@ export default class FirebaseDB {
         }
     }
 
+    static readDisplayName = (callback) => {
+        const currentUser = firebase.auth().currentUser;
+        if (currentUser) {
+            firebase.database().ref(`users/${currentUser.uid}/profile/displayName`).once('value').then((snapshot) => {
+                if (snapshot.val() === null) {
+                    callback('Anon');
+                } else {
+                    callback(snapshot.val());
+                }
+            });
+        }
+    }
+
     static currentMessageChannel = null;
 
     static readMessagesInChannel = (channelId, callback) => {

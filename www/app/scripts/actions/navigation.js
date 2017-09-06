@@ -127,3 +127,23 @@ export function removePageTabIndex() {
 export function pageTabGoBack() {
     return { type: Actions.PAGE_TAB_GO_BACK };
 }
+
+/**
+ * ACTION to go back in page tab history.
+ *
+ * @memberof Actions:Navigation
+ * @returns Dispatchable action
+ */
+export function switchShade(onoff) {
+    return { type: Actions.SWITCH_SHADE, onoff };
+}
+
+/**
+ * ACTION to go back in page tab history.
+ *
+ * @memberof Actions:Navigation
+ * @returns Dispatchable action
+ */
+export function switchUserMenu(onoff) {
+    return { type: Actions.SWITCH_USER_MENU, onoff };
+}

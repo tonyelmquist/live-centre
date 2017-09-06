@@ -125,6 +125,7 @@
     "promise": "^7.1.1",
     "react-addons-test-utils": "^15.5.1",
     "react-hls": "0.0.6",
+    "react-scroll": "^1.5.4",
     "react-test-renderer": "^15.5.4",
     "request": "^2.81.0",
     "sinon": "^2.3.2",

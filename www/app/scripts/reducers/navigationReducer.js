@@ -59,5 +59,23 @@ function pageTabIndex(state = defaultPageTabIndex, action) {
     }
 }
 
-export { changeNavIndex, headerMenuState, drawerMenuState, pageTabIndex };
+function shadeReducer(state = false, action) {
+    switch (action.type) {
+    case Actions.SWITCH_SHADE:
+        return action.onoff;
+    default:
+        return state;
+    }
+}
+
+function userMenuReducer(state = false, action) {
+    switch (action.type) {
+    case Actions.SWITCH_USER_MENU:
+        return action.onoff;
+    default:
+        return state;
+    }
+}
+
+export { changeNavIndex, headerMenuState, drawerMenuState, pageTabIndex, shadeReducer, userMenuReducer };
 

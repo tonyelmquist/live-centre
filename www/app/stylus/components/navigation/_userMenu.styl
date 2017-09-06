@@ -1,0 +1,98 @@
+.user-menu-icon {
+    height: 100%;
+    position: relative;
+    margin-right: 5px;
+    width: 50px;
+    display: inline-block;
+    font-size: 21px;
+    &:before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+.right-menu {
+    float: right;
+    position: relative;
+    display: flex;
+    height: 100%;
+}
+
+.user-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 60%;
+    z-index: 1000;
+    background: #333;
+    color: white;
+    box-shadow: -2px -2px 10px rgba(0, 0, 0, .2);
+
+    transform: translate3d(100%, 0, 0);
+    will-change: transform;
+    transition: .5s transform;
+
+    &.is-open {
+        transform: translate3d(0%, 0, 0);
+    }
+
+    .user-menu-profile {
+        padding: 22px 32px;
+        display: flex;
+        justify-content: space-between;
+        background: #4e4e4e;
+        border-bottom: 1px solid rgba(255, 255, 255, .3);
+
+        .user-menu-profile-image {
+            width: 54px;
+            height: 54px;
+            margin: auto;
+            border-radius: 100%;
+            background: #333;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .user-menu-profile-info {
+            margin: auto;
+            padding-left: 20px;
+
+            .user-menu-profile-name {
+                font-size: 18px;
+            }
+
+            .user-menu-profile-link {
+                color: rgb(144, 202, 249);
+            }
+        }
+        
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        padding-top: 15px;
+        padding-left: 15px;
+
+        li {
+            span {
+                margin-right: 20px;
+                font-size: 21px;
+            }
+            font-size: 18px;
+            padding: 15px;
+        }
+    }
+
+    .user-menu-footer {
+        position: absolute;
+        bottom: 16px;
+    }
+
+}

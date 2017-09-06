@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import i18next from 'i18next';
 import PropTypes from 'prop-types';
 import { MemoryRouter, Route } from 'react-router';
-//import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import createHistory from 'history/createBrowserHistory';
 // Pages
@@ -17,18 +17,18 @@ import ProfilePage from './pages/ProfilePage';
 import SportsPage from './pages/SportsPage';
 import SingleSportPage from './pages/SingleSportPage';
 import TeamPage from './pages/TeamPage';
-//Containers
+// Containers
 import OverlayX from './OverlayX';
 import CategoryContainer from './CategoryContainer';
 import SearchOverlay from './SearchOverlay';
 import Login from './Login';
-import Header from './Header';
+import FixedLayer from './FixedLayer';
 import NotificationManager from './NotificationManager';
-//Components
+// Components
 import TransitionRoutes from '../components/TransitionRoutes';
 import SportPlayerOverlay from '../components/SportSection/SportPlayerOverlay';
 import LoginModal from '../components/Modals/LoginModal';
-//Actions
+// Actions
 import { setLandscape, setPortrait } from '../actions/settings';
 import { closeTeamMemberOverlay } from '../actions/pages/sportsPage';
 import { showLoginModal } from '../actions/modals';
@@ -36,7 +36,7 @@ import { newNotification, removeNotification } from '../actions/notifications';
 import { setDisplayName } from '../actions/authentication';
 import Authentication from '../utils/Authentication';
 
-//const history = createHistory();
+// const history = createHistory();
 
 class App extends Component {
     constructor(props) {
@@ -51,7 +51,7 @@ class App extends Component {
         window.addEventListener('resize', () => {
             this.dispatchOrientation();
         }, false);
-        
+
         window.addEventListener('load', () => {
             this.dispatchOrientation();
         });
@@ -140,24 +140,24 @@ class App extends Component {
         const ProfilePageWithProps = () => (
             <ProfilePage
                 user={this.props.authentication.user}
-                setDisplayName={(name) => this.props.dispatch(setDisplayName(name))}
+                setDisplayName={name => this.props.dispatch(setDisplayName(name))}
             />);
 
         return (
           <MemoryRouter history={history}>
             <div>
             <MediaQuery minWidth={800}>
-            <div style={{width: '100%', height: '100vh', position: 'absolute', zIndex: 9999, color: 'white', margin: '0 10', textAlign: 'center', backgroundColor: 'black'}}>
-                <h1>IMR Media Center.</h1> 
-                <p>Not available for desktop yet.</p> 
+            <div style={{ width: '100%', height: '100vh', position: 'absolute', zIndex: 9999, color: 'white', margin: '0 10', textAlign: 'center', backgroundColor: 'black' }}>
+                <h1>IMR Media Center.</h1>
+                <p>Not available for desktop yet.</p>
                 <p>Please open the site on a smaller device.</p>
-                <p>In chrome you can also display the site as a phone, 
+                <p>In chrome you can also display the site as a phone,
                     by right clicking and click inspect. <br />
-                    Then choose a phone from the dropdown menu at the top. <br/> 
+                    Then choose a phone from the dropdown menu at the top. <br />
                     After inspecting you also need to refresh the page to remove the scrollbars.</p>
             </div>
             </MediaQuery>
-              <Header />
+              <FixedLayer />
               <div className={`main ${this.props.orientation}`} id="main">
                 <SearchOverlay />
                 {this.props.teamMemberOverlay.isOpen ? <SportPlayerOverlay closeTeamMemberOverlay={this.closeTeamMemberOverlay} teamMember={this.props.teamMemberOverlay.player} /> : <div />}
@@ -178,7 +178,7 @@ class App extends Component {
 
                 <OverlayX />
               </div>
-              <LoginModal isOpen={this.props.modals.showLoginModal} onClose={this.closeLoginModal} onSubmit={this.loginAttempt} error={this.state.loginModal.error}/>
+              <LoginModal isOpen={this.props.modals.showLoginModal} onClose={this.closeLoginModal} onSubmit={this.loginAttempt} error={this.state.loginModal.error} />
               <NotificationManager notifications={this.props.notifications} removeNotification={this.dispatchRemoveNotification} />
             </div>
           </MemoryRouter>

@@ -68,8 +68,8 @@ const HeaderMenu = (props) => {
         </MediaQuery> */}
         <div className={
             props.searchState.isOpen
-              ? 'rightMenu searchOpen'
-              : 'rightMenu searchClosed'}
+              ? 'right-menu searchOpen'
+              : 'right-menu searchClosed'}
         >
           <SearchBar
             handleSearch={props.handleSearch}
@@ -77,7 +77,7 @@ const HeaderMenu = (props) => {
             openCloseSearch={props.openCloseSearch}
             handleSearchFocus={props.handleSearchFocus}
           />
-          <UserMenu changeRoute={props.changeRoute} />
+          <FontAwesome className="user-menu-icon" name="user" onTouchTap={props.openUserMenu} />
         </div>
       </div>
     );
@@ -85,13 +85,11 @@ const HeaderMenu = (props) => {
 
 HeaderMenu.propTypes = {
     pageItems: PropTypes.arrayOf(PropTypes.any).isRequired,
-    categoryItems: PropTypes.arrayOf(PropTypes.any).isRequired,
-    changeRoute: PropTypes.func.isRequired,
     searchState: PropTypes.objectOf(PropTypes.any).isRequired,
     handleSearch: PropTypes.func.isRequired,
     openCloseSearch: PropTypes.func.isRequired,
-    locationName: PropTypes.string.isRequired,
     handleSearchFocus: PropTypes.func.isRequired,
+    openUserMenu: PropTypes.func.isRequired,
 };
 
 export default HeaderMenu;
