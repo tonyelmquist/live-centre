@@ -113,13 +113,16 @@ class VideoSplashContainer extends React.Component {
         }
         //Check if we need to scroll (if the items height exceed the height of the window)
         //Wait 500 milisec so we know the new item has been put into the scrollbar to prevent jumping.
-        if (window.innerHeight <= (scroller.clientHeight + padding)) {
+        const currentHeight = scroller.clientHeight + padding
+        const maxHeight = window.innerHeight * 0.75;
+
+        if (maxHeight <= currentHeight) {
+            console.log("scroll");
             setTimeout(() => {
                 //Scroll from where the scroller is now to the full height (bottom) of the page. 
                 const scrollFrom = this.scroller.scrollTop;
                 const scrollTo = this.scroller.scrollHeight - this.scroller.offsetHeight;
                 // this.changeScroller(scrollFrom, scrollTo);
-                console.log('scroll from ', scrollFrom, 'to ', scrollTo);
                 this.animateScrollBarFromTo(scrollFrom, scrollTo);
             }, 500);
         }
@@ -176,7 +179,7 @@ class VideoSplashContainer extends React.Component {
             bottom: 0,
             padding: '20px',
             width: '40%',
-            maxHeight: '100%',
+            maxHeight: '75%',
             overflow: 'scroll',
         };
 
