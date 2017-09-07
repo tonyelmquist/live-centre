@@ -21,7 +21,6 @@ import TeamPage from './pages/TeamPage';
 import OverlayX from './OverlayX';
 import CategoryContainer from './CategoryContainer';
 import SearchOverlay from './SearchOverlay';
-import Login from './Login';
 import FixedLayer from './FixedLayer';
 import NotificationManager from './NotificationManager';
 // Components
@@ -166,7 +165,6 @@ class App extends Component {
                         <Route path="/programs" component={ProgramsPage} />
                         <Route path="/channels" component={ChannelsPage} />
                         <Route path="/sports" component={SportsPage} />
-                        <Route path="/login" component={Login} />
                         <Route path="/settings" component={SettingsPage} />
                         <Route path="/category/:categoryKey" component={CategoryContainer} />
                         <Route path="/channel/:channelKey" component={SingleChannelPage} />

@@ -16,6 +16,6 @@ CircleRowItem.defaultProps = {
 };
 
 CircleRowItem.propTypes = {
-    size: PropTypes.int,
+    size: PropTypes.number,
 };
 export default CircleRowItem;

@@ -44,7 +44,7 @@ class ProductOverlay extends Component {
         <img
           src={product.thumbnailImage}
           alt={product.description}
-          productId={product.productID}
+          key={product.productID}
           className="product-overlay-image"
         />
         <p className="product-description"> {product.description}</p>

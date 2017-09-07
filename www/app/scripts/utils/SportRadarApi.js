@@ -3,9 +3,10 @@ import axios from 'axios';
 export default class SportRadarApi {
     static apiKeys = {
         soccer_other: 'g62afuuhreg6u5m9hyk3guyw',
+        ncaamb: 'a5vwx8q99ac9kmgtetg4z4aw',
     };
 
-    static getMatchLineup(matchId, callback) {
+    static getMatchLineup(matchId, callback, errorCallback = () => {}) {
         axios('http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/fileGetContents', {
             method: 'POST',
             data: {
@@ -20,6 +21,7 @@ export default class SportRadarApi {
         }).catch((error) => {
             console.error('Something went wrong with the api call in getMatchLineup', error);
             console.info('Attempting to get data summary instead');
+            errorCallback(error);
             SportRadarApi.getMatchSummary(matchId, callback);
         });
     }
@@ -41,7 +43,7 @@ export default class SportRadarApi {
         });
     }
 
-    static getMatchTimeline(matchId, callback) {
+    static getMatchTimeline(matchId, callback, errorCallback = () => {}) {
         axios('http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/fileGetContents', {
             method: 'POST',
             data: {
@@ -54,6 +56,7 @@ export default class SportRadarApi {
             console.log('Retreived timeline Data for player id: ', matchId, response);
             callback(response.data);
         }).catch((error) => {
+            errorCallback(error);
             console.error('Something went wrong with the api call in getMatchTimeline', error);
         });
     }

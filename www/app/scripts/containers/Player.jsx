@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
+import IconButton from 'material-ui/IconButton';
 import {
   Player as Video,
   ControlBar,
@@ -208,7 +209,15 @@ class Player extends React.Component {
 
     componentDidMount = () => {
         this.largeVideoPlayer.subscribeToStateChange(this.handleStateChange.bind(this));
+
+        this.largeVideoPlayer.video.video.addEventListener('timeupdate', () => {
+            this.setTimelinePosition();
+        });
     };
+
+    setTimelinePosition = () => {
+        console.log(this.props.matches[this.props.video.id]);
+    }
 
     handleStateChange = (state, prevState) => {
         this.setState({
@@ -290,6 +299,19 @@ class Player extends React.Component {
             opacity: `${this.props.overlayX.maximized ? '1' : '0'}`,
         };
 
+        const replayIconStyles = {
+            ...settingsIconStyles,
+            top: 'auto',
+            right: 'auto',
+            left: '100px',
+            bottom: '12px',
+        };
+
+        const highlightsIconStyles = {
+            ...replayIconStyles,
+            left: '160px',
+        };
+
         const playerStyles = {
             position: 'relative',
             height: '100%',
@@ -304,31 +326,10 @@ class Player extends React.Component {
             <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)} >
               <ControlBar autoHide>
                 <PlayToggle />
-                <FontAwesome name="chevron-down" style={minimizeIconStyles} onTouchTap={this.onMinimize} />
-                { this.props.orientation === Orientation.LANDSCAPE ? <Settings style={settingsIconStyles} onTouchTap={this.onOpenSettings} /> : <div />}
-                {/* <FontAwesome name="expand" /> */}
-              </ControlBar>
-              <source src={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`} />
-            </Video>
-            {this.printPrePlayOverlay()}
-                {/* <IconButton
-                  style={styles.iconButtons}
-                  iconClassName="material-icons replay"
-                  onTouchTap={() => this.showReplay(this.props.videoUrl, 0)}
-                >
-                replay
-                </IconButton>
-                <IconButton
-                  style={styles.iconButtons}
-                  iconClassName="material-icons slomo"
-                >
-                slow_motion_video
-                </IconButton>
-                <IconButton
-                  style={styles.iconButtons}
-                  iconClassName="material-icons highlights"
-                  onTouchTap={() =>
-                this.showHighlights(this.props.videoUrl, [
+                {/* <FontAwesome name="chevron-down" style={minimizeIconStyles} onTouchTap={this.onMinimize} /> */}
+                { this.props.orientation === Orientation.LANDSCAPE ? <FontAwesome name="cog" style={settingsIconStyles} onTouchTap={this.onOpenSettings} /> : <div />}
+                { this.props.orientation === Orientation.LANDSCAPE ? <FontAwesome name="undo" style={replayIconStyles} onTouchTap={() => this.showReplay(this.props.video.videoUrl, 0)} /> : <div />}
+                { this.props.orientation === Orientation.LANDSCAPE ? <FontAwesome name="star" style={highlightsIconStyles} onTouchTap={() => this.showHighlights(this.props.video.videoUrl, [
                   { timestamp: 0, description: 'A HIGHLIGHT', thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png' },
                     {
                         timestamp: 10,
@@ -336,10 +337,13 @@ class Player extends React.Component {
                         title: 'ANOTHER HIGHLIGHT',
                         thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png',
                     },
-                ])}
-                >
-              movie_filter
-              </IconButton> */}
+                ])} /> : <div />}
+                {/* <FontAwesome name="expand" /> */}
+
+              </ControlBar>
+              <source src={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`} />
+            </Video>
+            {this.printPrePlayOverlay()}
         <ProductThumb productID={this.props.productID} showProductThumb={this.props.showProductThumb} onTouchTap={() => this.onShowProductOverlay()} />
         <ProductOverlay overlayMaximized={this.props.overlayX.maximized} productID={this.props.productID} showProductOverlay={this.props.showProductOverlay} />
         {this.props.orientation === Orientation.LANDSCAPE &&
@@ -369,6 +373,7 @@ Player.propTypes = {
     productID: PropTypes.number.isRequired,
     showProductThumb: PropTypes.bool.isRequired,
     showProductOverlay: PropTypes.bool.isRequired,
+    matches: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -379,6 +384,7 @@ const mapStateToProps = state => ({
     productID: state.productThumb.productID,
     showProductThumb: state.productThumb.showProductThumb,
     showProductOverlay: state.productOverlay.showProductOverlay,
+    matches: state.sportsInfo.matches,
 });
 
 export default connect(mapStateToProps)(Player);

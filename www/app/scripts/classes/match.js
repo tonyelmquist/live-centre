@@ -8,10 +8,12 @@ export default class Match extends BaseClass {
             _id: 0,
             _home: {},
             _away: {},
+            _timeline: {},
         }, {
             _id: data.id,
             _home: data.home,
             _away: data.away,
+            _timeline: data.timeline,
         });
     }
 
@@ -51,6 +53,23 @@ export default class Match extends BaseClass {
     set away(newaway) {
         if (newaway) {
             this._away = newaway;
+        }
+    }
+
+    get timeline() {
+        if (typeof this._timeline === 'undefined') {
+            console.error('Tried to get timeline of Match, was not set');
+            return false;
+        }
+        return this._timeline;
+    }
+    set timeline(newtimeline) {
+        if (newtimeline) {
+            const timeline = newtimeline;
+            for (let i = 0; i < timeline.length; i++) {
+                timeline[i].time = new Date(timeline[i].time);
+            }
+            this._timeline = timeline;
         }
     }
 }

@@ -32,10 +32,16 @@ export const getMatchData = (matchId) => {
                         name: data.sport_event.competitors.filter(val => val.qualifier === 'away')[0].name,
                     },
                 },
-                // Probably will want to put the timeline data inside the match data in the future
             });
-
-            store.dispatch(insertMatchData(matchId, matchDataForStore));
+            setTimeout(() => {
+                SportRadarApi.getMatchTimeline(`sr:match:${matchId}`, (timeline) => {
+                    matchDataForStore.timeline = timeline;
+                    store.dispatch(insertMatchData(matchId, matchDataForStore));
+                }, (err) => {
+                    console.log('error occured, no timeline data inserted');
+                    store.dispatch(insertMatchData(matchId, matchDataForStore));
+                });
+            }, 3000);
         });
     } else {
         console.log('Matchid already exists in store');

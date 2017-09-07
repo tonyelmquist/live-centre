@@ -159,9 +159,6 @@ class DataOverlay extends Component {
         return this.props.sportsInfo.matches[this.props.selectedVideo.matchId].away.lineup;
     }
 
-    teamOne = 'Barcelona';
-    teamTwo = 'Barcelona';
-
     getOverlayData = () => {
         // If this videos match data isn't in the store, retreive it
         if (typeof this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
