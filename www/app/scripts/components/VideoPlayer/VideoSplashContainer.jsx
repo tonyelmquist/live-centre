@@ -19,6 +19,10 @@ class VideoSplashContainer extends React.Component {
             isScrolling: false, // If we are auto scrolling, then we dont need to check whish splash is in focus. 
             preventAutoScroll: false, // Should we prevent auto scroll. The user is actively scrolling.
             showHistory: false, //Should we show the history, passed down to props to change the opacity of the items. 
+            heightOfItems: 50, //Height of each item
+            itemMargin: 10, //Margin on each item
+            heightOfContainer: 65, // % height in percentage of container
+            containerOffset: 75, //Offset of container
         };
     }
 
@@ -60,10 +64,10 @@ class VideoSplashContainer extends React.Component {
             { message: 'Felix Brych signals a free kick to Juventus Turin in their own half.' },
             { message: 'Juventus Turin awarded a free kick in their own half.' },
             { message: 'Felix Brych signals a free kick to Juventus Turin in their own half.' },
-            { message: "Felix Brych signals a throw-in for Juventus Turin, close to Juventus Turin's area." },
+            { message: "Felix Brych signals a throw-in for Juventus Turin." },
         ];
         for (const key in newMessages) {
-            setTimeout(() => { this.pushSplash(newMessages[key].message); }, 4000 * key);
+            setTimeout(() => { this.pushSplash(newMessages[key].message); }, 6000 * key);
         }
     }
 
@@ -81,7 +85,7 @@ class VideoSplashContainer extends React.Component {
     moveScroller = (from, to, currentIteration) => {
         const changeInValue = to - from;
         let totalIterations;
-        changeInValue < 100 ? totalIterations = changeInValue * 3 : totalIterations = 600; // total iteration + frames per milisec = time spent. 
+        changeInValue < this.state.heightOfItems ? totalIterations = changeInValue * 3 : totalIterations = 600; // total iteration + frames per milisec = time spent. 
         const FPM = 10; //How smooth/ hard the animation will be. 
         
         const newPos = this.easeOutCubic(currentIteration, from, changeInValue, totalIterations);
@@ -105,18 +109,19 @@ class VideoSplashContainer extends React.Component {
 
     // Scroll to bottom of page
     scrollToBottom = () => {
-        const padding = 20 * 2;
         const scroller = this.scroller;
+        const topOffset = this.state.containerOffset;
         //Set the new item (currentsplash) as the focus. 
         if (this.state.splashInFocus !== this.state.currentSplash) {
             this.setState({ splashInFocus: this.state.currentSplash, isScrolling: true });
         }
-        //Check if we need to scroll (if the items height exceed the height of the window)
+        console.log("Should scroll to bottom?");
+        //Check if we need to scroll (if the containers height exceed the height of the window)
         //Wait 500 milisec so we know the new item has been put into the scrollbar to prevent jumping.
-        const currentHeight = scroller.clientHeight + padding
-        const maxHeight = window.innerHeight * 0.75;
-
-        if (maxHeight <= currentHeight) {
+        const currentHeight = scroller.clientHeight;
+        const maxHeight = (window.innerHeight * (this.state.heightOfContainer / 100) );
+        console.log(maxHeight, currentHeight, scroller.clientHeight, window.innerHeight);
+        if (Math.floor(maxHeight) <= Math.floor(currentHeight)) {
             console.log("scroll");
             setTimeout(() => {
                 //Scroll from where the scroller is now to the full height (bottom) of the page. 
@@ -155,11 +160,13 @@ class VideoSplashContainer extends React.Component {
 
     checkScrollPos = (e) => {
         if (!this.state.isScrolling){ //If we are autoscrolling, we dont need to check
-            const padding = 20 + 20;
             const bottom = this.scroller.scrollHeight - this.scroller.offsetHeight;
-            if (((bottom - this.scroller.scrollTop) / 110) > 1){ //Each item is 110px high. 
+            console.log(this.state.heightOfItems + this.state.itemMargin);
+            const itemFullHeight = this.state.heightOfItems + this.state.itemMargin
+            if (((bottom - this.scroller.scrollTop) / itemFullHeight) > 1){ //Each item is 110px high. 
                 //Divide this by the amount scrolled and we know how many items to shif the focis. 
-                this.setState({splashInFocus: this.state.currentSplash + (this.scroller.scrollTop - bottom) / 110});
+                console.log(this.state.currentSplash + (this.scroller.scrollTop - bottom) / itemFullHeight);
+                this.setState({splashInFocus: this.state.currentSplash + (this.scroller.scrollTop - bottom) / itemFullHeight});
             }
         }
     }
@@ -176,10 +183,10 @@ class VideoSplashContainer extends React.Component {
         const style = {
             position: 'absolute',
             right: 0,
-            bottom: 0,
-            padding: '20px',
+            bottom: this.state.containerOffset,
+            padding: '0 20px',
             width: '40%',
-            maxHeight: '75%',
+            maxHeight: `${this.state.heightOfContainer}%`,
             overflow: 'scroll',
         };
 
