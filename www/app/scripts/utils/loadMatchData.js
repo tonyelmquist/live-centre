@@ -34,8 +34,8 @@ export const getMatchData = (matchId) => {
                 },
             });
             setTimeout(() => {
-                SportRadarApi.getMatchTimeline(`sr:match:${matchId}`, (timeline) => {
-                    matchDataForStore.timeline = timeline;
+                SportRadarApi.getMatchTimeline(`sr:match:${matchId}`, (timelineData) => {
+                    matchDataForStore.timeline = timelineData.timeline;
                     store.dispatch(insertMatchData(matchId, matchDataForStore));
                 }, (err) => {
                     console.log('error occured, no timeline data inserted');

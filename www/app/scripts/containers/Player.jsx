@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 import IconButton from 'material-ui/IconButton';
+import TimelineManager from '../utils/TimelineManager';
 import {
   Player as Video,
   ControlBar,
@@ -19,6 +20,7 @@ import ProductThumb from '../components/OverlayX/ProductThumb';
 import ProductOverlay from '../components/OverlayX/ProductOverlay';
 import isDblTouchTap from '../utils/isDblTouchTap';
 import VideoSplashContainer from '../components/VideoPlayer/VideoSplashContainer';
+import { changeScore } from '../actions/secondLayer';
 
 const tickProximityInterval = 5000;
 
@@ -56,6 +58,8 @@ class Player extends React.Component {
         showProductOverlay: false,
         showProductThumb: false,
     };
+
+    timelineManager = new TimelineManager();
 
     onPrePlayTouch = (e) => {
         e.stopPropagation();
@@ -142,6 +146,22 @@ class Player extends React.Component {
         if (!this.props.overlayX.open) {
             this.largeVideoPlayer.pause();
         }
+
+        let newScore = { home: 0, away: 0 };
+        // Go backwards through the array and get the first instance of 'score_change'
+        for (let i = 0; i < this.timelineManager.activeEvents.length; i++) {
+            if (this.timelineManager.activeEvents[i].type === 'score_change') {
+                newScore = {
+                    home: this.timelineManager.activeEvents[i].home_score,
+                    away: this.timelineManager.activeEvents[i].away_score,
+                };
+            }
+        }
+
+        // console.log(this.props.dataOverlayScore, newScore, this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away);
+        if (this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away) {
+            this.props.dispatch(changeScore(newScore));
+        }
     }
 
     showReplay = (videoUrl) => {
@@ -210,14 +230,16 @@ class Player extends React.Component {
     componentDidMount = () => {
         this.largeVideoPlayer.subscribeToStateChange(this.handleStateChange.bind(this));
 
+        if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[this.props.video.matchId]) {
+            this.timelineManager.timeline = this.props.matches[this.props.video.matchId].timeline;
+            this.timelineManager.buffer = this.props.video.matchStart;
+        }
+        
         this.largeVideoPlayer.video.video.addEventListener('timeupdate', () => {
-            this.setTimelinePosition();
+            this.timelineManager.setActiveTimelineEvents(this.largeVideoPlayer.video.video.currentTime * 1000);
         });
     };
 
-    setTimelinePosition = () => {
-        console.log(this.props.matches[this.props.video.id]);
-    }
 
     handleStateChange = (state, prevState) => {
         this.setState({
@@ -228,12 +250,16 @@ class Player extends React.Component {
     };
 
     componentWillUpdate = (nextProps) => {
+        if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[nextProps.video.matchId].timeline) {
+            this.timelineManager.timeline = this.props.matches[nextProps.video.matchId].timeline;
+            this.timelineManager.buffer = this.props.video.matchStart;
+        }
+
         if (
             typeof this.largeVideoPlayer !== 'undefined' &&
             this.largeVideoPlayer !== null
         ) {
             if (this.videoLoaded !== nextProps.video.videoUrl) {
-                
                 this.setState({ isPreOverlayShowing: true });
                 this.largeVideoPlayer.video.video.load();
 
@@ -374,6 +400,7 @@ Player.propTypes = {
     showProductThumb: PropTypes.bool.isRequired,
     showProductOverlay: PropTypes.bool.isRequired,
     matches: PropTypes.object.isRequired,
+    dataOverlayScore: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -385,6 +412,7 @@ const mapStateToProps = state => ({
     showProductThumb: state.productThumb.showProductThumb,
     showProductOverlay: state.productOverlay.showProductOverlay,
     matches: state.sportsInfo.matches,
+    dataOverlayScore: state.dataOverlay.score,
 });
 
 export default connect(mapStateToProps)(Player);

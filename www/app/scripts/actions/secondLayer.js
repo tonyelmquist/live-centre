@@ -14,6 +14,6 @@ import Actions from '../constants/reduxConstants';
  * @param {int} score
  * @returns Dispatchable Action
  */
-export default function changeScore(score) {
+export function changeScore(score) {
     return { type: Actions.CHANGE_SCORE, score };
 }

@@ -24,7 +24,7 @@ class ScoreOverlay extends Component {
           <div className="score-overlay-container">
             <div className="counter-skew">
               <div className="team1-score">
-                0
+                {this.props.score.home}
               </div>
 
               <div className="team1-icon">
@@ -50,7 +50,7 @@ class ScoreOverlay extends Component {
               </div>
 
               <div className="team2-score">
-                0
+                {this.props.score.away}
               </div>
             </div>
           </div>

@@ -237,7 +237,7 @@ DataOverlay.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    score: state.dataOverlay,
+    score: state.dataOverlay.score,
     chat: state.chat,
     replay: state.replay,
     highlights: state.highlights,
