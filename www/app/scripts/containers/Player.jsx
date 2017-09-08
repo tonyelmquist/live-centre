@@ -22,6 +22,10 @@ import isDblTouchTap from '../utils/isDblTouchTap';
 import VideoSplashContainer from '../components/VideoPlayer/VideoSplashContainer';
 import { changeScore, changeClock } from '../actions/secondLayer';
 
+import VideoPlayer from '../components/VideoPlayer/VideoPlayer.jsx';
+import VideoControls from '../components/VideoPlayer/VideoControls.jsx';
+import { HighlightsControl, ReplayControl, SettingsControl } from '../components/VideoPlayer/Controls.jsx';
+
 const tickProximityInterval = 5000;
 
 const styles = {
@@ -70,12 +74,12 @@ class Player extends React.Component {
 
         this.setState({ isPreOverlayShowing: false });
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
-            this.largeVideoPlayer.video.video.play();
+            this.largeVideoPlayer.video.play();
             this.videoLoaded = this.props.video.videoUrl;
 
             this.props.dispatch(setControlBarVisibility(true));
             setTimeout(() => {
-                if (!this.largeVideoPlayer.video.video.paused) {
+                if (!this.largeVideoPlayer.video.paused) {
                     this.props.dispatch(setControlBarVisibility(false));
                 }
             }, 3000);
@@ -164,13 +168,6 @@ class Player extends React.Component {
         }
     }
 
-    showReplay = (videoUrl) => {
-        const { player } = this.largeVideoPlayer.getState();
-        const currentTime = player.currentTime;
-        this.props.dispatch(showReplay(videoUrl, currentTime - 10));
-        window.setTimeout(() => this.props.dispatch(hideReplay()), 12000);
-    };
-
     onShowProductOverlay = () => {
         this.props.dispatch(showProductOverlay());
     };
@@ -194,9 +191,9 @@ class Player extends React.Component {
     };
 
     printPrePlayOverlay = () => {
-        if (typeof this.largeVideoPlayer !== 'undefined' &&
-            this.largeVideoPlayer.video.video.paused &&
-            this.largeVideoPlayer.video.video.currentTime === 0 &&
+        if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null &&
+            this.largeVideoPlayer.video.paused &&
+            this.largeVideoPlayer.video.currentTime === 0 &&
             this.state.isPreOverlayShowing &&
             this.props.overlayX.maximized) {
             return (<div className="pre-play-overlay" onTouchTap={this.onPrePlayTouch}>
@@ -228,6 +225,10 @@ class Player extends React.Component {
     limit = 50;
 
     componentDidMount = () => {
+        console.log(this.largeVideoPlayer.video.currentTime);
+        console.log(this.largeVideoPlayer.duration);
+        
+        console.log("this.largevideoplayer",this.largeVideoPlayer);
         this.largeVideoPlayer.subscribeToStateChange(this.handleStateChange.bind(this));
 
         if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[this.props.video.matchId]) {
@@ -235,8 +236,8 @@ class Player extends React.Component {
             this.timelineManager.buffer = this.props.video.matchStart;
         }
 
-        this.largeVideoPlayer.video.video.addEventListener('timeupdate', () => {
-            this.timelineManager.setActiveTimelineEvents(this.largeVideoPlayer.video.video.currentTime * 1000);
+        this.largeVideoPlayer.video.addEventListener('timeupdate', () => {
+            this.timelineManager.setActiveTimelineEvents(this.largeVideoPlayer.video.currentTime * 1000);
 
             // Control Score
             if (this.timelineManager.activeEvents.length > 0) {
@@ -245,7 +246,7 @@ class Player extends React.Component {
                 const breakStart = this.timelineManager.activeEvents.filter(value => value.type === 'break_start');
                 if (periodStart.length > 0) {
                     const clock =
-                        (((this.largeVideoPlayer.video.video.currentTime * 1000)
+                        (((this.largeVideoPlayer.video.currentTime * 1000)
                         - parseInt(this.props.video.matchStart)
                         - (new Date(periodStart[0].time) - new Date(this.timelineManager.activeEvents[0].time)))
                         + 2700000);
@@ -288,7 +289,7 @@ class Player extends React.Component {
         ) {
             if (this.videoLoaded !== nextProps.video.videoUrl) {
                 this.setState({ isPreOverlayShowing: true });
-                this.largeVideoPlayer.video.video.load();
+                this.largeVideoPlayer.video.load();
 
                 this.videoLoaded = nextProps.video.videoUrl;
             }
@@ -310,16 +311,16 @@ class Player extends React.Component {
         }
 
         if (this.props.overlayX.maximized) {
-            if (this.largeVideoPlayer.video.video.paused) {
-                this.largeVideoPlayer.video.video.play();
+            if (this.largeVideoPlayer !== null && this.largeVideoPlayer.video.paused) {
+                this.largeVideoPlayer.video.play();
             } else {
-                this.largeVideoPlayer.video.video.pause();
+                this.largeVideoPlayer.video.pause();
             }
 
             this.props.dispatch(setControlBarVisibility(true));
             clearTimeout(this.controlBarTimeoutTest1);
             this.controlBarTimeoutTest1 = setTimeout(() => {
-                if (!this.largeVideoPlayer.video.video.paused) {
+                if (!this.largeVideoPlayer.video.paused) {
                     this.props.dispatch(setControlBarVisibility(false));
                 }
             }, 3000);
@@ -341,30 +342,6 @@ class Player extends React.Component {
             textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
         };
 
-        const settingsIconStyles = {
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            color: 'white',
-            zIndex: '2000',
-            width: '32px',
-            height: '32px',
-            opacity: `${this.props.overlayX.maximized ? '1' : '0'}`,
-        };
-
-        const replayIconStyles = {
-            ...settingsIconStyles,
-            top: 'auto',
-            right: 'auto',
-            left: '100px',
-            bottom: '12px',
-        };
-
-        const highlightsIconStyles = {
-            ...replayIconStyles,
-            left: '160px',
-        };
-
         const playerStyles = {
             position: 'relative',
             height: '100%',
@@ -376,35 +353,38 @@ class Player extends React.Component {
 
         return (
           <div style={playerStyles} className={'IMRPlayer'} onScroll={this.onScroll} onTouchTap={this.onTouchTap} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
-            <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)} >
-              <ControlBar autoHide>
-                <PlayToggle />
-                {/* <FontAwesome name="chevron-down" style={minimizeIconStyles} onTouchTap={this.onMinimize} /> */}
-                { this.props.orientation === Orientation.LANDSCAPE ? <FontAwesome name="cog" style={settingsIconStyles} onTouchTap={this.onOpenSettings} /> : <div />}
-                { this.props.orientation === Orientation.LANDSCAPE ? <FontAwesome name="undo" style={replayIconStyles} onTouchTap={() => this.showReplay(this.props.video.videoUrl, 0)} /> : <div />}
-                { this.props.orientation === Orientation.LANDSCAPE ? <FontAwesome name="star" style={highlightsIconStyles} onTouchTap={() => this.showHighlights(this.props.video.videoUrl, [
-                  { timestamp: 0, description: 'A HIGHLIGHT', thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png' },
-                    {
-                        timestamp: 10,
-                        description: 'ANOTHER HIGHLIGHT',
-                        title: 'ANOTHER HIGHLIGHT',
-                        thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png',
-                    },
-                ])} /> : <div />}
-                {/* <FontAwesome name="expand" /> */}
 
-              </ControlBar>
-              <source src={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`} />
-            </Video>
+            <VideoPlayer
+                poster={this.props.video.thumbnail}
+                source={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`}
+                ref={(ref) => { this.largeVideoPlayer = ref; }}
+            />
+
+            <VideoControls
+                largeVideoPlayer={this.largeVideoPlayer}
+                video={this.props.video}
+                onOpenSettings={() => this.onOpenSettings()}
+                showReplay={this.showReplay}
+            />
+
+            {/* { this.props.orientation === Orientation.LANDSCAPE ?
+                <div className="controls">
+                    <SettingsControl onTouchTap={this.onOpenSettings} />
+                    <ReplayControl onTouchTap={() => this.showReplay(this.props.video.videoUrl, 0)} />
+                    <HighlightsControl onTouchTap={() => this.showHighlights(this.props.video.videoUrl)} />
+                </div>
+            : <div /> } */}
+
             {this.printPrePlayOverlay()}
-        <ProductThumb productID={this.props.productID} showProductThumb={this.props.showProductThumb} onTouchTap={() => this.onShowProductOverlay()} />
-        <ProductOverlay overlayMaximized={this.props.overlayX.maximized} productID={this.props.productID} showProductOverlay={this.props.showProductOverlay} />
-        {this.props.orientation === Orientation.LANDSCAPE &&
-        typeof this.largeVideoPlayer !== 'undefined' &&
-        !this.state.isPreOverlayShowing &&
-        this.props.video.matchId !== null
-          ? <DataOverlay />
-          : ''}
+
+            <ProductThumb productID={this.props.productID} showProductThumb={this.props.showProductThumb} onTouchTap={() => this.onShowProductOverlay()} />
+            <ProductOverlay overlayMaximized={this.props.overlayX.maximized} productID={this.props.productID} showProductOverlay={this.props.showProductOverlay} />
+            {this.props.orientation === Orientation.LANDSCAPE &&
+            typeof this.largeVideoPlayer !== 'undefined' &&
+            !this.state.isPreOverlayShowing &&
+            this.props.video.matchId !== null
+            ? <DataOverlay />
+            : ''}
       </div>
         );
     }
@@ -444,3 +424,23 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Player);
+
+
+ /* <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)} >
+              <ControlBar autoHide>
+                <PlayToggle />
+                { this.props.orientation === Orientation.LANDSCAPE ? <FontAwesome name="cog" style={settingsIconStyles} onTouchTap={this.onOpenSettings} /> : <div />}
+                { this.props.orientation === Orientation.LANDSCAPE ? <FontAwesome name="undo" style={replayIconStyles} onTouchTap={() => this.showReplay(this.props.video.videoUrl, 0)} /> : <div />}
+                { this.props.orientation === Orientation.LANDSCAPE ? <FontAwesome name="star" style={highlightsIconStyles} onTouchTap={() => this.showHighlights(this.props.video.videoUrl, [
+                  { timestamp: 0, description: 'A HIGHLIGHT', thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png' },
+                    {
+                        timestamp: 10,
+                        description: 'ANOTHER HIGHLIGHT',
+                        title: 'ANOTHER HIGHLIGHT',
+                        thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png',
+                    },
+                ])} /> : <div />}
+
+              </ControlBar>
+              <source src={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`} />
+            </Video> */

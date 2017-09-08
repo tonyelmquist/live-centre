@@ -11,8 +11,6 @@ import EmptyOverlay from '../components/SecondLayer/EmptyOverlay';
 import LineupOverlay from '../components/SecondLayer/LineupOverlay';
 import PopIndicatorManager from '../components/SecondLayer/PopIndicatorManager';
 import PlayerInfoOverlay from '../components/SecondLayer/PlayerInfoOverlay';
-import Replayer from '../components/VideoPlayer/Replayer';
-import HighlightsRow from '../components/VideoPlayer/HighlightsRow';
 import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
 import { removePopNotification, newPopNotification } from '../actions/notifications';
 import { hideHighlights, isVideoSettingsOpen } from '../actions/videoPlayer';
@@ -211,19 +209,7 @@ class DataOverlay extends Component {
             onClose={() => this.props.dispatch(isVideoSettingsOpen(false))}
         />
         <VideoSplashContainer isLineupShowing={this.state.isLineupShowing}/>
-        {this.props.replay.replayerOpen &&
-          <Replayer
-            open={this.props.replay.replayerOpen}
-            videoUrl={this.props.replay.videoUrl}
-            timestamp={this.props.replay.timestamp}
-          />}
-        {this.props.highlights.highlightsOpen &&
-          <HighlightsRow
-            open={this.props.highlights.highlightsOpen}
-            highlights={this.props.highlights.highlights}
-            videoUrl={this.props.highlights.videoUrl}
-            handleClose={this.handleHighlightsClose}
-          />}
+
       </div>
         );
     }

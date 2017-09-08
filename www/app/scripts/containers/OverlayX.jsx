@@ -49,7 +49,7 @@ class OverlayX extends Component {
     videoHeight = 200;
 
     componentDidUpdate = () => {
-        if (typeof this.overlayRef !== 'undefined') {
+        if (typeof this.overlayRef !== 'undefined' && this.overlayRef !== null) {
             if (this.videoHeight !== this.overlayRef.overlayRef.clientHeight) {
                 this.forceUpdate();
             }
@@ -57,7 +57,7 @@ class OverlayX extends Component {
     }
 
     render() {
-        if (typeof this.overlayRef !== 'undefined') {
+        if (typeof this.overlayRef !== 'undefined' && this.overlayRef !== null) {
             this.videoHeight = this.overlayRef.overlayRef.clientHeight;
         }
         if (typeof this.props.video.id !== 'undefined') {

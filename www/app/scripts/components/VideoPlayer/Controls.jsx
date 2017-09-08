@@ -16,7 +16,7 @@ const replayIconStyles = {
     top: 'auto',
     right: 'auto',
     left: '100px',
-    bottom: '12px',
+    bottom: '50px',
 };
 
 const highlightsIconStyles = {
@@ -29,7 +29,7 @@ const PlayToggle = ({ onTouch }) => (
 );
 
 const HighlightsControl = ({ onTouch }) => (
-    <FontAwesome className="highlights-control" name="highlights-control" style={highlightsIconStyles} onTouchTap={onTouch} />
+    <span><FontAwesome className="highlights-control" name="chevron-circle-up" style={highlightsIconStyles} onTouchTap={onTouch} />Highlights</span>
 );
 
 const ReplayControl = ({ onTouch }) => (

@@ -55,27 +55,30 @@ class HighlightsRow extends Component {
         />
       </div>),
     );
-
-        return (
-      <div className="highlightsSlider slider">
-        <div className="rowHeader">
-          <h3 className="rowTitle">Highlights</h3>
-        </div>
-        <div className="slider">
-          <Slider ref={c => (this.slider = c)} {...settings}>
-            {videos}
-          </Slider>
-        </div>
-        <FloatingActionButton
-          mini
-          secondary
-          onTouchTap={this.props.handleClose}
-          className="highlightsCloseButton"
-        >
-          <Close />
-        </FloatingActionButton>
-      </div>
-        );
+        if (this.props.open) {
+            return (
+                <div className="highlightsSlider slider">
+                    <div className="rowHeader">
+                    <h3 className="rowTitle">Highlights</h3>
+                    </div>
+                    <div className="slider">
+                    <Slider ref={c => (this.slider = c)} {...settings}>
+                        {videos}
+                    </Slider>
+                    </div>
+                    <FloatingActionButton
+                        mini
+                        secondary
+                        onTouchTap={this.props.handleClose}
+                        className="highlightsCloseButton"
+                    >
+                    <Close />
+                    </FloatingActionButton>
+                </div>
+            );
+        } 
+        return <div/>;
+        
     }
 }
 

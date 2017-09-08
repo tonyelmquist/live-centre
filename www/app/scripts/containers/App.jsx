@@ -145,7 +145,7 @@ class App extends Component {
         return (
           <MemoryRouter history={history}>
             <div>
-            <MediaQuery minWidth={800}>
+            <MediaQuery minWidth={1100}>
             <div style={{ width: '100%', height: '100vh', position: 'absolute', zIndex: 9999, color: 'white', margin: '0 10', textAlign: 'center', backgroundColor: 'black' }}>
                 <h1>IMR Media Center.</h1>
                 <p>Not available for desktop yet.</p>
