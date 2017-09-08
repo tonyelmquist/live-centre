@@ -188,7 +188,7 @@ class VideoSplashContainer extends React.Component {
         this.setState({ showHistory: true });
     }
 
-    hideHistoryNow = () => {
+    forcehideHistoryNow = () => {
         if(this.state.showHistory){
             this.setState({ showHistory: false });
         }
