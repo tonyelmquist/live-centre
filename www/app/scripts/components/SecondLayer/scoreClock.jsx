@@ -17,16 +17,13 @@ class ScoreClock extends Component {
     startClock = () => this.setState({interval: setInterval(this.incrementClock, 1000)});
     endClock = () => clearInterval(this.state.interval);
 
-    incrementClock = () => {
-        let currentMinutes = parseInt(this.state.clock.split(':')[0]);
-        let currentSeconds = parseInt(this.state.clock.split(':')[1]);
+    convertFromMs = (ms) => {
 
-        currentSeconds += 1;
+        let seconds = Math.ceil(ms / 1000);
 
-        if (currentSeconds === 60) {
-            currentSeconds = 0;
-            currentMinutes += 1;
-        }
+
+        let currentSeconds = seconds % 60;
+        let currentMinutes = Math.floor(seconds / 60);
 
         let currentSecondsString = '';
 
@@ -44,12 +41,12 @@ class ScoreClock extends Component {
             currentMinutesString = `${currentMinutes}`;
         }
 
-        this.setState({ clock: `${currentMinutesString}:${currentSecondsString}` });
+        return `${currentMinutesString}:${currentSecondsString}`;
     }
 
     render() {
         return (
-          <div className="clock">{this.state.clock}</div>
+          <div className="clock">{this.convertFromMs(this.props.time)}</div>
         );
     }
 }
