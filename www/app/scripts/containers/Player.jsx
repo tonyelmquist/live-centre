@@ -19,7 +19,6 @@ import '../../../node_modules/video-react/dist/video-react.css';
 import ProductThumb from '../components/OverlayX/ProductThumb';
 import ProductOverlay from '../components/OverlayX/ProductOverlay';
 import isDblTouchTap from '../utils/isDblTouchTap';
-import VideoSplashContainer from '../components/VideoPlayer/VideoSplashContainer';
 import { changeScore } from '../actions/secondLayer';
 
 const tickProximityInterval = 5000;
@@ -376,7 +375,7 @@ class Player extends React.Component {
         typeof this.largeVideoPlayer !== 'undefined' &&
         !this.state.isPreOverlayShowing &&
         this.props.video.matchId !== null
-          ?  <div><DataOverlay /><VideoSplashContainer /></div>
+          ? <DataOverlay />
           : ''}
       </div>
         );

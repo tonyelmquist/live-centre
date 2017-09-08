@@ -32,11 +32,15 @@ class VideoSplashContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        if(prevProps.isLineupShowing !== this.props.isLineupShowing && this.props.isLineupShowing){
+            this.forcehideHistoryNow();
+        }
+       
         //console.log('splashInFocus:', this.state.splashInFocus);
         // IF preventautoscroll, wait til until it is Not preventautoscroll
             // then if new item, scroll down, 
             // if we have hidden the items, scroll down (reset).
-        if (!this.state.preventAutoScroll) {
+        if (!this.state.preventAutoScroll && !this.props.isLineupShowing) {
             if (this.state.currentSplash !== this.state.splashInFocus) {
                 //console.log('scroll To Bottom', this.state.currentSplash);
                 this.scrollToBottom();
@@ -135,21 +139,28 @@ class VideoSplashContainer extends React.Component {
 
     //Stop propagation to not pause the video. 
     onTouchStart = (e) => {
-        e.stopPropagation();
-        this.showHistory();
-        clearTimeout(this._hideScrollerTimeout); 
+        if (!this.props.isLineupShowing) {
+            e.stopPropagation();
+            this.showHistory();
+            clearTimeout(this._hideScrollerTimeout); 
+        }
     }
     // User has released touch, wait X sec and scroll down + fade out items.
     onTouchEnd = (e) => {
-        e.stopPropagation();
-
-        this._hideScrollerTimeout = setTimeout(() => {
-            this.setState({ preventAutoScroll: false });
-            this.setState({ showHistory: false });
-        }, 3000);  
+        if (!this.props.isLineupShowing) {
+            e.stopPropagation();
+            
+            this._hideScrollerTimeout = setTimeout(() => {
+                this.setState({ preventAutoScroll: false });
+                this.setState({ showHistory: false });
+            }, 3000);  
+        }
     }
+
     onTouchTap = (e) => {
-        e.stopPropagation();
+        if(!this.props.isLineupShowing){
+            e.stopPropagation();
+        }
         //clearTimeout(this._hideScrollerTimeout); 
     }
 
@@ -177,6 +188,12 @@ class VideoSplashContainer extends React.Component {
         this.setState({ showHistory: true });
     }
 
+    hideHistoryNow = () => {
+        if(this.state.showHistory){
+            this.setState({ showHistory: false });
+        }
+    }
+
     render() {
         // const { messages, currentSplash } = this.state;
         const { messages, currentSplash } = this.state;
@@ -185,9 +202,9 @@ class VideoSplashContainer extends React.Component {
             right: 0,
             bottom: this.state.containerOffset,
             padding: '0 20px',
-            width: '40%',
             maxHeight: `${this.state.heightOfContainer}%`,
             overflow: 'scroll',
+            width: '40%',
         };
 
 

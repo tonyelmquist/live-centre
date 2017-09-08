@@ -17,6 +17,7 @@ import { toggleChatMenu, sendMessage } from '../actions/chatMessages';
 import { removePopNotification, newPopNotification } from '../actions/notifications';
 import { hideHighlights, isVideoSettingsOpen } from '../actions/videoPlayer';
 import { getMatchData, getPlayerData } from '../utils/loadMatchData';
+import VideoSplashContainer from '../components/VideoPlayer/VideoSplashContainer';
 
 class DataOverlay extends Component {
     constructor(props) {
@@ -207,6 +208,7 @@ class DataOverlay extends Component {
             isOpen={this.props.playback.isVideoSettingsOpen}
             onClose={() => this.props.dispatch(isVideoSettingsOpen(false))}
         />
+        <VideoSplashContainer isLineupShowing={this.state.isLineupShowing}/>
         {this.props.replay.replayerOpen &&
           <Replayer
             open={this.props.replay.replayerOpen}
