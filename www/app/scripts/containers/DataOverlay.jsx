@@ -172,6 +172,7 @@ class DataOverlay extends Component {
 
     render() {
         this.getOverlayData();
+        console.log(this.props.clock);
         return (
       <div className="data-overlay" onTouchTap={e => e.stopPropagation()}>
         {/* <PenaltyCard
@@ -185,6 +186,7 @@ class DataOverlay extends Component {
           awayData={this.getAwayTeam()}
           onHomeTeamClick={() => this.displayLineup(1)}
           onAwayTeamClick={() => this.displayLineup(2)}
+          clock={this.props.clock}
         />
         <PopIndicatorManager
           removeNotification={id => this.removeNotification(id)}
@@ -236,10 +238,12 @@ DataOverlay.propTypes = {
     sportsInfo: PropTypes.object.isRequired,
     popNotifications: PropTypes.array.isRequired,
     selectedVideo: PropTypes.object.isRequired,
+    clock: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({
     score: state.dataOverlay.score,
+    clock: state.dataOverlay.clock,
     chat: state.chat,
     replay: state.replay,
     highlights: state.highlights,

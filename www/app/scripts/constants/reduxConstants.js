@@ -74,6 +74,7 @@ class ReduxConstants {
 
     // SECOND LAYER
     static get CHANGE_SCORE() { return 'CHANGE_SCORE'; }
+    static get CHANGE_CLOCK() { return 'CHANGE_CLOCK'; }
 
     // SETTINGS
     static get CHANGE_LANG() { return 'CHANGE_LANG'; }

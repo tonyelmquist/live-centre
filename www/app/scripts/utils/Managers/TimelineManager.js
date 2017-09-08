@@ -53,8 +53,6 @@ export default class TimelineManager {
                 this._activeEvents.push(this._timeline[i]);
             }
         }
-
-        console.log('active events at stamp', timestamp, this._activeEvents);
     }
 
     get activeEvents() {

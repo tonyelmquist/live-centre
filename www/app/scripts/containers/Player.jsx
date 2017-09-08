@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 import IconButton from 'material-ui/IconButton';
-import TimelineManager from '../utils/TimelineManager';
+import TimelineManager from '../utils/Managers/TimelineManager';
 import {
   Player as Video,
   ControlBar,
@@ -19,7 +19,8 @@ import '../../../node_modules/video-react/dist/video-react.css';
 import ProductThumb from '../components/OverlayX/ProductThumb';
 import ProductOverlay from '../components/OverlayX/ProductOverlay';
 import isDblTouchTap from '../utils/isDblTouchTap';
-import { changeScore } from '../actions/secondLayer';
+import VideoSplashContainer from '../components/VideoPlayer/VideoSplashContainer';
+import { changeScore, changeClock } from '../actions/secondLayer';
 
 const tickProximityInterval = 5000;
 
@@ -233,9 +234,36 @@ class Player extends React.Component {
             this.timelineManager.timeline = this.props.matches[this.props.video.matchId].timeline;
             this.timelineManager.buffer = this.props.video.matchStart;
         }
-        
+
         this.largeVideoPlayer.video.video.addEventListener('timeupdate', () => {
             this.timelineManager.setActiveTimelineEvents(this.largeVideoPlayer.video.video.currentTime * 1000);
+
+            // Control Score
+            if (this.timelineManager.activeEvents.length > 0) {
+
+                const periodStart = this.timelineManager.activeEvents.filter(value => value.type === 'period_start' && value.period === 2);
+                const breakStart = this.timelineManager.activeEvents.filter(value => value.type === 'break_start');
+                if (periodStart.length > 0) {
+                    const clock =
+                        (((this.largeVideoPlayer.video.video.currentTime * 1000)
+                        - parseInt(this.props.video.matchStart)
+                        - (new Date(periodStart[0].time) - new Date(this.timelineManager.activeEvents[0].time)))
+                        + 2700000);
+
+                    this.props.dispatch(changeClock(clock));
+                } else if (breakStart.length > 0) {
+                    if (this.props.dataOverlayClock !== 2700000) {
+                        this.props.dispatch(changeClock(2700000));
+                    }
+                } else {
+                    const clock = (this.largeVideoPlayer.video.video.currentTime * 1000) - this.props.video.matchStart;
+                    this.props.dispatch(changeClock(clock));
+                }
+            } else {
+                if (this.props.dataOverlayClock !== 0) {
+                    this.props.dispatch(changeClock(0));
+                }
+            }
         });
     };
 
@@ -412,6 +440,7 @@ const mapStateToProps = state => ({
     showProductOverlay: state.productOverlay.showProductOverlay,
     matches: state.sportsInfo.matches,
     dataOverlayScore: state.dataOverlay.score,
+    dataOverlayClock: state.dataOverlay.clock,
 });
 
 export default connect(mapStateToProps)(Player);

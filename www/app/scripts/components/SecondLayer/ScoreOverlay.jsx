@@ -38,7 +38,7 @@ class ScoreOverlay extends Component {
                   {this.props.homeData.abbreviation || '...' }
               </div>
 
-              <ScoreClock />
+              <ScoreClock time={this.props.clock}/>
 
               <div className="team2-name" onTouchTap={this.props.onAwayTeamClick} role="button" tabIndex="0">
                   {this.props.awayData.abbreviation || '...'}
