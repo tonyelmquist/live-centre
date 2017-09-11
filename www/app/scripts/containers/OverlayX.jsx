@@ -50,7 +50,7 @@ class OverlayX extends Component {
 
     componentDidUpdate = () => {
         if (typeof this.overlayRef !== 'undefined' && this.overlayRef !== null) {
-            if (this.videoHeight !== this.overlayRef.overlayRef.clientHeight) {
+            if (this.videoHeight !== this.overlayRef.height) {
                 this.forceUpdate();
             }
         }
@@ -58,7 +58,9 @@ class OverlayX extends Component {
 
     render() {
         if (typeof this.overlayRef !== 'undefined' && this.overlayRef !== null) {
-            this.videoHeight = this.overlayRef.overlayRef.clientHeight;
+            console.log("overlayref:", this.overlayRef);
+            this.videoHeight = this.overlayRef.height;
+            console.log("Videoheight:", this.videoHeight);
         }
         if (typeof this.props.video.id !== 'undefined') {
             this.setChatChannel();

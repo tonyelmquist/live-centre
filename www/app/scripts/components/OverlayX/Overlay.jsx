@@ -2,32 +2,82 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Motion, spring } from 'react-motion';
 import { Orientation } from '../../constants/reduxConstants';
+import OverlayMotion from '../VideoPlayer/OverlayMotion';
+import { connect } from 'react-redux';
+import { maximizeOverlayX, closeOverlayX, minimizeOverlayX } from '../../actions/overlayX';
 
 class Overlay extends React.Component {
 
     componentDidUpdate() {
-        if (typeof this.overlayRef !== 'undefined') {
-            if (this.heightCheck !== this.overlayRef.clientHeight) {
-                this.forceUpdate();
-            }
-        }
+        this.checkHeight();
     }
 
-    heightCheck = 0;
-    offscreenY = 320;
-    minimizedY = 190;
+    checkHeight = () => {
+        if (typeof this.overlayMotion !== 'undefined'
+            && this.overlayMotion !== null
+            && typeof this.overlayMotion.videoOverlay !== 'undefined') {
+            this.height = this.overlayMotion.videoOverlay.clientHeight;
+        }
+    }
+    height = 0;
+    limit = 50;
+
+    onTouchStart = (e) => {
+        console.log("on touch start");
+        this.startTouchPosition = {
+            x: e.changedTouches[0].clientX,
+            y: e.changedTouches[0].clientY,
+        };
+
+        e.preventDefault();
+    };
+
+    onTouchEnd = (e) => {
+        console.log("on touch end");
+        this.endTouchPosition = {
+            x: e.changedTouches[0].clientX,
+            y: e.changedTouches[0].clientY,
+        };
+
+        console.log(this.endTouchPosition.y, this.startTouchPosition.y);
+
+        if (this.startTouchPosition.y - this.endTouchPosition.y < -this.limit) {
+            this.onMinimize();
+        }
+        if (this.startTouchPosition.y - this.endTouchPosition.y > this.limit) {
+            this.onMaximize();
+        }
+    };
+
+    onMaximize = () => {
+        console.log("ON MAXIMIZE");
+        if (this.props.orientation === Orientation.PORTRAIT) {
+            this.props.dispatch(maximizeOverlayX());
+        }
+    };
+
+    onMinimize = () => {
+        document.activeElement.blur();
+        console.log("ON MINIMIZE")
+        if (this.props.orientation === Orientation.PORTRAIT) {
+            if (!this.props.overlayX.maximized) {
+                this.props.dispatch(closeOverlayX());
+            } else {
+                this.props.dispatch(minimizeOverlayX());
+            }
+        } else {
+            this.props.dispatch(closeOverlayX());
+        }
+    };
 
     onScroll = (e) => {
         e.stopPropagation();
     }
 
     render() {
-        const deviceHeight = window.innerHeight;
-        const deviceWidth = window.innerWidth;
+        this.checkHeight();
 
-        const minWidth = Math.min(deviceHeight, deviceWidth);
-
-        let overlayStyle = {
+        const playerStyles = {
             position: 'relative',
             height: '100%',
             width: '100%',
@@ -36,113 +86,28 @@ class Overlay extends React.Component {
             left: 0,
         };
 
-        if (minWidth < 800) {
-            if (this.props.orientation === Orientation.LANDSCAPE) {
-                overlayStyle = {
-                    position: 'fixed',
-                    height: '100%',
-                    width: deviceWidth,
-                    minWidth: '100%',
-                    zIndex: 1500,
-                    top: 0,
-                    left: 0,
-                    backgroundColor: 'black',
-                };
-            } else {
-                overlayStyle = {
-                    position: 'fixed',
-                    height: 'auto',
-                    width: deviceWidth,
-                    minWidth: '100%',
-                    zIndex: 1500,
-                    top: 0,
-                    left: 0,
-                    backgroundColor: 'black',
-                };
-            }
-        }
-
-        if (typeof this.overlayRef !== 'undefined') {
-            this.heightCheck = this.overlayRef.clientHeight;
-            this.offscreenY = Math.round((window.innerHeight / this.overlayRef.clientHeight) * 110);
-            this.minimizedY = Math.round((window.innerHeight / this.overlayRef.clientHeight) * 66);
-        }
-        let _y = 0;
-        let _scale = 1;
-        let _opacity = 1;
-
-        if (this.props.isOpen) {
-            _opacity = 1;
-            if (this.props.isMaximized) {
-                _scale = 1;
-                _y = 0;
-            } else {
-                _y = this.minimizedY;
-                _scale = 0.5;
-            }
-        } else {
-            _y = this.offscreenY;
-            _opacity = 0;
-            _scale = 1;
-        }
-
         return (
-            <Motion
-            style={{
-                y: spring(_y, {
-                    stiffness: 60,
-                    damping: 15,
-                }),
-                scale: spring(_scale, {
-                    stiffness: 60,
-                    damping: 15,
-                }),
-                opacity: spring(_opacity, {
-                    stiffness: 60,
-                    damping: 15,
-                }),
-            }}
-            >
-                {({ y, scale, opacity }) => (<div
-                    className={'fs-overlay isOpen'}
-                    ref={ref => (this.overlayRef = ref)}
-                    style={{
-                        ...overlayStyle,
-                        opacity,
-                        transform: `translate3d(0, ${y}%, 0) scale3d(${scale}, ${scale}, 1)`,
-                    }}
-                    id="overlayDiv"
-                    onScroll={this.onScroll}
-                >
-                    {/* <div className="overlay-header" style={styles.overlayHeaderStyle}>
-                        <IconButton
-                            iconStyle={styles.mediumIcon}
-                            style={styles.medium}
-                            onTouchTap={this.props.handleClose}>
-                            <ArrowBack hoverColor={blue500}/>
-                        </IconButton>
-                    </div>*/}
+            <div style={playerStyles} className={'IMRPlayer'} onScroll={this.onScroll} onTouchTap={this.onTouchTap} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
+                <OverlayMotion ref={ref => (this.overlayMotion = ref)} orientation={this.props.orientation} isOpen={this.props.isOpen} isMaximized={this.props.isMaximized}>
                     {this.props.children}
-                    {/* <FloatingActionButton
-                        mini
-                        secondary
-                        style={styles.fullscreenButton}
-                        onTouchTap={this.props.handleClose}
-                        >
-                        <Close />
-                        </FloatingActionButton>*/}
-                </div>)
-}
-            </Motion>
+                </OverlayMotion>
+            </div>
+
         );
     }
 }
 
 Overlay.propTypes = {
+    dispatch: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
     isMaximized: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
     orientation: PropTypes.string.isRequired,
 };
 
-export default Overlay;
+const mapStateToProps = state => ({
+    orientation: state.settings.screenOrientation,
+    overlayX: state.overlayX,
+});
+
+export default connect(mapStateToProps)(Overlay);

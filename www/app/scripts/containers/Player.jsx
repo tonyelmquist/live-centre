@@ -25,6 +25,7 @@ import { changeScore, changeClock } from '../actions/secondLayer';
 import VideoPlayer from '../components/VideoPlayer/VideoPlayer.jsx';
 import VideoControls from '../components/VideoPlayer/VideoControls.jsx';
 import { HighlightsControl, ReplayControl, SettingsControl } from '../components/VideoPlayer/Controls.jsx';
+import PrePlayOverlay from '../components/OverlayX/PrePlayOverlay';
 
 const tickProximityInterval = 5000;
 
@@ -104,51 +105,9 @@ class Player extends React.Component {
         this.props.dispatch(minimizeOverlayX());
     };
 
-    onTouchStart = (e) => {
-        this.startTouchPosition = {
-            x: e.changedTouches[0].clientX,
-            y: e.changedTouches[0].clientY,
-        };
-
-        e.preventDefault();
-    };
-
-    onTouchEnd = (e) => {
-        this.endTouchPosition = {
-            x: e.changedTouches[0].clientX,
-            y: e.changedTouches[0].clientY,
-        };
-
-        if (this.startTouchPosition.y - this.endTouchPosition.y < -this.limit) {
-            this.onMinimize();
-        }
-        if (this.startTouchPosition.y - this.endTouchPosition.y > this.limit) {
-            this.onMaximize();
-        }
-    };
-
-    onMaximize = () => {
-        if (this.props.orientation === Orientation.PORTRAIT) {
-            this.props.dispatch(maximizeOverlayX());
-        }
-    };
-
-    onMinimize = () => {
-        document.activeElement.blur();
-        if (this.props.orientation === Orientation.PORTRAIT) {
-            if (!this.props.overlayX.maximized) {
-                this.props.dispatch(closeOverlayX());
-            } else {
-                this.props.dispatch(minimizeOverlayX());
-            }
-        } else {
-            this.props.dispatch(closeOverlayX());
-        }
-    };
-
     componentDidUpdate = () => {
         if (!this.props.overlayX.open) {
-            this.largeVideoPlayer.pause();
+            this.largeVideoPlayer.video.pause();
         }
 
         let newScore = { home: 0, away: 0 };
@@ -188,38 +147,6 @@ class Player extends React.Component {
 
     showHighlights = (videoUrl, highlights) => {
         this.props.dispatch(showHighlights(videoUrl, highlights));
-    };
-
-    printPrePlayOverlay = () => {
-        if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null &&
-            this.largeVideoPlayer.video.paused &&
-            this.largeVideoPlayer.video.currentTime === 0 &&
-            this.state.isPreOverlayShowing &&
-            this.props.overlayX.maximized) {
-            return (<div className="pre-play-overlay" onTouchTap={this.onPrePlayTouch}>
-                        {this.props.orientation === Orientation.PORTRAIT ? <div className="gradient-overlay" /> : ''}
-                        <div className="play-button" >
-                            <FontAwesome
-                                name="play-circle"
-                                size="2x"
-                            />
-                        </div>
-                        <FontAwesome
-                            className="close-button"
-                            name="close"
-                            size="2x"
-                            onTouchTap={this.onCloseTouch}
-                        />
-                        <FontAwesome
-                            className="minimize-button"
-                            name="chevron-down"
-                            size="2x"
-                            onTouchTap={this.onMinimizeTouch}
-                        />
-                    </div>);
-        }
-
-        return <div />;
     };
 
     limit = 50;
@@ -329,30 +256,27 @@ class Player extends React.Component {
         }
     }
 
-    render() {
-        const minimizeIconStyles = {
-            position: 'fixed',
-            top: '20px',
-            left: '20px',
-            color: 'white',
-            zIndex: '2000',
-            width: '42px',
-            height: '42px',
-            opacity: `${this.props.overlayX.maximized ? '1' : '0'}`,
-            textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
-        };
+    getVideoPlayer = () => {
+        if(typeof this.largeVideoPlayer !== "undefined"){
+            return this.largeVideoPlayer.video;
+        } else {
+            console.log("Could not find videoplayer");
+            return null
+        }
+    }
 
-        const playerStyles = {
-            position: 'relative',
-            height: '100%',
-            width: '100%',
-            zIndex: 1500,
-            top: 0,
-            left: 0,
-        };
+    pauseVideo = () => {
+        if(this.getVideoPlayer()){
+            this.getVideoPlayer().pause();
+        } else {
+            return null
+        }
+    }
+
+    render() {
 
         return (
-          <div style={playerStyles} className={'IMRPlayer'} onScroll={this.onScroll} onTouchTap={this.onTouchTap} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
+          <span onScroll={this.onScroll} onTouchTap={this.onTouchTap} >
 
             <VideoPlayer
                 poster={this.props.video.thumbnail}
@@ -367,15 +291,10 @@ class Player extends React.Component {
                 showReplay={this.showReplay}
             />
 
-            {/* { this.props.orientation === Orientation.LANDSCAPE ?
-                <div className="controls">
-                    <SettingsControl onTouchTap={this.onOpenSettings} />
-                    <ReplayControl onTouchTap={() => this.showReplay(this.props.video.videoUrl, 0)} />
-                    <HighlightsControl onTouchTap={() => this.showHighlights(this.props.video.videoUrl)} />
-                </div>
-            : <div /> } */}
-
-            {this.printPrePlayOverlay()}
+            <PrePlayOverlay video={this.getVideoPlayer()} maximized={this.props.overlayX.maximized} 
+                orientation={this.props.orientation} isPreOverlayShowing={this.state.isPreOverlayShowing} 
+                onPrePlayTouch={this.onPrePlayTouch} onCloseTouch={this.onCloseTouch} onMinimizeTouch={this.onMinimizeTouch}
+            />
 
             <ProductThumb productID={this.props.productID} showProductThumb={this.props.showProductThumb} onTouchTap={() => this.onShowProductOverlay()} />
             <ProductOverlay overlayMaximized={this.props.overlayX.maximized} productID={this.props.productID} showProductOverlay={this.props.showProductOverlay} />
@@ -385,7 +304,8 @@ class Player extends React.Component {
             this.props.video.matchId !== null
             ? <DataOverlay />
             : ''}
-      </div>
+
+        </span>
         );
     }
 }
