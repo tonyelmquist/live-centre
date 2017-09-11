@@ -20,55 +20,7 @@ class Overlay extends React.Component {
         }
     }
     height = 0;
-    limit = 50;
-
-    onTouchStart = (e) => {
-        console.log("on touch start");
-        this.startTouchPosition = {
-            x: e.changedTouches[0].clientX,
-            y: e.changedTouches[0].clientY,
-        };
-
-        e.preventDefault();
-    };
-
-    onTouchEnd = (e) => {
-        console.log("on touch end");
-        this.endTouchPosition = {
-            x: e.changedTouches[0].clientX,
-            y: e.changedTouches[0].clientY,
-        };
-
-        console.log(this.endTouchPosition.y, this.startTouchPosition.y);
-
-        if (this.startTouchPosition.y - this.endTouchPosition.y < -this.limit) {
-            this.onMinimize();
-        }
-        if (this.startTouchPosition.y - this.endTouchPosition.y > this.limit) {
-            this.onMaximize();
-        }
-    };
-
-    onMaximize = () => {
-        console.log("ON MAXIMIZE");
-        if (this.props.orientation === Orientation.PORTRAIT) {
-            this.props.dispatch(maximizeOverlayX());
-        }
-    };
-
-    onMinimize = () => {
-        document.activeElement.blur();
-        console.log("ON MINIMIZE")
-        if (this.props.orientation === Orientation.PORTRAIT) {
-            if (!this.props.overlayX.maximized) {
-                this.props.dispatch(closeOverlayX());
-            } else {
-                this.props.dispatch(minimizeOverlayX());
-            }
-        } else {
-            this.props.dispatch(closeOverlayX());
-        }
-    };
+    
 
     onScroll = (e) => {
         e.stopPropagation();
@@ -77,21 +29,17 @@ class Overlay extends React.Component {
     render() {
         this.checkHeight();
 
-        const playerStyles = {
-            position: 'relative',
-            height: '100%',
-            width: '100%',
-            zIndex: 1500,
-            top: 0,
-            left: 0,
-        };
-
         return (
-            <div style={playerStyles} className={'IMRPlayer'} onScroll={this.onScroll} onTouchTap={this.onTouchTap} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
-                <OverlayMotion ref={ref => (this.overlayMotion = ref)} orientation={this.props.orientation} isOpen={this.props.isOpen} isMaximized={this.props.isMaximized}>
+                <OverlayMotion ref={ref => (this.overlayMotion = ref)}
+                    orientation={this.props.orientation}
+                    isOpen={this.props.isOpen}
+                    isMaximized={this.props.isMaximized}
+                    closeOverlayX={() => this.props.dispatch(closeOverlayX())}
+                    minimizeOverlayX={() => this.props.dispatch(minimizeOverlayX())}
+                    maximizeOverlayX={() => this.props.dispatch(maximizeOverlayX())}
+                >
                     {this.props.children}
                 </OverlayMotion>
-            </div>
 
         );
     }

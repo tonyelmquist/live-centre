@@ -1,16 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FontAwesome from 'react-fontawesome';
-import IconButton from 'material-ui/IconButton';
 import TimelineManager from '../utils/Managers/TimelineManager';
-import {
-  Player as Video,
-  ControlBar,
-  PlayToggle,
-} from 'video-react';
-import KeyboardArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
-import Settings from 'material-ui/svg-icons/action/settings';
 import { maximizeOverlayX, closeOverlayX, minimizeOverlayX } from '../actions/overlayX';
 import { Orientation } from '../constants/reduxConstants';
 import DataOverlay from './DataOverlay';
@@ -19,36 +10,12 @@ import '../../../node_modules/video-react/dist/video-react.css';
 import ProductThumb from '../components/OverlayX/ProductThumb';
 import ProductOverlay from '../components/OverlayX/ProductOverlay';
 import isDblTouchTap from '../utils/isDblTouchTap';
-import VideoSplashContainer from '../components/VideoPlayer/VideoSplashContainer';
 import { changeScore, changeClock } from '../actions/secondLayer';
-
-import VideoPlayer from '../components/VideoPlayer/VideoPlayer.jsx';
-import VideoControls from '../components/VideoPlayer/VideoControls.jsx';
-import { HighlightsControl, ReplayControl, SettingsControl } from '../components/VideoPlayer/Controls.jsx';
+import VideoPlayer from '../components/VideoPlayer/VideoPlayer';
+import VideoControls from '../components/VideoPlayer/VideoControls';
 import PrePlayOverlay from '../components/OverlayX/PrePlayOverlay';
 
 const tickProximityInterval = 5000;
-
-const styles = {
-    playerStyle: {
-        position: 'relative',
-        height: '100%',
-        width: '100%',
-        zIndex: 1500,
-        top: 0,
-        left: 0,
-    },
-    fullscreenButton: {
-        position: 'absolute',
-        bottom: 5,
-        right: 5,
-    },
-    iconButtons: {
-        marginLeft: '12px',
-        marginRight: '12px',
-    },
-};
-
 /**
  * Overlay Video Player.
  *
@@ -66,96 +33,11 @@ class Player extends React.Component {
 
     timelineManager = new TimelineManager();
 
-    onPrePlayTouch = (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        if (isDblTouchTap(e)) {
-            return;
-        }
-
-        this.setState({ isPreOverlayShowing: false });
-        if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
-            this.largeVideoPlayer.video.play();
-            this.videoLoaded = this.props.video.videoUrl;
-
-            this.props.dispatch(setControlBarVisibility(true));
-            setTimeout(() => {
-                if (!this.largeVideoPlayer.video.paused) {
-                    this.props.dispatch(setControlBarVisibility(false));
-                }
-            }, 3000);
-        }
-    };
-
-    onScroll = (e) => {
-        e.stopPropagation();
-    }
-
-    onCloseTouch = (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        document.activeElement.blur();
-        this.props.dispatch(closeOverlayX());
-    };
-
-    onMinimizeTouch = (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        document.activeElement.blur();
-        this.props.dispatch(minimizeOverlayX());
-    };
-
-    componentDidUpdate = () => {
-        if (!this.props.overlayX.open) {
-            this.largeVideoPlayer.video.pause();
-        }
-
-        let newScore = { home: 0, away: 0 };
-        // Go backwards through the array and get the first instance of 'score_change'
-        for (let i = 0; i < this.timelineManager.activeEvents.length; i++) {
-            if (this.timelineManager.activeEvents[i].type === 'score_change') {
-                newScore = {
-                    home: this.timelineManager.activeEvents[i].home_score,
-                    away: this.timelineManager.activeEvents[i].away_score,
-                };
-            }
-        }
-
-        // console.log(this.props.dataOverlayScore, newScore, this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away);
-        if (this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away) {
-            this.props.dispatch(changeScore(newScore));
-        }
-    }
-
-    onShowProductOverlay = () => {
-        this.props.dispatch(showProductOverlay());
-    };
-
-    tickInProximity = (currentTime) => {
-        const currentTimeInMS = currentTime * 1000;
-        const thisTimeline = this.props.video._timeline;
-        if (thisTimeline.events !== undefined) {
-            const currentEvent = thisTimeline.events.find(
-            event => ((event.timestamp - tickProximityInterval < currentTimeInMS) && (currentTimeInMS < event.timestamp + tickProximityInterval)),
-            );
-
-            if (currentEvent !== undefined) {
-                if (!this.props.showProductThumb) { this.props.dispatch(showProductThumb(currentEvent.productID)); }
-            } else if (this.props.showProductThumb) { this.props.dispatch(hideProductThumb(0)); }
-        }
-    }
-
-    showHighlights = (videoUrl, highlights) => {
-        this.props.dispatch(showHighlights(videoUrl, highlights));
-    };
-
     limit = 50;
 
+    controlBarTimeoutTest1 = null;
+
     componentDidMount = () => {
-        console.log(this.largeVideoPlayer.video.currentTime);
-        console.log(this.largeVideoPlayer.duration);
-        
-        console.log("this.largevideoplayer",this.largeVideoPlayer);
         this.largeVideoPlayer.subscribeToStateChange(this.handleStateChange.bind(this));
 
         if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[this.props.video.matchId]) {
@@ -195,14 +77,27 @@ class Player extends React.Component {
         });
     };
 
+    componentDidUpdate = () => {
+        if (!this.props.overlayX.open) {
+            this.largeVideoPlayer.video.pause();
+        }
 
-    handleStateChange = (state, prevState) => {
-        this.setState({
-            player: state,
-            currentTime: state.currentTime,
-        });
-        this.tickInProximity(state.currentTime);
-    };
+        let newScore = { home: 0, away: 0 };
+        // Go backwards through the array and get the first instance of 'score_change'
+        for (let i = 0; i < this.timelineManager.activeEvents.length; i++) {
+            if (this.timelineManager.activeEvents[i].type === 'score_change') {
+                newScore = {
+                    home: this.timelineManager.activeEvents[i].home_score,
+                    away: this.timelineManager.activeEvents[i].away_score,
+                };
+            }
+        }
+
+        // console.log(this.props.dataOverlayScore, newScore, this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away);
+        if (this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away) {
+            this.props.dispatch(changeScore(newScore));
+        }
+    }
 
     componentWillUpdate = (nextProps) => {
         if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[nextProps.video.matchId].timeline) {
@@ -223,12 +118,73 @@ class Player extends React.Component {
         }
     };
 
+    onPrePlayTouch = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        if (isDblTouchTap(e)) {
+            return;
+        }
+
+        this.setState({ isPreOverlayShowing: false });
+        if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
+            this.largeVideoPlayer.video.play();
+            this.videoLoaded = this.props.video.videoUrl;
+
+            this.props.dispatch(setControlBarVisibility(true));
+            setTimeout(() => {
+                if (!this.largeVideoPlayer.video.paused) {
+                    this.props.dispatch(setControlBarVisibility(false));
+                }
+            }, 3000);
+        }
+    };
+
+    onScroll = (e) => {
+        e.stopPropagation();
+    }
+    onCloseTouch = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        document.activeElement.blur();
+        this.props.dispatch(closeOverlayX());
+    };
+    onMinimizeTouch = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        document.activeElement.blur();
+        this.props.dispatch(minimizeOverlayX());
+    };
+    onShowProductOverlay = () => {
+        this.props.dispatch(showProductOverlay());
+    };
+    tickInProximity = (currentTime) => {
+        const currentTimeInMS = currentTime * 1000;
+        const thisTimeline = this.props.video._timeline;
+        if (thisTimeline.events !== undefined) {
+            const currentEvent = thisTimeline.events.find(
+            event => ((event.timestamp - tickProximityInterval < currentTimeInMS) && (currentTimeInMS < event.timestamp + tickProximityInterval)),
+            );
+
+            if (currentEvent !== undefined) {
+                if (!this.props.showProductThumb) { this.props.dispatch(showProductThumb(currentEvent.productID)); }
+            } else if (this.props.showProductThumb) { this.props.dispatch(hideProductThumb(0)); }
+        }
+    }
+    showHighlights = (videoUrl, highlights) => {
+        this.props.dispatch(showHighlights(videoUrl, highlights));
+    };
+
+    handleStateChange = (state, prevState) => {
+        this.setState({
+            player: state,
+            currentTime: state.currentTime,
+        });
+        this.tickInProximity(state.currentTime);
+    };
 
     onOpenSettings = () => {
         this.props.dispatch(isVideoSettingsOpen(true));
     };
-
-    controlBarTimeoutTest1 = null;
 
     onTouchTap = (e) => {
         document.activeElement.blur();
@@ -257,26 +213,41 @@ class Player extends React.Component {
     }
 
     getVideoPlayer = () => {
-        if(typeof this.largeVideoPlayer !== "undefined"){
+        if (typeof this.largeVideoPlayer !== 'undefined') {
             return this.largeVideoPlayer.video;
         } else {
-            console.log("Could not find videoplayer");
-            return null
+            console.log('Could not find videoplayer');
+            return null;
         }
     }
 
+    isPlaying = () => {
+        if(!this.getVideoPlayer()){
+            console.log("could not find videoplayer");
+            return false;
+        }
+        return this.getVideoPlayer().paused;
+    }
+    togglePlay = () => {
+        if(!this.getVideoPlayer()){
+            console.log("could not find videoplayer");
+            return false;
+        }
+        this.isPlaying() ? this.getVideoPlayer().pause() : this.getVideoPlayer().play();
+    }
+
     pauseVideo = () => {
-        if(this.getVideoPlayer()){
+        if (this.getVideoPlayer()){
             this.getVideoPlayer().pause();
+            return true;
         } else {
-            return null
+            return false;
         }
     }
 
     render() {
-
         return (
-          <span onScroll={this.onScroll} onTouchTap={this.onTouchTap} >
+          <div onScroll={this.onScroll} onTouchTap={this.onTouchTap} >
 
             <VideoPlayer
                 poster={this.props.video.thumbnail}
@@ -289,6 +260,10 @@ class Player extends React.Component {
                 video={this.props.video}
                 onOpenSettings={() => this.onOpenSettings()}
                 showReplay={this.showReplay}
+                controlBarVisibility={this.props.controlBarVisibility}
+                togglePlay={this.togglePlay()}
+                isPlaying={this.isPlaying()}
+                videoPlayer={this.getVideoPlayer()}
             />
 
             <PrePlayOverlay video={this.getVideoPlayer()} maximized={this.props.overlayX.maximized} 
@@ -305,7 +280,7 @@ class Player extends React.Component {
             ? <DataOverlay />
             : ''}
 
-        </span>
+        </div>
         );
     }
 }
@@ -328,11 +303,13 @@ Player.propTypes = {
     showProductOverlay: PropTypes.bool.isRequired,
     matches: PropTypes.object.isRequired,
     dataOverlayScore: PropTypes.object.isRequired,
+    controlBarVisibility: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
     video: state.playback.video,
     videoPosition: state.playback.currentTime,
+    controlBarVisibility: state.playback.controlBarVisibility,
     overlayX: state.overlayX,
     orientation: state.settings.screenOrientation,
     productID: state.productThumb.productID,

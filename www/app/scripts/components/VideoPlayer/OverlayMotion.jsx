@@ -79,6 +79,56 @@ class Overlay extends React.Component {
         }
     }
 
+    limit = 50;
+
+    onTouchStart = (e) => {
+        console.log("on touch start");
+        this.startTouchPosition = {
+            x: e.changedTouches[0].clientX,
+            y: e.changedTouches[0].clientY,
+        };
+
+        e.preventDefault();
+    };
+
+    onTouchEnd = (e) => {
+        console.log("on touch end");
+        this.endTouchPosition = {
+            x: e.changedTouches[0].clientX,
+            y: e.changedTouches[0].clientY,
+        };
+
+        console.log(this.endTouchPosition.y, this.startTouchPosition.y);
+
+        if (this.startTouchPosition.y - this.endTouchPosition.y < -this.limit) {
+            this.onMinimize();
+        }
+        if (this.startTouchPosition.y - this.endTouchPosition.y > this.limit) {
+            this.onMaximize();
+        }
+    };
+
+    onMaximize = () => {
+        console.log("ON MAXIMIZE");
+        if (this.props.orientation === Orientation.PORTRAIT) {
+            this.props.maximizeOverlayX();
+        }
+    };
+
+    onMinimize = () => {
+        document.activeElement.blur();
+        console.log("ON MINIMIZE")
+        if (this.props.orientation === Orientation.PORTRAIT) {
+            if (!this.props.isMaximized) {
+                this.props.closeOverlayX();
+            } else {
+                this.props.minimizeOverlayX();
+            }
+        } else {
+            this.props.closeOverlayX();
+        }
+    };
+
     heightCheck = 0;
     offscreenY = 320;
     minimizedY = 190;
@@ -89,6 +139,15 @@ class Overlay extends React.Component {
         const config = {
             stiffness: 60,
             damping: 15,
+        };
+
+        const playerStyles = {
+            position: 'relative',
+            height: '100%',
+            width: '100%',
+            zIndex: 1500,
+            top: 0,
+            left: 0,
         };
 
         return (
@@ -108,8 +167,10 @@ class Overlay extends React.Component {
                         transform: `translate3d(0, ${y}%, 0) scale3d(${scale}, ${scale}, 1)`,
                     }}
                     id="overlayDiv"
-                >
-                    {this.props.children}
+                >   
+                    <div style={playerStyles} className={'IMRPlayer'} onScroll={this.onScroll} onTouchTap={this.onTouchTap} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
+                        {this.props.children}
+                    </div>
                 </div>)
 }
             </Motion>
