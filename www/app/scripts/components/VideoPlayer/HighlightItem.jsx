@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
@@ -68,4 +69,4 @@ HighlightItem.propTypes = {
     thumbnail: PropTypes.string.isRequired,
 };
 
-export default HighlightItem;
+export default connect()(HighlightItem);
