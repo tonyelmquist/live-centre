@@ -82,7 +82,6 @@ class Overlay extends React.Component {
     limit = 50;
 
     onTouchStart = (e) => {
-        console.log("on touch start");
         this.startTouchPosition = {
             x: e.changedTouches[0].clientX,
             y: e.changedTouches[0].clientY,
@@ -92,13 +91,10 @@ class Overlay extends React.Component {
     };
 
     onTouchEnd = (e) => {
-        console.log("on touch end");
         this.endTouchPosition = {
             x: e.changedTouches[0].clientX,
             y: e.changedTouches[0].clientY,
         };
-
-        console.log(this.endTouchPosition.y, this.startTouchPosition.y);
 
         if (this.startTouchPosition.y - this.endTouchPosition.y < -this.limit) {
             this.onMinimize();

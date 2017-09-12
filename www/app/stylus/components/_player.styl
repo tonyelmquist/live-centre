@@ -119,6 +119,22 @@
     background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,#1f1f1f 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,#1f1f1f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
+.play-button{
+    pointer-events: none;
+}
+
+.play-button, .play-toggle{
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+   i {
+        font-size: 46px;
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, .4);
+    }
+}
 
 .pre-play-overlay {
     height: 100%;
@@ -126,22 +142,6 @@
     position: absolute;
     top: 0;
     left: 0;
-
-
-    .play-button {
-        position: absolute;
-        color: white;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 2000;
-        pointer-events: none;
-
-        i {
-            font-size: 46px;
-            text-shadow: 2px 2px 2px rgba(0, 0, 0, .4);
-        }
-    }
 
     .close-button, .minimize-button{
         position: absolute;

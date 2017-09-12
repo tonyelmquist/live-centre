@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { HighlightsControl, ReplayControl, SettingsControl } from './Controls.jsx';
+import { HighlightsControl, ReplayControl, SettingsControl, PlayToggle, VolumeControl } from './Controls.jsx';
+import ProgressBar from './ProgressBar';
 import Replayer from './Replayer';
 import HighlightsRow from './HighlightsRow';
 
@@ -17,8 +18,12 @@ class VideoControls extends React.Component {
                 open: false,
                 videoUrl: '',
             },
+            player: {
+                timeupdate: false,
+            },
         };
     }
+
 
     showReplay = () => {
         console.log('SHOW REPLAUY', this.props);
@@ -36,7 +41,7 @@ class VideoControls extends React.Component {
     }
 
     showHighLights = () => {
-        console.log("SHOW HIGHLIGHTS");
+        console.log('SHOW HIGHLIGHTS');
         this.setState({ highlights: { open: true } });
     }
 
@@ -44,37 +49,48 @@ class VideoControls extends React.Component {
         this.setState({ highlights: { open: false } });
     }
 
-    getHighlights = () => {
-        return [
-            { timestamp: 0, description: 'A HIGHLIGHT', thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png' },
-            {
-                timestamp: 10,
-                description: 'ANOTHER HIGHLIGHT',
-                title: 'ANOTHER HIGHLIGHT',
-                thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png',
-            },
-        ];
-    }
+    getHighlights = () => [
+        { timestamp: 0,
+            description: 'A HIGHLIGHT',
+            thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png' },
+        {
+            timestamp: 10,
+            description: 'ANOTHER HIGHLIGHT',
+            title: 'ANOTHER HIGHLIGHT',
+            thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png',
+        },
+    ]
+
+    getStyles = () => ({
+            opacity: this.props.controlBarVisibility ? 1 : 0,
+            transition: '0.3s ease all',
+        })
 
     render() {
-        console.log('Video controls rendered');
         return (
-            <div>
-                <div className="video-controls">
+            <div style={this.getStyles()}>
+                <div className="gradient-overlay" style={{zIndex: 0}}/>
+                <div className="video-controls icon-shadow">
+                    <PlayToggle onTouch={this.props.togglePlay} isPlaying={this.props.playState.playing} />
                     <SettingsControl onTouch={this.props.onOpenSettings} />
                     <ReplayControl onTouch={() => this.showReplay()} />
-                    <HighlightsControl onTouch={() => this.showHighLights()} />
+                    {/* <HighlightsControl onTouch={() => this.showHighLights()} /> */}
+                    <VolumeControl />
                 </div>
+                <ProgressBar
+                    videoPlayer={this.props.videoPlayer}
+                    orientation={this.props.orientation}
+                />
                 <Replayer
                     open={this.state.replay.showReplay}
                     videoUrl={this.state.replay.videoUrl}
                     timestamp={this.state.replay.timestamp}
                 />
                 <HighlightsRow
-                    open={this.state.highlights.highlightsOpen}
+                    open={this.state.highlights.open}
                     highlights={this.getHighlights()}
                     videoUrl={this.state.highlights.videoUrl}
-                    handleClose={() => this.handleHighlightsClose}
+                    handleClose={() => this.handleHighlightsClose()}
                 />
           </div>
         );

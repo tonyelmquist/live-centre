@@ -19,6 +19,7 @@ class VideoSplashContainer extends React.Component {
             isScrolling: false, // If we are auto scrolling, then we dont need to check whish splash is in focus. 
             preventAutoScroll: false, // Should we prevent auto scroll. The user is actively scrolling.
             showHistory: false, //Should we show the history, passed down to props to change the opacity of the items. 
+            forceHideHistory: false, //Dont even show the newest item, because another overlay is open now. 
             heightOfItems: 50, //Height of each item
             itemMargin: 10, //Margin on each item
             heightOfContainer: 65, // % height in percentage of container
@@ -32,10 +33,13 @@ class VideoSplashContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if(prevProps.isLineupShowing !== this.props.isLineupShowing && this.props.isLineupShowing){
+        if((prevProps.isLineupShowing !== this.props.isLineupShowing && this.props.isLineupShowing) || this.props.controlBarVisibility){
+            console.log("Force hide history ");
             this.forcehideHistoryNow();
+        } else {
+            this.disableForceHide();
         }
-       
+        console.log(this.props.controlBarVisibility);
         //console.log('splashInFocus:', this.state.splashInFocus);
         // IF preventautoscroll, wait til until it is Not preventautoscroll
             // then if new item, scroll down, 
@@ -139,7 +143,7 @@ class VideoSplashContainer extends React.Component {
 
     //Stop propagation to not pause the video. 
     onTouchStart = (e) => {
-        if (!this.props.isLineupShowing) {
+        if (!this.state.forceHideHistory) {
             e.stopPropagation();
             this.showHistory();
             clearTimeout(this._hideScrollerTimeout); 
@@ -147,7 +151,7 @@ class VideoSplashContainer extends React.Component {
     }
     // User has released touch, wait X sec and scroll down + fade out items.
     onTouchEnd = (e) => {
-        if (!this.props.isLineupShowing) {
+        if (!this.state.forceHideHistory) {
             e.stopPropagation();
             
             this._hideScrollerTimeout = setTimeout(() => {
@@ -158,15 +162,18 @@ class VideoSplashContainer extends React.Component {
     }
 
     onTouchTap = (e) => {
-        if(!this.props.isLineupShowing){
+        if(!this.state.forceHideHistory){
+            console.log("stopPropagation");
             e.stopPropagation();
-        }
+        } 
         //clearTimeout(this._hideScrollerTimeout); 
     }
 
     onScroll = (e) => {
-        e.stopPropagation();
-        this.checkScrollPos();
+        if (!this.state.forceHideHistory) {
+            e.stopPropagation();
+            this.checkScrollPos();
+        }
     }
 
     checkScrollPos = (e) => {
@@ -189,8 +196,14 @@ class VideoSplashContainer extends React.Component {
     }
 
     forcehideHistoryNow = () => {
-        if(this.state.showHistory){
-            this.setState({ showHistory: false });
+        if (!this.state.forceHideHistory){
+            this.setState({ forceHideHistory: true });
+        }
+    }
+
+    disableForceHide = () => {
+        if (this.state.forceHideHistory){
+            this.setState({ forceHideHistory: false });
         }
     }
 
@@ -203,7 +216,8 @@ class VideoSplashContainer extends React.Component {
             bottom: this.state.containerOffset,
             padding: '0 20px',
             maxHeight: `${this.state.heightOfContainer}%`,
-            overflow: 'scroll',
+            overflowY: 'scroll',
+            overflowX: 'hidden',
             width: '40%',
         };
 
@@ -224,6 +238,7 @@ class VideoSplashContainer extends React.Component {
                             message={message.message}
                             currentSplash={this.state.splashInFocus}
                             id={key}
+                            forceHideHistory={this.state.forceHideHistory}
                     />
                     ))}
             </div>

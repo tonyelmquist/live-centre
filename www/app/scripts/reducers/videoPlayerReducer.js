@@ -54,7 +54,7 @@ export function highlightsReducer(
     }
 }
 
-export function handleSelection(state = { isSelected: false, video: {}, isFullscreen: false, currentTime: 0, controlBarVisibility: true, isVideoSettingsOpen: false }, action) {
+export function handleSelection(state = { isSelected: false, video: {}, isFullscreen: false, currentTime: 0, controlBarVisibility: false, isVideoSettingsOpen: false }, action) {
     const newVideo = Object.assign(Object.create(Object.getPrototypeOf(state.video)), state.video);
 
 

@@ -7,7 +7,6 @@ const settingsIconStyles = {
     right: '20px',
     color: 'white',
     zIndex: '2000',
-    fontSize: '25px',
     opacity: 1,
 };
 
@@ -15,29 +14,50 @@ const replayIconStyles = {
     ...settingsIconStyles,
     top: 'auto',
     right: 'auto',
-    left: '100px',
-    bottom: '50px',
+    fontSize: '15px',
+    left: '15px',
+    bottom: '12px',
 };
 
 const highlightsIconStyles = {
-    ...replayIconStyles,
-    left: '160px',
+    ...settingsIconStyles,
+    top: 'auto',
+    right: 'auto',
+    bottom: '25px',
+    left: '60px',
 };
 
-const PlayToggle = ({ onTouch }) => (
-    <FontAwesome className="playToggle" name="play-circle" onTouchTap={onTouch} />
-);
+const PlayToggle = ({ onTouch, isPlaying }) => {
+    if (isPlaying) {
+        return (<FontAwesome
+            className="play-toggle"
+            name="pause"
+            size="2x"
+            onTouchTap={onTouch}
+        />);
+    }
+    return (<FontAwesome
+        className="play-toggle"
+        name="play"
+        size="2x"
+        onTouchTap={onTouch}
+    />);
+};
 
 const HighlightsControl = ({ onTouch }) => (
     <span><FontAwesome className="highlights-control" name="chevron-circle-up" style={highlightsIconStyles} onTouchTap={onTouch} />Highlights</span>
-);
-
-const ReplayControl = ({ onTouch }) => (
-    <FontAwesome name="undo" className="replay-control" style={replayIconStyles} onTouchTap={onTouch} />
 );
 
 const SettingsControl = ({ onTouch }) => (
     <FontAwesome name="cog" className="settings-control" style={settingsIconStyles} onTouchTap={onTouch} />
 );
 
-export { HighlightsControl, PlayToggle, ReplayControl, SettingsControl };
+const ReplayControl = ({ onTouch }) => (
+    <FontAwesome name="undo" className="small-control" style={{ left: '15px' }} onTouchTap={onTouch} />
+);
+
+const VolumeControl = ({ onTouch }) => (
+    <FontAwesome name="volume-up" className="small-control" style={{ left: '40px' }} onTouchTap={onTouch} />
+);
+
+export { HighlightsControl, PlayToggle, ReplayControl, SettingsControl, VolumeControl };

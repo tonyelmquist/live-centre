@@ -38,6 +38,9 @@ class VideoSplash extends React.Component {
 
     getOpacity = () => {
         const fadeExpo = 0.3;
+        if(this.props.forceHideHistory){
+            return 0;
+        }
         // If we are showing the items:
         if (this.props.showHistory) {
             // The focused splash should be fully visible
@@ -56,6 +59,9 @@ class VideoSplash extends React.Component {
     }
 
     getX = () => {
+        if(this.props.forceHideHistory){
+            return 100;
+        }
         if(this.props.showHistory){
             return 0
         } else {

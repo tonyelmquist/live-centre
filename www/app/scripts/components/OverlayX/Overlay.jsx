@@ -19,7 +19,7 @@ class Overlay extends React.Component {
             this.height = this.overlayMotion.videoOverlay.clientHeight;
         }
     }
-    height = 0;
+    height = 200;
     
 
     onScroll = (e) => {

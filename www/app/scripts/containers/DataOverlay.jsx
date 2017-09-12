@@ -208,7 +208,7 @@ class DataOverlay extends Component {
             isOpen={this.props.playback.isVideoSettingsOpen}
             onClose={() => this.props.dispatch(isVideoSettingsOpen(false))}
         />
-        <VideoSplashContainer isLineupShowing={this.state.isLineupShowing}/>
+        <VideoSplashContainer isLineupShowing={this.state.isLineupShowing} controlBarVisibility={this.props.controlBarVisibility}/>
 
       </div>
         );
@@ -225,6 +225,7 @@ DataOverlay.propTypes = {
     popNotifications: PropTypes.array.isRequired,
     selectedVideo: PropTypes.object.isRequired,
     clock: PropTypes.number.isRequired,
+    controlBarVisibility: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
