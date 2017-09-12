@@ -159,7 +159,7 @@ class Overlay extends React.Component {
               }}
             >
                 {({ y, scale, opacity }) => (<div
-                    className={'fs-overlay isOpen'}
+                    className={`fs-overlay ${this.props.isOpen ? 'isOpen' : ''}`}
                     ref={ref => (this.videoOverlay = ref)}
                     style={{
                         ...this.state.overlayStyle,
