@@ -58,9 +58,7 @@ class OverlayX extends Component {
 
     render() {
         if (typeof this.overlayRef !== 'undefined' && this.overlayRef !== null) {
-            console.log("overlayref:", this.overlayRef);
             this.videoHeight = this.overlayRef.height;
-            console.log("Videoheight:", this.videoHeight);
         }
         if (typeof this.props.video.id !== 'undefined') {
             this.setChatChannel();

@@ -38,7 +38,7 @@ class Player extends React.Component {
     controlBarTimeoutTest1 = null;
 
     componentDidMount = () => {
-        this.largeVideoPlayer.subscribeToStateChange(this.handleStateChange.bind(this));
+        //this.largeVideoPlayer.subscribeToStateChange(this.handleStateChange.bind(this));
 
         if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[this.props.video.matchId]) {
             this.timelineManager.timeline = this.props.matches[this.props.video.matchId].timeline;
@@ -196,9 +196,10 @@ class Player extends React.Component {
         if (this.props.overlayX.maximized) {
             if (this.largeVideoPlayer !== null && this.largeVideoPlayer.video.paused) {
                 this.largeVideoPlayer.video.play();
-            } else {
-                this.largeVideoPlayer.video.pause();
-            }
+            } 
+            // else {
+            //     this.largeVideoPlayer.video.pause();
+            // }
 
             this.props.dispatch(setControlBarVisibility(true));
             clearTimeout(this.controlBarTimeoutTest1);
@@ -219,21 +220,6 @@ class Player extends React.Component {
             console.log('Could not find videoplayer');
             return null;
         }
-    }
-
-    isPlaying = () => {
-        if(!this.getVideoPlayer()){
-            console.log("could not find videoplayer");
-            return false;
-        }
-        return this.getVideoPlayer().paused;
-    }
-    togglePlay = () => {
-        if(!this.getVideoPlayer()){
-            console.log("could not find videoplayer");
-            return false;
-        }
-        this.isPlaying() ? this.getVideoPlayer().pause() : this.getVideoPlayer().play();
     }
 
     pauseVideo = () => {
@@ -261,8 +247,6 @@ class Player extends React.Component {
                 onOpenSettings={() => this.onOpenSettings()}
                 showReplay={this.showReplay}
                 controlBarVisibility={this.props.controlBarVisibility}
-                togglePlay={this.togglePlay()}
-                isPlaying={this.isPlaying()}
                 videoPlayer={this.getVideoPlayer()}
             />
 
