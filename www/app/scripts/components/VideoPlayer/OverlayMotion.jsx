@@ -23,35 +23,33 @@ class Overlay extends React.Component {
 
     componentDidMount() {
         this.updateWidth();
-        this.updateHeight();
+        //this.updateHeight();
     }
 
     componentDidUpdate(prevProps, prevState){
-        if (this.props.orientation !== prevProps.orientation) {
+        if (this.props.orientation !== prevProps.orientation || this.props.isMaximized !== prevProps.isMaximized || this.props.isOpen !== prevProps.isOpen) {
             this.updateWidth();
-        }
-
-        if (this.props.isOpen !== prevProps.isOpen || this.props.isMaximized !== prevProps.isMaximized){
-            this.updateHeight();
         }
     }
 
-    updateHeight = () => {
-        if (typeof this.videoOverlay !== 'undefined') {
+
+    getStyle = () => {
+        this.offscreenY = 320;
+        this.minimizedY = 190;
+        if (typeof this.videoOverlay !== 'undefined' && this.videoOverlay.clientHeight !== 0) {
             this.heightCheck = this.videoOverlay.clientHeight;
             this.offscreenY = Math.round((window.innerHeight / this.videoOverlay.clientHeight) * 110);
             this.minimizedY = Math.round((window.innerHeight / this.videoOverlay.clientHeight) * 66);
         }
 
         if (this.props.isOpen) {
-            console.log("Isopen");
             if (this.props.isMaximized) {
-                this.setState({ motionStyle: { ...this.state.motionStyle, scale: 1, y: 0, opacity: 1 } });
+                return { y: 0, scale: 1, opacity: 1 };
             } else {
-                this.setState({ motionStyle: { ...this.state.motionStyle, y: this.minimizedY, scale: 0.5, opacity: 1 } });
+                return { y: this.minimizedY, scale: 0.5, opacity: 1 };
             }
         } else {
-            this.setState({ motionStyle: { ...this.state.motionStyle, y: this.offscreenY, opacity: 0, scale: 1 } });
+            return { y: this.offscreenY, opacity: 0, scale: 1 };
         }
     }
 
@@ -81,6 +79,14 @@ class Overlay extends React.Component {
 
     limit = 50;
 
+    getHeight = () => {
+        if(this.videoOverlay!== 'undefined'){
+            return this.videoOverlay.clientHeight;
+        } else {
+            return 200;
+        }
+    }
+
     onTouchStart = (e) => {
         this.startTouchPosition = {
             x: e.changedTouches[0].clientX,
@@ -105,7 +111,6 @@ class Overlay extends React.Component {
     };
 
     onMaximize = () => {
-        console.log("ON MAXIMIZE");
         if (this.props.orientation === Orientation.PORTRAIT) {
             this.props.maximizeOverlayX();
         }
@@ -113,7 +118,7 @@ class Overlay extends React.Component {
 
     onMinimize = () => {
         document.activeElement.blur();
-        console.log("ON MINIMIZE")
+        this.props.hideControlBar();
         if (this.props.orientation === Orientation.PORTRAIT) {
             if (!this.props.isMaximized) {
                 this.props.closeOverlayX();
@@ -149,13 +154,13 @@ class Overlay extends React.Component {
         return (
             <Motion
               style={{
-                  y: spring(this.state.motionStyle.y, config),
-                  scale: spring(this.state.motionStyle.scale, config),
-                  opacity: spring(this.state.motionStyle.opacity, config),
+                  y: spring(this.getStyle().y, config),
+                  scale: spring(this.getStyle().scale, config),
+                  opacity: spring(this.getStyle.opacity, config),
               }}
             >
                 {({ y, scale, opacity }) => (<div
-                    className={`fs-overlay ${this.props.isOpen ? 'isOpen' : ''}`}
+                    className={`fs-overlay isOpen`}
                     ref={ref => (this.videoOverlay = ref)}
                     style={{
                         ...this.state.overlayStyle,

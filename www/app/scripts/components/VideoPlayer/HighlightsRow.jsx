@@ -59,21 +59,21 @@ class HighlightsRow extends Component {
             return (
                 <div className="highlightsSlider slider">
                     <div className="rowHeader">
-                    <h3 className="rowTitle">Highlights</h3>
+                        <h3 style={{margin: '0 0 5px 10px', color: '#fff' }}>Highlights</h3>
                     </div>
                     <div className="slider">
-                    <Slider ref={c => (this.slider = c)} {...settings}>
-                        {videos}
-                    </Slider>
+                        <Slider ref={c => (this.slider = c)} {...settings}>
+                            {videos}
+                        </Slider>
                     </div>
-                    <FloatingActionButton
-                        mini
-                        secondary
-                        onTouchTap={this.props.handleClose}
-                        className="highlightsCloseButton"
-                    >
-                    <Close />
-                    </FloatingActionButton>
+                        <FloatingActionButton
+                            mini
+                            secondary
+                            onTouchTap={this.props.handleClose}
+                            className="highlightsCloseButton"
+                        >
+                            <Close />
+                        </FloatingActionButton>
                 </div>
             );
         } 

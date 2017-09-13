@@ -48,18 +48,18 @@ class OverlayX extends Component {
 
     videoHeight = 200;
 
+
     componentDidUpdate = () => {
-        if (typeof this.overlayRef !== 'undefined' && this.overlayRef !== null) {
-            if (this.videoHeight !== this.overlayRef.height) {
-                this.forceUpdate();
-            }
+        this.checkAndGetVideoHeight();
+    }
+
+    checkAndGetVideoHeight = () => {
+        if (typeof this.overlayRef !== 'undefined' && typeof this.overlayRef.videoHeight !== 'undefined'){
+            this.videoHeight = this.overlayRef.videoHeight;
         }
     }
 
     render() {
-        if (typeof this.overlayRef !== 'undefined' && this.overlayRef !== null) {
-            this.videoHeight = this.overlayRef.height;
-        }
         if (typeof this.props.video.id !== 'undefined') {
             this.setChatChannel();
             return (

@@ -23,7 +23,7 @@ class VideoSplashContainer extends React.Component {
             heightOfItems: 50, //Height of each item
             itemMargin: 10, //Margin on each item
             heightOfContainer: 65, // % height in percentage of container
-            containerOffset: 75, //Offset of container
+            containerOffset: 30, //Offset of container
         };
     }
 
@@ -33,14 +33,13 @@ class VideoSplashContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if((prevProps.isLineupShowing !== this.props.isLineupShowing && this.props.isLineupShowing) || this.props.controlBarVisibility){
-            console.log("Force hide history ");
+        //If lineup status has changed, see if we should force hide.
+        if(prevProps.isLineupShowing !== this.props.isLineupShowing && this.props.isLineupShowing){
             this.forcehideHistoryNow();
-        } else {
+        } else if(prevProps.isLineupShowing !== this.props.isLineupShowing && !this.props.isLineupShowing) {
             this.disableForceHide();
         }
-        console.log(this.props.controlBarVisibility);
-        //console.log('splashInFocus:', this.state.splashInFocus);
+
         // IF preventautoscroll, wait til until it is Not preventautoscroll
             // then if new item, scroll down, 
             // if we have hidden the items, scroll down (reset).
@@ -196,21 +195,22 @@ class VideoSplashContainer extends React.Component {
     }
 
     forcehideHistoryNow = () => {
+        console.log("FORCE HIDE");
         if (!this.state.forceHideHistory){
             this.setState({ forceHideHistory: true });
         }
     }
 
     disableForceHide = () => {
+        console.log("DISABLE FORCE HIDE");
         if (this.state.forceHideHistory){
             this.setState({ forceHideHistory: false });
         }
     }
 
-    render() {
-        // const { messages, currentSplash } = this.state;
-        const { messages, currentSplash } = this.state;
-        const style = {
+    getStyle = () => {
+        console.log("forcehistory?", this.state.forceHideHistory);
+        return {
             position: 'absolute',
             right: 0,
             bottom: this.state.containerOffset,
@@ -219,12 +219,17 @@ class VideoSplashContainer extends React.Component {
             overflowY: 'scroll',
             overflowX: 'hidden',
             width: '40%',
+            opacity: this.state.forceHideHistory ? 0 : 1,
         };
+    }
 
+    render() {
+        // const { messages, currentSplash } = this.state;
+        const { messages, currentSplash } = this.state;
 
         return (
             <div
-                style={style}
+                style={this.getStyle()}
                 ref={ref => (this.scroller = ref)}
                 onTouchTap={this.onTouchTap}
                 onScroll={this.onScroll}

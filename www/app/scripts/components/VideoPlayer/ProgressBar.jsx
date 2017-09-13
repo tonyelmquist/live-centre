@@ -8,11 +8,11 @@ class ProgressBar extends React.Component{
                 timeupdate: false,
                 trackPos: null,
             },
-            leftOffset: 95,
+            leftOffset: 105,
         }
     };
 
-    maxProgressWidth = window.innerWidth - 135; //total offset
+    maxProgressWidth = window.innerWidth - 155; //total offset
 
     componentDidUpdate(prevProps) {
         if (this.props.videoPlayer) {
@@ -23,7 +23,7 @@ class ProgressBar extends React.Component{
         }
         if(this.props.orientation !== prevProps.orientation){
             //If orientation changes, set the progress width again. 
-            this.maxProgressWidth = window.innerWidth - 135; //total offset
+            this.maxProgressWidth = window.innerWidth - 155; //total offset
         }
     }
 
@@ -48,9 +48,10 @@ class ProgressBar extends React.Component{
     getProgressBarPos = () => {
         if (!this.state.trackPos){
             return this.getPercentageDuration() * this.maxProgressWidth;
-        } else {
+        } else if(this.state.trackPos !== null){
             return this.state.trackPos;
-        }
+        } 
+        return 0;
         
     }
 
@@ -114,7 +115,6 @@ class ProgressBar extends React.Component{
 
     render() {
          // - padding on each side.
-        
         let timeProgressInPixels = this.getProgressBarPos();
 
         return(

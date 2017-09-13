@@ -142,11 +142,10 @@ class Player extends React.Component {
         if (typeof this.largeVideoPlayer !== 'undefined' && this.largeVideoPlayer !== null) {
             this.playVideo();
             this.videoLoaded = this.props.video.videoUrl;
-
-            this.props.dispatch(setControlBarVisibility(true));
+            this.showControlBar();
             setTimeout(() => {
                 if (!this.largeVideoPlayer.video.paused) {
-                    this.props.dispatch(setControlBarVisibility(false));
+                    this.hideControlBar();
                 }
             }, 3000);
         }
@@ -166,6 +165,8 @@ class Player extends React.Component {
         e.preventDefault();
         document.activeElement.blur();
         this.props.dispatch(minimizeOverlayX());
+
+        this.props.dispatch(setControlBarVisibility(false));
     };
     onShowProductOverlay = () => {
         this.props.dispatch(showProductOverlay());
@@ -206,11 +207,11 @@ class Player extends React.Component {
         if (isDblTouchTap(e)) {
             return;
         }
-        this.props.dispatch(setControlBarVisibility(true));
+        this.showControlBar();
         clearTimeout(this.controlBarTimeoutTest1);
         this.controlBarTimeoutTest1 = setTimeout(() => {
             if (!this.largeVideoPlayer.video.paused) {
-                this.props.dispatch(setControlBarVisibility(false));
+                this.hideControlBar();
             }
         }, 3000);
     }
@@ -239,6 +240,14 @@ class Player extends React.Component {
         }
     }
 
+    hideControlBar = () => {
+        console.log("hide control bar");
+        this.props.dispatch(setControlBarVisibility(false));
+    }
+    showControlBar = () => {
+        this.props.dispatch(setControlBarVisibility(true));
+    }
+
     render() {
         return (
           <div onScroll={this.onScroll} onTouchTap={this.onTouchTap} >
@@ -259,6 +268,7 @@ class Player extends React.Component {
                 playState={this.state.player}
                 videoPlayer={this.getVideoPlayer()}
                 orientation={this.props.orientation}
+                hideControlBar={() => this.hideControlBar()}
             />
 
             <PrePlayOverlay video={this.getVideoPlayer()} maximized={this.props.overlayX.maximized}

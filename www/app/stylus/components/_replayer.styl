@@ -20,13 +20,14 @@
 .replayer {
     width: 320px;
     height: 180px;
-    border-radius: 5px;
+    //border-radius: 5px;
+    border: 1px solid rgba(250, 250, 250, 0.5);
     background: transparent;
     display: flex;
     position: absolute;
-    bottom: 100px;
+    bottom: 30px;
     right: 20px;
-
+    z-index: 3000;
     &.open {
         animation: card-show 12s forwards;
     }

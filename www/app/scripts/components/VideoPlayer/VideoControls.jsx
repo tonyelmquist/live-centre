@@ -25,11 +25,13 @@ class VideoControls extends React.Component {
     }
 
 
-    showReplay = () => {
-        console.log('SHOW REPLAUY', this.props);
+    showReplay = (e) => {
+        e.stopPropagation();
 
         const currentTime = this.props.largeVideoPlayer.video.currentTime;
         const newTime = currentTime - 10;
+
+        this.props.hideControlBar();
 
         this.setState({
             replay: {
@@ -40,8 +42,9 @@ class VideoControls extends React.Component {
         window.setTimeout(() => this.setState({ replay: { showReplay: false } }), 12000);
     }
 
-    showHighLights = () => {
-        console.log('SHOW HIGHLIGHTS');
+    showHighLights = (e) => {
+        e.stopPropagation();
+        this.props.hideControlBar();
         this.setState({ highlights: { open: true } });
     }
 
@@ -65,22 +68,24 @@ class VideoControls extends React.Component {
             opacity: this.props.controlBarVisibility ? 1 : 0,
             transition: '0.3s ease all',
         })
+    
 
     render() {
         return (
-            <div style={this.getStyles()}>
-                <div className="gradient-overlay" style={{zIndex: 0}}/>
-                <div className="video-controls icon-shadow">
+            <div>
+                <div className="gradient-overlay" style={{ ...this.getStyles(), zIndex: 0 }} />
+                <div className="video-controls icon-shadow" style={this.getStyles()}>
                     <PlayToggle onTouch={this.props.togglePlay} isPlaying={this.props.playState.playing} />
                     <SettingsControl onTouch={this.props.onOpenSettings} />
-                    <ReplayControl onTouch={() => this.showReplay()} />
-                    {/* <HighlightsControl onTouch={() => this.showHighLights()} /> */}
-                    <VolumeControl />
-                </div>
+                    <ReplayControl onTouch={this.showReplay} />
+                    <HighlightsControl onTouch={this.showHighLights} />
+                    {/* <VolumeControl /> */}
+                
                 <ProgressBar
                     videoPlayer={this.props.videoPlayer}
                     orientation={this.props.orientation}
                 />
+                </div>
                 <Replayer
                     open={this.state.replay.showReplay}
                     videoUrl={this.state.replay.videoUrl}

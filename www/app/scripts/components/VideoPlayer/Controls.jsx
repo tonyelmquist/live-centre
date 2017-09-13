@@ -45,7 +45,7 @@ const PlayToggle = ({ onTouch, isPlaying }) => {
 };
 
 const HighlightsControl = ({ onTouch }) => (
-    <span><FontAwesome className="highlights-control" name="chevron-circle-up" style={highlightsIconStyles} onTouchTap={onTouch} />Highlights</span>
+    <FontAwesome className="small-control" style={{ left: '40px' }} name="chevron-circle-up" onTouchTap={onTouch} />
 );
 
 const SettingsControl = ({ onTouch }) => (
@@ -57,7 +57,7 @@ const ReplayControl = ({ onTouch }) => (
 );
 
 const VolumeControl = ({ onTouch }) => (
-    <FontAwesome name="volume-up" className="small-control" style={{ left: '40px' }} onTouchTap={onTouch} />
+    <FontAwesome name="volume-up" className="small-control" onTouchTap={onTouch} />
 );
 
 export { HighlightsControl, PlayToggle, ReplayControl, SettingsControl, VolumeControl };
