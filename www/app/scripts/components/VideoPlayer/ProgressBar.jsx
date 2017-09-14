@@ -1,4 +1,5 @@
 import React from 'react';
+import { Orientation } from '../../constants/reduxConstants';
 
 class ProgressBar extends React.Component{
     constructor(props, context) {
@@ -8,91 +9,39 @@ class ProgressBar extends React.Component{
                 timeupdate: false,
                 trackPos: null,
             },
-            leftOffset: 105,
+            //leftOffset: 105,
         }
     };
 
-    maxProgressWidth = window.innerWidth - 155; //total offset
+    // totalOffset = 155;
+    // maxProgressWidth = window.innerWidth - this.totalOffset; //total offset
 
-    componentDidUpdate(prevProps) {
-        if (this.props.videoPlayer) {
-            //Will only set up one eventlistener. 
-            if (this.state.player.timeupdate === false) {
-                this.watchTime(); 
-            }
-        }
-        if(this.props.orientation !== prevProps.orientation){
-            //If orientation changes, set the progress width again. 
-            this.maxProgressWidth = window.innerWidth - 155; //total offset
-        }
-    }
-
-    watchTime = () => {
-        this.setState({ player: { timeupdate: 0 } });
-        this.props.videoPlayer.addEventListener('timeupdate', () => {
-            this.setState({ player: { 
-                timeupdate: this.props.videoPlayer.currentTime } });
-        });
-    }
-
-    getPercentageDuration = () => {
-        if (this.props.videoPlayer && this.state.player.timeupdate) {
-            const video = this.props.videoPlayer;
-            const timeInPercent = this.state.player.timeupdate / video.duration;
-            return timeInPercent;
-        } else {
-            return false;
-        }
-    }
-
-    getProgressBarPos = () => {
-        if (!this.state.trackPos){
-            return this.getPercentageDuration() * this.maxProgressWidth;
-        } else if(this.state.trackPos !== null){
-            return this.state.trackPos;
-        } 
-        return 0;
-        
-    }
-
-    getTimePlayed = () => {
-        if (this.props.videoPlayer && this.state.player.timeupdate) {
-            return this.state.player.timeupdate;
-        } else {
-            return false;
-        }
-    }
-
-    getMaxDuration = () => {
-        if (this.props.videoPlayer && this.state.player.timeupdate) {
-            return this.props.videoPlayer.duration;
-        } else {
-            return false;
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     if(this.props.orientation !== prevProps.orientation){
+    //         //If orientation changes, set the progress width again. 
+    //         this.state.maxProgressWidth = window.innerWidth - this.totalOffset; //total offset
+    //     }
+    // }
 
     skipTo = (time) => {
-        if (this.props.videoPlayer && this.state.player.timeupdate) {
-            this.props.videoPlayer.currentTime = time;
-        } else {
-            return false;
-        }
+        this.props.changeCurrentTime(time);
     }
 
     trackTimeFromPos = (pos) => {
-        const touchPos = pos - this.state.leftOffset; // The left offset for the progress bar. 
+        const touchPos = pos - this.getLeftOffset(); // The left offset for the progress bar. 
         // pixels -> percentage
-        const percentageJump = touchPos / this.maxProgressWidth;
+        const percentageJump = touchPos / this.getMaxProgressWidth();
         // percentage -> time
-        const jumpTo = this.getMaxDuration() * percentageJump;
+        const jumpTo = this.props.videoPlayer.duration * percentageJump;
         return jumpTo;
     };
 
     trackMovement = (e) => {
         let pos =  e.changedTouches[0].clientX;
-        pos -= this.state.leftOffset;
-        const percentageJump = pos / this.maxProgressWidth;
-        this.setState({ trackPos: percentageJump * this.maxProgressWidth });
+        pos -= this.getLeftOffset();
+        const maxProgressWidth = this.getMaxProgressWidth()
+        const percentageJump = pos / maxProgressWidth
+        this.setState({ trackPos: percentageJump * maxProgressWidth });
     };
 
     onTouchStart = (e) => {
@@ -107,28 +56,95 @@ class ProgressBar extends React.Component{
         setTimeout(() => this.setState({ trackPos: null }), 500); //Wait 200 ms until we reset the trackpos.
     };
 
+
+    getProgressBarPos = () => {
+        if (!this.state.trackPos){
+            return this.getPercentageDuration() * this.getMaxProgressWidth();
+        } else if (this.state.trackPos !== null) {
+            if(this.state.trackPos > this.getMaxProgressWidth()){
+                return this.getMaxProgressWidth();
+            } else if(this.state.trackPos < 0){
+                return 0;
+            }
+            return this.state.trackPos;
+        } 
+        return 0;
+    }
+
+    getPercentageDuration = () => {
+        return this.props.videoPlayer.currentVideoTime / this.props.videoPlayer.duration;
+    }
+
     formatTime = (s) => {
         const minutes = s / 60;
         const seconds = s % 60;
         return `${Math.floor(minutes)}:${Math.floor(seconds)}`;
     };
+    getLeftOffset = () => {
+        if (this.props.orientation === Orientation.PORTRAIT){
+            return 0;
+        }
+        return 105;
+    }
+    getMaxProgressWidth = () => {
+        let totalOffset;
+        if(this.props.orientation === Orientation.PORTRAIT){
+            console.log("TRUE");
+            totalOffset = 0;
+        } else {
+            totalOffset = 155;
+        }
+        console.log(window.innerWidth - totalOffset);
+        return window.innerWidth - totalOffset;
+    }
+
+    // getStyle = () => {
+    //     if (this.props.orientation === Orientation.PORTRAIT){
+    //         return {
+    //             leftOffset: 50,
+    //             timeOffset: 10,
+    //         }
+    //     }
+    //     return 105;
+    // }
 
     render() {
-         // - padding on each side.
-        let timeProgressInPixels = this.getProgressBarPos();
+        const maxProgressWidth = this.getMaxProgressWidth();
 
+        const { isPlaying, changeCurrentTime, duration, currentVideoTime } = this.props.videoPlayer;
+        let timeProgressInPixels
+        if(duration){
+            timeProgressInPixels = this.getProgressBarPos();
+        } else {
+            timeProgressInPixels = 0;
+        }
+        
         return(
             <div className="progressBar" >
-                <span className="time">{this.formatTime(this.getTimePlayed())}</span>
-                <svg height="20" width={this.maxProgressWidth} className="bar" style={{left: `${this.state.leftOffset}px`}} onTouchStart={this.onTouchStart} onTouchEnd={this.touchEnd} >
-                    <line stroke="#ffffff" y1="10.5" y2="10.5" x1="1" x2={this.maxProgressWidth} strokeWidth="2" />
+                <span className="time">{this.formatTime(currentVideoTime)}</span>
+                <svg height="20" width={maxProgressWidth} className="bar" style={{left: `${this.getLeftOffset()}px`}} onTouchStart={this.onTouchStart} onTouchEnd={this.touchEnd} >
+                    <line stroke="#ffffff" y1="10.5" y2="10.5" x1="1" x2={maxProgressWidth} strokeWidth="2" />
                     <line stroke="#00dafd" y1="10" y2="10" x1="1" x2={timeProgressInPixels} strokeWidth="5" />
                     <circle cx={timeProgressInPixels} cy="10" r="8" fill="#00dafd" />
                 </svg>
-                <span className="time right">{this.formatTime(this.getMaxDuration())}</span>
+                <span className="time right">{this.formatTime(duration)}</span>
             </div>
         );
+
     };
 };
 
 export default ProgressBar;
+
+
+        // return(
+        //     <div className="progressBar" >
+        //         <span className="time">{this.formatTime(this.getTimePlayed())}</span>
+        //         <svg height="20" width={this.maxProgressWidth} className="bar" style={{left: `${this.state.leftOffset}px`}} onTouchStart={this.onTouchStart} onTouchEnd={this.touchEnd} >
+        //             <line stroke="#ffffff" y1="10.5" y2="10.5" x1="1" x2={this.maxProgressWidth} strokeWidth="2" />
+        //             <line stroke="#00dafd" y1="10" y2="10" x1="1" x2={timeProgressInPixels} strokeWidth="5" />
+        //             <circle cx={timeProgressInPixels} cy="10" r="8" fill="#00dafd" />
+        //         </svg>
+        //         <span className="time right">{this.formatTime(this.getMaxDuration())}</span>
+        //     </div>
+        // );

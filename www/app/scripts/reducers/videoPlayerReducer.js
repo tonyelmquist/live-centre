@@ -54,7 +54,16 @@ export function highlightsReducer(
     }
 }
 
-export function handleSelection(state = { isSelected: false, video: {}, isFullscreen: false, currentTime: 0, controlBarVisibility: false, isVideoSettingsOpen: false }, action) {
+const defaultSelectionState = {
+    isSelected: false,
+    video: {},
+    isFullscreen: false,
+    currentTime: 0,
+    controlBarVisibility: false,
+    isVideoSettingsOpen: false,
+};
+
+export function handleSelection(state = defaultSelectionState, action) {
     const newVideo = Object.assign(Object.create(Object.getPrototypeOf(state.video)), state.video);
 
 
@@ -77,10 +86,10 @@ export function handleSelection(state = { isSelected: false, video: {}, isFullsc
         return Object.assign({}, state, {
             isFullscreen: false,
         });
-    case Actions.SET_CURRENT_TIME:
-        return Object.assign({}, state, {
-            currentTime: action.time,
-        });
+    // case Actions.SET_CURRENT_TIME:
+    //     return Object.assign({}, state, {
+    //         currentTime: action.time,
+    //     });
     case Actions.SET_CONTROL_BAR_VISIBILITY:
         return Object.assign({}, state, {
             controlBarVisibility: action.visibility,
@@ -167,3 +176,37 @@ export function productThumbReducer(
         return state;
     }
 }
+
+export function videoPlayer(state = { isPlaying: false, duration: 0, changeCurrentTimeTo: null, currentVideoTime: 0 }, action) {
+    switch (action.type) {
+    case Actions.PLAY_VIDEO:
+        return {
+            ...state,
+            isPlaying: true,
+        };
+    case Actions.PAUSE_VIDEO:
+        return {
+            ...state,
+            isPlaying: false,
+        };
+    case Actions.SET_DURATION:
+        return {
+            ...state,
+            duration: action.time,
+        };
+    case Actions.UPDATE_CURRENT_TIME:
+        return {
+            ...state,
+            currentVideoTime: action.time,
+            changeCurrentTimeTo: state.changeCurrentTimeTo == action.time ? null : state.changeCurrentTimeTo,
+        };
+    case Actions.CHANGE_CURRENT_TIME:
+        return {
+            ...state,
+            changeCurrentTimeTo: action.time,
+        };
+    default:
+        return state;
+    }
+}
+

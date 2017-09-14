@@ -105,7 +105,7 @@ class ReduxConstants {
     static get SHOW_HIGHLIGHTS() { return 'SHOW_HIGHLIGHTS'; }
     static get HIDE_HIGHLIGHTS() { return 'HIDE_HIGHLIGHTS'; }
 
-    static get SET_CURRENT_TIME() { return 'SET_CURRENT_TIME'; }
+    //static get SET_CURRENT_TIME() { return 'SET_CURRENT_TIME'; }
 
     static get MARK_AS_WISHLIST() { return 'MARK_AS_WISHLIST'; }
     static get REMOVE_FROM_WISHLIST() { return 'REMOVE_FROM_WISHLIST'; }
@@ -126,6 +126,16 @@ class ReduxConstants {
     static get SET_CONTROL_BAR_VISIBILITY() { return 'SET_CONTROL_BAR_VISIBILITY'; }
     static get SET_VIDEO_SETTINGS_OPEN() { return 'SET_VIDEO_SETTINGS_OPEN'; }
 
+    static get PLAY_VIDEO() { return 'PLAY_VIDEO'; }
+    static get PAUSE_VIDEO() { return 'PAUSE_VIDEO'; }
+
+    static get SET_DURATION() { return 'SET_DURATION'; }
+    
+    static get UPDATE_CURRENT_TIME() { return 'UPDATE_CURRENT_TIME'; }
+    static get CHANGE_CURRENT_TIME() { return 'CHANGE_CURRENT_TIME'; }
+    static get SKIP_CURRENT_TIME_BY() { return 'SKIP_CURRENT_TIME_BY'; }
+    static get RESET_CURRENT_TIME() { return 'RESET_CURRENT_TIME'; }
+    
 
     // NOTIFICATIONS
     static get ADD_NEW_POP_NOTIFICATION() { return 'ADD_NEW_POP_NOTIFICAITON'; }

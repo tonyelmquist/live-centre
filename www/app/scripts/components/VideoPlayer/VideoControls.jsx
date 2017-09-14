@@ -71,11 +71,13 @@ class VideoControls extends React.Component {
     
 
     render() {
+        const { isPlaying, duration, currentVideoTime } = this.props.videoPlayer;
+
         return (
             <div>
                 <div className="gradient-overlay" style={{ ...this.getStyles(), zIndex: 0 }} />
                 <div className="video-controls icon-shadow" style={this.getStyles()}>
-                    <PlayToggle onTouch={this.props.togglePlay} isPlaying={this.props.playState.playing} />
+                    <PlayToggle onTouch={this.props.togglePlay} isPlaying={isPlaying} />
                     <SettingsControl onTouch={this.props.onOpenSettings} />
                     <ReplayControl onTouch={this.showReplay} />
                     <HighlightsControl onTouch={this.showHighLights} />
@@ -84,6 +86,7 @@ class VideoControls extends React.Component {
                 <ProgressBar
                     videoPlayer={this.props.videoPlayer}
                     orientation={this.props.orientation}
+                    changeCurrentTime={this.props.changeCurrentTime}
                 />
                 </div>
                 <Replayer

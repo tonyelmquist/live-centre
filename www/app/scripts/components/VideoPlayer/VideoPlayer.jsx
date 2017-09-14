@@ -17,8 +17,32 @@ class VideoPlayer extends React.Component {
     }
 
     render() {
+        //If this is not the main video player we dont need to handle timetracking, most likely.. 
+       
+        if (this.props.videoPlayer){
+            const { isPlaying: shouldPlay, changeCurrentTimeTo, currentVideoTime } = this.props.videoPlayer;
+
+            // Handle video controls based on actions.
+            if (typeof this.video !== 'undefined'){
+                if (changeCurrentTimeTo && changeCurrentTimeTo !== currentVideoTime) {
+                    this.video.currentTime = changeCurrentTimeTo;
+                }
+                if (this.video.paused && shouldPlay){
+                    this.video.play();
+                } else if (!this.video.paused && !shouldPlay){
+                    this.video.pause();
+                }
+            }
+        }
+        
+
         return (
-            <video className="video-player" autoPlay={this.props.autoPlay} muted={this.props.muted} poster={this.props.poster} ref={(ref) => this.video = ref}  style={{ ...this.props.extraStyle, width: '100%', height: '100%' }}>
+            <video className="video-player" 
+            autoPlay={this.props.autoPlay} 
+            muted={this.props.muted} 
+            poster={this.props.poster} 
+            ref={(ref) => this.video = ref}  
+            style={{ ...this.props.extraStyle, width: '100%', height: '100%' }}>
                 <source src={this.props.source} />
             </video>
         );

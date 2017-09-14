@@ -72,17 +72,17 @@ export function markSelectedAsWishlist(wishlisted) {
     return { type: Actions.MARK_SELECTED_AS_WISHLIST, wishlisted };
 }
 
-/**
- * Action to set current time in overlayX
- *
- * @deprecated Possibly unneeded, this was used to try and sync two seperate video players in the past, now they are one
- * @memberof Actions:VideoPlayer
- * @export
- * @returns Dispatchable Action
- */
-export function setCurrentTimeInPlayer(newTime) {
-    return { type: Actions.SET_CURRENT_TIME, time: newTime };
-}
+// /**
+//  * Action to set current time in overlayX
+//  *
+//  * @deprecated Possibly unneeded, this was used to try and sync two seperate video players in the past, now they are one
+//  * @memberof Actions:VideoPlayer
+//  * @export
+//  * @returns Dispatchable Action
+//  */
+// export function setCurrentTimeInPlayer(newTime) {
+//     return { type: Actions.SET_CURRENT_TIME, time: newTime };
+// }
 
 /**
  * Action to reset current time in overlayX
@@ -213,4 +213,85 @@ export function showProductThumb(productID) {
  */
 export function hideProductThumb(productID) {
     return { type: Actions.HIDE_PRODUCT_THUMB, productID };
+}
+
+/**
+ * Action to play the open video
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @returns Dispatchable Action
+ */
+export function playVideo() {
+    return { type: Actions.PLAY_VIDEO };
+}
+
+/**
+ * Action to pause the open or closed video
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @returns Dispatchable Action
+ */
+export function pauseVideo() {
+    return { type: Actions.PAUSE_VIDEO };
+}
+
+/**
+ * Action to set total duration for the video playing
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @param {int} time - Duration of video
+ * @returns Dispatchable Action
+ */
+export function setDuration(time) {
+    return { type: Actions.SET_DURATION, time };
+}
+
+/**
+ * Action to update the store with the videos current time played.
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @param {int} time - current time of video
+ * @returns Dispatchable Action
+ */
+export function updateCurrentTime(time) {
+    return { type: Actions.UPDATE_CURRENT_TIME, time };
+}
+
+/**
+ * Action to tell what we want the current time to be changed to.
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @param {int} time - time we want to change to
+ * @returns Dispatchable Action
+ */
+export function changeCurrentTime(time) {
+    return { type: Actions.CHANGE_CURRENT_TIME, time };
+}
+
+/**
+ * Action to skip current time by. 
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @param {int} skipBy - time we want to skip by
+ * @returns Dispatchable Action
+ */
+export function skipCurrentTimeBy(skipBy) {
+    return { type: Actions.SKIP_CURRENT_TIME_BY, skipBy };
+}
+
+/**
+ * Action to reset all time variables.
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @returns Dispatchable Action
+ */
+export function resetCurrentTime() {
+    return { type: Actions.RESET_CURRENT_TIME };
 }

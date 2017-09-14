@@ -34,7 +34,6 @@ class PlayerInfoOverlay extends Component {
             return <div />;
         }
 
-        console.log(teamMember);
         return (
           <div className={`player-info-overlay ${this.props.isShowing ? 'isShowing' : ''} ${this.state.isModalOpen ? 'isModalOpen' : ''}`}>
             <div className="player-icon">
