@@ -89,24 +89,30 @@ class ProgressBar extends React.Component{
     getMaxProgressWidth = () => {
         let totalOffset;
         if(this.props.orientation === Orientation.PORTRAIT){
-            console.log("TRUE");
             totalOffset = 0;
         } else {
             totalOffset = 155;
         }
-        console.log(window.innerWidth - totalOffset);
         return window.innerWidth - totalOffset;
     }
 
-    // getStyle = () => {
-    //     if (this.props.orientation === Orientation.PORTRAIT){
-    //         return {
-    //             leftOffset: 50,
-    //             timeOffset: 10,
-    //         }
-    //     }
-    //     return 105;
-    // }
+    getStyle = () => {
+        if (this.props.orientation === Orientation.PORTRAIT){
+            return {
+                leftOffset: 0,
+                timeLeftOffset: 10,
+                bottomOffsetText: 25,
+                bottomOffset: 8,
+
+            };
+        }
+        return {
+            leftOffset: 105,
+            timeLeftOffset: 65,
+            bottomOffsetText: 12,
+            bottomOffset: 5,
+        };
+    }
 
     render() {
         const maxProgressWidth = this.getMaxProgressWidth();
@@ -121,13 +127,17 @@ class ProgressBar extends React.Component{
         
         return(
             <div className="progressBar" >
-                <span className="time">{this.formatTime(currentVideoTime)}</span>
-                <svg height="20" width={maxProgressWidth} className="bar" style={{left: `${this.getLeftOffset()}px`}} onTouchStart={this.onTouchStart} onTouchEnd={this.touchEnd} >
+                <span className="time" style={{
+                    left: `${this.getStyle().timeLeftOffset}px`,
+                    bottom: `${this.getStyle().bottomOffsetText}px` }}
+                >
+                    {this.formatTime(currentVideoTime)}</span>
+                <svg height="21" width={maxProgressWidth} className="bar" style={{left: `${this.getStyle().leftOffset}px`, bottom: `${this.getStyle().bottomOffset}px`}} onTouchStart={this.onTouchStart} onTouchEnd={this.touchEnd} >
                     <line stroke="#ffffff" y1="10.5" y2="10.5" x1="1" x2={maxProgressWidth} strokeWidth="2" />
                     <line stroke="#00dafd" y1="10" y2="10" x1="1" x2={timeProgressInPixels} strokeWidth="5" />
                     <circle cx={timeProgressInPixels} cy="10" r="8" fill="#00dafd" />
                 </svg>
-                <span className="time right">{this.formatTime(duration)}</span>
+                <span className="time right" style={{bottom: `${this.getStyle().bottomOffsetText}px` }}> {this.formatTime(duration)} </span>
             </div>
         );
 

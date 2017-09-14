@@ -34,7 +34,6 @@ class VideoPlayer extends React.Component {
                 }
             }
         }
-        
 
         return (
             <video className="video-player" 

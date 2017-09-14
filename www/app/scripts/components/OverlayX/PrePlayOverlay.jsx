@@ -11,7 +11,7 @@ const PrePlayOverlay = ({video, maximized, orientation, isPreOverlayShowing, onP
                     {orientation === "PORTRAIT" ? <div className="gradient-overlay" /> : ''}
                     <div className="play-button" >
                         <FontAwesome
-                            name="play-circle"
+                            name="play"
                             size="2x"
                         />
                     </div>

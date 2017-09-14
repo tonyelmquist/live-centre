@@ -47,38 +47,38 @@ class Player extends React.Component {
         //Need to setup timeline again with new changes. (Use state.videoPlayers current time for instance). 
         // this.largeVideoPlayer.subscribeToStateChange(this.handleStateChange.bind(this));
 
-            // if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[this.props.video.matchId]) {
-            //     this.timelineManager.timeline = this.props.matches[this.props.video.matchId].timeline;
-            //     this.timelineManager.buffer = this.props.video.matchStart;
-            // }
+            if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[this.props.video.matchId]) {
+                this.timelineManager.timeline = this.props.matches[this.props.video.matchId].timeline;
+                this.timelineManager.buffer = this.props.video.matchStart;
+            }
 
-            // this.largeVideoPlayer.video.addEventListener('timeupdate', () => {
-            //     this.timelineManager.setActiveTimelineEvents(this.largeVideoPlayer.video.currentTime * 1000);
+            this.largeVideoPlayer.video.addEventListener('timeupdate', () => {
+                this.timelineManager.setActiveTimelineEvents(this.largeVideoPlayer.video.currentTime * 1000);
 
-            //     // Control Score
-            //     if (this.timelineManager.activeEvents.length > 0) {
-            //         const periodStart = this.timelineManager.activeEvents.filter(value => value.type === 'period_start' && value.period === 2);
-            //         const breakStart = this.timelineManager.activeEvents.filter(value => value.type === 'break_start');
-            //         if (periodStart.length > 0) {
-            //             const clock =
-            //                 (((this.largeVideoPlayer.video.currentTime * 1000)
-            //                 - parseInt(this.props.video.matchStart)
-            //                 - (new Date(periodStart[0].time) - new Date(this.timelineManager.activeEvents[0].time)))
-            //                 + 2700000);
+                // Control Score
+                if (this.timelineManager.activeEvents.length > 0) {
+                    const periodStart = this.timelineManager.activeEvents.filter(value => value.type === 'period_start' && value.period === 2);
+                    const breakStart = this.timelineManager.activeEvents.filter(value => value.type === 'break_start');
+                    if (periodStart.length > 0) {
+                        const clock =
+                            (((this.largeVideoPlayer.video.currentTime * 1000)
+                            - parseInt(this.props.video.matchStart)
+                            - (new Date(periodStart[0].time) - new Date(this.timelineManager.activeEvents[0].time)))
+                            + 2700000);
 
-            //             this.props.dispatch(changeClock(clock));
-            //         } else if (breakStart.length > 0) {
-            //             if (this.props.dataOverlayClock !== 2700000) {
-            //                 this.props.dispatch(changeClock(2700000));
-            //             }
-            //         } else {
-            //             const clock = (this.largeVideoPlayer.video.video.currentTime * 1000) - this.props.video.matchStart;
-            //             this.props.dispatch(changeClock(clock));
-            //         }
-            //     } else if (this.props.dataOverlayClock !== 0) {
-            //         this.props.dispatch(changeClock(0));
-            //     }
-            // });
+                        this.props.dispatch(changeClock(clock));
+                    } else if (breakStart.length > 0) {
+                        if (this.props.dataOverlayClock !== 2700000) {
+                            this.props.dispatch(changeClock(2700000));
+                        }
+                    } else {
+                        const clock = (this.largeVideoPlayer.video.video.currentTime * 1000) - this.props.video.matchStart;
+                        this.props.dispatch(changeClock(clock));
+                    }
+                } else if (this.props.dataOverlayClock !== 0) {
+                    this.props.dispatch(changeClock(0));
+                }
+            });
     };
 
     componentDidUpdate = (prevProps, prevState) => {
@@ -86,41 +86,41 @@ class Player extends React.Component {
             this.pauseVideo();
         }
 
-        // let newScore = { home: 0, away: 0 };
-        // // Go backwards through the array and get the first instance of 'score_change'
-        // for (let i = 0; i < this.timelineManager.activeEvents.length; i++) {
-        //     if (this.timelineManager.activeEvents[i].type === 'score_change') {
-        //         newScore = {
-        //             home: this.timelineManager.activeEvents[i].home_score,
-        //             away: this.timelineManager.activeEvents[i].away_score,
-        //         };
-        //     }
-        // }
+        let newScore = { home: 0, away: 0 };
+        // Go backwards through the array and get the first instance of 'score_change'
+        for (let i = 0; i < this.timelineManager.activeEvents.length; i++) {
+            if (this.timelineManager.activeEvents[i].type === 'score_change') {
+                newScore = {
+                    home: this.timelineManager.activeEvents[i].home_score,
+                    away: this.timelineManager.activeEvents[i].away_score,
+                };
+            }
+        }
 
-        // // console.log(this.props.dataOverlayScore, newScore, this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away);
-        // if (this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away) {
-        //     this.props.dispatch(changeScore(newScore));
-        // }
+        // console.log(this.props.dataOverlayScore, newScore, this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away);
+        if (this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away) {
+            this.props.dispatch(changeScore(newScore));
+        }
     }
 
     componentWillUpdate = (nextProps) => {
-        // TImeline manager needs to be setup differently after refactoring. 
-        // if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[nextProps.video.matchId].timeline) {
-        //     this.timelineManager.timeline = this.props.matches[nextProps.video.matchId].timeline;
-        //     this.timelineManager.buffer = this.props.video.matchStart;
-        // }
+        //TImeline manager needs to be setup differently after refactoring. 
+        if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[nextProps.video.matchId].timeline) {
+            this.timelineManager.timeline = this.props.matches[nextProps.video.matchId].timeline;
+            this.timelineManager.buffer = this.props.video.matchStart;
+        }
 
-        // if (
-        //     typeof this.largeVideoPlayer !== 'undefined' &&
-        //     this.largeVideoPlayer !== null
-        // ) {
-        //     if (this.videoLoaded !== nextProps.video.videoUrl) {
-        //         this.setState({ isPreOverlayShowing: true });
-        //         this.largeVideoPlayer.video.load();
+        if (
+            typeof this.largeVideoPlayer !== 'undefined' &&
+            this.largeVideoPlayer !== null
+        ) {
+            if (this.videoLoaded !== nextProps.video.videoUrl) {
+                this.setState({ isPreOverlayShowing: true });
+                this.largeVideoPlayer.video.load();
 
-        //         this.videoLoaded = nextProps.video.videoUrl;
-        //     }
-        // }
+                this.videoLoaded = nextProps.video.videoUrl;
+            }
+        }
     };
 
     onPrePlayTouch = (e) => {
@@ -193,7 +193,6 @@ class Player extends React.Component {
     };
 
     onTouchTap = (e) => {
-        console.log('on touch tap');
         // document.activeElement.blur();
         // e.preventDefault();
         if (isDblTouchTap(e)) {
@@ -212,7 +211,6 @@ class Player extends React.Component {
         if (typeof this.largeVideoPlayer !== 'undefined') {
             return this.largeVideoPlayer.video;
         }
-        console.log('Could not find videoplayer');
         return null;
     }
 
@@ -258,7 +256,6 @@ class Player extends React.Component {
     }
 
     hideControlBar = () => {
-        console.log("hide control bar");
         this.props.dispatch(setControlBarVisibility(false));
     }
     showControlBar = () => {

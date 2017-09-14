@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { videoSelected, resetCurrentTimeInPlayer } from '../actions/videoPlayer';
+import { videoSelected } from '../actions/videoPlayer';
 import { openOverlayX,maximizeOverlayX } from '../actions/overlayX';
 
 import MasonryContainer from '../components/masonry/MasonryContainer';
@@ -24,14 +24,12 @@ class CategoryContainer extends Component {
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
-        this.props.dispatch(resetCurrentTimeInPlayer());
     };
 
     handleTilePlay = (video) => {
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
-        this.props.dispatch(resetCurrentTimeInPlayer());
     }
 
     // filter = () => {

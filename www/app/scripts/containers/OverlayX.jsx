@@ -6,7 +6,7 @@ import Player from './Player';
 import ContentX from '../components/OverlayX/ContentX';
 import { sendMessage, getMessages } from '../actions/chatMessages';
 import { toggleCollapseInfo, collapseInfo } from '../actions/overlayX';
-import { videoSelected, markAsWishlist, resetCurrentTimeInPlayer, removeFromWishlist, markSelectedAsWishlist } from '../actions/videoPlayer';
+import { videoSelected, markAsWishlist, removeFromWishlist, markSelectedAsWishlist } from '../actions/videoPlayer';
 import { Orientation } from '../constants/reduxConstants';
 import FirebaseDB from '../utils/FirebaseDB';
 
@@ -28,7 +28,6 @@ class OverlayX extends Component {
         // this.props.dispatch(openOverlayX());
         // this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
-        this.props.dispatch(resetCurrentTimeInPlayer());
     }
 
     handleAddToWishlist = (videoId) => {

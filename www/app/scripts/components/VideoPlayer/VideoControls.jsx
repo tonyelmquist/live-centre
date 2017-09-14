@@ -5,6 +5,8 @@ import ProgressBar from './ProgressBar';
 import Replayer from './Replayer';
 import HighlightsRow from './HighlightsRow';
 
+import { Orientation } from '../../constants/reduxConstants';
+
 class VideoControls extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -28,7 +30,7 @@ class VideoControls extends React.Component {
     showReplay = (e) => {
         e.stopPropagation();
 
-        const currentTime = this.props.largeVideoPlayer.video.currentTime;
+        const currentTime = this.props.videoPlayer.currentVideoTime;
         const newTime = currentTime - 10;
 
         this.props.hideControlBar();
@@ -78,9 +80,14 @@ class VideoControls extends React.Component {
                 <div className="gradient-overlay" style={{ ...this.getStyles(), zIndex: 0 }} />
                 <div className="video-controls icon-shadow" style={this.getStyles()}>
                     <PlayToggle onTouch={this.props.togglePlay} isPlaying={isPlaying} />
-                    <SettingsControl onTouch={this.props.onOpenSettings} />
-                    <ReplayControl onTouch={this.showReplay} />
-                    <HighlightsControl onTouch={this.showHighLights} />
+                    
+                    {this.props.orientation === Orientation.LANDSCAPE 
+                        ? <div>
+                            <SettingsControl onTouch={this.props.onOpenSettings} />
+                            <ReplayControl onTouch={this.showReplay} />
+                            <HighlightsControl onTouch={this.showHighLights} /> </div>
+                        : <div />
+                    }
                     {/* <VolumeControl /> */}
                 
                 <ProgressBar
@@ -89,17 +96,22 @@ class VideoControls extends React.Component {
                     changeCurrentTime={this.props.changeCurrentTime}
                 />
                 </div>
-                <Replayer
-                    open={this.state.replay.showReplay}
-                    videoUrl={this.state.replay.videoUrl}
-                    timestamp={this.state.replay.timestamp}
-                />
-                <HighlightsRow
-                    open={this.state.highlights.open}
-                    highlights={this.getHighlights()}
-                    videoUrl={this.state.highlights.videoUrl}
-                    handleClose={() => this.handleHighlightsClose()}
-                />
+                {this.props.orientation === Orientation.LANDSCAPE ?
+                    <div>
+                        <Replayer
+                            open={this.state.replay.showReplay}
+                            videoUrl={this.state.replay.videoUrl}
+                            timestamp={this.state.replay.timestamp}
+                        />
+                        <HighlightsRow
+                            open={this.state.highlights.open}
+                            highlights={this.getHighlights()}
+                            videoUrl={this.state.highlights.videoUrl}
+                            handleClose={() => this.handleHighlightsClose()}
+                        />
+                    </div>
+                    : <div />
+                }
           </div>
         );
     }

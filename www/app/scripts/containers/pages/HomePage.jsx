@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import HeroCarousel from '../Carousel';
 import { changeCardCategory, changeVideoInfo } from '../../actions/videoCard';
-import { videoSelected, resetCurrentTimeInPlayer } from '../../actions/videoPlayer';
+import { videoSelected } from '../../actions/videoPlayer';
 import { openOverlayX, maximizeOverlayX } from '../../actions/overlayX';
 import VideoSwiper from '../../components/VideoSwiper';
 
@@ -22,7 +22,6 @@ class HomePage extends Component {
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
-        this.props.dispatch(resetCurrentTimeInPlayer());
     }
 
     _changeVideoInfo = (video) => {

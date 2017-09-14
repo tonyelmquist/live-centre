@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MasonryContainer from '../../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
-import { videoSelected, resetCurrentTimeInPlayer } from '../../actions/videoPlayer';
+import { videoSelected } from '../../actions/videoPlayer';
 import { changeProgramTabIndex } from '../../actions/pages/programsPage';
 import { maximizeOverlayX, openOverlayX } from '../../actions/overlayX';
 //import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
@@ -85,7 +85,6 @@ class ProgramsPage extends React.Component {
         this.props.dispatch(openOverlayX());
         this.props.dispatch(maximizeOverlayX());
         this.props.dispatch(videoSelected(video));
-        this.props.dispatch(resetCurrentTimeInPlayer());
     }
 
     changeTab = (index) => {
