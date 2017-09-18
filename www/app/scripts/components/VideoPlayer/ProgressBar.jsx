@@ -117,24 +117,31 @@ class ProgressBar extends React.Component{
     render() {
         const maxProgressWidth = this.getMaxProgressWidth();
 
+        const progressBarContainer = maxProgressWidth;
+
         const { isPlaying, changeCurrentTime, duration, currentVideoTime } = this.props.videoPlayer;
         let timeProgressInPixels
         if(duration){
             timeProgressInPixels = this.getProgressBarPos();
+            if(timeProgressInPixels > maxProgressWidth - 7){
+                timeProgressInPixels = maxProgressWidth - 7;
+            } else if(timeProgressInPixels < 7){
+                timeProgressInPixels = 7;
+            }
         } else {
-            timeProgressInPixels = 0;
-        }
+            timeProgressInPixels = 7;
+        };
         
         return(
-            <div className="progressBar" >
+            <div className="progressBar"  >
                 <span className="time" style={{
                     left: `${this.getStyle().timeLeftOffset}px`,
                     bottom: `${this.getStyle().bottomOffsetText}px` }}
                 >
                     {this.formatTime(currentVideoTime)}</span>
-                <svg height="21" width={maxProgressWidth} className="bar" style={{left: `${this.getStyle().leftOffset}px`, bottom: `${this.getStyle().bottomOffset}px`}} onTouchStart={this.onTouchStart} onTouchEnd={this.touchEnd} >
-                    <line stroke="#ffffff" y1="10.5" y2="10.5" x1="1" x2={maxProgressWidth} strokeWidth="2" />
-                    <line stroke="#00dafd" y1="10" y2="10" x1="1" x2={timeProgressInPixels} strokeWidth="5" />
+                <svg height="21" width={progressBarContainer} onTouchTap={this.props.handleTouch} className="bar" style={{left: `${this.getStyle().leftOffset}px`, bottom: `${this.getStyle().bottomOffset}px`}} onTouchStart={this.onTouchStart} onTouchEnd={this.touchEnd} >
+                    <line stroke="#ffffff" y1="10.5" y2="10.5" x1="0" x2={maxProgressWidth} strokeWidth="2" />
+                    <line stroke="#00dafd" y1="10" y2="10" x1="0" x2={timeProgressInPixels} strokeWidth="5" />
                     <circle cx={timeProgressInPixels} cy="10" r="8" fill="#00dafd" />
                 </svg>
                 <span className="time right" style={{bottom: `${this.getStyle().bottomOffsetText}px` }}> {this.formatTime(duration)} </span>
@@ -145,16 +152,3 @@ class ProgressBar extends React.Component{
 };
 
 export default ProgressBar;
-
-
-        // return(
-        //     <div className="progressBar" >
-        //         <span className="time">{this.formatTime(this.getTimePlayed())}</span>
-        //         <svg height="20" width={this.maxProgressWidth} className="bar" style={{left: `${this.state.leftOffset}px`}} onTouchStart={this.onTouchStart} onTouchEnd={this.touchEnd} >
-        //             <line stroke="#ffffff" y1="10.5" y2="10.5" x1="1" x2={this.maxProgressWidth} strokeWidth="2" />
-        //             <line stroke="#00dafd" y1="10" y2="10" x1="1" x2={timeProgressInPixels} strokeWidth="5" />
-        //             <circle cx={timeProgressInPixels} cy="10" r="8" fill="#00dafd" />
-        //         </svg>
-        //         <span className="time right">{this.formatTime(this.getMaxDuration())}</span>
-        //     </div>
-        // );

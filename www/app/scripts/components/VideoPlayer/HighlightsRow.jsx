@@ -45,40 +45,37 @@ class HighlightsRow extends Component {
         let videos = {};
 
         videos = this.props.highlights.map(highlight =>
-      (<div key={`highlight-thumb-${highlight.timestamp}`}>
-        <HighlightItem
-          video={this.props.videoUrl}
-          timestamp={highlight.timestamp}
-          description={highlight.description}
-          thumbnail={highlight.thumbnail}
-          title={highlight.title}
-        />
-      </div>),
-    );
-        if (this.props.open) {
-            return (
-                <div className="highlightsSlider slider">
-                    <div className="rowHeader">
-                        <h3 style={{margin: '0 0 5px 10px', color: '#fff' }}>Highlights</h3>
-                    </div>
-                    <div className="slider">
-                        <Slider ref={c => (this.slider = c)} {...settings}>
-                            {videos}
-                        </Slider>
-                    </div>
-                        <FloatingActionButton
-                            mini
-                            secondary
-                            onTouchTap={this.props.handleClose}
-                            className="highlightsCloseButton"
-                        >
-                            <Close />
-                        </FloatingActionButton>
+            (<div key={`highlight-thumb-${highlight.timestamp}`}>
+                <HighlightItem
+                video={this.props.videoUrl}
+                timestamp={highlight.timestamp}
+                description={highlight.description}
+                thumbnail={highlight.thumbnail}
+                title={highlight.title}
+                />
+            </div>),
+        );
+
+        return (
+            <div className="highlightsSlider slider" style={{bottom: this.props.open ? '30px' : '-50%', transition: '0.3s ease all' }}>
+                <div className="rowHeader">
+                    <h3 style={{margin: '0 0 5px 10px', color: '#fff' }}>Highlights</h3>
                 </div>
-            );
-        } 
-        return <div/>;
-        
+                <div className="slider">
+                    <Slider ref={c => (this.slider = c)} {...settings}>
+                        {videos}
+                    </Slider>
+                </div>
+                <FloatingActionButton
+                    mini
+                    secondary
+                    onTouchTap={this.props.handleClose}
+                    className="highlightsCloseButton"
+                >
+                    <Close />
+                </FloatingActionButton>
+            </div>
+        );
     }
 }
 

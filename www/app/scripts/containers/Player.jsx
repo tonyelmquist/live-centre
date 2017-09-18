@@ -38,7 +38,7 @@ class Player extends React.Component {
 
     limit = 50;
 
-    controlBarTimeoutTest1 = null;
+    controlBarTimeout = null;
 
     componentDidMount = () => {
 
@@ -135,8 +135,9 @@ class Player extends React.Component {
             this.playVideo();
             this.videoLoaded = this.props.video.videoUrl;
             this.showControlBar();
-            setTimeout(() => {
+            this.controlBarTimeout = setTimeout(() => {
                 if (this.props.videoPlayer.isPlaying) {
+                    console.log("Hide control bar");
                     this.hideControlBar();
                 }
             }, 3000);
@@ -188,10 +189,6 @@ class Player extends React.Component {
         this.tickInProximity(state.currentTime);
     };
 
-    onOpenSettings = () => {
-        this.props.dispatch(isVideoSettingsOpen(true));
-    };
-
     onTouchTap = (e) => {
         // document.activeElement.blur();
         // e.preventDefault();
@@ -199,9 +196,11 @@ class Player extends React.Component {
             return;
         }
         this.showControlBar();
-        clearTimeout(this.controlBarTimeoutTest1);
-        this.controlBarTimeoutTest1 = setTimeout(() => {
+        clearTimeout(this.controlBarTimeout);
+        console.log("Clear timeout");
+        this.controlBarTimeout = setTimeout(() => {
             if (this.props.videoPlayer.isPlaying) {
+                console.log("Hide control bar");
                 this.hideControlBar();
             }
         }, 3000);
@@ -218,7 +217,10 @@ class Player extends React.Component {
         // If videoplayer is rendered.
         if (this.getVideoPlayer()) {
             this.getVideoPlayer().addEventListener('timeupdate', () => {
-                this.props.dispatch(updateCurrentTime(this.getVideoPlayer().currentTime.toFixed(3)));
+                const newTime = this.getVideoPlayer().currentTime;
+                if (this.props.videoPlayer.currentVideoTime !== newTime ){
+                    this.props.dispatch(updateCurrentTime(newTime));
+                }
             });
         }
     }
@@ -238,21 +240,16 @@ class Player extends React.Component {
         this.props.dispatch(pauseVideo());
     }
 
+    changeCurrentTime = (time) => {
+        this.props.dispatch(changeCurrentTime());
+    }
+
     togglePlay = () => {
         if (this.props.videoPlayer.isPlaying) {
             this.pauseVideo();
         } else {
             this.playVideo();
         }
-    }
-
-    changeCurrentTime = (time) => {
-        this.props.dispatch(changeCurrentTime(time.toFixed(3)));
-    }
-
-    skipCurrentTimeBy = (time) => {
-        this.props.videPlayercurrentTime
-        this.props.dispatch(skipCurrentTimeBy(time));
     }
 
     hideControlBar = () => {
@@ -275,17 +272,8 @@ class Player extends React.Component {
                 videoPlayer={this.props.videoPlayer}
             />
 
-            <VideoControls
-                video={this.props.video}
-                onOpenSettings={() => this.onOpenSettings()}
-                showReplay={this.showReplay}
-                controlBarVisibility={this.props.controlBarVisibility}
-                togglePlay={this.togglePlay}
-                videoPlayer={this.props.videoPlayer}
-                changeCurrentTime={this.changeCurrentTime}
-                orientation={this.props.orientation}
-                hideControlBar={() => this.hideControlBar()}
-            />
+            {this.getVideoPlayer() && !this.state.isPreOverlayShowing ?
+                <VideoControls hideControlTimeout={this.controlBarTimeout}/> : <div/> }
 
             <PrePlayOverlay video={this.getVideoPlayer()} maximized={this.props.overlayX.maximized}
                 orientation={this.props.orientation} isPreOverlayShowing={this.state.isPreOverlayShowing}

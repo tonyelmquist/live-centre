@@ -3,6 +3,8 @@ import BaseClass from './baseClass';
 export default class Match extends BaseClass {
     constructor(data) {
         super();
+        
+        console.log("construct timeline", data);
 
         this.assignData({
             _id: 0,

@@ -60,4 +60,12 @@ const VolumeControl = ({ onTouch }) => (
     <FontAwesome name="volume-up" className="small-control" onTouchTap={onTouch} />
 );
 
-export { HighlightsControl, PlayToggle, ReplayControl, SettingsControl, VolumeControl };
+const ForwardControl = ({ onTouch, extraStyle }) => (
+    <FontAwesome name="step-forward" style={extraStyle} className="step-forward" size="2x" onTouchTap={onTouch} />
+);
+
+const BackwardControl = ({ onTouch, extraStyle }) => (
+    <FontAwesome name="step-backward" style={extraStyle} className="step-backward" size="2x" onTouchTap={onTouch} />
+);
+
+export { HighlightsControl, PlayToggle, ReplayControl, SettingsControl, VolumeControl, ForwardControl, BackwardControl };

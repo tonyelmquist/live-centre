@@ -20,7 +20,6 @@ class FilterTabs extends React.Component {
         const activeTab = this.props.activeTab;
         this.props.changeTab(0);
         if (this.tabElements[activeTab] !== undefined && this.scroller !== undefined) {
-            console.log('updateScrollbarTo0');
             this.updateScrollBar(0, this.tabElements[activeTab].offsetWidth);
         }
         this.scrollToZero();

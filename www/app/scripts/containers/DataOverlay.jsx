@@ -159,6 +159,7 @@ class DataOverlay extends Component {
     }
 
     getOverlayData = () => {
+        console.log("Try to get overlaydata");
         // If this videos match data isn't in the store, retreive it
         if (typeof this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
             getMatchData(this.props.selectedVideo.matchId);
@@ -203,10 +204,6 @@ class DataOverlay extends Component {
           isShowing={this.state.isPlayerInfoShowing}
           onClose={this.onPlayerInfoClose}
           onRightButton={this.onPlayerInfoBack}
-        />
-        <EmptyOverlay
-            isOpen={this.props.playback.isVideoSettingsOpen}
-            onClose={() => this.props.dispatch(isVideoSettingsOpen(false))}
         />
         <VideoSplashContainer isLineupShowing={this.state.isLineupShowing} controlBarVisibility={this.props.controlBarVisibility}/>
 

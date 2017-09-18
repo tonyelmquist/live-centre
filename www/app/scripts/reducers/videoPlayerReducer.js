@@ -198,7 +198,7 @@ export function videoPlayer(state = { isPlaying: false, duration: 0, changeCurre
         return {
             ...state,
             currentVideoTime: action.time,
-            changeCurrentTimeTo: state.changeCurrentTimeTo == action.time ? null : state.changeCurrentTimeTo,
+            changeCurrentTimeTo: null,
         };
     case Actions.CHANGE_CURRENT_TIME:
         return {
