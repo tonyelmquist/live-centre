@@ -7,7 +7,7 @@ import { Orientation } from '../constants/reduxConstants';
 import DataOverlay from './DataOverlay';
 import { showReplay, hideReplay, showHighlights, setControlBarVisibility, 
     isVideoSettingsOpen, showProductOverlay, showProductThumb, 
-    hideProductThumb, updateCurrentTime, changeCurrentTime, skipCurrentTimeBy, setDuration, playVideo, pauseVideo } from '../actions/videoPlayer';
+    hideProductThumb, updateCurrentTime, changeCurrentTime, skipCurrentTimeBy, setDuration, playVideo, pauseVideo, setBufferTime } from '../actions/videoPlayer';
 import '../../../node_modules/video-react/dist/video-react.css';
 import ProductThumb from '../components/OverlayX/ProductThumb';
 import ProductOverlay from '../components/OverlayX/ProductOverlay';
@@ -86,6 +86,7 @@ class Player extends React.Component {
             this.pauseVideo();
         }
 
+
         let newScore = { home: 0, away: 0 };
         // Go backwards through the array and get the first instance of 'score_change'
         for (let i = 0; i < this.timelineManager.activeEvents.length; i++) {
@@ -104,11 +105,17 @@ class Player extends React.Component {
     }
 
     componentWillUpdate = (nextProps) => {
-        //TImeline manager needs to be setup differently after refactoring. 
-        if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[nextProps.video.matchId].timeline) {
-            this.timelineManager.timeline = this.props.matches[nextProps.video.matchId].timeline;
-            this.timelineManager.buffer = this.props.video.matchStart;
+
+        if(this.props.video.id !== nextProps.video.id){
+            console.log("new video");
+            this.pauseVideo();
         }
+
+        //TImeline manager needs to be setup differently after refactoring. 
+        // if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[nextProps.video.matchId].timeline) {
+        //     this.timelineManager.timeline = this.props.matches[nextProps.video.matchId].timeline;
+        //     this.timelineManager.buffer = this.props.video.matchStart;
+        // }
 
         if (
             typeof this.largeVideoPlayer !== 'undefined' &&
@@ -214,6 +221,7 @@ class Player extends React.Component {
     }
 
     watchVideoTime = () => {
+       
         // If videoplayer is rendered.
         if (this.getVideoPlayer()) {
             this.getVideoPlayer().addEventListener('timeupdate', () => {
@@ -221,7 +229,28 @@ class Player extends React.Component {
                 if (this.props.videoPlayer.currentVideoTime !== newTime ){
                     this.props.dispatch(updateCurrentTime(newTime));
                 }
+
+                this.getCurrentBuffer();
             });
+        }
+    }
+
+    getCurrentBuffer = () => {
+        const videoPlayer = this.getVideoPlayer();
+        if (videoPlayer.buffered){
+            for (let i = 0; i<videoPlayer.buffered.length; i++){
+                const currentTime = this.props.videoPlayer.currentVideoTime;
+                //A new buffer is generated each time we skip in time, 
+                //Check which buffer time is part of the current time/should be shown. 
+                if (videoPlayer.buffered.start(i) <= currentTime || videoPlayer.buffered.end(i) >= currentTime ){
+                    const timeBuffered = videoPlayer.buffered.end(i);
+                    
+                    if (this.props.videoPlayer.bufferTime !== timeBuffered){
+                        //console.log(this.props.videoPlayer.bufferTime, timeBuffered);
+                        this.props.dispatch(setBufferTime(timeBuffered));
+                    }
+                }
+            }
         }
     }
 
@@ -260,6 +289,7 @@ class Player extends React.Component {
     }
 
     render() {
+        
         this.getAndSetDuration();
 
         return (

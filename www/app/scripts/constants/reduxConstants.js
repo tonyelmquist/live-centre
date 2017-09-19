@@ -130,6 +130,7 @@ class ReduxConstants {
     static get PAUSE_VIDEO() { return 'PAUSE_VIDEO'; }
 
     static get SET_DURATION() { return 'SET_DURATION'; }
+    static get SET_BUFFER_TIME() { return 'SET_BUFFER_TIME'; }
     
     static get UPDATE_CURRENT_TIME() { return 'UPDATE_CURRENT_TIME'; }
     static get CHANGE_CURRENT_TIME() { return 'CHANGE_CURRENT_TIME'; }

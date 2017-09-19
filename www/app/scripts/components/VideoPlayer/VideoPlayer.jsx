@@ -48,4 +48,15 @@ class VideoPlayer extends React.Component {
     } 
 };
 
+VideoPlayer.defaultProps = {
+    autoPlay: false,
+    muted: false,
+
+};
+
+VideoPlayer.propTypes = {
+    autoPlay: PropTypes.bool,
+    muted: PropTypes.bool,
+};
+
 export default VideoPlayer;

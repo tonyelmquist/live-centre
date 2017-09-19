@@ -295,3 +295,14 @@ export function skipCurrentTimeBy(skipBy) {
 export function resetCurrentTime() {
     return { type: Actions.RESET_CURRENT_TIME };
 }
+
+/**
+ * Action to reset all time variables.
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @returns Dispatchable Action
+ */
+export function setBufferTime(time) {
+    return { type: Actions.SET_BUFFER_TIME, time };
+}
