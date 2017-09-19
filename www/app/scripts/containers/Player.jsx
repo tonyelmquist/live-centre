@@ -129,11 +129,11 @@ class Player extends React.Component {
             this.pauseVideo();
         }
 
-        // TImeline manager needs to be setup differently after refactoring.
-        // if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[nextProps.video.matchId].timeline) {
-        //     this.timelineManager.timeline = this.props.matches[nextProps.video.matchId].timeline;
-        //     this.timelineManager.buffer = this.props.video.matchStart;
-        // }
+        //TImeline manager needs to be setup differently after refactoring. 
+        if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[nextProps.video.matchId].timeline) {
+            this.timelineManager.timeline = this.props.matches[nextProps.video.matchId].timeline;
+            this.timelineManager.buffer = this.props.video.matchStart;
+        }
 
         if (
             typeof this.largeVideoPlayer !== 'undefined' &&
@@ -263,9 +263,7 @@ class Player extends React.Component {
                 const currentTime = this.props.videoPlayer.currentVideoTime;
                 //A new buffer is generated each time we skip in time, 
                 //Check which buffer time is part of the current time/should be shown. 
-                if (videoPlayer.buffered.start(i) <= currentTime && currentTime <= videoPlayer.buffered.end(i)){
-                    console.log("Current buffer: ", i, videoPlayer.buffered.start(i), videoPlayer.buffered.end(i), currentTime);
-
+                if (videoPlayer.buffered.start(i) <= currentTime && currentTime <= videoPlayer.buffered.end(i)) {
                     const timeBuffered = videoPlayer.buffered.end(i);
 
                     if (this.props.videoPlayer.bufferTime !== timeBuffered) {

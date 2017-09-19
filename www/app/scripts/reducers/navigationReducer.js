@@ -77,5 +77,16 @@ function userMenuReducer(state = false, action) {
     }
 }
 
-export { changeNavIndex, headerMenuState, drawerMenuState, pageTabIndex, shadeReducer, userMenuReducer };
+function appPaused(state = false, action) {
+    switch (action.type) {
+    case Actions.RESUME_APP:
+        return false;
+    case Actions.PAUSE_APP:
+        return true;
+    default:
+        return state;
+    }
+}
+
+export { changeNavIndex, headerMenuState, drawerMenuState, pageTabIndex, shadeReducer, userMenuReducer, appPaused };
 

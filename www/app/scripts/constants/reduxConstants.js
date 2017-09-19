@@ -54,6 +54,9 @@ class ReduxConstants {
     static get SWITCH_SHADE() { return 'SWITCH_SHADE'; }
     static get SWITCH_USER_MENU() { return 'SWITCH_USER_MENU'; }
 
+    static get RESUME_APP() { return 'RESUME_APP'; }
+    static get PAUSE_APP() { return 'PAUSE_APP'; }
+
     // OVERLAY-X
     static get OVERLAY_X_OPEN() { return 'OVERLAY_X_OPEN'; }
     static get OVERLAY_X_CLOSE() { return 'OVERLAY_X_CLOSE'; }

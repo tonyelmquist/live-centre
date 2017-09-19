@@ -13,10 +13,13 @@ import android.view.Window;
 import android.webkit.HttpAuthHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.util.Log;
 
 public class MainActivity extends Activity {
     private WebView mWebView;
             JavascriptBridge mJavascriptBridge;
+
+    private static final String LogTag = "MyMessage";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,17 +58,36 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mJavascriptBridge.onResume();
+        Log.i(LogTag, "On Resume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mJavascriptBridge.onPause();
+        Log.i(LogTag, "On pause");
+
+    }
+
+    @Override
     public boolean onKeyDown(final int keyCode, final KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK) && mWebView.canGoBack()) {
             mWebView.goBack();
             return true;
         }
+        Log.i(LogTag, "On key down");
         return super.onKeyDown(keyCode, event);
     }
 
     @Override
     public void onBackPressed() {
+        Log.i(LogTag, "On back pressed");
         mJavascriptBridge.onBackPressed();
         //super.onBackPressed();
     }
+
+
 }

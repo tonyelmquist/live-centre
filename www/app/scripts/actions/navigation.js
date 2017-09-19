@@ -147,3 +147,11 @@ export function switchShade(onoff) {
 export function switchUserMenu(onoff) {
     return { type: Actions.SWITCH_USER_MENU, onoff };
 }
+
+export function resumeApp() {
+    return { type: Actions.RESUME_APP };
+}
+
+export function pauseApp() {
+    return { type: Actions.PAUSE_APP };
+}

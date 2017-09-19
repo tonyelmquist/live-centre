@@ -29,6 +29,7 @@ import SportPlayerOverlay from '../components/SportSection/SportPlayerOverlay';
 import LoginModal from '../components/Modals/LoginModal';
 // Actions
 import { setLandscape, setPortrait } from '../actions/settings';
+import { pauseApp, resumeApp } from '../actions/navigation';
 import { closeTeamMemberOverlay } from '../actions/pages/sportsPage';
 import { showLoginModal } from '../actions/modals';
 import { newNotification, removeNotification } from '../actions/notifications';
@@ -55,6 +56,11 @@ class App extends Component {
             this.dispatchOrientation();
         });
 
+        window.jsBridge = {};
+
+        window.jsBridge.onPause = () => this.onPause();
+        window.jsBridge.onResume = () => this.onResume();
+
         // window.addEventListener('keydown', (e) => {
         //     console.log(e.keyCode);
 
@@ -67,6 +73,16 @@ class App extends Component {
         //         this.props.dispatch(newNotification('Your login details were incorrect!', 7, 'error'));
         //     }
         // });
+    }
+
+    onPause = () => {
+        console.log("PAUSE APP");
+        this.props.dispatch(pauseApp());
+    }
+
+    onResume = () => {
+        console.log("RESUME APP");
+        this.props.dispatch(resumeApp());
     }
 
     dispatchOrientation = () => {
