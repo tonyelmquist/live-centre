@@ -315,5 +315,6 @@ export function setBufferTime(time) {
  * @returns Dispatchable Action
  */
 export function setVideoDimensions(dimensions) {
+    console.log('setting dimensions to', dimensions);
     return { type: Actions.SET_VIDEO_DIMENSIONS, dimensions };
 }

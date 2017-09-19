@@ -16,23 +16,25 @@ class VideoOverlay extends Component {
         });
     }
 
+
     render() {
         if (typeof this.props.video.id !== 'undefined') {
             this.setChatChannel();
             return (
-            <div className={`overlay-x-container ${this.props.videoOverlay.maximized ? 'maximized' : 'minimized'} ${this.props.videoOverlay.open ? 'open' : 'closed'}`}>
+            <div className={`overlay-x-container ${this.props.VideoOverlay.maximized ? 'maximized' : 'minimized'} ${this.props.VideoOverlay.open ? 'open' : 'closed'}`}>
                 <PlayerMotionController
-                    isOpen={this.props.videoOverlay.open}
-                    isMaximized={this.props.videoOverlay.maximized}
+                    isOpen={this.props.VideoOverlay.open}
+                    isMaximized={this.props.VideoOverlay.maximized}
                     ref={ref => (this.overlayRef = ref)}
                     orientation={this.props.orientation}
+                    dispatch={this.props.dispatch}
                 >
                     <Player />
                 </PlayerMotionController>
                 <ContentMotionController
-                    isOpen={this.props.videoOverlay.open}
-                    isMaximized={this.props.videoOverlay.maximized}
-                    videoHeight={this.props.videoPlayerDimensions.height}
+                    isOpen={this.props.VideoOverlay.open}
+                    isMaximized={this.props.VideoOverlay.maximized}
+                    videoHeight={this.props.videoPlayer.dimensions.height}
                 >
                     <VideoContent />
                 </ContentMotionController>
@@ -51,15 +53,15 @@ class VideoOverlay extends Component {
 VideoOverlay.propTypes = {
     dispatch: PropTypes.func.isRequired,
     video: PropTypes.object.isRequired,
-    videoOverlay: PropTypes.object.isRequired,
+    VideoOverlay: PropTypes.object.isRequired,
     videoPlayerDimensions: PropTypes.object.isRequired,
     orientation: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
     video: state.playback.video,
-    videoOverlay: state.videoOverlay,
-    videoPlayerDimensions: state.videoPlayer.dimensions,
+    VideoOverlay: state.VideoOverlay,
+    videoPlayer: state.videoPlayer,
     orientation: state.settings.screenOrientation,
 });
 
