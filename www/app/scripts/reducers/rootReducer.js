@@ -4,7 +4,7 @@ import authenticationReducer from './authenticationReducer';
 import chat from './chatReducer';
 import { videosReducer, seasonReducer, seriesReducer, tagsReducer } from './fetchDataReducer';
 import { headerMenuState, drawerMenuState, pageTabIndex, shadeReducer, userMenuReducer, appPaused } from './navigationReducer';
-import VideoOverlay from './VideoOverlayReducer';
+import videoOverlay from './VideoOverlayReducer';
 import { notificationReducer, popNotificationReducer } from './notificationReducer';
 import matches from './matchDataReducer';
 import { search, searchFilterTab } from './searchReducer';
@@ -55,7 +55,7 @@ const rootReducer = combineReducers({
     chat,
     replay,
     highlights,
-    VideoOverlay,
+    videoOverlay,
     productOverlay: productOverlayReducer,
     productThumb: productThumbReducer,
 });

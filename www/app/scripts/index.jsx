@@ -40,11 +40,11 @@ Authentication.init();
 
 // capture back button
 
-window.jsBridge = {};
+// window.jsBridge = {};
 
-window.jsBridge.onBackPressed = () => {
-    // window.alert('you pressed the back button! now do with this what you will...');
-};
+// window.jsBridge.onBackPressed = () => {
+//     // window.alert('you pressed the back button! now do with this what you will...');
+// };
 
 // Custom theme
 const muiTheme = getMuiTheme(style);

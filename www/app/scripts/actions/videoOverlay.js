@@ -14,7 +14,7 @@ import Actions from '../constants/reduxConstants';
  * @returns Dispatchable Action
  */
 export function minimizeVideoOverlay() {
-    return { type: Actions.OVERLAY_X_MINIMIZE };
+    return { type: Actions.VIDEO_OVERLAY_MINIMIZE };
 }
 
 /**
@@ -25,7 +25,7 @@ export function minimizeVideoOverlay() {
  * @returns Dispatchable Action
  */
 export function maximizeVideoOverlay() {
-    return { type: Actions.OVERLAY_X_MAXIMIZE };
+    return { type: Actions.VIDEO_OVERLAY_MAXIMIZE };
 }
 
 /**
@@ -36,7 +36,7 @@ export function maximizeVideoOverlay() {
  * @returns Dispatchable Action
  */
 export function openVideoOverlay() {
-    return { type: Actions.OVERLAY_X_OPEN };
+    return { type: Actions.VIDEO_OVERLAY_OPEN };
 }
 
 /**
@@ -47,7 +47,7 @@ export function openVideoOverlay() {
  * @returns Dispatchable Action
  */
 export function closeVideoOverlay() {
-    return { type: Actions.OVERLAY_X_CLOSE };
+    return { type: Actions.VIDEO_OVERLAY_CLOSE };
 }
 
 /**

@@ -77,7 +77,7 @@ class ContentXInfo extends Component {
                         video={video}
                         collapseInfo={this.collapseInfo}
                         toggleCollapseInfo={this.toggleCollapseInfo}
-                        isCollapsed={this.props.VideoOverlay.collapsedInfo}
+                        isCollapsed={this.props.videoOverlay.collapsedInfo}
                         handleAddToWishlist={this.handleAddToWishlist}
                         handleRemoveFromWishlist={this.handleRemoveFromWishlist}
                 />)
@@ -94,7 +94,7 @@ class ContentXInfo extends Component {
 ContentXInfo.propTypes = {
     dispatch: PropTypes.func.isRequired,
     video: PropTypes.object.isRequired,
-    VideoOverlay: PropTypes.object.isRequired,
+    videoOverlay: PropTypes.object.isRequired,
     playback: PropTypes.object.isRequired,
     chat: PropTypes.object.isRequired,
     seasons: PropTypes.object.isRequired,
@@ -108,7 +108,7 @@ ContentXInfo.propTypes = {
 const mapStateToProps = state => ({
     video: state.playback.video,
     settings: state.settings,
-    VideoOverlay: state.VideoOverlay,
+    videoOverlay: state.videoOverlay,
     playback: state.playback,
     chat: state.chat,
     seasons: state.seasons,

@@ -57,12 +57,12 @@ class ReduxConstants {
     static get RESUME_APP() { return 'RESUME_APP'; }
     static get PAUSE_APP() { return 'PAUSE_APP'; }
 
-    // OVERLAY-X
-    static get OVERLAY_X_OPEN() { return 'OVERLAY_X_OPEN'; }
-    static get OVERLAY_X_CLOSE() { return 'OVERLAY_X_CLOSE'; }
-    static get OVERLAY_X_MAXIMIZE() { return 'OVERLAY_X_MAXIMIZE'; }
-    static get OVERLAY_X_MINIMIZE() { return 'OVERLAY_X_MINIMIZE'; }
-    static get OVERLAY_X_SET_INFO() { return 'OVERLAY_X_SET_INFO'; }
+    // VIDEO OVERLAY
+    static get VIDEO_OVERLAY_OPEN() { return 'VIDEO_OVERLAY_OPEN'; }
+    static get VIDEO_OVERLAY_CLOSE() { return 'VIDEO_OVERLAY_CLOSE'; }
+    static get VIDEO_OVERLAY_MAXIMIZE() { return 'VIDEO_OVERLAY_MAXIMIZE'; }
+    static get VIDEO_OVERLAY_MINIMIZE() { return 'VIDEO_OVERLAY_MINIMIZE'; }
+    static get VIDEO_OVERLAY_SET_INFO() { return 'VIDEO_OVERLAY_SET_INFO'; }
     static get TOGGLE_COLLAPSE_INFO() { return 'TOGGLE_COLLAPSE_INFO'; }
     static get COLLAPSE_INFO() { return 'COLLAPSE_INFO'; }
 

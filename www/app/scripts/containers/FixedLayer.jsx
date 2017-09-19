@@ -11,7 +11,7 @@ import UserMenu from './UserMenu';
 // import ChannelIcon from 'material-ui/svg-icons/action/language';
 // import VideoIcon from 'material-ui/svg-icons/AV/videocam';
 
-import { toggleMenu, hideMenu, switchUserMenu, switchShade, pageTabGoBack, removePageTabIndex } from '../actions/navigation';
+import { toggleMenu, hideMenu, switchUserMenu, switchShade, pageTabGoBack, removePageTabIndex, resumeApp, pauseApp } from '../actions/navigation';
 
 import { HomeIcon, ProgramsIcon, ChannelsIcon, SportIcon } from '../components/Icons/TabIcons';
 
@@ -20,7 +20,7 @@ import HeaderMenu from '../components/navigation/HeaderMenu';
 import MobileMenu from '../components/navigation/MobileMenu';
 import ExpandableMenu from './../components/navigation/ExpandableMenu';
 import { searchKeyword, toggleSearch, closeSearch, emptySearch, focusedSearch, blurredSearch } from '../actions/search';
-import { closeOverlayX } from '../actions/videoOverlay';
+import { closeVideoOverlay } from '../actions/videoOverlay';
 // import VideoLibrary from 'material-ui/svg-icons/AV/video-library';
 
 /* This component is the starting point for all navigation.
@@ -192,8 +192,8 @@ class Header extends Component {
         } else if (this.props.search.isOpen) {
             this.openCloseSearch();
             return 'false';
-        } else if (this.props.overlayX.open) {
-            this.props.dispatch(closeOverlayX());
+        } else if (this.props.videoOverlay.open) {
+            this.props.dispatch(closeVideoOverlay());
             return 'false';
         } else if (this.props.location.pathname !== '/') {
             this.props.history.goBack();
@@ -202,10 +202,25 @@ class Header extends Component {
         return 'moveTaskToBack';
     }
 
+    onNativePause = () => {
+        console.log("PAUSE APP");
+        this.props.dispatch(pauseApp());
+    }
+
+    onNativeResume = () => {
+        console.log("RESUME APP");
+        this.props.dispatch(resumeApp());
+    }
+
     render() {
         this.setActiveItem();
         window.jsBridge = {};
         window.jsBridge.onBackPressed = () => this.nativeBackAction();
+
+        window.jsBridge.onPause = () => this.onNativePause();
+        
+        window.jsBridge.onResume = () => this.onNativeResume();
+
         return (
           <div id="fixed-layer">
             <Shade onoff={this.props.shade} onTouch={this.closeUserMenu} />
@@ -255,6 +270,7 @@ Header.propTypes = {
     menuIsOpen: PropTypes.bool.isRequired,
     history: PropTypes.object.isRequired,
     tags: PropTypes.object.isRequired,
+    videoOverlay: PropTypes.object.isRequired,
     search: PropTypes.object.isRequired,
     settings: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
@@ -267,7 +283,7 @@ const mapStateToProps = state => ({
     search: state.search,
     settings: state.settings,
     isDrawerMenuOpen: state.drawerMenuState,
-    overlayX: state.overlayX,
+    videoOverlay: state.videoOverlay,
     pageTabIndex: state.pageTabIndex,
     shade: state.shade,
 });

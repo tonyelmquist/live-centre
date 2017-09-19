@@ -86,19 +86,22 @@ class Player extends React.Component {
         });
     };
 
-    componentDidUpdate = (nextProps) => {
-        if (!this.props.VideoOverlay.open && this.props.videoPlayer.isPlaying) {
+    componentDidUpdate = (prevProps) => {
+        if(this.props.appPaused !== prevProps.appPaused){
+            this.handleAppPause();
+        }
+        if (!this.props.videoOverlay.open && this.props.videoPlayer.isPlaying) {
             this.pauseVideo();
         }
 
         // Set dimensions if they have changed
-        if (this.getVideoPlayer() && this.props.orientation !== nextProps.orientation) {
+        if (this.getVideoPlayer() && this.props.orientation !== prevProps.orientation) {
             const currentDimensions = {
                 width: this.getVideoPlayer().getBoundingClientRect().width,
                 height: this.getVideoPlayer().getBoundingClientRect().height,
             };
 
-            if (nextProps.videoPlayer.dimensions.height !== currentDimensions.height) {
+            if (prevProps.videoPlayer.dimensions.height !== currentDimensions.height) {
                 this.props.dispatch(setVideoDimensions({
                     width: this.getVideoPlayer().getBoundingClientRect().width,
                     height: this.getVideoPlayer().getBoundingClientRect().height,
@@ -218,6 +221,14 @@ class Player extends React.Component {
         this.tickInProximity(state.currentTime);
     };
 
+    handleAppPause = () => {
+        if (this.props.appPaused && this.props.videoPlayer.isPlaying) {
+            this.pauseVideo();
+        } else if (!this.props.appPaused && !this.props.videoPlayer.isPlaying) {
+            this.playVideo();
+        }
+    }
+
     onTouchTap = (e) => {
         // document.activeElement.blur();
         // e.preventDefault();
@@ -328,7 +339,7 @@ class Player extends React.Component {
 
             {/* Data Overlay (product thumb/overlay to be moved to data e-commerce overlay) */}
             <ProductThumb productID={this.props.productID} showProductThumb={this.props.showProductThumb} onTouchTap={() => this.onShowProductOverlay()} />
-            <ProductOverlay overlayMaximized={this.props.VideoOverlay.maximized} productID={this.props.productID} showProductOverlay={this.props.showProductOverlay} />
+            <ProductOverlay overlayMaximized={this.props.videoOverlay.maximized} productID={this.props.productID} showProductOverlay={this.props.showProductOverlay} />
             {this.props.orientation === Orientation.LANDSCAPE &&
             typeof this.largeVideoPlayer !== 'undefined' &&
             !this.state.isPreOverlayShowing &&
@@ -339,7 +350,7 @@ class Player extends React.Component {
             {/* Pre Overlay */}
             <PrePlayOverlay
                 video={this.getVideoPlayer()}
-                maximized={this.props.VideoOverlay.maximized}
+                maximized={this.props.videoOverlay.maximized}
                 orientation={this.props.orientation}
                 isPreOverlayShowing={this.state.isPreOverlayShowing}
                 onPrePlayTouch={this.onPrePlayTouch}
@@ -361,11 +372,12 @@ Player.defaultProps = {
 
 Player.propTypes = {
     dispatch: PropTypes.func.isRequired,
+    appPaused: PropTypes.bool.isRequired,
     videoPosition: PropTypes.number,
     orientation: PropTypes.string.isRequired,
     video: PropTypes.object.isRequired,
     videoPlayer: PropTypes.object.isRequired,
-    VideoOverlay: PropTypes.object.isRequired,
+    videoOverlay: PropTypes.object.isRequired,
     productID: PropTypes.number.isRequired,
     showProductThumb: PropTypes.bool.isRequired,
     showProductOverlay: PropTypes.bool.isRequired,
@@ -375,11 +387,12 @@ Player.propTypes = {
 };
 
 const mapStateToProps = state => ({
+    appPaused: state.appPaused,
     video: state.playback.video,
     videoPlayer: state.videoPlayer,
     videoPosition: state.playback.currentTime,
     controlBarVisibility: state.playback.controlBarVisibility,
-    VideoOverlay: state.VideoOverlay,
+    videoOverlay: state.videoOverlay,
     orientation: state.settings.screenOrientation,
     productID: state.productThumb.productID,
     showProductThumb: state.productThumb.showProductThumb,

@@ -22,6 +22,8 @@ public class JavascriptBridge {
     Activity mainActivity;
     WebView mWebView;
 
+    private static final String LogTag = "MyMessage";
+
     public JavascriptBridge(Activity activity, WebView webview) {
         mainActivity = activity;
         mWebView = webview;
@@ -115,6 +117,7 @@ public class JavascriptBridge {
     }
 
     private void sendJS(final String javascriptString, final ValueCallback<String> callback) {
+        Log.i(LogTag, "Send js string: "+javascriptString);
         new Handler().post(new Runnable() {
             @Override
             public void run() {

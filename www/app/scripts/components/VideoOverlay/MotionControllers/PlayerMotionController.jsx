@@ -178,7 +178,7 @@ PlayerMotionController.propTypes = {
 
 const mapStateToProps = state => ({
     orientation: state.settings.screenOrientation,
-    VideoOverlay: state.VideoOverlay,
+    videoOverlay: state.videoOverlay,
 });
 
 export default connect(mapStateToProps)(PlayerMotionController);

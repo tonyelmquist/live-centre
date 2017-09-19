@@ -7,25 +7,25 @@ const defaultState = {
     collapsedInfo: true,
 };
 
-export default function VideoOverlay(state = defaultState, action) {
+export default function videoOverlay(state = defaultState, action) {
     switch (action.type) {
-    case Actions.OVERLAY_X_OPEN:
+    case Actions.VIDEO_OVERLAY_OPEN:
         return Object.assign({}, state, {
             open: true,
         });
-    case Actions.OVERLAY_X_CLOSE:
+    case Actions.VIDEO_OVERLAY_CLOSE:
         return Object.assign({}, state, {
             open: false,
         });
-    case Actions.OVERLAY_X_MINIMIZE:
+    case Actions.VIDEO_OVERLAY_MINIMIZE:
         return Object.assign({}, state, {
             maximized: false,
         });
-    case Actions.OVERLAY_X_MAXIMIZE:
+    case Actions.VIDEO_OVERLAY_MAXIMIZE:
         return Object.assign({}, state, {
             maximized: true,
         });
-    case Actions.OVERLAY_X_SET_INFO:
+    case Actions.VIDEO_OVERLAY_SET_INFO:
         return Object.assign({}, state, {
             info: action.videoInfo,
         });

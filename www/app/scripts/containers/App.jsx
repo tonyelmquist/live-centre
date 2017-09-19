@@ -56,10 +56,8 @@ class App extends Component {
             this.dispatchOrientation();
         });
 
-        window.jsBridge = {};
-
-        window.jsBridge.onPause = () => this.onPause();
-        window.jsBridge.onResume = () => this.onResume();
+        //window.jsBridge.onPause = () => this.onPause();
+        //window.jsBridge.onResume = () => this.onResume();
 
         // window.addEventListener('keydown', (e) => {
         //     console.log(e.keyCode);
@@ -73,16 +71,6 @@ class App extends Component {
         //         this.props.dispatch(newNotification('Your login details were incorrect!', 7, 'error'));
         //     }
         // });
-    }
-
-    onPause = () => {
-        console.log("PAUSE APP");
-        this.props.dispatch(pauseApp());
-    }
-
-    onResume = () => {
-        console.log("RESUME APP");
-        this.props.dispatch(resumeApp());
     }
 
     dispatchOrientation = () => {
