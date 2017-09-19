@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { videoSelected } from '../actions/videoPlayer';
-import { openOverlayX,maximizeOverlayX } from '../actions/overlayX';
+import { openVideoOverlay,maximizeVideoOverlay } from '../actions/VideoOverlay';
 
 import MasonryContainer from '../components/masonry/MasonryContainer';
 import MasonryVideoTile from '../components/masonry/MasonryVideoTile';
@@ -21,14 +21,14 @@ const styles = {
 };
 class CategoryContainer extends Component {
     handleTileOpen = (video) => {
-        this.props.dispatch(openOverlayX());
-        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(openVideoOverlay());
+        this.props.dispatch(maximizeVideoOverlay());
         this.props.dispatch(videoSelected(video));
     };
 
     handleTilePlay = (video) => {
-        this.props.dispatch(openOverlayX());
-        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(openVideoOverlay());
+        this.props.dispatch(maximizeVideoOverlay());
         this.props.dispatch(videoSelected(video));
     }
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import HeroCarousel from '../Carousel';
 import { changeCardCategory, changeVideoInfo } from '../../actions/videoCard';
 import { videoSelected } from '../../actions/videoPlayer';
-import { openOverlayX, maximizeOverlayX } from '../../actions/overlayX';
+import { openVideoOverlay, maximizeVideoOverlay } from '../../actions/VideoOverlay';
 import VideoSwiper from '../../components/VideoSwiper';
 
 class HomePage extends Component {
@@ -19,8 +19,8 @@ class HomePage extends Component {
     }
 
     _onTileClick = (video) => {
-        this.props.dispatch(openOverlayX());
-        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(openVideoOverlay());
+        this.props.dispatch(maximizeVideoOverlay());
         this.props.dispatch(videoSelected(video));
     }
 

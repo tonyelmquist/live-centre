@@ -7,7 +7,7 @@ import { Orientation } from '../../constants/reduxConstants';
 
 class ProductOverlay extends Component {
     componentDidUpdate(){
-        //Hide product overlay when overlayX is minimized. 
+        //Hide product overlay when VideoOverlay is minimized. 
         if (!this.props.overlayMaximized){
             this.props.dispatch(hideProductOverlay());
             this.props.dispatch(hideProductThumb());

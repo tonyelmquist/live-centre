@@ -177,7 +177,7 @@ export function productThumbReducer(
     }
 }
 
-export function videoPlayer(state = { isPlaying: false, bufferTime: null, duration: 0, changeCurrentTimeTo: null, currentVideoTime: 0 }, action) {
+export function videoPlayer(state = { isPlaying: false, bufferTime: null, duration: 0, changeCurrentTimeTo: null, currentVideoTime: 0, dimensions: {} }, action) {
     switch (action.type) {
     case Actions.PLAY_VIDEO:
         return {
@@ -209,6 +209,11 @@ export function videoPlayer(state = { isPlaying: false, bufferTime: null, durati
         return {
             ...state,
             bufferTime: action.time,
+        };
+    case Actions.SET_VIDEO_DIMENSIONS:
+        return {
+            ...state,
+            dimensions: action.dimensions,
         };
     default:
         return state;

@@ -9,7 +9,7 @@ import Slider from 'react-slick';
 import IconButton from 'material-ui/IconButton';
 import PlayCircleFilled from 'material-ui/svg-icons/av/play-circle-filled';
 import { videoSelected } from '../actions/videoPlayer';
-import { openOverlayX, maximizeOverlayX } from '../actions/overlayX';
+import { openVideoOverlay, maximizeVideoOverlay } from '../actions/VideoOverlay';
 // const FEATURED_CATEGORY = 'Uncategorized';
 
 const styles = {
@@ -73,8 +73,8 @@ class HeroCarousel extends Component {
     }
 
     _handlePlay = (video) => {
-        this.props.dispatch(openOverlayX());
-        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(openVideoOverlay());
+        this.props.dispatch(maximizeVideoOverlay());
         this.props.dispatch(videoSelected(video));
     };
 

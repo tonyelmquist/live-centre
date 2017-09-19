@@ -18,7 +18,7 @@ import SportsPage from './pages/SportsPage';
 import SingleSportPage from './pages/SingleSportPage';
 import TeamPage from './pages/TeamPage';
 // Containers
-import OverlayX from './OverlayX';
+import VideoOverlay from './VideoOverlay';
 import CategoryContainer from './CategoryContainer';
 import SearchOverlay from './SearchOverlay';
 import FixedLayer from './FixedLayer';
@@ -174,7 +174,7 @@ class App extends Component {
                         <Route path="/watchlist" component={WishlistPage} />
                     </TransitionRoutes>
 
-                <OverlayX />
+                <VideoOverlay />
               </div>
               <LoginModal isOpen={this.props.modals.showLoginModal} onClose={this.closeLoginModal} onSubmit={this.loginAttempt} error={this.state.loginModal.error} />
               <NotificationManager notifications={this.props.notifications} removeNotification={this.dispatchRemoveNotification} />

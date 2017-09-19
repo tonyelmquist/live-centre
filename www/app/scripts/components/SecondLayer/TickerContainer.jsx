@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import VideoSplash from './VideoSplash';
+import Tick from './Tick';
 
 import { Motion, spring, TransitionMotion } from 'react-motion';
 
-class VideoSplashContainer extends React.Component {
+class TickerContainer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -237,7 +237,7 @@ class VideoSplashContainer extends React.Component {
                 onTouchEnd={this.onTouchEnd}
             >
                 {messages.map((message, key) => (
-                    <VideoSplash
+                    <Tick
                             showHistory={this.state.showHistory}
                             preventAutoScroll={this.state.preventAutoScroll}
                             message={message.message}
@@ -251,4 +251,4 @@ class VideoSplashContainer extends React.Component {
     }
 }
 
-export default VideoSplashContainer;
+export default TickerContainer;

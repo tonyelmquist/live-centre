@@ -73,7 +73,7 @@ export function markSelectedAsWishlist(wishlisted) {
 }
 
 // /**
-//  * Action to set current time in overlayX
+//  * Action to set current time in VideoOverlay
 //  *
 //  * @deprecated Possibly unneeded, this was used to try and sync two seperate video players in the past, now they are one
 //  * @memberof Actions:VideoPlayer
@@ -85,7 +85,7 @@ export function markSelectedAsWishlist(wishlisted) {
 // }
 
 /**
- * Action to reset current time in overlayX
+ * Action to reset current time in VideoOverlay
  *
  * @memberof Actions:VideoPlayer
  * @export
@@ -305,4 +305,15 @@ export function resetCurrentTime() {
  */
 export function setBufferTime(time) {
     return { type: Actions.SET_BUFFER_TIME, time };
+}
+
+/**
+ * Action to set dimensions of video player
+ *
+ * @export
+ * @memberof Actions:VideoPlayer
+ * @returns Dispatchable Action
+ */
+export function setVideoDimensions(dimensions) {
+    return { type: Actions.SET_VIDEO_DIMENSIONS, dimensions };
 }

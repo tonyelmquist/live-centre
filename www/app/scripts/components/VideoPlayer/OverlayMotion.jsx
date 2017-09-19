@@ -29,7 +29,7 @@ class Overlay extends React.Component {
 
     onMaximize = () => {
         if (this.props.orientation === Orientation.PORTRAIT) {
-            this.props.maximizeOverlayX();
+            this.props.maximizeVideoOverlay();
         }
     };
 
@@ -38,12 +38,12 @@ class Overlay extends React.Component {
         this.props.hideControlBar();
         if (this.props.orientation === Orientation.PORTRAIT) {
             if (!this.props.isMaximized) {
-                this.props.closeOverlayX();
+                this.props.closeVideoOverlay();
             } else {
-                this.props.minimizeOverlayX();
+                this.props.minimizeVideoOverlay();
             }
         } else {
-            this.props.closeOverlayX();
+            this.props.closeVideoOverlay();
         }
     };
 

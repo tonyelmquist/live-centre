@@ -5,19 +5,9 @@ import ContentXInfo from './ContentXInfo';
 
 class ContentX extends Component {
 
-    render() {
-        const _y = this.props.isOpen ? (this.props.isMaximized ? -100 : 0) : 0;
-        const _o = this.props.isOpen ? (this.props.isMaximized ? 1 : 0) : 0;
-        
-        return (
-            <Motion style={{
-                y: spring(_y, { stiffness: 60, damping: 15 }),
-                o: spring(_o, { stiffness: 60, damping: 15 }),
-            }}
-            >
-                {({ y, o }) =>
+    
 
-                    (<div className={'ox-content'} style={{ transform: `translate3d(0, ${y}%, 0)`, opacity: o, height: window.innerHeight - this.props.videoHeight }}>
+                    
                          <ContentXInfo 
                             video={this.props.video}
                             allVideos={this.props.allVideos}

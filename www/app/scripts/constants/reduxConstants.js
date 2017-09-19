@@ -105,7 +105,9 @@ class ReduxConstants {
     static get SHOW_HIGHLIGHTS() { return 'SHOW_HIGHLIGHTS'; }
     static get HIDE_HIGHLIGHTS() { return 'HIDE_HIGHLIGHTS'; }
 
-    //static get SET_CURRENT_TIME() { return 'SET_CURRENT_TIME'; }
+    static get SET_VIDEO_DIMENSIONS() { return 'SET_VIDEO_DIMENSIONS'; }
+
+    // static get SET_CURRENT_TIME() { return 'SET_CURRENT_TIME'; }
 
     static get MARK_AS_WISHLIST() { return 'MARK_AS_WISHLIST'; }
     static get REMOVE_FROM_WISHLIST() { return 'REMOVE_FROM_WISHLIST'; }

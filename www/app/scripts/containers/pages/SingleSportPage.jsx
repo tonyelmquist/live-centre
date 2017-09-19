@@ -10,7 +10,7 @@ import LiveTag from '../../components/common/LiveTag';
 import soccerBG from '../../../img/mockup/sport/soccer-background.jpg';
 import i18next from 'i18next';
 import { videoSelected, resetCurrentTimeInPlayer } from '../../actions/videoPlayer';
-import { maximizeOverlayX, openOverlayX } from '../../actions/overlayX';
+import { maximizeVideoOverlay, openVideoOverlay } from '../../actions/VideoOverlay';
 
 import ChannelIcon from '../../components/HorizontalScroll/ChannelIcon';
 
@@ -19,8 +19,8 @@ class SingelSportsPage extends React.Component {
     
     handleTileOpen = (video) => {
         console.log("play video");
-        this.props.dispatch(openOverlayX());
-        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(openVideoOverlay());
+        this.props.dispatch(maximizeVideoOverlay());
         this.props.dispatch(videoSelected(video));
         this.props.dispatch(resetCurrentTimeInPlayer());
     }

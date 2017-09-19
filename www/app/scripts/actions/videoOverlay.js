@@ -1,59 +1,59 @@
  /**
  * NOT AN ACTUAL CLASS, JUST USED TO ORGANISE THINGS
  *
- * @class Actions:OverlayX
+ * @class Actions:VideoOverlay
  */
 
 import Actions from '../constants/reduxConstants';
 
 /**
- * Action UI to minimize OverlayX
+ * Action UI to minimize VideoOverlay
  *
- * @memberof Actions:OverlayX
+ * @memberof Actions:VideoOverlay
  * @export
  * @returns Dispatchable Action
  */
-export function minimizeOverlayX() {
+export function minimizeVideoOverlay() {
     return { type: Actions.OVERLAY_X_MINIMIZE };
 }
 
 /**
- * Action UI to maximize OverlayX
+ * Action UI to maximize VideoOverlay
  *
- * @memberof Actions:OverlayX
+ * @memberof Actions:VideoOverlay
  * @export
  * @returns Dispatchable Action
  */
-export function maximizeOverlayX() {
+export function maximizeVideoOverlay() {
     return { type: Actions.OVERLAY_X_MAXIMIZE };
 }
 
 /**
- * Action UI to open OverlayX
+ * Action UI to open VideoOverlay
  *
- * @memberof Actions:OverlayX
+ * @memberof Actions:VideoOverlay
  * @export
  * @returns Dispatchable Action
  */
-export function openOverlayX() {
+export function openVideoOverlay() {
     return { type: Actions.OVERLAY_X_OPEN };
 }
 
 /**
- * Action UI to close OverlayX
+ * Action UI to close VideoOverlay
  *
- * @memberof Actions:OverlayX
+ * @memberof Actions:VideoOverlay
  * @export
  * @returns Dispatchable Action
  */
-export function closeOverlayX() {
+export function closeVideoOverlay() {
     return { type: Actions.OVERLAY_X_CLOSE };
 }
 
 /**
- * Action to toggle collapse in overlayX collapsible
+ * Action to toggle collapse in VideoOverlay collapsible
  *
- * @memberof Actions:OverlayX
+ * @memberof Actions:VideoOverlay
  * @export
  * @returns Dispatchable Action
  */
@@ -62,9 +62,9 @@ export function toggleCollapseInfo() {
 }
 
 /**
- * Action to collapse collapseinfo in overlayX
+ * Action to collapse collapseinfo in VideoOverlay
  *
- * @memberof Actions:OverlayX
+ * @memberof Actions:VideoOverlay
  * @export
  * @returns Dispatchable Action
  */

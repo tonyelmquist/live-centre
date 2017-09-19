@@ -20,7 +20,7 @@ import HeaderMenu from '../components/navigation/HeaderMenu';
 import MobileMenu from '../components/navigation/MobileMenu';
 import ExpandableMenu from './../components/navigation/ExpandableMenu';
 import { searchKeyword, toggleSearch, closeSearch, emptySearch, focusedSearch, blurredSearch } from '../actions/search';
-import { closeOverlayX } from '../actions/overlayX';
+import { closeOverlayX } from '../actions/videoOverlay';
 // import VideoLibrary from 'material-ui/svg-icons/AV/video-library';
 
 /* This component is the starting point for all navigation.

@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Motion, spring } from 'react-motion';
-import { Orientation } from '../../constants/reduxConstants';
-import OverlayMotion from '../VideoPlayer/OverlayMotion';
+import { Orientation } from '../../../constants/reduxConstants';
 import { connect } from 'react-redux';
-import { maximizeOverlayX, closeOverlayX, minimizeOverlayX } from '../../actions/overlayX';
-import { setControlBarVisibility } from '../../actions/videoPlayer';
+import { maximizeVideoOverlay, closeVideoOverlay, minimizeVideoOverlay } from '../../../actions/VideoOverlay';
+import { setControlBarVisibility } from '../../../actions/videoPlayer';
 
-class Overlay extends React.Component {
+class PlayerMotionController extends React.Component {
     componentDidUpdate() {
         this.checkHeight();
     }
@@ -45,7 +44,7 @@ class Overlay extends React.Component {
 
     onMaximize = () => {
         if (this.props.orientation === Orientation.PORTRAIT) {
-            this.props.dispatch(maximizeOverlayX())
+            this.props.dispatch(maximizeVideoOverlay())
         }
     };
 
@@ -54,12 +53,12 @@ class Overlay extends React.Component {
         this.props.dispatch(setControlBarVisibility(false))
         if (this.props.orientation === Orientation.PORTRAIT) {
             if (!this.props.isMaximized) {
-                this.props.dispatch(closeOverlayX())
+                this.props.dispatch(closeVideoOverlay())
             } else {
-                this.props.dispatch(minimizeOverlayX())
+                this.props.dispatch(minimizeVideoOverlay())
             }
         } else {
-            this.props.dispatch(closeOverlayX())
+            this.props.dispatch(closeVideoOverlay())
         }
     };
 
@@ -170,7 +169,7 @@ class Overlay extends React.Component {
     }
 }
 
-Overlay.propTypes = {
+PlayerMotionController.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     isMaximized: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
@@ -179,7 +178,7 @@ Overlay.propTypes = {
 
 const mapStateToProps = state => ({
     orientation: state.settings.screenOrientation,
-    overlayX: state.overlayX,
+    VideoOverlay: state.VideoOverlay,
 });
 
-export default connect(mapStateToProps)(Overlay);
+export default connect(mapStateToProps)(PlayerMotionController);

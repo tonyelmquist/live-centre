@@ -7,7 +7,7 @@ const defaultState = {
     collapsedInfo: true,
 };
 
-export default function overlayX(state = defaultState, action) {
+export default function VideoOverlay(state = defaultState, action) {
     switch (action.type) {
     case Actions.OVERLAY_X_OPEN:
         return Object.assign({}, state, {

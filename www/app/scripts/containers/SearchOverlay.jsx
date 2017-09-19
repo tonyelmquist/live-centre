@@ -13,13 +13,13 @@ import HorizontalScrollContainer from '../components/HorizontalScroll/Horizontal
 import CircleRowItem from '../components/HorizontalScroll/CircleRowItem';
 import { changeSearchFilterIndex } from '../actions/search';
 import { videoSelected, resetCurrentTimeInPlayer } from '../actions/videoPlayer';
-import { maximizeOverlayX, openOverlayX } from '../actions/overlayX';
+import { maximizeVideoOverlay, openVideoOverlay } from '../actions/VideoOverlay';
 
 class SearchContainer extends Component {
 
     handleTileOpen = (video) => {
-        this.props.dispatch(openOverlayX());
-        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(openVideoOverlay());
+        this.props.dispatch(maximizeVideoOverlay());
         this.props.dispatch(videoSelected(video));
         this.props.dispatch(resetCurrentTimeInPlayer());
     }

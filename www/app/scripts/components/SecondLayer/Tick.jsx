@@ -1,7 +1,7 @@
 import React from 'react';
 import { Motion, spring, TransitionMotion } from 'react-motion';
 
-class VideoSplash extends React.Component {
+class Tick extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -87,4 +87,4 @@ class VideoSplash extends React.Component {
     }
 }
 
-export default VideoSplash;
+export default Tick;

@@ -5,7 +5,7 @@ import MasonryContainer from '../../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 import { videoSelected } from '../../actions/videoPlayer';
 import { changeProgramTabIndex } from '../../actions/pages/programsPage';
-import { maximizeOverlayX, openOverlayX } from '../../actions/overlayX';
+import { maximizeVideoOverlay, openVideoOverlay } from '../../actions/VideoOverlay';
 //import FilterTabs from '../../components/HorizontalScroll/FilterTabs';
 import LiveTag from '../../components/common/LiveTag';
 import FilterTabs from '../FilterTabs';
@@ -82,8 +82,8 @@ class ProgramsPage extends React.Component {
     handleTileOpen = (video) => {
         // this.props.dispatch(changeVideoInfo(video));
         // this.props.dispatch(changeCardCategory(category));
-        this.props.dispatch(openOverlayX());
-        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(openVideoOverlay());
+        this.props.dispatch(maximizeVideoOverlay());
         this.props.dispatch(videoSelected(video));
     }
 

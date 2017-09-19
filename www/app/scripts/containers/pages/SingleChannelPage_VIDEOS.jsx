@@ -7,7 +7,7 @@ import MasonryTextOverlay from '../../components/Masonry/MasonryTextOverlay';
 import HorizontalScrollContainer from '../../components/HorizontalScroll/HorizontalScrollContainer';
 import CircleRowItem from '../../components/HorizontalScroll/CircleRowItem';
 import { videoSelected, resetCurrentTimeInPlayer } from '../../actions/videoPlayer';
-import { openOverlayX, maximizeOverlayX } from '../../actions/overlayX';
+import { openVideoOverlay, maximizeVideoOverlay } from '../../actions/VideoOverlay';
 
 // Dummy channels:
 const channels = {
@@ -77,15 +77,15 @@ class SingleChannelPage extends React.Component {
     }
 
     handleTilePlay = (video) => {
-        this.props.dispatch(openOverlayX());
-        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(openVideoOverlay());
+        this.props.dispatch(maximizeVideoOverlay());
         this.props.dispatch(videoSelected(video));
         this.props.dispatch(resetCurrentTimeInPlayer());
     }
 
     handleTileOpen = (video) => {
-        this.props.dispatch(openOverlayX());
-        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(openVideoOverlay());
+        this.props.dispatch(maximizeVideoOverlay());
         this.props.dispatch(videoSelected(video));
         this.props.dispatch(resetCurrentTimeInPlayer());
     }

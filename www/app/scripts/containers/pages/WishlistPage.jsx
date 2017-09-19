@@ -5,14 +5,14 @@ import MasonryContainer from '../../components/Masonry/MasonryContainer';
 import MasonryImageTile from '../../components/Masonry/MasonryImageTile';
 import { videoSelected, resetCurrentTimeInPlayer } from '../../actions/videoPlayer';
 import { changeProgramTabIndex } from '../../actions/pages/programsPage';
-import { maximizeOverlayX, openOverlayX } from '../../actions/overlayX';
+import { maximizeVideoOverlay, openVideoOverlay } from '../../actions/VideoOverlay';
 import FilterTabs from '../FilterTabs';
 
 class WishlistPage extends React.Component {
 
     handleTileOpen = (video) => {
-        this.props.dispatch(openOverlayX());
-        this.props.dispatch(maximizeOverlayX());
+        this.props.dispatch(openVideoOverlay());
+        this.props.dispatch(maximizeVideoOverlay());
         this.props.dispatch(videoSelected(video));
         this.props.dispatch(resetCurrentTimeInPlayer());
     }
