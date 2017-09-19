@@ -242,7 +242,8 @@ class Player extends React.Component {
                 const currentTime = this.props.videoPlayer.currentVideoTime;
                 //A new buffer is generated each time we skip in time, 
                 //Check which buffer time is part of the current time/should be shown. 
-                if (videoPlayer.buffered.start(i) <= currentTime || videoPlayer.buffered.end(i) >= currentTime ){
+                if (videoPlayer.buffered.start(i) <= currentTime && currentTime <= videoPlayer.buffered.end(i)){
+                    console.log("Current buffer: ", i, videoPlayer.buffered.start(i), videoPlayer.buffered.end(i), currentTime);
                     const timeBuffered = videoPlayer.buffered.end(i);
                     
                     if (this.props.videoPlayer.bufferTime !== timeBuffered){

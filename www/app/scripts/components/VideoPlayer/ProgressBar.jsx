@@ -119,18 +119,35 @@ class ProgressBar extends React.Component{
 
         const progressBarContainer = maxProgressWidth;
 
-        const { isPlaying, changeCurrentTime, duration, currentVideoTime } = this.props.videoPlayer;
-        let timeProgressInPixels
+        const { isPlaying, changeCurrentTime, duration, currentVideoTime, bufferTime } = this.props.videoPlayer;
+        
+        let timeProgressInPixels;
+
+
+        //Check that duration exists and prevent cuting off the circle 
         if(duration){
             timeProgressInPixels = this.getProgressBarPos();
-            if(timeProgressInPixels > maxProgressWidth - 7){
-                timeProgressInPixels = maxProgressWidth - 7;
-            } else if(timeProgressInPixels < 7){
-                timeProgressInPixels = 7;
+            if(timeProgressInPixels > maxProgressWidth - 8){
+                timeProgressInPixels = maxProgressWidth - 8;
+            } else if(timeProgressInPixels < 8){
+                timeProgressInPixels = 8;
             }
         } else {
-            timeProgressInPixels = 7;
+            timeProgressInPixels = 8;
         };
+        let bufferPixel = 0;
+
+        if (duration) {
+            //Setup buffer. Add 16 pixels so it is showing outside the circle. 
+            // if it is more than max width, set it as max width. 
+            const percentageBuffer = bufferTime / duration;
+            bufferPixel = percentageBuffer * maxProgressWidth;
+            bufferPixel += 8;
+            if (bufferPixel > maxProgressWidth) {
+                bufferPixel = maxProgressWidth;
+            }
+        }
+
         
         return(
             <div className="progressBar"  >
@@ -140,8 +157,9 @@ class ProgressBar extends React.Component{
                 >
                     {this.formatTime(currentVideoTime)}</span>
                 <svg height="21" width={progressBarContainer} onTouchTap={this.props.handleTouch} className="bar" style={{left: `${this.getStyle().leftOffset}px`, bottom: `${this.getStyle().bottomOffset}px`}} onTouchStart={this.onTouchStart} onTouchEnd={this.touchEnd} >
-                    <line stroke="#ffffff" y1="10.5" y2="10.5" x1="0" x2={maxProgressWidth} strokeWidth="2" />
-                    <line stroke="#00dafd" y1="10" y2="10" x1="0" x2={timeProgressInPixels} strokeWidth="5" />
+                    <line shapeRendering="crispEdges" stroke="rgba(250,250,250, 0.5)" y1="10.5" y2="10.5" x1="0" x2={maxProgressWidth} strokeWidth="2" />
+                    <line shapeRendering="crispEdges" stroke="rgba(250,250,250, 0.9)" y1="10.5" y2="10.5" x1={timeProgressInPixels + 8} x2={bufferPixel} strokeWidth="2" />
+                    <line shapeRendering="crispEdges" stroke="#00dafd" y1="10" y2="10" x1="0" x2={timeProgressInPixels} strokeWidth="5" />
                     <circle cx={timeProgressInPixels} cy="10" r="8" fill="#00dafd" />
                 </svg>
                 <span className="time right" style={{bottom: `${this.getStyle().bottomOffsetText}px` }}> {this.formatTime(duration)} </span>
