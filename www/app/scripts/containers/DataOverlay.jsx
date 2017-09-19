@@ -9,6 +9,7 @@ import { getMatchData } from '../utils/loadMatchData';
 import SoccerDataOverlay from './DataOverlays/SoccerDataOverlay';
 import EcommerceDataOverlay from './DataOverlays/EcommerceDataOverlay';
 
+
 class DataOverlay extends Component {
     constructor(props) {
         super(props);
@@ -38,8 +39,10 @@ class DataOverlay extends Component {
         
         return (
       <div className="data-overlay" onTouchTap={e => e.stopPropagation()}>
+
         <SoccerDataOverlay />
         <EcommerceDataOverlay />
+
       </div>
         );
     }
@@ -54,6 +57,9 @@ DataOverlay.propTypes = {
 const mapStateToProps = state => ({
     sportsInfo: state.sportsInfo,
     selectedVideo: state.playback.video,
+    products: state.ecommerce.products,
+    ecommercePopupManager: state.ecommerce.popupManager,
+    selectedProduct: state.ecommerce.selectedProduct,
 });
 
 export default connect(mapStateToProps)(DataOverlay);

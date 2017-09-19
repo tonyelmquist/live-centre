@@ -460,6 +460,16 @@ msgstr "Meny"
 msgid "buttons_buy_now"
 msgstr "Kjøp nå"
 
+#. Buttons
+#:
+msgid "buttons_place_order"
+msgstr "Fullfør bestillingen"
+
+#. Buttons
+#:
+msgid "buttons_add_to_cart"
+msgstr "Legg i handlekurv"
+
 #. Error Messages: Invalid Email
 #: 
 msgid "auth_invalid_email"

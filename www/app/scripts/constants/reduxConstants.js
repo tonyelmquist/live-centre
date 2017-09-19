@@ -162,6 +162,21 @@ class ReduxConstants {
     static get CLOSE_SPORT_PLAYER_OVERLAY() { return 'CLOSE_SPORT_PLAYER_OVERLAY'; }
     static get ADD_SPORT_VIDEO() { return 'ADD_SPORT_VIDEO'; }
 
+    // ECOMMERCE
+    static get ADD_TO_CART() { return 'ADD_TO_CART'; }
+    static get BUY_NOW() { return 'CHECKOUT_NOW'; }
+    static get CANCEL_CHECKOUT() { return 'CANCEL_CHECKOUT'; }
+    static get CANCEL_BUY_NOW() { return 'CANCEL_BUY_NOW'; }
+    static get COMPLETE_CHECKOUT() { return 'COMPLETE_CHECKOUT'; }
+    static get COMPLETE_BUY_NOW() { return 'COMPLETE_BUY_NOW'; }
+    static get SHOW_PRODUCT_OVERLAY() {return 'SHOW_PRODUCT_OVERLAY'; }
+    static get HIDE_PRODUCT_OVERLAY() {return 'HIDE_PRODUCT_OVERLAY'; }
+    static get SHOW_CART() {return 'SHOW_CART'; }
+    static get HIDE_CART() {return 'HIDE_CART'; }
+    static get REMOVE_FROM_CART() {return 'REMOVE_FROM_CART'; }
+    static get SHOW_PRODUCT_THUMB() {return 'SHOW_PRODUCT_THUMB'; }
+    static get HIDE_PRODUCT_THUMB() {return 'HIDE_PRODUCT_THUMB'; }
+
 }
 
 export class Orientation {

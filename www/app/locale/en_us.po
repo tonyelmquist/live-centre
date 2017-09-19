@@ -464,6 +464,16 @@ msgstr "Menu"
 msgid "buttons_buy_now"
 msgstr "Buy now"
 
+#. Buttons
+#:
+msgid "buttons_place_order"
+msgstr "Place order"
+
+#. Buttons
+#:
+msgid "buttons_add_to_cart"
+msgstr "Add to Cart"
+
 #. Error Messages: Invalid Email
 #: 
 msgid "auth_invalid_email"
