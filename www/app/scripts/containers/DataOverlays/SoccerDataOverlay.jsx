@@ -39,50 +39,50 @@ class SoccerDataOverlay extends Component {
             this.timelineManager.buffer = this.props.video.matchStart;
         }
 
-        this.largeVideoPlayer.video.addEventListener('timeupdate', () => {
-            this.timelineManager.setActiveTimelineEvents(this.largeVideoPlayer.video.currentTime * 1000);
+        // this.largeVideoPlayer.video.addEventListener('timeupdate', () => {
+        //     this.timelineManager.setActiveTimelineEvents(this.largeVideoPlayer.video.currentTime * 1000);
 
-            // Control Score
-            if (this.timelineManager.activeEvents.length > 0) {
-                const periodStart = this.timelineManager.activeEvents.filter(value => value.type === 'period_start' && value.period === 2);
-                const breakStart = this.timelineManager.activeEvents.filter(value => value.type === 'break_start');
-                if (periodStart.length > 0) {
-                    const clock =
-                            (((this.largeVideoPlayer.video.currentTime * 1000)
-                            - parseInt(this.props.video.matchStart)
-                            - (new Date(periodStart[0].time) - new Date(this.timelineManager.activeEvents[0].time)))
-                            + 2700000);
+        //     // Control Score
+        //     if (this.timelineManager.activeEvents.length > 0) {
+        //         const periodStart = this.timelineManager.activeEvents.filter(value => value.type === 'period_start' && value.period === 2);
+        //         const breakStart = this.timelineManager.activeEvents.filter(value => value.type === 'break_start');
+        //         if (periodStart.length > 0) {
+        //             const clock =
+        //                     (((this.largeVideoPlayer.video.currentTime * 1000)
+        //                     - parseInt(this.props.video.matchStart)
+        //                     - (new Date(periodStart[0].time) - new Date(this.timelineManager.activeEvents[0].time)))
+        //                     + 2700000);
 
-                    this.props.dispatch(changeClock(clock));
-                } else if (breakStart.length > 0) {
-                    if (this.props.dataOverlayClock !== 2700000) {
-                        this.props.dispatch(changeClock(2700000));
-                    }
-                } else {
-                    const clock = (this.largeVideoPlayer.video.video.currentTime * 1000) - this.props.video.matchStart;
-                    this.props.dispatch(changeClock(clock));
-                }
-            } else if (this.props.dataOverlayClock !== 0) {
-                this.props.dispatch(changeClock(0));
-            }
-        });
+        //             this.props.dispatch(changeClock(clock));
+        //         } else if (breakStart.length > 0) {
+        //             if (this.props.dataOverlayClock !== 2700000) {
+        //                 this.props.dispatch(changeClock(2700000));
+        //             }
+        //         } else {
+        //             const clock = (this.largeVideoPlayer.video.video.currentTime * 1000) - this.props.video.matchStart;
+        //             this.props.dispatch(changeClock(clock));
+        //         }
+        //     } else if (this.props.dataOverlayClock !== 0) {
+        //         this.props.dispatch(changeClock(0));
+        //     }
+        // });
 
-        // Setting Score
-        let newScore = { home: 0, away: 0 };
-        // Go backwards through the array and get the first instance of 'score_change'
-        for (let i = 0; i < this.timelineManager.activeEvents.length; i++) {
-            if (this.timelineManager.activeEvents[i].type === 'score_change') {
-                newScore = {
-                    home: this.timelineManager.activeEvents[i].home_score,
-                    away: this.timelineManager.activeEvents[i].away_score,
-                };
-            }
-        }
+        // // Setting Score
+        // let newScore = { home: 0, away: 0 };
+        // // Go backwards through the array and get the first instance of 'score_change'
+        // for (let i = 0; i < this.timelineManager.activeEvents.length; i++) {
+        //     if (this.timelineManager.activeEvents[i].type === 'score_change') {
+        //         newScore = {
+        //             home: this.timelineManager.activeEvents[i].home_score,
+        //             away: this.timelineManager.activeEvents[i].away_score,
+        //         };
+        //     }
+        // }
 
-        // console.log(this.props.dataOverlayScore, newScore, this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away);
-        if (this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away) {
-            this.props.dispatch(changeScore(newScore));
-        }
+        // // console.log(this.props.dataOverlayScore, newScore, this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away);
+        // if (this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away) {
+        //     this.props.dispatch(changeScore(newScore));
+        // }
     }
 
     onPlayerInfoClose = () => {
