@@ -12,19 +12,17 @@ class LineupShirt extends Component {
         };
 
         const Rows = {
-            LW: 15,
-            LMW: 20,
+            LMW: 25,
             CL: 33,
             C: 50,
             CR: 66,
-            RMW: 80,
-            RW: 85,
+            RMW: 75,
         };
 
         const Cols = {
             GK: 12.5,
             CB: 25,
-            FB: 35,
+            FB: 32,
             WB: 40,
             DMF: 40,
             CMF: 50,
@@ -46,15 +44,15 @@ class LineupShirt extends Component {
             // Center Backs
             'Left back': {
                 x: Cols.CB,
-                y: Rows.CL,
+                y: Rows.LMW,
             },
             'Central defender': {
-                x: Cols.CB,
+                x: Cols.FB,
                 y: Rows.C,
             },
             'Right back': {
                 x: Cols.CB,
-                y: Rows.CR,
+                y: Rows.RMW,
             },
 
             // Defensive Mid Field

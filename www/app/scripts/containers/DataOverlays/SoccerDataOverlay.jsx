@@ -191,6 +191,10 @@ class SoccerDataOverlay extends Component {
                     text={this.state.penaltyCard.text}
                     color={this.state.penaltyCard.color}
                 />*/}
+                <TickerContainer
+                    isLineupShowing={this.state.isLineupShowing}
+                    controlBarVisibility={this.props.controlBarVisibility}
+                />
                 <ScoreOverlay
                     score={this.props.dataOverlayScore}
                     homeData={this.getHomeTeam()}
@@ -212,10 +216,6 @@ class SoccerDataOverlay extends Component {
                     isShowing={this.state.isPlayerInfoShowing}
                     onClose={this.onPlayerInfoClose}
                     onRightButton={this.onPlayerInfoBack}
-                />
-                <TickerContainer
-                    isLineupShowing={this.state.isLineupShowing}
-                    controlBarVisibility={this.props.controlBarVisibility}
                 />
 
             </div>
