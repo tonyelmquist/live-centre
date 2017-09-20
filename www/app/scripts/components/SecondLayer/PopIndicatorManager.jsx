@@ -5,7 +5,7 @@ import PopIndicator from './PopIndicator';
 class PopIndicatorManager extends Component {
 
     renderPops() {
-        console.log(this.props.notifications);
+
         return this.props.notifications.map((value, i) =>
             (<PopIndicator
                 key={`notification-${value.id}`}

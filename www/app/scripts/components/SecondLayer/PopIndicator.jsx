@@ -86,6 +86,9 @@ class PopIndicator extends Component {
     }
 
     render() {
+
+        console.log(this.props.startTime, this.props.endTime)
+
         const containerStyle = {
             transform: 'rotate(-0.25turn)',
             transition: '.5s all',
@@ -97,7 +100,7 @@ class PopIndicator extends Component {
         };
 
         return (
-            <div className="pop-indicator-container" style={containerStyle} onClick={this.onClick}>
+            <div className={`pop-indicator-container ${this.state.finished ? 'finished' : 'active'}`} style={containerStyle} onClick={this.onClick}>
                 { this.state.clicked ? <div /> : <div className="click-indicator-pop" /> }
                 <svg
                     className="pop-indicator"

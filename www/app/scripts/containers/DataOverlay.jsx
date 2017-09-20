@@ -43,7 +43,7 @@ class DataOverlay extends Component {
 
         <SoccerDataOverlay />
         <ECommerceDataOverlay />
-        <PopIndicatorManager notifications={this.props.popNotifications}/>
+        <PopIndicatorManager notifications={this.props.popNotifications} />
 
       </div>
         );
