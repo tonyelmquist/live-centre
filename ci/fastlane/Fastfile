@@ -1,0 +1,48 @@
+require_relative 'jiraClient'
+
+fastlane_version "2.28.5"
+default_platform :ios
+
+platform :ios do
+
+  lane :updateJiraPlatform do
+
+		# Creates the jira client instance
+		jiraClient = JiraClient.new
+
+		# Get the changelog and split in lines
+    latestTag = sh("git describe --abbrev=0 --tags").to_s
+    latestTag.delete!("\n")
+    changelog = sh("git log #{latestTag}..HEAD --oneline").split("\n")
+
+		# Creates the regex to search for issues
+		regex = Regexp.union(/LIVE-(\d{3})/, /LIVE-(\d{4})/, /LIVE-(\d{5})/)
+		issuesList = []
+
+		# Split the log in issues
+		changelog.each do |commit|
+			issuesList << commit.match(regex).to_s
+		end
+
+		# Cleanup issues list
+		issuesList.uniq!
+		issuesList.delete("")
+
+		# Search for the issue
+		issuesList.each do |issue|
+			puts "Checking issue: #{issue}"
+			issueStatus = jiraClient.issueStatus("#{issue}")
+			case issueStatus
+      when "Open"
+          puts "Ticket #{issue} status: Open > In Progress"
+					jiraClient.updateJiraStatusForIssue(issue, "In Progress")
+				else
+					puts "Ticket status: #{issueStatus}"
+			end
+		end
+
+	end
+
+
+
+end
