@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import {
   addToCart,
   buyNow,
@@ -16,6 +17,8 @@ import {
   showProductThumb,
   hideProductThumb,
 } from '../../actions/ecommerce';
+import { newPopNotification } from '../../actions/notifications';
+
 import ProductOverlay from '../../components/Ecommerce/ProductOverlay';
 import ProductThumb from '../../components/Ecommerce/ProductThumb';
 import CartButton from '../../components/Ecommerce/CartButton';
@@ -23,7 +26,7 @@ import Cart from '../../components/Ecommerce/Cart';
 
 const showProductDuration = 5000;
 
-class ECommerceContainer extends Component {
+class ECommerceDataOverlay extends Component {
 
     tickInProximity = (currentTime) => {
 
@@ -48,6 +51,7 @@ class ECommerceContainer extends Component {
 
     onAddToCart = () => {
         this.props.dispatch(addToCart());
+        this.props.dispatch(newPopNotification(1, 'Item added to cart', new Date().getTime()));
     };
 
     onShowCart = () => {
@@ -68,6 +72,7 @@ class ECommerceContainer extends Component {
 
     onCompleteBuyNow = () => {
         this.props.dispatch(completeBuyNow());
+        this.props.dispatch(newPopNotification(1, 'Your order has been placed!', new Date().getTime()));
     };
 
     onCompleteCheckout = () => {
@@ -123,7 +128,7 @@ class ECommerceContainer extends Component {
     }
 }
 
-ECommerceContainer.defaultProps = {
+ECommerceDataOverlay.defaultProps = {
     paymentMethod: '**** **** **** 4192',
     shippingMethod: 'Sirigata 3, 3324 Molde',
 };
@@ -142,4 +147,4 @@ const mapStateToProps = state => ({
     currentTime: state.videoPlayer.currentVideoTime,
 });
 
-export default connect(mapStateToProps)(ECommerceContainer);
+export default connect(mapStateToProps)(ECommerceDataOverlay);
