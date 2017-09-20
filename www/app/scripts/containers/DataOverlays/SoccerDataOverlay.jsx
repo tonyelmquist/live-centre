@@ -11,7 +11,7 @@ import { changeScore, changeClock } from '../../actions/secondLayer';
 import TimelineManager from '../../utils/Managers/TimelineManager';
 
 class SoccerDataOverlay extends Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -44,23 +44,21 @@ class SoccerDataOverlay extends Component {
             this.timelineManager.buffer = this.props.video.matchStart;
         }
 
-        if(prevProps.currentTime !== this.props.currentTime){
-
+        if (prevProps.currentTime !== this.props.currentTime) {
             this.timelineManager.setActiveTimelineEvents(this.props.currentTime * 1000);
-            if(this.timelineManager.activeEvents.length > 0){
+            if (this.timelineManager.activeEvents.length > 0) {
                 const activeEvents = this.timelineManager.activeEvents;
-                setClock(activeEvents);
-                setScore(activeEvents);
-                console.log("Active events at current time: ", activeEvents);
+                this.setClock(activeEvents);
+                this.setScore(activeEvents);
+                console.log('Active events at current time: ', activeEvents);
             } else {
                 this.props.dispatch(changeClock(0));
             }
-
         }
     }
 
     setScore = (activeEvents) => {
-                // Setting Score
+        // Setting Score
         let newScore = { home: 0, away: 0 };
         // Go backwards through the array and get the first instance of 'score_change'
         for (let i = 0; i < activeEvents.length; i++) {
@@ -92,7 +90,8 @@ class SoccerDataOverlay extends Component {
                 this.props.dispatch(changeClock(2700000));
             }
         } else {
-            const clock = (this.largeVideoPlayer.video.video.currentTime * 1000) - this.props.video.matchStart;
+            console.log('VIDEO', this.props.video);
+            const clock = (this.props.currentTime * 1000) - this.props.video.matchStart;
             this.props.dispatch(changeClock(clock));
         }
     }
