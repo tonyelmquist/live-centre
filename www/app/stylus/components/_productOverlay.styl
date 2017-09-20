@@ -257,7 +257,8 @@
     transition: opacity .25s ease-in-out;
     -moz-transition: opacity .25s ease-in-out;
     -webkit-transition: opacity .25s ease-in-out;
-    z-index: 10000
+    z-index: 10000;
+    pointer-events: none;
 }
 
 .productThumb:hover {
@@ -274,6 +275,7 @@
     opacity: 1;
     box-shadow: 0 0 0 rgba(204,169,44, 0.4);
     animation: pulse 2s infinite;
+    pointer-events: all;
 }
 
 .shopping-cart {
