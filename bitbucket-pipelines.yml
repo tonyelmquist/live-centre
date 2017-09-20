@@ -1,11 +1,16 @@
 # Media Centre Pipeline (CI)
 
-image: node:6.9.4
+image: ruby:2.4.0
 
 pipelines:
   default:
     - step:
         caches:
-          - node
+          - bundler
         script:
-          - bash ci/build.sh
+          - cd ci
+          - bash jiraUpdate.sh
+
+definitions:
+  caches:
+    bundler: ./vendor
