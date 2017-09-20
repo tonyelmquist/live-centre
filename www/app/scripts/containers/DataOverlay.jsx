@@ -7,8 +7,7 @@ import { getMatchData } from '../utils/loadMatchData';
 
 // Data Overlays
 import SoccerDataOverlay from './DataOverlays/SoccerDataOverlay';
-import EcommerceDataOverlay from './DataOverlays/EcommerceDataOverlay';
-import ECommerceContainer from './ECommerceContainer';
+import ECommerceDataOverlay from './DataOverlays/ECommerceDataOverlay';
 
 
 class DataOverlay extends Component {
@@ -42,7 +41,7 @@ class DataOverlay extends Component {
       <div className="data-overlay" onTouchTap={e => e.stopPropagation()}>
 
         <SoccerDataOverlay />
-        <ECommerceContainer />
+        <ECommerceDataOverlay />
 
       </div>
         );
