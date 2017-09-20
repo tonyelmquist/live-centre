@@ -50,7 +50,7 @@ class SoccerDataOverlay extends Component {
             if(this.timelineManager.activeEvents.length > 0){
                 const activeEvents = this.timelineManager.activeEvents;
                 setClock(activeEvents);
-                setScore();
+                setScore(activeEvents);
                 console.log("Active events at current time: ", activeEvents);
             } else {
                 this.props.dispatch(changeClock(0));
