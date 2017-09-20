@@ -557,7 +557,7 @@ msgstr "injured returned"
 #. Soccer ticker translation
 #: 
 msgid "score_change"
-msgstr "score"
+msgstr "goal"
 
 #. Soccer ticker translation
 #: 

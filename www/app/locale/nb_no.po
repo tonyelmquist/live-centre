@@ -471,9 +471,8 @@ msgstr "Fullfør bestillingen"
 
 #. Buttons
 #: 
-#, fuzzy
 msgid "buttons_add_to_cart"
-msgstr "Legg i bag"
+msgstr "Legg i handlekurv"
 
 #. Error Messages: Invalid Email
 #: 
@@ -519,4 +518,54 @@ msgstr "Du har ikke lagret noen videoer i ønskelisten."
 #: 
 msgid "wishlist_error"
 msgstr "Det er et problem med din ønskeliste"
+
+#. Soccer ticker translation
+#: 
+msgid "corner_kick"
+msgstr "hjørnespark"
+
+#. Soccer ticker translation
+#: 
+msgid "goal_kick"
+msgstr "målspark"
+
+#. Soccer ticker translation
+#: 
+msgid "throw_in"
+msgstr "innkast"
+
+#. Soccer ticker translation
+#: 
+msgid "free_kick"
+msgstr "frispark"
+
+#. Soccer ticker translation
+#: 
+msgid "match_start"
+msgstr "kamp start"
+
+#. Soccer ticker translation
+#: 
+msgid "yellow_card"
+msgstr "gult kort"
+
+#. Soccer ticker translation
+#: 
+msgid "injury"
+msgstr "skade"
+
+#. Soccer ticker translation
+#: 
+msgid "injury_return"
+msgstr "skadet returnert"
+
+#. Soccer ticker translation
+#: 
+msgid "score_change"
+msgstr "mål"
+
+#. Soccer ticker translation
+#: 
+msgid "substitution"
+msgstr "innbytte"
 
