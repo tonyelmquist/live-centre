@@ -13,7 +13,7 @@ platform :ios do
 		# Get the changelog and split in lines
     latestTag = sh("git describe --abbrev=0 --tags").to_s
     latestTag.delete!("\n")
-    changelog = sh("git log #{latestTag}..HEAD --oneline").split("\n")
+    changelog = sh("git log 528da80..HEAD --oneline").split("\n")
 
 		# Creates the regex to search for issues
 		regex = Regexp.union(/LIVE-(\d{3})/, /LIVE-(\d{4})/, /LIVE-(\d{5})/)
