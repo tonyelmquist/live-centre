@@ -131,16 +131,16 @@ class TeamMember extends BaseClass {
         }
     }
 
-    get role() {
-        if (typeof this._role === 'undefined') {
-        // console.error('Tried to get role of Vroleeo, was not set');
+    get roles() {
+        if (typeof this._roles === 'undefined') {
+        // console.error('Tried to get roles of Vroleseo, was not set');
             return false;
         }
-        return this._role;
+        return this._roles;
     }
-    set role(newrole) {
-        if (newrole) {
-            this._role = newrole;
+    set roles(newroles) {
+        if (newroles) {
+            this._roles = newroles;
         }
     }
 }

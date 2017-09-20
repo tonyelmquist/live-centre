@@ -25,6 +25,17 @@ class PlayerInfoOverlay extends Component {
         });
     }
 
+    getCurrentPlayerRole(roles) {
+        console.log('ROLES', roles);
+        const role = roles.filter(value => value.active === "true");
+        console.log(role);
+        if (role.length > 0) {
+            return role[0].team.name + ' #' + role[0].jersey_number;
+        } else {
+            return 'Not Active';
+        }
+    }
+
     render() {
         let teamMember = {};
 
@@ -43,13 +54,14 @@ class PlayerInfoOverlay extends Component {
               <span className="player-info-name">{teamMember.name}</span>
               {teamMember.nationality ?
                 <span className="player-info-team">
-                  <img style={{ marginRight: '8px', marginBottom: '-10px' }} src={`http://35.158.87.9/images/Flags/${teamMember.nationality.name}.png`} alt={teamMember.nationality.name} />
-                  {teamMember.nationality.name}
+                  {this.getCurrentPlayerRole(teamMember.roles)}
                 </span> :
               <div />}
               <span className="player-info-position" style={{ textTransform: 'capitalize' }}>{teamMember.type}</span>
 
-              <span className="player-info-number">{teamMember.number}</span>
+              <span className="player-info-number">
+                  <img src={`http://35.158.87.9/images/Flags/${teamMember.nationality.name}.png`} alt={teamMember.nationality.name} />
+                </span>
               <div className="player-info-tabs">
                 <div className="player-info-tab tab-player-info" onClick={this.state.isModalOpen ? this.closeModal : this.openModal} role="button" tabIndex="0"><i className="fa fa-pie-chart" /> Statistics</div>
                 {/*<div className="player-info-tab tab-statistics" onClick={this.closeModal} role="button" tabIndex="0"><i className="fa fa-bar-chart" /></div>*/}
