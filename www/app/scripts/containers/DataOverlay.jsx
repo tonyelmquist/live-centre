@@ -8,6 +8,7 @@ import { getMatchData } from '../utils/loadMatchData';
 // Data Overlays
 import SoccerDataOverlay from './DataOverlays/SoccerDataOverlay';
 import ECommerceDataOverlay from './DataOverlays/ECommerceDataOverlay';
+import PopIndicatorManager from '../components/SecondLayer/PopIndicatorManager';
 
 
 class DataOverlay extends Component {
@@ -42,6 +43,7 @@ class DataOverlay extends Component {
 
         <SoccerDataOverlay />
         <ECommerceDataOverlay />
+        <PopIndicatorManager notifications={this.props.popNotifications}/>
 
       </div>
         );
@@ -52,6 +54,7 @@ DataOverlay.propTypes = {
     dispatch: PropTypes.func.isRequired,
     sportsInfo: PropTypes.object.isRequired,
     selectedVideo: PropTypes.object.isRequired,
+    popNotifications: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -60,6 +63,7 @@ const mapStateToProps = state => ({
     products: state.ecommerce.products,
     ecommercePopupManager: state.ecommerce.popupManager,
     selectedProduct: state.ecommerce.selectedProduct,
+    popNotifications: state.notifications.popNotifications,
 });
 
 export default connect(mapStateToProps)(DataOverlay);
