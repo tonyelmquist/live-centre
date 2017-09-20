@@ -32,8 +32,7 @@ class ECommerceContainer extends Component {
 
         const thisTimeline = this.props.timeline;
 
-
-        if (thisTimeline !== undefined) {
+        if (thisTimeline.events !== undefined) {
             const currentEvent = thisTimeline.events.find(
             event => ((event.timestamp < currentTimeInMS) && (currentTimeInMS < event.timestamp + showProductDuration)),
             );
