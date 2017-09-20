@@ -7,7 +7,6 @@ export default function ContentMotionController(props) {
     const _o = props.isOpen ? (props.isMaximized ? 1 : 0) : 0;
     let _h = window.innerHeight - props.videoHeight < 0 ? 0 : window.innerHeight - props.videoHeight;
     _h = isNaN(_h) ? 0 : _h;
-    console.log(_h);
     return (
         <Motion style={{
             y: spring(_y, { stiffness: 60, damping: 15 }),

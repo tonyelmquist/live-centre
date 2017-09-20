@@ -33,56 +33,68 @@ class SoccerDataOverlay extends Component {
 
     timelineManager = new TimelineManager();
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[this.props.video.matchId]) {
             this.timelineManager.timeline = this.props.matches[this.props.video.matchId].timeline;
             this.timelineManager.buffer = this.props.video.matchStart;
         }
 
-        // this.largeVideoPlayer.video.addEventListener('timeupdate', () => {
-        //     this.timelineManager.setActiveTimelineEvents(this.largeVideoPlayer.video.currentTime * 1000);
+        if (prevProps.video.matchId !== this.props.video.matchId) {
+            this.timelineManager.timeline = this.props.matches[this.props.video.matchId].timeline;
+            this.timelineManager.buffer = this.props.video.matchStart;
+        }
 
-        //     // Control Score
-        //     if (this.timelineManager.activeEvents.length > 0) {
-        //         const periodStart = this.timelineManager.activeEvents.filter(value => value.type === 'period_start' && value.period === 2);
-        //         const breakStart = this.timelineManager.activeEvents.filter(value => value.type === 'break_start');
-        //         if (periodStart.length > 0) {
-        //             const clock =
-        //                     (((this.largeVideoPlayer.video.currentTime * 1000)
-        //                     - parseInt(this.props.video.matchStart)
-        //                     - (new Date(periodStart[0].time) - new Date(this.timelineManager.activeEvents[0].time)))
-        //                     + 2700000);
+        if(prevProps.currentTime !== this.props.currentTime){
 
-        //             this.props.dispatch(changeClock(clock));
-        //         } else if (breakStart.length > 0) {
-        //             if (this.props.dataOverlayClock !== 2700000) {
-        //                 this.props.dispatch(changeClock(2700000));
-        //             }
-        //         } else {
-        //             const clock = (this.largeVideoPlayer.video.video.currentTime * 1000) - this.props.video.matchStart;
-        //             this.props.dispatch(changeClock(clock));
-        //         }
-        //     } else if (this.props.dataOverlayClock !== 0) {
-        //         this.props.dispatch(changeClock(0));
-        //     }
-        // });
+            this.timelineManager.setActiveTimelineEvents(this.props.currentTime * 1000);
+            if(this.timelineManager.activeEvents.length > 0){
+                const activeEvents = this.timelineManager.activeEvents;
+                setClock(activeEvents);
+                setScore();
+                console.log("Active events at current time: ", activeEvents);
+            } else {
+                this.props.dispatch(changeClock(0));
+            }
 
-        // // Setting Score
-        // let newScore = { home: 0, away: 0 };
-        // // Go backwards through the array and get the first instance of 'score_change'
-        // for (let i = 0; i < this.timelineManager.activeEvents.length; i++) {
-        //     if (this.timelineManager.activeEvents[i].type === 'score_change') {
-        //         newScore = {
-        //             home: this.timelineManager.activeEvents[i].home_score,
-        //             away: this.timelineManager.activeEvents[i].away_score,
-        //         };
-        //     }
-        // }
+        }
+    }
 
-        // // console.log(this.props.dataOverlayScore, newScore, this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away);
-        // if (this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away) {
-        //     this.props.dispatch(changeScore(newScore));
-        // }
+    setScore = (activeEvents) => {
+                // Setting Score
+        let newScore = { home: 0, away: 0 };
+        // Go backwards through the array and get the first instance of 'score_change'
+        for (let i = 0; i < activeEvents.length; i++) {
+            if (activeEvents[i].type === 'score_change') {
+                newScore = {
+                    home: activeEvents[i].home_score,
+                    away: activeEvents[i].away_score,
+                };
+            }
+        }
+        if (this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away) {
+            this.props.dispatch(changeScore(newScore));
+        }
+    }
+
+    setClock = (activeEvents) => {
+        const periodStart = activeEvents.filter(value => value.type === 'period_start' && value.period === 2);
+        const breakStart = activeEvents.filter(value => value.type === 'break_start');
+        if (periodStart.length > 0) {
+            const clock =
+                    (((this.props.currentTime * 1000)
+                    - parseInt(this.props.video.matchStart)
+                    - (new Date(periodStart[0].time) - new Date(activeEvents[0].time)))
+                    + 2700000);
+
+            this.props.dispatch(changeClock(clock));
+        } else if (breakStart.length > 0) {
+            if (this.props.dataOverlayClock !== 2700000) {
+                this.props.dispatch(changeClock(2700000));
+            }
+        } else {
+            const clock = (this.largeVideoPlayer.video.video.currentTime * 1000) - this.props.video.matchStart;
+            this.props.dispatch(changeClock(clock));
+        }
     }
 
     onPlayerInfoClose = () => {
@@ -237,6 +249,7 @@ SoccerDataOverlay.propTypes = {
 };
 
 const mapStateToProps = state => ({
+    currentTime: state.videoPlayer.currentVideoTime,
     video: state.playback.video,
     dataOverlayScore: state.dataOverlay.score,
     dataOverlayClock: state.dataOverlay.clock,
