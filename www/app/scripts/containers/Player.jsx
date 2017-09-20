@@ -29,8 +29,6 @@ class Player extends React.Component {
         forcedLandscapeMode: false,
     };
 
-    timelineManager = new TimelineManager();
-
     limit = 50;
 
     controlBarTimeout = null;
@@ -43,42 +41,6 @@ class Player extends React.Component {
                 height: this.getVideoPlayer().getBoundingClientRect().height,
             }));
         }
-
-        // Need to setup timeline again with new changes. (Use state.videoPlayers current time for instance).
-        // this.largeVideoPlayer.subscribeToStateChange(this.handleStateChange.bind(this));
-
-        // if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[this.props.video.matchId]) {
-        //     this.timelineManager.timeline = this.props.matches[this.props.video.matchId].timeline;
-        //     this.timelineManager.buffer = this.props.video.matchStart;
-        // }
-
-        // this.largeVideoPlayer.video.addEventListener('timeupdate', () => {
-        //     this.timelineManager.setActiveTimelineEvents(this.largeVideoPlayer.video.currentTime * 1000);
-
-        //     // Control Score
-        //     if (this.timelineManager.activeEvents.length > 0) {
-        //         const periodStart = this.timelineManager.activeEvents.filter(value => value.type === 'period_start' && value.period === 2);
-        //         const breakStart = this.timelineManager.activeEvents.filter(value => value.type === 'break_start');
-        //         if (periodStart.length > 0) {
-        //             const clock =
-        //                     (((this.largeVideoPlayer.video.currentTime * 1000)
-        //                     - parseInt(this.props.video.matchStart)
-        //                     - (new Date(periodStart[0].time) - new Date(this.timelineManager.activeEvents[0].time)))
-        //                     + 2700000);
-
-        //             this.props.dispatch(changeClock(clock));
-        //         } else if (breakStart.length > 0) {
-        //             if (this.props.dataOverlayClock !== 2700000) {
-        //                 this.props.dispatch(changeClock(2700000));
-        //             }
-        //         } else {
-        //             const clock = (this.largeVideoPlayer.video.video.currentTime * 1000) - this.props.video.matchStart;
-        //             this.props.dispatch(changeClock(clock));
-        //         }
-        //     } else if (this.props.dataOverlayClock !== 0) {
-        //         this.props.dispatch(changeClock(0));
-        //     }
-        // });
     };
 
     componentDidUpdate = (prevProps) => {
@@ -103,34 +65,12 @@ class Player extends React.Component {
                 }));
             }
         }
-
-        // let newScore = { home: 0, away: 0 };
-        // // Go backwards through the array and get the first instance of 'score_change'
-        // for (let i = 0; i < this.timelineManager.activeEvents.length; i++) {
-        //     if (this.timelineManager.activeEvents[i].type === 'score_change') {
-        //         newScore = {
-        //             home: this.timelineManager.activeEvents[i].home_score,
-        //             away: this.timelineManager.activeEvents[i].away_score,
-        //         };
-        //     }
-        // }
-
-        // console.log(this.props.dataOverlayScore, newScore, this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away);
-        // if (this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away) {
-        //     this.props.dispatch(changeScore(newScore));
-        // }
     }
 
     componentWillUpdate = (nextProps) => {
         if (this.props.video.id !== nextProps.video.id) {
             console.log('new video');
             this.pauseVideo();
-        }
-
-        //TImeline manager needs to be setup differently after refactoring. 
-        if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[nextProps.video.matchId].timeline) {
-            this.timelineManager.timeline = this.props.matches[nextProps.video.matchId].timeline;
-            this.timelineManager.buffer = this.props.video.matchStart;
         }
 
         if (
@@ -191,19 +131,6 @@ class Player extends React.Component {
         this.props.dispatch(showProductOverlay());
     };
 
-    // tickInProximity = (currentTime) => {
-    //     const currentTimeInMS = currentTime * 1000;
-    //     const thisTimeline = this.props.video._timeline;
-    //     if (thisTimeline.events !== undefined) {
-    //         const currentEvent = thisTimeline.events.find(
-    //         event => ((event.timestamp - tickProximityInterval < currentTimeInMS) && (currentTimeInMS < event.timestamp + tickProximityInterval)),
-    //         );
-
-    //         if (currentEvent !== undefined) {
-    //             if (!this.props.showProductThumb) { this.props.dispatch(showProductThumb(currentEvent.productID)); }
-    //         } else if (this.props.showProductThumb) { this.props.dispatch(hideProductThumb(0)); }
-    //     }
-    // }
     showHighlights = (videoUrl, highlights) => {
         this.props.dispatch(showHighlights(videoUrl, highlights));
     };
