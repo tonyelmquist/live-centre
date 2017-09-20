@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import LineupShirt from './LineupShirt';
+
 import LineupShirtManager from './LineupShirtManager';
 
 class LineupOverlay extends Component {
