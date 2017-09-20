@@ -1,32 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import productArray from '../../constants/products';
-import {
-  hideProductOverlay,
-  hideProductThumb,
-} from '../../actions/videoPlayer';
-import {
-  addToCart,
-  checkout,
-  buyNow,
-  cancelCheckoutNow,
-  completeCheckout,
-  completeCheckoutNow,
-} from '../../actions/ecommerce';
 import { Orientation } from '../../constants/reduxConstants';
 import ProductDetails from '../Ecommerce/ProductDetails';
 import BuyNow from '../Ecommerce/BuyNow';
 
 class ProductOverlay extends Component {
-
-    componentDidUpdate() {
-        // Hide product overlay when VideoOverlay is minimized.
-        if (!this.props.overlayMaximized) {
-            this.props.dispatch(hideProductOverlay());
-            this.props.dispatch(hideProductThumb());
-        }
-    }
 
     product = (productID) => {
         const thisProduct = productArray.products.find(
@@ -35,30 +14,19 @@ class ProductOverlay extends Component {
         return thisProduct;
     };
 
-    onHideProductOverlay = (e) => {
-        e.stopPropagation();
-        this.props.dispatch(hideProductOverlay());
-        this.props.dispatch(cancelCheckoutNow());
-    };
-
-    onCompleteCheckoutNow = () => {
-        this.props.dispatch(completeCheckoutNow(this.props.productID));
-    };
-
-        onBuyNow = () => {
-        this.props.dispatch(buyNow(this.props.productID));
-    };
 
 
     render() {
+
         let product = { description: '', thumbnailImage: '', price: 0 };
         if (this.props.productID !== 0) {
             product = this.product(this.props.productID);
         }
 
+
         return (
       <div
-        className={`product-overlay ${this.props.showProductOverlay
+        className={`product-overlay ${this.props.show
           ? 'isShowing'
           : ''} ${this.props.orientation === Orientation.PORTRAIT
           ? 'portrait'
@@ -67,7 +35,7 @@ class ProductOverlay extends Component {
       >
         <div
           className="close-btn"
-          onTouchTap={this.onHideProductOverlay}
+          onTouchTap={this.props.onHideProductOverlay}
           role="button"
           tabIndex="0"
         >
@@ -80,13 +48,13 @@ class ProductOverlay extends Component {
           className="product-overlay-image"
         />
 
-        <BuyNow onBuyNow={this.onBuyNow} show={this.props.showCheckoutNow} />
+        <BuyNow onCompleteBuyNow={this.props.onCompleteBuyNow} show={this.props.showBuyNow} />
         <ProductDetails
               description={product.description}
               price={product.price}
-              onBuyNow={this.onBuyNow}
-              onAddToCart={this.onAddToCart}
-              show={!this.props.showCheckoutNow}
+              onBuyNow={this.props.onBuyNow}
+              onAddToCart={this.props.onAddToCart}
+              show={!this.props.showBuyNow}
         />
       </div>
         );
@@ -94,12 +62,10 @@ class ProductOverlay extends Component {
 }
 
 ProductOverlay.propTypes = {
-    showProductOverlay: PropTypes.bool.isRequired,
+    show: PropTypes.bool.isRequired,
     productID: PropTypes.number.isRequired,
     orientation: PropTypes.string.isRequired,
-    dispatch: PropTypes.func.isRequired,
-    overlayMaximized: PropTypes.bool.isRequired,
-    showCheckoutNow: PropTypes.bool.isRequired,
+    showBuyNow: PropTypes.bool.isRequired,
     paymentMethod: PropTypes.string.isRequired,
     shippingMethod: PropTypes.string.isRequired,
 };
@@ -112,12 +78,6 @@ ProductOverlay.defaultProps = {
     shippingMethod: 'Sirigata 3, 3324 Molde',
 };
 
-const mapStateToProps = state => ({
-    productID: state.productOverlay.selectedProductID,
-    showProductThumb: state.productThumb.showProductThumb,
-    orientation: state.settings.screenOrientation,
-    showCheckoutNow: state.ecommerce.showCheckoutNow,
-    cart: state.ecommerce.productArray,
-});
 
-export default connect(mapStateToProps)(ProductOverlay);
+
+export default ProductOverlay;

@@ -86,10 +86,12 @@ export function handleSelection(state = defaultSelectionState, action) {
         return Object.assign({}, state, {
             isFullscreen: false,
         });
+
     // case Actions.SET_CURRENT_TIME:
     //     return Object.assign({}, state, {
     //         currentTime: action.time,
     //     });
+
     case Actions.SET_CONTROL_BAR_VISIBILITY:
         return Object.assign({}, state, {
             controlBarVisibility: action.visibility,
@@ -133,51 +135,8 @@ export function replayReducer(
     }
 }
 
-export function productOverlayReducer(
-    state = { showProductOverlay: false, productID: 0 },
-    action,
-) {
-    switch (action.type) {
-    case Actions.SHOW_PRODUCT_OVERLAY:
-        return {
-            ...state,
-            showProductOverlay: true,
-            selectedProductID: action.productID,
-        };
-    case Actions.HIDE_PRODUCT_OVERLAY:
-        return {
-            ...state,
-            showProductOverlay: false,
-        };
-    default:
-        return state;
-    }
-}
-
-
-export function productThumbReducer(
-    state = { showProductThumb: false, productID: 0 },
-    action,
-) {
-    switch (action.type) {
-    case Actions.SHOW_PRODUCT_THUMB:
-        return {
-            ...state,
-            showProductThumb: true,
-            productID: action.productID,
-        };
-    case Actions.HIDE_PRODUCT_THUMB:
-        return {
-            ...state,
-            showProductThumb: false,
-            productID: action.productID,
-        };
-    default:
-        return state;
-    }
-}
-
 export function videoPlayer(state = { isPlaying: false, bufferTime: null, duration: 0, changeCurrentTimeTo: null, currentVideoTime: 0, dimensions: {} }, action) {
+
     switch (action.type) {
     case Actions.PLAY_VIDEO:
         return {
@@ -219,4 +178,3 @@ export function videoPlayer(state = { isPlaying: false, bufferTime: null, durati
         return state;
     }
 }
-
