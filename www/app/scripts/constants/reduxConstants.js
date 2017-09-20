@@ -75,9 +75,10 @@ class ReduxConstants {
     static get FOCUSED_SEARCH() { return 'FOCUS_SEARCH'; }
     static get BLURRED_SEARCH() { return 'BLUR_SEARCH'; }
 
-    // SECOND LAYER
+    // DATA OVERLAY
     static get CHANGE_SCORE() { return 'CHANGE_SCORE'; }
     static get CHANGE_CLOCK() { return 'CHANGE_CLOCK'; }
+    static get SET_ACTIVE_EVENTS() { return 'SET_ACTIVE_EVENTS'; }
 
     // SETTINGS
     static get CHANGE_LANG() { return 'CHANGE_LANG'; }

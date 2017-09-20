@@ -8,7 +8,7 @@ import videoOverlay from './VideoOverlayReducer';
 import { notificationReducer, popNotificationReducer } from './notificationReducer';
 import matches from './matchDataReducer';
 import { search, searchFilterTab } from './searchReducer';
-import dataOverlayReducer from './secondLayerReducer';
+import dataOverlayReducer from './dataOverlayReducer';
 import modalsReducer from './modalsReducer';
 import settings from './settingsReducer';
 import { showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo } from './videoCardReducer';

@@ -72,13 +72,50 @@ class Tick extends React.Component {
         }
     }
 
+    formatMessage = () => {
+        const message = this.props.message;
+        const matchInfo = this.props.matchInfo;
+        let teamName = "";
+        let player = "";
+        let update = i18next.t(this.props.message.type);
+
+        const timestamp = new Date(message.time);
+        const time = `${timestamp.getHours()}:${timestamp.getMinutes()}`;
+
+        
+        if (message.team) {
+            teamName = matchInfo[message.team].team.name;
+            teamName = ` ${teamName}:`;
+        }
+
+        if (message.player) {
+            player = ` ${message.player.name} - `;
+        }
+
+        if (message.type === 'score_change') {
+            update += ` by ${message.goal_scorer.name}!`;
+        }
+        
+        if (message.type === 'substitution'){
+            update += `${message.player_out} for ${message.player_in}`;
+        }
+
+        
+        //console.log(message);
+        return (
+            <div> {time}{teamName}{player} 
+                <b> {update}</b>
+            </div>
+        );
+    }
+
     render() {
         return (
             <Motion style={{ x: spring(this.getX()), o: spring(this.getOpacity()), y: spring(this.state.style.y) }}>
                 {motion => (
                     <div className="video-splash" style={this.getStyle(motion.x, motion.o, motion.y)} id={motion.x}>
                         <div className="splash-inner">
-                            {this.props.message}
+                            {this.formatMessage()}
                         </div>
                     </div>
                 )}

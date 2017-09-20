@@ -7,7 +7,7 @@ import PlayerInfoOverlay from '../../components/SecondLayer/PlayerInfoOverlay';
 import LineupOverlay from '../../components/SecondLayer/LineupOverlay';
 import TickerContainer from '../../components/SecondLayer/TickerContainer';
 import { getMatchData, getPlayerData } from '../../utils/loadMatchData';
-import { changeScore, changeClock } from '../../actions/secondLayer';
+import { changeScore, changeClock, setActiveEvents } from '../../actions/dataOverlay';
 import TimelineManager from '../../utils/Managers/TimelineManager';
 
 class SoccerDataOverlay extends Component {
@@ -34,64 +34,34 @@ class SoccerDataOverlay extends Component {
     timelineManager = new TimelineManager();
 
     componentDidUpdate(prevProps) {
-        if (typeof this.props.matches[this.props.video.matchId] !== 'undefined' && this.timelineManager.timeline !== this.props.matches[this.props.video.matchId]) {
-            this.timelineManager.timeline = this.props.matches[this.props.video.matchId].timeline;
-            this.timelineManager.buffer = this.props.video.matchStart;
-        }
+        const matchTimeline = this.props.matches[this.props.video.matchId].timeline;
 
-        if (prevProps.video.matchId !== this.props.video.matchId) {
-            this.timelineManager.timeline = this.props.matches[this.props.video.matchId].timeline;
-            this.timelineManager.buffer = this.props.video.matchStart;
-        }
-
-        if (prevProps.currentTime !== this.props.currentTime) {
-            this.timelineManager.setActiveTimelineEvents(this.props.currentTime * 1000);
-            if (this.timelineManager.activeEvents.length > 0) {
-                const activeEvents = this.timelineManager.activeEvents;
-                this.setClock(activeEvents);
-                this.setScore(activeEvents);
-            } else {
-                this.props.dispatch(changeClock(0));
+        // Check if we can get the timeline at all. Before we do anything.
+        if (matchTimeline){
+            //If this is new/different match timeline, set it in the timelinemanager. Also set start buffer.
+            if (this.timelineManager.timeline !== matchTimeline) {
+                this.timelineManager.timeline = matchTimeline;
+                this.timelineManager.buffer = this.props.video.matchStart;
             }
-        }
-    }
 
-    setScore = (activeEvents) => {
-        // Setting Score
-        let newScore = { home: 0, away: 0 };
-        // Go backwards through the array and get the first instance of 'score_change'
-        for (let i = 0; i < activeEvents.length; i++) {
-            if (activeEvents[i].type === 'score_change') {
-                newScore = {
-                    home: activeEvents[i].home_score,
-                    away: activeEvents[i].away_score,
-                };
+
+            // If time has changed update the overlay based on new events. 
+            if (prevProps.currentTime !== this.props.currentTime) {
+                //The active timeline events are now anything happened after currentTime. 
+                this.timelineManager.setActiveTimelineEvents(this.props.currentTime * 1000);
+
+                //If thhere are active events, set the clock, score and change the tickers. 
+                if (this.timelineManager.activeEvents.length > 0){
+                    const activeEvents = this.timelineManager.activeEvents;
+                    this.setClock(activeEvents);
+                    this.setScore(activeEvents);
+                    this.props.dispatch(setActiveEvents(activeEvents));
+                    
+                    
+                } else {
+                    this.props.dispatch(changeClock(0));
+                }
             }
-        }
-        if (this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away) {
-            this.props.dispatch(changeScore(newScore));
-        }
-    }
-
-    setClock = (activeEvents) => {
-        const periodStart = activeEvents.filter(value => value.type === 'period_start' && value.period === 2);
-        const breakStart = activeEvents.filter(value => value.type === 'break_start');
-        if (periodStart.length > 0) {
-            const clock =
-                    (((this.props.currentTime * 1000)
-                    - parseInt(this.props.video.matchStart)
-                    - (new Date(periodStart[0].time) - new Date(activeEvents[0].time)))
-                    + 2700000);
-
-            this.props.dispatch(changeClock(clock));
-        } else if (breakStart.length > 0) {
-            if (this.props.dataOverlayClock !== 2700000) {
-                this.props.dispatch(changeClock(2700000));
-            }
-        } else {
-            console.log('VIDEO', this.props.video);
-            const clock = (this.props.currentTime * 1000) - this.props.video.matchStart;
-            this.props.dispatch(changeClock(clock));
         }
     }
 
@@ -114,6 +84,46 @@ class SoccerDataOverlay extends Component {
             isLineupShowing: false,
             isBurstButtonShowing: true,
         });
+    }
+
+    // Setting sports score
+    setScore = (activeEvents) => {
+        let newScore = { home: 0, away: 0 };
+        // Go backwards through the array and get the first instance of 'score_change'
+        for (let i = 0; i < activeEvents.length; i++) {
+            if (activeEvents[i].type === 'score_change') {
+                newScore = {
+                    home: activeEvents[i].home_score,
+                    away: activeEvents[i].away_score,
+                };
+            }
+        }
+        if (this.props.dataOverlayScore.home !== newScore.home || this.props.dataOverlayScore.away !== newScore.away) {
+            this.props.dispatch(changeScore(newScore));
+        }
+    }
+
+    //Parse and set the clock. 
+    setClock = (activeEvents) => {
+        const periodStart = activeEvents.filter(value => value.type === 'period_start' && value.period === 2);
+        const breakStart = activeEvents.filter(value => value.type === 'break_start');
+        if (periodStart.length > 0) {
+            const clock =
+                    (((this.props.currentTime * 1000)
+                    - parseInt(this.props.video.matchStart)
+                    - (new Date(periodStart[0].time) - new Date(activeEvents[0].time)))
+                    + 2700000);
+
+            this.props.dispatch(changeClock(clock));
+        } else if (breakStart.length > 0) {
+            if (this.props.dataOverlayClock !== 2700000) {
+                this.props.dispatch(changeClock(2700000));
+            }
+        } else {
+            console.log('VIDEO', this.props.video);
+            const clock = (this.props.currentTime * 1000) - this.props.video.matchStart;
+            this.props.dispatch(changeClock(clock));
+        }
     }
 
     moveToPlayerInfo = (playerId) => {
@@ -204,6 +214,8 @@ class SoccerDataOverlay extends Component {
                 <TickerContainer
                     isLineupShowing={this.state.isLineupShowing}
                     controlBarVisibility={this.props.controlBarVisibility}
+                    messages={this.props.activeEvents}
+                    matchInfo={this.props.matches[this.props.video.matchId]}
                 />
                 <ScoreOverlay
                     score={this.props.dataOverlayScore}
@@ -236,6 +248,7 @@ class SoccerDataOverlay extends Component {
 SoccerDataOverlay.propTypes = {
     dispatch: PropTypes.func.isRequired,
     score: PropTypes.object.isRequired,
+    activeEvents: PropTypes.object.isRequired,
     // chat: PropTypes.object.isRequired,
     replay: PropTypes.object.isRequired,
     highlights: PropTypes.object.isRequired,
@@ -251,6 +264,7 @@ const mapStateToProps = state => ({
     video: state.playback.video,
     dataOverlayScore: state.dataOverlay.score,
     dataOverlayClock: state.dataOverlay.clock,
+    activeEvents: state.dataOverlay.activeEvents,
     chat: state.chat,
     replay: state.replay,
     highlights: state.highlights,

@@ -10,7 +10,7 @@ import { showReplay, hideReplay, showHighlights, setControlBarVisibility,
     hideProductThumb, updateCurrentTime, changeCurrentTime, skipCurrentTimeBy, setDuration, playVideo, pauseVideo, setBufferTime, setVideoDimensions } from '../actions/videoPlayer';
 import '../../../node_modules/video-react/dist/video-react.css';
 import isDblTouchTap from '../utils/isDblTouchTap';
-import { changeScore, changeClock } from '../actions/secondLayer';
+import { changeScore, changeClock } from '../actions/dataOverlay';
 import VideoPlayer from '../components/VideoPlayer/VideoPlayer';
 import VideoControls from '../components/VideoPlayer/VideoControls';
 import PrePlayOverlay from '../components/VideoOverlay/PrePlayOverlay';

@@ -14,59 +14,18 @@ msgstr "OK"
 
 #. Route Home
 #: 
-msgid "home"
+msgid "route_home"
 msgstr "Hjem"
 
-#. Route Watchlist
-#:
-msgid "watchlist"
-msgstr "Ønskeliste"
+#. Route About
+#: 
+msgid "route_about"
+msgstr "Om Oss"
 
 #. Route Topics
 #: 
-msgid "topics"
+msgid "route_topics"
 msgstr "Emner"
-
-#. Route Settings
-#:
-msgid "settings"
-msgstr "Innstillinger"
-
-#. Route Favorites
-#:
-msgid "favorites"
-msgstr "Favoritter"
-
-#. Route Series
-#:
-msgid "series"
-msgstr "Serier"
-
-#.Route Channels
-#:
-msgid "channels"
-msgstr "Kanaler"
-
-#.Route Tv-Guide
-#:
-msgid "tvguide"
-msgstr "TV-Guide"
-
-#.Route Profile
-#:
-msgid "profile"
-msgstr "Min profil"
-
-#.Route Sports
-#:
-msgid "sports"
-msgstr "Sport"
-
-#. Route Programs
-#:
-msgid "programs"
-msgstr "Sending"
-
 
 #. Topics Rendering
 #: 
@@ -83,78 +42,130 @@ msgstr "Komponent"
 msgid "topics_state"
 msgstr "State vs Props"
 
+#. Route Home
+#: 
+msgid "home"
+msgstr "Hjem"
+
+#. Route Watchlist
+#: 
+msgid "watchlist"
+msgstr "Ønskeliste"
+
+#. Route Topics
+#: 
+msgid "topics"
+msgstr "Emner"
+
+#. Route Settings
+#: 
+msgid "settings"
+msgstr "Innstillinger"
+
+#. Route Favorites
+#: 
+msgid "favorites"
+msgstr "Favoritter"
+
+#. Tag & category names
+#: 
+msgid "series"
+msgstr "Serier"
+
+#. Route Programs
+#: 
+msgid "programs"
+msgstr "Sending"
+
+#: 
+msgid "channels"
+msgstr "Kanaler"
+
+#: 
+msgid "tvguide"
+msgstr "TV-Guide"
+
+#: 
+msgid "profile"
+msgstr "Min profil"
+
+#. Filters and keys
+#: 
+msgid "sports"
+msgstr "Sport"
+
 #. Appbar Sign Out
-#:
+#: 
 msgid "app_signout"
 msgstr "Logg Av"
 
 #. Appbar Sign in
-#:
+#: 
 msgid "app_login"
 msgstr "Logg inn"
 
 #. Language: English
-#:
+#: 
 msgid "language_english"
 msgstr "Engelsk"
 
 #. Language: Norwegian
-#:
+#: 
 msgid "language_norwegian"
 msgstr "Norsk"
 
 #. Setting: Title
-#:
+#: 
 msgid "setting_title"
 msgstr "Innstillinger"
 
 #. Setting: Language Options
-#:
+#: 
 msgid "setting_language_options"
 msgstr "Språkvalg"
 
 #. Setting: Audio
-#:
+#: 
 msgid "setting_audio"
 msgstr "Lyd"
 
 #. Setting: Language
-#:
+#: 
 msgid "setting_language"
 msgstr "Språk"
 
 #. Setting: Subtitle
-#:
+#: 
 msgid "setting_subtitle"
 msgstr "Undertekst"
 
 #. Setting: General
-#:
+#: 
 msgid "settings_general"
 msgstr "Generelle innstillinger"
 
 #. Setting: Recommendations
-#:
+#: 
 msgid "settings_recommendations"
 msgstr "Anbefalinger"
 
-#. Setting: Parental code
-#:
-msgid "settings_parental_code"
-msgstr "Foreldrekontroll kode"
-
-#. Setting: Parental controll
-#:
+#. Setting: Parental
+#: 
 msgid "settings_parental"
 msgstr "Foreldrekontroll"
 
+#. Setting: Parental code
+#: 
+msgid "settings_parental_code"
+msgstr "Foreldrekontroll kode"
+
 #. Setting: Active Devices
-#:
+#: 
 msgid "settings_active_devices"
 msgstr "Aktive enheter"
 
-#. Setting: Recommendations
-#:
+#. Setting: Age Rating
+#: 
 msgid "settings_age_rating"
 msgstr "Aldersgrense"
 
@@ -164,311 +175,305 @@ msgid "search_placeholder"
 msgstr "Søk etter..."
 
 #. Searchoverlay: Suggested people
-#:
+#: 
 msgid "suggested_people"
 msgstr "Venneforslag"
 
 #. Searchoverlay: Suggested videos
-#:
+#: 
 msgid "suggested_videos"
 msgstr "Videoforslag"
 
 #. Search Results label
-#:
+#: 
 msgid "search_results"
 msgstr "Søkeresultater for:"
 
 #. Filter label
-#:
+#: 
 msgid "filter"
 msgstr "Filtrer"
 
 #. Tag & category names
-#:
+#: 
 msgid "all"
 msgstr "Alle"
 
 #. Tag & category names
-#:
+#: 
 msgid "videos"
 msgstr "Videoer"
 
 #. Tag & category names
-#:
-msgid "series"
-msgstr "Serier"
-
-#. Tag & category names
-#:
+#: 
 msgid "movies"
 msgstr "Filmer"
 
 #. Tag & category names
-#:
+#: 
 msgid "lostintime"
 msgstr "Lost in Time"
 
 #. Tag & category names
-#:
+#: 
 msgid "streetfighter"
 msgstr "Street Fighter"
 
 #. Tag & category names
-#:
+#: 
 msgid "thefuturegroup"
 msgstr "The Future Group"
 
 #. Tag & category names
-#:
+#: 
 msgid "iceage"
 msgstr "Istiden"
 
 #. Tag & category names
-#:
+#: 
 msgid "jurasicage"
 msgstr "Juratiden"
 
 #. Tag & category names
-#:
+#: 
 msgid "medieval"
 msgstr "Middelalderen"
 
 #. Tag & category names
-#:
+#: 
 msgid "wildwest"
 msgstr "Ville vesten"
 
 #. Tag & category names
-#:
+#: 
 msgid "roaringtwenties"
 msgstr "Glade 20åra"
 
 #. Tag & category names
-#:
+#: 
 msgid "spaceage"
 msgstr "Romalderen"
 
 #. Tag & category names
-#:
+#: 
 msgid "Game Shows"
 msgstr "Spill show"
 
 #. Tag & category names
-#:
+#: 
 msgid "Sports"
 msgstr "Sport"
 
 #. Tag & category names
-#:
+#: 
 msgid "Uncategorized"
 msgstr "Ukategorisert"
 
 #. Tag & category names
-#:
+#: 
 msgid "Promotional Videos"
 msgstr "Promoteringsvideoer"
 
 #. Tag & category names
-#:
+#: 
 msgid "Live events"
 msgstr "Live arrangementer"
 
 #. Tag & category names
-#:
+#: 
 msgid "Movies"
 msgstr "Filmer"
 
 #. Tag & category names
-#:
+#: 
 msgid "Series"
 msgstr "Serier"
 
 #. Tag & category names
-#:
+#: 
 msgid "All"
 msgstr "Alle"
 
 #. Sport
-#:
+#: 
 msgid "soccer"
 msgstr "Fotball"
 
 #. Filters and keys
-#:
+#: 
 msgid "children"
 msgstr "Barn"
 
 #. Filters and keys
-#:
+#: 
 msgid "drama"
 msgstr "Drama"
 
 #. Filters and keys
-#:
+#: 
 msgid "pets"
 msgstr "Dyr"
 
 #. Filters and keys
-#:
+#: 
 msgid "comedy"
 msgstr "Humor"
 
 #. Filters and keys
-#:
+#: 
 msgid "fantasy"
 msgstr "Fantasi"
 
 #. Filters and keys
-#:
+#: 
 msgid "documentaries"
 msgstr "Dokumentarer"
 
 #. Filters and keys
-#:
+#: 
 msgid "food"
 msgstr "Mat"
 
 #. Filters and keys
-#:
+#: 
 msgid "sport"
 msgstr "Sport"
 
 #. Filters and keys
-#:
+#: 
 msgid "crime"
 msgstr "Krim"
 
 #. Filters and keys
-#:
+#: 
 msgid "genres"
 msgstr "Sjanger"
 
 #. Video description
-#:
+#: 
 msgid "video_add_watchlist"
 msgstr "Legg til i ønskeliste"
 
 #. Video description
-#:
+#: 
 msgid "video_duration"
 msgstr "Lengde"
 
 #. Video description
-#:
+#: 
 msgid "video_recommendations"
 msgstr "Anbefalinger"
 
 #. Video description
-#:
+#: 
 msgid "video_season"
 msgstr "Sesong"
 
 #. Video description
-#:
+#: 
 msgid "video_star_rating"
 msgstr "Vurdering"
 
 #. Video chatrom
-#:
+#: 
 msgid "video_chatrom_welcome"
 msgstr "Velkommen til chatrommet. For å chatte, skriv beskjeden din i boksen nedenfor."
 
 #. Video chatrom
-#:
+#: 
 msgid "video_chatrom_please_login"
 msgstr "Logg inn for å chatte"
 
 #. Video chatrom
-#:
+#: 
 msgid "video_chatrom_input_placeholder"
 msgstr "Skriv din melding her"
 
 #. Login and registration
-#:
+#: 
 msgid "placeholder_email"
 msgstr "Epost"
 
 #. Login and registration
-#:
+#: 
 msgid "placeholder_password"
 msgstr "Passord"
 
 #. Submit and buttons
-#:
+#: 
 msgid "submit_login"
 msgstr "Logg inn"
 
 #. Submit and buttons
-#:
+#: 
 msgid "submit_save"
 msgstr "Lagre"
 
 #. Submit and buttons
-#:
+#: 
 msgid "submit_cancel"
 msgstr "Avbryt"
 
-
-
 #. Sport
-#:
+#: 
 msgid "Football"
 msgstr "Fotball"
 
 #. Sport
-#:
+#: 
 msgid "sport_teams"
 msgstr "Lag"
 
 #. Sport
-#:
+#: 
 msgid "sport_matches"
 msgstr "Kamper"
 
 #. Sport
-#:
+#: 
 msgid "sport_highlights"
 msgstr "Høydepunkter"
 
 #. Sport
-#:
+#: 
 msgid "sport_games"
 msgstr "Kamper"
 
 #. Sport
-#:
+#: 
 msgid "sport_info"
 msgstr "Info"
 
 #. Sport
-#:
+#: 
 msgid "sport_players"
 msgstr "Spillere"
 
 #. Menus
-#:
+#: 
 msgid "menus_categories"
 msgstr "Kategorier"
 
 #. Menus
-#:
+#: 
 msgid "menus_menu"
 msgstr "Meny"
 
 #. Buttons
-#:
+#: 
 msgid "buttons_buy_now"
 msgstr "Kjøp nå"
 
 #. Buttons
-#:
+#: 
 msgid "buttons_place_order"
 msgstr "Fullfør bestillingen"
 
 #. Buttons
-#:
+#: 
+#, fuzzy
 msgid "buttons_add_to_cart"
-msgstr "Legg i handlekurv"
+msgstr "Legg i bag"
 
 #. Error Messages: Invalid Email
 #: 
@@ -509,3 +514,9 @@ msgstr "Vilkår for bruk"
 #: 
 msgid "wishlist_no_videos"
 msgstr "Du har ikke lagret noen videoer i ønskelisten."
+
+#. Wishlist page: error
+#: 
+msgid "wishlist_error"
+msgstr "Det er et problem med din ønskeliste"
+

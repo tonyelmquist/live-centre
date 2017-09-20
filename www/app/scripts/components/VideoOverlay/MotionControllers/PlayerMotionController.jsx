@@ -90,7 +90,7 @@ class PlayerMotionController extends React.Component {
             left: 0,
         };
 
-        if (typeof this.videoOverlay !== 'undefined' && this.videoOverlay.clientHeight !== 0) {
+        if (this.videoOverlay) {
             this.heightCheck = this.videoOverlay.clientHeight;
             this.offscreenY = Math.round((window.innerHeight / this.videoOverlay.clientHeight) * 110);
             this.minimizedY = Math.round((window.innerHeight / this.videoOverlay.clientHeight) * 66);

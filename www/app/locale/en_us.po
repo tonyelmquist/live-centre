@@ -513,3 +513,53 @@ msgstr "Terms of use"
 #: 
 msgid "wishlist_no_videos"
 msgstr "You have not saved any videos to the watchlist"
+
+#. Soccer ticker translation
+#: 
+msgid "corner_kick"
+msgstr "corner kick"
+
+#. Soccer ticker translation
+#: 
+msgid "goal_kick"
+msgstr "goal kick"
+
+#. Soccer ticker translation
+#: 
+msgid "throw_in"
+msgstr "throw in"
+
+#. Soccer ticker translation
+#: 
+msgid "free_kick"
+msgstr "free kick"
+
+#. Soccer ticker translation
+#: 
+msgid "match_start"
+msgstr "match start"
+
+#. Soccer ticker translation
+#: 
+msgid "yellow_card"
+msgstr "yellow card"
+
+#. Soccer ticker translation
+#: 
+msgid "injury"
+msgstr "injury"
+
+#. Soccer ticker translation
+#: 
+msgid "injury_return"
+msgstr "injured returned"
+
+#. Soccer ticker translation
+#: 
+msgid "score_change"
+msgstr "score"
+
+#. Soccer ticker translation
+#: 
+msgid "substitution"
+msgstr "substitution"
