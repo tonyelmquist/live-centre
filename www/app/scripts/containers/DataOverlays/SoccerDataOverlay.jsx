@@ -130,6 +130,7 @@ class SoccerDataOverlay extends Component {
         this.setState({
             isBurstButtonShowing: false,
             isLineupShowing: true,
+            isPlayerInfoShowing: false,
             teamToDisplay,
         });
     }
