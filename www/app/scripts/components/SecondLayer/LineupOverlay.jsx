@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LineupShirt from './LineupShirt';
+import LineupShirtManager from './LineupShirtManager';
 
 class LineupOverlay extends Component {
     constructor(props) {
@@ -57,16 +58,9 @@ class LineupOverlay extends Component {
               <div className={`team2-name ${this.state.openTeam === 2 ? '' : 'faded'}`} onClick={this.toTeam2} role="button" tabIndex="0">{this.props.awayData.name}</div>
 
               {/* Line up*/}
-              <div className={`team1-lineup ${this.state.openTeam === 1 ? '' : 'transparent'}`}>
-                {this.props.homeData.starting_lineup.map(value =>
-                    <LineupShirt key={`team1-${value.jersey_number}`} clickIndicator={(value.jersey_number === 1)} text={this.props.homeData.jersey.number} base={this.props.homeData.jersey.base} sleeve={this.props.homeData.jersey.sleeve} number={value.jersey_number} position={value.position} side="L" onClick={() => this.props.onIconClick(value.id.split('sr:player:')[1])} />)
-                }
-              </div>
-              <div className={`team2-lineup ${this.state.openTeam === 2 ? '' : 'transparent'}`}>
-                {this.props.awayData.starting_lineup.map(value =>
-                    <LineupShirt key={`team2-${value.jersey_number}`} text={this.props.awayData.jersey.number} base={this.props.awayData.jersey.base} sleeve={this.props.awayData.jersey.sleeve} number={value.jersey_number} position={value.position} side="R" onClick={() => this.props.onIconClick(value.id.split('sr:player:')[1])} />,
-                )}
-              </div>
+              <LineupShirtManager lineup={this.props.homeData.starting_lineup} jersey={this.props.homeData.jersey} isOpen={this.state.openTeam === 1} onClick={this.props.onIconClick} />
+              <LineupShirtManager lineup={this.props.awayData.starting_lineup} jersey={this.props.awayData.jersey} isOpen={this.state.openTeam === 2} inverse onClick={this.props.onIconClick} />
+
             </div>
 
             <div className="close-btn" onClick={this.props.onClose} role="button" tabIndex="0"><i className="fa fa-close" /></div>

@@ -2,120 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class LineupShirt extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            xPosition: 0,
-            yPosition: 0,
-            clicked: false,
-        };
-
-        const Rows = {
-            LMW: 25,
-            CL: 33,
-            C: 50,
-            CR: 66,
-            RMW: 75,
-        };
-
-        const Cols = {
-            GK: 12.5,
-            CB: 25,
-            FB: 32,
-            WB: 40,
-            DMF: 40,
-            CMF: 50,
-            OMF: 60,
-            S: 70,
-            FW: 80,
-        };
-
-        this.positions = {
-            'Goalkeeper': {
-                x: Cols.GK,
-                y: Rows.C,
-            },
-            'Striker': {
-                x: Cols.S,
-                y: Rows.C,
-            },
-
-            // Center Backs
-            'Left back': {
-                x: Cols.CB,
-                y: Rows.LMW,
-            },
-            'Central defender': {
-                x: Cols.FB,
-                y: Rows.C,
-            },
-            'Right back': {
-                x: Cols.CB,
-                y: Rows.RMW,
-            },
-
-            // Defensive Mid Field
-            DMF1: {
-                x: Cols.DMF,
-                y: Rows.CL,
-            },
-            DMF2: {
-                x: Cols.DMF,
-                y: Rows.C,
-            },
-            DMF3: {
-                x: Cols.DMF,
-                y: Rows.CR,
-            },
-
-            // Central Mid Field
-            'Left winger': {
-                x: Cols.CMF,
-                y: Rows.CL,
-            },
-            'Central midfielder': {
-                x: Cols.CMF,
-                y: Rows.C,
-            },
-            'Right winger': {
-                x: Cols.CMF,
-                y: Rows.CR,
-            },
-
-            // Offensive Mid Field
-            OMF1: {
-                x: Cols.OMF,
-                y: Rows.CL,
-            },
-            OMF2: {
-                x: Cols.OMF,
-                y: Rows.C,
-            },
-            OMF3: {
-                x: Cols.OMF,
-                y: Rows.CR,
-            },
-        };
-
-        const sideSwitch = (this.props.side === 'L');
-
-        if (typeof this.positions[this.props.position] === 'undefined') {
-            console.error({ name: 'Unknown Position', message: `Position '${this.props.position}' is unknown` });
-        } else {
-            if (sideSwitch) {
-                this.state = {
-                    xPosition: this.positions[this.props.position].x,
-                    yPosition: this.positions[this.props.position].y,
-                };
-            } else {
-                this.state = {
-                    xPosition: 100 - this.positions[this.props.position].x,
-                    yPosition: 100 - this.positions[this.props.position].y,
-                };
-            }
-        }
-    }
 
     static hexToRgb(hex) {
         // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
@@ -143,12 +29,9 @@ class LineupShirt extends Component {
     }
 
     render() {
-        const containerStyles = {
-            left: `${this.state.xPosition}%`,
-            top: `${this.state.yPosition}%`,
-        };
+        
         return (
-            <div className="lineup-shirt-container" style={containerStyles}>
+            <div className="lineup-shirt">
                 { this.props.clickIndicator && !this.state.clicked ? <div className="click-indicator-shirt" /> : <div /> }
                 <svg
                     version="1.1"
@@ -160,12 +43,12 @@ class LineupShirt extends Component {
                     onClick={this.onClick}
                 >
                     <g>
-                    <polygon fill={`#${this.props.base}`} points="0,0.6 0,5.8 2.8,5.8 2.8,17.5 9.6,17.5 9.6,5.8 9.6,5.7 9.6,3.1 12.1,0.6 " />
-                    <polygon fill={`#${this.props.base}`} points="19.2,0.6 19.2,5.8 16.4,5.8 16.4,17.5 9.6,17.5 9.6,5.8 9.6,5.7 9.6,3.3 11.9,0.6 " />
-                    <path fill={`#${this.props.sleeve}`} d="M9.6,3.7L6.3,0.5h6.5L9.6,3.7z M7.7,1.1l1.9,1.8l1.8-1.8H7.7z" />
-                    <rect fill={`#${this.props.sleeve}`} x="0" y="5.1" width="2.8" height="0.8" />
-                    <rect fill={`#${this.props.sleeve}`} x="16.4" y="5.1" width="2.8" height="0.8" />
-                    <text fill={`#${this.props.text}`} x="9.5" y="14" fontSize="9" textAnchor="middle">{this.props.number}</text>
+                        <polygon fill={`#${this.props.base}`} points="0,0.6 0,5.8 2.8,5.8 2.8,17.5 9.6,17.5 9.6,5.8 9.6,5.7 9.6,3.1 12.1,0.6 " />
+                        <polygon fill={`#${this.props.base}`} points="19.2,0.6 19.2,5.8 16.4,5.8 16.4,17.5 9.6,17.5 9.6,5.8 9.6,5.7 9.6,3.3 11.9,0.6 " />
+                        <path fill={`#${this.props.sleeve}`} d="M9.6,3.7L6.3,0.5h6.5L9.6,3.7z M7.7,1.1l1.9,1.8l1.8-1.8H7.7z" />
+                        <rect fill={`#${this.props.sleeve}`} x="0" y="5.1" width="2.8" height="0.8" />
+                        <rect fill={`#${this.props.sleeve}`} x="16.4" y="5.1" width="2.8" height="0.8" />
+                        <text fill={`#${this.props.text}`} x="9.5" y="14" fontSize="9" textAnchor="middle">{this.props.number}</text>
                     </g>
                 </svg>
           </div>

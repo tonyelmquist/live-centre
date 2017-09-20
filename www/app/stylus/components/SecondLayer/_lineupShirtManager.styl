@@ -1,0 +1,93 @@
+.team-lineup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: .5s all;
+
+    &.transparent {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .lineup-col {
+        position: absolute;
+        top: 0;
+        height: 108%
+        width: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transform: translateX(-50%);
+        pointer-events: none;
+        
+        &.goal {
+            left: 15%;
+        }
+
+        &.defenders {
+            left: 30%;
+        }
+
+        &.midfield {
+            left: 50%;
+        }
+
+        &.striker {
+            left: 75%;
+        }
+        
+        &.back-defenders {
+            left: 25%;
+            justify-content: space-around;
+        }
+
+        &.wingers {
+            left: 45%;
+            justify-content: space-around;
+        }
+
+        .lineup-shirt {
+            pointer-events: auto;
+        }
+    }
+
+    .shirt-test {
+        width: 35px;
+        height: 35px;
+        background: green;
+        margin-bottom: 15px;
+    }
+
+    &.inverse {
+        .goal {
+            left: 85%;
+        }
+
+        .defenders {
+            left: 70%;
+        }
+
+        .midfield {
+            left: 50%;
+        }
+
+        .striker {
+            left: 25%;
+        }
+
+        .back-defenders {
+            left: 75%;
+        }
+
+        .wingers {
+            left: 55%;
+            justify-content: space-around;
+        }
+    }
+
+    .lineup-shirt {
+        width: 40px;
+    }
+}
