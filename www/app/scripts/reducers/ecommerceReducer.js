@@ -29,6 +29,7 @@ export default function ecommerceReducer(state = defaultState, action) {
                 showBuyNow: false,
                 showCart: false,
                 showCartButton: true,
+                showProductOverlay: false,
             },
             cart: {
                 products: productArray,

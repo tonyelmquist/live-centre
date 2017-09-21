@@ -6,7 +6,8 @@ const CartButton = (props) => {
     return (
         <div className={`shopping-cart ${props.show
           ? 'show'
-          : ''}`}>
+          : ''}`} 
+          onTouchTap={props.onShowCart}>
             <FontAwesome name="shopping-cart"/>
         </div>
     );

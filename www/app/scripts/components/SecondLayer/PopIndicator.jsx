@@ -82,7 +82,7 @@ class PopIndicator extends Component {
 
     onClick = () => {
         this.setState({ clicked: true });
-        this.props.onClick();
+        this.props.onClick(this.props.message);
     }
 
     render() {
@@ -94,7 +94,7 @@ class PopIndicator extends Component {
             transition: '.5s all',
             position: 'absolute',
             bottom: `${this.props.positionY}%`,
-            right: `${this.state.showing ? '40px' : '-80px'}`,
+            left: `${this.state.showing ? '20px' : '-80px'}`,
             opacity: `${this.state.finished ? '0' : '1'}`,
             width: '25px',
         };

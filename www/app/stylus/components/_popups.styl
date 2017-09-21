@@ -1,0 +1,20 @@
+.popup-message {
+    position: absolute;
+    top: calc(50% - 30px);
+    left: 55px;
+    height: 90px;
+    width: 180px;
+    color: white;
+    font-size: 12px;
+    background: rgba(0,0,0,.7);
+    padding: 10px;
+    border-radius: 4px;
+    -webkit-transition: 0.5s all;
+    transition: 0.5s all;
+    opacity: 0;
+    z-index: 10000
+
+    &.show {
+        opacity: 1;
+    }
+}

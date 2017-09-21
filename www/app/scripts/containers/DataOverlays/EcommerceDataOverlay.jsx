@@ -118,6 +118,7 @@ class ECommerceDataOverlay extends Component {
           shippingMethod={this.props.shippingMethod}
           cart={this.props.cart}
           show={this.props.showCart}
+          onHideCart={this.onHideCart}
         />
         <CartButton
           show={this.props.showCartButton}
