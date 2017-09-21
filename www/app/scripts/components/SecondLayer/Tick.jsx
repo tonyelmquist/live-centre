@@ -28,12 +28,23 @@ class Tick extends React.Component {
         // this.setState({ style.o: 0 });
     }
 
+    getColor = () => {
+        const team = this.props.message.team;
+        if(typeof team !== 'undefined'){
+            const color = { base: `#${this.props.matchInfo[team].lineup.jersey.base}`, sleeve: `#${this.props.matchInfo[team].lineup.jersey.sleeve}` };
+            return color;
+        }
+        return {base: 'transparent', sleeve: 'transparent' };
+    }
+
 
     getStyle = (x, o, y) =>
          ({
              transform: `translateX(${x}%) skew(-10deg)`,
              height: y, // Use height so the old items dont jump.
              opacity: o,
+             borderLeft: `solid 5px ${this.getColor().base}`,
+             //borderRight: `solid 1px ${this.getColor().sleeve}`,
          });
 
     getOpacity = () => {
@@ -46,6 +57,9 @@ class Tick extends React.Component {
             // The focused splash should be fully visible
             if (this.props.currentSplash === this.props.id) {
                 return 1;
+            }
+            if (this.props.currentSplash - this.props.id > 3) {
+                return 0;
             }
             // The rest should fade depending on the distance from the items.
             return 1 - ((this.props.currentSplash - this.props.id) * fadeExpo);
@@ -78,9 +92,14 @@ class Tick extends React.Component {
         let teamName = "";
         let player = "";
         let update = i18next.t(this.props.message.type);
+        let extra = "";
 
         const timestamp = new Date(message.time);
-        const time = `${timestamp.getHours()}:${timestamp.getMinutes()}`;
+        let time = `${message.match_time - 1}:${timestamp.getMinutes()}:`;
+
+        if (isNaN(time)){
+            time = "";
+        }
 
         
         if (message.team) {
@@ -89,22 +108,22 @@ class Tick extends React.Component {
         }
 
         if (message.player) {
-            player = ` ${message.player.name} - `;
+            player = ` - ${message.player.name}`;
         }
 
         if (message.type === 'score_change') {
-            update += ` by ${message.goal_scorer.name}!`;
+            extra = ` by ${message.goal_scorer.name}!`;
         }
         
         if (message.type === 'substitution'){
-            update += `${message.player_out} for ${message.player_in}`;
+            extra = ` - ${message.player_in.name}`;
         }
 
         
         //console.log(message);
         return (
-            <div> {time}{teamName}{player} 
-                <b> {update}</b>
+            <div> {time}
+                <b> {update}</b>{extra}{player}
             </div>
         );
     }

@@ -569,3 +569,40 @@ msgstr "mål"
 msgid "substitution"
 msgstr "innbytte"
 
+#. Soccer ticker translation
+#: 
+msgid "match_started"
+msgstr "kamp startet"
+
+#. Soccer ticker translation
+#: 
+msgid "shot_saved"
+msgstr "skudd reddet"
+
+#. Soccer ticker translation
+#: 
+msgid "shot_on_target"
+msgstr "skudd på mål"
+
+#. Soccer ticker translation
+#: 
+msgid "break_start"
+msgstr "pause startet"
+
+#. Soccer ticker translation
+#: 
+msgid "period_start"
+msgstr "periode startet"
+
+#. Soccer ticker translation
+#: 
+#, fuzzy
+msgid "shot_off_target"
+msgstr "skudd av mål"
+
+#. Soccer ticker translation
+#: 
+#, fuzzy
+msgid "offside"
+msgstr "offside"
+

@@ -27,6 +27,8 @@ class TickerContainer extends React.Component {
         };
     }
 
+    
+
     shouldComponentUpdate(nextProps, nextState){
         if (nextProps.messages.length !== this.props.messages.length) {
             return true;
@@ -55,6 +57,7 @@ class TickerContainer extends React.Component {
         this.setLatestSplash(prevProps);
         //If lineup status has changed, see if we should force hide.
         if (prevProps.isLineupShowing !== this.props.isLineupShowing && this.props.isLineupShowing) {
+            console.log("Force hide history");
             this.forcehideHistoryNow();
         } else if(prevProps.isLineupShowing !== this.props.isLineupShowing && !this.props.isLineupShowing) {
             this.disableForceHide();
@@ -63,7 +66,7 @@ class TickerContainer extends React.Component {
         // IF preventautoscroll, wait til until it is Not preventautoscroll
             // then if new item, scroll down, 
             // if we have hidden the items, scroll down (reset).
-        if (!this.state.preventAutoScroll && !this.props.isLineupShowing) {
+        if (!this.state.preventAutoScroll) {
             if (this.state.currentSplash !== this.state.splashInFocus) {
                 //console.log('scroll To Bottom', this.state.currentSplash);
                 this.scrollToBottom();
@@ -84,7 +87,8 @@ class TickerContainer extends React.Component {
        // console.log(newPos);
         if (currentIteration >= totalIterations) {
             this.scroller.scrollTop = newPos;
-            this.setState({isScrolling: false});
+            console.log("autoscrolling, false");
+            this.setState({ isScrolling: false });
             return newPos;
         }
         this.scroller.scrollTop = newPos;
@@ -99,10 +103,21 @@ class TickerContainer extends React.Component {
         this.moveScroller(from, to, startIteration);
     }
 
+    //When it is hidden we dont need a smooth animation. 
+    forceScrollToBottom = () => {
+        console.log("FORCE SCROLL TO BOTTOM");
+        const scrollTo = this.scroller.scrollHeight - this.scroller.offsetHeight;
+        console.log("SET SCROLLTOP", scrollTo);
+        this.scroller.scrollTop = scrollTo;
+        this.setState({isScrolling: false});
+    }
+
     // Scroll to bottom of page
     scrollToBottom = () => {
         const scroller = this.scroller;
         const topOffset = this.state.containerOffset;
+        const diff = Math.abs(this.state.splashInFocus - this.state.currentSplash);
+        console.log("diff", diff);
         //Set the new item (currentsplash) as the focus. 
         if (this.state.splashInFocus !== this.state.currentSplash) {
             this.setState({ splashInFocus: this.state.currentSplash, isScrolling: true });
@@ -113,12 +128,22 @@ class TickerContainer extends React.Component {
         const maxHeight = (window.innerHeight * (this.state.heightOfContainer / 100) );
         if (Math.floor(maxHeight) <= Math.floor(currentHeight)) {
             setTimeout(() => {
-                //Scroll from where the scroller is now to the full height (bottom) of the page. 
-                const scrollFrom = this.scroller.scrollTop;
-                const scrollTo = this.scroller.scrollHeight - this.scroller.offsetHeight;
-                // this.changeScroller(scrollFrom, scrollTo);
-                this.animateScrollBarFromTo(scrollFrom, scrollTo);
-            }, 500);
+                if (diff > 10){
+                    console.log(this.state.splashInFocus);
+                    this.forceScrollToBottom();
+                } else {
+
+                    console.log("SLOW SCROLL TO BOTTOM");
+                    //Scroll from where the scroller is now to the full height (bottom) of the page. 
+                    console.log("SET SCROLLTOP:", scrollTo);
+                    const scrollFrom = this.scroller.scrollTop;
+                    const scrollTo = this.scroller.scrollHeight - this.scroller.offsetHeight;
+                    // this.changeScroller(scrollFrom, scrollTo);
+                    this.animateScrollBarFromTo(scrollFrom, scrollTo);
+                }
+                
+            }, 1000);
+
         }
     }
 
@@ -143,8 +168,10 @@ class TickerContainer extends React.Component {
     }
 
     onTouchTap = (e) => {
+        console.log("Scroll top: ",this.scroller.scrollTop);
         if(!this.state.forceHideHistory){
             e.stopPropagation();
+            this.checkScrollPos();
         } 
         //clearTimeout(this._hideScrollerTimeout); 
     }
@@ -157,13 +184,18 @@ class TickerContainer extends React.Component {
     }
 
     checkScrollPos = (e) => {
+        console.log("On scroll");
         if (!this.state.isScrolling){ //If we are autoscrolling, we dont need to check
+            console.log("not auto scrolling");
             const bottom = this.scroller.scrollHeight - this.scroller.offsetHeight;
             const itemFullHeight = this.state.heightOfItems + this.state.itemMargin
             if (((bottom - this.scroller.scrollTop) / itemFullHeight) > 1){ //Each item is 110px high. 
                 //Divide this by the amount scrolled and we know how many items to shif the focis. 
+                console.log("new splash in focus", this.state.currentSplash + (this.scroller.scrollTop - bottom) / itemFullHeight);
                 this.setState({splashInFocus: this.state.currentSplash + (this.scroller.scrollTop - bottom) / itemFullHeight});
             }
+        } else {
+            console.log("auto scrolling");
         }
     }
 
@@ -194,7 +226,7 @@ class TickerContainer extends React.Component {
             maxHeight: `${this.state.heightOfContainer}%`,
             overflowY: 'scroll',
             overflowX: 'hidden',
-            width: '40%',
+            width: '30%',
             opacity: this.state.forceHideHistory ? 0 : 1,
         };
     }
@@ -221,6 +253,7 @@ class TickerContainer extends React.Component {
                                 message={message}
                                 currentSplash={this.state.splashInFocus}
                                 id={key}
+                                key={message.id}
                                 forceHideHistory={this.state.forceHideHistory}
                                 matchInfo={this.props.matchInfo}
                         />

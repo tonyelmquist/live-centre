@@ -536,8 +536,8 @@ msgstr "free kick"
 
 #. Soccer ticker translation
 #: 
-msgid "match_start"
-msgstr "match start"
+msgid "match_started"
+msgstr "match started"
 
 #. Soccer ticker translation
 #: 
@@ -563,3 +563,39 @@ msgstr "goal"
 #: 
 msgid "substitution"
 msgstr "substitution"
+
+#. Soccer ticker translation
+#: 
+msgid "shot_saved"
+msgstr "shot saved"
+
+#. Soccer ticker translation
+#: 
+msgid "shot_on_target"
+msgstr "shot on target"
+
+#. Soccer ticker translation
+#: 
+msgid "break_start"
+msgstr "break start"
+
+#. Soccer ticker translation
+#: 
+msgid "period_start"
+msgstr "period start"
+
+#. Soccer ticker translation
+#: 
+msgid "shot_off_target"
+msgstr "shot off target"
+
+#. Soccer ticker translation
+#: 
+msgid "shot_on_target"
+msgstr "shot on target"
+
+#. Soccer ticker translation
+#: 
+msgid "offside"
+msgstr "offside"
+

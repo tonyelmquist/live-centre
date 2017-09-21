@@ -9,7 +9,6 @@ class LineupShirtManager extends Component {
     }
 
     render() {
-        console.log('lineup', this.props.lineup, this.props.jersey);
         return (
             <div className={`team-lineup ${this.props.isOpen ? '' : 'transparent'} ${this.props.inverse ? 'inverse' : ''}`}>
                 <div className="lineup-col goal">

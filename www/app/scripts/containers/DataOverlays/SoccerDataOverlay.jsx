@@ -203,6 +203,7 @@ class SoccerDataOverlay extends Component {
         return this.props.sportsInfo.matches[this.props.selectedVideo.matchId].away.lineup;
     }
 
+
     getOverlayData = () => {
         console.log('Try to get overlaydata');
         // If this videos match data isn't in the store, retreive it
@@ -211,6 +212,13 @@ class SoccerDataOverlay extends Component {
         } else {
             console.log('Data for Match', this.props.sportsInfo.matches[this.props.selectedVideo.matchId]);
         }
+
+    getLatestTickers = () => {
+        const tickers = this.props.activeEvents;
+        // if(tickers.length > 20){
+        //     return tickers.slice(Math.max(tickers.length - 20, 1));
+        // }
+        return tickers;
     }
 
     render() {
@@ -223,12 +231,12 @@ class SoccerDataOverlay extends Component {
                     text={this.state.penaltyCard.text}
                     color={this.state.penaltyCard.color}
                 />*/}
-                <TickerContainer
+                {/* <TickerContainer
                     isLineupShowing={this.state.isLineupShowing}
                     controlBarVisibility={this.props.controlBarVisibility}
-                    messages={this.props.activeEvents}
+                    messages={this.getLatestTickers()}
                     matchInfo={this.props.matches[this.props.video.matchId]}
-                />
+                /> */}
                 <ScoreOverlay
                     score={this.props.dataOverlayScore}
                     homeData={this.getHomeTeam()}
