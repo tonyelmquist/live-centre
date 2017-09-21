@@ -4,12 +4,10 @@
     left: 0;
     width: 100%;
     height: 100%;
+    pointer-events: none;
     transition: .5s all;
 
-    &.transparent {
-        opacity: 0;
-        pointer-events: none;
-    }
+
 
     .lineup-col {
         position: absolute;
@@ -90,5 +88,13 @@
     .lineup-shirt {
         width: 40px;
         padding: 0 15px;
+    }
+
+    &.transparent {
+        opacity: 0;
+        pointer-events: none;
+        .lineup-shirt {
+            pointer-events: none;
+        }
     }
 }
