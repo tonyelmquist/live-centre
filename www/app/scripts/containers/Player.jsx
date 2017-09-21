@@ -25,12 +25,6 @@ class Player extends React.Component {
 
     componentDidMount = () => {
         this.watchVideoTime();
-        if (this.getVideoPlayer()) {
-            this.props.dispatch(setVideoDimensions({
-                width: this.getVideoPlayer().getBoundingClientRect().width,
-                height: this.getVideoPlayer().getBoundingClientRect().height,
-            }));
-        }
     };
 
 
@@ -63,21 +57,6 @@ class Player extends React.Component {
         }
         if (!this.props.videoOverlay.open && this.props.videoPlayer.isPlaying) {
             this.pauseVideo();
-        }
-
-        // Set dimensions if they have changed
-        if (this.getVideoPlayer() && this.props.orientation !== prevProps.orientation) {
-            const currentDimensions = {
-                width: this.getVideoPlayer().getBoundingClientRect().width,
-                height: this.getVideoPlayer().getBoundingClientRect().height,
-            };
-
-            if (prevProps.videoPlayer.dimensions.height !== currentDimensions.height) {
-                this.props.dispatch(setVideoDimensions({
-                    width: this.getVideoPlayer().getBoundingClientRect().width,
-                    height: this.getVideoPlayer().getBoundingClientRect().height,
-                }));
-            }
         }
     }
 
@@ -206,7 +185,16 @@ class Player extends React.Component {
         this.props.dispatch(setControlBarVisibility(true));
     }
 
+
+
     render() {
+        let videoPlayerStyle = {};
+        if (this.props.orientation === Orientation.PORTRAIT) {
+            videoPlayerStyle = { width: '100%', height: '100%' };
+        } else {
+            videoPlayerStyle = { height: '100vh' };
+        }
+
         this.getAndSetDuration();
         return (
           <div onTouchTap={this.onTouchTap} >
@@ -217,6 +205,7 @@ class Player extends React.Component {
                 source={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`}
                 ref={(ref) => { this.largeVideoPlayer = ref; }}
                 videoPlayer={this.props.videoPlayer}
+                extraStyle={videoPlayerStyle}
             />
 
             {/* Video Controls */}

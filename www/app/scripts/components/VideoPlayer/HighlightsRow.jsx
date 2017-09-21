@@ -55,9 +55,21 @@ class HighlightsRow extends Component {
                 />
             </div>),
         );
+        let highlightStyle = {};
+        if (this.props.open) {
+            highlightStyle = {
+                bottom: '30px',
+                opacity: 1,
+            };
+        } else {
+            highlightStyle = {
+                bottom: '-50%',
+                opacity: 0,
+            };
+        }
 
         return (
-            <div className="highlightsSlider slider" style={{bottom: this.props.open ? '30px' : '-50%', transition: '0.3s ease all' }}>
+            <div className="highlightsSlider slider" style={highlightStyle}>
                 <div className="rowHeader">
                     <h3 style={{margin: '0 0 5px 10px', color: '#fff' }}>Highlights</h3>
                 </div>

@@ -4,7 +4,7 @@ import { Motion, spring } from 'react-motion';
 import { Orientation } from '../../../constants/reduxConstants';
 import { connect } from 'react-redux';
 import { maximizeVideoOverlay, closeVideoOverlay, minimizeVideoOverlay } from '../../../actions/VideoOverlay';
-import { setControlBarVisibility } from '../../../actions/videoPlayer';
+import { setControlBarVisibility, setVideoDimensions } from '../../../actions/videoPlayer';
 
 class PlayerMotionController extends React.Component {
     componentDidUpdate() {
@@ -64,6 +64,12 @@ class PlayerMotionController extends React.Component {
 
     getHeight = () => {
         if(this.videoOverlay!== 'undefined'){
+            if(this.props.videoPlayer.dimensions.height !== this.videoOverlay.clientHeight){
+                this.props.dispatch(setVideoDimensions({
+                    width: this.videoOverlay.clientWidth,
+                    height: this.videoOverlay.clientHeight,
+                }));
+            }
             return this.videoOverlay.clientHeight;
         } 
         return 200;
@@ -179,6 +185,7 @@ PlayerMotionController.propTypes = {
 const mapStateToProps = state => ({
     orientation: state.settings.screenOrientation,
     videoOverlay: state.videoOverlay,
+    videoPlayer: state.videoPlayer,
 });
 
 export default connect(mapStateToProps)(PlayerMotionController);

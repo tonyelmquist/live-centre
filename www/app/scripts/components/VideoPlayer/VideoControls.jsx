@@ -144,7 +144,7 @@ class VideoControls extends React.Component {
 
     render() {
         const { isPlaying, duration, currentVideoTime } = this.props.videoPlayer;
-
+        console.log("highligtslider open?", this.state.highlights.open);
         return (
             <div>
                 <div className="gradient-overlay" style={{ ...this.getStyles(), zIndex: 0 }} />

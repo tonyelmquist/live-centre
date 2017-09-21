@@ -37,12 +37,12 @@ class VideoPlayer extends React.Component {
 
         return (
             <video className="video-player" 
-            autoPlay={this.props.autoPlay} 
-            muted={this.props.muted} 
-            poster={this.props.poster} 
-            ref={(ref) => this.video = ref}  
-            playsInline
-            style={{ ...this.props.extraStyle, width: '100%', height: '100%' }}>
+                autoPlay={this.props.autoPlay} 
+                muted={this.props.muted} 
+                poster={this.props.poster} 
+                ref={(ref) => this.video = ref}  
+                playsInline
+                style={{ ...this.props.extraStyle }}>
                 <source src={this.props.source} />
             </video>
         );
