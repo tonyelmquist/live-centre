@@ -41,7 +41,7 @@ export const getMatchData = (matchId) => {
                     console.log('error occured, no timeline data inserted');
                     store.dispatch(insertMatchData(matchId, matchDataForStore));
                 });
-            }, 3000);
+            }, 5000);
         });
     } else {
         console.log('Matchid already exists in store');
