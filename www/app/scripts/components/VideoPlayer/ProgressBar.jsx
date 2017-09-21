@@ -76,9 +76,16 @@ class ProgressBar extends React.Component{
     }
 
     formatTime = (s) => {
-        const minutes = s / 60;
-        const seconds = s % 60;
-        return `${Math.floor(minutes)}:${Math.floor(seconds)}`;
+        let seconds = Math.floor(s % 60);
+        let minutes = Math.floor(s / 60);
+
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+        return `${minutes}:${seconds}`;
     };
     getLeftOffset = () => {
         if (this.props.orientation === Orientation.PORTRAIT){
