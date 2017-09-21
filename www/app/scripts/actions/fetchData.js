@@ -165,3 +165,15 @@ export function insertPlayerData(id, data) {
     return { type: Actions.INSERT_PLAYER_DATA, id, data };
 }
 
+/**
+ * Action to insert team data to store
+ *
+ * @memberof Actions:FetchData
+ * @export
+ * @returns Dispatchable Action
+ */
+export function insertTeamData(id, data) {
+    return { type: Actions.INSERT_TEAM_DATA, id, data };
+}
+
+

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { newPopNotification } from '../actions/notifications';
-import { getMatchData } from '../utils/loadMatchData';
 
 // Data Overlays
 import SoccerDataOverlay from './DataOverlays/SoccerDataOverlay';

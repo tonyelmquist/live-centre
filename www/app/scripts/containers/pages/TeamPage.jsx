@@ -28,7 +28,7 @@ class TeamPage extends React.Component {
         this.props.dispatch(changePageTabIndex(index));
     }
     getVideoTiles = (activeTab) => {
-        const img = activeTab == 1 ? picture1 : picture2;
+        const img = activeTab === 1 ? picture1 : picture2;
         const tiles = [];
         for (let i = 0; i < 10; i++) {
             tiles.push(
@@ -64,8 +64,16 @@ class TeamPage extends React.Component {
             />
               {
                 this.props.activeTab == 0
-                ? <TeamInfoSection players={players} team={team} openPlayerOverlay={this.openPlayerOverlay} closePlayerOverlay={this.closePlayerOverlay}/>
-                : <div className="container-fluid"><MasonryContainer>{this.getVideoTiles(this.props.activeTab)}</MasonryContainer></div>
+                ?
+                    <TeamInfoSection
+                        players={players}
+                        team={team}
+                        openPlayerOverlay={this.openPlayerOverlay}
+                        closePlayerOverlay={this.closePlayerOverlay}
+                    />
+                : <div className="container-fluid">
+                    <MasonryContainer>{this.getVideoTiles(this.props.activeTab)}</MasonryContainer>
+                </div>
               }
 
           </div>

@@ -6,24 +6,22 @@ class Team extends BaseClass {
 
         this.assignData({
             _id: 0,
-            _key: '',
+            _key: 0,
             _title: '',
             _logo: '',
-            _img: '/',
-            description: '',
-            _colors: [],
+            _img: '',
             _abbr: '',
-            _players: [7, 11, 1],
+            _players: [],
+            _venue: {},
         }, {
             _id: data.id,
             _key: data.key,
             _title: data.title,
             _logo: data.logo,
             _img: data.img,
-            _description: data.description,
-            _colors: data.colors,
-            _abbr: data.abbr,
+            _abbr: data.abbreviation,
             _players: data.players,
+            _venue: data.venue,
         });
     }
 

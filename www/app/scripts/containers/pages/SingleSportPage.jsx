@@ -55,7 +55,7 @@ class SingelSportsPage extends React.Component {
         const teams = this.props.sportsInfo.teams;
         const rowItems = [];
         for (const key in teams) {
-            rowItems.push(<div key={key} onTouchTap={() => this.handleTeamOpen(key)} className="scrollable-team-logo"><img src={teams[key].logo}/></div>)
+            rowItems.push(<div key={key} onTouchTap={() => this.handleTeamOpen(key)} className="scrollable-team-logo"><img src={`http://35.158.87.9/images/Sport/Teams/Logos/${teams[key].logo}`} /></div>)
         }
         return rowItems;
     }
@@ -85,6 +85,7 @@ class SingelSportsPage extends React.Component {
 }
 
 SingelSportsPage.propTypes = {
+    dispatch: PropTypes.func.isRequired,
     videos: PropTypes.any.isRequired,
     tags: PropTypes.object.isRequired,
     sportsInfo: PropTypes.object.isRequired,

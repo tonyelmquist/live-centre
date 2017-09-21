@@ -10,6 +10,7 @@ import initLang from './utils/i18nextInit';
 import store from './utils/store';
 import initVideos from './utils/initVideos';
 import initFirebase from './utils/initFirebase';
+import initTeamData from './utils/initTeamData';
 import { getMatchData } from './utils/loadMatchData';
 import Authentication from './utils/Authentication';
 // import FirebaseDB from './utils/FirebaseDB';
@@ -29,6 +30,9 @@ initLang(store);
 
 // Init Firebase
 initFirebase();
+
+// Init 10 teams for sport page
+// initTeamData();
 
 // Init Authentication
 Authentication.init();

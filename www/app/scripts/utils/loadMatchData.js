@@ -2,7 +2,7 @@ import store from './store';
 import Match from '../classes/match';
 import Team from '../classes/team';
 import TeamMember from '../classes/teamMember';
-import { insertMatchData, insertPlayerData } from '../actions/fetchData';
+import { insertMatchData, insertPlayerData, insertTeamData } from '../actions/fetchData';
 import SportRadarApi from './SportRadarApi';
 
 export const getMatchData = (matchId) => {
@@ -48,21 +48,37 @@ export const getMatchData = (matchId) => {
     }
 };
 
-export const getTeamData = (teamId) => {
+export const getTeamData = (teamId, callback = () => {}) => {
     if (typeof store.getState().sportsInfo.teams[teamId] === 'undefined') {
         SportRadarApi.getTeamProfile(`sr:competitor:${teamId}`, (data) => {
+            const players = data.players.map((value) => {
+                return value.id.split('sr:player:')[1];
+            });
             const teamDataForStore = new Team({
                 id: teamId,
                 key: teamId,
-                title: data.name,
-                logo: data.logo,
-                img: data.img,
-                description: data.description,
-                colors: data.colors,
-                abbr: data.abbr,
-                players: data.players,
+                title: data.team.name,
+                logo: `${teamId}-logo.png`,
+                img: `${teamId}-img.png`,
+                abbr: data.team.abbreviation,
+                players,
+                venue: data.venue,
             });
-            console.log(teamDataForStore); // TODO reformat team class
+
+            callback(teamDataForStore);
+
+            store.dispatch(insertTeamData(teamId, teamDataForStore));
+
+            // Get players in this team
+            let count = 0;
+            const getPlayerInterval = setInterval(() => {
+                if (typeof players[count] !== 'undefined') {
+                    getPlayerData(players[count]);
+                } else {
+                    clearInterval(getPlayerInterval);
+                }
+                count += 1;
+            }, 5000);
         });
     }
 };
