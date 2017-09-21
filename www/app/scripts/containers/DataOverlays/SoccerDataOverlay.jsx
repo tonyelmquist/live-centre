@@ -212,6 +212,7 @@ class SoccerDataOverlay extends Component {
         } else {
             console.log('Data for Match', this.props.sportsInfo.matches[this.props.selectedVideo.matchId]);
         }
+    }
 
     getLatestTickers = () => {
         const tickers = this.props.activeEvents;
