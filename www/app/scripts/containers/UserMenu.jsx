@@ -73,8 +73,8 @@ class UserMenu extends Component {
                         <img src={this.props.authentication.user.photoURL} alt={this.props.authentication.user.email} />
                     </div>
                     <div className="user-menu-profile-info">
-                        <span className="user-menu-profile-name">Dan Levings</span><br />
-                        <span className="user-menu-profile-link">View Profile</span>
+                        <span className="user-menu-profile-name">{this.props.authentication.user.displayName}</span><br />
+                        <span className="user-menu-profile-link"> {i18next.t('view_profile')} </span>
                     </div>
                 </div>
                 :

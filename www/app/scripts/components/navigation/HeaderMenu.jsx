@@ -32,7 +32,7 @@ const HeaderMenu = (props) => {
             return (<FlatButton className="menuItem logo" style={{ margin: 7 }} label="IMR" />);
         }
         return (<div onTouchTap={() => props.goBack()} className="menuItem links">
-                    <FontAwesome name="chevron-left" className="white menuItemBackButton" style={{ padding: 17, float: 'left', color: '#000' }} />
+                    <FontAwesome name="chevron-left" className="white menuItemBackButton" style={{ padding: '17px 17px 17px 27px', float: 'left', color: '#000' }} />
                     <span className="menuItemLabel">{i18next.t(props.locationName)}</span>
                 </div>);
     };

@@ -53,7 +53,9 @@ class Header extends Component {
     }
 
     goBack = () => {
-        if (this.props.pageTabIndex.past.length === 0) {
+        console.log("GO BACK");
+        console.log(this.props.pageTabIndex.past);
+        if (this.props.pageTabIndex.past.length <= 1) {
             this.props.dispatch(removePageTabIndex());
             this.props.history.goBack();
         } else {

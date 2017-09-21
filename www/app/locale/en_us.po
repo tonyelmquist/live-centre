@@ -92,6 +92,11 @@ msgstr "Sign Out"
 msgid "app_login"
 msgstr "Login"
 
+#. Profile: View profile
+#:
+msgid "view_profile"
+msgstr "View profile"
+
 
 #. Language: English
 #:
@@ -598,4 +603,6 @@ msgstr "shot on target"
 #: 
 msgid "offside"
 msgstr "offside"
+
+
 
