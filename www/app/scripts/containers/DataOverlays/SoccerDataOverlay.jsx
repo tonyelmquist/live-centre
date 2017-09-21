@@ -203,7 +203,19 @@ class SoccerDataOverlay extends Component {
         return this.props.sportsInfo.matches[this.props.selectedVideo.matchId].away.lineup;
     }
 
+    getOverlayData = () => {
+        console.log('Try to get overlaydata');
+        // If this videos match data isn't in the store, retreive it
+        if (typeof this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
+            getMatchData(this.props.selectedVideo.matchId);
+        } else {
+            console.log('Data for Match', this.props.sportsInfo.matches[this.props.selectedVideo.matchId]);
+        }
+    }
+
     render() {
+        this.getOverlayData();
+
         return (
             <div>
                 {/* <PenaltyCard

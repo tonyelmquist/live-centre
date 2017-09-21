@@ -7,7 +7,8 @@ import { getMatchData } from '../utils/loadMatchData';
 
 // Data Overlays
 import SoccerDataOverlay from './DataOverlays/SoccerDataOverlay';
-import ECommerceDataOverlay from './DataOverlays/ECommerceDataOverlay';
+import BasketballDataOverlay from './DataOverlays/BasketballDataOverlay';
+import ECommerceDataOverlay from './DataOverlays/EcommerceDataOverlay';
 import PopIndicatorManager from '../components/SecondLayer/PopIndicatorManager';
 
 
@@ -25,27 +26,21 @@ class DataOverlay extends Component {
         });
     }
 
-    getOverlayData = () => {
-        console.log('Try to get overlaydata');
-        // If this videos match data isn't in the store, retreive it
-        if (typeof this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
-            getMatchData(this.props.selectedVideo.matchId);
-        } else {
-            console.log('Data for Match', this.props.sportsInfo.matches[this.props.selectedVideo.matchId]);
-        }
-    }
 
     render() {
-        this.getOverlayData();
-        
         return (
-      <div className="data-overlay" onTouchTap={e => e.stopPropagation()}>
+            <div className="data-overlay" onTouchTap={e => e.stopPropagation()}>
 
-        <SoccerDataOverlay />
-        <ECommerceDataOverlay />
-        <PopIndicatorManager notifications={this.props.popNotifications} />
+                {this.props.selectedVideo.sport === 'Soccer' ?
+                    <SoccerDataOverlay /> : ''
+                }
+                {this.props.selectedVideo.sport === 'Basketball' ?
+                    <BasketballDataOverlay /> : ''
+                }
+                <ECommerceDataOverlay />
+                <PopIndicatorManager notifications={this.props.popNotifications} />
 
-      </div>
+            </div>
         );
     }
 }

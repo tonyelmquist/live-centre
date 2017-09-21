@@ -39,15 +39,20 @@ class Player extends React.Component {
             this.pauseVideo();
         }
 
-        if (
-            typeof this.largeVideoPlayer !== 'undefined' &&
-            this.largeVideoPlayer !== null
-        ) {
+        if (this.getVideoPlayer()) {
             if (this.videoLoaded !== nextProps.video.videoUrl) {
                 this.setState({ isPreOverlayShowing: true });
-                this.largeVideoPlayer.video.load();
+                this.getVideoPlayer().load();
 
                 this.videoLoaded = nextProps.video.videoUrl;
+
+                this.getVideoPlayer().onloadeddata = () => {
+                    console.log('SET', this.getVideoPlayer().getClientRects(), this.getVideoPlayer().videoWidth, this.getVideoPlayer().videoHeight);
+                    this.props.dispatch(setVideoDimensions({
+                        width: window.innerWidth,
+                        height: (window.innerWidth / this.getVideoPlayer().videoWidth) * this.getVideoPlayer().videoHeight,
+                    }));
+                };
             }
         }
     };

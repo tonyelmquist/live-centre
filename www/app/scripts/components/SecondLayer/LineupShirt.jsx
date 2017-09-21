@@ -29,7 +29,6 @@ class LineupShirt extends Component {
     }
 
     render() {
-        
         return (
             <div className="lineup-shirt">
                 { this.props.clickIndicator && !this.state.clicked ? <div className="click-indicator-shirt" /> : <div /> }
