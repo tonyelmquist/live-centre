@@ -1,21 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TimelineManager from '../utils/Managers/TimelineManager';
-import { maximizeVideoOverlay, closeVideoOverlay, minimizeVideoOverlay } from '../actions/VideoOverlay';
+import { closeVideoOverlay, minimizeVideoOverlay } from '../actions/videoOverlay';
 import { Orientation } from '../constants/reduxConstants';
 import DataOverlay from './DataOverlay';
-import { showReplay, hideReplay, showHighlights, setControlBarVisibility,
-    isVideoSettingsOpen, showProductOverlay, showProductThumb,
-    hideProductThumb, updateCurrentTime, changeCurrentTime, skipCurrentTimeBy, setDuration, playVideo, pauseVideo, setBufferTime, setVideoDimensions } from '../actions/videoPlayer';
+import { setControlBarVisibility, updateCurrentTime, setDuration, playVideo, pauseVideo, setBufferTime, setVideoDimensions } from '../actions/videoPlayer';
 import '../../../node_modules/video-react/dist/video-react.css';
 import isDblTouchTap from '../utils/isDblTouchTap';
-import { changeScore, changeClock } from '../actions/dataOverlay';
 import VideoPlayer from '../components/VideoPlayer/VideoPlayer';
 import VideoControls from '../components/VideoPlayer/VideoControls';
 import PrePlayOverlay from '../components/VideoOverlay/PrePlayOverlay';
 
-const tickProximityInterval = 5000;
 /**
  * Overlay Video Player.
  *
@@ -26,12 +21,7 @@ class Player extends React.Component {
     // State should be moved to
     state = {
         isPreOverlayShowing: true,
-        forcedLandscapeMode: false,
     };
-
-    limit = 50;
-
-    controlBarTimeout = null;
 
     componentDidMount = () => {
         this.watchVideoTime();
@@ -43,8 +33,27 @@ class Player extends React.Component {
         }
     };
 
+
+    componentWillUpdate = (nextProps) => {
+        if (this.props.video.id !== nextProps.video.id) {
+            this.pauseVideo();
+        }
+
+        if (
+            typeof this.largeVideoPlayer !== 'undefined' &&
+            this.largeVideoPlayer !== null
+        ) {
+            if (this.videoLoaded !== nextProps.video.videoUrl) {
+                this.setState({ isPreOverlayShowing: true });
+                this.largeVideoPlayer.video.load();
+
+                this.videoLoaded = nextProps.video.videoUrl;
+            }
+        }
+    };
+
     componentDidUpdate = (prevProps) => {
-        if(this.props.appPaused !== prevProps.appPaused){
+        if (this.props.appPaused !== prevProps.appPaused) {
             this.handleAppPause();
         }
         if (!this.props.videoOverlay.open && this.props.videoPlayer.isPlaying) {
@@ -67,25 +76,6 @@ class Player extends React.Component {
         }
     }
 
-    componentWillUpdate = (nextProps) => {
-        if (this.props.video.id !== nextProps.video.id) {
-            console.log('new video');
-            this.pauseVideo();
-        }
-
-        if (
-            typeof this.largeVideoPlayer !== 'undefined' &&
-            this.largeVideoPlayer !== null
-        ) {
-            if (this.videoLoaded !== nextProps.video.videoUrl) {
-                this.setState({ isPreOverlayShowing: true });
-                this.largeVideoPlayer.video.load();
-
-                this.videoLoaded = nextProps.video.videoUrl;
-            }
-        }
-    };
-
     onPrePlayTouch = (e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -107,10 +97,6 @@ class Player extends React.Component {
         }
     };
 
-    onScroll = (e) => {
-        // e.stopPropagation();
-    }
-
     onCloseTouch = (e) => {
         // e.stopPropagation();
         e.preventDefault();
@@ -127,30 +113,6 @@ class Player extends React.Component {
         this.props.dispatch(setControlBarVisibility(false));
     };
 
-    onShowProductOverlay = () => {
-        this.props.dispatch(showProductOverlay());
-    };
-
-    showHighlights = (videoUrl, highlights) => {
-        this.props.dispatch(showHighlights(videoUrl, highlights));
-    };
-
-    handleStateChange = (state, prevState) => {
-        this.setState({
-            player: state,
-            currentTime: state.currentTime,
-        });
-        this.tickInProximity(state.currentTime);
-    };
-
-    handleAppPause = () => {
-        if (this.props.appPaused && this.props.videoPlayer.isPlaying) {
-            this.pauseVideo();
-        } else if (!this.props.appPaused && !this.props.videoPlayer.isPlaying) {
-            this.playVideo();
-        }
-    }
-
     onTouchTap = (e) => {
         // document.activeElement.blur();
         // e.preventDefault();
@@ -159,10 +121,9 @@ class Player extends React.Component {
         }
         this.showControlBar();
         clearTimeout(this.controlBarTimeout);
-        console.log('Clear timeout');
+
         this.controlBarTimeout = setTimeout(() => {
             if (this.props.videoPlayer.isPlaying) {
-                console.log('Hide control bar');
                 this.hideControlBar();
             }
         }, 3000);
@@ -175,27 +136,13 @@ class Player extends React.Component {
         return null;
     }
 
-    watchVideoTime = () => {
-        // If videoplayer is rendered.
-        if (this.getVideoPlayer()) {
-            this.getVideoPlayer().addEventListener('timeupdate', () => {
-                const newTime = this.getVideoPlayer().currentTime;
-                if (this.props.videoPlayer.currentVideoTime !== newTime) {
-                    this.props.dispatch(updateCurrentTime(newTime));
-                }
-
-                this.getCurrentBuffer();
-            });
-        }
-    }
-
     getCurrentBuffer = () => {
         const videoPlayer = this.getVideoPlayer();
         if (videoPlayer.buffered) {
             for (let i = 0; i < videoPlayer.buffered.length; i++) {
                 const currentTime = this.props.videoPlayer.currentVideoTime;
-                //A new buffer is generated each time we skip in time, 
-                //Check which buffer time is part of the current time/should be shown. 
+                // A new buffer is generated each time we skip in time,
+                // Check which buffer time is part of the current time/should be shown.
                 if (videoPlayer.buffered.start(i) <= currentTime && currentTime <= videoPlayer.buffered.end(i)) {
                     const timeBuffered = videoPlayer.buffered.end(i);
 
@@ -215,24 +162,36 @@ class Player extends React.Component {
         }
     }
 
+    watchVideoTime = () => {
+        // If videoplayer is rendered.
+        if (this.getVideoPlayer()) {
+            this.getVideoPlayer().addEventListener('timeupdate', () => {
+                const newTime = this.getVideoPlayer().currentTime;
+                if (this.props.videoPlayer.currentVideoTime !== newTime) {
+                    this.props.dispatch(updateCurrentTime(newTime));
+                }
+
+                this.getCurrentBuffer();
+            });
+        }
+    }
+
+    handleAppPause = () => {
+        if (this.props.appPaused && this.props.videoPlayer.isPlaying) {
+            this.pauseVideo();
+        } else if (!this.props.appPaused && !this.props.videoPlayer.isPlaying) {
+            this.playVideo();
+        }
+    }
+
+    controlBarTimeout = null;
+
     playVideo = () => {
         this.props.dispatch(playVideo());
     }
 
     pauseVideo = () => {
         this.props.dispatch(pauseVideo());
-    }
-
-    changeCurrentTime = (time) => {
-        this.props.dispatch(changeCurrentTime());
-    }
-
-    togglePlay = () => {
-        if (this.props.videoPlayer.isPlaying) {
-            this.pauseVideo();
-        } else {
-            this.playVideo();
-        }
     }
 
     hideControlBar = () => {
@@ -245,7 +204,7 @@ class Player extends React.Component {
     render() {
         this.getAndSetDuration();
         return (
-          <div onScroll={this.onScroll} onTouchTap={this.onTouchTap} > 
+          <div onTouchTap={this.onTouchTap} >
 
             {/* Base Video */}
             <VideoPlayer
@@ -295,9 +254,6 @@ Player.propTypes = {
     video: PropTypes.object.isRequired,
     videoPlayer: PropTypes.object.isRequired,
     videoOverlay: PropTypes.object.isRequired,
-    matches: PropTypes.object.isRequired,
-    dataOverlayScore: PropTypes.object.isRequired,
-    controlBarVisibility: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -305,32 +261,9 @@ const mapStateToProps = state => ({
     video: state.playback.video,
     videoPlayer: state.videoPlayer,
     videoPosition: state.playback.currentTime,
-    controlBarVisibility: state.playback.controlBarVisibility,
     videoOverlay: state.videoOverlay,
     orientation: state.settings.screenOrientation,
-    matches: state.sportsInfo.matches,
-    dataOverlayScore: state.dataOverlay.score,
     dataOverlayClock: state.dataOverlay.clock,
 });
 
 export default connect(mapStateToProps)(Player);
-
-
- /* <Video playsInline poster={this.props.video.thumbnail} ref={ref => (this.largeVideoPlayer = ref)} >
-              <ControlBar autoHide>
-                <PlayToggle />
-                { this.props.orientation === Orientation.LANDSCAPE ? <FontAwesome name="cog" style={settingsIconStyles} onTouchTap={this.onOpenSettings} /> : <div />}
-                { this.props.orientation === Orientation.LANDSCAPE ? <FontAwesome name="undo" style={replayIconStyles} onTouchTap={() => this.showReplay(this.props.video.videoUrl, 0)} /> : <div />}
-                { this.props.orientation === Orientation.LANDSCAPE ? <FontAwesome name="star" style={highlightsIconStyles} onTouchTap={() => this.showHighlights(this.props.video.videoUrl, [
-                  { timestamp: 0, description: 'A HIGHLIGHT', thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png' },
-                    {
-                        timestamp: 10,
-                        description: 'ANOTHER HIGHLIGHT',
-                        title: 'ANOTHER HIGHLIGHT',
-                        thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png',
-                    },
-                ])} /> : <div />}
-
-              </ControlBar>
-              <source src={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`} />
-            </Video> */
