@@ -25,9 +25,9 @@ class VideoDescription extends React.Component {
 
     handleWishlistClick = () => {
         if (this.props.video.wishlist) {
-            this.props.handleRemoveFromWishlist();
+            this.props.handleRemoveFromWishlist(this.props.video.id);
         } else {
-            this.props.handleAddToWishlist();
+            this.props.handleAddToWishlist(this.props.video.id);
         }
     }
 
