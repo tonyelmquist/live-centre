@@ -29,7 +29,7 @@ import SportPlayerOverlay from '../components/SportSection/SportPlayerOverlay';
 import LoginModal from '../components/Modals/LoginModal';
 // Actions
 import { setLandscape, setPortrait } from '../actions/settings';
-import { pauseApp, resumeApp } from '../actions/navigation';
+import { switchShade } from '../actions/navigation';
 import { closeTeamMemberOverlay } from '../actions/pages/sportsPage';
 import { showLoginModal } from '../actions/modals';
 import { newNotification, removeNotification } from '../actions/notifications';
@@ -101,6 +101,7 @@ class App extends Component {
 
     closeLoginModal = () => {
         this.props.dispatch(showLoginModal(false));
+        this.props.dispatch(switchShade(false));
     }
 
     loginAttempt = (username, password) => {
