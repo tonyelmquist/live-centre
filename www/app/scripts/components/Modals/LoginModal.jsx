@@ -82,7 +82,7 @@ class LoginModal extends Component {
                     <h2>{i18next.t('app_login')}</h2>
                     <input type="email" placeholder={i18next.t('placeholder_email')} ref={ref => (this.usernameInput = ref)} onBlur={this.blurModal} onFocus={this.focusModal} onKeyDown={this.onUsernameFieldKeyDown} style={this.props.error ? this.errorStyles : {}} />
                     <input type="password" placeholder={i18next.t('placeholder_password')} ref={ref => (this.passwordInput = ref)} onBlur={this.blurModal} onFocus={this.focusModal} onKeyDown={this.onPasswordFieldKeyDown} style={this.props.error ? this.errorStyles : {}} />
-                    <input type="submit" value={i18next.t('submit_login')} className="btn" onClick={this.onSubmit} />
+                    <input type="submit" value={i18next.t('submit_login')} className="btn" onTouchTap={this.onSubmit} />
 
                 </div>
             </div>

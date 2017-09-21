@@ -120,7 +120,6 @@ class SoccerDataOverlay extends Component {
                 this.props.dispatch(changeClock(2700000));
             }
         } else {
-            console.log('VIDEO', this.props.video);
             const clock = (this.props.currentTime * 1000) - this.props.video.matchStart;
             this.props.dispatch(changeClock(clock));
         }
@@ -128,7 +127,6 @@ class SoccerDataOverlay extends Component {
 
     moveToPlayerInfo = (playerId) => {
         if (typeof this.props.sportsInfo.players[playerId] === 'undefined') {
-            console.log('sport info undefined, getting data');
             getPlayerData(playerId, (player) => {
                 this.setState({
                     selectedPlayer: player,
@@ -137,7 +135,6 @@ class SoccerDataOverlay extends Component {
                 });
             });
         } else {
-            console.log('Data for Player', this.props.sportsInfo.players[playerId]);
             this.setState({
                 selectedPlayer: this.props.sportsInfo.players[playerId],
                 isLineupShowing: false,
@@ -205,7 +202,6 @@ class SoccerDataOverlay extends Component {
 
 
     getOverlayData = () => {
-        console.log('Try to get overlaydata');
         // If this videos match data isn't in the store, retreive it
         if (typeof this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
             getMatchData(this.props.selectedVideo.matchId);
