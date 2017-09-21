@@ -41,6 +41,10 @@ class CategoryContainer extends Component {
     //     });
     // }
 
+    componentDidMount = () => {
+        window.scrollTo(0, 0);
+    }
+
     render() {
         const videos = [];
         const categoryID = this.props.match.params.categoryKey;
