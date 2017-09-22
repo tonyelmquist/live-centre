@@ -130,4 +130,28 @@ export default class SportRadarApi {
             console.warn('Already executing call, please wait');
         }
     }
+
+    static getBasketballGameSummary(matchId, callback) {
+        if (!executingCall) {
+            executingCall = true;
+            axios('http://ec2-35-158-87-9.eu-central-1.compute.amazonaws.com/fileGetContents', {
+                method: 'POST',
+                data: {
+                    url: `http://api.sportradar.us/ncaamb-t3/games/${matchId}/summary.json?api_key=${SportRadarApi.apiKeys.ncaamb}`,
+                },
+                headers: {
+                    Authorization: 'Basic mcAPI2o17-H35t-password',
+                },
+            }).then((response) => {
+                executingCall = false;
+                console.log('Retreived profile Data for player id: ', matchId, response);
+                callback(response.data);
+            }).catch((error) => {
+                executingCall = false;
+                console.error('Something went wrong with the api call in getPlayerProfile', error);
+            });
+        } else {
+            console.warn('Already executing call, please wait');
+        }
+    }
 }

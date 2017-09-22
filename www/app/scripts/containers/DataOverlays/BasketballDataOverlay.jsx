@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getBasketballGameData } from '../../utils/loadMatchData';
 
 class BasketballDataOverlay extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            isHomeRosterShowing: false,
+            isAwayRosterShowing: false,
+        };
+    }
+
+    componentWillMount = () => {
+        this.getOverlayData();
     }
 
 
@@ -13,19 +23,51 @@ class BasketballDataOverlay extends Component {
         console.log('Try to get overlaydata');
         // If this videos match data isn't in the store, retreive it
         if (typeof this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
-            getMatchData(this.props.selectedVideo.matchId);
+            getBasketballGameData(this.props.selectedVideo.matchId);
         } else {
             console.log('Data for Match', this.props.sportsInfo.matches[this.props.selectedVideo.matchId]);
         }
     }
 
+    showHomeRoster = () => {
+        this.setState({ isHomeRosterShowing: !this.state.isHomeRosterShowing });
+    }
+
+    showAwayRoster = () => {
+        this.setState({ isAwayRosterShowing: !this.state.isAwayRosterShowing });
+    }
+
+    stopPropagation = (e) => {
+        e.stopPropagation();
+    }
+
     render() {
+        if (this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
+            return <div />;
+        }
+
+        const matchData = this.props.sportsInfo.matches[this.props.selectedVideo.matchId];
         return (
-            <div>
-                <div style={{position: 'absolute', left: 200, top: 200}}>
-                    Test
+            <div className="basketball-overlay">
+                <div className="basketball-overlay-home-name" onTouchTap={this.showHomeRoster}>
+                    {matchData.home.team.name}
                 </div>
 
+                <div className="basketball-overlay-away-name" onTouchTap={this.showAwayRoster}>
+                    {matchData.away.team.name}
+                </div>
+
+                <div className={`basketball-overlay-home-roster ${this.state.isHomeRosterShowing ? 'isShowing' : ''}`} onTouchEnd={this.stopPropagation}>
+                    <ul>
+                        {matchData.home.lineup.map(value => <li>{value.full_name}</li>)}
+                    </ul>
+                </div>
+
+                <div className={`basketball-overlay-away-roster ${this.state.isAwayRosterShowing ? 'isShowing' : ''}`} onTouchEnd={this.stopPropagation}>
+                    <ul>
+                        {matchData.away.lineup.map(value => <li>{value.full_name}</li>)}
+                    </ul>
+                </div>
             </div>
         );
     }
