@@ -50,7 +50,7 @@ class ECommerceDataOverlay extends Component {
     };
 
     onAddToCart = () => {
-        this.props.dispatch(addToCart());
+        this.props.dispatch(addToCart(this.props.selectedProduct));
         this.props.dispatch(newPopNotification(Math.round(Math.random() * 100), 'Item added to cart', 0.1, new Date().getTime()));
     };
 
@@ -119,6 +119,7 @@ class ECommerceDataOverlay extends Component {
           cart={this.props.cart}
           show={this.props.showCart}
           onHideCart={this.onHideCart}
+          onCompleteCheckout={this.onCompleteCheckout}
         />
         <CartButton
           show={this.props.showCartButton}

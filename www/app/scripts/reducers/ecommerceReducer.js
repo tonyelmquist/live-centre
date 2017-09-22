@@ -1,9 +1,8 @@
 import Actions from '../constants/reduxConstants';
 
 const defaultState = {
-    cart: {
-        products: [],
-    },
+    cart: [],
+
     popupManager: {
         showCartButton: false,
         showBuyNow: false,
@@ -17,10 +16,11 @@ const defaultState = {
 };
 
 export default function ecommerceReducer(state = defaultState, action) {
-    const productArray = state.products.slice();
+
     switch (action.type) {
     case Actions.ADD_TO_CART:
-        productArray.push({ product: action.productID });
+
+        const quantity = state.cart[action.productID];
 
         return {
             ...state,
@@ -32,12 +32,15 @@ export default function ecommerceReducer(state = defaultState, action) {
                 showProductOverlay: false,
             },
             cart: {
-                products: productArray,
+                ...state.cart,
+                [action.productID]: (quantity || 0) + 1,
             },
         };
 
     case Actions.BUY_NOW:
-        productArray.push({ product: action.productID });
+        productArray.push({
+            product: action.productID,
+        });
         return {
             ...state,
             popupManager: {
