@@ -1,0 +1,49 @@
+.basketball-overlay-home-name, .basketball-overlay-away-name {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 21px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
+}
+
+.basketball-overlay-away-name {
+    left: auto;
+    right: 20px;
+}
+
+.basketball-overlay-home-roster, .basketball-overlay-away-roster {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    height: 100%;
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, .4);
+    transform: translateX(-100%);
+    transition: transform .5s;
+    will-change: transform;
+
+    ul {
+        list-style: none;
+        height: 70%;
+        padding-left: 0;
+        overflow: scroll;
+
+        li {
+            padding: 20px 0;
+        }
+    }
+
+    &.isShowing {
+        transform: translateX(0%);
+    }
+}
+
+.basketball-overlay-away-roster {
+    left: auto;
+    right: 20px;
+    text-align: right;
+    transform: translateX(100%);
+}
+

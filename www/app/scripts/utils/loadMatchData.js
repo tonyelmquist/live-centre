@@ -107,3 +107,38 @@ export const getPlayerData = (playerId, callback = () => {}) => {
         });
     }
 };
+
+export const getBasketballGameData = (matchId, callback = () => {}) => {
+    if (typeof store.getState().sportsInfo.matches[matchId] === 'undefined') {
+        SportRadarApi.getBasketballGameSummary(matchId, (data) => {
+            // Construct Match Data
+            const matchDataForStore = new Match({
+                id: matchId,
+                home: {
+                    team: {
+                        name: data.home.name,
+                        market: data.home.market,
+                        statistics: data.home.statistics,
+                        sportRadarId: data.home.id,
+                    },
+                    lineup: data.home.players,
+                },
+                away: {
+                    team: {
+                        name: data.away.name,
+                        market: data.away.market,
+                        statistics: data.away.statistics,
+                        sportRadarId: data.away.id,
+                    },
+                    lineup: data.away.players,
+                },
+            });
+
+            callback(matchDataForStore);
+
+            store.dispatch(insertMatchData(matchId, matchDataForStore));
+        });
+    } else {
+        console.log('Matchid already exists in store');
+    }
+};

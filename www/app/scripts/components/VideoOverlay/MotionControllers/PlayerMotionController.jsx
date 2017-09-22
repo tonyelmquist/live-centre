@@ -20,6 +20,8 @@ class PlayerMotionController extends React.Component {
     }
 
     onTouchStart = (e) => {
+        console.log(e);
+        console.log(e.target);
         this.startTouchPosition = {
             x: e.changedTouches[0].clientX,
             y: e.changedTouches[0].clientY,
@@ -102,8 +104,8 @@ class PlayerMotionController extends React.Component {
             this.minimizedY = Math.round((window.innerHeight / this.videoOverlay.clientHeight) * 66);
         }
 
-        //Styles that will be changed by motion
-        let motionStyle = {                
+        // Styles that will be changed by motion
+        let motionStyle = {           
             y: 0,
             scale: 1,
             opacity: 0,
