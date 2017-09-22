@@ -31,9 +31,16 @@ class SoccerDataOverlay extends Component {
         };
     }
 
+    componentWillMount = () => {
+        this.getOverlayData();
+    }
+
     timelineManager = new TimelineManager();
 
     componentDidUpdate(prevProps) {
+        if (typeof this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
+            return;
+        }
         const matchTimeline = this.props.matches[this.props.video.matchId].timeline;
 
         // Check if we can get the timeline at all. Before we do anything.
@@ -219,8 +226,6 @@ class SoccerDataOverlay extends Component {
     }
 
     render() {
-        this.getOverlayData();
-
         return (
             <div>
                 {/* <PenaltyCard
