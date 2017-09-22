@@ -18,10 +18,13 @@ import PrePlayOverlay from '../components/VideoOverlay/PrePlayOverlay';
  * @extends {React.Component}
  */
 class Player extends React.Component {
-    // State should be moved to
-    state = {
-        isPreOverlayShowing: true,
-    };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isPreOverlayShowing: true,
+        };
+    }
 
     componentDidMount = () => {
         this.watchVideoTime();
@@ -122,20 +125,20 @@ class Player extends React.Component {
 
     getCurrentBuffer = () => {
         const videoPlayer = this.getVideoPlayer();
-        if (videoPlayer.buffered) {
-            for (let i = 0; i < videoPlayer.buffered.length; i++) {
-                const currentTime = this.props.videoPlayer.currentVideoTime;
-                // A new buffer is generated each time we skip in time,
-                // Check which buffer time is part of the current time/should be shown.
-                if (videoPlayer.buffered.start(i) <= currentTime && currentTime <= videoPlayer.buffered.end(i)) {
-                    const timeBuffered = videoPlayer.buffered.end(i);
+            if (videoPlayer.buffered !== this.props.videoPlayer.bufferTime) {
+                for (let i = 0; i < videoPlayer.buffered.length; i++) {
+                    const currentTime = this.props.videoPlayer.currentVideoTime;
+                    // A new buffer is generated each time we skip in time,
+                    // Check which buffer time is part of the current time/should be shown.
+                    if (videoPlayer.buffered.start(i) <= currentTime && currentTime <= videoPlayer.buffered.end(i)) {
+                        const timeBuffered = videoPlayer.buffered.end(i);
 
-                    if (this.props.videoPlayer.bufferTime !== timeBuffered) {
-                        // console.log(this.props.videoPlayer.bufferTime, timeBuffered);
-                        this.props.dispatch(setBufferTime(timeBuffered));
+                        if (this.props.videoPlayer.bufferTime !== timeBuffered) {
+                            // console.log(this.props.videoPlayer.bufferTime, timeBuffered);
+                            this.props.dispatch(setBufferTime(timeBuffered));
+                        }
                     }
                 }
-            }
         }
     }
 
@@ -146,15 +149,25 @@ class Player extends React.Component {
         }
     }
 
+
     watchVideoTime = () => {
         // If videoplayer is rendered.
         if (this.getVideoPlayer()) {
             this.getVideoPlayer().addEventListener('timeupdate', () => {
+
                 const newTime = this.getVideoPlayer().currentTime;
+
+                console.log(this.props.videoPlayer.currentVideoTime, newTime);
+
                 if (this.props.videoPlayer.currentVideoTime !== newTime) {
                     this.props.dispatch(updateCurrentTime(newTime));
                 }
 
+            });
+        }
+        if (this.getVideoPlayer()) {
+            this.getVideoPlayer().addEventListener("progress", () => {
+                console.log("Watch buffer");
                 this.getCurrentBuffer();
             });
         }

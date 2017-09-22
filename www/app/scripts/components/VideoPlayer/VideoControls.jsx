@@ -31,6 +31,15 @@ class VideoControls extends React.Component {
         };
     }
 
+    shouldComponentUpdate(nextProps, nextState){
+        if(nextProps.controlBarVisibility !== this.props.controlBarVisibility){
+            return true;
+        } else if(!this.props.controlBarVisibility) {
+            return false;
+        }
+        return true;
+    }
+
 
     showReplay = (e) => {
         e.stopPropagation();
