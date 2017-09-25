@@ -77,4 +77,13 @@ a
 // To move the recommendations slide on the settings page lower - will be replaced with non-matierial UI switch
 .toggle-recommendations > div > div {
   margin-top: 20px;
+} 
+
+.video-control {
+  transition: all .3s;
+  will-change: opacity;
+  opacity: 1;
+  &.faded {
+    opacity: 0;
+  }
 }

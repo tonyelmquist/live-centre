@@ -62,7 +62,7 @@ class SoccerDataOverlay extends Component {
                     const activeEvents = this.timelineManager.activeEvents;
                     this.setClock(activeEvents);
                     this.setScore(activeEvents);
-                    this.props.dispatch(setActiveEvents(activeEvents));
+                    // this.props.dispatch(setActiveEvents(activeEvents));
                     
                     
                 } else {
