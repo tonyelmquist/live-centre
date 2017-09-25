@@ -165,8 +165,8 @@ class VideoControls extends React.Component {
                     <PlayToggle onTouch={this.togglePlay} isPlaying={isPlaying} />
                     
                     
-                    <BackwardControl onTouch={this.skipBackward} extraStyle={{opacity: currentVideoTime - 10 > 0 ? 1 : 0.2}} />
-                    <ForwardControl onTouch={this.skipForward} extraStyle={{opacity: currentVideoTime + 10 < duration ? 1 : 0.2}} />
+                    <BackwardControl onTouch={this.skipBackward} extraStyle={{opacity: 1}} />
+                    <ForwardControl onTouch={this.skipForward} extraStyle={{opacity: 1}} />
                     
                     {this.props.orientation === Orientation.LANDSCAPE 
                         ? <div>

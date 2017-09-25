@@ -3,28 +3,9 @@ import FontAwesome from 'react-fontawesome';
 
 const settingsIconStyles = {
     position: 'fixed',
-    top: '20px',
-    right: '20px',
-    color: 'white',
-    zIndex: '2000',
-    opacity: 1,
-};
-
-const replayIconStyles = {
-    ...settingsIconStyles,
-    top: 'auto',
-    right: 'auto',
-    fontSize: '15px',
-    left: '15px',
-    bottom: '12px',
-};
-
-const highlightsIconStyles = {
-    ...settingsIconStyles,
-    top: 'auto',
-    right: 'auto',
-    bottom: '25px',
-    left: '60px',
+    top: '0px',
+    right: '0px',
+    fontSize: '20px',
 };
 
 const PlayToggle = ({ onTouch, isPlaying }) => {
@@ -45,19 +26,19 @@ const PlayToggle = ({ onTouch, isPlaying }) => {
 };
 
 const HighlightsControl = ({ onTouch }) => (
-    <FontAwesome className="small-control" style={{ left: '40px' }} name="chevron-circle-up" onTouchTap={onTouch} />
+    <FontAwesome className="small-control bottom" style={{ left: '30px' }} name="chevron-circle-up" onTouchTap={onTouch} />
 );
 
 const SettingsControl = ({ onTouch }) => (
-    <FontAwesome name="cog" className="settings-control" style={settingsIconStyles} onTouchTap={onTouch} />
+    <FontAwesome name="cog" className="small-control" style={settingsIconStyles} onTouchTap={onTouch} />
 );
 
 const ReplayControl = ({ onTouch }) => (
-    <FontAwesome name="undo" className="small-control" style={{ left: '15px' }} onTouchTap={onTouch} />
+    <FontAwesome name="undo" className="small-control bottom" onTouchTap={onTouch} />
 );
 
 const VolumeControl = ({ onTouch }) => (
-    <FontAwesome name="volume-up" className="small-control" onTouchTap={onTouch} />
+    <FontAwesome name="volume-up" className="small-control bottom" onTouchTap={onTouch} />
 );
 
 const ForwardControl = ({ onTouch, extraStyle }) => (
