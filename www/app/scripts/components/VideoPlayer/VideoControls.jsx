@@ -6,8 +6,8 @@ import Replayer from './Replayer';
 import HighlightsRow from './HighlightsRow';
 import { showReplay, hideReplay, showHighlights, setControlBarVisibility, 
     isVideoSettingsOpen, showProductOverlay, showProductThumb, 
-     updateCurrentTime, changeCurrentTime, skipCurrentTimeBy, setDuration, playVideo, pauseVideo } from '../../actions/videoPlayer';
-import EmptyOverlay from '../SecondLayer/EmptyOverlay';
+     updateCurrentTime, changeCurrentTime, skipCurrentTimeBy, setDuration, playVideo, pauseVideo, toggleVideoTickers } from '../../actions/videoPlayer';
+import SettingsOverlay from '../SecondLayer/SettingsOverlay';
 import { connect } from 'react-redux';
 
 import { Orientation } from '../../constants/reduxConstants';
@@ -151,9 +151,13 @@ class VideoControls extends React.Component {
         clearTimeout(this.props.hideControlTimeout);
     }
 
+    toggleTickers = () => {
+        this.props.dispatch(toggleVideoTickers());
+    }
+
     render() {
+        console.log("Show tickers?", this.props.videoSettings.showTickers)
         const { isPlaying, duration, currentVideoTime } = this.props.videoPlayer;
-        console.log("highligtslider open?", this.state.highlights.open);
         return (
             <div>
                 <div className="gradient-overlay" style={{ ...this.getStyles(), zIndex: 0 }} />
@@ -194,7 +198,12 @@ class VideoControls extends React.Component {
                             videoUrl={this.state.highlights.videoUrl}
                             handleClose={() => this.handleHighlightsClose()}
                         />
-                        <EmptyOverlay isOpen={this.props.isVideoSettingsOpen} onClose={() => this.closeSettings()}/>
+                        <SettingsOverlay
+                            toggleTickers={this.toggleTickers} 
+                            showTickers={this.props.videoSettings.showTickers}
+                            isOpen={this.props.isVideoSettingsOpen} 
+                            onClose={() => this.closeSettings()}
+                        /> 
                     </div>
                     : <div />
                 }
@@ -207,6 +216,7 @@ const mapStateToProps = state => ({
     videoPlayer: state.videoPlayer,
     controlBarVisibility: state.playback.controlBarVisibility,
     video: state.playback.video,
+    videoSettings: state.videoSettings,
     orientation: state.settings.screenOrientation,
     isVideoSettingsOpen: state.playback.isVideoSettingsOpen,
 });

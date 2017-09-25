@@ -110,6 +110,8 @@ class ReduxConstants {
     static get HIDE_HIGHLIGHTS() { return 'HIDE_HIGHLIGHTS'; }
 
     static get SET_VIDEO_DIMENSIONS() { return 'SET_VIDEO_DIMENSIONS'; }
+    
+    static get TOGGLE_TICKERS() { return 'TOGGLE_TICKERS'; }
 
     // static get SET_CURRENT_TIME() { return 'SET_CURRENT_TIME'; }
 

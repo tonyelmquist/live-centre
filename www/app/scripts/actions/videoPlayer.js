@@ -318,3 +318,7 @@ export function setVideoDimensions(dimensions) {
     console.log('setting dimensions to', dimensions);
     return { type: Actions.SET_VIDEO_DIMENSIONS, dimensions };
 }
+
+export function toggleVideoTickers() {
+    return { type: Actions.TOGGLE_TICKERS };
+}

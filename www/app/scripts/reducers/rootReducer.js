@@ -14,7 +14,7 @@ import settings from './settingsReducer';
 import { showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo } from './videoCardReducer';
 import { replayReducer as replay, highlightsReducer as highlights, 
     handleSelection,
-    videoPlayer } from './videoPlayerReducer';
+    videoPlayer, videoSettings } from './videoPlayerReducer';
 import ecommerce from './ecommerceReducer';
 import programsPageTab from './pages/programsPageReducer';
 import { sports, teams, players, sportPlayerOverlay } from './pages/sportsPageReducer';
@@ -34,6 +34,7 @@ const rootReducer = combineReducers({
     videos: videosReducer,
     playback: handleSelection,
     videoPlayer,
+    videoSettings,
     dataOverlay: dataOverlayReducer,
     headerMenuState,
     drawerMenuState,

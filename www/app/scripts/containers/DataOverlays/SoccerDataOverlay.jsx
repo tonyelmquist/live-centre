@@ -233,12 +233,15 @@ class SoccerDataOverlay extends Component {
                     text={this.state.penaltyCard.text}
                     color={this.state.penaltyCard.color}
                 />*/}
-                {/* <TickerContainer
-                    isLineupShowing={this.state.isLineupShowing}
-                    controlBarVisibility={this.props.controlBarVisibility}
-                    messages={this.getLatestTickers()}
-                    matchInfo={this.props.matches[this.props.video.matchId]}
-                /> */}
+                { this.props.videoSettings.showTickers
+                    ? <TickerContainer
+                        isLineupShowing={this.state.isLineupShowing}
+                        controlBarVisibility={this.props.controlBarVisibility}
+                        messages={this.getLatestTickers()}
+                        matchInfo={this.props.matches[this.props.video.matchId]} 
+                    />
+                    : <div />
+                }
                 <ScoreOverlay
                     score={this.props.dataOverlayScore}
                     homeData={this.getHomeTeam()}
@@ -279,6 +282,7 @@ SoccerDataOverlay.propTypes = {
     selectedVideo: PropTypes.object.isRequired,
     clock: PropTypes.number.isRequired,
     controlBarVisibility: PropTypes.bool.isRequired,
+    videoSettings: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -295,6 +299,7 @@ const mapStateToProps = state => ({
     playback: state.playback,
     selectedVideo: state.playback.video,
     matches: state.sportsInfo.matches,
+    videoSettings: state.videoSettings,
 });
 
 export default connect(mapStateToProps)(SoccerDataOverlay);

@@ -167,7 +167,6 @@ class Player extends React.Component {
         }
         if (this.getVideoPlayer()) {
             this.getVideoPlayer().addEventListener("progress", () => {
-                console.log("Watch buffer");
                 this.getCurrentBuffer();
             });
         }

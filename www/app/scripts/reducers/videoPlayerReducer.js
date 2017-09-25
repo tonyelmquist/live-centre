@@ -178,3 +178,18 @@ export function videoPlayer(state = { isPlaying: false, bufferTime: null, durati
         return state;
     }
 }
+
+const defaultVideoSettings = {
+    showTickers: false,
+};
+
+export function videoSettings(state = defaultVideoSettings, action) {
+    switch (action.type) {
+    case Actions.TOGGLE_TICKERS:
+        return {
+            showTickers: !state.showTickers,
+        };
+    default:
+        return state;
+    }
+}
