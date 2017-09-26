@@ -63,6 +63,10 @@ class Player extends React.Component {
         }
     }
 
+    // componentWillUnmount = () => {
+    //     this.watchVideoTime = 
+    // }
+
     onPrePlayTouch = (e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -153,22 +157,14 @@ class Player extends React.Component {
     watchVideoTime = () => {
         // If videoplayer is rendered.
         if (this.getVideoPlayer()) {
-            this.getVideoPlayer().addEventListener('timeupdate', () => {
-
+            this.timeInterval = setInterval(() => {
                 const newTime = this.getVideoPlayer().currentTime;
-
                 console.log(this.props.videoPlayer.currentVideoTime, newTime);
-
                 if (this.props.videoPlayer.currentVideoTime !== newTime) {
                     this.props.dispatch(updateCurrentTime(newTime));
                 }
-
-            });
-        }
-        if (this.getVideoPlayer()) {
-            this.getVideoPlayer().addEventListener("progress", () => {
                 this.getCurrentBuffer();
-            });
+            }, 1000);
         }
     }
 
@@ -197,9 +193,8 @@ class Player extends React.Component {
         this.props.dispatch(setControlBarVisibility(true));
     }
 
-
-
     render() {
+        console.log("ORIENTATION", this.props.orientation);
         let videoPlayerStyle = {};
         if (this.props.orientation === Orientation.PORTRAIT) {
             videoPlayerStyle = { width: '100%', height: '100%' };
@@ -216,8 +211,9 @@ class Player extends React.Component {
                 poster={this.props.video.thumbnail}
                 source={`${this.props.video.videoUrl}#t=${this.props.videoPosition}`}
                 ref={(ref) => { this.largeVideoPlayer = ref; }}
-                videoPlayer={this.props.videoPlayer}
                 extraStyle={videoPlayerStyle}
+                changeCurrentTimeTo={this.props.videoPlayer.changeCurrentTimeTo}
+                shouldPlay={this.props.videoPlayer.isPlaying}
             />
 
             {/* Video Controls */}

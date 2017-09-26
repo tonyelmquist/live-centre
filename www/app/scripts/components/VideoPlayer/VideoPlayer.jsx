@@ -6,9 +6,31 @@ class VideoPlayer extends React.Component {
         this.setUpStartTime();
     }
     componentDidUpdate(prevProps, prevState){
+        const { shouldPlay, changeCurrentTimeTo } = this.props;
+
         if (prevProps.startTime !== this.props.startTime) {
             this.setUpStartTime();
         }
+        if (typeof this.video !== 'undefined'){
+            if (this.video.paused && shouldPlay){
+                this.video.play();
+            } else if (!this.video.paused && !shouldPlay){
+                this.video.pause();
+            }
+            if (changeCurrentTimeTo && prevProps.changeCurrentTimeTo !== changeCurrentTimeTo) {
+                this.video.currentTime = changeCurrentTimeTo;
+            }
+        }
+    }
+
+    shouldComponentUpdate = (nextProps) => {
+        if (this.props.source !== nextProps.source 
+           || this.props.shouldPlay !== nextProps.shouldPlay
+           || this.props.changeCurrentTimeTo !== nextProps.changeCurrentTimeTo
+           || this.props.extraStyle !== nextProps.extraStyle) {
+            return true 
+        }
+        return false
     }
     setUpStartTime = () => {
         if(this.props.startTime){
@@ -17,24 +39,6 @@ class VideoPlayer extends React.Component {
     }
 
     render() {
-        //If this is not the main video player we dont need to handle timetracking, most likely.. 
-       
-        if (this.props.videoPlayer){
-            const { isPlaying: shouldPlay, changeCurrentTimeTo, currentVideoTime } = this.props.videoPlayer;
-
-            // Handle video controls based on actions.
-            if (typeof this.video !== 'undefined'){
-                if (changeCurrentTimeTo && changeCurrentTimeTo !== currentVideoTime) {
-                    this.video.currentTime = changeCurrentTimeTo;
-                }
-                if (this.video.paused && shouldPlay){
-                    this.video.play();
-                } else if (!this.video.paused && !shouldPlay){
-                    this.video.pause();
-                }
-            }
-        }
-
         return (
             <video className="video-player" 
                 autoPlay={this.props.autoPlay} 
