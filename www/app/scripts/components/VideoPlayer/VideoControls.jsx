@@ -33,7 +33,8 @@ class VideoControls extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState){
         if(nextProps.controlBarVisibility !== this.props.controlBarVisibility
-            || nextProps.orientation !== this.props.orientation) {
+            || nextProps.orientation !== this.props.orientation
+            || nextProps.isVideoSettingsOpen !== this.props.isVideoSettingsOpen) {
             return true;
         } else if(!this.props.controlBarVisibility) {
             return false;
@@ -115,9 +116,12 @@ class VideoControls extends React.Component {
     }
 
 
-    onOpenSettings = () => {
-        this.hideControlBar();
+    onOpenSettings = (e) => {
+        e.stopPropagation();
+        console.log("open settings");
+        
         this.props.dispatch(isVideoSettingsOpen(true));
+        this.hideControlBar();
     };
 
     closeSettings = () => {
@@ -125,9 +129,11 @@ class VideoControls extends React.Component {
     }
     
     hideControlBar = () => {
+        console.log("HIDE CONTROL BAR");
         this.props.dispatch(setControlBarVisibility(false));
     }
     showControlBar = () => {
+        console.log("SHOW CONTROL BAR");
         this.props.dispatch(setControlBarVisibility(true));
     }
 
@@ -170,6 +176,7 @@ class VideoControls extends React.Component {
 
     render() {
         const { isPlaying, duration, currentVideoTime } = this.props.videoPlayer;
+        console.log("controlbar visibility",this.props.controlBarVisibility);
         return (
             <div>
                 <div className="gradient-overlay" style={{ ...this.getStyles(), zIndex: 0 }} />

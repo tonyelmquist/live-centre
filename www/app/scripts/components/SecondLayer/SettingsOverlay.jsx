@@ -4,15 +4,22 @@ import EmptyOverlay from './EmptyOverlay';
 
 class SettingsOverlay extends Component {
     handleCheck = () => {
-        console.log("handle check");
+        //console.log("handle check");
         this.props.toggleTickers();
+    }
+    handleTouch = (e) => {
+        //console.log(" TOUCH ");
+        e.stopPropagation();
     }
     render() {
         return (
-            <EmptyOverlay isOpen={this.props.isOpen} onClose={this.props.onClose}>
-                <h1>Settings </h1>
-                <p>Toggle soccer tickers <input type="checkbox" checked={this.props.showTickers} onChange={this.handleCheck} /></p>
-            </EmptyOverlay>
+            <div>
+                <div className={`empty-overlay ${this.props.isOpen ? 'isOpen' : ''}`} style={{ padding: '40px' }} onTouchTap={this.handleTouch}>
+                    <h1>Settings </h1>
+                    <p>Show football commentaries <input type="checkbox" checked={this.props.showTickers} onChange={this.handleCheck} /></p>
+                    <button className="formBtn small secondaryBtn" style={{display: 'block'}} onClick={this.props.onClose}>Close</button>
+                </div>
+            </div>
         );
     }
 }
