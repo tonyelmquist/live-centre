@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 const settingsIconStyles = {
     position: 'fixed',
     top: '0px',
-    right: '0px',
+    right: '5px',
     fontSize: '20px',
 };
 
@@ -26,7 +26,7 @@ const PlayToggle = ({ onTouch, isPlaying }) => {
 };
 
 const HighlightsControl = ({ onTouch }) => (
-    <FontAwesome className="small-control bottom" style={{ left: '30px' }} name="chevron-circle-up" onTouchTap={onTouch} />
+    <FontAwesome className="small-control bottom" style={{ left: '35px' }} name="chevron-circle-up" onTouchTap={onTouch} />
 );
 
 const SettingsControl = ({ onTouch }) => (
@@ -34,7 +34,7 @@ const SettingsControl = ({ onTouch }) => (
 );
 
 const ReplayControl = ({ onTouch }) => (
-    <FontAwesome name="undo" className="small-control bottom" onTouchTap={onTouch} />
+    <FontAwesome name="undo" className="small-control bottom" style={{ left: '5px' }} onTouchTap={onTouch} />
 );
 
 const VolumeControl = ({ onTouch }) => (

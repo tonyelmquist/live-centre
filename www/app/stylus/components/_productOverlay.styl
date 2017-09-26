@@ -278,23 +278,17 @@
     pointer-events: all;
 }
 
-.shopping-cart {
-    position: absolute;
+.small-control.shopping-cart{
+    margin: 10px
+    padding: 0
     opacity: 0;
-    top: 17px;
-    right: 42px
-    transition: opacity .25s ease-in-out;
-    -moz-transition: opacity .25s ease-in-out;
-    -webkit-transition: opacity .25s ease-in-out;
-    z-index: 10000;
-    color: white;
 }
 
 .shopping-cart.show {
     opacity: 1;
 }
 
-.shopping-cart.show span {
+.shopping-cart.show {
     box-shadow: 0 0 0 rgba(204,169,44, 0.4);
     animation: pulse 2s infinite;
     border-radius: 4px 
@@ -307,7 +301,7 @@
     bottom: -30%;
     left: 50%;
     border-radius: 4px;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.9);
     -webkit-transition: 0.5s all;
     transition: 0.5s all;
     -webkit-transform: translate(-50%, -50%) scale(0);

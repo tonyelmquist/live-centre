@@ -20,8 +20,6 @@ class PlayerMotionController extends React.Component {
     }
 
     onTouchStart = (e) => {
-        console.log(e);
-        console.log(e.target);
         this.startTouchPosition = {
             x: e.changedTouches[0].clientX,
             y: e.changedTouches[0].clientY,

@@ -4,12 +4,13 @@ import FontAwesome from 'react-fontawesome';
 const CartButton = (props) => {
 
     return (
-        <div className={`shopping-cart ${props.show
-          ? 'show'
-          : ''}`} 
-          onTouchTap={props.onShowCart}>
-            <FontAwesome name="shopping-cart"/>
-        </div>
+        <FontAwesome
+            onTouchTap={props.onShowCart}
+            name="shopping-cart"
+            style={{right: '40px', top: '0'}}
+            className={`icon-shadow small-control shopping-cart ${props.show
+            ? 'show'
+            : ''} `}/>
     );
 };
 

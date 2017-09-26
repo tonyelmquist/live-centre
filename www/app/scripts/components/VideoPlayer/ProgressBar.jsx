@@ -98,7 +98,7 @@ class ProgressBar extends React.Component{
         if(this.props.orientation === Orientation.PORTRAIT){
             totalOffset = 0;
         } else {
-            totalOffset = 155;
+            totalOffset = 165;
         }
         return window.innerWidth - totalOffset;
     }
@@ -114,8 +114,8 @@ class ProgressBar extends React.Component{
             };
         }
         return {
-            leftOffset: 105,
-            timeLeftOffset: 65,
+            leftOffset: 115,
+            timeLeftOffset: 75,
             bottomOffsetText: 12,
             bottomOffset: 5,
         };

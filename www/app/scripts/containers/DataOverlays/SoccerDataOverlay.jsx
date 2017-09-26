@@ -44,7 +44,7 @@ class SoccerDataOverlay extends Component {
         const matchTimeline = this.props.matches[this.props.video.matchId].timeline;
 
         // Check if we can get the timeline at all. Before we do anything.
-        if (matchTimeline){
+        if (matchTimeline) {
             //If this is new/different match timeline, set it in the timelinemanager. Also set start buffer.
             if (this.timelineManager.timeline !== matchTimeline) {
                 this.timelineManager.timeline = matchTimeline;
@@ -62,9 +62,7 @@ class SoccerDataOverlay extends Component {
                     const activeEvents = this.timelineManager.activeEvents;
                     this.setClock(activeEvents);
                     this.setScore(activeEvents);
-                    // this.props.dispatch(setActiveEvents(activeEvents));
-                    
-                    
+                    this.props.dispatch(setActiveEvents(activeEvents));
                 } else {
                     this.props.dispatch(changeClock(0));
                 }
@@ -226,6 +224,7 @@ class SoccerDataOverlay extends Component {
     }
 
     render() {
+        console.log("Show tickers: ", this.props.videoSettings.showTickers);
         return (
             <div className={`soccer-overlay ${this.props.show ? 'show' : ''}`}>
                 {/* <PenaltyCard
