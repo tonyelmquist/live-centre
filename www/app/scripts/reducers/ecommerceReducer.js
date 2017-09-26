@@ -80,6 +80,7 @@ export default function ecommerceReducer(state = defaultState, action) {
                 ...state.popupManager,
                 showBuyNow: false,
                 showCart: true,
+                showProductOverlay: false,
             },
         };
 
@@ -126,6 +127,7 @@ export default function ecommerceReducer(state = defaultState, action) {
             popupManager: {
                 ...state.popupManager,
                 showProductOverlay: true,
+                showCart: false,
             },
         };
 
