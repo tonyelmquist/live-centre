@@ -26,20 +26,17 @@ class Player extends React.Component {
         };
     }
 
-    componentDidMount = () => {
-        this.watchVideoTime();
-    };
-
-
     componentWillUpdate = (nextProps) => {
         if (this.props.video.id !== nextProps.video.id) {
             this.pauseVideo();
+            clearInterval(this.timeInterval);
         }
 
         if (this.getVideoPlayer()) {
             if (this.videoLoaded !== nextProps.video.videoUrl) {
                 this.setState({ isPreOverlayShowing: true });
                 this.getVideoPlayer().load();
+                this.watchVideoTime();
 
                 this.videoLoaded = nextProps.video.videoUrl;
 
@@ -63,9 +60,9 @@ class Player extends React.Component {
         }
     }
 
-    // componentWillUnmount = () => {
-    //     this.watchVideoTime = 
-    // }
+    componentWillUnmount = () => {
+        clearInterval(this.timeInterval);
+    }
 
     onPrePlayTouch = (e) => {
         e.stopPropagation();

@@ -71,3 +71,14 @@ export function hideRegistration() {
 export function setDisplayName(name) {
     return { type: Actions.AUTH_SET_DISPLAY_NAME, name };
 }
+
+/**
+ * Action to set login form error
+ *
+ * @memberof Actions:Authentication
+ * @export
+ * @returns Dispatchable Action
+ */
+export function setLoginFormError(error) {
+    return { type: Actions.SET_LOGIN_FORM_ERROR, error };
+}

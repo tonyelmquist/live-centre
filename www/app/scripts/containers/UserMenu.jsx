@@ -19,8 +19,7 @@ class UserMenu extends Component {
     }
 
     handleLogin = () => {
-        this.props.dispatch(switchUserMenu(false));
-        this.props.dispatch(showLoginModal(true));
+        this.props.changeRoute('/login');
     }
 
     handleSettingsTouchTap = () => {

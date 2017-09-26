@@ -1,6 +1,6 @@
 import Actions from '../constants/reduxConstants';
 
-export default function authenticationReducer(state = { isLoggedIn: false, user: [] }, action) {
+export default function authenticationReducer(state = { isLoggedIn: false, user: [], loginFormError: false }, action) {
     switch (action.type) {
     case Actions.LOGIN_SUCCESS:
         return {
@@ -21,6 +21,11 @@ export default function authenticationReducer(state = { isLoggedIn: false, user:
                 ...state.user,
                 displayName: action.name,
             },
+        };
+    case Actions.SET_LOGIN_FORM_ERROR:
+        return {
+            ...state,
+            loginFormError: action.error,
         };
     default:
         return state;
