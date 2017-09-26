@@ -227,7 +227,7 @@ class SoccerDataOverlay extends Component {
 
     render() {
         return (
-            <div>
+            <div className={`soccer-overlay ${this.props.show ? 'show' : ''}`}>
                 {/* <PenaltyCard
                     open={this.state.penaltyCard.isShowing}
                     text={this.state.penaltyCard.text}
@@ -300,6 +300,7 @@ const mapStateToProps = state => ({
     selectedVideo: state.playback.video,
     matches: state.sportsInfo.matches,
     videoSettings: state.videoSettings,
+    show: state.overlayManager.showSportsOverlay,
 });
 
 export default connect(mapStateToProps)(SoccerDataOverlay);

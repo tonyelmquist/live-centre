@@ -49,7 +49,7 @@ class BasketballDataOverlay extends Component {
 
         const matchData = this.props.sportsInfo.matches[this.props.selectedVideo.matchId];
         return (
-            <div className="basketball-overlay">
+            <div className={`basketball-overlay ${this.props.show ? 'show' : ''}`}>
                 <div className="basketball-overlay-home-name" onTouchTap={this.showHomeRoster}>
                     {matchData.home.team.name}
                 </div>
@@ -102,6 +102,7 @@ const mapStateToProps = state => ({
     playback: state.playback,
     selectedVideo: state.playback.video,
     matches: state.sportsInfo.matches,
+    show: state.overlayManager.showSportsOverlay,
 });
 
 export default connect(mapStateToProps)(BasketballDataOverlay);

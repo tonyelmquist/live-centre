@@ -46,17 +46,12 @@ class DataOverlay extends Component {
 
 DataOverlay.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    sportsInfo: PropTypes.object.isRequired,
     selectedVideo: PropTypes.object.isRequired,
     popNotifications: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
-    sportsInfo: state.sportsInfo,
     selectedVideo: state.playback.video,
-    products: state.ecommerce.products,
-    ecommercePopupManager: state.ecommerce.popupManager,
-    selectedProduct: state.ecommerce.selectedProduct,
     popNotifications: state.notifications.popNotifications,
 });
 

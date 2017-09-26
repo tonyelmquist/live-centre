@@ -11,6 +11,7 @@ import { search, searchFilterTab } from './searchReducer';
 import dataOverlayReducer from './dataOverlayReducer';
 import modalsReducer from './modalsReducer';
 import settings from './settingsReducer';
+import overlayManager from './overlayManagerReducer';
 import { showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo } from './videoCardReducer';
 import { replayReducer as replay, highlightsReducer as highlights, 
     handleSelection,
@@ -43,6 +44,7 @@ const rootReducer = combineReducers({
     pageTabIndex,
     shade: shadeReducer,
     userMenu: userMenuReducer,
+    overlayManager,
     series: seriesReducer,
     sportsPage: combineReducers({ sportPlayerOverlay }),
     sportsInfo: combineReducers({ sports, teams, players, matches }),
