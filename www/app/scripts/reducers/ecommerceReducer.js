@@ -38,9 +38,6 @@ export default function ecommerceReducer(state = defaultState, action) {
         };
 
     case Actions.BUY_NOW:
-        productArray.push({
-            product: action.productID,
-        });
         return {
             ...state,
             popupManager: {
@@ -48,9 +45,6 @@ export default function ecommerceReducer(state = defaultState, action) {
                 showBuyNow: true,
                 showCart: false,
                 showCartButton: false,
-            },
-            cart: {
-                products: productArray,
             },
         };
     case Actions.CANCEL_BUY_NOW:
