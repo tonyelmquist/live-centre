@@ -32,7 +32,8 @@ class VideoControls extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        if(nextProps.controlBarVisibility !== this.props.controlBarVisibility){
+        if(nextProps.controlBarVisibility !== this.props.controlBarVisibility
+            || nextProps.orientation !== this.props.orientation) {
             return true;
         } else if(!this.props.controlBarVisibility) {
             return false;
@@ -172,7 +173,8 @@ class VideoControls extends React.Component {
                         ? <div>
                             <SettingsControl onTouch={this.onOpenSettings} />
                             <ReplayControl onTouch={this.showReplay} />
-                            <HighlightsControl onTouch={this.showHighLights} /> </div>
+                            <HighlightsControl onTouch={this.showHighLights} />
+                          </div>
                         : <div />
                     }
                     {/* <VolumeControl /> */}
