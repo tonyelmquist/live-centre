@@ -5,7 +5,7 @@ const settingsIconStyles = {
     position: 'fixed',
     top: '0px',
     right: '5px',
-    fontSize: '20px',
+    fontSize: '22px',
 };
 
 const PlayToggle = ({ onTouch, isPlaying }) => {

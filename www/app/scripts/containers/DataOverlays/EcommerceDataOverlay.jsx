@@ -67,6 +67,7 @@ class ECommerceDataOverlay extends Component {
         new Date().getTime(),
       ),
     );
+        this.props.dispatch(showAllOverlays());
     };
 
     onShowCart = () => {
