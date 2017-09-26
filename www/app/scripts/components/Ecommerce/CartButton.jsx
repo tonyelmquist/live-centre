@@ -8,7 +8,7 @@ const CartButton = (props) => {
             onTouchTap={props.onShowCart}
             name="shopping-cart"
             style={{right: '40px', top: '0'}}
-            className={`icon-shadow small-control shopping-cart ${props.show
+            className={`small-control shopping-cart ${props.show
             ? 'show'
             : ''} `}/>
     );
