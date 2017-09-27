@@ -50,13 +50,22 @@ class BasketballDataOverlay extends Component {
         const matchData = this.props.sportsInfo.matches[this.props.selectedVideo.matchId];
         return (
             <div className={`basketball-overlay ${this.props.show ? 'show' : ''}`}>
-                <div className="basketball-overlay-home-name" onTouchTap={this.showHomeRoster}>
+                <div className="basketball-overlay-center">
+                    <span className="basketball-home" onTouchTap={this.showHomeRoster}>
+                        {matchData.home.team.name}
+                    </span>
+                    <span className="vs">vs</span>
+                    <span className="basketball-away" onTouchTap={this.showAwayRoster}>
+                        {matchData.away.team.name}
+                    </span>
+                </div>
+                {/*<div className="basketball-overlay-home-name" onTouchTap={this.showHomeRoster}>
                     {matchData.home.team.name}
                 </div>
 
                 <div className="basketball-overlay-away-name" onTouchTap={this.showAwayRoster}>
                     {matchData.away.team.name}
-                </div>
+                </div>*/}
 
                 <div className={`basketball-overlay-home-roster ${this.state.isHomeRosterShowing ? 'isShowing' : ''}`} onTouchEnd={this.stopPropagation}>
                     <ul>
