@@ -53,7 +53,7 @@ class ProgressBar extends React.Component{
         document.removeEventListener('touchmove', this.trackMovement, true);
         this.skipTo(this.trackTimeFromPos(touchPos));
 
-        setTimeout(() => this.setState({ trackPos: null }), 500); //Wait 200 ms until we reset the trackpos.
+        setTimeout(() => this.setState({ trackPos: null }), 1000); //Wait 200 ms until we reset the trackpos.
     };
 
 
