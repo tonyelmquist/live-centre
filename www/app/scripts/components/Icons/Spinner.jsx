@@ -5,13 +5,13 @@ const Spinner = (props) => {
 
     return (
         <div style={{
-            ...props.style,
             position: 'absolute',
             top: '45vh',
             left: '50%',
             transform: 'translate(-50%,-50%)',
             width: 'auto',
             filter: 'drop-shadow(5px 5px 5px #222)',
+            ...props.style,
         }}>
             <FontAwesome name="spinner" pulse size="2x"/>
         </div>

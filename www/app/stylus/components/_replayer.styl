@@ -27,10 +27,15 @@
     display: flex;
     position: absolute;
     bottom: 30px;
-    right: 20px;
+    right: 10px;
+    opacity: 0;
     z-index: 3000;
+    transition: .5s all;
+    pointer-events: none;
     &.open {
-        animation: card-show 12s forwards;
+        opacity: 1;
+        right: 20px;
+        pointer-events: all;
     }
 }
 
