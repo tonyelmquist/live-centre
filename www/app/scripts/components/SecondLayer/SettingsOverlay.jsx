@@ -15,7 +15,14 @@ class SettingsOverlay extends Component {
         return (
             <div>
                 <div className={`empty-overlay ${this.props.isOpen ? 'isOpen' : ''}`} style={{ padding: '40px' }} onTouchTap={this.handleTouch}>
-                    <h1>Settings </h1>
+                    <h2>Video settings</h2>
+                    <p>Video speed</p>
+                    <select>
+                        <option value="slow">Slow: 0.5</option>
+                        <option value="normal">Normal: 1.0</option>
+                        <option value="normal">Fast: 1.5</option>
+                    </select>
+                    <h2>Sport video settings</h2>
                     <p>Show football commentaries <input type="checkbox" checked={this.props.showTickers} onChange={this.handleCheck} /></p>
                     <button className="formBtn small secondaryBtn" style={{display: 'block'}} onClick={this.props.onClose}>Close</button>
                 </div>
