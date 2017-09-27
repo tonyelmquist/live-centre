@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { DefaultPlayer as Video } from 'react-html5video';
-import 'react-html5video/dist/styles.css';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 // import FontIcon from 'material-ui/FontIcon';
@@ -59,14 +57,31 @@ class HeroCarousel extends Component {
     // This will prevent react router transition from waiting.
     componentDidMount() {
         this.setVideoState();
+        
     }
 
-    componentDidUpdate(){
-        if(this.props.transitionStarting && this.carouselVideo){
-            //this.carouselVideo.videoEl.pause();
+    loadingTimeout = null;
+
+    componentDidUpdate() {
+        if (this.carouselVideo && this.state.autoPlay) {
+            this.loadingTimeout = setTimeout(() => {
+                this.setState({ autoPlay: false });
+                this.carouselVideo.pause();
+            }, 1000);
+
+            this.carouselVideo.addEventListener('canplay', () => {
+                if (this.state.autoPlay) {
+                    clearTimeout(this.loadingTimeout);
+                }
+            });
+        }
+        if (this.props.transitionStarting && this.carouselVideo) {
+            // this.carouselVideo.videoEl.pause();
             this.setState({ renderVideo: false });
         }
     }
+
+
 
     setVideoState = () => {
         setTimeout(() => this.setState({ renderVideo: true }), 3000);
@@ -173,23 +188,20 @@ class HeroCarousel extends Component {
                 const video = this.props.videos.items[videoKey];
                 const videoUrl = video.videoUrl;
                 return (
-                  <div key={`carousel-${videoKey}`} style={styles.carousel}>
+                  <div key={`carousel-${videoKey}`} style={styles.carousel}
+                        onTouchTap={() => {
+                            this._handlePlay(video);
+                        }}>
                     <div className="heroCarouselImage" key={videoKey}>
                         <div className="carousel-underlay" />
                       <div className="carouselImageTitleAndDescription">
                         <h3
                         className="carouselImageTitle"
-                        onTouchTap={() => {
-                            this._handlePlay(video);
-                        }}
                         >
                           {this.getSnippet(video.title, 10)}
                         </h3>
                         <p
                         className="imageDescription"
-                            onTouchTap={() => {
-                                this._handlePlay(video);
-                            }}
                         >
                           { window.innerWidth > 370 ? this.getSnippet(video.description, 7) : <div /> }
                         </p>
@@ -197,17 +209,17 @@ class HeroCarousel extends Component {
                     </div>
                     <div className="heroCarouselVideo">
                         {this.state.renderVideo ?
-                    <Video
+                    <video
                         autoPlay={this.state.autoPlay}
                         playsInline
                         muted
-                        controls={[]}
                         poster={video.thumbnail}
                         loop
+                        style={{ width: '100vw' }}
                         ref={ref => (this.carouselVideo = ref)}
                     >
                        <source src={videoUrl} />
-                      </Video> : <img src={video.thumbnail} /> }
+                      </video> : <img src={video.thumbnail} /> }
 
                     </div>
                   </div>
