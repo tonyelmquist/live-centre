@@ -44,7 +44,6 @@ export default function ecommerceReducer(state = defaultState, action) {
                 ...state.popupManager,
                 showBuyNow: true,
                 showCart: false,
-                showCartButton: false,
             },
         };
     case Actions.CANCEL_BUY_NOW:
@@ -54,7 +53,6 @@ export default function ecommerceReducer(state = defaultState, action) {
                 ...state.popupManager,
                 showBuyNow: false,
                 showCart: false,
-                showCartButton: false,
             },
         };
     case Actions.CANCEL_CHECKOUT:
@@ -96,6 +94,7 @@ export default function ecommerceReducer(state = defaultState, action) {
                 showCart: false,
                 showCartButton: false,
             },
+            cart: [],
         };
     case Actions.COMPLETE_BUY_NOW:
         return {
@@ -104,7 +103,6 @@ export default function ecommerceReducer(state = defaultState, action) {
                 ...state.popupManager,
                 showBuyNow: false,
                 showCart: false,
-                showCartButton: false,
                 showProductOverlay: false,
             },
         };
