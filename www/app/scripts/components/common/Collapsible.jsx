@@ -84,7 +84,9 @@ class Collapsible extends Component {
     }
 
     setCollapseState(showCollapseButton) {
-        this.setState(() => ({ showCollapseButton }));
+        if (this.state.showCollapseButton !== showCollapseButton) {
+            this.setState(() => ({ showCollapseButton }));
+        }
     }
 
     render() {
