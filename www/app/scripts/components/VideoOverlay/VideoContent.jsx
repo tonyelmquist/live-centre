@@ -6,6 +6,7 @@ import SeasonsFooter from './SeasonsFooter';
 import Recommendations from './Recommendations';
 import Chat from '../../components/Chat';
 import { Orientation } from '../../constants/reduxConstants';
+import FirebaseDB from '../../utils/FirebaseDB';
 
 import { videoSelected, markAsWishlist, removeFromWishlist, markSelectedAsWishlist } from '../../actions/videoPlayer';
 import { toggleCollapseInfo, collapseInfo } from '../../actions/VideoOverlay';
