@@ -2,7 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
 
-const Spinner = (props) => {
+const LoadingIcon = (props) => {
     return (
         <div style={{
             position: 'absolute',
@@ -13,20 +13,20 @@ const Spinner = (props) => {
             filter: 'drop-shadow(5px 5px 5px #222)',
             ...props.style,
         }}>
-            <FontAwesome name={props.type} pulse size={props.size} />
+            <FontAwesome name={props.type} spin size={props.size} />
         </div>
     );
 };
 
-Spinner.defaultProps = {
-    type: 'spinner',
+LoadingIcon.defaultProps = {
+    type: 'refresh',
     style: {},
     size: '2x',
 };
 
-Spinner.propTypes = {
+LoadingIcon.propTypes = {
     type: PropTypes.string,
     style: PropTypes.object,
     size: PropTypes.string,
 };
-export default Spinner;
+export default LoadingIcon;

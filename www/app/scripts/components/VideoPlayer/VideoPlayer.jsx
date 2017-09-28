@@ -5,6 +5,7 @@ class VideoPlayer extends React.Component {
     componentDidMount(){
         this.setUpStartTime();
     }
+
     componentDidUpdate(prevProps, prevState){
         const { shouldPlay, changeCurrentTimeTo } = this.props;
 
@@ -33,7 +34,7 @@ class VideoPlayer extends React.Component {
         return false
     }
     setUpStartTime = () => {
-        if(this.props.startTime){
+        if (this.props.startTime) {
             this.video.currentTime = this.props.startTime;
         }
     }

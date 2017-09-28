@@ -4,6 +4,7 @@ import { HighlightsControl, ReplayControl, SettingsControl, PlayToggle, VolumeCo
 import ProgressBar from './ProgressBar';
 import Replayer from './Replayer';
 import HighlightsRow from './HighlightsRow';
+import LoadingIcon from '../Icons/LoadingIcon';
 import { showReplay, hideReplay, showHighlights, setControlBarVisibility,
     isVideoSettingsOpen, showProductOverlay, showProductThumb,
      updateCurrentTime, changeCurrentTime, skipCurrentTimeBy, setDuration, playVideo, pauseVideo, toggleVideoTickers } from '../../actions/videoPlayer';
@@ -40,7 +41,8 @@ class VideoControls extends React.Component {
             || nextProps.orientation !== this.props.orientation
             || nextProps.isVideoSettingsOpen !== this.props.isVideoSettingsOpen
             || nextState.replay.showReplay !== this.state.replay.showReplay
-            || nextProps.videoSettings.showTickers !== this.props.videoSettings.showTickers) {
+            || nextProps.videoSettings.showTickers !== this.props.videoSettings.showTickers
+            || nextProps.videoPlayer.isWaiting !== this.props.videoPlayer.isWaiting){
             return true;
         } else if (!this.props.controlBarVisibility) {
             return false;
@@ -142,18 +144,11 @@ class VideoControls extends React.Component {
     }
 
     hideControlBar = () => {
-        console.log('HIDE CONTROL BAR');
         this.props.dispatch(setControlBarVisibility(false));
     }
     showControlBar = () => {
-        console.log('SHOW CONTROL BAR');
         this.props.dispatch(setControlBarVisibility(true));
     }
-
-    getStyles = () => ({
-        opacity: this.props.controlBarVisibility ? 1 : 0,
-        transition: '0.3s ease all',
-    });
 
     controlsAreVisible = () => this.props.controlBarVisibility
 
@@ -169,7 +164,6 @@ class VideoControls extends React.Component {
     skipBackward = () => {
         if (this.controlsAreVisible()) {
             let newTime = this.props.videoPlayer.currentVideoTime - 10;
-            console.log(newTime);
             if (newTime < 0) {
                 newTime = 0.1;
             }
@@ -186,16 +180,22 @@ class VideoControls extends React.Component {
     }
 
     render() {
-        const { isPlaying, duration, currentVideoTime } = this.props.videoPlayer;
+        const { isPlaying, duration, currentVideoTime, isWaiting } = this.props.videoPlayer;
+        const controlBarVisibility = this.props.controlBarVisibility;
         return (
-            <div>
-                <div className="gradient-overlay" style={{ ...this.getStyles(), zIndex: 0 }} />
-                <div className="video-controls icon-shadow" style={this.getStyles()}>
-                    <PlayToggle onTouch={this.togglePlay} isPlaying={isPlaying} />
-
-
-                    <BackwardControl onTouch={this.skipBackward} extraStyle={{ opacity: 1 }} />
-                    <ForwardControl onTouch={this.skipForward} extraStyle={{ opacity: 1 }} />
+            <div className={`video-control-overlay ${isWaiting ? 'isWaiting' : 'isPlaying'} ${controlBarVisibility ? 'show' : 'hide'} `}>
+                
+                <div className="gradient-overlay"/>
+                <div className="video-controls icon-shadow">
+                    
+                    {isWaiting
+                        ? <LoadingIcon size="3x"
+                            style={{ top: '50%', color: '#fff', filter: 'none' }} />
+                        : <PlayToggle onTouch={this.togglePlay} isPlaying={isPlaying} />
+                    }
+                
+                    <BackwardControl onTouch={this.skipBackward} />
+                    <ForwardControl onTouch={this.skipForward} />
 
                     {this.props.orientation === Orientation.LANDSCAPE
                         ? <div>

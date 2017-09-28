@@ -322,3 +322,14 @@ export function setVideoDimensions(dimensions) {
 export function toggleVideoTickers() {
     return { type: Actions.TOGGLE_TICKERS };
 }
+
+
+export function videoIsWaiting() {
+    return { type: Actions.VIDEO_IS_WAITING };
+}
+
+export function videoIsReady() {
+    return { type: Actions.VIDEO_IS_READY };
+}
+
+

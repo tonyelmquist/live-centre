@@ -34,3 +34,22 @@
     line-height:1;
     width: 100%;
     height:100%;
+
+.video-controls
+    opcaity: 1
+    transition: 0.3s ease all
+
+.gradient-overlay
+    opcaity: 0.5
+    z-index: 0
+
+.isWaiting
+    .video-controls
+        opacity: 0.6
+        .progressBar
+            opacity:1
+
+//Takes precedence over isWaiting
+.video-control-overlay .hidden
+    .video-controls, .gradient-overlay
+        opcaity: 0

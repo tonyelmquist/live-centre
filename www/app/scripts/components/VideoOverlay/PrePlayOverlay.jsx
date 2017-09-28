@@ -12,7 +12,6 @@ const PrePlayOverlay = ({video, maximized, orientation, isPreOverlayShowing, onP
                     <div className="play-button" >
                         <FontAwesome
                             name="play"
-                            size="2x"
                         />
                     </div>
                     <FontAwesome

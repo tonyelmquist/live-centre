@@ -135,7 +135,7 @@ export function replayReducer(
     }
 }
 
-export function videoPlayer(state = { isPlaying: false, bufferTime: null, duration: 0, changeCurrentTimeTo: null, currentVideoTime: 0, dimensions: {} }, action) {
+export function videoPlayer(state = { isPlaying: false, isWaiting: false, bufferTime: null, duration: 0, changeCurrentTimeTo: null, currentVideoTime: 0, dimensions: {} }, action) {
 
     switch (action.type) {
     case Actions.PLAY_VIDEO:
@@ -173,6 +173,16 @@ export function videoPlayer(state = { isPlaying: false, bufferTime: null, durati
         return {
             ...state,
             dimensions: action.dimensions,
+        };
+    case Actions.VIDEO_IS_WAITING:
+        return {
+            ...state,
+            isWaiting: true,
+        };
+    case Actions.VIDEO_IS_READY:
+        return {
+            ...state,
+            isWaiting: false,
         };
     default:
         return state;

@@ -115,21 +115,28 @@
     height: 120px;
     z-index: 2000;
     pointer-events: none;
-    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, #1f1f1f 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,#1f1f1f 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,#1f1f1f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,#1f1f1f 100%); /*Gulp will add suport for safari etc*/
 }
 .play-button{
     pointer-events: none;
 }
 
-.play-button, .play-toggle{
+//Common style
+.step-forward, .step-backward, .play-button, .play-toggle{
     position: absolute;
-    color: white;
+    color: #fff;
+    font-size: 30px;
     top: 50%;
+    &:active{
+        color: #91e0ec;
+    }
+}
+
+.play-button, .play-toggle{
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2000;
+    font-size: 45px;
    i {
         font-size: 46px;
         text-shadow: 2px 2px 2px rgba(0, 0, 0, .4);
@@ -137,24 +144,15 @@
 }
 
 .step-forward{
-    position: absolute;
-    color: #fff;
-    font-size: 25px;
-    top: 50%;
     right: 40%;
     transform: translate(50%, -50%);
     z-index: 2000;
-
     @media screen and (max-width: 420px) {
         right: 30%;
     }
 }
 
 .step-backward{
-    position: absolute;
-    color: #fff;
-    font-size: 25px;
-    top: 50%;
     left: 40%;
     transform: translate(-50%, -50%);
     z-index: 2000;

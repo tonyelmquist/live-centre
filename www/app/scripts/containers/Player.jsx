@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { closeVideoOverlay, minimizeVideoOverlay } from '../actions/videoOverlay';
 import { Orientation } from '../constants/reduxConstants';
 import DataOverlay from './DataOverlay';
-import { setControlBarVisibility, updateCurrentTime, setDuration, playVideo, pauseVideo, setBufferTime, setVideoDimensions } from '../actions/videoPlayer';
+import { setControlBarVisibility, updateCurrentTime,
+    setDuration, playVideo, pauseVideo, setBufferTime, 
+    setVideoDimensions, videoIsWaiting, videoIsReady } from '../actions/videoPlayer';
 import '../../../node_modules/video-react/dist/video-react.css';
 import isDblTouchTap from '../utils/isDblTouchTap';
 import VideoPlayer from '../components/VideoPlayer/VideoPlayer';
@@ -26,6 +28,10 @@ class Player extends React.Component {
         };
     }
 
+    componentDidMount = () => {
+        this.watchVideoStatus();
+    }
+
     componentWillUpdate = (nextProps) => {
         if (this.props.video.id !== nextProps.video.id) {
             this.pauseVideo();
@@ -37,7 +43,6 @@ class Player extends React.Component {
                 this.setState({ isPreOverlayShowing: true });
                 this.getVideoPlayer().load();
                 this.watchVideoTime();
-
                 this.videoLoaded = nextProps.video.videoUrl;
 
                 this.getVideoPlayer().onloadeddata = () => {
@@ -110,6 +115,10 @@ class Player extends React.Component {
         this.showControlBar();
         clearTimeout(this.controlBarTimeout);
 
+        this.setControlbarTimeout();
+    }
+
+    setControlbarTimeout = () => {
         this.controlBarTimeout = setTimeout(() => {
             if (this.props.videoPlayer.isPlaying) {
                 this.hideControlBar();
@@ -133,6 +142,13 @@ class Player extends React.Component {
                     // Check which buffer time is part of the current time/should be shown.
                     if (videoPlayer.buffered.start(i) <= currentTime && currentTime <= videoPlayer.buffered.end(i)) {
                         const timeBuffered = videoPlayer.buffered.end(i);
+                        console.log("time buffered:", timeBuffered, videoPlayer.currentTime);
+
+                        if(timeBuffered <= videoPlayer.currentTime){
+                            console.log("Not enough buffer");
+                            console.log(timeBuffered, videoPlayer.currentTime);
+                        }
+                        
 
                         if (this.props.videoPlayer.bufferTime !== timeBuffered) {
                             // console.log(this.props.videoPlayer.bufferTime, timeBuffered);
@@ -156,7 +172,6 @@ class Player extends React.Component {
         if (this.getVideoPlayer()) {
             this.timeInterval = setInterval(() => {
                 const newTime = this.getVideoPlayer().currentTime;
-                console.log(this.props.videoPlayer.currentVideoTime, newTime);
                 if (this.props.videoPlayer.currentVideoTime !== newTime) {
                     this.props.dispatch(updateCurrentTime(newTime));
                 }
@@ -164,6 +179,22 @@ class Player extends React.Component {
             }, 1000);
         }
     }
+
+    watchVideoStatus = () => {
+        if (this.getVideoPlayer()) {
+            const video = this.getVideoPlayer();
+            video.addEventListener('playing', () => {
+                this.props.dispatch(videoIsReady());
+                this.setControlbarTimeout();
+            });
+            video.addEventListener('waiting', () => {
+                clearTimeout(this.controlBarTimeout);
+                this.props.dispatch(videoIsWaiting());
+            });
+        } else {
+            console.log("Undefined");
+        }
+    } 
 
     handleAppPause = () => {
         if (this.props.appPaused && this.props.videoPlayer.isPlaying) {
@@ -191,6 +222,10 @@ class Player extends React.Component {
     }
 
     render() {
+        if(this.props.changeCurrentTimeTo){
+            console.log("changeCurrentTimeTo:",changeCurrentTimeTo);
+        }
+            
         console.log("ORIENTATION", this.props.orientation);
         let videoPlayerStyle = {};
         if (this.props.orientation === Orientation.PORTRAIT) {

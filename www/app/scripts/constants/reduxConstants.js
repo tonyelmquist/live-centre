@@ -114,6 +114,9 @@ class ReduxConstants {
     
     static get TOGGLE_TICKERS() { return 'TOGGLE_TICKERS'; }
 
+    static get VIDEO_IS_WAITING() { return 'VIDEO_IS_WAITING'; }
+    static get VIDEO_IS_READY() { return 'VIDEO_IS_READY'; }
+
     // static get SET_CURRENT_TIME() { return 'SET_CURRENT_TIME'; }
 
     static get MARK_AS_WISHLIST() { return 'MARK_AS_WISHLIST'; }
