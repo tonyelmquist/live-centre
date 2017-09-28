@@ -136,7 +136,6 @@ export function replayReducer(
 }
 
 export function videoPlayer(state = { isPlaying: false, isWaiting: false, bufferTime: null, duration: 0, changeCurrentTimeTo: null, currentVideoTime: 0, dimensions: {} }, action) {
-
     switch (action.type) {
     case Actions.PLAY_VIDEO:
         return {

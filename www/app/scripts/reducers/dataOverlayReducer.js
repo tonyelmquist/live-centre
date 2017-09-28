@@ -16,7 +16,7 @@ export default function dataOverlayReducer(state = { score: { home: 0, away: 0 }
         return {
             ...state,
             activeEvents: action.events,
-        }
+        };
     default:
         return state;
     }

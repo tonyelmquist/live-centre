@@ -34,35 +34,35 @@ const productArray = {
         description: 'The Nike Alligator Tamer has a firm fit and solid touch on short-grass pitches.',
         price: 79.99,
     },
-        {
+    {
         productID: 6,
         productTitle: 'Cleveland Cap',
         thumbnailImage: 'http://35.158.87.9/images/Products/cCapSmall.gif',
         description: 'Retro baseball cap with the old C logo.',
         price: 39.99,
     },
-        {
+    {
         productID: 7,
         productTitle: 'Nike Mercurial Vapor',
         thumbnailImage: 'http://35.158.87.9/images/Products/nikeMercurialVaporSmall',
         description: 'The Nike Mercurial Vapor has a firm fit and solid touch on short-grass pitches.',
         price: 99.99,
     },
-        {
+    {
         productID: 8,
         productTitle: 'Arsenal Jersey',
         thumbnailImage: 'http://35.158.87.9/images/Products/arsenalShirtSmall.gif',
         description: 'Official match-quality Arsenal home jersey.',
         price: 49.99,
     },
-        {
+    {
         productID: 9,
         productTitle: 'Brooklyn Cap',
         thumbnailImage: 'http://35.158.87.9/images/Products/brooklynCapSmall.gif',
         description: 'Black Brooklyn baseball cap to show your loyalty.',
         price: 24.99,
     },
-        {
+    {
         productID: 10,
         productTitle: 'Ray-Ban Elite',
         thumbnailImage: 'http://35.158.87.9/images/Products/sunglassesSmall.gif',

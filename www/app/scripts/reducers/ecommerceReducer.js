@@ -16,7 +16,6 @@ const defaultState = {
 };
 
 export default function ecommerceReducer(state = defaultState, action) {
-
     switch (action.type) {
     case Actions.ADD_TO_CART:
 

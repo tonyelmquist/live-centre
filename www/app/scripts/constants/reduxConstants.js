@@ -115,7 +115,7 @@ class ReduxConstants {
     static get HIDE_HIGHLIGHTS() { return 'HIDE_HIGHLIGHTS'; }
 
     static get SET_VIDEO_DIMENSIONS() { return 'SET_VIDEO_DIMENSIONS'; }
-    
+
     static get TOGGLE_TICKERS() { return 'TOGGLE_TICKERS'; }
 
     static get VIDEO_IS_WAITING() { return 'VIDEO_IS_WAITING'; }
@@ -129,12 +129,6 @@ class ReduxConstants {
 
     static get ENTER_FULL_SCREEN() { return 'ENTER_FULL_SCREEN'; }
     static get EXIT_FULL_SCREEN() { return 'EXIT_FULL_SCREEN'; }
-
-    static get SHOW_PRODUCT_THUMB() { return 'SHOW_PRODUCT_THUMB'; }
-    static get HIDE_PRODUCT_THUMB() { return 'HIDE_PRODUCT_THUMB'; }
-
-    static get SHOW_PRODUCT_OVERLAY() { return 'SHOW_PRODUCT_OVERLAY'; }
-    static get HIDE_PRODUCT_OVERLAY() { return 'HIDE_PRODUCT_OVERLAY'; }
 
     static get SHOW_ECOMMERCE_OVERLAY() { return 'SHOW_ECOMMERCE_OVERLAY'; }
     static get SHOW_SPORTS_OVERLAY() { return 'SHOW_SPORTS_OVERLAY'; }
@@ -152,12 +146,12 @@ class ReduxConstants {
 
     static get SET_DURATION() { return 'SET_DURATION'; }
     static get SET_BUFFER_TIME() { return 'SET_BUFFER_TIME'; }
-    
+
     static get UPDATE_CURRENT_TIME() { return 'UPDATE_CURRENT_TIME'; }
     static get CHANGE_CURRENT_TIME() { return 'CHANGE_CURRENT_TIME'; }
     static get SKIP_CURRENT_TIME_BY() { return 'SKIP_CURRENT_TIME_BY'; }
     static get RESET_CURRENT_TIME() { return 'RESET_CURRENT_TIME'; }
-    
+
 
     // NOTIFICATIONS
     static get ADD_NEW_POP_NOTIFICATION() { return 'ADD_NEW_POP_NOTIFICAITON'; }
@@ -185,13 +179,13 @@ class ReduxConstants {
     static get CANCEL_BUY_NOW() { return 'CANCEL_BUY_NOW'; }
     static get COMPLETE_CHECKOUT() { return 'COMPLETE_CHECKOUT'; }
     static get COMPLETE_BUY_NOW() { return 'COMPLETE_BUY_NOW'; }
-    static get SHOW_PRODUCT_OVERLAY() {return 'SHOW_PRODUCT_OVERLAY'; }
-    static get HIDE_PRODUCT_OVERLAY() {return 'HIDE_PRODUCT_OVERLAY'; }
-    static get SHOW_CART() {return 'SHOW_CART'; }
-    static get HIDE_CART() {return 'HIDE_CART'; }
-    static get REMOVE_FROM_CART() {return 'REMOVE_FROM_CART'; }
-    static get SHOW_PRODUCT_THUMB() {return 'SHOW_PRODUCT_THUMB'; }
-    static get HIDE_PRODUCT_THUMB() {return 'HIDE_PRODUCT_THUMB'; }
+    static get SHOW_PRODUCT_OVERLAY() { return 'SHOW_PRODUCT_OVERLAY'; }
+    static get HIDE_PRODUCT_OVERLAY() { return 'HIDE_PRODUCT_OVERLAY'; }
+    static get SHOW_CART() { return 'SHOW_CART'; }
+    static get HIDE_CART() { return 'HIDE_CART'; }
+    static get REMOVE_FROM_CART() { return 'REMOVE_FROM_CART'; }
+    static get SHOW_PRODUCT_THUMB() { return 'SHOW_PRODUCT_THUMB'; }
+    static get HIDE_PRODUCT_THUMB() { return 'HIDE_PRODUCT_THUMB'; }
 
 }
 
