@@ -65,11 +65,13 @@ class HeroCarousel extends Component {
     componentDidUpdate() {
         if (this.carouselVideo && this.state.autoPlay) {
             this.loadingTimeout = setTimeout(() => {
+                console.log('autoplay');
                 this.setState({ autoPlay: false });
                 this.carouselVideo.pause();
-            }, 1000);
+            }, 7000);
 
             this.carouselVideo.addEventListener('canplay', () => {
+                console.log('CAN PLAY');
                 if (this.state.autoPlay) {
                     clearTimeout(this.loadingTimeout);
                 }

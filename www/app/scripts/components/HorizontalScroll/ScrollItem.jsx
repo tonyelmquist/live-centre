@@ -1,12 +1,28 @@
 import React from 'react';
 
-const ScrollItem = (props) => {
-    return (
-        <div className="inline scrollItem" onTouchTap={props.handleClick} key={`scroll-item-${props.id}`}>
-            <img src={props.img} className="itemImage" />
-            {props.overlay}
-        </div>
-    );
-};
+class ScrollItem extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            imageLoaded: false,
+        };
+    }
+
+    onImageLoad = () => {
+        this.setState({
+            imageLoaded: true,
+        });
+    }
+
+    render() {
+        return (
+            <div className={`inline scrollItem ${this.state.imageLoaded ? '' : 'loading'}`} onTouchTap={this.props.handleClick} key={`scroll-item-${this.props.id}`}>
+                <img src={this.props.img} className="itemImage" onLoad={this.onImageLoad} />
+                {this.props.overlay}
+            </div>
+        );
+    }
+}
 
 export default ScrollItem;

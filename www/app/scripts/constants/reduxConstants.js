@@ -15,6 +15,10 @@ class ReduxConstants {
     // MODALS
     static get SHOW_LOGIN_MODAL() { return 'SHOW_LOGIN_MODAL'; }
 
+    // SplashScreen
+    static get SET_SPLASH_SHOWING() { return 'SET_SPLASH_SHOWING'; }
+    static get SET_SPLASH_READY() { return 'SET_SPLASH_READY'; }
+
     // FETCH DATA
     static get FETCH_VIDEO_SUCCESS() { return 'FETCH_VIDEO_SUCCESS'; }
     static get FETCH_VIDEO_FAILED() { return 'FETCH_VIDEO_FAILED'; }

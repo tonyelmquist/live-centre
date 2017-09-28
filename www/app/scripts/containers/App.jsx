@@ -27,11 +27,13 @@ import NotificationManager from './NotificationManager';
 // Components
 import TransitionRoutes from '../components/TransitionRoutes';
 import SportPlayerOverlay from '../components/SportSection/SportPlayerOverlay';
+import SplashScreen from '../components/common/SplashScreen';
 // Actions
 import { setLandscape, setPortrait } from '../actions/settings';
 import { closeTeamMemberOverlay } from '../actions/pages/sportsPage';
 import { removeNotification } from '../actions/notifications';
 import { setDisplayName } from '../actions/authentication';
+import { setSplashScreenReady, setSplashScreenShowing } from '../actions/splashScreen';
 
 // const history = createHistory();
 
@@ -45,7 +47,10 @@ class App extends Component {
 
         window.addEventListener('load', () => {
             this.dispatchOrientation();
+            console.log('APP READY');
+            this.props.dispatch(setSplashScreenReady(true));
         });
+
 
         //window.jsBridge.onPause = () => this.onPause();
         //window.jsBridge.onResume = () => this.onResume();
@@ -102,6 +107,7 @@ class App extends Component {
         return (
           <MemoryRouter history={history}>
             <div>
+            <SplashScreen isReady={this.props.splashScreen.isReady} isShowing={this.props.splashScreen.isShowing} />
             <MediaQuery minWidth={1100}>
             <div style={{ width: '100%', height: '100vh', position: 'absolute', zIndex: 9999, color: 'white', margin: '0 10', textAlign: 'center', backgroundColor: 'black' }}>
                 <h1>IMR Media Center.</h1>
@@ -151,6 +157,7 @@ App.propTypes = {
 };
 const mapStateToProps = state => ({
     notifications: state.notifications.notifications,
+    splashScreen: state.splashScreen,
     loginState: state.isUserLoggedIn,
     sidebarState: state.isSidebarVisible,
     modals: state.modals,

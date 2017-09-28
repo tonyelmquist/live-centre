@@ -10,6 +10,7 @@ import matches from './matchDataReducer';
 import { search, searchFilterTab } from './searchReducer';
 import dataOverlayReducer from './dataOverlayReducer';
 import modalsReducer from './modalsReducer';
+import splashScreen from './splashScreenReducer';
 import settings from './settingsReducer';
 import overlayManager from './overlayManagerReducer';
 import { showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo } from './videoCardReducer';
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
     playback: handleSelection,
     videoPlayer,
     videoSettings,
+    splashScreen,
     dataOverlay: dataOverlayReducer,
     headerMenuState,
     drawerMenuState,
