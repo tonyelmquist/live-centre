@@ -38,6 +38,7 @@ class VideoControls extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         if (nextProps.controlBarVisibility !== this.props.controlBarVisibility
+            || nextProps.videoPlayer.isPlaying !== this.props.videoPlayer.isPlaying
             || nextProps.orientation !== this.props.orientation
             || nextProps.isVideoSettingsOpen !== this.props.isVideoSettingsOpen
             || nextState.replay.showReplay !== this.state.replay.showReplay
@@ -97,7 +98,6 @@ class VideoControls extends React.Component {
 
 
     playVideo = () => {
-        this.hideControlBar();
         this.props.dispatch(playVideo());
     }
 
