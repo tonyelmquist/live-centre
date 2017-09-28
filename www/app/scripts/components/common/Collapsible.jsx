@@ -14,10 +14,7 @@ class Collapsible extends Component {
     componentDidMount() {
         const el = this.collapseInnerElement;
         const fullText = this.props.text;
-
-        if (el.scrollHeight <= el.clientHeight) {
-            this.setCollapseState(false);
-        }
+        
         if (this.props.isCollapsed) {
             this.shortenText(el);
         }
@@ -33,7 +30,14 @@ class Collapsible extends Component {
         // console.log('component did update');
         const el = this.collapseInnerElement;
         if (this.props.isCollapsed) {
-            setTimeout(() => { this.shortenText(el); }, 300);
+            setTimeout(() => {
+                this.shortenText(el);
+                if (el.textContent === this.props.text) {
+                    this.setCollapseState(false);
+                } else {
+                    this.setCollapseState(true);
+                }
+            }, 300);
         } else {
             el.textContent = this.props.text;
         }
@@ -64,18 +68,6 @@ class Collapsible extends Component {
         el.textContent = this.getDescriptionSnippet(el.textContent, 80);
     }
 
-    collapseButton() {
-        if (typeof this.collapseInnerElement !== 'undefined' && this.collapseInnerElement !== null) {
-            if (this.collapseInnerElement.scrollHeight <= this.collapseInnerElement.clientHeight) {
-                return (<span onTouchTap={() => this.props.toggleCollapseInfo()} className="collapseIcon">
-                <AnimatedExpandIcon isCollapsed={this.props.isCollapsed} />
-                </span>);
-            }
-        }
-        return (<span />);
-    }
-
-
     getCollapseHeight() {
         const defaultHeight = 45;
         if (typeof this.collapseInnerElement !== 'undefined' && this.collapseInnerElement !== null) {
@@ -96,6 +88,7 @@ class Collapsible extends Component {
     }
 
     render() {
+        console.log('COLLAPSE RENDERERER', this.state.showCollapseButton);
         const collapseHeight = this.getCollapseHeight();
         return (
             <div className="collapsible">

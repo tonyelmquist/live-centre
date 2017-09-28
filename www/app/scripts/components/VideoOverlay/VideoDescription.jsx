@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import FullStar from 'material-ui/svg-icons/toggle/star';
 import { yellow500 } from 'material-ui/styles/colors';
-import Collapsible from '../Common/Collapsible';
 import i18next from 'i18next';
+import Collapsible from '../common/Collapsible';
 
 class VideoDescription extends React.Component {
 
@@ -51,8 +51,6 @@ class VideoDescription extends React.Component {
                     isCollapsed={this.props.isCollapsed}
                     text={this.props.video.description}
                 />
-                {/* <p>{this.ipsum}</p>
-                </Collapsible>  */}
             </div>
         );
     }
