@@ -131,6 +131,7 @@ class ReduxConstants {
 
     static get SHOW_ECOMMERCE_OVERLAY() { return 'SHOW_ECOMMERCE_OVERLAY'; }
     static get SHOW_SPORTS_OVERLAY() { return 'SHOW_SPORTS_OVERLAY'; }
+    static get SHOW_SETTINGS_OVERLAY() { return 'SHOW_SETTINGS_OVERLAY'; }
     static get SHOW_ALL_OVERLAYS() { return 'SHOW_ALL_OVERLAYS'; }
 
     static get VIDEO_SELECTED() { return 'VIDEO_SELECTED'; }

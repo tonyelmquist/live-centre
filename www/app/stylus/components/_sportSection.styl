@@ -69,8 +69,11 @@
     img
         max-height:70px
 
-.soccer-overlay, .basketball-overlay, .ecommerce-overlay
-    transition: 0.5s all;
+.soccer-overlay, .basketball-overlay, .ecommerce-overlay, .settings-overlay
+    transition: 0.5s all
     opacity: 0
+    pointer-events: none
     &.show
         opacity: 1
+        z-index: 11000
+        pointer-events: all

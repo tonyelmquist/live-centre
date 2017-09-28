@@ -13,7 +13,7 @@ class SettingsOverlay extends Component {
     }
     render() {
         return (
-            <div>
+            <div className={`settings-overlay ${this.props.show ? 'show' : ''}`}>
                 <div className={`empty-overlay ${this.props.isOpen ? 'isOpen' : ''}`} style={{ padding: '40px' }} onTouchTap={this.handleTouch}>
                     <h2>Video settings</h2>
                     <p>Video speed</p>

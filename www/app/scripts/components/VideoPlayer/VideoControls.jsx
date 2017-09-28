@@ -8,6 +8,10 @@ import { showReplay, hideReplay, showHighlights, setControlBarVisibility,
     isVideoSettingsOpen, showProductOverlay, showProductThumb,
      updateCurrentTime, changeCurrentTime, skipCurrentTimeBy, setDuration, playVideo, pauseVideo, toggleVideoTickers } from '../../actions/videoPlayer';
 import SettingsOverlay from '../SecondLayer/SettingsOverlay';
+import {
+  showSettingsOverlay,
+  showAllOverlays,
+} from '../../actions/overlayManager';
 import { connect } from 'react-redux';
 
 import { Orientation } from '../../constants/reduxConstants';
@@ -128,11 +132,13 @@ class VideoControls extends React.Component {
         console.log('open settings');
 
         this.props.dispatch(isVideoSettingsOpen(true));
+        this.props.dispatch(showSettingsOverlay());
         this.hideControlBar();
     };
 
     closeSettings = () => {
         this.props.dispatch(isVideoSettingsOpen(false));
+        this.props.dispatch(showAllOverlays());
     }
 
     hideControlBar = () => {
@@ -227,6 +233,7 @@ class VideoControls extends React.Component {
                             showTickers={this.props.videoSettings.showTickers}
                             isOpen={this.props.isVideoSettingsOpen}
                             onClose={() => this.closeSettings()}
+                            show={this.props.showSettingsOverlay}
                         />
                     </div>
                     : <div />
@@ -243,6 +250,7 @@ const mapStateToProps = state => ({
     videoSettings: state.videoSettings,
     orientation: state.settings.screenOrientation,
     isVideoSettingsOpen: state.playback.isVideoSettingsOpen,
+    showSettingsOverlay: state.overlayManager.showSettingsOverlay,
 });
 
 export default connect(mapStateToProps)(VideoControls);
