@@ -28,7 +28,7 @@ class Replayer extends React.Component {
     componentDidUpdate = () => {
         if (this.replayerVideo) {
             this.replayerVideo.video.load();
-            this.replayerVideo.video.addEventListener('canplay', () => {
+            this.replayerVideo.video.addEventListener('playing', () => {
                 console.log('REPLAY READY TO PLAY');
                 this.setState({
                     readyToPlay: true,
