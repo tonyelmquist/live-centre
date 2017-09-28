@@ -35,8 +35,8 @@ class VideoControls extends React.Component {
         if (nextProps.controlBarVisibility !== this.props.controlBarVisibility
             || nextProps.orientation !== this.props.orientation
             || nextProps.isVideoSettingsOpen !== this.props.isVideoSettingsOpen
-            || nextState.replay.showReplay !== this.state.replay.showReplay) {
-            || nextProps.videoSettings.showTickers !== this.props.videoSettings.showTickers
+            || nextState.replay.showReplay !== this.state.replay.showReplay
+            || nextProps.videoSettings.showTickers !== this.props.videoSettings.showTickers){
         ) {
             return true;
         } else if (!this.props.controlBarVisibility) {
