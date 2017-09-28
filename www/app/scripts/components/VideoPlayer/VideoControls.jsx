@@ -36,6 +36,8 @@ class VideoControls extends React.Component {
             || nextProps.orientation !== this.props.orientation
             || nextProps.isVideoSettingsOpen !== this.props.isVideoSettingsOpen
             || nextState.replay.showReplay !== this.state.replay.showReplay) {
+            || nextProps.videoSettings.showTickers !== this.props.videoSettings.showTickers
+        ) {
             return true;
         } else if (!this.props.controlBarVisibility) {
             return false;
@@ -99,6 +101,14 @@ class VideoControls extends React.Component {
     }
 
     changeCurrentTime = (time) => {
+
+        console.log("Change current time", time, this.props.videoPlayer.bufferTime);
+        if(this.props.videoPlayer.bufferTime + 2 > time){
+            console.log("NO LOADING REQUIRED");
+        } else {
+            console.log("Loading required");
+        }
+
         this.props.dispatch(changeCurrentTime(time));
     }
 
@@ -172,7 +182,6 @@ class VideoControls extends React.Component {
 
     render() {
         const { isPlaying, duration, currentVideoTime } = this.props.videoPlayer;
-        console.log('controlbar visibility', this.props.controlBarVisibility);
         return (
             <div>
                 <div className="gradient-overlay" style={{ ...this.getStyles(), zIndex: 0 }} />
