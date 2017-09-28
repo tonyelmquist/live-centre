@@ -65,25 +65,23 @@ class App extends Component {
     }
 
     dispatchOrientation = () => {
-        setTimeout(() => {
-            if (typeof window.orientation !== 'undefined') {
-                if (window.orientation === 0) {
-                    this.props.dispatch(setPortrait());
-                }
-
-                if (window.orientation === -90 || window.orientation === 90) {
-                    this.props.dispatch(setLandscape());
-                }
-            } else {
-                if (window.innerHeight > window.innerWidth) {
-                    this.props.dispatch(setPortrait());
-                }
-
-                if (window.innerHeight < window.innerWidth) {
-                    this.props.dispatch(setLandscape());
-                }
+        if (typeof window.orientation !== 'undefined') {
+            if (window.orientation === 0) {
+                this.props.dispatch(setPortrait());
             }
-        }, 10);
+
+            if (window.orientation === -90 || window.orientation === 90) {
+                this.props.dispatch(setLandscape());
+            }
+        } else {
+            if (window.innerHeight > window.innerWidth) {
+                this.props.dispatch(setPortrait());
+            }
+
+            if (window.innerHeight < window.innerWidth) {
+                this.props.dispatch(setLandscape());
+            }
+        }
     }
 
     closeTeamMemberOverlay = () => {
