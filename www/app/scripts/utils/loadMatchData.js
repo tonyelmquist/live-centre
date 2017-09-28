@@ -38,7 +38,7 @@ export const getMatchData = (matchId) => {
                     matchDataForStore.timeline = timelineData.timeline;
                     store.dispatch(insertMatchData(matchId, matchDataForStore));
                 }, (err) => {
-                    console.log('error occured, no timeline data inserted');
+                    console.log('error occured, no timeline data inserted', err);
                     store.dispatch(insertMatchData(matchId, matchDataForStore));
                 });
             }, 5000);
@@ -48,12 +48,35 @@ export const getMatchData = (matchId) => {
     }
 };
 
+export const getPlayerData = (playerId, callback = () => {}) => {
+    if (typeof store.getState().sportsInfo.players[playerId] === 'undefined') {
+        SportRadarApi.getPlayerProfile(`sr:player:${playerId}`, (data) => {
+            const teamMemberDataForStore = new TeamMember({
+                id: playerId,
+                name: data.player.name,
+                type: data.player.type,
+                nationality: {
+                    name: data.player.nationality,
+                    code: data.player.country_code,
+                },
+                dob: data.player.date_of_birth,
+                height: data.player.height,
+                statistics: data.statistics.totals,
+                number: data.roles[0].jersey_number,
+                roles: data.roles,
+            });
+
+            callback(teamMemberDataForStore);
+
+            store.dispatch(insertPlayerData(playerId, teamMemberDataForStore));
+        });
+    }
+};
+
 export const getTeamData = (teamId, callback = () => {}) => {
     if (typeof store.getState().sportsInfo.teams[teamId] === 'undefined') {
         SportRadarApi.getTeamProfile(`sr:competitor:${teamId}`, (data) => {
-            const players = data.players.map((value) => {
-                return value.id.split('sr:player:')[1];
-            });
+            const players = data.players.map(value => value.id.split('sr:player:')[1]);
             const teamDataForStore = new Team({
                 id: teamId,
                 key: teamId,
@@ -79,31 +102,6 @@ export const getTeamData = (teamId, callback = () => {}) => {
                 }
                 count += 1;
             }, 5000);
-        });
-    }
-};
-
-export const getPlayerData = (playerId, callback = () => {}) => {
-    if (typeof store.getState().sportsInfo.players[playerId] === 'undefined') {
-        SportRadarApi.getPlayerProfile(`sr:player:${playerId}`, (data) => {
-            const teamMemberDataForStore = new TeamMember({
-                id: playerId,
-                name: data.player.name,
-                type: data.player.type,
-                nationality: {
-                    name: data.player.nationality,
-                    code: data.player.country_code,
-                },
-                dob: data.player.date_of_birth,
-                height: data.player.height,
-                statistics: data.statistics.totals,
-                number: data.roles[0].jersey_number,
-                roles: data.roles,
-            });
-
-            callback(teamMemberDataForStore);
-
-            store.dispatch(insertPlayerData(playerId, teamMemberDataForStore));
         });
     }
 };

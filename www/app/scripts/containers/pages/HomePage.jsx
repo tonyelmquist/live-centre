@@ -6,6 +6,7 @@ import { changeCardCategory, changeVideoInfo } from '../../actions/videoCard';
 import { videoSelected } from '../../actions/videoPlayer';
 import { openVideoOverlay, maximizeVideoOverlay } from '../../actions/VideoOverlay';
 import VideoSwiper from '../../components/VideoSwiper';
+import { setSplashScreenShowing } from '../../actions/splashScreen';
 
 class HomePage extends Component {
 
@@ -50,6 +51,12 @@ class HomePage extends Component {
         }
 
         return <div />;
+    }
+
+    componentDidMount = () => {
+        setTimeout(() => {
+            this.props.dispatch(setSplashScreenShowing(true));
+        }, 2000);
     }
 
     render() {

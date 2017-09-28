@@ -274,7 +274,7 @@ export function changeCurrentTime(time) {
 }
 
 /**
- * Action to skip current time by. 
+ * Action to skip current time by.
  *
  * @export
  * @memberof Actions:VideoPlayer
@@ -315,7 +315,6 @@ export function setBufferTime(time) {
  * @returns Dispatchable Action
  */
 export function setVideoDimensions(dimensions) {
-    console.log('setting dimensions to', dimensions);
     return { type: Actions.SET_VIDEO_DIMENSIONS, dimensions };
 }
 
@@ -331,5 +330,4 @@ export function videoIsWaiting() {
 export function videoIsReady() {
     return { type: Actions.VIDEO_IS_READY };
 }
-
 

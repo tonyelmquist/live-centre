@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
-import { newPopNotification } from '../actions/notifications';
+import { newPopNotification, removePopNotification } from '../actions/notifications';
 
 // Data Overlays
 import SoccerDataOverlay from './DataOverlays/SoccerDataOverlay';
@@ -25,6 +24,9 @@ class DataOverlay extends Component {
         });
     }
 
+    removeNotification = (id) => {
+        this.props.dispatch(removePopNotification(id));
+    }
 
     render() {
         return (
@@ -37,7 +39,7 @@ class DataOverlay extends Component {
                     <BasketballDataOverlay /> : ''
                 }
                 <ECommerceDataOverlay />
-                <PopIndicatorManager notifications={this.props.popNotifications} />
+                <PopIndicatorManager notifications={this.props.popNotifications} removeNotification={this.removeNotification} />
 
             </div>
         );

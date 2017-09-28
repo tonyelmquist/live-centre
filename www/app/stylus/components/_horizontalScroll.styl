@@ -60,10 +60,14 @@
     max-width:100px
     position:relative
   .scrollItem
-    max-width:200px
+    max-width: 200px
     margin: 0 10px 0 0
-    text-align:left
-    overflow:hidden
+    text-align: left
+    overflow: hidden
+    opacity: 1
+    transition: opacity .5s
+    &.loading
+      opacity: 0
     .itemImage
       width: 100%
       white-space:nowrap

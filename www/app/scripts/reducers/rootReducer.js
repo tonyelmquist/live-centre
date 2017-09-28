@@ -4,16 +4,17 @@ import authenticationReducer from './authenticationReducer';
 import chat from './chatReducer';
 import { videosReducer, seasonReducer, seriesReducer, tagsReducer } from './fetchDataReducer';
 import { headerMenuState, drawerMenuState, pageTabIndex, shadeReducer, userMenuReducer, appPaused } from './navigationReducer';
-import videoOverlay from './VideoOverlayReducer';
+import videoOverlay from './videoOverlayReducer';
 import { notificationReducer, popNotificationReducer } from './notificationReducer';
 import matches from './matchDataReducer';
 import { search, searchFilterTab } from './searchReducer';
 import dataOverlayReducer from './dataOverlayReducer';
 import modalsReducer from './modalsReducer';
+import splashScreen from './splashScreenReducer';
 import settings from './settingsReducer';
 import overlayManager from './overlayManagerReducer';
 import { showVideoCard, changeCardIndex, changeCardCategory, changeVideoInfo } from './videoCardReducer';
-import { replayReducer as replay, highlightsReducer as highlights, 
+import { replayReducer as replay, highlightsReducer as highlights,
     handleSelection,
     videoPlayer, videoSettings } from './videoPlayerReducer';
 import ecommerce from './ecommerceReducer';
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
     playback: handleSelection,
     videoPlayer,
     videoSettings,
+    splashScreen,
     dataOverlay: dataOverlayReducer,
     headerMenuState,
     drawerMenuState,

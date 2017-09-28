@@ -175,5 +175,3 @@ export function insertPlayerData(id, data) {
 export function insertTeamData(id, data) {
     return { type: Actions.INSERT_TEAM_DATA, id, data };
 }
-
-

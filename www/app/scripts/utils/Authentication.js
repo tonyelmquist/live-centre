@@ -23,7 +23,7 @@ export default class Authentication {
                         store.dispatch(loginSuccess({ uid, email, emailVerified, isAnonymous, displayName: name, photoURL: url, providerData }));
                     });
                 });
-                
+
 
                 // Set settings
                 let settings = {
@@ -109,7 +109,7 @@ export default class Authentication {
         firebase.auth().signOut().then(() => {
             store.dispatch(logoutSuccess());
         }, (error) => {
-            //console.err('ERROR Sign out', error);
+            console.error('ERROR Sign out', error);
         });
     }
 
