@@ -238,7 +238,6 @@ class VideoControls extends React.Component {
                         : <div />}
                         <HighlightsRow
                             open={this.state.highlights.open}
-                            highlights={this.getHighlights()}
                             allVideos={this.props.videos}
                             video={this.props.video}
                             tag={this.props.tags[this.props.video.tags]}
