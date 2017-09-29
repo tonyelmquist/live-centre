@@ -7,7 +7,7 @@ import HighlightsRow from './HighlightsRow';
 import LoadingIcon from '../Icons/LoadingIcon';
 import { showReplay, hideReplay, showHighlights, setControlBarVisibility,
     isVideoSettingsOpen, showProductOverlay, showProductThumb,
-     updateCurrentTime, changeCurrentTime, skipCurrentTimeBy, setDuration, playVideo, pauseVideo, toggleVideoTickers } from '../../actions/videoPlayer';
+     updateCurrentTime, changeCurrentTime, skipCurrentTimeBy, setDuration, playVideo, pauseVideo, toggleVideoTickers, videoSelected } from '../../actions/videoPlayer';
 import SettingsOverlay from '../SecondLayer/SettingsOverlay';
 import {
   showSettingsOverlay,
@@ -105,19 +105,6 @@ class VideoControls extends React.Component {
         this.setState({ highlights: { open: false } });
     }
 
-    getHighlights = () => [
-        { timestamp: 0,
-            description: 'A HIGHLIGHT',
-            thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png' },
-        {
-            timestamp: 10,
-            description: 'ANOTHER HIGHLIGHT',
-            title: 'ANOTHER HIGHLIGHT',
-            thumbnail: 'https://static.mediabank.me/THEFUTUREG/201706/222908001/222908001_poster.png',
-        },
-    ]
-
-
     playVideo = () => {
         this.props.dispatch(playVideo());
     }
@@ -200,6 +187,10 @@ class VideoControls extends React.Component {
         this.props.dispatch(toggleVideoTickers());
     }
 
+    onTileOpen = (video) => {
+        this.props.dispatch(videoSelected(video));
+    }
+
     render() {
         const { isPlaying, duration, currentVideoTime, isWaiting } = this.props.videoPlayer;
         const controlBarVisibility = this.props.controlBarVisibility;
@@ -248,7 +239,11 @@ class VideoControls extends React.Component {
                         <HighlightsRow
                             open={this.state.highlights.open}
                             highlights={this.getHighlights()}
-                            videoUrl={this.state.highlights.videoUrl}
+                            allVideos={this.props.videos}
+                            video={this.props.video}
+                            tag={this.props.tags[this.props.video.tags]}
+                            //videoUrl={this.state.highlights.videoUrl}
+                            onTileOpen={this.onTileOpen}
                             handleClose={() => this.handleHighlightsClose()}
                         />
                         <SettingsOverlay
@@ -267,6 +262,8 @@ class VideoControls extends React.Component {
 }
 
 const mapStateToProps = state => ({
+    videos: state.videos.items,
+    tags: state.tags.items,
     videoPlayer: state.videoPlayer,
     controlBarVisibility: state.playback.controlBarVisibility,
     video: state.playback.video,

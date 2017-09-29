@@ -4,66 +4,38 @@ import Slider from 'react-slick';
 import Close from 'material-ui/svg-icons/navigation/close';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import HighlightItem from './HighlightItem';
+import HorizontalScrollContainer from '../HorizontalScroll/HorizontalScrollContainer';
+import ScrollItem from '../HorizontalScroll/ScrollItem';
+
 
 class HighlightsRow extends Component {
 
-    render() {
-        const settings = {
-            dots: false,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            initialSlide: 0,
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                        infinite: true,
-                    },
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                        initialSlide: 2,
-                    },
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                    },
-                },
-            ],
-        };
+    //Get all videos in the same category/tag
+    getVideos = () => {
+        const allVideos = this.props.allVideos;
+        const videosInTag = this.props.tag.videos;
 
-        let videos = {};
-
-        videos = this.props.highlights.map(highlight =>
-            (<div key={`highlight-thumb-${highlight.timestamp}`}>
-                <HighlightItem
-                video={this.props.videoUrl}
-                timestamp={highlight.timestamp}
-                description={highlight.description}
-                thumbnail={highlight.thumbnail}
-                title={highlight.title}
-                />
-            </div>),
+        return videosInTag.map((value) => {
+            return (<ScrollItem
+                id={allVideos[value].id}
+                key={`highlights-${allVideos[value].id}`}
+                img={allVideos[value].thumbnail}
+                handleClick={() => this.props.onTileOpen(allVideos[value])}
+            />)},
         );
+    }
+
+
+    render() {
         let highlightStyle = {};
         if (this.props.open) {
             highlightStyle = {
-                bottom: '30px',
+                bottom: '40px',
                 opacity: 1,
             };
         } else {
             highlightStyle = {
-                bottom: '-50%',
+                bottom: '-80%',
                 opacity: 0,
             };
         }
@@ -71,13 +43,11 @@ class HighlightsRow extends Component {
         return (
             <div className="highlightsSlider slider" style={highlightStyle}>
                 <div className="rowHeader">
-                    <h3 style={{margin: '0 0 5px 10px', color: '#fff' }}>Highlights</h3>
+                    <h3 style={{margin: '0 0 5px 10px', color: '#fff' }}>Recommendations</h3>
                 </div>
-                <div className="slider">
-                    <Slider ref={c => (this.slider = c)} {...settings}>
-                        {videos}
-                    </Slider>
-                </div>
+                <HorizontalScrollContainer height={100}>
+                    <div>{this.getVideos()}</div>
+                </HorizontalScrollContainer>
                 <FloatingActionButton
                     mini
                     secondary
