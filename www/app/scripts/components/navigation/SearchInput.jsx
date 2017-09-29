@@ -24,6 +24,7 @@ class SearchInput extends React.Component {
               onFocus={() => this.props.handleSearchFocus(true)}
               onBlur={() => this.props.handleSearchFocus(false)}
               ref={(ref) => { this.SearchInput = ref; }}
+              value={this.props.searchState.keyword}
             />
           </div>
         );

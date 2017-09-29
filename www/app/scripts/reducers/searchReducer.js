@@ -12,10 +12,12 @@ function search(state = initialState, action) {
     case Actions.TOGGLE_SEARCH:
         return Object.assign({}, state, {
             isOpen: !state.isOpen,
+            keyword: initialState.keyword,
         });
     case Actions.CLOSE_SEARCH:
         return Object.assign({}, state, {
             isOpen: false,
+            keyword: initialState.keyword,
         });
     case Actions.SEARCH_KEYWORD:
         return Object.assign({}, state, {
