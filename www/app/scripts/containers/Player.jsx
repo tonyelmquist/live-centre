@@ -225,8 +225,7 @@ class Player extends React.Component {
         if(this.props.changeCurrentTimeTo){
             console.log("changeCurrentTimeTo:",changeCurrentTimeTo);
         }
-            
-        console.log("ORIENTATION", this.props.orientation);
+
         let videoPlayerStyle = {};
         if (this.props.orientation === Orientation.PORTRAIT) {
             videoPlayerStyle = { width: '100%', height: '100%' };

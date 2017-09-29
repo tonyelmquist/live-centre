@@ -25,7 +25,9 @@ class Replayer extends React.Component {
         return false;
     }
 
-    componentDidUpdate = () => {
+    timeout = null;
+
+    componentDidMount = () => {
         if (this.replayerVideo) {
             this.replayerVideo.video.load();
             this.replayerVideo.video.addEventListener('playing', () => {
@@ -33,7 +35,7 @@ class Replayer extends React.Component {
                 this.setState({
                     readyToPlay: true,
                 });
-                setTimeout(() => {
+                this.timeout = setTimeout(() => {
                     console.log('HIDE');
                     this.props.hideReplay();
                     this.setState({
@@ -43,6 +45,10 @@ class Replayer extends React.Component {
             }, { once: true });
         }
     };
+
+    componentWillUnmount = () => {
+        clearTimeout(this.timeout);
+    }
 
     render() {
         let replayerLoaderStyles = {};

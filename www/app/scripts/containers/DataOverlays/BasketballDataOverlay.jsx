@@ -42,7 +42,6 @@ class BasketballDataOverlay extends Component {
     }
 
     render() {
-        console.log(this.props.sportsInfo.matches[this.props.selectedVideo.matchId]);
         if (typeof this.props.sportsInfo.matches[this.props.selectedVideo.matchId] === 'undefined') {
             return <div />;
         }

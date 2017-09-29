@@ -23,6 +23,7 @@ class VideoControls extends React.Component {
         this.state = {
             replay: {
                 showReplay: false,
+                open: false,
                 timestamp: 0,
                 videoUrl: '',
             },
@@ -43,7 +44,8 @@ class VideoControls extends React.Component {
             || nextProps.isVideoSettingsOpen !== this.props.isVideoSettingsOpen
             || nextState.replay.showReplay !== this.state.replay.showReplay
             || nextProps.videoSettings.showTickers !== this.props.videoSettings.showTickers
-            || nextProps.videoPlayer.isWaiting !== this.props.videoPlayer.isWaiting){
+            || nextProps.videoPlayer.isWaiting !== this.props.videoPlayer.isWaiting
+            || nextState.replay.open !== this.state.replay.open){
             return true;
         } else if (!this.props.controlBarVisibility) {
             return false;
@@ -53,7 +55,8 @@ class VideoControls extends React.Component {
 
 
     showReplay = (e) => {
-        if (this.controlsAreVisible()) {
+        console.log(this.state.replay, 'REPLAY STATE');
+        if (this.controlsAreVisible() && !this.state.replay.showReplay) {
             this.hideControlBar();
             e.stopPropagation();
 
@@ -63,15 +66,33 @@ class VideoControls extends React.Component {
             this.setState({
                 replay: {
                     showReplay: true,
+                    open: false,
                     timestamp: newTime,
                     videoUrl: this.props.video.videoUrl,
                 },
             });
+            setTimeout(() => {
+                this.setState({
+                    replay: {
+                        ...this.state.replay,
+                        open: true,
+                    },
+                });
+            }, 200);
         }
     }
 
     hideReplay = () => {
-        this.setState({ replay: { showReplay: false } });
+        this.setState({ replay: {
+            ...this.state.replay,
+            open: false,
+        } });
+        setTimeout(() => {
+            this.setState({ replay: {
+                ...this.state.replay,
+                showReplay: false,
+            } });
+        }, 700);
     }
 
     showHighLights = (e) => {
@@ -216,12 +237,14 @@ class VideoControls extends React.Component {
                 </div>
                 {this.props.orientation === Orientation.LANDSCAPE ?
                     <div>
+                        {this.state.replay.showReplay ?
                         <Replayer
-                            open={this.state.replay.showReplay}
+                            open={this.state.replay.open}
                             videoUrl={this.state.replay.videoUrl}
                             timestamp={this.state.replay.timestamp}
                             hideReplay={this.hideReplay}
                         />
+                        : <div />}
                         <HighlightsRow
                             open={this.state.highlights.open}
                             highlights={this.getHighlights()}
