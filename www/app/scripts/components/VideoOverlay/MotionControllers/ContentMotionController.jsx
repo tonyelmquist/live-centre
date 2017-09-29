@@ -2,30 +2,67 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Motion, spring } from 'react-motion';
 
-export default function ContentMotionController(props) {
-    const _y = props.isOpen ? (props.isMaximized ? -100 : 0) : 0;
-    const _o = props.isOpen ? (props.isMaximized ? 1 : 0) : 0;
-    let _h = window.innerHeight - props.videoHeight < 0 ? 0 : window.innerHeight - props.videoHeight;
-    _h = isNaN(_h) ? 0 : _h;
-    return (
-        <Motion style={{
-            y: spring(_y, { stiffness: 60, damping: 15 }),
-            o: spring(_o, { stiffness: 60, damping: 15 }),
-            h: _h,
-        }}
-        >
-            {({ y, o, h }) =>
-                (<div className={'video-content-container'} style={{ transform: `translate3d(0, ${y}%, 0)`, opacity: o, height: h }}>
-                    {props.children}
-                </div>)
+class ContentMotionController extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            _y: 0,
+            _o: 0,
+            _h: 0
+        }
+    }
+
+    componentDidUpdate(prevProps){
+        if(prevProps.isOpen !== this.props.isOpen || prevProps.isMaximized !== this.props.isMaximized){
+            if(this.props.isOpen){
+                setTimeout(()=> {
+                    console.log("Setup motion after 1000ms")
+                    this.setupMotion();
+                }, 300);
+            } else {
+                this.setupMotion();
             }
-        </Motion>
-    );
+        }
+    }
+
+    setupMotion = () => {
+        const { isOpen, isMaximized, videoHeight } = this.props;
+        const _y = isOpen ? (isMaximized ? -100 : 0) : 0;
+        const _o = isOpen ? (isMaximized ? 1 : 0) : 0;
+        let _h = window.innerHeight - videoHeight < 0 ? 0 : window.innerHeight - videoHeight;
+        _h = isNaN(_h) ? 0 : _h;
+
+        this.setState({ _y, _o, _h });
+    }
+
+    
+    render() {
+        const config = {
+            stiffness: 90,
+            damping: 15,
+        };
+        return (
+            <Motion style={{
+                y: spring(this.state._y, config),
+                o: spring(this.state._o, config),
+                h: this.state._h,
+            }}
+            >
+                {({ y, o, h }) =>
+                    (<div className={'video-content-container'} style={{ transform: `translate3d(0, ${y}%, 0)`, opacity: o, height: h }}>
+                        {this.props.children}
+                    </div>)
+                }
+            </Motion>
+        );
+    }
 }
 
 ContentMotionController.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     isMaximized: PropTypes.bool.isRequired,
+    videoHeight: PropTypes.number.isRequired,
     children: PropTypes.node.isRequired,
 };
 
+export default ContentMotionController;

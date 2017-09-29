@@ -53,6 +53,7 @@ class VideoOverlay extends Component {
 VideoOverlay.propTypes = {
     dispatch: PropTypes.func.isRequired,
     video: PropTypes.object.isRequired,
+    videos: PropTypes.object.isRequired,
     videoOverlay: PropTypes.object.isRequired,
     videoPlayerDimensions: PropTypes.object.isRequired,
     orientation: PropTypes.string.isRequired,

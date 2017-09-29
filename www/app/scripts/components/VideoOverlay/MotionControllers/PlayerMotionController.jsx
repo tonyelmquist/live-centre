@@ -7,14 +7,34 @@ import { maximizeVideoOverlay, closeVideoOverlay, minimizeVideoOverlay } from '.
 import { setControlBarVisibility, setVideoDimensions } from '../../../actions/videoPlayer';
 
 class PlayerMotionController extends React.Component {
-    componentDidUpdate() {
+    constructor(props) {
+        super(props);
+        this.state = {
+            motionStyle: {
+                y: 300,
+                scale: 1,
+                opacity: 0,
+            },
+        };
+    }
+    componentDidUpdate(prevProps) {
         this.checkHeight();
+        if (prevProps.isOpen !== this.props.isOpen || prevProps.isMaximized !== this.props.isMaximized) {
+            if(this.props.isOpen){
+                setTimeout(()=> {
+                    console.log("Setup motion after 1000ms")
+                    this.setupMotion();
+                }, 300);
+            } else {
+                this.setupMotion();
+            }
+        }
     }
 
     checkHeight = () => {
-        if(typeof this.videoOverlay !== 'undefined' && this.props.isMaximized && this.props.isOpen){
+        if (typeof this.videoOverlay !== 'undefined' && this.props.isMaximized && this.props.isOpen){
             this.videoHeight = this.getHeight();
-        } else  {
+        } else {
             this.videoHeight = 200;
         }
     }
@@ -43,9 +63,11 @@ class PlayerMotionController extends React.Component {
     };
 
     onMaximize = () => {
+        console.log("on maximize");
         if (this.props.orientation === Orientation.PORTRAIT) {
             this.props.dispatch(maximizeVideoOverlay())
         }
+        
     };
 
     onMinimize = () => {
@@ -76,6 +98,28 @@ class PlayerMotionController extends React.Component {
         
     }
 
+    setupMotion = () => {
+        if (this.videoOverlay) {
+            this.heightCheck = this.videoOverlay.clientHeight;
+            this.offscreenY = Math.round((window.innerHeight / this.videoOverlay.clientHeight) * 110);
+            this.minimizedY = Math.round((window.innerHeight / this.videoOverlay.clientHeight) * 66);
+        }
+        console.log(this.heightCheck, this.offscreenY, this.minimizedY);
+        // Styles that will be changed by motion
+        let motionStyle = {};
+
+        if (this.props.isOpen) {
+            if (this.props.isMaximized) {
+                motionStyle = { y: 0, scale: 1, opacity: 1 };
+            } else {
+                motionStyle = { y: this.minimizedY, scale: 0.5, opacity: 1 };
+            }
+        } else {
+            motionStyle = { y: this.offscreenY, opacity: 0, scale: 1 };
+        }
+        this.setState({motionStyle: motionStyle});
+    }
+
     heightCheck = 0;
     offscreenY = 320;
     minimizedY = 190;
@@ -84,7 +128,7 @@ class PlayerMotionController extends React.Component {
 
     render() {
         const config = {
-            stiffness: 60,
+            stiffness: 90,
             damping: 15,
         };
         const playerStyles = {
@@ -95,28 +139,6 @@ class PlayerMotionController extends React.Component {
             top: 0,
             left: 0,
         };
-
-        if (this.videoOverlay) {
-            this.heightCheck = this.videoOverlay.clientHeight;
-            this.offscreenY = Math.round((window.innerHeight / this.videoOverlay.clientHeight) * 110);
-            this.minimizedY = Math.round((window.innerHeight / this.videoOverlay.clientHeight) * 66);
-        }
-
-        // Styles that will be changed by motion
-        let motionStyle = {           
-            y: 0,
-            scale: 1,
-            opacity: 0,
-        };
-        if (this.props.isOpen) {
-            if (this.props.isMaximized) {
-                motionStyle = { y: 0, scale: 1, opacity: 1 };
-            } else {
-                motionStyle = { y: this.minimizedY, scale: 0.5, opacity: 1 };
-            }
-        } else {
-            motionStyle = { y: this.offscreenY, opacity: 0, scale: 1 };
-        }
 
         //Other styles
         let overlayStyle = {
@@ -149,9 +171,9 @@ class PlayerMotionController extends React.Component {
         return (
             <Motion
               style={{
-                  y: spring(motionStyle.y, config),
-                  scale: spring(motionStyle.scale, config),
-                  opacity: spring(motionStyle.opacity, config),
+                  y: spring(this.state.motionStyle.y, config),
+                  scale: spring(this.state.motionStyle.scale, config),
+                  opacity: spring(this.state.motionStyle.opacity, config),
               }}
             >
                 {({ y, scale, opacity }) => (
