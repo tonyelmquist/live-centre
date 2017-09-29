@@ -11,23 +11,29 @@ class PlayerMotionController extends React.Component {
         super(props);
         this.state = {
             motionStyle: {
-                y: 300,
+                y: 0,
                 scale: 1,
                 opacity: 0,
             },
         };
+    }
+    componentDidMount(){
+        this.setupMotion();
     }
     componentDidUpdate(prevProps) {
         this.checkHeight();
         if (prevProps.isOpen !== this.props.isOpen || prevProps.isMaximized !== this.props.isMaximized) {
             if(this.props.isOpen){
                 setTimeout(()=> {
-                    console.log("Setup motion after 1000ms")
                     this.setupMotion();
                 }, 300);
             } else {
                 this.setupMotion();
             }
+        }
+
+        if (prevProps.orientation !== this.props.orientation){
+            this.setupMotion();
         }
     }
 

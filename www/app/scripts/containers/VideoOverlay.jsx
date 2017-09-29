@@ -56,7 +56,6 @@ VideoOverlay.propTypes = {
     videos: PropTypes.object.isRequired,
     videoOverlay: PropTypes.object.isRequired,
     videoPlayerDimensions: PropTypes.object.isRequired,
-    orientation: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

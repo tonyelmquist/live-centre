@@ -16,12 +16,14 @@ class ContentMotionController extends React.Component {
         if(prevProps.isOpen !== this.props.isOpen || prevProps.isMaximized !== this.props.isMaximized){
             if(this.props.isOpen){
                 setTimeout(()=> {
-                    console.log("Setup motion after 1000ms")
                     this.setupMotion();
                 }, 300);
             } else {
                 this.setupMotion();
             }
+        }
+        if (prevProps.videoHeight !== this.props.videoHeight) {
+            this.setupMotion();
         }
     }
 
