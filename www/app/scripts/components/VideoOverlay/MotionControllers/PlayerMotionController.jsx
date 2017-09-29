@@ -21,9 +21,8 @@ class PlayerMotionController extends React.Component {
         this.setupMotion();
     }
     componentDidUpdate(prevProps) {
-        this.checkHeight();
         if (prevProps.isOpen !== this.props.isOpen || prevProps.isMaximized !== this.props.isMaximized) {
-            if(this.props.isOpen){
+            if(this.props.isOpen || this.props.isMaximized, this.props){
                 setTimeout(()=> {
                     this.setupMotion();
                 }, 300);
@@ -124,6 +123,8 @@ class PlayerMotionController extends React.Component {
             motionStyle = { y: this.offscreenY, opacity: 0, scale: 1 };
         }
         this.setState({motionStyle: motionStyle});
+
+        this.checkHeight();
     }
 
     heightCheck = 0;

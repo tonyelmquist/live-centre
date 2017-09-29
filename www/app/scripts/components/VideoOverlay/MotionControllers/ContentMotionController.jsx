@@ -12,9 +12,13 @@ class ContentMotionController extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.setupMotion();
+    }
+
     componentDidUpdate(prevProps){
         if(prevProps.isOpen !== this.props.isOpen || prevProps.isMaximized !== this.props.isMaximized){
-            if(this.props.isOpen){
+            if(this.props.isOpen || this.props.isMaximized){
                 setTimeout(()=> {
                     this.setupMotion();
                 }, 300);
@@ -40,7 +44,7 @@ class ContentMotionController extends React.Component {
     
     render() {
         const config = {
-            stiffness: 90,
+            stiffness: 80,
             damping: 15,
         };
         return (
