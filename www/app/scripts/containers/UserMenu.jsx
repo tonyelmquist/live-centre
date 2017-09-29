@@ -9,7 +9,7 @@ import { showLoginModal } from '../actions/modals';
 import Authentication from '../utils/Authentication';
 import { switchUserMenu, switchShade } from '../actions/navigation';
 
-import { toggleSearch, emptySearch } from '../actions/search';
+import { toggleSearch, emptySearch, closeSearch } from '../actions/search';
 
 class UserMenu extends Component {
 
@@ -22,25 +22,25 @@ class UserMenu extends Component {
 
     handleLogin = () => {
         this.props.dispatch(emptySearch());
-        this.props.dispatch(toggleSearch());
+        this.props.dispatch(closeSearch());
         this.props.changeRoute('/login');
     }
 
     handleSettingsTouchTap = () => {
         this.props.dispatch(emptySearch());
-        this.props.dispatch(toggleSearch());
+        this.props.dispatch(closeSearch());
         this.props.changeRoute('/settings');
     }
 
     handleWishlistTouchTap = () => {
         this.props.dispatch(emptySearch());
-        this.props.dispatch(toggleSearch());
+        this.props.dispatch(closeSearch());
         this.props.changeRoute('/watchlist');
     }
 
     handleOpenProfile = () => {
         this.props.dispatch(emptySearch());
-        this.props.dispatch(toggleSearch());
+        this.props.dispatch(closeSearch());
         this.props.changeRoute('/profile');
     }
 
