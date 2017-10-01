@@ -5,11 +5,10 @@ import i18next from 'i18next';
 
 import FontAwesome from 'react-fontawesome';
 import { logoutSuccess } from '../actions/authentication';
-import { showLoginModal } from '../actions/modals';
 import Authentication from '../utils/Authentication';
 import { switchUserMenu, switchShade } from '../actions/navigation';
 
-import { toggleSearch, emptySearch, closeSearch } from '../actions/search';
+import { emptySearch, closeSearch } from '../actions/search';
 
 class UserMenu extends Component {
 

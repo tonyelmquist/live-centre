@@ -93,7 +93,7 @@ class Chat extends Component {
                 placeholder={`${this.props.isLoggedIn ? i18next.t('video_chatrom_input_placeholder') : i18next.t('video_chatrom_please_login')}`}
                 disabled={!this.props.isLoggedIn}
             />
-            <button type="submit" onTouchTap={this.onSubmitClick} disabled={!this.props.isLoggedIn} >
+            <button type="submit" onTouchTap={this.onSubmitClick} disabled={!this.props.isLoggedIn || this.props.message.length <= 0} >
                 <FontAwesome name="paper-plane" />
             </button>
           </div>
