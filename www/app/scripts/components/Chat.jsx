@@ -76,6 +76,7 @@ class Chat extends Component {
             transition: '.7s all',
             marginTop: `${this.props.showChatTitle ? '40px' : '0'}`,
         };
+        console.log(this.state.message);
 
         return (
           <div className="chat">
@@ -93,7 +94,7 @@ class Chat extends Component {
                 placeholder={`${this.props.isLoggedIn ? i18next.t('video_chatrom_input_placeholder') : i18next.t('video_chatrom_please_login')}`}
                 disabled={!this.props.isLoggedIn}
             />
-            <button type="submit" onTouchTap={this.onSubmitClick} disabled={!this.props.isLoggedIn || this.props.message.length <= 0} >
+            <button type="submit" onTouchTap={this.onSubmitClick} disabled={!this.props.isLoggedIn || this.state.message.length <= 0} >
                 <FontAwesome name="paper-plane" />
             </button>
           </div>
