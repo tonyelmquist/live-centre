@@ -35,6 +35,8 @@ import { removeNotification } from '../actions/notifications';
 import { setDisplayName } from '../actions/authentication';
 import { setSplashScreenReady, setSplashScreenShowing } from '../actions/splashScreen';
 
+import { newPopNotification } from '../actions/notifications';
+
 // const history = createHistory();
 
 class App extends Component {
@@ -50,23 +52,6 @@ class App extends Component {
             console.log('APP READY');
             this.props.dispatch(setSplashScreenReady(true));
         });
-
-
-        //window.jsBridge.onPause = () => this.onPause();
-        //window.jsBridge.onResume = () => this.onResume();
-
-        // window.addEventListener('keydown', (e) => {
-        //     console.log(e.keyCode);
-
-        //     if (e.shiftKey && e.keyCode === 81) {
-        //         console.log('notification');
-        //         this.props.dispatch(newNotification('This is a success message!', 5, 'success'));
-        //     }
-        //     if (e.shiftKey && e.keyCode === 87) {
-        //         console.log('notification');
-        //         this.props.dispatch(newNotification('Your login details were incorrect!', 7, 'error'));
-        //     }
-        // });
     }
 
     dispatchOrientation = () => {

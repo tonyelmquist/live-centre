@@ -59,14 +59,6 @@ class ECommerceDataOverlay extends Component {
 
     onAddToCart = () => {
         this.props.dispatch(addToCart(this.props.selectedProduct));
-        this.props.dispatch(
-      newPopNotification(
-        Math.round(Math.random() * 100),
-        'Item added to cart',
-        0.1,
-        new Date().getTime(),
-      ),
-    );
         this.props.dispatch(showAllOverlays());
     };
 

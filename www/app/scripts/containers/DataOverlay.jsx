@@ -18,8 +18,11 @@ class DataOverlay extends Component {
             console.log(e.keyCode);
 
             if (e.shiftKey && e.keyCode === 81) {
-                console.log('notification');
-                this.props.dispatch(newPopNotification(Math.round(Math.random() * 100), 'data.message', 2, new Date().getTime()));
+                this.props.dispatch(newPopNotification(
+                    Math.round(Math.random() * 100),
+                    'Sarpsborg scored one goal',
+                    0.1,
+                    new Date().getTime()));
             }
         });
     }

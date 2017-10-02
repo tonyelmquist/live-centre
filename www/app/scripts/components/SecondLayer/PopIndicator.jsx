@@ -17,6 +17,7 @@ class PopIndicator extends Component {
     }
 
     componentDidMount = () => {
+        console.log(this.props);
         const intervalId = setInterval(this.timer, 250);
         // store intervalId in the state so it can be accessed later:
         this.setState({ intervalId });
@@ -86,8 +87,6 @@ class PopIndicator extends Component {
     }
 
     render() {
-
-        console.log(this.props.startTime, this.props.endTime)
 
         const containerStyle = {
             transform: 'rotate(-0.25turn)',

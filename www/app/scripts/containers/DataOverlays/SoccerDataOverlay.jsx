@@ -10,6 +10,7 @@ import { getMatchData, getPlayerData } from '../../utils/loadMatchData';
 import { changeScore, changeClock, setActiveEvents } from '../../actions/dataOverlay';
 import TimelineManager from '../../utils/Managers/TimelineManager';
 
+
 class SoccerDataOverlay extends Component {
 
     constructor(props) {
@@ -222,6 +223,19 @@ class SoccerDataOverlay extends Component {
         // }
         return tickers;
     }
+
+    // demoPopNotification = () => {
+    //     this.props.dispatch(
+    //           newPopNotification(
+    //             Math.round(Math.random() * 100),
+    //             'Sarpsborg scored one goal',
+    //             0.1,
+    //             new Date().getTime(),
+    //           ),
+    //         );   
+    // }
+
+    //     
 
     render() {
         console.log("Show tickers: ", this.props.videoSettings.showTickers);
