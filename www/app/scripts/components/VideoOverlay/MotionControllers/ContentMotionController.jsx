@@ -44,8 +44,8 @@ class ContentMotionController extends React.Component {
     
     render() {
         const config = {
-            stiffness: 80,
-            damping: 15,
+            stiffness: 170,
+            damping: 26,
         };
         return (
             <Motion style={{

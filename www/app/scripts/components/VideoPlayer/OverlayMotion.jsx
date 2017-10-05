@@ -63,8 +63,8 @@ class Overlay extends React.Component {
 
     render() {
         const config = {
-            stiffness: 60,
-            damping: 15,
+            stiffness: 170,
+            damping: 26,
         };
         const playerStyles = {
             position: 'relative',
