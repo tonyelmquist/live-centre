@@ -53,12 +53,22 @@ class VideoControls extends React.Component {
         return true;
     }
 
+    //Closes settings, recommendations and replay
+    closeAllOverlays = ( ) => {
+        console.log("Close all overlays");
+        this.closeSettings();
+        this.handleHighlightsClose();
+        this.hideReplay();
+    }
+
 
     showReplay = (e) => {
+        //
         console.log(this.state.replay, 'REPLAY STATE');
         if (this.controlsAreVisible() && !this.state.replay.showReplay) {
-            this.hideControlBar();
             e.stopPropagation();
+            this.closeAllOverlays();
+            this.hideControlBar();
 
             const currentTime = this.props.videoPlayer.currentVideoTime;
             const newTime = currentTime - 10;
@@ -86,18 +96,14 @@ class VideoControls extends React.Component {
         this.setState({ replay: {
             ...this.state.replay,
             open: false,
+            showReplay: false,
         } });
-        setTimeout(() => {
-            this.setState({ replay: {
-                ...this.state.replay,
-                showReplay: false,
-            } });
-        }, 700);
     }
 
     showHighLights = (e) => {
         e.stopPropagation();
         this.hideControlBar();
+        this.closeAllOverlays();
         this.setState({ highlights: { open: true } });
     }
 
@@ -140,7 +146,7 @@ class VideoControls extends React.Component {
     onOpenSettings = (e) => {
         e.stopPropagation();
         console.log('open settings');
-
+        this.closeAllOverlays();
         this.props.dispatch(isVideoSettingsOpen(true));
         this.props.dispatch(showSettingsOverlay());
         this.hideControlBar();
