@@ -79,7 +79,7 @@ class ChannelsPage extends React.Component {
               { key: 'sport', icon: "icon-futbol-o" },
               { key: 'children', icon: "icon-child-face-svgrepo-com" },
               { key: 'comedy', icon: "icon-laughing-svgrepo-com"  },
-              { key: 'crime', icon: "icon-user-secret"  },
+              //{ key: 'crime', icon: "icon-user-secret"  },
               //{ key: 'documentaries', img: docIcon },
             ],
         };

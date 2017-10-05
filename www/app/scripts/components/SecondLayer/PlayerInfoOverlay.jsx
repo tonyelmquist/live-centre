@@ -83,7 +83,7 @@ class PlayerInfoOverlay extends Component {
             : <div />}
 
             <div className="close-btn" onClick={this.props.onClose} role="button" tabIndex="0"><i className="fa fa-close" /></div>
-            <div className="right-btn" onClick={this.props.onRightButton} role="button" tabIndex="0"><i className="fa fa-chevron-right" /></div>
+            <div className="left-btn" onClick={this.props.onRightButton} role="button" tabIndex="0"><i className="fa fa-chevron-left" /></div>
           </div>
         );
     }
