@@ -130,15 +130,6 @@ class ChannelsPage extends React.Component {
 
 
     getCircleFilters = filters => filters.map((filter, key) => (
-    //   <CircleRowItem
-    //     item={filter}
-    //     overlay={(this.filterOverlay(filter))}
-    //     key={filter.key}
-    //     size={60}
-    //     img={filter.img}
-    //     style={filter.avatarStyle}
-    //     handleClick={() => { this.handleFiltering(filter.key); }}
-    //   />
         <ChannelIcon
             //img={filter.img}
             key={filter.key}
@@ -153,7 +144,6 @@ class ChannelsPage extends React.Component {
     ))
 
     render() {
-        console.log(this.state.filters);
         return (
         <div className="channel-page">
         <div className="container-fluid">
@@ -167,7 +157,7 @@ class ChannelsPage extends React.Component {
             </div>
         </div>
         <br />
-        <div className="container-fluid">
+        <div style={{marginTop:'-15px'}} className="container-fluid">
           <MasonryContainer>
             {this.getTiles()}
           </MasonryContainer>
