@@ -8,6 +8,8 @@ import IconButton from 'material-ui/IconButton';
 import PlayCircleFilled from 'material-ui/svg-icons/av/play-circle-filled';
 import { videoSelected } from '../actions/videoPlayer';
 import { openVideoOverlay, maximizeVideoOverlay } from '../actions/VideoOverlay';
+
+import FontAwesome from 'react-fontawesome';
 // const FEATURED_CATEGORY = 'Uncategorized';
 
 const styles = {
@@ -182,7 +184,7 @@ class HeroCarousel extends Component {
         };
 
 
-    // Are videos fetched, and is the category loaded?
+        // Are videos fetched, and is the category loaded?
         if (this.props.tags.items['Promotional Videos'] && this.props.videos.videosFetched > 0) {
             const videoKeys = this.props.tags.items['Promotional Videos'].videos;
 
@@ -200,7 +202,7 @@ class HeroCarousel extends Component {
                         <h3
                         className="carouselImageTitle"
                         >
-                          {this.getSnippet(video.title, 10)}
+                          {this.getSnippet(video.title, 10)} <FontAwesome name="chevron-right" />
                         </h3>
                         <p
                         className="imageDescription"
