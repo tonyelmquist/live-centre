@@ -9,7 +9,6 @@ import PlayCircleFilled from 'material-ui/svg-icons/av/play-circle-filled';
 import { videoSelected } from '../actions/videoPlayer';
 import { openVideoOverlay, maximizeVideoOverlay } from '../actions/VideoOverlay';
 
-import FontAwesome from 'react-fontawesome';
 // const FEATURED_CATEGORY = 'Uncategorized';
 
 const styles = {
@@ -202,7 +201,7 @@ class HeroCarousel extends Component {
                         <h3
                         className="carouselImageTitle"
                         >
-                          {this.getSnippet(video.title, 10)} <FontAwesome name="chevron-right" />
+                          {this.getSnippet(video.title, 10)}
                         </h3>
                         <p
                         className="imageDescription"
