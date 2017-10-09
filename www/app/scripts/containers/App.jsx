@@ -48,9 +48,11 @@ class App extends Component {
         }, false);
 
         window.addEventListener('load', () => {
-            this.dispatchOrientation();
-            console.log('APP READY');
-            this.props.dispatch(setSplashScreenReady(true));
+            setTimeout(()=> {
+                this.dispatchOrientation();
+                console.log('APP READY');
+                this.props.dispatch(setSplashScreenReady(true));
+            }, 2000);
         });
     }
 
