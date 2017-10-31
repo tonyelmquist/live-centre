@@ -5,17 +5,17 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Provider } from 'react-redux';
 import App from './webapp/containers/App';
-import style from './shared/constants/MuiStyle';
-import initLang from './shared/utils/i18nextInit';
-import store from './shared/utils/store';
-import initVideos from './shared/utils/initVideos';
-import initFirebase from './shared/utils/initFirebase';
-import initTeamData from './shared/utils/initTeamData';
-import { getMatchData } from './shared/utils/loadMatchData';
-import Authentication from './shared/utils/Authentication';
-// import FirebaseDB from './shared/utils/FirebaseDB';
+import style from '../../native/shared/constants/MuiStyle';
+import initLang from '../../native/shared/utils/i18nextInit';
+import store from '../../native/shared/utils/storeWeb';
+import initVideos from '../../native/shared/utils/initVideosWeb';
+import initFirebase from '../../native/shared/utils/initFirebase';
+import initTeamData from '../../native/shared/utils/initTeamData';
+import { getMatchData } from '../../native/shared/utils/loadMatchData';
+import Authentication from '../../native/shared/utils/Authentication';
+// import FirebaseDB from '../../native/shared/utils/FirebaseDB';
 // import io from 'socket.io-client';
-// import initUserSettings from './shared/utils/initUserSettings';
+// import initUserSettings from '../../native/shared/utils/initUserSettings';
 
 // Enable Touch/Tap Events
 injectTapEventPlugin();
