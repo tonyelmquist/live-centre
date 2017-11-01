@@ -40,7 +40,7 @@ class ModalScreen extends Component {
                         color={Colors.tabIconSelected}
                     />
                 </TouchableOpacity>
-                <Player uri={`${Parameters.URI}${this.props.navigation.state.params.assetId}`} />
+                <Player uri={`${Parameters.URI}${this.props.navigation.state.params.assetId}.mp4`} />
             </ScrollView>
         );
     }

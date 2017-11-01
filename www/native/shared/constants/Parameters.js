@@ -1,6 +1,6 @@
 class Parameters {
     static get URI() {
-        return 'https://www.mediabank.me/download/manifest.php?assetid=';
+        return 'http://35.158.87.9/video-files/';
     }
 }
 
