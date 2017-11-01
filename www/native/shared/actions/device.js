@@ -8,8 +8,8 @@ export function orientationState(mode) {
     return { type: Actions.ORIENTATION_CHANGE, data: mode };
 }
 
-export function immersiveState(mode) {
-    return { type: Actions.IMMERSIVE_MODE_CHANGE, data: mode };
+export function immersiveState(isImmersive) {
+    return { type: Actions.IMMERSIVE_MODE_CHANGE, data: isImmersive };
 }
 
 export function statusBarState(isHidden) {

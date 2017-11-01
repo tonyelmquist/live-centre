@@ -44,8 +44,8 @@
         "react/prefer-stateless-function": "off",
         "no-pluspluss": "off",
         "default-case": ["off", { "commentPattern": "^skip\\sdefault" }],
-        "import/no-extraneous-dependencies": "off"
-
+        "import/no-extraneous-dependencies": "off",
+        "linebreak-style": "off"
     },
     "env": {
         "browser": true,

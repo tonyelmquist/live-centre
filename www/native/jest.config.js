@@ -10,7 +10,12 @@ module.exports = {
         '^.+\\.js?$': 'babel-jest'
     },
     setupTestFrameworkScriptFile: './node_modules/jest-enzyme/lib/index.js',
-    collectCoverageFrom: ['src/**/*.js', '!**/index.js', '!**/*.bak.js', '!**/(constants)/**'],
+    collectCoverageFrom: [
+        '(native|shared)/**/*.js',
+        '!**/index.js',
+        '!**/*.bak.js',
+        '!**/(constants)/**'
+    ],
     coverageReporters: ['json', 'lcov', 'text-summary'],
     transformIgnorePatterns: [
         'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|native-base|react-native-vector-icons)'
